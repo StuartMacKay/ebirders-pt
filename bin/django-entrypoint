@@ -1,0 +1,11 @@
+#!/bin/bash
+
+python manage.py migrate
+
+if [ "${DJANGO_ENV-development}" = "production" ]
+then
+  mkdir -p /app/static
+  python manage.py collectstatic --no-input
+fi
+
+exec "$@"

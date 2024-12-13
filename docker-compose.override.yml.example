@@ -1,0 +1,23 @@
+x-vol-backend: &backend
+    "./backend:/app/backend"
+
+x-vol-dist: &dist
+    "./frontend/dist:/app/frontend/dist"
+
+services:
+  postgres:
+    ports:
+      - "${DOCKER_POSTGRES_PORT_FORWARD-127.0.0.1:5432}:5432"
+
+  rabbitmq:
+    ports:
+      - "${DOCKER_RABBITMQ_PORT_FORWARD-127.0.0.1:5672}:5672"
+
+  django:
+    volumes:
+      - *backend
+      - *dist
+
+  celery-worker:
+    volumes:
+      - *backend

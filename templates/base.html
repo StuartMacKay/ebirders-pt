@@ -1,0 +1,36 @@
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="{% static 'icon.svg' %}">
+  <link rel="apple-touch-icon" href="{% static 'apple-touch-icon.png' %}">
+  <link rel="manifest" href="{% static 'manifest.webmanifest' %}">
+  <title>{% block title %}{{ request.site.name }}{% endblock %}</title>
+
+  {% block css %}
+    <link href="{% static 'css/vendor/bootstrap-5.3.3.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/site.css' %}" rel="stylesheet">
+  {% endblock %}
+
+  {% block head-extra %}
+  {% endblock %}
+</head>
+
+<body>
+  {% block body %}
+  {% endblock body %}
+
+  {% block javascript %}
+    <script src="{% static 'js/vendor/bootstrap-5.3.3.bundle.min.js' %}"></script>
+    <script src="{% static 'js/vendor/htmx-2.0.3.min.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+  {% endblock %}
+
+</body>
+</html>
