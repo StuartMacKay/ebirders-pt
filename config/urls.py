@@ -2,7 +2,10 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
 
+from overview.views import OverView
+
 urlpatterns = [
+    path("", OverView.as_view(), name="index"),
     path("checklists/", include("checklists.urls")),
     path("digest/", include("digest.urls")),
     path("ebirders/", include("ebirders.urls")),

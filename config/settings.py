@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "checklists",
     "digest",
     "ebirders",
+    "overview",
     "users",
 ]
 
