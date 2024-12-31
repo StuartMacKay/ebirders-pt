@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
+    path("checklists/", include("checklists.urls")),
 ]
 
 urlpatterns += [
