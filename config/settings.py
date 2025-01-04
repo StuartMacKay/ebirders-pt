@@ -28,6 +28,8 @@ sys.path.insert(0, os.path.join(ROOT_DIR, 'apps'))
 
 env = environ.Env()
 
+environ.Env.read_env(os.path.join(ROOT_DIR, '.env'))
+
 DJANGO_ENV = env.str("DJANGO_ENV", default="development")
 
 if DJANGO_ENV not in ("development", "production"):
