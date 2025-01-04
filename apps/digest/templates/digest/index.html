@@ -1,15 +1,7 @@
-{% extends "base.html" %}
+{% extends "page.html" %}
 
-{% block body %}
-<body>
-  <div class="p-3"><h1>Pages for eBirders</h1></div>
-  <div class="d-flex flex-row">
-      <div>
-        {% include "includes/main-menu.html" %}
-      </div>
-      <div class="p-3">
-        <h1>Digest</h1>
-      </div>
-  </div>
-</body>
-{% endblock body %}
+{% block title %}Digest{% endblock %}
+
+{% block content %}
+  <h1>Digest</h1>
+{% endblock content %}

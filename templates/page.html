@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block body %}
+  <div class="container">
+
+    {% block header %}
+      <div class="row">
+        <header class="col">
+          <div class="h1 p-2">{% trans 'Pages for eBirders' %}</div>
+        </header>
+      </div>
+    {% endblock %}
+
+    {% block page %}
+      <div class="row">
+
+        {% block left_sidebar %}
+          <div class="col-2">
+            {% include "includes/main-menu.html" %}
+          </div>
+        {% endblock %}
+
+        {% block main %}
+          <main class="col">
+            {% block content %}
+            {% endblock %}
+          </main>
+        {% endblock %}
+
+      </div>
+    {% endblock %}
+
+    {% block footer %}
+      <div class="row">
+        <footer class="col"></footer>
+      </div>
+    {% endblock %}
+
+  </div>
+{% endblock %}
