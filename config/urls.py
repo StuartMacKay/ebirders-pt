@@ -6,7 +6,6 @@ from django.views.generic import RedirectView
 urlpatterns = [
     path("", RedirectView.as_view(url="/checklists/"), name="index"),
     path("checklists/", include("checklists.urls")),
-    path("digest/", include("digest.urls")),
     path("ebirders/", include("ebirders.urls")),
 ]
 
