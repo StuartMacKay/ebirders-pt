@@ -1,11 +1,10 @@
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
-
-from overview.views import OverView
+from django.views.generic import RedirectView
 
 urlpatterns = [
-    path("", OverView.as_view(), name="index"),
+    path("", RedirectView.as_view(url="/checklists/"), name="index"),
     path("checklists/", include("checklists.urls")),
     path("digest/", include("digest.urls")),
     path("ebirders/", include("ebirders.urls")),
