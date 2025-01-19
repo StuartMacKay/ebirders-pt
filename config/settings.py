@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_celery_beat",
     "django_extensions",
+    "django_filters",
     "watchman",
     "ebird.checklists",
     "checklists",
