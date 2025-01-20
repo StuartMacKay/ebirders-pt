@@ -10,17 +10,28 @@ class ChecklistFilter(django_filters.FilterSet):
     country = django_filters.CharFilter(
         label=_("Country"),
         field_name="location__country_code",
-        widget=autocomplete.Select2(url="checklists:countries", attrs={"class": "form-select", "data-theme": "bootstrap-5"}),
+        widget=autocomplete.Select2(
+            url="checklists:countries",
+            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+        ),
     )
     state = django_filters.CharFilter(
         label=_("State"),
         field_name="location__state_code",
-        widget=autocomplete.Select2(url="checklists:states", forward=["country"], attrs={"class": "form-select", "data-theme": "bootstrap-5"}),
+        widget=autocomplete.Select2(
+            url="checklists:states",
+            forward=["country"],
+            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+        ),
     )
     county = django_filters.CharFilter(
         label=_("County"),
         field_name="location__county_code",
-        widget=autocomplete.Select2(url="checklists:counties", forward=["state"], attrs={"class": "form-select", "data-theme": "bootstrap-5"}),
+        widget=autocomplete.Select2(
+            url="checklists:counties",
+            forward=["state"],
+            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+        ),
     )
 
     class Meta:
