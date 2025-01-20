@@ -1,7 +1,9 @@
 import django_filters
 from dal import autocomplete
 from django.utils.translation import gettext_lazy as _
-from ebird.checklists.models import Checklist, Location
+from ebird.checklists.models import Checklist
+
+from .queries import country_choice, state_choice, county_choice
 
 
 class ChecklistFilter(django_filters.FilterSet):
@@ -30,15 +32,13 @@ class ChecklistFilter(django_filters.FilterSet):
 
         if country := self.data.get("country"):
             self.declared_filters["country"].field.widget.choices = [
-                Location.objects.country_choice(country)
+                country_choice(country)
             ]
 
         if state := self.data.get("state"):
-            self.declared_filters["state"].field.widget.choices = [
-                Location.objects.state_choice(state)
-            ]
+            self.declared_filters["state"].field.widget.choices = [state_choice(state)]
 
         if county := self.data.get("county"):
             self.declared_filters["county"].field.widget.choices = [
-                Location.objects.county_choice(county)
+                county_choice(county)
             ]

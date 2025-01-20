@@ -1,8 +1,9 @@
 from dal import autocomplete
 from django_filters.views import FilterView
-from ebird.checklists.models import Checklist, Location
+from ebird.checklists.models import Checklist
 
 from .filters import ChecklistFilter
+from .queries import country_choices, state_choices, county_choices
 
 
 class Select2TuplesListView(autocomplete.Select2ListView):
@@ -22,19 +23,19 @@ class Select2TuplesListView(autocomplete.Select2ListView):
 
 class CountryAutocomplete(autocomplete.Select2ListView):
     def get_list(self):
-        return Location.objects.country_choices()
+        return country_choices()
 
 
 class StateAutocomplete(autocomplete.Select2ListView):
     def get_list(self):
         country = self.forwarded.get("country")
-        return Location.objects.state_choices(country)
+        return state_choices(country)
 
 
 class CountyAutocomplete(autocomplete.Select2ListView):
     def get_list(self):
         state = self.forwarded.get("state")
-        return Location.objects.county_choices(state)
+        return county_choices(state)
 
 
 class ChecklistsView(FilterView):
