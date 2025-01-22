@@ -1,4 +1,5 @@
 from dal import autocomplete
+from django.views import generic
 from django_filters.views import FilterView
 from ebird.checklists.models import Checklist
 
@@ -50,3 +51,17 @@ class ChecklistsView(FilterView):
             self.request.GET,
             queryset=super().get_queryset().select_related("location", "observer"),
         ).qs
+
+
+class DetailView(generic.DetailView):
+    model = Checklist
+    template_name = "checklists/detail.html"
+    context_object_name = "checklist"
+
+    def get_object(self, queryset=None):
+        return Checklist.objects.get(identifier=self.kwargs["identifier"])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["observations"] = context["checklist"].observations.all()
+        return context

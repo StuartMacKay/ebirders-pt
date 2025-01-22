@@ -2,6 +2,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>{% trans "identifier" %}</th>
       <th>{% trans "species" %}</th>
       <th>{% trans "date" %}</th>
       <th>{% trans "time" %}</th>
@@ -12,6 +13,11 @@
   <tbody>
     {% for checklist in checklists %}
       <tr>
+        <td>
+          <a class="link-underline link-underline-opacity-0"
+             href="{% url 'checklists:detail' checklist.identifier %}">
+             {{ checklist.identifier }}</a>
+        </td>
         <td class="text-end">{{ checklist.species_count }}</td>
         <td class="text-nowrap">{{ checklist.date }}</td>
         <td class="text-nowrap">{{ checklist.time }}</td>
