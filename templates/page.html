@@ -4,22 +4,25 @@
   <div class="container">
 
     {% block header %}
-      <div class="row">
-        <header class="col">
-          <div class="h1 p-2">{% trans 'Pages for eBirders' %}</div>
-        </header>
-      </div>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <a class="navbar-brand" href="{% url 'index' %}">Pages for eBirders</a>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'checklists:list' %}">Checklists</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     {% endblock %}
 
     {% block page %}
       <div class="row">
-
-        {% block left_sidebar %}
-          <div class="col-2">
-            {% include "includes/main-menu.html" %}
-          </div>
-        {% endblock %}
-
         {% block main %}
           <main class="col">
             {% block content %}
