@@ -32,7 +32,7 @@ environ.Env.read_env(os.path.join(ROOT_DIR, '.env'))
 
 DJANGO_ENV = env.str("DJANGO_ENV", default="development")
 
-if DJANGO_ENV not in ("development", "production"):
+if DJANGO_ENV not in ("development", "staging", "production"):
     raise ImproperlyConfigured(
         "Unknown environment name for settings: '%s'" % DJANGO_ENV
     )
