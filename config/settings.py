@@ -233,9 +233,10 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 
-STATICFILES_DIRS = [
-    os.path.join(ROOT_DIR, "static"),
-]
+if DJANGO_ENV == "development":
+    STATICFILES_DIRS = [
+        os.path.join(ROOT_DIR, "static"),
+    ]
 
 # DJANGO_STATIC_HOST only needs to be set when using a CDN such as CloudFront
 # to cache the files served by whitenoise.
