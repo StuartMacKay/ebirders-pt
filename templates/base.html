@@ -14,9 +14,9 @@
   <title>{% block title %}{% endblock %}</title>
 
   {% block css %}
-    <link href="{% static 'css/vendor/bootstrap-5.3.3.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/vendor/bootstrap-icons-1.11.3.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/site.css' %}" rel="stylesheet">
+    <link href="{% static 'css/vendor/bootstrap-5.3.3.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/vendor/bootstrap-icons-1.11.3.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/site.css' %}" rel="stylesheet" type="text/css">
   {% endblock %}
 
   {% block head_extra %}
@@ -28,9 +28,9 @@
   {% endblock %}
 
   {% block javascript %}
-    <script src="{% static 'js/vendor/bootstrap-5.3.3.bundle.min.js' %}"></script>
-    <script src="{% static 'js/vendor/htmx-2.0.3.min.js' %}"></script>
-    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/vendor/bootstrap-5.3.3.bundle.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/vendor/htmx-2.0.3.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/index.js' %}" type="text/javascript"></script>
   {% endblock %}
 
 </body>
