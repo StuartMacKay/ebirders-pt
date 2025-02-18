@@ -189,6 +189,7 @@ TEMPLATES = [
 ]
 
 if DJANGO_ENV == "production":
+    TEMPLATES[0]["APP_DIRS"] = False
     TEMPLATES[0]["OPTIONS"]["loaders"] = [  # type: ignore
         (
             "django.template.loaders.cached.Loader",
