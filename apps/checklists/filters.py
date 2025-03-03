@@ -3,7 +3,7 @@ from dal import autocomplete
 from django.utils.translation import gettext_lazy as _
 from ebird.checklists.models import Checklist
 
-from .queries import country_choice, state_choice, county_choice
+from .queries import country_choice, state_choice, county_choice, location_choice
 
 
 class ChecklistFilter(django_filters.FilterSet):
@@ -33,6 +33,15 @@ class ChecklistFilter(django_filters.FilterSet):
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
+    location = django_filters.CharFilter(
+        label=_("Location"),
+        field_name="location__identifier",
+        widget=autocomplete.Select2(
+            url="checklists:locations",
+            forward=["county"],
+            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+        ),
+    )
 
     class Meta:
         model = Checklist
@@ -52,4 +61,9 @@ class ChecklistFilter(django_filters.FilterSet):
         if county := self.data.get("county"):
             self.declared_filters["county"].field.widget.choices = [
                 county_choice(county)
+            ]
+
+        if location := self.data.get("location"):
+            self.declared_filters["location"].field.widget.choices = [
+                location_choice(location)
             ]

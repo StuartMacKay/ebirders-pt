@@ -30,3 +30,14 @@ def county_choices(code):
 
 def county_choice(code):
     return Location.objects.filter(county_code=code).values_list("county_code", "county").first()
+
+
+def location_choices(code):
+    queryset = Location.objects.filter(county_code=code).values_list(
+        "identifier", "name"
+    )
+    return queryset.distinct("identifier")
+
+
+def location_choice(identifier):
+    return Location.objects.filter(identifier=identifier).values_list("identifier", "name").first()
