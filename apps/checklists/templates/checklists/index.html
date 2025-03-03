@@ -36,6 +36,11 @@
           console.log("Changing county");
           $(':input[name=' + prefix + 'county]').val(null).trigger('change');
       });
+      $(':input[name$=county]').on('change', function() {
+          var prefix = $(this).getFormPrefix();
+          console.log("Changing location");
+          $(':input[name=' + prefix + 'location]').val(null).trigger('change');
+      });
     });
   </script>
 

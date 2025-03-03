@@ -1,5 +1,6 @@
 import django_filters
 from dal import autocomplete
+from django import forms
 from django.utils.translation import gettext_lazy as _
 from ebird.checklists.models import Checklist
 
@@ -52,9 +53,13 @@ class ChecklistFilter(django_filters.FilterSet):
         ),
     )
 
+    open = forms.CharField(
+        widget=forms.HiddenInput
+    )
+
     class Meta:
         model = Checklist
-        fields = ("country", "state", "county")
+        fields = ("country", "state", "county", "location")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
