@@ -59,7 +59,7 @@ class ChecklistFilter(django_filters.FilterSet):
 
     class Meta:
         model = Checklist
-        fields = ("country", "state", "county", "location")
+        fields = ("country", "state", "county", "location", "observer")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
