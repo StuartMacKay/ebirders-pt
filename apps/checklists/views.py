@@ -44,7 +44,7 @@ class ChecklistsView(FilterView):
     filterset_class = ChecklistFilter
     template_name = "checklists/index.html"
     paginate_by = 50
-    ordering = ("-date", "-time")
+    ordering = ("-started",)
 
     def get_queryset(self):
         return self.filterset_class(
