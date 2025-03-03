@@ -30,6 +30,9 @@
             {% if "state" not in filter.data %}
               <small class="text-muted">, {{ checklist.location.state }}</small>
             {% endif %}
+            {% if "country" not in filter.data %}
+              <small class="text-muted">, <a class="filter" href="{% querystring country=checklist.location.country_code %}">{{ checklist.location.country }}</a></small>
+            {% endif %}
           {% endspaceless %}
         </td>
         <td>{{ checklist.observer }}</td>
