@@ -4,9 +4,14 @@
 {% block title %}Checklists{% endblock %}
 
 {% block content %}
-  <h1>Checklists</h1>
-  <div>
-    <hr/>
+  <div class="d-flex flex-row">
+    <h1 class="me-4">Checklists</h1>
+    <div>
+      <i class="bi-search search" style="font-size: 2rem;" data-target="filter-panel"></i>
+    </div>
+  </div>
+  <hr/>
+  <div data-target="filter-panel" class="hide">
     {% include "checklists/includes/filter-form.html" %}
     <hr/>
   </div>
@@ -41,6 +46,40 @@
           console.log("Changing location");
           $(':input[name=' + prefix + 'location]').val(null).trigger('change');
       });
+
+      $(".search").on('click', function (event) {
+            event.preventDefault();
+
+            var button = $(this);
+                panel = $("div[data-target='"+button.attr('data-target')+"']");
+
+            if (button.hasClass('active')) {
+                button.removeClass("active");
+                panel.slideUp("slow");
+                if (window.sessionStorage) {
+                  sessionStorage.setItem("searchPanelState", "closed");
+                }
+            } else {
+                button.addClass('active');
+                panel.slideDown("slow");
+                if (window.sessionStorage) {
+                  sessionStorage.setItem("searchPanelState", "open");
+                }
+            }
+      });
+
+      if (window.sessionStorage) {
+          var button = $(".search");
+              panel = $("div[data-target='"+button.attr('data-target')+"']");
+
+          if (sessionStorage.getItem("searchPanelState") == "closed") {
+              button.removeClass("active");
+              panel.addClass("hide");
+          } else {
+              button.addClass('active');
+              panel.slideDown("slow");
+          }
+       }
     });
   </script>
 

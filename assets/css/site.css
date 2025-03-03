@@ -6,6 +6,10 @@
   margin-right: 4px;
 }
 
+.hide {
+  display:none
+}
+
 a.filter {
   color: inherit;
   text-decoration: none;
