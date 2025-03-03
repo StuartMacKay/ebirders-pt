@@ -1,4 +1,4 @@
-from ebird.checklists.models import Location
+from ebird.checklists.models import Location, Observer
 
 
 def country_choices():
@@ -41,3 +41,14 @@ def location_choices(code):
 
 def location_choice(identifier):
     return Location.objects.filter(identifier=identifier).values_list("identifier", "name").first()
+
+
+def observer_choices():
+    queryset = Observer.objects.all().values_list(
+        "name", "name"
+    )
+    return queryset.distinct("name")
+
+
+def observer_choice(name):
+    return Observer.objects.filter(name=name).values_list("name", "name").first()

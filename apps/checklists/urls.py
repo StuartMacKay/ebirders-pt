@@ -1,6 +1,6 @@
 from django.urls import path, re_path
 
-from .views import DetailView, ChecklistsView, CountryAutocomplete, StateAutocomplete, CountyAutocomplete, LocationAutocomplete
+from .views import DetailView, ChecklistsView, CountryAutocomplete, StateAutocomplete, CountyAutocomplete, LocationAutocomplete, ObserverAutocomplete
 
 app_name = "checklists"
 
@@ -11,4 +11,5 @@ urlpatterns = [
     path("states/", StateAutocomplete.as_view(), name="states"),
     path("counties/", CountyAutocomplete.as_view(), name="counties"),
     path("locations/", LocationAutocomplete.as_view(), name="locations"),
+    path("observers/", ObserverAutocomplete.as_view(), name="observers"),
 ]
