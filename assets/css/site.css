@@ -5,3 +5,12 @@
 .select2-selection__clear {
   margin-right: 4px;
 }
+
+a.filter {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

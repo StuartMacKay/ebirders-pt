@@ -14,7 +14,7 @@
     {% for checklist in checklists %}
       <tr>
         <td>
-          <a class="link-underline link-underline-opacity-0"
+          <a class="filter"
              href="{% url 'checklists:detail' checklist.identifier %}">
              {{ checklist.identifier }}</a>
         </td>
