@@ -25,7 +25,7 @@
           {{ checklist.location.name }}
           {% spaceless %}
             {% if "county" not in filter.data %}
-              <br/><small class="text-muted">{{ checklist.location.county }}</small>
+              <br/><small class="text-muted"><a class="filter" href="{% querystring country=checklist.location.country_code state=checklist.location.state_code county=checklist.location.county_code %}">{{ checklist.location.county }}</a></small>
             {% endif %}
             {% if "state" not in filter.data %}
               <small class="text-muted">, <a class="filter" href="{% querystring country=checklist.location.country_code state=checklist.location.state_code %}">{{ checklist.location.state }}</a></small>
