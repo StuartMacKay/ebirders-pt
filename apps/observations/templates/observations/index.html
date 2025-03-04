@@ -1,0 +1,87 @@
+{% extends "page.html" %}
+{% load static %}
+
+{% block title %}Observations{% endblock %}
+
+{% block content %}
+  <div id="page" class="hide">
+    <div class="d-flex flex-row">
+      <h1 class="me-4">Observations</h1>
+      <div>
+        <i id="search-button" class="bi-search" style="font-size: 2rem;"></i>
+      </div>
+    </div>
+    <hr/>
+    <div id="search-panel">
+      {% include "observations/includes/filter-form.html" %}
+      <hr/>
+    </div>
+    <div>
+      {% with observations=page_obj %}
+        {% include "observations/includes/observation-table.html" %}
+      {% endwith %}
+    </div>
+    <div>
+      {% include "observations/includes/pagination.html" %}
+    </div>
+  </div>
+{% endblock content %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+  {{ filter.form.media.js }}
+  <script>
+    $(document).ready(function() {
+      $(':input[name$=country]').on('change', function() {
+          var prefix = $(this).getFormPrefix();
+          $(':input[name=' + prefix + 'state]').val(null).trigger('change');
+      });
+      $(':input[name$=state]').on('change', function() {
+          var prefix = $(this).getFormPrefix();
+          $(':input[name=' + prefix + 'county]').val(null).trigger('change');
+      });
+      $(':input[name$=county]').on('change', function() {
+          var prefix = $(this).getFormPrefix();
+          $(':input[name=' + prefix + 'location]').val(null).trigger('change');
+      });
+
+      $("#search-button").on('click', function (event) {
+            event.preventDefault();
+
+            var button = $(this);
+                panel = $("#search-panel");
+
+            if (button.hasClass('active')) {
+                button.removeClass('active');
+                panel.slideUp("slow");
+                if (window.sessionStorage) {
+                  sessionStorage.setItem("observationSearch", "closed");
+                }
+            } else {
+                button.addClass('active');
+                panel.slideDown("slow");
+                if (window.sessionStorage) {
+                  sessionStorage.setItem("observationSearch", "open");
+                }
+            }
+      });
+
+      if (window.sessionStorage) {
+         var button = $("#search-button");
+             panel = $("#search-panel");
+
+         if (sessionStorage.getItem("observationSearch") == "closed") {
+            button.removeClass('active');
+            panel.addClass("hide");
+         } else {
+            button.addClass('active');
+            panel.removeClass("hide");
+         }
+      }
+
+      $("#page").show();
+    });
+   </script>
+
+{% endblock %}

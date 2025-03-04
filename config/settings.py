@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     "watchman",
     "ebird.checklists",
     "checklists",
+    "observations",
     "users",
 ]
 

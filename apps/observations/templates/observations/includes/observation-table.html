@@ -1,0 +1,41 @@
+{% load i18n %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>{% trans "count" %}</th>
+      <th>{% trans "species" %}</th>
+      <th>{% trans "date" %}</th>
+      <th>{% trans "time" %}</th>
+      <th>{% trans "location" %}</th>
+      <th>{% trans "observer" %}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for observation in observations %}
+      <tr>
+        <td class="text-end">{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}</td>
+        <td class="text-nowrap">
+          <a class="filter" href="{% querystring page=1 species=observation.species.species_code %}">{{ observation.species.common_name }}</a>
+          <br/><small class="ms-2 text-muted fst-italic">{{ observation.species.scientific_name }}</small>
+        </td>
+        <td>{{ observation.checklist.date }}</td>
+        <td class="text-nowrap">{{ observation.checklist.time }}</td>
+        <td>
+          <a class="filter" href="{% querystring page=1 country=observation.location.country_code state=observation.location.state_code county=observation.location.county_code location=observation.location.identifier %}">{{ observation.location.name }}</a>
+          {% spaceless %}
+            {% if "county" not in filter.data %}
+              <br/><small class="text-muted"><a class="filter" href="{% querystring page=1 country=observation.location.country_code state=observation.location.state_code county=observation.location.county_code %}">{{ observation.location.county }}</a></small>
+            {% endif %}
+            {% if "state" not in filter.data %}
+              <small class="text-muted">, <a class="filter" href="{% querystring page=1 country=observation.location.country_code state=observation.location.state_code %}">{{ observation.location.state }}</a></small>
+            {% endif %}
+            {% if "country" not in filter.data %}
+              <small class="text-muted">, <a class="filter" href="{% querystring page=1 country=observation.location.country_code %}">{{ observation.location.country }}</a></small>
+            {% endif %}
+          {% endspaceless %}
+        </td>
+        <td><a class="filter" href="{% querystring page=1 observer=observation.observer.name %}">{{ observation.observer }}</a></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
