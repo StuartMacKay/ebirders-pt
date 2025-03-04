@@ -22,20 +22,20 @@
         <td class="text-nowrap">{{ checklist.date }}</td>
         <td class="text-nowrap">{{ checklist.time }}</td>
         <td>
-          <a class="filter" href="{% querystring country=checklist.location.country_code state=checklist.location.state_code county=checklist.location.county_code location=checklist.location.identifier %}">{{ checklist.location.name }}</a>
+          <a class="filter" href="{% querystring page=1 country=checklist.location.country_code state=checklist.location.state_code county=checklist.location.county_code location=checklist.location.identifier %}">{{ checklist.location.name }}</a>
           {% spaceless %}
             {% if "county" not in filter.data %}
-              <br/><small class="text-muted"><a class="filter" href="{% querystring country=checklist.location.country_code state=checklist.location.state_code county=checklist.location.county_code %}">{{ checklist.location.county }}</a></small>
+              <br/><small class="text-muted"><a class="filter" href="{% querystring page=1 country=checklist.location.country_code state=checklist.location.state_code county=checklist.location.county_code %}">{{ checklist.location.county }}</a></small>
             {% endif %}
             {% if "state" not in filter.data %}
-              <small class="text-muted">, <a class="filter" href="{% querystring country=checklist.location.country_code state=checklist.location.state_code %}">{{ checklist.location.state }}</a></small>
+              <small class="text-muted">, <a class="filter" href="{% querystring page=1 country=checklist.location.country_code state=checklist.location.state_code %}">{{ checklist.location.state }}</a></small>
             {% endif %}
             {% if "country" not in filter.data %}
-              <small class="text-muted">, <a class="filter" href="{% querystring country=checklist.location.country_code %}">{{ checklist.location.country }}</a></small>
+              <small class="text-muted">, <a class="filter" href="{% querystring page=1 country=checklist.location.country_code %}">{{ checklist.location.country }}</a></small>
             {% endif %}
           {% endspaceless %}
         </td>
-        <td><a class="filter" href="{% querystring observer=checklist.observer.name %}">{{ checklist.observer }}</a></td>
+        <td><a class="filter" href="{% querystring page=1 observer=checklist.observer.name %}">{{ checklist.observer }}</a></td>
       </tr>
     {% endfor %}
   </tbody>
