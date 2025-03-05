@@ -30,7 +30,7 @@ class ObservationFilter(django_filters.FilterSet):
         field_name="location__county_code",
         widget=autocomplete.Select2(
             url="checklists:counties",
-            forward=["state"],
+            forward=["country", "state"],
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
@@ -39,7 +39,7 @@ class ObservationFilter(django_filters.FilterSet):
         field_name="location__identifier",
         widget=autocomplete.Select2(
             url="checklists:locations",
-            forward=["county"],
+            forward=["country", "state", "county"],
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )

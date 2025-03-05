@@ -35,14 +35,17 @@ class StateAutocomplete(autocomplete.Select2ListView):
 
 class CountyAutocomplete(autocomplete.Select2ListView):
     def get_list(self):
+        country = self.forwarded.get("country")
         state = self.forwarded.get("state")
-        return county_choices(state)
+        return county_choices(country, state)
 
 
 class LocationAutocomplete(autocomplete.Select2ListView):
     def get_list(self):
+        country = self.forwarded.get("country")
+        state = self.forwarded.get("state")
         county = self.forwarded.get("county")
-        return location_choices(county)
+        return location_choices(country, state, county)
 
 
 class ObserverAutocomplete(autocomplete.Select2ListView):

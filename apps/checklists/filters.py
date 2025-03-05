@@ -1,6 +1,5 @@
 import django_filters
 from dal import autocomplete
-from django import forms
 from django.utils.translation import gettext_lazy as _
 from ebird.checklists.models import Checklist
 
@@ -31,7 +30,7 @@ class ChecklistFilter(django_filters.FilterSet):
         field_name="location__county_code",
         widget=autocomplete.Select2(
             url="checklists:counties",
-            forward=["state"],
+            forward=["country", "state"],
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
@@ -40,7 +39,7 @@ class ChecklistFilter(django_filters.FilterSet):
         field_name="location__identifier",
         widget=autocomplete.Select2(
             url="checklists:locations",
-            forward=["county"],
+            forward=["country", "state", "county"],
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
@@ -53,13 +52,9 @@ class ChecklistFilter(django_filters.FilterSet):
         ),
     )
 
-    open = forms.CharField(
-        widget=forms.HiddenInput
-    )
-
     class Meta:
         model = Checklist
-        fields = ("country", "state", "county", "location", "observer")
+        fields = ("location", "observer")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
