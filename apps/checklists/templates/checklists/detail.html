@@ -75,11 +75,15 @@
         <div class="me-4">
           <i class="bi bi-person-standing me-1"
              title="{% trans 'Stationary' %}"></i></div>
-        {% elif checklist.protocol_code == "P22" %}
+      {% elif checklist.protocol_code == "P22" %}
         <div class="me-4">
           <i class="bi bi-person-walking"
              title="{% trans 'Travelling' %}"></i>
           <span>{{ checklist.distance }} km</span>
+        </div>
+      {% elif checklist.protocol_code == "P20" %}
+        <div class="me-4">
+          <span>{% trans "Incidental" %}</span>
         </div>
       {% endif %}
 
