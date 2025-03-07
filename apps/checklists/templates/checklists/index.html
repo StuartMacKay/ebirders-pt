@@ -67,6 +67,11 @@
             }
       });
 
+      $("#clear-button").on('click', function() {
+          $(':input[name$=country]').val(null).trigger('change');
+          $(':input[name$=observer]').val(null).trigger('change');
+      });
+
       if (window.sessionStorage) {
          var button = $("#search-button");
              panel = $("#search-panel");
