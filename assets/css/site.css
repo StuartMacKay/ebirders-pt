@@ -6,6 +6,11 @@
   margin-right: 4px;
 }
 
+.select2-container {
+    width: 100% !important;
+    min-width: 10em !important;
+}
+
 .hide {
   display:none
 }
