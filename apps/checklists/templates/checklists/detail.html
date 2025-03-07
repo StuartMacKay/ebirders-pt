@@ -12,11 +12,6 @@
         </li>
         <li class="breadcrumb-item active" aria-current="page">
           <span class="me-2">{{ checklist.identifier }}</span>
-          <a href="{{ checklist.url }}"
-             class="link-dark"
-             target="_blank">
-            <i class="bi bi-link" title="{% trans 'View the checklist on eBird' %}"></i>
-          </a>
         </li>
       </ol>
     </nav>
@@ -95,6 +90,12 @@
         {% endwith %}
       {% endif %}
 
+      <div>
+        <a href="{{ checklist.url }}" class="link-dark" target="_blank">
+          <i class="bi bi-link-45deg" title="{% trans 'View the checklist on eBird' %}"></i>
+        </a>
+      </div>
+    
     </div>
 
   </div>
