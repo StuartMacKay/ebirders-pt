@@ -12,7 +12,7 @@
         <small class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
       </div>
       <div class="show-if-narrow">
-        <span>{% if observation.count %}{{ observation.count }}{% else %}X{% endif %},</span>
+        <span>{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}, </span>
         <a class="dark-link me-1" href="{% querystring page=1 species=observation.species.species_code %}">
           {{ observation.species.common_name }}
         </a>
@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="col-md-2">
-      <span class="text-nowrap">{{ observation.checklist.date }},</span>
+      <span class="text-nowrap">{{ observation.checklist.date }}, </span>
       <span class="text-nowrap">{{ observation.checklist.time }}</span>
     </div>
     <div class="col-md-4">
