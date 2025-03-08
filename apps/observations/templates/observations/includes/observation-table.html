@@ -13,10 +13,10 @@
       </div>
       <div class="show-if-narrow">
         <span>{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}, </span>
-        <a class="dark-link me-1" href="{% querystring page=1 species=observation.species.species_code %}">
+        <a class="dark-link" href="{% querystring page=1 species=observation.species.species_code %}">
           {{ observation.species.common_name }}
         </a>
-        <small class="text-muted fst-italic">({{ observation.species.scientific_name }})</small>
+        <small class="ms-2 text-muted fst-italic">{{ observation.species.scientific_name }}</small>
       </div>
     </div>
     <div class="col-md-2">
