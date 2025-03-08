@@ -5,10 +5,13 @@
 
 {% block content %}
   <div id="page" class="hide">
+    <div class="border-bottom mb-3">
       <h1 class="d-inline me-4">Observations</h1>
       <i id="search-button" class="bi-search fs-2"></i>
+      <div class="text-end">
+        <small class="text-muted">Updated every hour</small>
+      </div>
     </div>
-    <hr/>
     <div id="search-panel">
       {% include "observations/includes/filter-form.html" %}
       <hr/>
