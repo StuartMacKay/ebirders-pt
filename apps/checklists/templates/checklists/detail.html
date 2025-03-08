@@ -63,7 +63,7 @@
         <div class="me-4">
           <i class="bi bi-person-walking"
              title="{% trans 'Travelling' %}"></i>
-          <span>{{ checklist.distance }} km</span>
+          <span>{{ checklist.distance|floatformat }} km</span>
         </div>
       {% elif checklist.protocol_code == "P20" %}
         <div class="me-4">
@@ -95,7 +95,7 @@
           <i class="bi bi-link-45deg" title="{% trans 'View the checklist on eBird' %}"></i>
         </a>
       </div>
-    
+
     </div>
 
   </div>
