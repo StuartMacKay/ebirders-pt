@@ -40,7 +40,7 @@
     <div class="d-flex flex-row mb-3">
 
       {% if checklist.observer_count %}
-        <div class="me-4">
+        <div class="me-3">
           <i class="bi bi-binoculars-fill me-1"
              title="{% trans 'Number of Observers' %}"></i>
           <span>{{ checklist.observer_count }}</span>
@@ -48,7 +48,7 @@
       {% endif %}
 
       {% if checklist.duration %}
-        <div class="me-4">
+        <div class="me-3">
           <i class="bi bi-clock-fill me-1"
              title="{% trans 'Duration' %}"></i>
           <span>{{ checklist.duration }} mins</span>
@@ -56,22 +56,23 @@
       {% endif %}
 
       {% if checklist.protocol_code == "P21" %}
-        <div class="me-4">
+        <div class="me-3">
           <i class="bi bi-person-standing me-1"
-             title="{% trans 'Stationary' %}"></i></div>
+             title="{% trans 'Stationary' %}"></i>
+        </div>
       {% elif checklist.protocol_code == "P22" %}
-        <div class="me-4">
+        <div class="me-3">
           <i class="bi bi-person-walking"
              title="{% trans 'Travelling' %}"></i>
           <span>{{ checklist.distance|floatformat }} km</span>
         </div>
       {% elif checklist.protocol_code == "P20" %}
-        <div class="me-4">
+        <div class="me-3">
           <span>{% trans "Incidental" %}</span>
         </div>
       {% endif %}
 
-      <div class="me-4">
+      <div class="me-3">
         {% if checklist.complete %}
           <i class="bi bi-check-circle" title="{% trans 'Complete' %}"></i>
         {% else %}
@@ -81,7 +82,7 @@
 
       {% if checklist.location.latitude and checklist.location.longitude %}
         {% with lat=checklist.location.latitude lon=checklist.location.longitude %}
-          <div class="me-4">
+          <div class="me-3">
             <a href="http://www.openstreetmap.org/?mlat={{ lat }}&mlon={{ lon }}#map=16/{{ lat }}/{{ lon }}"
                class="link-dark" target="_blank">
                 <i class="bi bi-map" title="{% trans 'Show on OpenStreetMap' %}"></i>
