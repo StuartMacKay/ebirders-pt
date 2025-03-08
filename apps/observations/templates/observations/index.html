@@ -1,5 +1,5 @@
 {% extends "page.html" %}
-{% load static %}
+{% load static i18n %}
 
 {% block title %}Observations{% endblock %}
 
@@ -7,7 +7,7 @@
   <div id="page" class="hide">
     <div class="border-bottom mb-3">
       <h1 class="d-inline me-4">Observations</h1>
-      <i id="search-button" class="bi-search fs-2"></i>
+      <i id="search-button" class="bi-search fs-2" title="{% trans 'Search' %}"></i>
       <div class="text-end">
         <small class="text-muted">Updated every hour</small>
       </div>

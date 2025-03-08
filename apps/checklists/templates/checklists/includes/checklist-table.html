@@ -2,30 +2,51 @@
 {% for checklist in checklists %}
   <div class="row mb-3">
     <div class="col-md-2 pt-1">
-      <a class="dark-link" href="{% url 'checklists:detail' checklist.identifier %}">
-      <span class="text-nowrap">{{ checklist.date }}, </span>
-      <span class="text-nowrap">{{ checklist.time }}</span>
+      <a class="dark-link"
+         href="{% url 'checklists:detail' checklist.identifier %}"
+         title="{% trans 'View this checklist' %}">
+        <span class="text-nowrap">{{ checklist.date }}, </span>
+        <span class="text-nowrap">{{ checklist.time }}</span>
       </a>
     </div>
     <div class="col-md-6 pt-1">
-      <a class="dark-link" href="{% querystring page=1 country=checklist.location.country_code state=checklist.location.state_code county=checklist.location.county_code location=checklist.location.identifier %}">{{ checklist.location.name }}</a>
+      <a class="dark-link"
+         href="{% querystring page=1 country=checklist.location.country_code state=checklist.location.state_code county=checklist.location.county_code location=checklist.location.identifier %}"
+         title="{% trans 'Show checklists for this location' %}">{{ checklist.location.name }}</a>
       {% spaceless %}
         {% if "county" not in filter.data %}
-          <br/><small class="text-muted"><a class="dark-link" href="{% querystring page=1 country=checklist.location.country_code state=checklist.location.state_code county=checklist.location.county_code %}">{{ checklist.location.county }}</a></small>
+          <br/>
+          <small class="text-muted">
+            <a class="dark-link"
+               href="{% querystring page=1 country=checklist.location.country_code state=checklist.location.state_code county=checklist.location.county_code %}"
+               title="{% trans 'Show checklists for this county' %}">{{ checklist.location.county }}</a>
+          </small>
         {% endif %}
         {% if "state" not in filter.data %}
-          <small class="text-muted">, <a class="dark-link" href="{% querystring page=1 country=checklist.location.country_code state=checklist.location.state_code %}">{{ checklist.location.state }}</a></small>
+          <small class="text-muted">
+            <span>, </span>
+            <a class="dark-link"
+               href="{% querystring page=1 country=checklist.location.country_code state=checklist.location.state_code %}"
+               title="{% trans 'Show checklists for this state' %}">{{ checklist.location.state }}</a>
+          </small>
         {% endif %}
         {% if "country" not in filter.data %}
-          <small class="text-muted">, <a class="dark-link" href="{% querystring page=1 country=checklist.location.country_code %}">{{ checklist.location.country }}</a></small>
+          <small class="text-muted">
+            <span>, </span>
+            <a class="dark-link"
+               href="{% querystring page=1 country=checklist.location.country_code %}"
+               title="{% trans 'Show checklists for this country' %}">{{ checklist.location.country }}</a>
+          </small>
         {% endif %}
       {% endspaceless %}
     </div>
     <div class="col-md-2 pt-1 mb-1">
-      <a class="dark-link" href="{% querystring page=1 observer=checklist.observer.name %}">{{ checklist.observer }}</a>
+      <a class="dark-link"
+         href="{% querystring page=1 observer=checklist.observer.name %}"
+         title="{% trans 'Show checklists for this observer' %}">{{ checklist.observer }}</a>
     </div>
     <div class="col-md-2">
-       <span class="species-count bg-body-secondary">{{ checklist.species_count }}</span>
+       <span class="species-count bg-body-secondary" title="{% trans 'Number of species reported' %}">{{ checklist.species_count }}</span>
     </div>
   </div>
 {% endfor %}
