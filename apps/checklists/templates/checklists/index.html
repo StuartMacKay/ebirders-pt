@@ -5,12 +5,8 @@
 
 {% block content %}
   <div id="page" class="hide">
-    <div class="d-flex flex-row">
-      <h1 class="me-4">Checklists</h1>
-      <div>
-        <i id="search-button" class="bi-search" style="font-size: 2rem;"></i>
-      </div>
-    </div>
+    <h1 class="d-inline me-4">Checklists</h1>
+    <i id="search-button" class="bi-search fs-2"></i>
     <hr/>
     <div id="search-panel">
       {% include "checklists/includes/filter-form.html" %}
