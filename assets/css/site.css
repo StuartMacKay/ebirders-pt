@@ -34,3 +34,20 @@ a.dark-link {
   line-height: 2rem;
   border-radius: 50% !important;
 }
+
+div.show-if-wide {
+  display: block;
+}
+
+div.show-if-narrow {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  div.show-if-wide {
+    display: none;
+  }
+  div.show-if-narrow {
+    display: block;
+  }
+}
