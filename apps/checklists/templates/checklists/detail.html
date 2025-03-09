@@ -2,7 +2,7 @@
 {% load i18n static %}
 
 {% block language_selector %}
-  <li><a class="dropdown-item" href="{% url 'checklists:detail' checklist.identifier %}">{{ lang_name }}</a></li>
+  <li><a class="dropdown-item disabled" href="{% url 'checklists:detail' checklist.identifier %}">{{ lang_name }}</a></li>
 {% endblock %}
 
 {% block title %}{% trans 'Checklist' %} {{ checklist.identifier }}{% endblock %}
