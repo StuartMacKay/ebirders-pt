@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     "ebird.checklists",
     "checklists",
     "observations",
+    "species",
     "users",
 ]
 
@@ -382,3 +383,10 @@ SHELL_PLUS = "ipython"
 
 EBIRD_API_KEY = env.str("EBIRD_API_KEY")
 EBIRD_LOCALE = env.str("EBIRD_LOCALE")
+
+# Table mapping languages codes used by Django to language codes
+# used by eBird when getting taxonomy information from the API.
+EBIRD_LANGUAGES = {
+    "en": "en_UK",
+    "pt": "pt_PT",
+}
