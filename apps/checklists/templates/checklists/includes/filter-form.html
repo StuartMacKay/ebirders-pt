@@ -1,3 +1,4 @@
+{%  load i18n %}
 <form method="get">
   {{ filter.form.media.css }}
 
@@ -47,8 +48,8 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <button type="submit" class="btn btn-primary me-3">Search</button>
-      <input id="clear-button" type="button" value="Clear" class="btn btn-secondary">
+      <button type="submit" class="btn btn-primary me-3">{% trans 'Search' %}</button>
+      <input id="clear-button" type="button" value="{% trans 'Clear' %}" class="btn btn-secondary">
     </div>
   </div>
 </form>

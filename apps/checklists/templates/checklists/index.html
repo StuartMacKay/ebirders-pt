@@ -1,15 +1,19 @@
 {% extends "page.html" %}
 {% load i18n static %}
 
-{% block title %}Checklists{% endblock %}
+{% block language_selector %}
+    <li><a class="dropdown-item" href="{% url 'checklists:list' %}{% querystring %}">{{ lang_name }}</a></li>
+{% endblock %}
+
+{% block title %}{% trans 'Checklists' %}{% endblock %}
 
 {% block content %}
   <div id="page" class="hide">
     <div class="border-bottom mb-3">
-      <h1 class="d-inline me-4">Checklists</h1>
+      <h1 class="d-inline me-4">{% trans 'Checklists' %}</h1>
       <i id="search-button" class="bi-search fs-2" title="{% trans 'Search' %}"></i>
       <div class="text-end">
-        <small class="text-muted">Updated every hour</small>
+        <small class="text-muted">{% trans 'Updated every hour' %}</small>
       </div>
     </div>
     <div id="search-panel">

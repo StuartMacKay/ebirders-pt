@@ -1,0 +1,282 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-09 10:06+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/checklists/apps.py:8
+#: apps/checklists/templates/checklists/detail.html:15
+#: apps/checklists/templates/checklists/index.html:8
+#: apps/checklists/templates/checklists/index.html:13 templates/page.html:20
+msgid "Checklists"
+msgstr ""
+
+#: apps/checklists/filters.py:12 apps/observations/filters.py:12
+msgid "Country"
+msgstr ""
+
+#: apps/checklists/filters.py:20 apps/observations/filters.py:20
+msgid "State"
+msgstr "Region"
+
+#: apps/checklists/filters.py:29 apps/observations/filters.py:29
+msgid "County"
+msgstr ""
+
+#: apps/checklists/filters.py:38 apps/observations/filters.py:38
+msgid "Location"
+msgstr ""
+
+#: apps/checklists/filters.py:47 apps/observations/filters.py:47
+msgid "Observer"
+msgstr ""
+
+#: apps/checklists/templates/checklists/detail.html:8
+msgid "Checklist"
+msgstr ""
+
+#: apps/checklists/templates/checklists/detail.html:49
+msgid "Number of Observers"
+msgstr ""
+
+#: apps/checklists/templates/checklists/detail.html:57
+msgid "Duration"
+msgstr ""
+
+#: apps/checklists/templates/checklists/detail.html:65
+msgid "Stationary"
+msgstr ""
+
+#: apps/checklists/templates/checklists/detail.html:70
+msgid "Travelling"
+msgstr ""
+
+#: apps/checklists/templates/checklists/detail.html:72
+#, python-format
+msgid "%(distance)s km"
+msgstr ""
+
+#: apps/checklists/templates/checklists/detail.html:77
+msgid "Incidental"
+msgstr ""
+
+#: apps/checklists/templates/checklists/detail.html:83
+msgid "Complete"
+msgstr ""
+
+#: apps/checklists/templates/checklists/detail.html:85
+msgid "Incomplete"
+msgstr ""
+
+#: apps/checklists/templates/checklists/detail.html:94
+msgid "Show location on OpenStreetMap"
+msgstr ""
+
+#: apps/checklists/templates/checklists/detail.html:102
+msgid "View the checklist on eBird"
+msgstr ""
+
+#: apps/checklists/templates/checklists/includes/checklist-table.html:7
+msgid "View this checklist"
+msgstr ""
+
+#: apps/checklists/templates/checklists/includes/checklist-table.html:15
+msgid "Show checklists for this location"
+msgstr ""
+
+#: apps/checklists/templates/checklists/includes/checklist-table.html:22
+msgid "Show checklists for this county"
+msgstr ""
+
+#: apps/checklists/templates/checklists/includes/checklist-table.html:30
+msgid "Show checklists for this state"
+msgstr "Show checklists for this region"
+
+#: apps/checklists/templates/checklists/includes/checklist-table.html:38
+msgid "Show checklists for this country"
+msgstr ""
+
+#: apps/checklists/templates/checklists/includes/checklist-table.html:46
+msgid "Show checklists for this observer"
+msgstr ""
+
+#: apps/checklists/templates/checklists/includes/checklist-table.html:49
+msgid "Number of species reported"
+msgstr ""
+
+#: apps/checklists/templates/checklists/includes/filter-form.html:50
+#: apps/checklists/templates/checklists/index.html:14
+#: apps/observations/templates/observations/index.html:14
+msgid "Search"
+msgstr ""
+
+#: apps/checklists/templates/checklists/includes/filter-form.html:51
+msgid "Clear"
+msgstr ""
+
+#: apps/checklists/templates/checklists/includes/pagination.html:9
+#: apps/observations/templates/observations/includes/pagination.html:9
+msgid "Previous page"
+msgstr ""
+
+#: apps/checklists/templates/checklists/includes/pagination.html:9
+#: apps/checklists/templates/checklists/includes/pagination.html:12
+#: apps/observations/templates/observations/includes/pagination.html:9
+#: apps/observations/templates/observations/includes/pagination.html:12
+msgid "Previous"
+msgstr ""
+
+#: apps/checklists/templates/checklists/includes/pagination.html:19
+#: apps/observations/templates/observations/includes/pagination.html:19
+msgid "Next page"
+msgstr ""
+
+#: apps/checklists/templates/checklists/includes/pagination.html:19
+#: apps/checklists/templates/checklists/includes/pagination.html:22
+#: apps/observations/templates/observations/includes/pagination.html:19
+#: apps/observations/templates/observations/includes/pagination.html:22
+msgid "Next"
+msgstr ""
+
+#: apps/checklists/templates/checklists/includes/pagination.html:29
+#: apps/observations/templates/observations/includes/pagination.html:29
+#, python-format
+msgid "Page %(number)s of %(total)s"
+msgstr ""
+
+#: apps/checklists/templates/checklists/index.html:16
+#: apps/observations/templates/observations/index.html:16
+msgid "Updated every hour"
+msgstr ""
+
+#: apps/observations/apps.py:8
+#: apps/observations/templates/observations/index.html:8
+#: apps/observations/templates/observations/index.html:13
+#: templates/page.html:23
+msgid "Observations"
+msgstr ""
+
+#: apps/observations/filters.py:55
+msgid "Species"
+msgstr ""
+
+#: apps/observations/templates/observations/includes/observation-table.html:11
+#: apps/observations/templates/observations/includes/observation-table.html:20
+msgid "Show observations of this species"
+msgstr ""
+
+#: apps/observations/templates/observations/includes/observation-table.html:33
+msgid "Show observation for this location"
+msgstr ""
+
+#: apps/observations/templates/observations/includes/observation-table.html:40
+msgid "Show observations for this county"
+msgstr ""
+
+#: apps/observations/templates/observations/includes/observation-table.html:48
+msgid "Show observations for this state"
+msgstr "Show observations for this region"
+
+#: apps/observations/templates/observations/includes/observation-table.html:56
+msgid "Show observations for this country"
+msgstr ""
+
+#: apps/observations/templates/observations/includes/observation-table.html:64
+msgid "Show observations from this observer"
+msgstr ""
+
+#: apps/users/admin.py:18
+msgid "Groups"
+msgstr ""
+
+#: apps/users/admin.py:22
+msgid "Permissions"
+msgstr ""
+
+#: apps/users/admin.py:28
+msgid "Important dates"
+msgstr ""
+
+#: apps/users/models.py:41
+msgid "The email address used to log in"
+msgstr ""
+
+#: apps/users/models.py:42
+msgid "email address"
+msgstr ""
+
+#: apps/users/models.py:50
+msgid "The Observer associated with this user account"
+msgstr ""
+
+#: apps/users/models.py:51
+msgid "observer"
+msgstr ""
+
+#: apps/users/models.py:60
+msgid "user"
+msgstr ""
+
+#: apps/users/models.py:61
+msgid "users"
+msgstr ""
+
+#: config/settings.py:213
+msgid "English"
+msgstr ""
+
+#: config/settings.py:214
+msgid "Portuguese"
+msgstr ""
+
+#: config/urls.py:10
+msgid "checklists/"
+msgstr ""
+
+#: config/urls.py:11
+msgid "observations/"
+msgstr ""
+
+#: templates/403.html:4 templates/403.html:8
+msgid "Forbidden (403)"
+msgstr ""
+
+#: templates/403.html:13
+msgid "You're not allowed to access this page."
+msgstr ""
+
+#: templates/404.html:4 templates/404.html:8
+msgid "Page Not Found"
+msgstr ""
+
+#: templates/404.html:13
+msgid "The page you were looking for cannot be found."
+msgstr ""
+
+#: templates/500.html:4
+msgid "Server Error"
+msgstr ""
+
+#: templates/500.html:8
+msgid "Looks like something went wrong!"
+msgstr ""
+
+#: templates/500.html:10
+msgid ""
+"This error was reported automatically, but if the problem persists please "
+"contact us. In the meantime, try refreshing the page."
+msgstr ""

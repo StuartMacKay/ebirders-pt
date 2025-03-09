@@ -9,6 +9,7 @@ import sys
 from email.utils import parseaddr
 
 from django.core.exceptions import ImproperlyConfigured
+from django.utils.translation import gettext_lazy as _
 
 import environ  # type: ignore
 
@@ -99,7 +100,7 @@ if DEBUG:
     # allow connections from, but in Docker we can't use 127.0.0.1 since
     # this runs in a container but we want to access the django_debug_toolbar
     # from our browser outside of the container.
-    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    hostname, aliases, ips = socket.gethostbyname_ex(socket.gethostname())
     INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + [
         "127.0.0.1",
         "10.0.2.2",
@@ -207,10 +208,25 @@ if DJANGO_ENV == "production":
 #   INTERNATIONALIZATION
 # ########################
 
+# The locale codes should match the ones used by eBird, so the
+# species' common name for each language can be loaded using the
+# get_taxonomy function from the eBird API.
+
 LANGUAGE_CODE = "en"
+
+LANGUAGES = [
+    ("en", _("English")),
+    ("pt", _("Portuguese")),
+]
+
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
+
+LOCALE_PATHS = [
+    os.path.join(ROOT_DIR, "locale"),
+]
+
 
 # ##########################
 #   STATIC AND MEDIA FILES

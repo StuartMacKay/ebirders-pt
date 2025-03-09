@@ -1,13 +1,15 @@
 from django.conf import settings
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.urls import include, path
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import RedirectView
 
-urlpatterns = [
-    path("", RedirectView.as_view(url="/checklists/"), name="index"),
-    path("checklists/", include("checklists.urls")),
-    path("observations/", include("observations.urls")),
-]
+urlpatterns = i18n_patterns(
+    path("", RedirectView.as_view(url="/pt/listas/"), name="index"),
+    path(_("checklists/"), include("checklists.urls")),
+    path(_("observations/"), include("observations.urls")),
+)
 
 urlpatterns += [
     # Change the path to the Django Admin to something non-standard.

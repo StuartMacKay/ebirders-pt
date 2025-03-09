@@ -1,14 +1,18 @@
 {% extends "page.html" %}
 {% load i18n static %}
 
-{% block title %}Checklist {{ checklist.identifier }}{% endblock %}
+{% block language_selector %}
+  <li><a class="dropdown-item" href="{% url 'checklists:detail' checklist.identifier %}">{{ lang_name }}</a></li>
+{% endblock %}
+
+{% block title %}{% trans 'Checklist' %} {{ checklist.identifier }}{% endblock %}
 
 {% block content %}
   <div class="mx-2">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="{{ request.META.HTTP_REFERER }}" class="dark-link">Checklists</a>
+          <a href="{{ request.META.HTTP_REFERER }}" class="dark-link">{% trans 'Checklists' %}</a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">
           <span class="me-2">{{ checklist.identifier }}</span>
@@ -64,7 +68,9 @@
         <div class="me-3">
           <i class="bi bi-person-walking"
              title="{% trans 'Travelling' %}"></i>
-          <span>{{ checklist.distance|floatformat }} km</span>
+          {% with distance=checklist.distance|floatformat %}
+            <span>{% blocktrans %}{{ distance }} km{% endblocktrans %}</span>
+          {% endwith %}
         </div>
       {% elif checklist.protocol_code == "P20" %}
         <div class="me-3">
