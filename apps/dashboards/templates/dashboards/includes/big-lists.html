@@ -1,0 +1,28 @@
+{% load i18n %}
+{% for checklist in checklists %}
+  <div class="row mb-3">
+    <div class="col-md-2 pt-1">
+      <a class="dark-link"
+         href="{% url 'checklists:detail' checklist.identifier %}"
+         title="{% trans 'View this checklist' %}">
+        <span class="text-nowrap">{{ checklist.date }}, </span>
+        <span class="text-nowrap">{{ checklist.time }}</span>
+      </a>
+    </div>
+    <div class="col-md-6 pt-1">
+      <span>{{ checklist.location.name }}</span>
+      {% spaceless %}
+          <br/>
+          <small class="text-muted">{{ checklist.location.county }}</small>
+          <small class="text-muted">, {{ checklist.location.state }}</small>
+          <small class="text-muted">, {{ checklist.location.country }}</small>
+      {% endspaceless %}
+    </div>
+    <div class="col-md-2 pt-1 mb-1">
+      {{ checklist.observer }}
+    </div>
+    <div class="col-md-2">
+       <span class="species-count bg-warning-subtle" title="{% trans 'Number of species reported' %}">{{ checklist.species_count }}</span>
+    </div>
+  </div>
+{% endfor %}

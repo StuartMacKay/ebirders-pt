@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-09 10:07+0000\n"
+"POT-Creation-Date: 2025-03-11 08:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,6 +95,7 @@ msgid "View the checklist on eBird"
 msgstr "Ver a lista no eBird"
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:7
+#: apps/dashboards/templates/dashboards/includes/big-lists.html:7
 msgid "View this checklist"
 msgstr "Ver esta lista"
 
@@ -119,16 +120,19 @@ msgid "Show checklists for this observer"
 msgstr "Mostrar as listas para este observador"
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:49
+#: apps/dashboards/templates/dashboards/includes/big-lists.html:25
 msgid "Number of species reported"
 msgstr "Número de espécies registadas"
 
-#: apps/checklists/templates/checklists/includes/filter-form.html:50
+#: apps/checklists/templates/checklists/includes/filter-form.html:51
 #: apps/checklists/templates/checklists/index.html:14
+#: apps/observations/templates/observations/includes/filter-form.html:59
 #: apps/observations/templates/observations/index.html:14
 msgid "Search"
 msgstr "Pesquisar"
 
-#: apps/checklists/templates/checklists/includes/filter-form.html:51
+#: apps/checklists/templates/checklists/includes/filter-form.html:52
+#: apps/observations/templates/observations/includes/filter-form.html:60
 msgid "Clear"
 msgstr "Limpar"
 
@@ -163,9 +167,23 @@ msgid "Page %(number)s of %(total)s"
 msgstr "Página %(number)s de %(total)s"
 
 #: apps/checklists/templates/checklists/index.html:16
+#: apps/dashboards/templates/dashboards/index.html:15
 #: apps/observations/templates/observations/index.html:16
 msgid "Updated every hour"
 msgstr "Atualizado a cada hora"
+
+#: apps/dashboards/apps.py:8
+msgid "Dashboards"
+msgstr "Resumos"
+
+#: apps/dashboards/templates/dashboards/index.html:8
+#: apps/dashboards/templates/dashboards/index.html:13
+msgid "Dashboard"
+msgstr "Resumo"
+
+#: apps/dashboards/templates/dashboards/index.html:19
+msgid "Big Lists"
+msgstr "Listas grandes"
 
 #: apps/observations/apps.py:8
 #: apps/observations/templates/observations/index.html:8
@@ -174,7 +192,7 @@ msgstr "Atualizado a cada hora"
 msgid "Observations"
 msgstr "Observações"
 
-#: apps/observations/filters.py:55
+#: apps/observations/filters.py:55 apps/species/apps.py:8
 msgid "Species"
 msgstr "Espécie"
 
@@ -239,19 +257,23 @@ msgstr ""
 msgid "users"
 msgstr ""
 
-#: config/settings.py:213
+#: config/settings.py:219
 msgid "English"
 msgstr "Inglês"
 
-#: config/settings.py:214
+#: config/settings.py:220
 msgid "Portuguese"
 msgstr "Português"
 
-#: config/urls.py:10
+#: config/urls.py:11
 msgid "checklists/"
 msgstr "listas/"
 
-#: config/urls.py:11
+#: config/urls.py:12
+msgid "dashboards/"
+msgstr "resumos"
+
+#: config/urls.py:13
 msgid "observations/"
 msgstr "observações/"
 

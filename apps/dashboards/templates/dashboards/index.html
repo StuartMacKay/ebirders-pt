@@ -1,0 +1,24 @@
+{% extends "page.html" %}
+{% load i18n static %}
+
+{% block language_selector %}
+    <li><a class="dropdown-item" href="{% url 'index' %}{% querystring %}">{{ lang_name }}</a></li>
+{% endblock %}
+
+{% block title %}{% trans 'Dashboard' %}{% endblock %}
+
+{% block content %}
+  <div id="page">
+    <div class="border-bottom mb-3">
+      <h1 class="d-inline me-4">{% trans 'Dashboard' %}</h1>
+      <div class="text-end">
+        <small class="text-muted">{% trans 'Updated every hour' %}</small>
+      </div>
+    </div>
+    <div>
+      <h2>{% trans 'Big Lists' %}</h2>
+      <hr>
+      {% include "dashboards/includes/big-lists.html" %}
+    </div>
+  </div>
+{% endblock content %}
