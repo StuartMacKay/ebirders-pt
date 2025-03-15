@@ -1,0 +1,35 @@
+{% load i18n %}
+<div>
+  <div class="h2">{% trans 'Species per checklist' %}</div>
+  <canvas id="species-count-bar-chart"></canvas>
+</div>
+<script type="text/javascript">
+  addEventListener("load", (event) => {
+    const protocol_chart = new Chart('species-count-bar-chart', {
+      type: 'bar',
+      data: {
+        labels: {{ labels|safe }},
+        datasets: [{
+          label: '{{ label }}',
+          data: {{ data }},
+        }]
+      },
+      options: {
+          scales: {
+              x: {
+                title: {
+                  display: true,
+                  text: '{{ xaxis_title }}'
+                }
+              },
+              y: {
+                title: {
+                  display: true,
+                  text: '{{ yaxis_title }}'
+                }
+              }
+          }
+      }
+    });
+  });
+</script>

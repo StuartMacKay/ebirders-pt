@@ -1,5 +1,5 @@
 {% extends "page.html" %}
-{% load i18n numbers static tables %}
+{% load charts i18n numbers static tables %}
 
 {% block language_selector %}
     <li><a class="dropdown-item" href="{% url 'index' %}{% querystring %}">{{ lang_name }}</a></li>
@@ -29,6 +29,11 @@
           </div>
           <div class="col-md-3 col-sm-6 mb-2">
             {% duration_count %}
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-12">
+            {% checklist_species_chart %}
           </div>
         </div>
         <div class="row">
