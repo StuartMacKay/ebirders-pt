@@ -1,0 +1,13 @@
+{% load i18n %}
+<h2 class="mb-0">{% trans 'Checklists submitted' %}</h2>
+<div class="mb-3 text-muted">
+  <small>{% trans "Complete checklists only" %}</small>
+</div>
+<table class="table">
+  {% for observer in observers %}
+    <tr>
+      <td>{{ observer.name }}</td>
+      <td class="text-end">{{ observer.count }}</td>
+    </tr>
+  {% endfor %}
+</table>
