@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-15 15:41+0000\n"
+"POT-Creation-Date: 2025-03-15 19:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,7 +161,9 @@ msgstr "Seguinte"
 
 #: apps/checklists/templates/checklists/includes/pagination.html:31
 #: apps/observations/templates/observations/includes/pagination.html:31
-msgid "Page %(number)s of %(total)s"
+msgid ""
+"Page %(number)s of\n"
+"        %(total)s"
 msgstr "Página %(number)s de %(total)s"
 
 #: apps/checklists/templates/checklists/index.html:17
@@ -188,11 +190,15 @@ msgstr "Na semana passada"
 
 #: apps/dashboards/templates/dashboards/tables/checklists-duration.html:2
 msgid "Time spent birding"
-msgstr "Tempo passado a observar aves"
+msgstr "Tempo passado"
 
 #: apps/dashboards/templates/dashboards/tables/checklists-duration.html:4
 msgid "hours : minutes"
 msgstr "horas : minutos"
+
+#: apps/dashboards/templates/dashboards/tables/checklists-species.html:2
+msgid "Species seen"
+msgstr "Espécies observadas"
 
 #: apps/dashboards/templates/dashboards/tables/checklists-submitted.html:2
 msgid "Checklists submitted"

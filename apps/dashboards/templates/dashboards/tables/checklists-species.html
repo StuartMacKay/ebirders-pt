@@ -1,0 +1,10 @@
+{% load i18n %}
+<h2 style="margin-bottom: 40px">{% trans 'Species seen' %}</h2>
+<table class="table">
+  {% for observer in observers %}
+    <tr>
+      <td>{{ observer.name }}</td>
+      <td class="text-end">{{ observer.count }}</td>
+    </tr>
+  {% endfor %}
+</table>

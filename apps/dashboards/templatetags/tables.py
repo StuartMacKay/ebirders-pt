@@ -1,11 +1,11 @@
 from dateutil.relativedelta import relativedelta
 
 from django import template
-from django.db.models import Count, F, Sum
+from django.db.models import Case, Count, F, Q, Sum, When
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from ebird.checklists.models import Checklist
+from ebird.checklists.models import Checklist, Observer
 
 register = template.Library()
 
@@ -30,7 +30,7 @@ def checklists_submitted_table():
 
     observers = (
         Checklist.objects.values("observer")
-        .annotate(name=F('observer__name'))
+        .annotate(name=F("observer__name"))
         .annotate(count=Count("observer"))
         .filter(date__gt=one_week_ago)
         .filter(complete=True)
@@ -46,7 +46,7 @@ def checklists_duration_table():
     one_week_ago = today - relativedelta(days=7)
     observers = (
         Checklist.objects.values("observer")
-        .annotate(name=F('observer__name'))
+        .annotate(name=F("observer__name"))
         .annotate(total=Sum("duration"))
         .filter(date__gt=one_week_ago)
         .filter(duration__isnull=False)
@@ -57,4 +57,23 @@ def checklists_duration_table():
         observer["hours"] = "%0d" % (observer["total"] / 60)
         observer["minutes"] = "%02d" % (observer["total"] % 60)
 
+    return {"observers": observers}
+
+
+@register.inclusion_tag("dashboards/tables/checklists-species.html")
+def checklists_species_table():
+    today = timezone.now().date()
+    one_week_ago = today - relativedelta(days=7)
+    observers = Observer.objects.values('name').annotate(
+        count=Count(
+            Case(
+                When(
+                    Q(observations__checklist__date__gt=one_week_ago)
+                    & Q(observations__species__category="species"),
+                    then="observations__species",
+                )
+            ),
+            distinct=True,
+        )
+    ).order_by("-count")[:10]
     return {"observers": observers}

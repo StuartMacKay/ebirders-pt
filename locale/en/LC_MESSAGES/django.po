@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-15 15:41+0000\n"
+"POT-Creation-Date: 2025-03-15 19:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -195,6 +195,10 @@ msgstr ""
 
 #: apps/dashboards/templates/dashboards/tables/checklists-duration.html:4
 msgid "hours : minutes"
+msgstr ""
+
+#: apps/dashboards/templates/dashboards/tables/checklists-species.html:2
+msgid "Species seen"
 msgstr ""
 
 #: apps/dashboards/templates/dashboards/tables/checklists-submitted.html:2
