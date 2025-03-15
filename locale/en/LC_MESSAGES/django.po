@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-11 08:17+0000\n"
+"POT-Creation-Date: 2025-03-15 11:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,8 @@ msgstr ""
 #: apps/checklists/apps.py:8
 #: apps/checklists/templates/checklists/detail.html:15
 #: apps/checklists/templates/checklists/index.html:8
-#: apps/checklists/templates/checklists/index.html:13 templates/page.html:20
+#: apps/checklists/templates/checklists/index.html:13
+#: apps/dashboards/templatetags/numbers.py:32 templates/page.html:20
 msgid "Checklists"
 msgstr ""
 
@@ -58,6 +59,7 @@ msgid "Duration"
 msgstr ""
 
 #: apps/checklists/templates/checklists/detail.html:65
+#: apps/dashboards/templatetags/charts.py:23
 msgid "Stationary"
 msgstr ""
 
@@ -71,6 +73,7 @@ msgid "%(distance)s km"
 msgstr ""
 
 #: apps/checklists/templates/checklists/detail.html:77
+#: apps/dashboards/templatetags/charts.py:22
 msgid "Incidental"
 msgstr ""
 
@@ -91,7 +94,7 @@ msgid "View the checklist on eBird"
 msgstr ""
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:7
-#: apps/dashboards/templates/dashboards/includes/big-lists.html:7
+#: apps/dashboards/templates/dashboards/tables/big-lists.html:10
 msgid "View this checklist"
 msgstr ""
 
@@ -116,7 +119,7 @@ msgid "Show checklists for this observer"
 msgstr ""
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:49
-#: apps/dashboards/templates/dashboards/includes/big-lists.html:25
+#: apps/dashboards/templates/dashboards/tables/big-lists.html:29
 msgid "Number of species reported"
 msgstr ""
 
@@ -163,7 +166,6 @@ msgid "Page %(number)s of %(total)s"
 msgstr ""
 
 #: apps/checklists/templates/checklists/index.html:16
-#: apps/dashboards/templates/dashboards/index.html:15
 #: apps/observations/templates/observations/index.html:16
 msgid "Updated every hour"
 msgstr ""
@@ -172,12 +174,56 @@ msgstr ""
 msgid "Dashboards"
 msgstr ""
 
-#: apps/dashboards/templates/dashboards/index.html:8
-#: apps/dashboards/templates/dashboards/index.html:13
-msgid "Dashboard"
+#: apps/dashboards/templates/dashboards/charts/checklist-species.html:3
+msgid "Species per checklist"
 msgstr ""
 
-#: apps/dashboards/templates/dashboards/index.html:19
+#: apps/dashboards/templates/dashboards/charts/protocol-pie-chart.html:3
+msgid "Protocols"
+msgstr ""
+
+#: apps/dashboards/templates/dashboards/index.html:8
+#: apps/dashboards/templates/dashboards/index.html:13
+msgid "In the past week"
+msgstr ""
+
+#: apps/dashboards/templatetags/charts.py:24
+msgid "Traveling"
+msgstr ""
+
+#: apps/dashboards/templatetags/charts.py:37
+msgid "Other"
+msgstr ""
+
+#: apps/dashboards/templatetags/charts.py:39
+msgid "Number of checklists"
+msgstr ""
+
+#: apps/dashboards/templatetags/charts.py:69
+msgid "Number of species"
+msgstr ""
+
+#: apps/dashboards/templatetags/charts.py:70
+msgid "Percentage of checklists"
+msgstr ""
+
+#: apps/dashboards/templatetags/charts.py:71
+msgid "Percentage"
+msgstr ""
+
+#: apps/dashboards/templatetags/numbers.py:20
+msgid "Species (plural)"
+msgstr "Species"
+
+#: apps/dashboards/templatetags/numbers.py:44
+msgid "Observers"
+msgstr ""
+
+#: apps/dashboards/templatetags/numbers.py:55
+msgid "Hours"
+msgstr ""
+
+#: apps/dashboards/templatetags/tables.py:19
 msgid "Big Lists"
 msgstr ""
 

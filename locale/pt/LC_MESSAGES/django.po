@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-11 08:17+0000\n"
+"POT-Creation-Date: 2025-03-15 11:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,8 @@ msgstr ""
 #: apps/checklists/apps.py:8
 #: apps/checklists/templates/checklists/detail.html:15
 #: apps/checklists/templates/checklists/index.html:8
-#: apps/checklists/templates/checklists/index.html:13 templates/page.html:20
+#: apps/checklists/templates/checklists/index.html:13
+#: apps/dashboards/templatetags/numbers.py:32 templates/page.html:20
 msgid "Checklists"
 msgstr "Listas"
 
@@ -62,6 +63,7 @@ msgid "Duration"
 msgstr "Duração"
 
 #: apps/checklists/templates/checklists/detail.html:65
+#: apps/dashboards/templatetags/charts.py:23
 msgid "Stationary"
 msgstr "Parado"
 
@@ -75,6 +77,7 @@ msgid "%(distance)s km"
 msgstr "%(distance)s km"
 
 #: apps/checklists/templates/checklists/detail.html:77
+#: apps/dashboards/templatetags/charts.py:22
 msgid "Incidental"
 msgstr "Incidental"
 
@@ -95,7 +98,7 @@ msgid "View the checklist on eBird"
 msgstr "Ver a lista no eBird"
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:7
-#: apps/dashboards/templates/dashboards/includes/big-lists.html:7
+#: apps/dashboards/templates/dashboards/tables/big-lists.html:10
 msgid "View this checklist"
 msgstr "Ver esta lista"
 
@@ -120,7 +123,7 @@ msgid "Show checklists for this observer"
 msgstr "Mostrar as listas para este observador"
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:49
-#: apps/dashboards/templates/dashboards/includes/big-lists.html:25
+#: apps/dashboards/templates/dashboards/tables/big-lists.html:29
 msgid "Number of species reported"
 msgstr "Número de espécies registadas"
 
@@ -167,7 +170,6 @@ msgid "Page %(number)s of %(total)s"
 msgstr "Página %(number)s de %(total)s"
 
 #: apps/checklists/templates/checklists/index.html:16
-#: apps/dashboards/templates/dashboards/index.html:15
 #: apps/observations/templates/observations/index.html:16
 msgid "Updated every hour"
 msgstr "Atualizado a cada hora"
@@ -176,12 +178,68 @@ msgstr "Atualizado a cada hora"
 msgid "Dashboards"
 msgstr "Resumos"
 
+#: apps/dashboards/templates/dashboards/charts/checklist-species.html:3
+#, fuzzy
+#| msgid "View this checklist"
+msgid "Species per checklist"
+msgstr "Ver esta lista"
+
+#: apps/dashboards/templates/dashboards/charts/protocol-pie-chart.html:3
+msgid "Protocols"
+msgstr "Protocolos"
+
 #: apps/dashboards/templates/dashboards/index.html:8
 #: apps/dashboards/templates/dashboards/index.html:13
-msgid "Dashboard"
-msgstr "Resumo"
+msgid "In the past week"
+msgstr "Na semana passada"
 
-#: apps/dashboards/templates/dashboards/index.html:19
+#: apps/dashboards/templatetags/charts.py:24
+#, fuzzy
+#| msgid "Travelling"
+msgid "Traveling"
+msgstr "Em movimento"
+
+#: apps/dashboards/templatetags/charts.py:37
+msgid "Other"
+msgstr "Outros"
+
+#: apps/dashboards/templatetags/charts.py:39
+#, fuzzy
+#| msgid "Number of species reported"
+msgid "Number of checklists"
+msgstr "Número de espécies registadas"
+
+#: apps/dashboards/templatetags/charts.py:69
+#, fuzzy
+#| msgid "Number of species reported"
+msgid "Number of species"
+msgstr "Número de espécies registadas"
+
+#: apps/dashboards/templatetags/charts.py:70
+msgid "Percentage of checklists"
+msgstr "Percentagem de listas"
+
+#: apps/dashboards/templatetags/charts.py:71
+msgid "Percentage"
+msgstr "Percentagem"
+
+#: apps/dashboards/templatetags/numbers.py:20
+#, fuzzy
+#| msgid "Species"
+msgid "Species (plural)"
+msgstr "Espécie"
+
+#: apps/dashboards/templatetags/numbers.py:44
+#, fuzzy
+#| msgid "Observer"
+msgid "Observers"
+msgstr "Observador"
+
+#: apps/dashboards/templatetags/numbers.py:55
+msgid "Hours"
+msgstr "Horas"
+
+#: apps/dashboards/templatetags/tables.py:19
 msgid "Big Lists"
 msgstr "Listas grandes"
 
@@ -223,7 +281,7 @@ msgstr "Mostrar as observações deste observador"
 
 #: apps/users/admin.py:18
 msgid "Groups"
-msgstr ""
+msgstr "Grupos"
 
 #: apps/users/admin.py:22
 msgid "Permissions"
@@ -306,3 +364,6 @@ msgid ""
 "This error was reported automatically, but if the problem persists please "
 "contact us. In the meantime, try refreshing the page."
 msgstr ""
+
+#~ msgid "Dashboard"
+#~ msgstr "Resumo"
