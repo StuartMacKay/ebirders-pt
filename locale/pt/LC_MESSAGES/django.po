@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-15 11:12+0000\n"
+"POT-Creation-Date: 2025-03-15 15:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,77 +19,77 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: apps/checklists/apps.py:8
-#: apps/checklists/templates/checklists/detail.html:15
-#: apps/checklists/templates/checklists/index.html:8
-#: apps/checklists/templates/checklists/index.html:13
-#: apps/dashboards/templatetags/numbers.py:32 templates/page.html:20
+#: apps/checklists/templates/checklists/detail.html:18
+#: apps/checklists/templates/checklists/index.html:9
+#: apps/checklists/templates/checklists/index.html:14
+#: apps/dashboards/templatetags/numbers.py:37 templates/page.html:20
 msgid "Checklists"
 msgstr "Listas"
 
-#: apps/checklists/filters.py:12 apps/observations/filters.py:12
+#: apps/checklists/filters.py:17 apps/observations/filters.py:18
 msgid "Country"
 msgstr "País"
 
-#: apps/checklists/filters.py:20 apps/observations/filters.py:20
+#: apps/checklists/filters.py:25 apps/observations/filters.py:26
 msgid "State"
 msgstr "Região"
 
-#: apps/checklists/filters.py:29 apps/observations/filters.py:29
+#: apps/checklists/filters.py:34 apps/observations/filters.py:35
 msgid "County"
 msgstr "Concelho"
 
-#: apps/checklists/filters.py:38 apps/observations/filters.py:38
+#: apps/checklists/filters.py:43 apps/observations/filters.py:44
 msgid "Location"
 msgstr "Localização"
 
-#: apps/checklists/filters.py:47 apps/observations/filters.py:47
+#: apps/checklists/filters.py:52 apps/observations/filters.py:53
 msgid "Observer"
 msgstr "Observador"
 
-#: apps/checklists/templates/checklists/detail.html:8
+#: apps/checklists/templates/checklists/detail.html:10
 msgid "Checklist"
 msgstr "Lista"
 
-#: apps/checklists/templates/checklists/detail.html:49
+#: apps/checklists/templates/checklists/detail.html:52
 msgid "Number of Observers"
 msgstr "Número de observadores"
 
-#: apps/checklists/templates/checklists/detail.html:57
+#: apps/checklists/templates/checklists/detail.html:60
 msgid "Duration"
 msgstr "Duração"
 
-#: apps/checklists/templates/checklists/detail.html:65
+#: apps/checklists/templates/checklists/detail.html:68
 #: apps/dashboards/templatetags/charts.py:23
 msgid "Stationary"
 msgstr "Parado"
 
-#: apps/checklists/templates/checklists/detail.html:70
+#: apps/checklists/templates/checklists/detail.html:73
 msgid "Travelling"
 msgstr "Em movimento"
 
-#: apps/checklists/templates/checklists/detail.html:72
+#: apps/checklists/templates/checklists/detail.html:75
 #, python-format
 msgid "%(distance)s km"
 msgstr "%(distance)s km"
 
-#: apps/checklists/templates/checklists/detail.html:77
+#: apps/checklists/templates/checklists/detail.html:80
 #: apps/dashboards/templatetags/charts.py:22
 msgid "Incidental"
 msgstr "Incidental"
 
-#: apps/checklists/templates/checklists/detail.html:83
+#: apps/checklists/templates/checklists/detail.html:86
 msgid "Complete"
 msgstr "Completa"
 
-#: apps/checklists/templates/checklists/detail.html:85
+#: apps/checklists/templates/checklists/detail.html:88
 msgid "Incomplete"
 msgstr "Incompleta"
 
-#: apps/checklists/templates/checklists/detail.html:94
+#: apps/checklists/templates/checklists/detail.html:99
 msgid "Show location on OpenStreetMap"
 msgstr "Mostrar a localização no OpenStreetMap"
 
-#: apps/checklists/templates/checklists/detail.html:102
+#: apps/checklists/templates/checklists/detail.html:108
 msgid "View the checklist on eBird"
 msgstr "Ver a lista no eBird"
 
@@ -118,20 +118,20 @@ msgstr "Mostrar as listas para esta país"
 msgid "Show checklists for this observer"
 msgstr "Mostrar as listas para este observador"
 
-#: apps/checklists/templates/checklists/includes/checklist-table.html:49
+#: apps/checklists/templates/checklists/includes/checklist-table.html:50
 #: apps/dashboards/templates/dashboards/tables/big-lists.html:29
 msgid "Number of species reported"
 msgstr "Número de espécies registadas"
 
-#: apps/checklists/templates/checklists/includes/filter-form.html:51
-#: apps/checklists/templates/checklists/index.html:14
-#: apps/observations/templates/observations/includes/filter-form.html:59
-#: apps/observations/templates/observations/index.html:14
+#: apps/checklists/templates/checklists/includes/filter-form.html:56
+#: apps/checklists/templates/checklists/index.html:15
+#: apps/observations/templates/observations/includes/filter-form.html:65
+#: apps/observations/templates/observations/index.html:15
 msgid "Search"
 msgstr "Pesquisar"
 
-#: apps/checklists/templates/checklists/includes/filter-form.html:52
-#: apps/observations/templates/observations/includes/filter-form.html:60
+#: apps/checklists/templates/checklists/includes/filter-form.html:57
+#: apps/observations/templates/observations/includes/filter-form.html:66
 msgid "Clear"
 msgstr "Limpar"
 
@@ -141,32 +141,31 @@ msgid "Previous page"
 msgstr "Página anterior"
 
 #: apps/checklists/templates/checklists/includes/pagination.html:9
-#: apps/checklists/templates/checklists/includes/pagination.html:12
+#: apps/checklists/templates/checklists/includes/pagination.html:13
 #: apps/observations/templates/observations/includes/pagination.html:9
-#: apps/observations/templates/observations/includes/pagination.html:12
+#: apps/observations/templates/observations/includes/pagination.html:13
 msgid "Previous"
 msgstr "Anterior"
 
-#: apps/checklists/templates/checklists/includes/pagination.html:19
-#: apps/observations/templates/observations/includes/pagination.html:19
+#: apps/checklists/templates/checklists/includes/pagination.html:20
+#: apps/observations/templates/observations/includes/pagination.html:20
 msgid "Next page"
 msgstr "Página seguinte"
 
-#: apps/checklists/templates/checklists/includes/pagination.html:19
-#: apps/checklists/templates/checklists/includes/pagination.html:22
-#: apps/observations/templates/observations/includes/pagination.html:19
-#: apps/observations/templates/observations/includes/pagination.html:22
+#: apps/checklists/templates/checklists/includes/pagination.html:20
+#: apps/checklists/templates/checklists/includes/pagination.html:24
+#: apps/observations/templates/observations/includes/pagination.html:20
+#: apps/observations/templates/observations/includes/pagination.html:24
 msgid "Next"
 msgstr "Seguinte"
 
-#: apps/checklists/templates/checklists/includes/pagination.html:29
-#: apps/observations/templates/observations/includes/pagination.html:29
-#, python-format
+#: apps/checklists/templates/checklists/includes/pagination.html:31
+#: apps/observations/templates/observations/includes/pagination.html:31
 msgid "Page %(number)s of %(total)s"
 msgstr "Página %(number)s de %(total)s"
 
-#: apps/checklists/templates/checklists/index.html:16
-#: apps/observations/templates/observations/index.html:16
+#: apps/checklists/templates/checklists/index.html:17
+#: apps/observations/templates/observations/index.html:17
 msgid "Updated every hour"
 msgstr "Atualizado a cada hora"
 
@@ -182,10 +181,26 @@ msgstr "Espécies por lista"
 msgid "Protocols"
 msgstr "Protocolos"
 
-#: apps/dashboards/templates/dashboards/index.html:8
-#: apps/dashboards/templates/dashboards/index.html:13
+#: apps/dashboards/templates/dashboards/index.html:9
+#: apps/dashboards/templates/dashboards/index.html:14
 msgid "In the past week"
 msgstr "Na semana passada"
+
+#: apps/dashboards/templates/dashboards/tables/checklists-duration.html:2
+msgid "Time spent birding"
+msgstr "Tempo passado a observar aves"
+
+#: apps/dashboards/templates/dashboards/tables/checklists-duration.html:4
+msgid "hours : minutes"
+msgstr "horas : minutos"
+
+#: apps/dashboards/templates/dashboards/tables/checklists-submitted.html:2
+msgid "Checklists submitted"
+msgstr "Listas submetido"
+
+#: apps/dashboards/templates/dashboards/tables/checklists-submitted.html:4
+msgid "Complete checklists only"
+msgstr "Apenas listas completas"
 
 #: apps/dashboards/templatetags/charts.py:24
 msgid "Traveling"
@@ -211,55 +226,55 @@ msgstr "Percentagem de listas"
 msgid "Percentage"
 msgstr "Percentagem"
 
-#: apps/dashboards/templatetags/numbers.py:20
+#: apps/dashboards/templatetags/numbers.py:25
 msgid "Species (plural)"
 msgstr "Espécies"
 
-#: apps/dashboards/templatetags/numbers.py:44
+#: apps/dashboards/templatetags/numbers.py:54
 msgid "Observers"
 msgstr "Observadores"
 
-#: apps/dashboards/templatetags/numbers.py:55
+#: apps/dashboards/templatetags/numbers.py:67
 msgid "Hours"
 msgstr "Horas"
 
-#: apps/dashboards/templatetags/tables.py:19
+#: apps/dashboards/templatetags/tables.py:21
 msgid "Big Lists"
 msgstr "Listas grandes"
 
 #: apps/observations/apps.py:8
-#: apps/observations/templates/observations/index.html:8
-#: apps/observations/templates/observations/index.html:13
+#: apps/observations/templates/observations/index.html:9
+#: apps/observations/templates/observations/index.html:14
 #: templates/page.html:23
 msgid "Observations"
 msgstr "Observações"
 
-#: apps/observations/filters.py:55 apps/species/apps.py:8
+#: apps/observations/filters.py:61 apps/species/apps.py:8
 msgid "Species"
 msgstr "Espécie"
 
-#: apps/observations/templates/observations/includes/observation-table.html:11
-#: apps/observations/templates/observations/includes/observation-table.html:20
+#: apps/observations/templates/observations/includes/observation-table.html:12
+#: apps/observations/templates/observations/includes/observation-table.html:23
 msgid "Show observations of this species"
 msgstr "Mostrar observações desta espécie"
 
-#: apps/observations/templates/observations/includes/observation-table.html:33
+#: apps/observations/templates/observations/includes/observation-table.html:37
 msgid "Show observation for this location"
 msgstr "Mostrar observação para este local"
 
-#: apps/observations/templates/observations/includes/observation-table.html:40
+#: apps/observations/templates/observations/includes/observation-table.html:44
 msgid "Show observations for this county"
 msgstr "Mostrar observações para este concelho"
 
-#: apps/observations/templates/observations/includes/observation-table.html:48
+#: apps/observations/templates/observations/includes/observation-table.html:52
 msgid "Show observations for this state"
 msgstr "Mostrar observações para esta região"
 
-#: apps/observations/templates/observations/includes/observation-table.html:56
+#: apps/observations/templates/observations/includes/observation-table.html:60
 msgid "Show observations for this country"
 msgstr "Mostrar observações para este país"
 
-#: apps/observations/templates/observations/includes/observation-table.html:64
+#: apps/observations/templates/observations/includes/observation-table.html:68
 msgid "Show observations from this observer"
 msgstr "Mostrar as observações deste observador"
 
@@ -275,27 +290,27 @@ msgstr ""
 msgid "Important dates"
 msgstr ""
 
-#: apps/users/models.py:41
+#: apps/users/models.py:39
 msgid "The email address used to log in"
 msgstr ""
 
-#: apps/users/models.py:42
+#: apps/users/models.py:40
 msgid "email address"
 msgstr ""
 
-#: apps/users/models.py:50
+#: apps/users/models.py:48
 msgid "The Observer associated with this user account"
 msgstr ""
 
-#: apps/users/models.py:51
+#: apps/users/models.py:49
 msgid "observer"
 msgstr ""
 
-#: apps/users/models.py:60
+#: apps/users/models.py:58
 msgid "user"
 msgstr ""
 
-#: apps/users/models.py:61
+#: apps/users/models.py:59
 msgid "users"
 msgstr ""
 
