@@ -47,14 +47,10 @@ msgid "Observer"
 msgstr "Observador"
 
 #: apps/checklists/templates/checklists/detail.html:8
-#, fuzzy
-#| msgid "Checklists"
 msgid "Checklist"
-msgstr "Listas"
+msgstr "Lista"
 
 #: apps/checklists/templates/checklists/detail.html:49
-#, fuzzy
-#| msgid "Number of observers"
 msgid "Number of Observers"
 msgstr "Número de observadores"
 
@@ -179,10 +175,8 @@ msgid "Dashboards"
 msgstr "Resumos"
 
 #: apps/dashboards/templates/dashboards/charts/checklist-species.html:3
-#, fuzzy
-#| msgid "View this checklist"
 msgid "Species per checklist"
-msgstr "Ver esta lista"
+msgstr "Espécies por lista"
 
 #: apps/dashboards/templates/dashboards/charts/protocol-pie-chart.html:3
 msgid "Protocols"
@@ -194,8 +188,6 @@ msgid "In the past week"
 msgstr "Na semana passada"
 
 #: apps/dashboards/templatetags/charts.py:24
-#, fuzzy
-#| msgid "Travelling"
 msgid "Traveling"
 msgstr "Em movimento"
 
@@ -204,14 +196,10 @@ msgid "Other"
 msgstr "Outros"
 
 #: apps/dashboards/templatetags/charts.py:39
-#, fuzzy
-#| msgid "Number of species reported"
 msgid "Number of checklists"
 msgstr "Número de espécies registadas"
 
 #: apps/dashboards/templatetags/charts.py:69
-#, fuzzy
-#| msgid "Number of species reported"
 msgid "Number of species"
 msgstr "Número de espécies registadas"
 
@@ -224,16 +212,12 @@ msgid "Percentage"
 msgstr "Percentagem"
 
 #: apps/dashboards/templatetags/numbers.py:20
-#, fuzzy
-#| msgid "Species"
 msgid "Species (plural)"
-msgstr "Espécie"
+msgstr "Espécies"
 
 #: apps/dashboards/templatetags/numbers.py:44
-#, fuzzy
-#| msgid "Observer"
 msgid "Observers"
-msgstr "Observador"
+msgstr "Observadores"
 
 #: apps/dashboards/templatetags/numbers.py:55
 msgid "Hours"
