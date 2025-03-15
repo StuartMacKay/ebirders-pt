@@ -1,5 +1,5 @@
 {% extends "page.html" %}
-{% load i18n static %}
+{% load i18n static tables %}
 
 {% block language_selector %}
     <li><a class="dropdown-item" href="{% url 'index' %}{% querystring %}">{{ lang_name }}</a></li>
@@ -16,9 +16,13 @@
       </div>
     </div>
     <div>
-      <h2>{% trans 'Big Lists' %}</h2>
-      <hr>
-      {% include "dashboards/includes/big-lists.html" %}
+      <div class="container">
+       <div class="row">
+          <div class="col-12">
+            {% big_lists_table %}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 {% endblock content %}

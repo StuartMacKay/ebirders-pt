@@ -1,4 +1,7 @@
 {% load i18n %}
+<hr>
+<h2>{{ title }}</h2>
+<hr>
 {% for checklist in checklists %}
   <div class="row mb-3">
     <div class="col-md-2 pt-1">
@@ -22,7 +25,9 @@
       {{ checklist.observer }}
     </div>
     <div class="col-md-2">
-       <span class="species-count bg-warning-subtle" title="{% trans 'Number of species reported' %}">{{ checklist.species_count }}</span>
+       <span class="species-count bg-warning-subtle"
+             title="{% trans 'Number of species reported' %}">{{ checklist.species_count }}</span>
     </div>
   </div>
 {% endfor %}
+<hr>
