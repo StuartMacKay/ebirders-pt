@@ -5,15 +5,12 @@
     <li><a class="dropdown-item" href="{% url 'index' %}{% querystring %}">{{ lang_name }}</a></li>
 {% endblock %}
 
-{% block title %}{% trans 'Dashboard' %}{% endblock %}
+{% block title %}{% trans 'In the past week' %}{% endblock %}
 
 {% block content %}
   <div id="page">
-    <div class="border-bottom mb-3">
-      <h1 class="d-inline me-4">{% trans 'Dashboard' %}</h1>
-      <div class="text-end">
-        <small class="text-muted">{% trans 'Updated every hour' %}</small>
-      </div>
+    <div class="border-bottom mb-4">
+      <h1 class="mb-2">{% trans 'In the past week' %}</h1>
     </div>
     <div>
       <div class="container">
