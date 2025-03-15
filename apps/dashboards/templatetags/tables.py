@@ -38,3 +38,23 @@ def checklists_submitted_table():
     )[:10]
 
     return {"observers": observers}
+
+
+@register.inclusion_tag("dashboards/tables/checklists-duration.html")
+def checklists_duration_table():
+    today = timezone.now().date()
+    one_week_ago = today - relativedelta(days=7)
+    observers = (
+        Checklist.objects.values("observer")
+        .annotate(name=F('observer__name'))
+        .annotate(total=Sum("duration"))
+        .filter(date__gt=one_week_ago)
+        .filter(duration__isnull=False)
+        .order_by("-total")
+    )[:10]
+
+    for observer in observers:
+        observer["hours"] = "%0d" % (observer["total"] / 60)
+        observer["minutes"] = "%02d" % (observer["total"] % 60)
+
+    return {"observers": observers}
