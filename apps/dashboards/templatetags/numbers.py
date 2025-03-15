@@ -14,7 +14,12 @@ register = template.Library()
 def species_count():
     today = timezone.now().date()
     one_week_ago = today - relativedelta(days=7)
-    count = Observation.objects.filter(checklist__date__gt=one_week_ago).values_list('species_id', flat=True).distinct().count()
+    count = (
+        Observation.objects.filter(checklist__date__gt=one_week_ago)
+        .values_list("species_id", flat=True)
+        .distinct()
+        .count()
+    )
 
     return {
         "title": _("Species (plural)"),
@@ -38,7 +43,12 @@ def checklist_count():
 def observer_count():
     today = timezone.now().date()
     one_week_ago = today - relativedelta(days=7)
-    count = Checklist.objects.filter(date__gt=one_week_ago).values_list('observer_id', flat=True).distinct().count()
+    count = (
+        Checklist.objects.filter(date__gt=one_week_ago)
+        .values_list("observer_id", flat=True)
+        .distinct()
+        .count()
+    )
 
     return {
         "title": _("Observers"),
@@ -50,7 +60,9 @@ def observer_count():
 def duration_count():
     today = timezone.now().date()
     one_week_ago = today - relativedelta(days=7)
-    total = Checklist.objects.filter(date__gt=one_week_ago).aggregate(Sum('duration'))["duration__sum"]
+    total = Checklist.objects.filter(date__gt=one_week_ago).aggregate(Sum("duration"))[
+        "duration__sum"
+    ]
     return {
         "title": _("Hours"),
         "count": int(total / 60),

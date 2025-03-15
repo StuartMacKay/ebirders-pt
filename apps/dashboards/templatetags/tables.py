@@ -14,8 +14,9 @@ def big_lists_table():
     today = timezone.now().date()
     one_week_ago = today - relativedelta(days=7)
     checklists = Checklist.objects.filter(date__gt=one_week_ago).order_by(
-        '-species_count')[:10]
+        "-species_count"
+    )[:10]
     return {
         "title": _("Big Lists"),
-        "checklists": sorted(list(checklists), key=lambda checklist: checklist.started)
+        "checklists": sorted(list(checklists), key=lambda checklist: checklist.started),
     }

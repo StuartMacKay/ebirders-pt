@@ -1,6 +1,14 @@
 from django.urls import path, re_path
 
-from .views import DetailView, ChecklistsView, CountryAutocomplete, StateAutocomplete, CountyAutocomplete, LocationAutocomplete, ObserverAutocomplete
+from .views import (
+    DetailView,
+    ChecklistsView,
+    CountryAutocomplete,
+    StateAutocomplete,
+    CountyAutocomplete,
+    LocationAutocomplete,
+    ObserverAutocomplete,
+)
 
 app_name = "checklists"
 

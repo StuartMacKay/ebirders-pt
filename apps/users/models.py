@@ -6,7 +6,6 @@ from django.utils.translation import gettext_lazy as _
 
 
 class UserManager(AbstractUserManager):
-
     def _create_user(self, email, password, **extra_fields):
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
@@ -32,7 +31,6 @@ class UserManager(AbstractUserManager):
 
 
 class User(AbstractUser):
-
     # Users login with an email address
     username = None
 
@@ -48,7 +46,7 @@ class User(AbstractUser):
         null=True,
         on_delete=models.SET_NULL,
         help_text=_("The Observer associated with this user account"),
-        verbose_name=_("observer")
+        verbose_name=_("observer"),
     )
 
     USERNAME_FIELD = "email"

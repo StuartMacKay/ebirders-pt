@@ -2,7 +2,8 @@
 {% load charts i18n numbers static tables %}
 
 {% block language_selector %}
-    <li><a class="dropdown-item" href="{% url 'index' %}{% querystring %}">{{ lang_name }}</a></li>
+  <li><a class="dropdown-item"
+         href="{% url 'index' %}{% querystring %}">{{ lang_name }}</a></li>
 {% endblock %}
 
 {% block title %}{% trans 'In the past week' %}{% endblock %}

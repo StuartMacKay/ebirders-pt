@@ -3,8 +3,14 @@ from dal import autocomplete
 from django.utils.translation import gettext_lazy as _
 from ebird.checklists.models import Observation
 
-from .queries import country_choice, state_choice, county_choice, location_choice, \
-    observer_choice, species_choice
+from .queries import (
+    country_choice,
+    state_choice,
+    county_choice,
+    location_choice,
+    observer_choice,
+    species_choice,
+)
 
 
 class ObservationFilter(django_filters.FilterSet):

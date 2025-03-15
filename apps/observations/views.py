@@ -3,7 +3,14 @@ from django_filters.views import FilterView
 from ebird.checklists.models import Observation
 
 from .filters import ObservationFilter
-from .queries import country_choices, state_choices, county_choices, location_choices, observer_choices, species_choices
+from .queries import (
+    country_choices,
+    state_choices,
+    county_choices,
+    location_choices,
+    observer_choices,
+    species_choices,
+)
 
 
 class Select2TuplesListView(autocomplete.Select2ListView):
@@ -67,5 +74,7 @@ class ObservationsView(FilterView):
     def get_queryset(self):
         return self.filterset_class(
             self.request.GET,
-            queryset=super().get_queryset().select_related("checklist", "location", "observer", "species"),
+            queryset=super()
+            .get_queryset()
+            .select_related("checklist", "location", "observer", "species"),
         ).qs

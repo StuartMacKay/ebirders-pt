@@ -46,9 +46,8 @@ import logging
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
-
-from ebird.checklists.models import Species
 from ebird.api import get_taxonomy
+from ebird.checklists.models import Species
 
 logger = logging.getLogger(__name__)
 
@@ -86,7 +85,8 @@ class Command(BaseCommand):
 
                 logger.info(
                     "Loading common name: %s, %s",
-                    species.species_code, locale,
+                    species.species_code,
+                    locale,
                     extra={
                         "species_code": species.species_code,
                         "locale": locale,
@@ -96,7 +96,7 @@ class Command(BaseCommand):
                 data = get_taxonomy(
                     settings.EBIRD_API_KEY,
                     locale=settings.EBIRD_LANGUAGES[locale],
-                    species=species.species_code
+                    species=species.species_code,
                 )[0]
 
                 species.data["common_name"][locale] = data["comName"]

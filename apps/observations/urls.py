@@ -1,6 +1,14 @@
 from django.urls import path
 
-from .views import ObservationsView, CountryAutocomplete, StateAutocomplete, CountyAutocomplete, LocationAutocomplete, ObserverAutocomplete, SpeciesAutocomplete
+from .views import (
+    ObservationsView,
+    CountryAutocomplete,
+    StateAutocomplete,
+    CountyAutocomplete,
+    LocationAutocomplete,
+    ObserverAutocomplete,
+    SpeciesAutocomplete,
+)
 
 app_name = "observations"
 

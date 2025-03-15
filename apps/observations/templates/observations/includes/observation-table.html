@@ -2,7 +2,8 @@
 {% for observation in observations %}
   <div class="row mb-3">
     <div class="col-md-1">
-      <div class="show-if-wide text-end">{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}</div>
+      <div class="show-if-wide text-end">
+        {% if observation.count %}{{ observation.count }}{% else %}X{% endif %}</div>
     </div>
     <div class="col-md-3">
       <div class="show-if-wide">
@@ -11,16 +12,19 @@
            title="{% trans 'Show observations of this species' %}">
           {% get_common_name observation.species language_code %}
         </a><br>
-        <small class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
+        <small
+          class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
       </div>
       <div class="show-if-narrow">
-          <span>{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}, </span>
+        <span>{% if observation.count %}{{ observation.count }}{% else %}
+          X{% endif %}, </span>
         <a class="dark-link"
            href="{% querystring page=1 species=observation.species.species_code %}"
            title="{% trans 'Show observations of this species' %}">
           {% get_common_name observation.species language_code %}
         </a>
-        <small class="ms-2 text-muted fst-italic">{{ observation.species.scientific_name }}</small>
+        <small
+          class="ms-2 text-muted fst-italic">{{ observation.species.scientific_name }}</small>
       </div>
     </div>
     <div class="col-md-2">

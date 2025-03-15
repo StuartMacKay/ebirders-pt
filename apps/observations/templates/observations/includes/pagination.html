@@ -9,7 +9,8 @@
              title="{% trans 'Previous page' %}">{% trans "Previous" %}</a>
         </li>
       {% else %}
-        <li class="page-item"><a class="page-link disabled" href="#">{% trans "Previous" %}</a></li>
+        <li class="page-item"><a class="page-link disabled"
+                                 href="#">{% trans "Previous" %}</a></li>
       {% endif %}
 
       {% if page_obj.has_next %}
@@ -19,14 +20,16 @@
              title="{% trans 'Next page' %}">{% trans "Next" %}</a>
         </li>
       {% else %}
-        <li class="page-item"><a class="page-link disabled" href="#">{% trans "Next" %}</a></li>
+        <li class="page-item"><a class="page-link disabled"
+                                 href="#">{% trans "Next" %}</a></li>
       {% endif %}
     </ul>
   </nav>
 
   <div class="ms-2 p-2">
-    {%  with number=page_obj.number total=page_obj.paginator.num_pages %}
-      <span class="text-muted">{% blocktrans %}Page {{ number }} of {{ total }}{% endblocktrans %}</span>
+    {% with number=page_obj.number total=page_obj.paginator.num_pages %}
+      <span class="text-muted">{% blocktrans %}Page {{ number }} of
+        {{ total }}{% endblocktrans %}</span>
     {% endwith %}
   </div>
 

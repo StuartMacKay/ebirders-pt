@@ -2,7 +2,8 @@
 {% load i18n static %}
 
 {% block language_selector %}
-    <li><a class="dropdown-item" href="{% url 'checklists:list' %}{% querystring %}">{{ lang_name }}</a></li>
+  <li><a class="dropdown-item"
+         href="{% url 'checklists:list' %}{% querystring %}">{{ lang_name }}</a></li>
 {% endblock %}
 
 {% block title %}{% trans 'Checklists' %}{% endblock %}
@@ -33,7 +34,8 @@
 
 {% block javascript %}
   {{ block.super }}
-  <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+  <script type="text/javascript"
+          src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
   {{ filter.form.media.js }}
   <script>
     $(document).ready(function() {

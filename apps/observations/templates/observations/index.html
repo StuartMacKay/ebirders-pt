@@ -2,7 +2,8 @@
 {% load static i18n %}
 
 {% block language_selector %}
-    <li><a class="dropdown-item" href="{% url 'observations:list' %}{% querystring %}">{{ lang_name }}</a></li>
+  <li><a class="dropdown-item"
+         href="{% url 'observations:list' %}{% querystring %}">{{ lang_name }}</a></li>
 {% endblock %}
 
 {% block title %}{% trans 'Observations' %}{% endblock %}
@@ -33,7 +34,8 @@
 
 {% block javascript %}
   {{ block.super }}
-  <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+  <script type="text/javascript"
+          src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
   {{ filter.form.media.js }}
   <script>
     $(document).ready(function() {
@@ -92,6 +94,6 @@
 
       $("#page").show();
     });
-   </script>
+  </script>
 
 {% endblock %}

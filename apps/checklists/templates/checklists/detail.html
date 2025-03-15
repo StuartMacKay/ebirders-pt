@@ -2,7 +2,9 @@
 {% load i18n static %}
 
 {% block language_selector %}
-  <li><a class="dropdown-item disabled" href="{% url 'checklists:detail' checklist.identifier %}">{{ lang_name }}</a></li>
+  <li><a class="dropdown-item disabled"
+         href="{% url 'checklists:detail' checklist.identifier %}">{{ lang_name }}</a>
+  </li>
 {% endblock %}
 
 {% block title %}{% trans 'Checklist' %} {{ checklist.identifier }}{% endblock %}
@@ -12,7 +14,8 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="{{ request.META.HTTP_REFERER }}" class="dark-link">{% trans 'Checklists' %}</a>
+          <a href="{{ request.META.HTTP_REFERER }}"
+             class="dark-link">{% trans 'Checklists' %}</a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">
           <span class="me-2">{{ checklist.identifier }}</span>
@@ -64,7 +67,7 @@
           <i class="bi bi-person-standing me-1"
              title="{% trans 'Stationary' %}"></i>
         </div>
-      {% elif checklist.protocol_code == "P22" %}
+        {% elif checklist.protocol_code == "P22" %}
         <div class="me-3">
           <i class="bi bi-person-walking"
              title="{% trans 'Travelling' %}"></i>
@@ -72,7 +75,7 @@
             <span>{% blocktrans %}{{ distance }} km{% endblocktrans %}</span>
           {% endwith %}
         </div>
-      {% elif checklist.protocol_code == "P20" %}
+        {% elif checklist.protocol_code == "P20" %}
         <div class="me-3">
           <span>{% trans "Incidental" %}</span>
         </div>
@@ -89,9 +92,11 @@
       {% if checklist.location.latitude and checklist.location.longitude %}
         {% with lat=checklist.location.latitude lon=checklist.location.longitude %}
           <div class="me-3">
-            <a href="http://www.openstreetmap.org/?mlat={{ lat }}&mlon={{ lon }}#map=16/{{ lat }}/{{ lon }}"
-               class="link-dark" target="_blank">
-                <i class="bi bi-map" title="{% trans 'Show location on OpenStreetMap' %}"></i>
+            <a
+              href="http://www.openstreetmap.org/?mlat={{ lat }}&mlon={{ lon }}#map=16/{{ lat }}/{{ lon }}"
+              class="link-dark" target="_blank">
+              <i class="bi bi-map"
+                 title="{% trans 'Show location on OpenStreetMap' %}"></i>
             </a>
           </div>
         {% endwith %}
@@ -99,7 +104,8 @@
 
       <div>
         <a href="{{ checklist.url }}" class="link-dark" target="_blank">
-          <i class="bi bi-link-45deg" title="{% trans 'View the checklist on eBird' %}"></i>
+          <i class="bi bi-link-45deg"
+             title="{% trans 'View the checklist on eBird' %}"></i>
         </a>
       </div>
 
