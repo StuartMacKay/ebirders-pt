@@ -1,4 +1,4 @@
-from ebird.checklists.models import Location, Observer, Species
+from checklists.models import Location, Observer, Species
 
 
 def country_choices():

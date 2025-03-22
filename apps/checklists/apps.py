@@ -3,6 +3,6 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Config(AppConfig):
-    label = "_checklists"
+    label = "checklists"
     name = "checklists"
     verbose_name = _("Checklists")

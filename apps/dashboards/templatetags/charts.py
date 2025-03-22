@@ -5,7 +5,7 @@ from django.db import connection
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from ebird.checklists.models import Checklist
+from checklists.models import Checklist
 
 register = template.Library()
 

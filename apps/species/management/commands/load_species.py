@@ -47,7 +47,7 @@ import logging
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from ebird.api import get_taxonomy
-from ebird.checklists.models import Species
+from checklists.models import Species
 
 logger = logging.getLogger(__name__)
 

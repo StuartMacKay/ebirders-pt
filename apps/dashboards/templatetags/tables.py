@@ -5,7 +5,8 @@ from django.db.models import Case, Count, F, Q, Sum, When
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from ebird.checklists.models import Checklist, Observer
+from checklists.models import Checklist, Observer
+from ebird.codes.locations import is_country_code, is_state_code, is_county_code
 
 register = template.Library()
 

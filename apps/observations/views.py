@@ -1,6 +1,6 @@
 from dal import autocomplete
 from django_filters.views import FilterView
-from ebird.checklists.models import Observation
+from checklists.models import Observation
 
 from .filters import ObservationFilter
 from .queries import (

@@ -59,7 +59,6 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_filters",
     "watchman",
-    "ebird.checklists",
     "checklists",
     "dashboards",
     "observations",

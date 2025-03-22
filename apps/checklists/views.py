@@ -1,7 +1,7 @@
 from dal import autocomplete
 from django.views import generic
 from django_filters.views import FilterView
-from ebird.checklists.models import Checklist
+from checklists.models import Checklist
 
 from .filters import ChecklistFilter
 from .queries import (

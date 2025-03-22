@@ -33,30 +33,30 @@
     </div>
     <div class="col-md-4">
       <a class="dark-link"
-         href="{% querystring page=1 country=observation.location.country_code state=observation.location.state_code county=observation.location.county_code location=observation.location.identifier %}"
+         href="{% querystring page=1 country=observation.location.country_code state=observation.location.state_code county=observation.location.district.code location=observation.location.identifier %}"
          title="{% trans 'Show observation for this location' %}">{{ observation.location.name }}</a>
       {% spaceless %}
         {% if "county" not in filter.data %}
           <br/>
           <small class="text-muted">
             <a class="dark-link"
-               href="{% querystring page=1 country=observation.location.country_code state=observation.location.state_code county=observation.location.county_code %}"
-               title="{% trans 'Show observations for this county' %}">{{ observation.location.county }}</a>
+               href="{% querystring page=1 country=observation.location.country_code state=observation.location.region.code county=observation.location.district.code %}"
+               title="{% trans 'Show observations for this county' %}">{{ observation.location.district }}</a>
           </small>
         {% endif %}
         {% if "state" not in filter.data %}
           <small class="text-muted">
             <span>, </span>
             <a class="dark-link"
-               href="{% querystring page=1 country=observation.location.country_code state=observation.location.state_code %}"
-               title="{% trans 'Show observations for this state' %}">{{ observation.location.state }}</a>
+               href="{% querystring page=1 country=observation.location.country.code state=observation.location.region.code %}"
+               title="{% trans 'Show observations for this state' %}">{{ observation.location.region }}</a>
           </small>
         {% endif %}
         {% if "country" not in filter.data %}
           <small class="text-muted">
             <span>, </span>
             <a class="dark-link"
-               href="{% querystring page=1 country=observation.location.country_code %}"
+               href="{% querystring page=1 country=observation.location.country.code %}"
                title="{% trans 'Show observations for this country' %}">{{ observation.location.country }}</a>
           </small>
         {% endif %}

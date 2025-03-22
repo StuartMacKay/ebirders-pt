@@ -1,7 +1,7 @@
 import django_filters
 from dal import autocomplete
 from django.utils.translation import gettext_lazy as _
-from ebird.checklists.models import Observation
+from checklists.models import Observation
 
 from .queries import (
     country_choice,
@@ -16,7 +16,7 @@ from .queries import (
 class ObservationFilter(django_filters.FilterSet):
     country = django_filters.CharFilter(
         label=_("Country"),
-        field_name="location__country_code",
+        field_name="location__country__code",
         widget=autocomplete.Select2(
             url="checklists:countries",
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
@@ -24,7 +24,7 @@ class ObservationFilter(django_filters.FilterSet):
     )
     state = django_filters.CharFilter(
         label=_("State"),
-        field_name="location__state_code",
+        field_name="location__region__code",
         widget=autocomplete.Select2(
             url="checklists:states",
             forward=["country"],
@@ -33,7 +33,7 @@ class ObservationFilter(django_filters.FilterSet):
     )
     county = django_filters.CharFilter(
         label=_("County"),
-        field_name="location__county_code",
+        field_name="location__district__code",
         widget=autocomplete.Select2(
             url="checklists:counties",
             forward=["country", "state"],
