@@ -1,47 +1,46 @@
-from checklists.models import Location, Observer, Species
+from checklists.models import Country, District, Location, Observer, Region, Species
 
 
 def country_choices():
-    queryset = Location.objects.all().values_list("country_code", "country")
-    return queryset.distinct("country_code")
+    return Country.objects.all().values_list("code", "name")
 
 
 def country_choice(code):
     return (
-        Location.objects.filter(country_code=code)
-        .values_list("country_code", "country")
+        Country.objects.filter(code=code)
+        .values_list("code", "name")
         .first()
     )
 
 
 def state_choices(country_code):
-    queryset = Location.objects.all()
+    queryset = Region.objects.all()
     if country_code:
-        queryset = queryset.filter(country_code=country_code)
-    return queryset.values_list("state_code", "state").distinct("state_code")
+        queryset = queryset.filter(code__startswith=country_code)
+    return queryset.values_list("code", "name")
 
 
 def state_choice(code):
     return (
-        Location.objects.filter(state_code=code)
-        .values_list("state_code", "state")
+        Region.objects.filter(code=code)
+        .values_list("code", "name")
         .first()
     )
 
 
 def county_choices(country_code, state_code):
-    queryset = Location.objects.all()
+    queryset = District.objects.all()
     if state_code:
-        queryset = queryset.filter(state_code=state_code)
+        queryset = queryset.filter(code__startswith=state_code)
     elif country_code:
-        queryset = queryset.filter(country_code=country_code)
-    return queryset.values_list("county_code", "county").distinct("county_code")
+        queryset = queryset.filter(code__stsartswith=country_code)
+    return queryset.values_list("code", "name")
 
 
 def county_choice(code):
     return (
-        Location.objects.filter(county_code=code)
-        .values_list("county_code", "county")
+        District.objects.filter(code=code)
+        .values_list("code", "name")
         .first()
     )
 
@@ -49,11 +48,11 @@ def county_choice(code):
 def location_choices(country_code, state_code, county_code):
     queryset = Location.objects.all()
     if county_code:
-        queryset = queryset.filter(county_code=county_code)
+        queryset = queryset.filter(district__code=county_code)
     elif state_code:
-        queryset = queryset.filter(state_code=state_code)
+        queryset = queryset.filter(region__code=state_code)
     elif country_code:
-        queryset = queryset.filter(country_code=country_code)
+        queryset = queryset.filter(country__code=country_code)
     return queryset.values_list("identifier", "name").distinct("identifier")
 
 
