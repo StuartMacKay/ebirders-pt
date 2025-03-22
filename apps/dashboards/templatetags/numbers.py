@@ -10,14 +10,14 @@ register = template.Library()
 
 @register.inclusion_tag("dashboards/numbers/number.html")
 def species_count(region, start, end):
-    queryset = Observation.objects.filter(checklist__date__gte=start, checklist__date__lt=end)
+    queryset = Observation.objects.filter(date__gte=start, date__lt=end)
 
     if is_county_code(region):
-        queryset = queryset.filter(location__district__code=region)
+        queryset = queryset.filter(district__code=region)
     elif is_state_code(region):
-        queryset = queryset.filter(location__region__code=region)
+        queryset = queryset.filter(region__code=region)
     elif is_country_code(region):
-        queryset = queryset.filter(location__country__code=region)
+        queryset = queryset.filter(country__code=region)
 
     count = (
         queryset
@@ -37,11 +37,11 @@ def checklist_count(region, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
     if is_county_code(region):
-        queryset = queryset.filter(location__district__code=region)
+        queryset = queryset.filter(district__code=region)
     elif is_state_code(region):
-        queryset = queryset.filter(location__region__code=region)
+        queryset = queryset.filter(region__code=region)
     elif is_country_code(region):
-        queryset = queryset.filter(location__country__code=region)
+        queryset = queryset.filter(country__code=region)
 
     count = queryset.count()
 
@@ -56,11 +56,11 @@ def observer_count(region, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
     if is_county_code(region):
-        queryset = queryset.filter(location__district__code=region)
+        queryset = queryset.filter(district__code=region)
     elif is_state_code(region):
-        queryset = queryset.filter(location__region__code=region)
+        queryset = queryset.filter(region__code=region)
     elif is_country_code(region):
-        queryset = queryset.filter(location__country__code=region)
+        queryset = queryset.filter(country__code=region)
 
     count = (
         queryset
@@ -80,11 +80,11 @@ def duration_count(region, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
     if is_county_code(region):
-        queryset = queryset.filter(location__district__code=region)
+        queryset = queryset.filter(district__code=region)
     elif is_state_code(region):
-        queryset = queryset.filter(location__region__code=region)
+        queryset = queryset.filter(region__code=region)
     elif is_country_code(region):
-        queryset = queryset.filter(location__country__code=region)
+        queryset = queryset.filter(country__code=region)
 
     total = queryset.aggregate(Sum("duration"))[
         "duration__sum"
