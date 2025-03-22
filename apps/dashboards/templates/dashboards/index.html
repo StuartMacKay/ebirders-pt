@@ -9,48 +9,49 @@
 {% block title %}{% trans 'In the past week' %}{% endblock %}
 
 {% block content %}
-  <div id="page">
-    <div class="border-bottom mb-4">
-      <h1 class="mb-2">{% trans 'In the past week' %}</h1>
-    </div>
-    <div>
-      <div class="container">
-        <div class="row mb-2">
-          <div class="col-md-3 col-sm-6 mb-2">
-            {% species_count %}
-          </div>
-          <div class="col-md-3 col-sm-6 mb-2">
-            {% checklist_count %}
-          </div>
-          <div class="col-md-3 col-sm-6 mb-2">
-            {% observer_count %}
-          </div>
-          <div class="col-md-3 col-sm-6 mb-2">
-            {% duration_count %}
-          </div>
-        </div>
-        <div class="row mb-4">
-          <div class="col-12">
-            {% checklist_species_chart %}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            {% big_lists_table %}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 col-sm-12">
-            {% checklists_submitted_table %}
-          </div>
-          <div class="col-md-4 col-sm-12">
-            {% checklists_duration_table %}
-          </div>
-          <div class="col-md-4 col-sm-12">
-            {% checklists_species_table %}
-          </div>
+  <div>
+    <div class="d-flex align-items-center border-bottom pb-3 mb-4">
+      <div>
+        <a class="btn btn-link link-dark bg-light text-decoration-none me-2" href="{% querystring report='daily' date=today %}">
+          {% trans 'Today' %}
+        </a>
+      </div>
+      <div>
+        <a class="btn btn-link link-dark bg-light" href="{% querystring report=report date=before %}">
+          <i class="bi bi-chevron-left"></i>
+        </a>
+        <a class="btn btn-link link-dark bg-light me-3" href="{% querystring report=report date=after %}">
+          <i class="bi bi-chevron-right"></i>
+        </a>
+      </div>
+      <div>
+        <a href="#" class="dark-link disabled">
+          <span class="h5">{{ interval }}</span>
+        </a>
+      </div>
+      <div class="ms-auto me-3">
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ report|capfirst }}
+          </button>
+          <ul class="dropdown-menu">
+            {% for report, name in reports %}
+              <li><a class="dropdown-item" href="{% url 'index' %}{% querystring report=report %}">{{ name }}</a></li>
+            {% endfor %}
+          </ul>
         </div>
       </div>
     </div>
+    {% if submissions == 0 %}
+      {% include "dashboards/empty.html" %}
+    {% elif report == 'daily' %}
+      {% include "dashboards/daily.html" %}
+    {% elif report == 'weekly' %}
+      {% include "dashboards/weekly.html" %}
+    {% elif report == 'monthly' %}
+      {% include "dashboards/monthly.html" %}
+    {% elif report == 'yearly' %}
+      {% include "dashboards/yearly.html" %}
+    {% endif %}
   </div>
 {% endblock content %}

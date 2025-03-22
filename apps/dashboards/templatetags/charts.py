@@ -11,17 +11,16 @@ register = template.Library()
 
 
 @register.inclusion_tag("dashboards/charts/checklist-species.html")
-def checklist_species_chart():
-    today = timezone.now().date()
-    one_week_ago = (today - relativedelta(days=7)).strftime("%Y-%m-%d")
-    total = Checklist.objects.filter(date__gt=one_week_ago).count()
+def checklist_species_chart(region, start, end):
+    total = Checklist.objects.filter(date__gte=start, date__lt=end).count()
     with connection.cursor() as cursor:
         cursor.execute(
             f"select "
             f"count(*), "
             f"((species_count - 1) / 5)::int as quantile "
             f"from checklists_checklist "
-            f"where date > '{one_week_ago}' "
+            f"where date >= '{start}' "
+            f"and date < '{end}' "
             f"and species_count > 0 "
             f"group by quantile"
         )

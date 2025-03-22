@@ -1,9 +1,7 @@
-from dateutil.relativedelta import relativedelta
-
 from django import template
 from django.db.models import Sum
-from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from ebird.codes.locations import is_country_code, is_state_code, is_county_code
 
 from checklists.models import Checklist, Observation
 
@@ -11,11 +9,18 @@ register = template.Library()
 
 
 @register.inclusion_tag("dashboards/numbers/number.html")
-def species_count():
-    today = timezone.now().date()
-    one_week_ago = today - relativedelta(days=7)
+def species_count(region, start, end):
+    queryset = Observation.objects.filter(checklist__date__gte=start, checklist__date__lt=end)
+
+    if is_county_code(region):
+        queryset = queryset.filter(location__district__code=region)
+    elif is_state_code(region):
+        queryset = queryset.filter(location__region__code=region)
+    elif is_country_code(region):
+        queryset = queryset.filter(location__country__code=region)
+
     count = (
-        Observation.objects.filter(checklist__date__gt=one_week_ago)
+        queryset
         .values_list("species_id", flat=True)
         .distinct()
         .count()
@@ -28,10 +33,17 @@ def species_count():
 
 
 @register.inclusion_tag("dashboards/numbers/number.html")
-def checklist_count():
-    today = timezone.now().date()
-    one_week_ago = today - relativedelta(days=7)
-    count = Checklist.objects.filter(date__gt=one_week_ago).count()
+def checklist_count(region, start, end):
+    queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
+
+    if is_county_code(region):
+        queryset = queryset.filter(location__district__code=region)
+    elif is_state_code(region):
+        queryset = queryset.filter(location__region__code=region)
+    elif is_country_code(region):
+        queryset = queryset.filter(location__country__code=region)
+
+    count = queryset.count()
 
     return {
         "title": _("Checklists"),
@@ -40,11 +52,18 @@ def checklist_count():
 
 
 @register.inclusion_tag("dashboards/numbers/number.html")
-def observer_count():
-    today = timezone.now().date()
-    one_week_ago = today - relativedelta(days=7)
+def observer_count(region, start, end):
+    queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
+
+    if is_county_code(region):
+        queryset = queryset.filter(location__district__code=region)
+    elif is_state_code(region):
+        queryset = queryset.filter(location__region__code=region)
+    elif is_country_code(region):
+        queryset = queryset.filter(location__country__code=region)
+
     count = (
-        Checklist.objects.filter(date__gt=one_week_ago)
+        queryset
         .values_list("observer_id", flat=True)
         .distinct()
         .count()
@@ -57,12 +76,20 @@ def observer_count():
 
 
 @register.inclusion_tag("dashboards/numbers/number.html")
-def duration_count():
-    today = timezone.now().date()
-    one_week_ago = today - relativedelta(days=7)
-    total = Checklist.objects.filter(date__gt=one_week_ago).aggregate(Sum("duration"))[
+def duration_count(region, start, end):
+    queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
+
+    if is_county_code(region):
+        queryset = queryset.filter(location__district__code=region)
+    elif is_state_code(region):
+        queryset = queryset.filter(location__region__code=region)
+    elif is_country_code(region):
+        queryset = queryset.filter(location__country__code=region)
+
+    total = queryset.aggregate(Sum("duration"))[
         "duration__sum"
-    ]
+    ] or 0
+
     return {
         "title": _("Hours"),
         "count": int(total / 60),
