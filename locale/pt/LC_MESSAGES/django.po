@@ -202,7 +202,7 @@ msgstr "Espécies observadas"
 
 #: apps/dashboards/templates/dashboards/tables/checklists-submitted.html:2
 msgid "Checklists submitted"
-msgstr "Listas submetido"
+msgstr "Listas submetidas"
 
 #: apps/dashboards/templates/dashboards/tables/checklists-submitted.html:4
 msgid "Complete checklists only"
