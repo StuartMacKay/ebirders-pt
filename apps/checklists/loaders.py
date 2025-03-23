@@ -9,7 +9,7 @@ from django.utils.timezone import get_default_timezone
 from ebird.api import get_checklist, get_location, get_regions, get_visits, get_taxonomy
 from ebird.api.constants import API_MAX_RESULTS
 
-from ..models import (
+from .models import (
     Checklist,
     Country,
     Location,
