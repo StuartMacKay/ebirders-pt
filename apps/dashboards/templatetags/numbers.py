@@ -1,7 +1,6 @@
 from django import template
 from django.db.models import Sum
 from django.utils.translation import gettext_lazy as _
-from ebird.codes.locations import is_country_code, is_state_code, is_county_code
 
 from checklists.models import Checklist, Observation
 
@@ -9,15 +8,15 @@ register = template.Library()
 
 
 @register.inclusion_tag("dashboards/numbers/number.html")
-def species_count(region, start, end):
+def species_count(country_id, region_id, district_id, start, end):
     queryset = Observation.objects.filter(date__gte=start, date__lt=end)
 
-    if is_county_code(region):
-        queryset = queryset.filter(district__code=region)
-    elif is_state_code(region):
-        queryset = queryset.filter(region__code=region)
-    elif is_country_code(region):
-        queryset = queryset.filter(country__code=region)
+    if country_id:
+        queryset = queryset.filter(country_id=country_id)
+    elif region_id:
+        queryset = queryset.filter(region_id=region_id)
+    elif district_id:
+        queryset = queryset.filter(district_id=district_id)
 
     count = (
         queryset
@@ -33,15 +32,15 @@ def species_count(region, start, end):
 
 
 @register.inclusion_tag("dashboards/numbers/number.html")
-def checklist_count(region, start, end):
+def checklist_count(country_id, region_id, district_id, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
-    if is_county_code(region):
-        queryset = queryset.filter(district__code=region)
-    elif is_state_code(region):
-        queryset = queryset.filter(region__code=region)
-    elif is_country_code(region):
-        queryset = queryset.filter(country__code=region)
+    if country_id:
+        queryset = queryset.filter(country_id=country_id)
+    elif region_id:
+        queryset = queryset.filter(region_id=region_id)
+    elif district_id:
+        queryset = queryset.filter(district_id=district_id)
 
     count = queryset.count()
 
@@ -52,15 +51,15 @@ def checklist_count(region, start, end):
 
 
 @register.inclusion_tag("dashboards/numbers/number.html")
-def observer_count(region, start, end):
+def observer_count(country_id, region_id, district_id, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
-    if is_county_code(region):
-        queryset = queryset.filter(district__code=region)
-    elif is_state_code(region):
-        queryset = queryset.filter(region__code=region)
-    elif is_country_code(region):
-        queryset = queryset.filter(country__code=region)
+    if country_id:
+        queryset = queryset.filter(country_id=country_id)
+    elif region_id:
+        queryset = queryset.filter(region_id=region_id)
+    elif district_id:
+        queryset = queryset.filter(district_id=district_id)
 
     count = (
         queryset
@@ -76,15 +75,15 @@ def observer_count(region, start, end):
 
 
 @register.inclusion_tag("dashboards/numbers/number.html")
-def duration_count(region, start, end):
+def duration_count(country_id, region_id, district_id, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
-    if is_county_code(region):
-        queryset = queryset.filter(district__code=region)
-    elif is_state_code(region):
-        queryset = queryset.filter(region__code=region)
-    elif is_country_code(region):
-        queryset = queryset.filter(country__code=region)
+    if country_id:
+        queryset = queryset.filter(country_id=country_id)
+    elif region_id:
+        queryset = queryset.filter(region_id=region_id)
+    elif district_id:
+        queryset = queryset.filter(district_id=district_id)
 
     total = queryset.aggregate(Sum("duration"))[
         "duration__sum"

@@ -9,15 +9,15 @@ register = template.Library()
 
 
 @register.inclusion_tag("dashboards/tables/big-lists.html")
-def big_lists_table(region, start, end):
+def big_lists_table(country_id, region_id, district_id, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
-    if is_county_code(region):
-        queryset = queryset.filter(district__code=region)
-    elif is_state_code(region):
-        queryset = queryset.filter(region__code=region)
-    elif is_country_code(region):
-        queryset = queryset.filter(country__code=region)
+    if country_id:
+        queryset = queryset.filter(country_id=country_id)
+    elif region_id:
+        queryset = queryset.filter(region_id=region_id)
+    elif district_id:
+        queryset = queryset.filter(district_id=district_id)
 
     checklists = queryset.order_by(
         "-species_count"
@@ -30,15 +30,15 @@ def big_lists_table(region, start, end):
 
 
 @register.inclusion_tag("dashboards/tables/checklists-submitted.html")
-def checklists_submitted_table(region, start, end):
+def checklists_submitted_table(country_id, region_id, district_id, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
-    if is_county_code(region):
-        queryset = queryset.filter(district__code=region)
-    elif is_state_code(region):
-        queryset = queryset.filter(region__code=region)
-    elif is_country_code(region):
-        queryset = queryset.filter(country__code=region)
+    if country_id:
+        queryset = queryset.filter(country_id=country_id)
+    elif region_id:
+        queryset = queryset.filter(region_id=region_id)
+    elif district_id:
+        queryset = queryset.filter(district_id=district_id)
 
     observers = (
         queryset.values("observer")
@@ -52,15 +52,15 @@ def checklists_submitted_table(region, start, end):
 
 
 @register.inclusion_tag("dashboards/tables/checklists-duration.html")
-def checklists_duration_table(region, start, end):
+def checklists_duration_table(country_id, region_id, district_id, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
-    if is_county_code(region):
-        queryset = queryset.filter(district__code=region)
-    elif is_state_code(region):
-        queryset = queryset.filter(region__code=region)
-    elif is_country_code(region):
-        queryset = queryset.filter(country__code=region)
+    if country_id:
+        queryset = queryset.filter(country_id=country_id)
+    elif region_id:
+        queryset = queryset.filter(region_id=region_id)
+    elif district_id:
+        queryset = queryset.filter(district_id=district_id)
 
     observers = (
         queryset.values("observer")
@@ -78,17 +78,17 @@ def checklists_duration_table(region, start, end):
 
 
 @register.inclusion_tag("dashboards/tables/checklists-species.html")
-def checklists_species_table(region, start, end):
+def checklists_species_table(country_id, region_id, district_id, start, end):
     filters = Q(observations__date__gte=start)
     filters &= Q(observations__date__lt=end)
     filters &= Q(observations__identified=True)
 
-    if is_county_code(region):
-        filters &= Q(observations__district__code=region)
-    elif is_state_code(region):
-        filters &= Q(observations__region__code=region)
-    elif is_country_code(region):
-        filters &= Q(observations__country__code=region)
+    if country_id:
+        filters &= Q(observations__country_id=country_id)
+    elif region_id:
+        filters &= Q(observations__region_id=region_id)
+    elif district_id:
+        filters &= Q(observations__district_id=district_id)
 
     observers = Observer.objects.values('name').annotate(
         count=Count(

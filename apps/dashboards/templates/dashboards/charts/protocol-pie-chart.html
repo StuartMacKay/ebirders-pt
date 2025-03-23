@@ -1,0 +1,19 @@
+{% load i18n %}
+<div>
+  <div class="h2">{% trans 'Protocols' %}</div>
+  <canvas id="protocol-pie-chart"></canvas>
+</div>
+<script type="text/javascript">
+  addEventListener("load", (event) => {
+    const protocol_chart = new Chart('protocol-pie-chart', {
+      type: 'pie',
+      data: {
+        labels: {{ labels|safe }},
+        datasets: [{
+          label: '{{ label|safe }}',
+          data: {{ data }},
+        }]
+      },
+    });
+  });
+</script>
