@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-23 17:21+0000\n"
+"POT-Creation-Date: 2025-03-29 13:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgstr ""
 #: apps/checklists/templates/checklists/detail.html:18
 #: apps/checklists/templates/checklists/index.html:9
 #: apps/checklists/templates/checklists/index.html:14
-#: apps/dashboards/templatetags/numbers.py:48 templates/page.html:20
+#: apps/news/templatetags/numbers.py:48 templates/page.html:23
 msgid "Checklists"
 msgstr "Listas"
 
@@ -868,7 +868,7 @@ msgid "Duration"
 msgstr "Duração"
 
 #: apps/checklists/templates/checklists/detail.html:68
-#: apps/dashboards/templatetags/charts.py:23
+#: apps/news/templatetags/charts.py:23
 msgid "Stationary"
 msgstr "Parado"
 
@@ -882,7 +882,7 @@ msgid "%(distance)s km"
 msgstr "%(distance)s km"
 
 #: apps/checklists/templates/checklists/detail.html:80
-#: apps/dashboards/templatetags/charts.py:22
+#: apps/news/templatetags/charts.py:22
 msgid "Incidental"
 msgstr "Incidental"
 
@@ -903,7 +903,7 @@ msgid "View the checklist on eBird"
 msgstr "Ver a lista no eBird"
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:7
-#: apps/dashboards/templates/dashboards/tables/big-lists.html:10
+#: apps/news/templates/news/tables/big-lists.html:10
 msgid "View this checklist"
 msgstr "Ver esta lista"
 
@@ -928,13 +928,13 @@ msgid "Show checklists for this observer"
 msgstr "Mostrar as listas para este observador"
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:50
-#: apps/dashboards/templates/dashboards/tables/big-lists.html:29
+#: apps/news/templates/news/tables/big-lists.html:29
 msgid "Number of species reported"
 msgstr "Número de espécies registadas"
 
 #: apps/checklists/templates/checklists/includes/filter-form.html:56
 #: apps/checklists/templates/checklists/index.html:15
-#: apps/dashboards/templates/dashboards/index.html:48
+#: apps/news/templates/news/index.html:38
 #: apps/observations/templates/observations/includes/filter-form.html:65
 #: apps/observations/templates/observations/index.html:15
 msgid "Search"
@@ -982,114 +982,91 @@ msgstr "Página %(number)s de %(total)s"
 msgid "Updated every hour"
 msgstr "Atualizado a cada hora"
 
-#: apps/dashboards/apps.py:8
-msgid "Dashboards"
-msgstr "Resumos"
-
-#: apps/dashboards/templates/dashboards/charts/checklist-species.html:3
-msgid "Species per checklist"
-msgstr "Espécies por lista"
-
-#: apps/dashboards/templates/dashboards/charts/protocol-pie-chart.html:3
-msgid "Protocols"
-msgstr "Protocolos"
-
-#: apps/dashboards/templates/dashboards/empty.html:18
-msgid "Looks like everybody is still in bed."
-msgstr ""
-
-#: apps/dashboards/templates/dashboards/index.html:9
+#: apps/news/apps.py:8 apps/news/templates/news/index.html:9
+#: apps/news/templates/news/index.html:13 templates/page.html:20
 msgid "News"
 msgstr "Notícias"
 
-#: apps/dashboards/templates/dashboards/index.html:16
-msgid "Today"
-msgstr "Hoje"
+#: apps/news/templates/news/charts/checklist-species.html:3
+msgid "Species per checklist"
+msgstr "Espécies por lista"
 
-#: apps/dashboards/templates/dashboards/index.html:46
+#: apps/news/templates/news/charts/protocol-pie-chart.html:3
+msgid "Protocols"
+msgstr "Protocolos"
+
+#: apps/news/templates/news/index.html:36
 msgid "Enter Country, Region or County"
 msgstr "Introduzir país, região ou concelho"
 
-#: apps/dashboards/templates/dashboards/tables/checklists-duration.html:2
+#: apps/news/templates/news/index.html:79
+msgid "Looks like everybody is still in bed."
+msgstr "Parece que toda a gente ainda está na cama."
+
+#: apps/news/templates/news/tables/checklists-duration.html:2
 msgid "Time spent birding"
 msgstr "Tempo passado"
 
-#: apps/dashboards/templates/dashboards/tables/checklists-duration.html:4
+#: apps/news/templates/news/tables/checklists-duration.html:4
 msgid "hours : minutes"
 msgstr "horas : minutos"
 
-#: apps/dashboards/templates/dashboards/tables/checklists-species.html:2
+#: apps/news/templates/news/tables/checklists-species.html:2
 msgid "Species seen"
 msgstr "Espécies observadas"
 
-#: apps/dashboards/templates/dashboards/tables/checklists-submitted.html:2
+#: apps/news/templates/news/tables/checklists-submitted.html:2
 msgid "Checklists submitted"
 msgstr "Listas submetidas"
 
-#: apps/dashboards/templates/dashboards/tables/checklists-submitted.html:4
+#: apps/news/templates/news/tables/checklists-submitted.html:4
 msgid "Complete checklists only"
 msgstr "Apenas listas completas"
 
-#: apps/dashboards/templatetags/charts.py:24
+#: apps/news/templatetags/charts.py:24
 msgid "Traveling"
 msgstr "Em movimento"
 
-#: apps/dashboards/templatetags/charts.py:37
+#: apps/news/templatetags/charts.py:37
 msgid "Other"
 msgstr "Outros"
 
-#: apps/dashboards/templatetags/charts.py:39
+#: apps/news/templatetags/charts.py:39
 msgid "Number of checklists"
 msgstr "Número de espécies registadas"
 
-#: apps/dashboards/templatetags/charts.py:85
+#: apps/news/templatetags/charts.py:85
 msgid "Number of species"
 msgstr "Número de espécies registadas"
 
-#: apps/dashboards/templatetags/charts.py:86
+#: apps/news/templatetags/charts.py:86
 msgid "Percentage of checklists"
 msgstr "Percentagem de listas"
 
-#: apps/dashboards/templatetags/charts.py:87
+#: apps/news/templatetags/charts.py:87
 msgid "Percentage"
 msgstr "Percentagem"
 
-#: apps/dashboards/templatetags/numbers.py:29
+#: apps/news/templatetags/numbers.py:29
 msgid "Species (plural)"
 msgstr "Espécies"
 
-#: apps/dashboards/templatetags/numbers.py:72
+#: apps/news/templatetags/numbers.py:72
 msgid "Observers"
 msgstr "Observadores"
 
-#: apps/dashboards/templatetags/numbers.py:93
+#: apps/news/templatetags/numbers.py:93
 msgid "Hours"
 msgstr "Horas"
 
-#: apps/dashboards/templatetags/tables.py:27
+#: apps/news/templatetags/tables.py:27
 msgid "Big Lists"
 msgstr "Listas grandes"
-
-#: apps/dashboards/views.py:81
-msgid "Daily"
-msgstr "Diário"
-
-#: apps/dashboards/views.py:82
-msgid "Weekly"
-msgstr "Semanal"
-
-#: apps/dashboards/views.py:83
-msgid "Monthly"
-msgstr "Mensal"
-
-#: apps/dashboards/views.py:84
-msgid "Yearly"
-msgstr "Anual"
 
 #: apps/observations/apps.py:8
 #: apps/observations/templates/observations/index.html:9
 #: apps/observations/templates/observations/index.html:14
-#: templates/page.html:23
+#: templates/page.html:26
 msgid "Observations"
 msgstr "Observações"
 
@@ -1158,15 +1135,15 @@ msgstr "Inglês"
 msgid "Portuguese"
 msgstr "Português"
 
-#: config/urls.py:9
+#: config/urls.py:10
+msgid "news/"
+msgstr "notícias/"
+
+#: config/urls.py:11
 msgid "checklists/"
 msgstr "listas/"
 
-#: config/urls.py:10
-msgid "dashboards/"
-msgstr "resumos"
-
-#: config/urls.py:11
+#: config/urls.py:12
 msgid "observations/"
 msgstr "observações/"
 
@@ -1199,6 +1176,27 @@ msgid ""
 "This error was reported automatically, but if the problem persists please "
 "contact us. In the meantime, try refreshing the page."
 msgstr ""
+
+#~ msgid "Dashboards"
+#~ msgstr "Resumos"
+
+#~ msgid "Today"
+#~ msgstr "Hoje"
+
+#~ msgid "Daily"
+#~ msgstr "Diário"
+
+#~ msgid "Weekly"
+#~ msgstr "Semanal"
+
+#~ msgid "Monthly"
+#~ msgstr "Mensal"
+
+#~ msgid "Yearly"
+#~ msgstr "Anual"
+
+#~ msgid "dashboards/"
+#~ msgstr "resumos"
 
 #~ msgid "In the past week"
 #~ msgstr "Na semana passada"
