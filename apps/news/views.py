@@ -5,7 +5,6 @@ from dateutil.relativedelta import relativedelta, MO
 from django.http import JsonResponse
 from django.utils import timezone
 from django.utils.dateformat import format
-from django.utils.translation import gettext_lazy as _
 from django.views import generic
 
 from ebird.codes.locations import is_country_code, is_state_code, is_county_code
@@ -19,47 +18,27 @@ class IndexView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        if date_str := self.request.GET.get("date"):
-            date = dt.datetime.strptime(date_str, "%Y-%m-%d").date()
-        else:
-            date = timezone.now().date()
-
-        today = timezone.now().date()
-        report = self.request.GET.get("report", "daily")
+        week = self.request.GET.get("week", "")
         code = self.request.GET.get("code", "")
         place = self.request.GET.get("_code", "")
 
-        if report == 'daily':
-            before = date - relativedelta(days=1)
-            after = date + relativedelta(days=1)
-            interval = format(date, "d M Y")
-            report_name = _("Daily")
-        elif report == 'weekly':
-            date = date - relativedelta(weekday=MO(-1))
-            before = date - relativedelta(weeks=1)
-            after = date + relativedelta(weeks=1)
-            end = after - relativedelta(days=1)
-            if date.month == end.month:
-                interval = "%s - %s" % (format(date, "d"), format(end, "d M Y"))
-            else:
-                if date.year == end.year:
-                    interval = "%s - %s" % (format(date, "d M"), format(end, "d M Y"))
-                else:
-                    interval = "%s - %s" % (format(date, "d M Y"), format(end, "d M Y"))
-            report_name = _("Weekly")
+        if week:
+            week_start = dt.datetime.strptime("%s-1" % week, "%Y-%W-%w").date()
+        else:
+            week_start = timezone.now().date() - relativedelta(weekday=MO(-1))
 
-        elif report == 'monthly':
-            date = date - relativedelta(day=1)
-            before = date - relativedelta(months=1)
-            after = date + relativedelta(months=1)
-            interval = format(date, "F, Y")
-            report_name = _("Monthly")
-        else:   # report == 'yearly':
-            date = date - relativedelta(month=1, day=1)
-            before = date - relativedelta(years=1)
-            after = date + relativedelta(years=1)
-            interval = format(date, "Y")
-            report_name = _("Yearly")
+        week_end = week_start + relativedelta(days=6)
+
+        if week_start.month == week_end.month:
+            subtitle = "%s - %s" % (format(week_start, "d"), format(week_end, "d M Y"))
+        else:
+            if week_start.year == week_end.year:
+                subtitle = "%s - %s" % (format(week_start, "d M"), format(week_end, "d M Y"))
+            else:
+                subtitle = "%s - %s" % (format(week_start, "d M Y"), format(week_end, "d M Y"))
+
+        last_week = week_start - relativedelta(days=1)
+        next_week = week_start + relativedelta(days=7)
 
         country = region = district = None
 
@@ -73,21 +52,16 @@ class IndexView(generic.TemplateView):
         context["country"] = country
         context["region"] = region
         context["district"] = district
-        context["report"] = report
-        context["report_name"] = report_name
         context["place"] = place
-        context["today"] = today
-        context["date"] = date
-        context["before"] = before
-        context["after"] = after
-        context["interval"] = interval
-        context["submissions"] = Checklist.objects.filter(date__gte=date, date__lt=after).count()
-        context["reports"] = [
-            ('daily', _("Daily")),
-            ('weekly', _("Weekly")),
-            ('monthly', _("Monthly")),
-            ('yearly', _("Yearly")),
-        ]
+        context["region"] = region
+        context["week_start"] = week_start
+        context["week_end"] = week_end + relativedelta(days=1)
+        context["this_week"] = week_start.strftime("%Y-%W")
+        context["last_week"] = last_week.strftime("%Y-%W")
+        context["next_week"] = next_week.strftime("%Y-%W")
+        context["subtitle"] = subtitle
+        context["submissions"] = Checklist.objects.filter(
+            date__gte=week_start, date__lte=week_end).count()
 
         return context
 
