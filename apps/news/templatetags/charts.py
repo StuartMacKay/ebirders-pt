@@ -1,5 +1,4 @@
 from dateutil.relativedelta import relativedelta
-
 from django import template
 from django.db import connection
 from django.utils import timezone

@@ -18,12 +18,7 @@ def species_count(country_id, region_id, district_id, start, end):
     elif district_id:
         queryset = queryset.filter(district_id=district_id)
 
-    count = (
-        queryset
-        .values_list("species_id", flat=True)
-        .distinct()
-        .count()
-    )
+    count = queryset.values_list("species_id", flat=True).distinct().count()
 
     return {
         "title": _("Species (plural)"),
@@ -61,12 +56,7 @@ def observer_count(country_id, region_id, district_id, start, end):
     elif district_id:
         queryset = queryset.filter(district_id=district_id)
 
-    count = (
-        queryset
-        .values_list("observer_id", flat=True)
-        .distinct()
-        .count()
-    )
+    count = queryset.values_list("observer_id", flat=True).distinct().count()
 
     return {
         "title": _("Observers"),
@@ -85,9 +75,7 @@ def duration_count(country_id, region_id, district_id, start, end):
     elif district_id:
         queryset = queryset.filter(district_id=district_id)
 
-    total = queryset.aggregate(Sum("duration"))[
-        "duration__sum"
-    ] or 0
+    total = queryset.aggregate(Sum("duration"))["duration__sum"] or 0
 
     return {
         "title": _("Hours"),

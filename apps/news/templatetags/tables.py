@@ -3,7 +3,6 @@ from django.db.models import Case, Count, F, Q, Sum, When
 from django.utils.translation import gettext_lazy as _
 
 from checklists.models import Checklist, Observer
-from ebird.codes.locations import is_country_code, is_state_code, is_county_code
 
 register = template.Library()
 
@@ -19,9 +18,7 @@ def big_lists_table(country_id, region_id, district_id, start, end):
     elif district_id:
         queryset = queryset.filter(district_id=district_id)
 
-    checklists = queryset.order_by(
-        "-species_count"
-    )[:10]
+    checklists = queryset.order_by("-species_count")[:10]
 
     return {
         "title": _("Big Lists"),
@@ -90,15 +87,19 @@ def checklists_species_table(country_id, region_id, district_id, start, end):
     elif district_id:
         filters &= Q(observations__district_id=district_id)
 
-    observers = Observer.objects.values('name').annotate(
-        count=Count(
-            Case(
-                When(
-                    filters,
-                    then="observations__species",
-                )
-            ),
-            distinct=True,
+    observers = (
+        Observer.objects.values("name")
+        .annotate(
+            count=Count(
+                Case(
+                    When(
+                        filters,
+                        then="observations__species",
+                    )
+                ),
+                distinct=True,
+            )
         )
-    ).order_by("-count")[:10]
+        .order_by("-count")[:10]
+    )
     return {"observers": [observer for observer in observers if observer["count"]]}

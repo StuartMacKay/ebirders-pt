@@ -15,10 +15,12 @@
   <div>
     <div class="d-flex align-items-center border-bottom pb-3 mb-4">
       <div>
-        <a class="btn btn-link link-dark bg-light" href="{% querystring week=last_week %}">
+        <a class="btn btn-link link-dark bg-light"
+           href="{% querystring week=last_week %}">
           <i class="bi bi-chevron-left"></i>
         </a>
-        <a class="btn btn-link link-dark bg-light me-2" href="{% querystring week=next_week %}">
+        <a class="btn btn-link link-dark bg-light me-2"
+           href="{% querystring week=next_week %}">
           <i class="bi bi-chevron-right"></i>
         </a>
         <span class="h5">{{ subtitle }}</span>
@@ -33,7 +35,7 @@
                    value="{{ place }}"
                    class="form-control autocomplete"
                    data-server="{% url 'news:autocomplete' %}"
-                   placeholder="{% trans 'Enter Country, Region or County' %}" />
+                   placeholder="{% trans 'Enter Country, Region or County' %}"/>
             <button id="search-button" type="button" class="btn btn-primary">
               <i class="bi-search btn-primary" title="{% trans 'Search' %}"></i>
             </button>

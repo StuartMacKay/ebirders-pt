@@ -2,12 +2,10 @@ import datetime as dt
 import re
 
 from dateutil.relativedelta import relativedelta, MO
-
 from django.http import JsonResponse
 from django.utils import timezone
 from django.utils.dateformat import format
 from django.views import generic
-
 from ebird.codes.locations import is_country_code, is_state_code, is_county_code
 
 from checklists.models import Checklist, Country, District, Region
@@ -34,9 +32,15 @@ class IndexView(generic.TemplateView):
             subtitle = "%s - %s" % (format(week_start, "d"), format(week_end, "d M Y"))
         else:
             if week_start.year == week_end.year:
-                subtitle = "%s - %s" % (format(week_start, "d M"), format(week_end, "d M Y"))
+                subtitle = "%s - %s" % (
+                    format(week_start, "d M"),
+                    format(week_end, "d M Y"),
+                )
             else:
-                subtitle = "%s - %s" % (format(week_start, "d M Y"), format(week_end, "d M Y"))
+                subtitle = "%s - %s" % (
+                    format(week_start, "d M Y"),
+                    format(week_end, "d M Y"),
+                )
 
         last_week = week_start - relativedelta(days=1)
         next_week = week_start + relativedelta(days=7)
@@ -61,7 +65,8 @@ class IndexView(generic.TemplateView):
         context["next_week"] = next_week.strftime("%Y-%W")
         context["subtitle"] = subtitle
         context["submissions"] = Checklist.objects.filter(
-            date__gte=week_start, date__lte=week_end).count()
+            date__gte=week_start, date__lte=week_end
+        ).count()
 
         return context
 
@@ -74,10 +79,12 @@ def autocomplete(request):
     data = []
 
     for code, place in Country.objects.all().values_list("code", "place"):
-        data.append({
-            "value": code,
-            "label": place,
-        })
+        data.append(
+            {
+                "value": code,
+                "label": place,
+            }
+        )
 
     if len(data) == 1:
         country = data.pop(0)["label"]
