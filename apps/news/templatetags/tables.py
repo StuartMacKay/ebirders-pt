@@ -8,7 +8,7 @@ from ebird.codes.locations import is_country_code, is_state_code, is_county_code
 register = template.Library()
 
 
-@register.inclusion_tag("dashboards/tables/big-lists.html")
+@register.inclusion_tag("news/tables/big-lists.html")
 def big_lists_table(country_id, region_id, district_id, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
@@ -29,7 +29,7 @@ def big_lists_table(country_id, region_id, district_id, start, end):
     }
 
 
-@register.inclusion_tag("dashboards/tables/checklists-submitted.html")
+@register.inclusion_tag("news/tables/checklists-submitted.html")
 def checklists_submitted_table(country_id, region_id, district_id, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
@@ -51,7 +51,7 @@ def checklists_submitted_table(country_id, region_id, district_id, start, end):
     return {"observers": observers}
 
 
-@register.inclusion_tag("dashboards/tables/checklists-duration.html")
+@register.inclusion_tag("news/tables/checklists-duration.html")
 def checklists_duration_table(country_id, region_id, district_id, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
@@ -77,7 +77,7 @@ def checklists_duration_table(country_id, region_id, district_id, start, end):
     return {"observers": observers}
 
 
-@register.inclusion_tag("dashboards/tables/checklists-species.html")
+@register.inclusion_tag("news/tables/checklists-species.html")
 def checklists_species_table(country_id, region_id, district_id, start, end):
     filters = Q(observations__date__gte=start)
     filters &= Q(observations__date__lt=end)

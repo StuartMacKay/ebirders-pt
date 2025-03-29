@@ -5,9 +5,9 @@ from django.urls import include, path
 from django.utils.translation import gettext_lazy as _
 
 urlpatterns = i18n_patterns(
-    path("", include("dashboards.urls")),
+    path("", include("news.urls")),
+    path(_("news/"), include("news.urls")),
     path(_("checklists/"), include("checklists.urls")),
-    path(_("dashboards/"), include("dashboards.urls")),
     path(_("observations/"), include("observations.urls")),
 )
 

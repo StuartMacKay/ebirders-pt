@@ -7,7 +7,7 @@ from checklists.models import Checklist, Observation
 register = template.Library()
 
 
-@register.inclusion_tag("dashboards/numbers/number.html")
+@register.inclusion_tag("news/numbers/number.html")
 def species_count(country_id, region_id, district_id, start, end):
     queryset = Observation.objects.filter(date__gte=start, date__lt=end)
 
@@ -31,7 +31,7 @@ def species_count(country_id, region_id, district_id, start, end):
     }
 
 
-@register.inclusion_tag("dashboards/numbers/number.html")
+@register.inclusion_tag("news/numbers/number.html")
 def checklist_count(country_id, region_id, district_id, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
@@ -50,7 +50,7 @@ def checklist_count(country_id, region_id, district_id, start, end):
     }
 
 
-@register.inclusion_tag("dashboards/numbers/number.html")
+@register.inclusion_tag("news/numbers/number.html")
 def observer_count(country_id, region_id, district_id, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
@@ -74,7 +74,7 @@ def observer_count(country_id, region_id, district_id, start, end):
     }
 
 
-@register.inclusion_tag("dashboards/numbers/number.html")
+@register.inclusion_tag("news/numbers/number.html")
 def duration_count(country_id, region_id, district_id, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 

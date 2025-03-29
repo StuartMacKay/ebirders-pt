@@ -14,7 +14,7 @@ from checklists.models import Checklist, Country, District, Region
 
 
 class IndexView(generic.TemplateView):
-    template_name = "dashboards/index.html"
+    template_name = "news/index.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

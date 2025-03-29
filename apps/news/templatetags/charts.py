@@ -10,7 +10,7 @@ from checklists.models import Checklist
 register = template.Library()
 
 
-@register.inclusion_tag("dashboards/charts/protocol-pie-chart.html")
+@register.inclusion_tag("news/charts/protocol-pie-chart.html")
 def protocol_pie_chart():
     today = timezone.now().date()
     one_week_ago = today - relativedelta(days=7)
@@ -39,7 +39,7 @@ def protocol_pie_chart():
     return {"label": _("Number of checklists"), "labels": labels, "data": data}
 
 
-@register.inclusion_tag("dashboards/charts/checklist-species.html")
+@register.inclusion_tag("news/charts/checklist-species.html")
 def checklist_species_chart(country_id, region_id, district_id, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 

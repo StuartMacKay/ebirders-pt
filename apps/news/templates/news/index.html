@@ -3,7 +3,7 @@
 
 {% block language_selector %}
   <li><a class="dropdown-item"
-         href="{% url 'dashboards:index' %}{% querystring %}">{{ lang_name }}</a></li>
+         href="{% url 'news:index' %}{% querystring %}">{{ lang_name }}</a></li>
 {% endblock %}
 
 {% block title %}{% trans 'News' %}{% endblock %}
@@ -30,7 +30,7 @@
           </button>
           <ul class="dropdown-menu">
             {% for report, name in reports %}
-              <li><a class="dropdown-item" href="{% url 'dashboards:index' %}{% querystring report=report %}">{{ name }}</a></li>
+              <li><a class="dropdown-item" href="{% url 'news:index' %}{% querystring report=report %}">{{ name }}</a></li>
             {% endfor %}
           </ul>
         </div>
@@ -45,7 +45,7 @@
                    name="code"
                    value="{{ place }}"
                    class="form-control autocomplete"
-                   data-server="{% url 'dashboards:autocomplete' %}"
+                   data-server="{% url 'news:autocomplete' %}"
                    placeholder="{% trans 'Enter Country, Region or County' %}" />
             <button id="search-button" type="button" class="btn btn-primary">
               <i class="bi-search btn-primary" title="{% trans 'Search' %}"></i>
@@ -55,15 +55,15 @@
       </div>
     </div>
     {% if submissions == 0 %}
-      {% include "dashboards/empty.html" %}
+      {% include "news/empty.html" %}
     {% elif report == 'daily' %}
-      {% include "dashboards/daily.html" %}
+      {% include "news/daily.html" %}
     {% elif report == 'weekly' %}
-      {% include "dashboards/weekly.html" %}
+      {% include "news/weekly.html" %}
     {% elif report == 'monthly' %}
-      {% include "dashboards/monthly.html" %}
+      {% include "news/monthly.html" %}
     {% elif report == 'yearly' %}
-      {% include "dashboards/yearly.html" %}
+      {% include "news/yearly.html" %}
     {% endif %}
   </div>
 {% endblock content %}
