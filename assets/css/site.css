@@ -89,3 +89,10 @@ div.show-if-narrow {
     display: block;
   }
 }
+
+.overlay-hover {
+  background: inherit;
+  &:hover {
+    background: #f5f5f5;
+  }
+}
