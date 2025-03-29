@@ -3,9 +3,9 @@
 <h2>{{ title }}</h2>
 <hr>
 {% for checklist in checklists %}
-  <div class="row mb-3 overlay-hover">
-    <div class="col-md-2 pt-1">
-      <a class="dark-link"
+  <div class="row py-2 mx-0 overlay-hover position-relative">
+    <div class="col-md-2 p-1">
+      <a class="text-decoration-none link-dark stretched-link"
          href="{% url 'checklists:detail' checklist.identifier %}"
          title="{% trans 'View this checklist' %}">
         <span class="text-nowrap">{{ checklist.date }}, </span>
