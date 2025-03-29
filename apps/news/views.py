@@ -1,4 +1,5 @@
 import datetime as dt
+import re
 
 from dateutil.relativedelta import relativedelta, MO
 
@@ -53,7 +54,6 @@ class IndexView(generic.TemplateView):
         context["region"] = region
         context["district"] = district
         context["place"] = place
-        context["region"] = region
         context["week_start"] = week_start
         context["week_end"] = week_end + relativedelta(days=1)
         context["this_week"] = week_start.strftime("%Y-%W")
@@ -67,20 +67,35 @@ class IndexView(generic.TemplateView):
 
 
 def autocomplete(request):
+    """
+    Return the list of countries, regions and districts for the search
+    field. If there is only one country, remove it from the label.
+    """
     data = []
+
     for code, place in Country.objects.all().values_list("code", "place"):
         data.append({
             "value": code,
             "label": place,
         })
+
+    if len(data) == 1:
+        country = data.pop(0)["label"]
+    else:
+        country = None
+
     for code, place in Region.objects.all().values_list("code", "place"):
-        data.append({
-            "value": code,
-            "label": place,
-        })
+        if country:
+            label = re.sub(r", %s$" % country, "", place)
+        else:
+            label = place
+        data.append({"value": code, "label": label})
+
     for code, place in District.objects.all().values_list("code", "place"):
-        data.append({
-            "value": code,
-            "label": place,
-        })
+        if country:
+            label = re.sub(r", %s$" % country, "", place)
+        else:
+            label = place
+        data.append({"value": code, "label": label})
+
     return JsonResponse(data, safe=False)
