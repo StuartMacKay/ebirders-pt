@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-29 13:06+0000\n"
+"POT-Creation-Date: 2025-03-29 13:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgstr ""
 #: apps/checklists/templates/checklists/detail.html:18
 #: apps/checklists/templates/checklists/index.html:9
 #: apps/checklists/templates/checklists/index.html:14
-#: apps/news/templatetags/numbers.py:48 templates/page.html:23
+#: apps/news/templatetags/numbers.py:43 templates/page.html:23
 msgid "Checklists"
 msgstr "Listas"
 
@@ -868,7 +868,7 @@ msgid "Duration"
 msgstr "Duração"
 
 #: apps/checklists/templates/checklists/detail.html:68
-#: apps/news/templatetags/charts.py:23
+#: apps/news/templatetags/charts.py:22
 msgid "Stationary"
 msgstr "Parado"
 
@@ -882,7 +882,7 @@ msgid "%(distance)s km"
 msgstr "%(distance)s km"
 
 #: apps/checklists/templates/checklists/detail.html:80
-#: apps/news/templatetags/charts.py:22
+#: apps/news/templatetags/charts.py:21
 msgid "Incidental"
 msgstr "Incidental"
 
@@ -934,7 +934,7 @@ msgstr "Número de espécies registadas"
 
 #: apps/checklists/templates/checklists/includes/filter-form.html:56
 #: apps/checklists/templates/checklists/index.html:15
-#: apps/news/templates/news/index.html:38
+#: apps/news/templates/news/index.html:40
 #: apps/observations/templates/observations/includes/filter-form.html:65
 #: apps/observations/templates/observations/index.html:15
 msgid "Search"
@@ -995,11 +995,7 @@ msgstr "Espécies por lista"
 msgid "Protocols"
 msgstr "Protocolos"
 
-#: apps/news/templates/news/index.html:36
-msgid "Enter Country, Region or County"
-msgstr "Introduzir país, região ou concelho"
-
-#: apps/news/templates/news/index.html:79
+#: apps/news/templates/news/index.html:81
 msgid "Looks like everybody is still in bed."
 msgstr "Parece que toda a gente ainda está na cama."
 
@@ -1023,45 +1019,53 @@ msgstr "Listas submetidas"
 msgid "Complete checklists only"
 msgstr "Apenas listas completas"
 
-#: apps/news/templatetags/charts.py:24
+#: apps/news/templatetags/charts.py:23
 msgid "Traveling"
 msgstr "Em movimento"
 
-#: apps/news/templatetags/charts.py:37
+#: apps/news/templatetags/charts.py:36
 msgid "Other"
 msgstr "Outros"
 
-#: apps/news/templatetags/charts.py:39
+#: apps/news/templatetags/charts.py:38
 msgid "Number of checklists"
 msgstr "Número de espécies registadas"
 
-#: apps/news/templatetags/charts.py:85
+#: apps/news/templatetags/charts.py:84
 msgid "Number of species"
 msgstr "Número de espécies registadas"
 
-#: apps/news/templatetags/charts.py:86
+#: apps/news/templatetags/charts.py:85
 msgid "Percentage of checklists"
 msgstr "Percentagem de listas"
 
-#: apps/news/templatetags/charts.py:87
+#: apps/news/templatetags/charts.py:86
 msgid "Percentage"
 msgstr "Percentagem"
 
-#: apps/news/templatetags/numbers.py:29
+#: apps/news/templatetags/numbers.py:24
 msgid "Species (plural)"
 msgstr "Espécies"
 
-#: apps/news/templatetags/numbers.py:72
+#: apps/news/templatetags/numbers.py:62
 msgid "Observers"
 msgstr "Observadores"
 
-#: apps/news/templatetags/numbers.py:93
+#: apps/news/templatetags/numbers.py:81
 msgid "Hours"
 msgstr "Horas"
 
-#: apps/news/templatetags/tables.py:27
+#: apps/news/templatetags/tables.py:24
 msgid "Big Lists"
 msgstr "Listas grandes"
+
+#: apps/news/views.py:59
+msgid "Enter Region or County"
+msgstr "Introduzir região ou concelho"
+
+#: apps/news/views.py:61
+msgid "Enter Country, Region or County"
+msgstr "Introduzir país, região ou concelho"
 
 #: apps/observations/apps.py:8
 #: apps/observations/templates/observations/index.html:9

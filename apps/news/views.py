@@ -5,6 +5,7 @@ from dateutil.relativedelta import relativedelta, MO
 from django.http import JsonResponse
 from django.utils import timezone
 from django.utils.dateformat import format
+from django.utils.translation import gettext_lazy as _
 from django.views import generic
 from ebird.codes.locations import is_country_code, is_state_code, is_county_code
 
@@ -54,6 +55,11 @@ class IndexView(generic.TemplateView):
         elif is_county_code(code):
             district = District.objects.get(code=code).pk
 
+        if Country.objects.all().count() == 1:
+            autocomplete_placeholder = _("Enter Region or County")
+        else:
+            autocomplete_placeholder = _("Enter Country, Region or County")
+
         context["country"] = country
         context["region"] = region
         context["district"] = district
@@ -64,6 +70,7 @@ class IndexView(generic.TemplateView):
         context["last_week"] = last_week.strftime("%Y-%W")
         context["next_week"] = next_week.strftime("%Y-%W")
         context["subtitle"] = subtitle
+        context["autocomplete_placeholder"] = autocomplete_placeholder
         context["submissions"] = Checklist.objects.filter(
             date__gte=week_start, date__lte=week_end
         ).count()

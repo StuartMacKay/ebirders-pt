@@ -35,7 +35,7 @@
                    value="{{ place }}"
                    class="form-control autocomplete"
                    data-server="{% url 'news:autocomplete' %}"
-                   placeholder="{% trans 'Enter Country, Region or County' %}"/>
+                   placeholder="{{ autocomplete_placeholder }}"/>
             <button id="search-button" type="button" class="btn btn-primary">
               <i class="bi-search btn-primary" title="{% trans 'Search' %}"></i>
             </button>
