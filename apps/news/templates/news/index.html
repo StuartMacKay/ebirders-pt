@@ -60,19 +60,19 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-12">
-            {% big_lists_table country region district week_start week_end %}
+          <div class="col-md-4 col-sm-12">
+            {% checklists_species_table country region district week_start week_end %}
           </div>
-        </div>
-        <div class="row">
           <div class="col-md-4 col-sm-12">
             {% checklists_submitted_table country region district week_start week_end %}
           </div>
           <div class="col-md-4 col-sm-12">
             {% checklists_duration_table country region district week_start week_end %}
           </div>
-          <div class="col-md-4 col-sm-12">
-            {% checklists_species_table country region district week_start week_end %}
+        </div>
+        <div class="row">
+          <div class="col-12">
+            {% big_lists_table country region district week_start week_end %}
           </div>
         </div>
       </div>
