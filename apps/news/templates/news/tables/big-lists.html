@@ -16,7 +16,9 @@
         <br/>
         <small class="text-muted">{{ checklist.location.district }}</small>
         <small class="text-muted">, {{ checklist.location.region }}</small>
-        <small class="text-muted">, {{ checklist.location.country }}</small>
+        {% if multiple_countries %}
+          <small class="text-muted">, {{ checklist.location.country }}</small>
+        {% endif %}
       {% endspaceless %}
     </div>
     <div class="col-md-2 pt-1 mb-1">
