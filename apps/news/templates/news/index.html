@@ -14,16 +14,22 @@
   </div>
   <div>
     <div class="d-flex align-items-center border-bottom pb-3 mb-4">
-      <div>
-        <a class="btn btn-link link-dark bg-light"
-           href="{% querystring week=last_week %}">
-          <i class="bi bi-chevron-left"></i>
-        </a>
-        <a class="btn btn-link link-dark bg-light me-2"
-           href="{% querystring week=next_week %}">
-          <i class="bi bi-chevron-right"></i>
-        </a>
-        <span class="h5">{{ subtitle }}</span>
+      <div class="d-flex align-items-center">
+        <div class="me-2">
+          <a class="btn btn-link link-dark bg-light"
+             href="{% querystring week=last_week %}">
+            <i class="bi bi-chevron-left"></i>
+          </a>
+        </div>
+        <div class="me-3">
+          <a class="btn btn-link link-dark bg-light"
+             href="{% querystring week=next_week %}">
+            <i class="bi bi-chevron-right"></i>
+          </a>
+        </div>
+        <div>
+          <span class="h5">{{ subtitle }}</span>
+        </div>
       </div>
       <div class="col-4 offset-1">
         <form method="get" id="autocomplete-form">
