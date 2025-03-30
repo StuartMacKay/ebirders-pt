@@ -14,10 +14,10 @@
       <span>{{ checklist.location.name }}</span>
       {% spaceless %}
         <br/>
-        <small class="text-muted">{{ checklist.location.district }}</small>
-        <small class="text-muted">, {{ checklist.location.region }}</small>
+        <small class="text-muted">{{ checklist.district }}</small>
+        <small class="text-muted">, {{ checklist.region }}</small>
         {% if multiple_countries %}
-          <small class="text-muted">, {{ checklist.location.country }}</small>
+          <small class="text-muted">, {{ checklist.country }}</small>
         {% endif %}
       {% endspaceless %}
     </div>

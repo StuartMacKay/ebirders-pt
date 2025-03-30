@@ -8,7 +8,7 @@ register = template.Library()
 
 
 @register.inclusion_tag("news/tables/big-lists.html")
-def big_lists_table(country_id, region_id, district_id, start, end):
+def big_lists_table(country_id, region_id, district_id, start, end, multiple_countries):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
     if country_id:
@@ -17,8 +17,13 @@ def big_lists_table(country_id, region_id, district_id, start, end):
         queryset = queryset.filter(region_id=region_id)
     elif district_id:
         queryset = queryset.filter(district_id=district_id)
+        
+    related = ["region", "district", "location", "observer"]
+    
+    if multiple_countries:
+        related.append("country")
 
-    checklists = queryset.order_by("-species_count")[:10]
+    checklists = queryset.select_related(*related).order_by("-species_count")[:10]
 
     return {
         "title": _("Big Lists"),
