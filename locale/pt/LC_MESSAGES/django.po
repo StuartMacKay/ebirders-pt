@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-30 08:01+0000\n"
+"POT-Creation-Date: 2025-03-30 08:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -999,11 +999,7 @@ msgstr "Parece que toda a gente ainda está na cama."
 msgid "Time spent birding"
 msgstr "Tempo passado"
 
-#: apps/news/templates/news/tables/checklists-duration.html:4
-msgid "hours : minutes"
-msgstr "horas : minutos"
-
-#: apps/news/templates/news/tables/checklists-duration.html:12
+#: apps/news/templates/news/tables/checklists-duration.html:9
 #, python-format
 msgid "Duration: %(hours)s hours %(minutes)s minutes"
 msgstr "%(hours)sh %(minutes)smin"
@@ -1013,12 +1009,8 @@ msgid "Species seen"
 msgstr "Espécies observadas"
 
 #: apps/news/templates/news/tables/checklists-submitted.html:2
-msgid "Checklists submitted"
-msgstr "Listas submetidas"
-
-#: apps/news/templates/news/tables/checklists-submitted.html:4
-msgid "Complete checklists only"
-msgstr "Apenas listas completas"
+msgid "Number of checklists completed"
+msgstr "Listas completas"
 
 #: apps/news/templatetags/charts.py:23
 msgid "Traveling"
@@ -1181,6 +1173,17 @@ msgid ""
 "This error was reported automatically, but if the problem persists please "
 "contact us. In the meantime, try refreshing the page."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Checklists submitted"
+#~ msgid "Checklists completed"
+#~ msgstr "Listas submetidas"
+
+#~ msgid "hours : minutes"
+#~ msgstr "horas : minutos"
+
+#~ msgid "Complete checklists only"
+#~ msgstr "Apenas listas completas"
 
 #~ msgid "Dashboards"
 #~ msgstr "Resumos"
