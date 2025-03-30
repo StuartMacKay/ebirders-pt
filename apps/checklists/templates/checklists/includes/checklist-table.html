@@ -11,31 +11,31 @@
     </div>
     <div class="col-md-6 pt-1">
       <a class="dark-link"
-         href="{% querystring page=1 country=checklist.location.country.code state=checklist.location.region.code county=checklist.location.district.code location=checklist.location.identifier %}"
+         href="{% querystring page=1 country=checklist.country.code state=checklist.region.code county=checklist.district.code location=checklist.location.identifier %}"
          title="{% trans 'Show checklists for this location' %}">{{ checklist.location.name }}</a>
       {% spaceless %}
         {% if "county" not in filter.data %}
           <br/>
           <small class="text-muted">
             <a class="dark-link"
-               href="{% querystring page=1 country=checklist.location.country.code state=checklist.location.region.code county=checklist.location.district.code %}"
-               title="{% trans 'Show checklists for this county' %}">{{ checklist.location.district }}</a>
+               href="{% querystring page=1 country=checklist.country.code state=checklist.region.code county=checklist.district.code %}"
+               title="{% trans 'Show checklists for this county' %}">{{ checklist.district }}</a>
           </small>
         {% endif %}
         {% if "state" not in filter.data %}
           <small class="text-muted">
             <span>, </span>
             <a class="dark-link"
-               href="{% querystring page=1 country=checklist.location.country.code state=checklist.location.region.code %}"
-               title="{% trans 'Show checklists for this state' %}">{{ checklist.location.region }}</a>
+               href="{% querystring page=1 country=checklist.country.code state=checklist.region.code %}"
+               title="{% trans 'Show checklists for this state' %}">{{ checklist.region }}</a>
           </small>
         {% endif %}
         {% if "country" not in filter.data %}
           <small class="text-muted">
             <span>, </span>
             <a class="dark-link"
-               href="{% querystring page=1 country=checklist.location.country.code %}"
-               title="{% trans 'Show checklists for this country' %}">{{ checklist.location.country }}</a>
+               href="{% querystring page=1 country=checklist.country.code %}"
+               title="{% trans 'Show checklists for this country' %}">{{ checklist.country }}</a>
           </small>
         {% endif %}
       {% endspaceless %}

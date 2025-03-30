@@ -69,7 +69,8 @@ class ChecklistsView(FilterView):
     def get_queryset(self):
         return self.filterset_class(
             self.request.GET,
-            queryset=super().get_queryset().select_related("location", "observer"),
+            queryset=super().get_queryset().select_related(
+                "country", "region", "district", "location", "observer"),
         ).qs
 
 
