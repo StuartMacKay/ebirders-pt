@@ -77,7 +77,14 @@ def duration_count(country_id, region_id, district_id, start, end):
 
     total = queryset.aggregate(Sum("duration"))["duration__sum"] or 0
 
+    if total == 0:
+        hours = 0
+    elif total < 60:
+        hours = "< 1"
+    else:
+        hours = int(total / 60)
+
     return {
         "title": _("Hours birding"),
-        "count": int(total / 60),
+        "count": hours,
     }
