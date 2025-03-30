@@ -1,7 +1,7 @@
 from dal import autocomplete
 from django_filters.views import FilterView
-from checklists.models import Observation
 
+from checklists.models import Observation
 from .filters import ObservationFilter
 from .queries import (
     country_choices,
@@ -76,5 +76,13 @@ class ObservationsView(FilterView):
             self.request.GET,
             queryset=super()
             .get_queryset()
-            .select_related("checklist", "location", "observer", "species"),
+            .select_related(
+                "checklist",
+                "country",
+                "region",
+                "district",
+                "location",
+                "observer",
+                "species",
+            ),
         ).qs
