@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-29 13:24+0000\n"
+"POT-Creation-Date: 2025-03-30 08:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -288,8 +288,6 @@ msgid "The code used to identify the project (portal)."
 msgstr ""
 
 #: apps/checklists/models/checklist.py:215
-#, fuzzy
-#| msgid "Duration"
 msgid "duration"
 msgstr "Duração"
 
@@ -298,8 +296,6 @@ msgid "The number of minutes spent counting."
 msgstr ""
 
 #: apps/checklists/models/checklist.py:224
-#, fuzzy
-#| msgid "%(distance)s km"
 msgid "distance"
 msgstr "%(distance)s km"
 
@@ -1006,6 +1002,11 @@ msgstr "Tempo passado"
 #: apps/news/templates/news/tables/checklists-duration.html:4
 msgid "hours : minutes"
 msgstr "horas : minutos"
+
+#: apps/news/templates/news/tables/checklists-duration.html:12
+#, python-format
+msgid "Duration: %(hours)s hours %(minutes)s minutes"
+msgstr "%(hours)sh %(minutes)smin"
 
 #: apps/news/templates/news/tables/checklists-species.html:2
 msgid "Species seen"

@@ -1,13 +1,14 @@
 {% load i18n %}
 <h2 class="mb-0">{% trans "Time spent birding" %}</h2>
-<div class="mb-3 text-muted">
-  <small>{% trans "hours : minutes" %}</small>
-</div>
 <table class="table">
   {% for observer in observers %}
     <tr>
       <td>{{ observer.name }}</td>
-      <td class="text-end">{{ observer.hours }}:{{ observer.minutes }}</td>
+      <td class="text-end">{% spaceless %}
+        {% with hours=observer.hours minutes=observer.minutes %}
+          {% blocktrans %}Duration: {{ hours }} hours {{ minutes }} minutes{% endblocktrans %}
+        {% endwith %}
+      {% endspaceless %}</td>
     </tr>
   {% endfor %}
 </table>
