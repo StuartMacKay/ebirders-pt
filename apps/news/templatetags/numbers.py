@@ -78,6 +78,6 @@ def duration_count(country_id, region_id, district_id, start, end):
     total = queryset.aggregate(Sum("duration"))["duration__sum"] or 0
 
     return {
-        "title": _("Hours"),
+        "title": _("Hours birding"),
         "count": int(total / 60),
     }

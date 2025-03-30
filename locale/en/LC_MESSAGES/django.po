@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-30 08:10+0000\n"
+"POT-Creation-Date: 2025-03-30 08:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -837,7 +837,7 @@ msgid "View the checklist on eBird"
 msgstr ""
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:7
-#: apps/news/templates/news/tables/big-lists.html:10
+#: apps/news/templates/news/tables/big-lists.html:9
 msgid "View this checklist"
 msgstr ""
 
@@ -862,7 +862,7 @@ msgid "Show checklists for this observer"
 msgstr ""
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:50
-#: apps/news/templates/news/tables/big-lists.html:29
+#: apps/news/templates/news/tables/big-lists.html:28
 msgid "Number of species reported"
 msgstr ""
 
@@ -983,7 +983,7 @@ msgid "Observers"
 msgstr ""
 
 #: apps/news/templatetags/numbers.py:81
-msgid "Hours"
+msgid "Hours birding"
 msgstr ""
 
 #: apps/news/templatetags/tables.py:24
