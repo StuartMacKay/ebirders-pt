@@ -97,22 +97,16 @@ msgstr ""
 
 #: apps/checklists/models/checklist.py:78
 #: apps/checklists/models/observation.py:87
-#, fuzzy
-#| msgid "checklists/"
 msgid "checklist"
-msgstr "listas/"
+msgstr "lista/"
 
 #: apps/checklists/models/checklist.py:79
-#, fuzzy
-#| msgid "checklists/"
 msgid "checklists"
 msgstr "listas/"
 
 #: apps/checklists/models/checklist.py:84
-#, fuzzy
-#| msgid "View the checklist on eBird"
 msgid "The date and time the checklist was added to eBird"
-msgstr "Ver a lista no eBird"
+msgstr ""
 
 #: apps/checklists/models/checklist.py:85
 msgid "created"
@@ -141,8 +135,6 @@ msgstr ""
 #: apps/checklists/models/checklist.py:105 apps/checklists/models/country.py:9
 #: apps/checklists/models/location.py:63
 #: apps/checklists/models/observation.py:116
-#, fuzzy
-#| msgid "Country"
 msgid "country"
 msgstr "País"
 
@@ -177,8 +169,6 @@ msgstr ""
 #: apps/checklists/models/checklist.py:141
 #: apps/checklists/models/location.py:40
 #: apps/checklists/models/observation.py:152
-#, fuzzy
-#| msgid "Location"
 msgid "location"
 msgstr "Localização"
 
@@ -197,36 +187,26 @@ msgid "The person who submitted the checklist."
 msgstr ""
 
 #: apps/checklists/models/checklist.py:155
-#, fuzzy
-#| msgid "Groups"
 msgid "group"
-msgstr "Grupos"
+msgstr "Grupo"
 
 #: apps/checklists/models/checklist.py:156
 msgid "The identifier for a group of observers."
 msgstr ""
 
 #: apps/checklists/models/checklist.py:162
-#, fuzzy
-#| msgid "Observer"
 msgid "observer count"
-msgstr "Observador"
+msgstr ""
 
 #: apps/checklists/models/checklist.py:163
-#, fuzzy
-#| msgid "Number of Observers"
 msgid "The total number of observers."
 msgstr "Número de observadores"
 
 #: apps/checklists/models/checklist.py:169
-#, fuzzy
-#| msgid "Species seen"
 msgid "species count"
 msgstr "Espécies observadas"
 
 #: apps/checklists/models/checklist.py:170
-#, fuzzy
-#| msgid "Number of species reported"
 msgid "The number of species reported."
 msgstr "Número de espécies registadas"
 
@@ -236,8 +216,6 @@ msgid "date"
 msgstr ""
 
 #: apps/checklists/models/checklist.py:176
-#, fuzzy
-#| msgid "View the checklist on eBird"
 msgid "The date the checklist was started."
 msgstr "Ver a lista no eBird"
 
@@ -246,10 +224,8 @@ msgid "time"
 msgstr ""
 
 #: apps/checklists/models/checklist.py:183
-#, fuzzy
-#| msgid "View the checklist on eBird"
 msgid "The time the checklist was started."
-msgstr "Ver a lista no eBird"
+msgstr ""
 
 #: apps/checklists/models/checklist.py:190
 msgid "date & time"
@@ -260,8 +236,6 @@ msgid "The date and time the checklist was started."
 msgstr ""
 
 #: apps/checklists/models/checklist.py:196
-#, fuzzy
-#| msgid "Protocols"
 msgid "protocol"
 msgstr "Protocolos"
 
@@ -270,10 +244,8 @@ msgid "The protocol followed, e.g. travelling, stationary, etc."
 msgstr ""
 
 #: apps/checklists/models/checklist.py:202
-#, fuzzy
-#| msgid "Protocols"
 msgid "protocol code"
-msgstr "Protocolos"
+msgstr ""
 
 #: apps/checklists/models/checklist.py:203
 msgid "The code used to identify the protocol."
@@ -308,16 +280,12 @@ msgid "The area covered, in hectares."
 msgstr ""
 
 #: apps/checklists/models/checklist.py:239
-#, fuzzy
-#| msgid "Incomplete"
 msgid "complete"
-msgstr "Incompleta"
+msgstr ""
 
 #: apps/checklists/models/checklist.py:240
-#, fuzzy
-#| msgid "Number of species reported"
 msgid "All species seen are reported."
-msgstr "Número de espécies registadas"
+msgstr ""
 
 #: apps/checklists/models/checklist.py:245
 #: apps/checklists/models/observation.py:225
@@ -349,8 +317,6 @@ msgid "Data describing a Checklist."
 msgstr ""
 
 #: apps/checklists/models/country.py:10
-#, fuzzy
-#| msgid "Country"
 msgid "countries"
 msgstr "País"
 
@@ -399,10 +365,8 @@ msgid "Town"
 msgstr ""
 
 #: apps/checklists/models/location.py:41
-#, fuzzy
-#| msgid "Location"
 msgid "locations"
-msgstr "Localização"
+msgstr ""
 
 #: apps/checklists/models/location.py:46
 msgid "The unique identifier for the location"
@@ -421,28 +385,20 @@ msgid "The name of the location"
 msgstr ""
 
 #: apps/checklists/models/location.py:64
-#, fuzzy
-#| msgid "Show checklists for this location"
 msgid "The country for the location."
-msgstr "Mostrar as listas para esta local"
+msgstr ""
 
 #: apps/checklists/models/location.py:72
-#, fuzzy
-#| msgid "Show observation for this location"
 msgid "The region for the location."
-msgstr "Mostrar observação para este local"
+msgstr ""
 
 #: apps/checklists/models/location.py:82
-#, fuzzy
-#| msgid "Show checklists for this location"
 msgid "The district for the location."
-msgstr "Mostrar as listas para esta local"
+msgstr ""
 
 #: apps/checklists/models/location.py:92
-#, fuzzy
-#| msgid "Show observation for this location"
 msgid "The area for the location."
-msgstr "Mostrar observação para este local"
+msgstr ""
 
 #: apps/checklists/models/location.py:97
 msgid "IBA code"
@@ -509,31 +465,23 @@ msgid "Data describing a Location"
 msgstr ""
 
 #: apps/checklists/models/observation.py:67
-#, fuzzy
-#| msgid "observations/"
 msgid "observation"
-msgstr "observações/"
+msgstr "observaçaõ"
 
 #: apps/checklists/models/observation.py:68
-#, fuzzy
-#| msgid "observations/"
 msgid "observations"
-msgstr "observações/"
+msgstr "observações"
 
 #: apps/checklists/models/observation.py:80
 msgid "A global unique identifier for the observation."
 msgstr ""
 
 #: apps/checklists/models/observation.py:88
-#, fuzzy
-#| msgid "Show checklists for this observer"
 msgid "The checklist this observation belongs to."
-msgstr "Mostrar as listas para este observador"
+msgstr ""
 
 #: apps/checklists/models/observation.py:95
 #: apps/checklists/models/species.py:32 apps/checklists/models/species.py:33
-#, fuzzy
-#| msgid "Species"
 msgid "species"
 msgstr "Espécie"
 
@@ -578,10 +526,8 @@ msgid "The date the observation was made."
 msgstr ""
 
 #: apps/checklists/models/observation.py:166
-#, fuzzy
-#| msgid "County"
 msgid "count"
-msgstr "Concelho"
+msgstr ""
 
 #: apps/checklists/models/observation.py:167
 msgid "The number of birds seen."
@@ -668,8 +614,6 @@ msgid "Data describing an Observation."
 msgstr ""
 
 #: apps/checklists/models/observer.py:14
-#, fuzzy
-#| msgid "Observers"
 msgid "observers"
 msgstr "Observadores"
 
@@ -707,10 +651,8 @@ msgid "Species"
 msgstr "Espécie"
 
 #: apps/checklists/models/species.py:9
-#, fuzzy
-#| msgid "Species"
 msgid "Sub-species"
-msgstr "Espécie"
+msgstr ""
 
 #: apps/checklists/models/species.py:10
 msgid "Hybrid"
@@ -725,10 +667,8 @@ msgid "Genus"
 msgstr ""
 
 #: apps/checklists/models/species.py:13
-#, fuzzy
-#| msgid "Species"
 msgid "Species group"
-msgstr "Espécie"
+msgstr ""
 
 #: apps/checklists/models/species.py:14
 msgid "Domestic"
@@ -775,10 +715,8 @@ msgid "The category from the eBird/Clements taxonomy."
 msgstr ""
 
 #: apps/checklists/models/species.py:58
-#, fuzzy
-#| msgid "Species seen"
 msgid "species code"
-msgstr "Espécies observadas"
+msgstr ""
 
 #: apps/checklists/models/species.py:59
 msgid "The species code, e.g. ostric2, used in the eBird API."
@@ -1173,41 +1111,3 @@ msgid ""
 "This error was reported automatically, but if the problem persists please "
 "contact us. In the meantime, try refreshing the page."
 msgstr ""
-
-#, fuzzy
-#~| msgid "Checklists submitted"
-#~ msgid "Checklists completed"
-#~ msgstr "Listas submetidas"
-
-#~ msgid "hours : minutes"
-#~ msgstr "horas : minutos"
-
-#~ msgid "Complete checklists only"
-#~ msgstr "Apenas listas completas"
-
-#~ msgid "Dashboards"
-#~ msgstr "Resumos"
-
-#~ msgid "Today"
-#~ msgstr "Hoje"
-
-#~ msgid "Daily"
-#~ msgstr "Diário"
-
-#~ msgid "Weekly"
-#~ msgstr "Semanal"
-
-#~ msgid "Monthly"
-#~ msgstr "Mensal"
-
-#~ msgid "Yearly"
-#~ msgstr "Anual"
-
-#~ msgid "dashboards/"
-#~ msgstr "resumos"
-
-#~ msgid "In the past week"
-#~ msgstr "Na semana passada"
-
-#~ msgid "Dashboard"
-#~ msgstr "Resumo"

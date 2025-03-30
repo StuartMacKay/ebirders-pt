@@ -667,10 +667,8 @@ msgid "Genus"
 msgstr ""
 
 #: apps/checklists/models/species.py:13
-#, fuzzy
-#| msgid "Species (plural)"
 msgid "Species group"
-msgstr "Species"
+msgstr ""
 
 #: apps/checklists/models/species.py:14
 msgid "Domestic"
@@ -844,32 +842,24 @@ msgid "View this checklist"
 msgstr ""
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:15
-#, fuzzy
-#| msgid "Show checklists for this state"
 msgid "Show checklists for this location"
-msgstr "Show checklists for this region"
+msgstr ""
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:22
-#, fuzzy
-#| msgid "Show checklists for this state"
 msgid "Show checklists for this county"
-msgstr "Show checklists for this region"
+msgstr ""
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:30
 msgid "Show checklists for this state"
 msgstr "Show checklists for this region"
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:38
-#, fuzzy
-#| msgid "Show checklists for this state"
 msgid "Show checklists for this country"
-msgstr "Show checklists for this region"
+msgstr ""
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:46
-#, fuzzy
-#| msgid "Show checklists for this state"
 msgid "Show checklists for this observer"
-msgstr "Show checklists for this region"
+msgstr ""
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:50
 #: apps/news/templates/news/tables/big-lists.html:29
