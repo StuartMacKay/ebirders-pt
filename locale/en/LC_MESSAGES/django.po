@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-30 08:32+0000\n"
+"POT-Creation-Date: 2025-04-02 06:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -837,7 +837,7 @@ msgid "View the checklist on eBird"
 msgstr ""
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:7
-#: apps/news/templates/news/tables/big-lists.html:9
+#: apps/news/templates/news/tables/big-lists.html:8
 msgid "View this checklist"
 msgstr ""
 
@@ -862,13 +862,13 @@ msgid "Show checklists for this observer"
 msgstr ""
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:50
-#: apps/news/templates/news/tables/big-lists.html:28
+#: apps/news/templates/news/tables/big-lists.html:29
 msgid "Number of species reported"
 msgstr ""
 
 #: apps/checklists/templates/checklists/includes/filter-form.html:56
 #: apps/checklists/templates/checklists/index.html:15
-#: apps/news/templates/news/index.html:40
+#: apps/news/templates/news/index.html:46
 #: apps/observations/templates/observations/includes/filter-form.html:65
 #: apps/observations/templates/observations/index.html:15
 msgid "Search"
@@ -929,8 +929,8 @@ msgstr ""
 msgid "Protocols"
 msgstr ""
 
-#: apps/news/templates/news/index.html:81
-msgid "Looks like everybody is still in bed."
+#: apps/news/templates/news/tables/big-lists.html:35
+msgid "There are no Big Lists to report."
 msgstr ""
 
 #: apps/news/templates/news/tables/checklists-duration.html:2
@@ -942,6 +942,12 @@ msgstr ""
 msgid "Duration: %(hours)s hours %(minutes)s minutes"
 msgstr "%(hours)sh %(minutes)sm"
 
+#: apps/news/templates/news/tables/checklists-duration.html:15
+#: apps/news/templates/news/tables/checklists-species.html:11
+#: apps/news/templates/news/tables/checklists-submitted.html:11
+msgid "Your name here"
+msgstr ""
+
 #: apps/news/templates/news/tables/checklists-species.html:2
 msgid "Species seen"
 msgstr ""
@@ -949,6 +955,18 @@ msgstr ""
 #: apps/news/templates/news/tables/checklists-submitted.html:2
 msgid "Number of checklists completed"
 msgstr "Checklists completed"
+
+#: apps/news/templates/news/tables/yearlist.html:9
+msgid "View the checklist"
+msgstr ""
+
+#: apps/news/templates/news/tables/yearlist.html:35
+msgid "No new species were were seen this week."
+msgstr ""
+
+#: apps/news/templates/news/tables/yearlist.html:40
+msgid "No. of Species"
+msgstr ""
 
 #: apps/news/templatetags/charts.py:23
 msgid "Traveling"
@@ -982,19 +1000,23 @@ msgstr "Species"
 msgid "Observers"
 msgstr ""
 
-#: apps/news/templatetags/numbers.py:81
+#: apps/news/templatetags/numbers.py:88
 msgid "Hours birding"
 msgstr ""
 
-#: apps/news/templatetags/tables.py:24
+#: apps/news/templatetags/tables.py:29
 msgid "Big Lists"
 msgstr ""
 
-#: apps/news/views.py:59
+#: apps/news/templatetags/tables.py:174
+msgid "Year List"
+msgstr ""
+
+#: apps/news/views.py:64
 msgid "Enter Region or County"
 msgstr ""
 
-#: apps/news/views.py:61
+#: apps/news/views.py:67
 msgid "Enter Country, Region or County"
 msgstr ""
 
@@ -1111,3 +1133,8 @@ msgid ""
 "This error was reported automatically, but if the problem persists please "
 "contact us. In the meantime, try refreshing the page."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Species (plural)"
+#~ msgid "Species Total"
+#~ msgstr "Species"

@@ -1,0 +1,41 @@
+{% load i18n species_tags %}
+{%  get_current_language as language_code %}
+<h2>{{ title }} {{ year }}</h2>
+{% for observation in observations %}
+  <div class="row py-2 mx-0 overlay-hover position-relative">
+    <div class="col-md-3">
+      <a class="text-decoration-none link-dark stretched-link"
+         href="{% url 'checklists:detail' observation.checklist.identifier %}"
+         title="{% trans 'View the checklist' %}">
+        {% get_common_name observation.species language_code %} ({% if observation.count %}{{ observation.count }}{% else %}X{% endif %})
+      </a><br>
+      <small class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
+    </div>
+    <div class="col-md-2">
+      <span class="text-nowrap">{{ observation.checklist.date }}, </span>
+      <span class="text-nowrap">{{ observation.checklist.time }}</span>
+    </div>
+    <div class="col-md-5">
+      <div>{{ observation.location.name }}</div>
+      <div>{% spaceless %}
+        <small class="text-muted">{{ observation.district }}</small>
+        <small class="text-muted">, {{ observation.region }}</small>
+        {% if multiple_countries %}
+          <small class="text-muted">, {{ observation.country }}</small>
+        {% endif %}
+      {% endspaceless %}</div>
+    </div>
+    <div class="col-md-2">
+      <span>{{ observation.observer }}</span>
+    </div>
+  </div>
+{% empty %}
+  <div class="row">
+    <div>
+      <span>{% trans "No new species were were seen this week." %}</span>
+    </div>
+  </div>
+{% endfor %}
+<div class="my-2">
+  <span class="h3">{% trans 'No. of Species' %}: {{ total }}</span>
+</div>
