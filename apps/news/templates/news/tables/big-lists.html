@@ -29,4 +29,10 @@
              title="{% trans 'Number of species reported' %}">{{ checklist.species_count }}</span>
     </div>
   </div>
+{% empty %}
+  <div class="row">
+    <div>
+      <span>{% trans 'There are no Big Lists to report.' %}</span>
+    </div>
+  </div>
 {% endfor %}

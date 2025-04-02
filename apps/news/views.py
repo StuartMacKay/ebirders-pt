@@ -71,9 +71,6 @@ class IndexView(generic.TemplateView):
         context["next_week"] = next_week.strftime("%Y-%W")
         context["subtitle"] = subtitle
         context["autocomplete_placeholder"] = autocomplete_placeholder
-        context["submissions"] = Checklist.objects.filter(
-            date__gte=week_start, date__lte=week_end
-        ).count()
         context["multiple_countries"] = Country.objects.all().count()
 
         return context

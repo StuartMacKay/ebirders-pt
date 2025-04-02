@@ -10,5 +10,10 @@
         {% endwith %}
       {% endspaceless %}</td>
     </tr>
+  {% empty %}
+    <tr>
+      <td>{% trans 'Your name here' %}</td>
+      <td>?</td>
+    </tr>
   {% endfor %}
 </table>

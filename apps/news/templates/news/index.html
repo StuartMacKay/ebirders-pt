@@ -49,47 +49,41 @@
         </form>
       </div>
     </div>
-    {% if submissions %}
-      <div class="container px-0">
-        <div class="row mb-2">
-          <div class="col-md-3 col-sm-6 mb-2">
-            {% species_count country region district week_start week_end %}
-          </div>
-          <div class="col-md-3 col-sm-6 mb-2">
-            {% checklist_count country region district week_start week_end %}
-          </div>
-          <div class="col-md-3 col-sm-6 mb-2">
-            {% observer_count country region district week_start week_end %}
-          </div>
-          <div class="col-md-3 col-sm-6 mb-2">
-            {% duration_count country region district week_start week_end %}
-          </div>
+    <div class="container px-0">
+      <div class="row mb-2">
+        <div class="col-md-3 col-sm-6 mb-2">
+          {% species_count country region district week_start week_end %}
         </div>
-        <hr>
-        <div class="row">
-          <div class="col-md-4 col-sm-12">
-            {% checklists_species_table country region district week_start week_end %}
-          </div>
-          <div class="col-md-4 col-sm-12">
-            {% checklists_submitted_table country region district week_start week_end %}
-          </div>
-          <div class="col-md-4 col-sm-12">
-            {% checklists_duration_table country region district week_start week_end %}
-          </div>
+        <div class="col-md-3 col-sm-6 mb-2">
+          {% checklist_count country region district week_start week_end %}
         </div>
-        <hr>
-        <div class="row">
-          <div class="col-12">
-            {% big_lists_table country region district week_start week_end multiple_countries%}
-          </div>
+        <div class="col-md-3 col-sm-6 mb-2">
+          {% observer_count country region district week_start week_end %}
         </div>
-        <hr>
+        <div class="col-md-3 col-sm-6 mb-2">
+          {% duration_count country region district week_start week_end %}
+        </div>
       </div>
-    {% else %}
-      <div>
-        {% trans 'Looks like everybody is still in bed.' %}
+      <hr>
+      <div class="row">
+        <div class="col-md-4 col-sm-12">
+          {% checklists_species_table country region district week_start week_end %}
+        </div>
+        <div class="col-md-4 col-sm-12">
+          {% checklists_submitted_table country region district week_start week_end %}
+        </div>
+        <div class="col-md-4 col-sm-12">
+          {% checklists_duration_table country region district week_start week_end %}
+        </div>
       </div>
-    {% endif %}
+      <hr>
+      <div class="row">
+        <div class="col-12">
+          {% big_lists_table country region district week_start week_end multiple_countries%}
+        </div>
+      </div>
+      <hr>
+    </div>
   </div>
 {% endblock content %}
 

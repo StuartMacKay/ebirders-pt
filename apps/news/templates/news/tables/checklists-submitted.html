@@ -6,5 +6,10 @@
       <td>{{ observer.name }}</td>
       <td class="text-end">{{ observer.count }}</td>
     </tr>
+  {% empty %}
+    <tr>
+      <td>{% trans 'Your name here' %}</td>
+      <td>?</td>
+    </tr>
   {% endfor %}
 </table>
