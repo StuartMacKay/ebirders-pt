@@ -1,8 +1,8 @@
 from django import template
-from django.db.models import Case, Count, F, Q, Sum, When
+from django.db.models import Case, Count, F, Min, Q, Sum, When
 from django.utils.translation import gettext_lazy as _
 
-from checklists.models import Checklist, Observer
+from checklists.models import Checklist, Observer, Observation, Species
 
 register = template.Library()
 
@@ -108,3 +108,72 @@ def checklists_species_table(country_id, region_id, district_id, start, end):
         .order_by("-count")[:10]
     )
     return {"observers": [observer for observer in observers if observer["count"]]}
+
+
+@register.inclusion_tag("news/tables/yearlist.html", takes_context=True)
+def yearlist_table(context):
+    filters = Q()
+
+    if context["country"]:
+        filters &= Q(observations__country_id=context["country"])
+    elif context["region"]:
+        filters &= Q(observations__region_id=context["region"])
+    elif context["district"]:
+        filters &= Q(observations__district_id=context["district"])
+
+    species = Species.objects.filter(category="species")
+
+    if filters:
+        species = species.annotate(
+            added=Min(Case(When(filters, then="observations__date")))
+        )
+    else:
+        species = species.annotate(added=Min("observations__date"))
+
+    species = species.filter(added__gte=context["week_start"], added__lt=context["week_end"]).order_by("added")
+
+    observations = []
+
+    filters = Q()
+
+    if context["country"]:
+        filters &= Q(country_id=context["country"])
+    elif context["region"]:
+        filters &= Q(region_id=context["region"])
+    elif context["district"]:
+        filters &= Q(district_id=context["district"])
+
+    for item in species:
+        observations.append(
+            Observation.objects.filter(date=item.added, species_id=item.pk)
+            .filter(filters)
+            .select_related(
+                "checklist",
+                "country",
+                "region",
+                "district",
+                "location",
+                "species",
+                "observer",
+            )
+            .first()
+        )
+
+
+    total = (
+        Observation.objects
+        .filter(filters)
+        .filter(species__category="species")
+        .filter(date__lt=context["week_end"], date__year=context["year"])
+        .distinct()
+        .values('species_id')
+        .count()
+    )
+
+    return {
+        "title": _("Year List"),
+        "year": str(context["year"]),
+        "observations": observations,
+        "total": total,
+        "multiple_countries": context["multiple_countries"],
+    }

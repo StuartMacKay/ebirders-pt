@@ -2,6 +2,7 @@ import datetime as dt
 import re
 
 from dateutil.relativedelta import relativedelta, MO
+from django.db.models import Q
 from django.http import JsonResponse
 from django.utils import timezone
 from django.utils.dateformat import format
@@ -9,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views import generic
 from ebird.codes.locations import is_country_code, is_state_code, is_county_code
 
-from checklists.models import Checklist, Country, District, Region
+from checklists.models import Country, District, Region
 
 
 class IndexView(generic.TemplateView):
@@ -46,19 +47,25 @@ class IndexView(generic.TemplateView):
         last_week = week_start - relativedelta(days=1)
         next_week = week_start + relativedelta(days=7)
 
+        filters = Q()
         country = region = district = None
 
         if is_country_code(code):
             country = Country.objects.get(code=code).pk
+            filters &= Q(country_id=country)
         elif is_state_code(code):
             region = Region.objects.get(code=code).pk
+            filters &= Q(region_id=region)
         elif is_county_code(code):
             district = District.objects.get(code=code).pk
+            filters &= Q(district_id=district)
 
         if Country.objects.all().count() == 1:
             autocomplete_placeholder = _("Enter Region or County")
+            multiple_countries = False
         else:
             autocomplete_placeholder = _("Enter Country, Region or County")
+            multiple_countries = True
 
         context["country"] = country
         context["region"] = region
@@ -67,11 +74,13 @@ class IndexView(generic.TemplateView):
         context["week_start"] = week_start
         context["week_end"] = week_end + relativedelta(days=1)
         context["this_week"] = week_start.strftime("%Y-%W")
+        context["start_year"] = week_start.year
+        context["end_year"] = week_end.year
         context["last_week"] = last_week.strftime("%Y-%W")
         context["next_week"] = next_week.strftime("%Y-%W")
         context["subtitle"] = subtitle
         context["autocomplete_placeholder"] = autocomplete_placeholder
-        context["multiple_countries"] = Country.objects.all().count()
+        context["multiple_countries"] = multiple_countries
 
         return context
 
