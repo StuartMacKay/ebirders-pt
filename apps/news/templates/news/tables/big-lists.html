@@ -2,16 +2,15 @@
 <h2 class="mb-3">{{ title }}</h2>
 {% for checklist in checklists %}
   <div class="row mb-2">
-    <div class="col-lg-2 col-xl-1">
+    <div class="col-lg-2 col-xl-2">
       <a class="dark-link"
          href="{% url 'checklists:detail' checklist.identifier %}"
          title="{% trans 'View this checklist' %}">
         <span>{{ checklist.identifier }}</span>
       </a>
     </div>
-    <div class="col-lg-2 col-xl-3">
-      <span class="text-nowrap">{{ checklist.date }}, </span>
-      <span class="text-nowrap">{{ checklist.time }}</span>
+    <div class="col-lg-2 col-xl-2">
+      <span class="text-nowrap">{{ checklist.date }}</span>
     </div>
     <div class="col-lg-5 col-xl-5">
       <span>{{ checklist.location.name }}</span>
