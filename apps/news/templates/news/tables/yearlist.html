@@ -1,21 +1,20 @@
 {% load i18n species_tags %}
 {%  get_current_language as language_code %}
-<h2>{{ title }} {{ year }}</h2>
+<h2 class="mb-3">{{ title }} {{ year }}</h2>
 {% for observation in observations %}
-  <div class="row py-2 mx-0 overlay-hover position-relative">
-    <div class="col-md-3">
-      <a class="text-decoration-none link-dark stretched-link"
-         href="{% url 'checklists:detail' observation.checklist.identifier %}"
-         title="{% trans 'View the checklist' %}">
+  <div class="row mb-3">
+    <div class="col-lg-3 col-xl-3">
+      <div>
         {% get_common_name observation.species language_code %} ({% if observation.count %}{{ observation.count }}{% else %}X{% endif %})
-      </a><br>
-      <small class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
+      </div>
+      <div>
+        <small class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
+      </div>
     </div>
-    <div class="col-md-2">
-      <span class="text-nowrap">{{ observation.checklist.date }}, </span>
-      <span class="text-nowrap">{{ observation.checklist.time }}</span>
+    <div class="col-lg-2 col-xl-2">
+      <span class="text-nowrap">{{ observation.checklist.date }}</span>
     </div>
-    <div class="col-md-5">
+    <div class="col-lg-3 col-xl-4">
       <div>{{ observation.location.name }}</div>
       <div>{% spaceless %}
         <small class="text-muted">{{ observation.district }}</small>
@@ -25,8 +24,15 @@
         {% endif %}
       {% endspaceless %}</div>
     </div>
-    <div class="col-md-2">
+    <div class="col-lg-2 col-xl-2">
       <span>{{ observation.observer }}</span>
+    </div>
+    <div class="col-lg-2 col-xl-1">
+      <a class="dark-link"
+         href="{% url 'checklists:detail' observation.checklist.identifier %}"
+         title="{% trans 'View the checklist' %}">
+        <span>{{ observation.checklist.identifier }}</span>
+      </a>
     </div>
   </div>
 {% empty %}
@@ -37,5 +43,5 @@
   </div>
 {% endfor %}
 <div class="my-2">
-  <span class="h3">{% trans 'No. of Species' %}: {{ total }}</span>
+  <span class="h4">{% trans 'No. of Species' %}: {{ total }}</span>
 </div>
