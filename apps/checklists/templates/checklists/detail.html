@@ -48,7 +48,11 @@
 
       {% if checklist.observer_count %}
         <div class="me-3">
-          <i class="bi bi-binoculars-fill me-1"
+          <i {% if checklist.observer_count == 1 %}
+               class="bi bi-person-fill me-1"
+             {% else %}
+               class="bi bi-people-fill me-1"
+             {% endif %}
              title="{% trans 'Number of Observers' %}"></i>
           <span>{{ checklist.observer_count }}</span>
         </div>
