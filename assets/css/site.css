@@ -64,15 +64,6 @@ a.dark-link {
   }
 }
 
-.species-count {
-  display: inline-block;
-  width: 2rem;
-  height: 2rem;
-  text-align: center;
-  line-height: 2rem;
-  border-radius: 50% !important;
-}
-
 div.show-if-wide {
   display: block;
 }
