@@ -1,18 +1,18 @@
 {% load i18n %}
 {% for checklist in checklists %}
   <div class="row mb-3">
-    <div class="col-lg-2 col-xl-1 pt-1">
+    <div class="col-lg-2 col-xl-1">
       <a class="dark-link"
          href="{% url 'checklists:detail' checklist.identifier %}"
          title="{% trans 'View this checklist' %}">
         <span>{{ checklist.identifier }}</span>
       </a>
     </div>
-    <div class="col-lg-2 col-xl-2 pt-1">
+    <div class="col-lg-2 col-xl-2">
       <span class="text-nowrap">{{ checklist.date }}, </span>
       <span class="text-nowrap">{{ checklist.time }}</span>
     </div>
-    <div class="col-lg-5 col-xl-6 pt-1">
+    <div class="col-lg-5 col-xl-6">
       <a class="dark-link"
          href="{% querystring page=1 country=checklist.country.code state=checklist.region.code county=checklist.district.code location=checklist.location.identifier %}"
          title="{% trans 'Show checklists for this location' %}">{{ checklist.location.name }}</a>
@@ -43,7 +43,7 @@
         {% endif %}
       {% endspaceless %}
     </div>
-    <div class="col-lg-2 col-xl-2 pt-1 mb-1">
+    <div class="col-lg-2 col-xl-2">
       <a class="dark-link"
          href="{% querystring page=1 observer=checklist.observer.name %}"
          title="{% trans 'Show checklists for this observer' %}">{{ checklist.observer }}</a>
