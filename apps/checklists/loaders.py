@@ -209,6 +209,7 @@ class APILoader:
             "district": None,
             "region": self.add_region(data),
             "country": self.add_country(data),
+            "hotspot": data["isHotspot"],
             "iba_code": "",
             "bcr_code": "",
             "usfws_code": "",
