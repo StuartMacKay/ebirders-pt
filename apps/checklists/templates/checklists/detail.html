@@ -46,6 +46,14 @@
 
     <div class="d-flex flex-row mb-3">
 
+      {% if checklist.duration %}
+        <div class="me-3">
+          <i class="bi bi-binoculars-fill me-1"
+             title="{% trans 'Number of species' %}"></i>
+          <span>{{ checklist.species_count }}</span>
+        </div>
+      {% endif %}
+
       {% if checklist.observer_count %}
         <div class="me-3">
           <i {% if checklist.observer_count == 1 %}
