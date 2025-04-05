@@ -38,9 +38,11 @@ class APILoader:
             Your can request a key at https://ebird.org/data/download.
             You will need an eBird account to do so.
 
-        locale: The language to load for Species common names.
-            The default is English.. ebird.api.get_taxonomy_locales returns
-            the complete list of languages supported by eBird.
+        language: The (default) language code used for the site. This is
+                  Django's LANGUAGE_CODE setting.
+
+        locales: The table mapping Django language code to eBird locales.
+                 This is Django's EBIRD_LOCALES setting.
 
     The eBird API limits the number of records returned to 200. When downloading
     the visits for a given region if 200 hundred records are returned then it is
@@ -54,9 +56,11 @@ class APILoader:
 
     """
 
-    def __init__(self, api_key: str, locale: str):
+    def __init__(self, api_key: str, language: str, locales: dict):
         self.api_key: str = api_key
-        self.locale: str = locale
+        self.locales: dict = locales.copy()
+        self.language: str = language
+        self.locale: str = self.locales.pop(language)
 
     @staticmethod
     def is_checklist(identifier: str) -> bool:
@@ -299,6 +303,7 @@ class APILoader:
             "subspecies_common_name": "",
             "subspecies_scientific_name": "",
             "exotic_code": "",
+            "data": {"common_name": {}},
         }
 
         if species := Species.objects.filter(species_code=code).first():
@@ -333,7 +338,7 @@ class APILoader:
         code: str = data["speciesCode"]
         species: Species
         if (species := Species.objects.filter(species_code=code).first()) is None:
-            species = self.load_species(code, self.locale)
+            species = self.load_species(code)
         return species
 
     def fetch_checklist(self, identifier: str) -> dict:
@@ -341,6 +346,12 @@ class APILoader:
         return data
 
     def fetch_species(self, code: str, locale: str) -> dict:
+        logger.info(
+            "Fetching species: %s, %s",
+            code,
+            locale,
+            extra={"code": code, "locale": locale},
+        )
         return get_taxonomy(self.api_key, locale=locale, species=code)[0]
 
     def fetch_subregions(self, region: str) -> List[str]:
@@ -395,23 +406,27 @@ class APILoader:
     def fetch_location(self, identifier: str) -> dict:
         return get_location(self.api_key, identifier)
 
-    def load_species(self, code: str, locale: str) -> Species:
+    def load_species(self, code: str) -> Species:
         """
         Load the species with the eBird code.
 
         Arguments:
             code: the eBird code for the species, e.g. 'horlar' (Horned Lark).
-            locale: the locale (language) to load.
 
         """
-        logger.info(
-            "Loading species: %s, %s",
-            code,
-            locale,
-            extra={"code": code, "locale": locale},
-        )
-        data: dict = self.fetch_species(code, locale)
-        return self.add_species(data)
+
+        logger.info("Loading species: %s", code, extra={"code": code})
+        
+        data: dict = self.fetch_species(code, self.locale)
+        species = self.add_species(data)
+
+        for language, locale in self.locales.items():
+            data = self.fetch_species(code, locale)
+            species.data["common_name"][language] = data["comName"]
+
+        species.save()
+
+        return species
 
     def load_location(self, identifier: str) -> Location:
         """

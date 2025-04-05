@@ -400,11 +400,18 @@ SHELL_PLUS = "ipython"
 # #########
 
 EBIRD_API_KEY = env.str("EBIRD_API_KEY")
-EBIRD_LOCALE = env.str("EBIRD_LOCALE")
 
-# Table mapping languages codes used by Django to language codes
-# used by eBird when getting taxonomy information from the API.
-EBIRD_LANGUAGES = {
+# Table mapping languages codes used by Django to locales used by eBird.
+# This is used when getting taxonomy information from the API. The
+# LANGUAGE_CODE setting is used to select the eBird locale when setting
+# the Species common_name. The other remaining entries are used to set a
+# table of  common names in the Species data field, using the Django code
+# as a key. The get_common_name template tag (in the Species app) is used
+# to look up the common name for the currently active language in Django,
+# falling back to use the Species.common_name field if the language is
+# not found in the JSON data.
+
+EBIRD_LOCALES = {
     "en": "en_UK",
     "pt": "pt_PT",
 }
