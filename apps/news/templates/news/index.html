@@ -9,8 +9,11 @@
 {% block title %}{% trans 'News' %}{% endblock %}
 
 {% block content %}
-  <div class="border-bottom mb-3">
+  <div class="d-flex flex-row align-items-baseline border-bottom mb-3">
     <h1>{% trans 'News' %}</h1>
+    <div class="ms-auto">
+      <small class="text-muted">{% trans 'Updated every hour' %}</small>
+    </div>
   </div>
   <div>
     <div class="d-flex align-items-center border-bottom pb-3 mb-4">
