@@ -1,6 +1,8 @@
 import datetime as dt
 import logging
 import re
+import socket
+
 from decimal import Decimal
 from typing import List, Optional, Tuple
 from urllib.error import HTTPError, URLError
@@ -44,6 +46,9 @@ class APILoader:
         locales: The table mapping Django language code to eBird locales.
                  This is Django's EBIRD_LOCALES setting.
 
+        timeout: The timeout, in seconds, to use when connecting to the
+                 eBird servers.
+
     The eBird API limits the number of records returned to 200. When downloading
     the visits for a given region if 200 hundred records are returned then it is
     assumed there are more and the loader will fetch the sub-regions and download
@@ -54,13 +59,20 @@ class APILoader:
     AT HOME. Even if you don't get banned, if you melt the eBird servers, then
     karma will ensure bad things happen to you.
 
+    Just occasionally, when fetching data from the eBird API, the connection will
+    freeze and the APILoader will sit there doing nothing. The timeout will force
+    the connection to be dropped, so you can try again. The APILoader does not
+    retry making the connection. Connection freezes are sufficiently rare that
+    it's not worth adding code to handle this, for now.
+
     """
 
-    def __init__(self, api_key: str, language: str, locales: dict):
+    def __init__(self, api_key: str, language: str, locales: dict, timeout: int = 30):
         self.api_key: str = api_key
         self.locales: dict = locales.copy()
         self.language: str = language
         self.locale: str = self.locales.pop(language)
+        socket.setdefaulttimeout(timeout)
 
     @staticmethod
     def is_checklist(identifier: str) -> bool:
@@ -416,7 +428,7 @@ class APILoader:
         """
 
         logger.info("Loading species: %s", code, extra={"code": code})
-        
+
         data: dict = self.fetch_species(code, self.locale)
         species = self.add_species(data)
 
