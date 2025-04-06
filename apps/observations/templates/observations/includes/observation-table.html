@@ -28,7 +28,11 @@
       </div>
     </div>
     <div class="col-md-2">
-      <span class="text-nowrap">{{ observation.checklist.date }}, </span>
+      {% if language_code == 'pt' %}
+        <span class="text-nowrap">{{ observation.date|date:"j b Y" }}, </span>
+      {% else %}
+        <span class="text-nowrap">{{ observation.date|date:"jS M Y" }}, </span>
+      {% endif %}
       <span class="text-nowrap">{{ observation.checklist.time }}</span>
     </div>
     <div class="col-md-4">

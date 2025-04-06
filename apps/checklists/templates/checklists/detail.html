@@ -1,5 +1,6 @@
 {% extends "page.html" %}
 {% load i18n static %}
+{%  get_current_language as language_code %}
 
 {% block language_selector %}
   <li><a class="dropdown-item disabled"
@@ -24,7 +25,11 @@
     </nav>
 
     <div class="fs-4 text-muted">
-      {{ checklist.date|date:"l, jS M Y" }}, {{ checklist.time }}
+      {% if language_code == 'pt' %}
+        <span>{{ checklist.date|date:"l, j F Y"|lower }}, {{ checklist.time }}</span>
+      {% else %}
+        <span>{{ checklist.date|date:"l, jS F Y" }}, {{ checklist.time }}</span>
+      {% endif %}
     </div>
 
     <div class="fs-5">

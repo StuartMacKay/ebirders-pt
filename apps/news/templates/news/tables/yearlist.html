@@ -12,7 +12,13 @@
       </div>
     </div>
     <div class="col-lg-2 col-xl-2">
-      <span class="text-nowrap">{{ observation.checklist.date }}</span>
+      <span class="text-nowrap">
+        {% if language_code == 'pt' %}
+          {{ observation.date|date:"j b Y" }}
+        {% else %}
+          {{ observation.date|date:"jS M Y" }}
+        {% endif %}
+      </span>
     </div>
     <div class="col-lg-3 col-xl-4">
       <div>{{ observation.location.name }}</div>

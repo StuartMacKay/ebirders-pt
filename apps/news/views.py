@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.http import JsonResponse
 from django.utils import timezone
 from django.utils.dateformat import format
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_lazy as _, get_language
 from django.views import generic
 from ebird.codes.locations import is_country_code, is_state_code, is_county_code
 
@@ -43,6 +43,9 @@ class IndexView(generic.TemplateView):
                     format(week_start, "d M Y"),
                     format(week_end, "d M Y"),
                 )
+
+        if get_language() == 'pt':
+            subtitle = subtitle.lower()
 
         last_week = week_start - relativedelta(days=1)
         next_week = week_start + relativedelta(days=7)

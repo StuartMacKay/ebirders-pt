@@ -1,4 +1,5 @@
 {% load i18n %}
+{%  get_current_language as language_code %}
 {% for checklist in checklists %}
   <div class="row mb-3">
     <div class="col-lg-2 col-xl-1">
@@ -9,7 +10,11 @@
       </a>
     </div>
     <div class="col-lg-2 col-xl-2">
-      <span class="text-nowrap">{{ checklist.date }}, </span>
+      {% if language_code == 'pt' %}
+        <span class="text-nowrap">{{ checklist.date|date:"j b Y" }}, </span>
+      {% else %}
+        <span class="text-nowrap">{{ checklist.date|date:"jS M Y" }}, </span>
+      {% endif %}
       <span class="text-nowrap">{{ checklist.time }}</span>
     </div>
     <div class="col-lg-5 col-xl-6">
