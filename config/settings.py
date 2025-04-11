@@ -415,3 +415,10 @@ EBIRD_LOCALES = {
     "en": "en_UK",
     "pt": "pt_PT",
 }
+
+EBIRD_LEVELS = {
+    "PT": {
+        "subnational1": "district",
+        "subnational2": "county",
+    }
+}

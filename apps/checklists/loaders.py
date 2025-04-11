@@ -2,11 +2,11 @@ import datetime as dt
 import logging
 import re
 import socket
-
 from decimal import Decimal
 from typing import List, Optional, Tuple
 from urllib.error import HTTPError, URLError
 
+from django.conf import settings
 from django.utils.timezone import get_default_timezone
 from ebird.api import get_checklist, get_location, get_regions, get_visits, get_taxonomy
 from ebird.api.constants import API_MAX_RESULTS
@@ -14,12 +14,14 @@ from ebird.api.constants import API_MAX_RESULTS
 from .models import (
     Checklist,
     Country,
+    County,
+    District,
     Location,
     Observation,
     Observer,
     Region,
     Species,
-    District,
+    State,
 )
 
 logger = logging.getLogger(__name__)
@@ -91,7 +93,9 @@ class APILoader:
             "edited": edited,
             "country": location.country,
             "region": location.region,
+            "state": location.state,
             "district": location.district,
+            "county": location.county,
             "area": location.area,
             "location": location,
             "observer": self.get_observer(data),
@@ -176,13 +180,27 @@ class APILoader:
         return country
 
     @staticmethod
-    def add_region(data: dict) -> Region:
-        code: str = data["subnational1Code"]
+    def get_place(key: str, data: dict) -> str:
+        if key == "subnational1":
+            return "%s, %s" % (data["subnational1Name"], data["countryName"])
+        elif key == "subnational2":
+            return (
+                "%s, %s, %s"
+                % (
+                    data["subnational2Name"],
+                    data["subnational1Name"],
+                    data["countryName"],
+                )
+            )
+        return ""
+
+    def add_region(self, data: dict, level: str) -> Region:
+        code: str = data["%sCode" % level]
         region: Region
 
         values: dict = {
-            "name": data["subnational1Name"],
-            "place": "%s, %s" % (data["subnational1Name"], data["countryName"]),
+            "name": data["%sName" % level],
+            "place": self.get_place(level, data),
         }
 
         if region := Region.objects.filter(code=code).first():
@@ -194,15 +212,31 @@ class APILoader:
 
         return region
 
-    @staticmethod
-    def add_district(data: dict) -> District:
-        code: str = data["subnational2Code"]
+    def add_state(self, data: dict, level: str) -> State:
+        code: str = data["%sCode" % level]
+        state: State
+
+        values: dict = {
+            "name": data["%sName" % level],
+            "place": self.get_place(level, data),
+        }
+
+        if state := State.objects.filter(code=code).first():
+            for key, value in values.items():
+                setattr(state, key, value)
+            state.save()
+        else:
+            state = State.objects.create(code=code, **values)
+
+        return state
+
+    def add_district(self, data: dict, level: str) -> District:
+        code: str = data["%sCode" % level]
         district: District
 
         values: dict = {
-            "name": data["subnational2Name"],
-            "place": "%s, %s, %s"
-            % (data["subnational2Name"], data["subnational1Name"], data["countryName"]),
+            "name": data["%sName" % level],
+            "place": self.get_place(level, data),
         }
 
         if district := District.objects.filter(code=code).first():
@@ -214,6 +248,24 @@ class APILoader:
 
         return district
 
+    def add_county(self, data: dict, level) -> County:
+        code: str = data["%sCode" % level]
+        county: County
+
+        values: dict = {
+            "name": data["%sName" % level],
+            "place": self.get_place(level, data),
+        }
+
+        if county := County.objects.filter(code=code).first():
+            for key, value in values.items():
+                setattr(county, key, value)
+            county.save()
+        else:
+            county = County.objects.create(code=code, **values)
+
+        return county
+
     def add_location(self, data: dict) -> Location:
         identifier: str = data["locId"]
         location: Location
@@ -222,8 +274,11 @@ class APILoader:
             "identifier": identifier,
             "type": "",
             "name": data["name"],
+            "county": None,
+            "area": None,
             "district": None,
-            "region": self.add_region(data),
+            "state": None,
+            "region": None,
             "country": self.add_country(data),
             "hotspot": data["isHotspot"],
             "iba_code": "",
@@ -235,8 +290,18 @@ class APILoader:
             "url": "https://ebird.org/region/%s" % identifier,
         }
 
-        if "subnational2Code" in data:
-            values["district"] = self.add_district(data)
+        mappings = settings.EBIRD_LEVELS[data["countryCode"]]
+
+        for level, mapping in mappings.items():
+            if "%sCode" % level in data:
+                if mapping == "county":
+                    values["county"] = self.add_county(data, level)
+                elif mapping == "district":
+                    values["district"] = self.add_district(data, level)
+                elif mapping == "region":
+                    values["region"] = self.add_region(data, level)
+                elif mapping == "state":
+                    values["state"] = self.add_state(data, level)
 
         if location := Location.objects.filter(identifier=identifier).first():
             for key, value in values.items():
@@ -258,7 +323,9 @@ class APILoader:
             "checklist": checklist,
             "country": checklist.country,
             "region": checklist.region,
+            "state": checklist.state,
             "district": checklist.district,
+            "county": checklist.county,
             "area": checklist.area,
             "location": checklist.location,
             "observer": checklist.observer,
