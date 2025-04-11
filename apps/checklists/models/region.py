@@ -10,7 +10,7 @@ class Region(models.Model):
         verbose_name_plural = _("regions")
 
     code = models.CharField(
-        max_length=6,
+        max_length=10,
         db_index=True,
         verbose_name=_("code"),
         help_text=_("The code used to identify the region."),
