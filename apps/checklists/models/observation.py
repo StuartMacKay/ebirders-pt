@@ -124,6 +124,13 @@ class Observation(models.Model):
         help_text=_("The date the observation was made."),
     )
 
+    time = models.TimeField(
+        blank=True,
+        null=True,
+        verbose_name=_("time"),
+        help_text=_("The time the observation was made."),
+    )
+
     count = models.IntegerField(
         blank=True,
         null=True,

@@ -332,6 +332,7 @@ class APILoader:
             "species": species,
             "identified": species.is_identified(),
             "date": checklist.date,
+            "time": checklist.time,
             "count": None,
             "breeding_code": "",
             "breeding_category": "",
