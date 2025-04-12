@@ -19,33 +19,55 @@
     </div>
     <div class="col-lg-5 col-xl-6">
       <a class="dark-link"
-         href="{% querystring page=1 country=checklist.country.code state=checklist.region.code county=checklist.district.code location=checklist.location.identifier %}"
+         href="{% querystring location=checklist.location.identifier page=1 %}"
          title="{% trans 'Show checklists for this location' %}">{{ checklist.location.name }}</a>
+      <br/>
       {% spaceless %}
-        {% if "county" not in filter.data %}
-          <br/>
+        {% if checklist.area %}
           <small class="text-muted">
             <a class="dark-link"
-               href="{% querystring page=1 country=checklist.country.code state=checklist.region.code county=checklist.district.code %}"
-               title="{% trans 'Show checklists for this county' %}">{{ checklist.district }}</a>
+               href="{% querystring area=checklist.area.code location=None page=1 %}"
+               title="{% trans 'Show checklists for this area' %}">{{ checklist.area.name }}</a>
           </small>
         {% endif %}
-        {% if "state" not in filter.data %}
+        {% if checklist.county %}
           <small class="text-muted">
-            <span>, </span>
+            {% if checklist.area %}<span>, </span>{% endif %}
             <a class="dark-link"
-               href="{% querystring page=1 country=checklist.country.code state=checklist.region.code %}"
-               title="{% trans 'Show checklists for this state' %}">{{ checklist.region }}</a>
+               href="{% querystring county=checklist.county.code area=None location=None page=1 %}"
+               title="{% trans 'Show checklists for this county' %}">{{ checklist.county.name }}</a>
           </small>
         {% endif %}
-        {% if "country" not in filter.data %}
+        {% if checklist.district %}
           <small class="text-muted">
-            <span>, </span>
+            {% if checklist.area or checklist.county %}<span>, </span>{% endif %}
             <a class="dark-link"
-               href="{% querystring page=1 country=checklist.country.code %}"
-               title="{% trans 'Show checklists for this country' %}">{{ checklist.country }}</a>
+               href="{% querystring district=checklist.district.code county=None area=None location=None page=1 %}"
+               title="{% trans 'Show checklists for this district' %}">{{ checklist.district.name }}</a>
           </small>
         {% endif %}
+        {% if checklist.state %}
+          <small class="text-muted">
+            {% if checklist.area or checklist.county or checklist.district %}<span>, </span>{% endif %}
+            <a class="dark-link"
+               href="{% querystring state=checklist.state.code district=None county=None area=None location=None page=1 %}"
+               title="{% trans 'Show checklists for this state' %}">{{ checklist.state.name }}</a>
+          </small>
+        {% endif %}
+        {% if checklist.region %}
+          <small class="text-muted">
+            {% if checklist.area or checklist.county or checklist.district or checklist.state %}<span>, </span>{% endif %}
+            <a class="dark-link"
+               href="{% querystring region=checklist.region.code state=None district=None county=None area=None location=None page=1 %}"
+               title="{% trans 'Show checklists for this region' %}">{{ checklist.region.name }}</a>
+          </small>
+        {% endif %}
+        <small class="text-muted">
+          <span>, </span>
+          <a class="dark-link"
+             href="{% querystring country=checklist.country.code region=None state=None district=None county=None area=None location=None page=1 %}"
+             title="{% trans 'Show checklists for this country' %}">{{ checklist.country }}</a>
+        </small>
       {% endspaceless %}
     </div>
     <div class="col-lg-2 col-xl-2">
