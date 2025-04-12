@@ -6,7 +6,7 @@ from checklists.models import Checklist
 from .filters import ChecklistFilter
 from .queries import (
     country_choices,
-    state_choices,
+    district_choices,
     county_choices,
     location_choices,
     observer_choices,
@@ -33,25 +33,25 @@ class CountryAutocomplete(autocomplete.Select2ListView):
         return country_choices()
 
 
-class StateAutocomplete(autocomplete.Select2ListView):
+class DistrictAutocomplete(autocomplete.Select2ListView):
     def get_list(self):
         country = self.forwarded.get("country")
-        return state_choices(country)
+        return district_choices(country)
 
 
 class CountyAutocomplete(autocomplete.Select2ListView):
     def get_list(self):
         country = self.forwarded.get("country")
-        state = self.forwarded.get("state")
-        return county_choices(country, state)
+        district = self.forwarded.get("district")
+        return county_choices(country, district)
 
 
 class LocationAutocomplete(autocomplete.Select2ListView):
     def get_list(self):
         country = self.forwarded.get("country")
-        state = self.forwarded.get("state")
+        district = self.forwarded.get("district")
         county = self.forwarded.get("county")
-        return location_choices(country, state, county)
+        return location_choices(country, district, county)
 
 
 class ObserverAutocomplete(autocomplete.Select2ListView):
@@ -69,8 +69,17 @@ class ChecklistsView(FilterView):
     def get_queryset(self):
         return self.filterset_class(
             self.request.GET,
-            queryset=super().get_queryset().select_related(
-                "country", "region", "district", "location", "observer"),
+            queryset=super()
+            .get_queryset()
+            .select_related(
+                "country",
+                "region",
+                "district",
+                "county",
+                "area",
+                "location",
+                "observer",
+            ),
         ).qs
 
 

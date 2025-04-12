@@ -5,7 +5,7 @@ from checklists.models import Checklist
 
 from .queries import (
     country_choice,
-    state_choice,
+    district_choice,
     county_choice,
     location_choice,
     observer_choice,
@@ -21,21 +21,21 @@ class ChecklistFilter(django_filters.FilterSet):
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
-    state = django_filters.CharFilter(
-        label=_("State"),
-        field_name="location__region__code",
+    district = django_filters.CharFilter(
+        label=_("District"),
+        field_name="location__district__code",
         widget=autocomplete.Select2(
-            url="checklists:states",
+            url="checklists:districts",
             forward=["country"],
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
     county = django_filters.CharFilter(
         label=_("County"),
-        field_name="location__district__code",
+        field_name="location__county__code",
         widget=autocomplete.Select2(
             url="checklists:counties",
-            forward=["country", "state"],
+            forward=["country", "district"],
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
@@ -44,7 +44,7 @@ class ChecklistFilter(django_filters.FilterSet):
         field_name="location__identifier",
         widget=autocomplete.Select2(
             url="checklists:locations",
-            forward=["country", "state", "county"],
+            forward=["country", "district", "county"],
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
@@ -69,8 +69,8 @@ class ChecklistFilter(django_filters.FilterSet):
                 country_choice(country)
             ]
 
-        if state := self.data.get("state"):
-            self.declared_filters["state"].field.widget.choices = [state_choice(state)]
+        if state := self.data.get("district"):
+            self.declared_filters["district"].field.widget.choices = [district_choice(state)]
 
         if county := self.data.get("county"):
             self.declared_filters["county"].field.widget.choices = [
