@@ -4,29 +4,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-SPECIES_CATEGORY = {
-    "species": _("Species"),
-    "sub-species": _("Sub-species"),
-    "hybrid": _("Hybrid"),
-    "intergrade": _("Intergrade"),
-    "spuh": _("Genus"),
-    "slash": _("Species group"),
-    "domestic": _("Domestic"),
-    "form": _("Form"),
-}
-
-EXOTIC_CODE = {
-    "": "",  # NATIVE
-    "N": _("Naturalized"),
-    "P": _("Provisional"),
-    "X": _("Escapee"),
-}
-
-
-class SpeciesQuerySet(models.QuerySet):
-    pass
-
-
 class Species(models.Model):
     class Meta:
         verbose_name = _("species")
@@ -119,8 +96,6 @@ class Species(models.Model):
         default=dict,
         blank=True,
     )
-
-    objects = SpeciesQuerySet.as_manager()  # pyright: ignore [reportCallIssue]
 
     def __str__(self):
         return str(self.subspecies_common_name or self.common_name)

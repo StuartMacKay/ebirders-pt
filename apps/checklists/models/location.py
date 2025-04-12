@@ -1,38 +1,7 @@
 # pyright: reportArgumentType=false
 
-import re
-
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
-LOCATION_TYPE = {
-    "C": _("County"),
-    "H": _("Hotspot"),
-    "P": _("Personal"),
-    "PC": _("Postal/Zip Code"),
-    "S": _("State"),
-    "T": _("Town"),
-}
-
-
-class LocationQuerySet(models.QuerySet):
-    def for_country(self, code: str):
-        if not re.match(r"[A-Z]{2}", code):
-            raise ValueError("Unsupported country code: %s" % code)
-        return self.filter(country__code=code)
-
-    def for_region(self, code: str):
-        if not re.match(r"[A-Z]{2}-[A-Z0-9]{2,3}", code):
-            raise ValueError("Unsupported state code: %s" % code)
-        return self.filter(region__code=code)
-
-    def for_district(self, code: str):
-        if not re.match(r"[A-Z]{2}-[A-Z0-9]{2,3}-[A-Z0-9]{2,3}", code):
-            raise ValueError("Unsupported county code: %s" % code)
-        return self.filter(district__code=code)
-
-    def for_identifier(self, identifier: str):
-        return self.get(identifier=identifier)
 
 
 class Location(models.Model):
@@ -184,8 +153,6 @@ class Location(models.Model):
         default=dict,
         blank=True,
     )
-
-    objects = LocationQuerySet.as_manager()  # pyright: ignore [reportCallIssue]
 
     def __str__(self):
         return str(self.name)

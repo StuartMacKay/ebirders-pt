@@ -1,65 +1,8 @@
 # pyright: reportArgumentType=false
 
-import datetime
-import re
-
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from ebird.codes.locations import (
-    is_country_code,
-    is_state_code,
-    is_county_code,
-    is_location_code,
-)
-
-
-class ObservationQuerySet(models.QuerySet):
-    def for_country(self, code: str):
-        if not is_country_code(code):
-            raise ValueError("Unsupported country code: %s" % code)
-        return self.filter(country__code=code)
-
-    def for_region(self, code: str):
-        if not is_state_code(code):
-            raise ValueError("Unsupported state code: %s" % code)
-        return self.filter(region__code=code)
-
-    def for_district(self, code: str):
-        if not is_county_code(code):
-            raise ValueError("Unsupported county code: %s" % code)
-        return self.filter(district__code=code)
-
-    def for_location(self, identifier: str):
-        if not is_location_code(identifier):
-            raise ValueError("Unsupported location identifier: %s" % identifier)
-        return self.filter(location__identifier=identifier)
-
-    def for_identifier(self, identifier: str):
-        return self.get(identifier=identifier)
-
-    def for_date(self, date: datetime.date):
-        return self.filter(date=date)
-
-    def for_dates(self, start: datetime.date, end: datetime.date):
-        return self.filter(date__gte=start).filter(date__lt=end)
-
-    def for_observer(self, value: str):
-        if re.match(r"obsr\d+", value):
-            return self.filter(observer__identifier=value)
-        else:
-            return self.filter(observer__name__exact=value)
-
-
-class ObservationManager(models.Manager):
-    def in_region_with_dates(self, code, start, end):
-        return (
-            self.get_queryset()
-            .for_region(code)
-            .for_dates(start, end)
-            .select_related("checklist", "location", "observer", "species")
-            .order_by("-checklist__started")
-        )
 
 
 class Observation(models.Model):
@@ -260,8 +203,6 @@ class Observation(models.Model):
         default=dict,
         blank=True,
     )
-
-    objects = ObservationManager.from_queryset(ObservationQuerySet)()
 
     def __str__(self):
         return "%s (%s)" % (self.species.common_name, self.count)  # pyright: ignore [reportAttributeAccessIssue]

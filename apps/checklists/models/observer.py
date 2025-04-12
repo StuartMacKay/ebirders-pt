@@ -4,10 +4,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-class ObserverQuerySet(models.QuerySet):
-    pass
-
-
 class Observer(models.Model):
     class Meta:
         verbose_name = _("observer")
@@ -31,8 +27,6 @@ class Observer(models.Model):
         default=dict,
         blank=True,
     )
-
-    objects = ObserverQuerySet.as_manager()  # pyright: ignore [reportCallIssue]
 
     def __str__(self):
         return str(self.name)
