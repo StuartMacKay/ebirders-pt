@@ -1,5 +1,3 @@
-# pyright: reportArgumentType=false
-
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -212,5 +210,8 @@ class Checklist(models.Model):
         blank=True,
     )
 
-    def __str__(self):
-        return "%s %s, %s" % (self.date, self.time, self.location.display_name)
+    def __repr__(self) -> str:
+        return str(self.identifier)
+
+    def __str__(self) -> str:
+        return str(self.identifier)

@@ -1,5 +1,3 @@
-# pyright: reportArgumentType=false
-
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -97,8 +95,11 @@ class Species(models.Model):
         blank=True,
     )
 
-    def __str__(self):
-        return str(self.subspecies_common_name or self.common_name)
+    def __repr__(self) -> str:
+        return str(self.species_code)
+
+    def __str__(self) -> str:
+        return str(self.common_name)
 
     def is_identified(self) -> bool:
         return self.category in ["species", "sub-species", "domestic"]

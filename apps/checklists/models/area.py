@@ -1,5 +1,3 @@
-# pyright: reportArgumentType=false
-
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -24,5 +22,8 @@ class Area(models.Model):
         verbose_name=_("place"), help_text=_("The hierarchical name of the area.")
     )
 
-    def __str__(self):
+    def __repr__(self) -> str:
+        return str(self.code)
+
+    def __str__(self) -> str:
         return str(self.name)

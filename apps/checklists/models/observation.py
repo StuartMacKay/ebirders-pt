@@ -204,5 +204,8 @@ class Observation(models.Model):
         blank=True,
     )
 
-    def __str__(self):
-        return "%s (%s)" % (self.species.common_name, self.count)  # pyright: ignore [reportAttributeAccessIssue]
+    def __repr__(self) -> str:
+        return str(self.identifier)
+
+    def __str__(self) -> str:
+        return str(self.identifier)

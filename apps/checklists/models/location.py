@@ -1,5 +1,3 @@
-# pyright: reportArgumentType=false
-
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -154,8 +152,11 @@ class Location(models.Model):
         blank=True,
     )
 
-    def __str__(self):
-        return str(self.name)
+    def __repr__(self) -> str:
+        return str(self.identifier)
+
+    def __str__(self) -> str:
+        return self.display_name()
 
     def display_name(self):
-        return self.byname or self.name
+        return str(self.byname or self.name)

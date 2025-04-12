@@ -1,5 +1,3 @@
-# pyright: reportArgumentType=false
-
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -28,5 +26,8 @@ class Observer(models.Model):
         blank=True,
     )
 
-    def __str__(self):
+    def __repr__(self) -> str:
+        return str(self.identifier)
+
+    def __str__(self) -> str:
         return str(self.name)
