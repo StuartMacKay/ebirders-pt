@@ -56,6 +56,13 @@ class Location(models.Model):
         verbose_name=_("name"), help_text=_("The name of the location")
     )
 
+    byname = models.TextField(
+        blank=True,
+        default="",
+        verbose_name=_("byname"),
+        help_text=_("The display name of the location")
+    )
+
     country = models.ForeignKey(
         "checklists.Country",
         related_name="locations",
@@ -182,3 +189,6 @@ class Location(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+    def display_name(self):
+        return self.byname or self.name

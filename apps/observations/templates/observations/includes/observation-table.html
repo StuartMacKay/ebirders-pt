@@ -38,7 +38,7 @@
     <div class="col-md-4">
       <a class="dark-link"
          href="{% querystring page=1 country=observation.country.code state=observation.region.code county=observation.district.code location=observation.location.identifier %}"
-         title="{% trans 'Show observation for this location' %}">{{ observation.location.name }}</a>
+         title="{% trans 'Show observation for this location' %}">{{ observation.location.display_name }}</a>
       <br/>
       {% spaceless %}
         {% if observation.area %}

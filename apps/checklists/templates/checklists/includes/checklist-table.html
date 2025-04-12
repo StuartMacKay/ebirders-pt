@@ -20,7 +20,7 @@
     <div class="col-lg-5 col-xl-6">
       <a class="dark-link"
          href="{% querystring location=checklist.location.identifier page=1 %}"
-         title="{% trans 'Show checklists for this location' %}">{{ checklist.location.name }}</a>
+         title="{% trans 'Show checklists for this location' %}">{{ checklist.location.display_name }}</a>
       <br/>
       {% spaceless %}
         {% if checklist.area %}

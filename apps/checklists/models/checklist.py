@@ -284,4 +284,4 @@ class Checklist(models.Model):
     objects = ChecklistManager.from_queryset(ChecklistQuerySet)()
 
     def __str__(self):
-        return "%s %s, %s" % (self.date, self.time, self.location.name)
+        return "%s %s, %s" % (self.date, self.time, self.location.display_name)
