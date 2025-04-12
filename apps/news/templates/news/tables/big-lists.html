@@ -21,10 +21,23 @@
     </div>
     <div class="col-lg-5 col-xl-5">
       <span>{{ checklist.location.name }}</span>
+      <br/>
       {% spaceless %}
-        <br/>
-        <small class="text-muted">{{ checklist.district }}</small>
-        <small class="text-muted">, {{ checklist.region }}</small>
+        {% if checklist.area %}
+          <small class="text-muted">{{ checklist.area }}</small>
+        {% endif %}
+        {% if checklist.county %}
+          {% if checklist.area %}<span>, </span>{% endif %}
+          <small class="text-muted">{{ checklist.county }}</small>
+        {% endif %}
+        {% if checklist.district %}
+          {% if checklist.area or checklist.county %}<span>, </span>{% endif %}
+          <small class="text-muted">{{ checklist.district }}</small>
+        {% endif %}
+        {% if checklist.region %}
+          {% if checklist.area or checklist.county or checklist.district %}<span>, </span>{% endif %}
+          <small class="text-muted">{{ checklist.region }}</small>
+        {% endif %}
         {% if multiple_countries %}
           <small class="text-muted">, {{ checklist.country }}</small>
         {% endif %}
