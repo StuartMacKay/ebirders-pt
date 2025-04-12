@@ -59,10 +59,10 @@ class IndexView(generic.TemplateView):
             county = County.objects.get(code=code).pk
 
         if Country.objects.all().count() == 1:
-            autocomplete_placeholder = _("Enter Region or County")
+            autocomplete_placeholder = _("Enter District or County")
             multiple_countries = False
         else:
-            autocomplete_placeholder = _("Enter Country, Region or County")
+            autocomplete_placeholder = _("Enter Country, District or County")
             multiple_countries = True
 
         context["country"] = country
