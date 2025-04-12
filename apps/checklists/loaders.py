@@ -272,7 +272,6 @@ class APILoader:
 
         values: dict = {
             "identifier": identifier,
-            "type": "",
             "name": data["name"],
             "county": None,
             "area": None,
@@ -281,10 +280,6 @@ class APILoader:
             "region": None,
             "country": self.add_country(data),
             "hotspot": data["isHotspot"],
-            "iba_code": "",
-            "bcr_code": "",
-            "usfws_code": "",
-            "atlas_block": "",
             "latitude": Decimal(data["latitude"]),
             "longitude": Decimal(data["longitude"]),
             "url": "https://ebird.org/region/%s" % identifier,

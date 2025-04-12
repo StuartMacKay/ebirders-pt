@@ -13,12 +13,6 @@ class Location(models.Model):
         help_text=_("The unique identifier for the location"),
     )
 
-    type = models.TextField(
-        blank=True,
-        verbose_name=_("type"),
-        help_text=_("The location type, e.g. personal, hotspot, town, etc."),
-    )
-
     name = models.TextField(
         verbose_name=_("name"), help_text=_("The name of the location")
     )
@@ -86,30 +80,6 @@ class Location(models.Model):
         on_delete=models.PROTECT,
         verbose_name=_("area"),
         help_text=_("The area for the location."),
-    )
-
-    iba_code = models.TextField(
-        blank=True,
-        verbose_name=_("IBA code"),
-        help_text=_("The code used to identify an Important Bird Area."),
-    )
-
-    bcr_code = models.TextField(
-        blank=True,
-        verbose_name=_("BCR code"),
-        help_text=_("The code used to identify a Bird Conservation Region."),
-    )
-
-    usfws_code = models.TextField(
-        blank=True,
-        verbose_name=_("USFWS code"),
-        help_text=_("The code used to identify a US Fish & Wildlife Service region."),
-    )
-
-    atlas_block = models.TextField(
-        blank=True,
-        verbose_name=_("atlas block"),
-        help_text=_("The code used to identify an area for an atlas."),
     )
 
     latitude = models.DecimalField(
