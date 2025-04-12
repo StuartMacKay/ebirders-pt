@@ -39,31 +39,53 @@
       <a class="dark-link"
          href="{% querystring page=1 country=observation.country.code state=observation.region.code county=observation.district.code location=observation.location.identifier %}"
          title="{% trans 'Show observation for this location' %}">{{ observation.location.name }}</a>
+      <br/>
       {% spaceless %}
-        {% if "county" not in filter.data %}
-          <br/>
+        {% if observation.area %}
           <small class="text-muted">
             <a class="dark-link"
-               href="{% querystring page=1 country=observation.country.code state=observation.region.code county=observation.district.code %}"
-               title="{% trans 'Show observations for this county' %}">{{ observation.district }}</a>
+               href="{% querystring area=observation.area.code location=None page=1 %}"
+               title="{% trans 'Show checklists for this area' %}">{{ observation.area.name }}</a>
           </small>
         {% endif %}
-        {% if "state" not in filter.data %}
+        {% if observation.county %}
           <small class="text-muted">
-            <span>, </span>
+            {% if observation.area %}<span>, </span>{% endif %}
             <a class="dark-link"
-               href="{% querystring page=1 country=observation.country.code state=observation.region.code %}"
-               title="{% trans 'Show observations for this state' %}">{{ observation.region }}</a>
+               href="{% querystring county=observation.county.code area=None location=None page=1 %}"
+               title="{% trans 'Show checklists for this county' %}">{{ observation.county.name }}</a>
           </small>
         {% endif %}
-        {% if "country" not in filter.data %}
+        {% if observation.district %}
           <small class="text-muted">
-            <span>, </span>
+            {% if observation.area or observation.county %}<span>, </span>{% endif %}
             <a class="dark-link"
-               href="{% querystring page=1 country=observation.country.code %}"
-               title="{% trans 'Show observations for this country' %}">{{ observation.country }}</a>
+               href="{% querystring district=observation.district.code county=None area=None location=None page=1 %}"
+               title="{% trans 'Show checklists for this district' %}">{{ observation.district.name }}</a>
           </small>
         {% endif %}
+        {% if observation.state %}
+          <small class="text-muted">
+            {% if observation.area or observation.county or observation.district %}<span>, </span>{% endif %}
+            <a class="dark-link"
+               href="{% querystring state=observation.state.code district=None county=None area=None location=None page=1 %}"
+               title="{% trans 'Show checklists for this state' %}">{{ observation.state.name }}</a>
+          </small>
+        {% endif %}
+        {% if observation.region %}
+          <small class="text-muted">
+            {% if observation.area or observation.county or observation.district or observation.state %}<span>, </span>{% endif %}
+            <a class="dark-link"
+               href="{% querystring region=observation.region.code state=None district=None county=None area=None location=None page=1 %}"
+               title="{% trans 'Show checklists for this region' %}">{{ observation.region.name }}</a>
+          </small>
+        {% endif %}
+        <small class="text-muted">
+          <span>, </span>
+          <a class="dark-link"
+             href="{% querystring country=observation.country.code region=None state=None district=None county=None area=None location=None page=1 %}"
+             title="{% trans 'Show checklists for this country' %}">{{ observation.country }}</a>
+        </small>
       {% endspaceless %}
     </div>
     <div class="col-md-2">
