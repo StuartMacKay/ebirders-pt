@@ -23,8 +23,21 @@
     <div class="col-lg-3 col-xl-4">
       <div>{{ observation.location.name }}</div>
       <div>{% spaceless %}
-        <small class="text-muted">{{ observation.district }}</small>
-        <small class="text-muted">, {{ observation.region }}</small>
+        {% if observation.area %}
+          <small class="text-muted">{{ observation.area }}</small>
+        {% endif %}
+        {% if observation.county %}
+          {% if observation.area %}<span>, </span>{% endif %}
+          <small class="text-muted">{{ observation.county }}</small>
+        {% endif %}
+        {% if observation.district %}
+          {% if observation.area or observation.county %}<span>, </span>{% endif %}
+          <small class="text-muted">{{ observation.district }}</small>
+        {% endif %}
+        {% if observation.region %}
+          {% if observation.area or observation.county or observation.district %}<span>, </span>{% endif %}
+          <small class="text-muted">{{ observation.region }}</small>
+        {% endif %}
         {% if multiple_countries %}
           <small class="text-muted">, {{ observation.country }}</small>
         {% endif %}

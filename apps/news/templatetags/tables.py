@@ -116,10 +116,10 @@ def yearlist_table(context):
 
     if context["country"]:
         filters &= Q(observations__country_id=context["country"])
-    elif context["region"]:
-        filters &= Q(observations__region_id=context["region"])
     elif context["district"]:
         filters &= Q(observations__district_id=context["district"])
+    elif context["county"]:
+        filters &= Q(observations__county_id=context["county"])
 
     species = Species.objects.filter(category="species")
 
@@ -138,10 +138,10 @@ def yearlist_table(context):
 
     if context["country"]:
         filters &= Q(country_id=context["country"])
-    elif context["region"]:
-        filters &= Q(region_id=context["region"])
     elif context["district"]:
         filters &= Q(district_id=context["district"])
+    elif context["county"]:
+        filters &= Q(county_id=context["county"])
 
     for item in species:
         observations.append(
@@ -150,8 +150,8 @@ def yearlist_table(context):
             .select_related(
                 "checklist",
                 "country",
-                "region",
                 "district",
+                "county",
                 "location",
                 "species",
                 "observer",
