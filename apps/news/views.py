@@ -9,7 +9,7 @@ from django.utils.translation import gettext_lazy as _, get_language
 from django.views import generic
 from ebird.codes.locations import is_country_code, is_state_code, is_county_code
 
-from checklists.models import Country, District, Region
+from checklists.models import Country, County, District
 
 
 class IndexView(generic.TemplateView):
@@ -98,14 +98,14 @@ def autocomplete(request):
     else:
         country = None
 
-    for code, place in Region.objects.all().values_list("code", "place"):
+    for code, place in District.objects.all().values_list("code", "place"):
         if country:
             label = re.sub(r", %s$" % country, "", place)
         else:
             label = place
         data.append({"value": code, "label": label})
 
-    for code, place in District.objects.all().values_list("code", "place"):
+    for code, place in County.objects.all().values_list("code", "place"):
         if country:
             label = re.sub(r", %s$" % country, "", place)
         else:
