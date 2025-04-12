@@ -1,4 +1,4 @@
-from checklists.models import Country, District, Location, Observer, Region, Species
+from checklists.models import Country, County, District, Location, Observer, Species
 
 
 def country_choices():
@@ -13,31 +13,14 @@ def country_choice(code):
     )
 
 
-def state_choices(country_code):
-    queryset = Region.objects.all()
+def district_choices(country_code):
+    queryset = District.objects.all()
     if country_code:
         queryset = queryset.filter(code__startswith=country_code)
     return queryset.values_list("code", "name")
 
 
-def state_choice(code):
-    return (
-        Region.objects.filter(code=code)
-        .values_list("code", "name")
-        .first()
-    )
-
-
-def county_choices(country_code, state_code):
-    queryset = District.objects.all()
-    if state_code:
-        queryset = queryset.filter(code__startswith=state_code)
-    elif country_code:
-        queryset = queryset.filter(code__stsartswith=country_code)
-    return queryset.values_list("code", "name")
-
-
-def county_choice(code):
+def district_choice(code):
     return (
         District.objects.filter(code=code)
         .values_list("code", "name")
@@ -45,12 +28,29 @@ def county_choice(code):
     )
 
 
-def location_choices(country_code, state_code, county_code):
+def county_choices(country_code, district_code):
+    queryset = County.objects.all()
+    if district_code:
+        queryset = queryset.filter(code__startswith=district_code)
+    elif country_code:
+        queryset = queryset.filter(code__startswith=country_code)
+    return queryset.values_list("code", "name")
+
+
+def county_choice(code):
+    return (
+        County.objects.filter(code=code)
+        .values_list("code", "name")
+        .first()
+    )
+
+
+def location_choices(country_code, district_code, county_code):
     queryset = Location.objects.all()
     if county_code:
-        queryset = queryset.filter(district__code=county_code)
-    elif state_code:
-        queryset = queryset.filter(region__code=state_code)
+        queryset = queryset.filter(county__code=county_code)
+    elif district_code:
+        queryset = queryset.filter(district__code=district_code)
     elif country_code:
         queryset = queryset.filter(country__code=country_code)
     return queryset.values_list("identifier", "name").distinct("identifier")

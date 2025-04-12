@@ -5,7 +5,7 @@ from checklists.models import Observation
 
 from .queries import (
     country_choice,
-    state_choice,
+    district_choice,
     county_choice,
     location_choice,
     observer_choice,
@@ -18,25 +18,25 @@ class ObservationFilter(django_filters.FilterSet):
         label=_("Country"),
         field_name="location__country__code",
         widget=autocomplete.Select2(
-            url="checklists:countries",
+            url="observations:countries",
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
-    state = django_filters.CharFilter(
-        label=_("State"),
-        field_name="location__region__code",
+    district = django_filters.CharFilter(
+        label=_("District"),
+        field_name="location__district__code",
         widget=autocomplete.Select2(
-            url="checklists:states",
+            url="observations:districts",
             forward=["country"],
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
     county = django_filters.CharFilter(
         label=_("County"),
-        field_name="location__district__code",
+        field_name="location__county__code",
         widget=autocomplete.Select2(
-            url="checklists:counties",
-            forward=["country", "state"],
+            url="observations:counties",
+            forward=["country", "district"],
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
@@ -44,8 +44,8 @@ class ObservationFilter(django_filters.FilterSet):
         label=_("Location"),
         field_name="location__identifier",
         widget=autocomplete.Select2(
-            url="checklists:locations",
-            forward=["country", "state", "county"],
+            url="observations:locations",
+            forward=["country", "district", "county"],
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
@@ -53,7 +53,7 @@ class ObservationFilter(django_filters.FilterSet):
         label=_("Observer"),
         field_name="observer__name",
         widget=autocomplete.Select2(
-            url="checklists:observers",
+            url="observations:observers",
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
@@ -78,8 +78,8 @@ class ObservationFilter(django_filters.FilterSet):
                 country_choice(country)
             ]
 
-        if state := self.data.get("state"):
-            self.declared_filters["state"].field.widget.choices = [state_choice(state)]
+        if state := self.data.get("district"):
+            self.declared_filters["district"].field.widget.choices = [district_choice(state)]
 
         if county := self.data.get("county"):
             self.declared_filters["county"].field.widget.choices = [
