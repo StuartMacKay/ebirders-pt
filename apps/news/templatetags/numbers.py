@@ -27,15 +27,15 @@ def species_count(country_id, district_id, county_id, start, end):
 
 
 @register.inclusion_tag("news/numbers/number.html")
-def checklist_count(country_id, region_id, district_id, start, end):
+def checklist_count(country_id, district_id, county_id, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
     if country_id:
         queryset = queryset.filter(country_id=country_id)
-    elif region_id:
-        queryset = queryset.filter(region_id=region_id)
     elif district_id:
         queryset = queryset.filter(district_id=district_id)
+    elif county_id:
+        queryset = queryset.filter(county_id=county_id)
 
     count = queryset.count()
 
