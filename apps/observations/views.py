@@ -1,90 +1,146 @@
-from dal import autocomplete
-from django_filters.views import FilterView
+import re
 
-from checklists.models import Observation
-from .filters import ObservationFilter
-from .queries import (
-    country_choices,
-    district_choices,
-    county_choices,
-    location_choices,
-    observer_choices,
-    species_choices,
+from django.http import JsonResponse
+from django.utils.translation import get_language, gettext_lazy as _
+from django.views import generic
+from ebird.codes.locations import (
+    is_country_code,
+    is_subnational1_code,
+    is_subnational2_code,
+    is_location_code,
 )
 
-
-class Select2TuplesListView(autocomplete.Select2ListView):
-    def autocomplete_results(self, results):
-        filtered_results = []
-        for current_tuple in results:
-            name = current_tuple[1]
-            print(name.lower())
-            if self.q.lower() in name.lower():
-                filtered_results.append(current_tuple)
-
-        return filtered_results
-
-    def results(self, results):
-        return [dict(id=x[0], text=x[1]) for x in results]
+from checklists.models import Observation, Country, District, County, Species, Observer
 
 
-class CountryAutocomplete(autocomplete.Select2ListView):
-    def get_list(self):
-        return country_choices()
-
-
-class DistrictAutocomplete(autocomplete.Select2ListView):
-    def get_list(self):
-        country = self.forwarded.get("country")
-        return district_choices(country)
-
-
-class CountyAutocomplete(autocomplete.Select2ListView):
-    def get_list(self):
-        country = self.forwarded.get("country")
-        district = self.forwarded.get("district")
-        return county_choices(country, district)
-
-
-class LocationAutocomplete(autocomplete.Select2ListView):
-    def get_list(self):
-        country = self.forwarded.get("country")
-        district = self.forwarded.get("district")
-        county = self.forwarded.get("county")
-        return location_choices(country, district, county)
-
-
-class ObserverAutocomplete(autocomplete.Select2ListView):
-    def get_list(self):
-        return observer_choices()
-
-
-class SpeciesAutocomplete(autocomplete.Select2ListView):
-    def get_list(self):
-        return species_choices()
-
-
-class ObservationsView(FilterView):
+class ObservationsView(generic.ListView):
     model = Observation
-    filterset_class = ObservationFilter
     template_name = "observations/index.html"
     paginate_by = 50
     ordering = ("-checklist__started",)
 
+    def get_filters(self):
+        filters = {
+            "country": self.request.GET.get("country"),
+            "district": self.request.GET.get("district"),
+            "county": self.request.GET.get("county"),
+            "location": self.request.GET.get("location"),
+            "observer": self.request.GET.get("observer"),
+            "species": self.request.GET.get("species"),
+        }
+
+        if code := self.request.GET.get("code"):
+            if is_country_code(code):
+                filters["country"] = code
+            elif is_subnational1_code(code):
+                filters["district"] = code
+            elif is_subnational2_code(code):
+                filters["county"] = code
+            elif is_location_code(code):
+                filters["location"] = code
+            elif 4 < len(code) < 8:
+                filters["species"] = code
+            else:
+                filters["observer"] = code
+
+        return filters
+
     def get_queryset(self):
-        return self.filterset_class(
-            self.request.GET,
-            queryset=super()
-            .get_queryset()
-            .select_related(
-                "checklist",
-                "country",
-                "region",
-                "district",
-                "county",
-                "area",
-                "location",
-                "observer",
-                "species",
-            ),
-        ).qs
+        qs = super().get_queryset()
+        filters = self.get_filters()
+
+        if country := filters.get("country"):
+            qs = qs.filter(country__code=country)
+        elif district := filters.get("district"):
+            qs = qs.filter(district__code=district)
+        elif county := filters.get("county"):
+            qs = qs.filter(county__code=county)
+        elif location := filters.get("location"):
+            qs = qs.filter(location__identifier=location)
+        elif species := filters.get("species"):
+            qs = qs.filter(species__species_code=species)
+        elif observer := filters.get("observer"):
+            qs = qs.filter(observer__pk=observer)
+
+        return qs.select_related(
+            "checklist",
+            "country",
+            "region",
+            "district",
+            "county",
+            "area",
+            "location",
+            "observer",
+            "species",
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if Country.objects.all().count() == 1:
+            autocomplete_placeholder = _(
+                "Enter District, County, Species, or Observer"
+            )
+            multiple_countries = False
+        else:
+            autocomplete_placeholder = _(
+                "Enter Country, District, County, Species, or Observer"
+            )
+            multiple_countries = True
+
+        context["filters"] = self.get_filters()
+        context["search"] = self.request.GET.get("search", "")
+        context["autocomplete_placeholder"] = autocomplete_placeholder
+        context["multiple_countries"] = multiple_countries
+
+        return context
+
+
+def autocomplete(request):
+    """
+    Return the list of countries, regions and districts for the search
+    field. If there is only one country, remove it from the label.
+    """
+    language = get_language()
+
+    data = []
+
+    for code, place in Country.objects.all().values_list("code", "place"):
+        data.append({"value": code, "label": place})
+
+    if len(data) == 1:
+        country = data.pop(0)["label"]
+    else:
+        country = None
+
+    for code, place in District.objects.all().values_list("code", "place"):
+        if country:
+            label = re.sub(r", %s$" % country, "", place)
+        else:
+            label = place
+        data.append({"value": code, "label": label})
+
+    for code, place in County.objects.all().values_list("code", "place"):
+        if country:
+            label = re.sub(r", %s$" % country, "", place)
+        else:
+            label = place
+        data.append({"value": code, "label": label})
+
+    for code, common_name, translations in Species.objects.all().values_list(
+        "species_code", "common_name", "data"
+    ):
+        if language in translations["common_name"]:
+            name = translations["common_name"][language]
+        else:
+            name = common_name
+        data.append({"value": code, "label": name})
+
+    for code, name in Species.objects.all().values_list(
+        "species_code", "scientific_name"
+    ):
+        data.append({"value": code, "label": name})
+
+    for code, name in Observer.objects.all().values_list("pk", "name"):
+        data.append({"value": code, "label": name})
+
+    return JsonResponse(data, safe=False)

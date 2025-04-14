@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-14 12:42+0000\n"
+"POT-Creation-Date: 2025-04-14 14:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -813,38 +813,32 @@ msgid "Show checklists for this location"
 msgstr ""
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:30
-#: apps/observations/templates/observations/includes/observation-table.html:48
 #, fuzzy
 #| msgid "Show checklists for this state"
 msgid "Show checklists for this area"
 msgstr "Show checklists for this region"
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:38
-#: apps/observations/templates/observations/includes/observation-table.html:56
 msgid "Show checklists for this county"
 msgstr ""
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:46
-#: apps/observations/templates/observations/includes/observation-table.html:64
 #, fuzzy
 #| msgid "Show checklists for this state"
 msgid "Show checklists for this district"
 msgstr "Show checklists for this region"
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:54
-#: apps/observations/templates/observations/includes/observation-table.html:72
 msgid "Show checklists for this state"
 msgstr "Show checklists for this region"
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:62
-#: apps/observations/templates/observations/includes/observation-table.html:80
 #, fuzzy
 #| msgid "Show checklists for this state"
 msgid "Show checklists for this region"
 msgstr "Show checklists for this region"
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:70
-#: apps/observations/templates/observations/includes/observation-table.html:87
 msgid "Show checklists for this country"
 msgstr ""
 
@@ -855,19 +849,6 @@ msgstr ""
 #: apps/checklists/templates/checklists/includes/checklist-table.html:82
 #: apps/news/templates/news/tables/big-lists.html:51
 msgid "Number of species reported"
-msgstr ""
-
-#: apps/checklists/templates/checklists/includes/filter-form.html:56
-#: apps/checklists/templates/checklists/index.html:30
-#: apps/news/templates/news/index.html:49
-#: apps/observations/templates/observations/includes/filter-form.html:65
-#: apps/observations/templates/observations/index.html:15
-msgid "Search"
-msgstr ""
-
-#: apps/checklists/templates/checklists/includes/filter-form.html:57
-#: apps/observations/templates/observations/includes/filter-form.html:66
-msgid "Clear"
 msgstr ""
 
 #: apps/checklists/templates/checklists/includes/pagination.html:9
@@ -902,17 +883,23 @@ msgid ""
 "        %(total)s"
 msgstr ""
 
+#: apps/checklists/templates/checklists/index.html:30
+#: apps/news/templates/news/index.html:49
+#: apps/observations/templates/observations/index.html:30
+msgid "Search"
+msgstr ""
+
 #: apps/checklists/templates/checklists/index.html:36
 #: apps/news/templates/news/index.html:15
-#: apps/observations/templates/observations/index.html:17
+#: apps/observations/templates/observations/index.html:36
 msgid "Updated every hour"
 msgstr ""
 
-#: apps/checklists/views.py:71
+#: apps/checklists/views.py:70
 msgid "Enter District, County, or Observer"
 msgstr ""
 
-#: apps/checklists/views.py:74
+#: apps/checklists/views.py:73
 msgid "Enter Country, District, County, or Observer"
 msgstr ""
 
@@ -1018,33 +1005,9 @@ msgstr ""
 
 #: apps/observations/apps.py:8
 #: apps/observations/templates/observations/index.html:9
-#: apps/observations/templates/observations/index.html:14
+#: apps/observations/templates/observations/index.html:13
 #: templates/page.html:26
 msgid "Observations"
-msgstr ""
-
-#: apps/observations/filters.py:18
-msgid "Country"
-msgstr ""
-
-#: apps/observations/filters.py:26
-msgid "District"
-msgstr ""
-
-#: apps/observations/filters.py:35
-msgid "County"
-msgstr ""
-
-#: apps/observations/filters.py:44
-msgid "Location"
-msgstr ""
-
-#: apps/observations/filters.py:53
-msgid "Observer"
-msgstr ""
-
-#: apps/observations/filters.py:61 apps/species/apps.py:8
-msgid "Species"
 msgstr ""
 
 #: apps/observations/templates/observations/includes/observation-table.html:12
@@ -1053,11 +1016,59 @@ msgid "Show observations of this species"
 msgstr ""
 
 #: apps/observations/templates/observations/includes/observation-table.html:41
-msgid "Show observation for this location"
+#, fuzzy
+#| msgid "Show observations for this state"
+msgid "Show observations for this location"
+msgstr "Show observations for this region"
+
+#: apps/observations/templates/observations/includes/observation-table.html:48
+#, fuzzy
+#| msgid "Show observations for this state"
+msgid "Show observations for this area"
+msgstr "Show observations for this region"
+
+#: apps/observations/templates/observations/includes/observation-table.html:56
+#, fuzzy
+#| msgid "Show observations for this state"
+msgid "Show observations for this county"
+msgstr "Show observations for this region"
+
+#: apps/observations/templates/observations/includes/observation-table.html:64
+#, fuzzy
+#| msgid "Show observations for this state"
+msgid "Show observations for this district"
+msgstr "Show observations for this region"
+
+#: apps/observations/templates/observations/includes/observation-table.html:72
+msgid "Show observations for this state"
+msgstr "Show observations for this region"
+
+#: apps/observations/templates/observations/includes/observation-table.html:80
+#, fuzzy
+#| msgid "Show observations for this state"
+msgid "Show observations for this region"
+msgstr "Show observations for this region"
+
+#: apps/observations/templates/observations/includes/observation-table.html:88
+#, fuzzy
+#| msgid "Show observations for this state"
+msgid "Show observations for this country"
+msgstr "Show observations for this region"
+
+#: apps/observations/templates/observations/includes/observation-table.html:96
+msgid "Show observations from this observer"
 msgstr ""
 
-#: apps/observations/templates/observations/includes/observation-table.html:94
-msgid "Show observations from this observer"
+#: apps/observations/views.py:81
+msgid "Enter District, County, Species, or Observer"
+msgstr ""
+
+#: apps/observations/views.py:86
+msgid "Enter Country, District, County, Species, or Observer"
+msgstr ""
+
+#: apps/species/apps.py:8
+msgid "Species"
 msgstr ""
 
 #: apps/users/admin.py:18
@@ -1144,9 +1155,6 @@ msgstr ""
 
 #~ msgid "State"
 #~ msgstr "Region"
-
-#~ msgid "Show observations for this state"
-#~ msgstr "Show observations for this region"
 
 #, fuzzy
 #~| msgid "Species (plural)"

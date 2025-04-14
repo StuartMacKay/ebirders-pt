@@ -9,91 +9,63 @@
 {% block title %}{% trans 'Observations' %}{% endblock %}
 
 {% block content %}
-  <div id="page" class="hide">
-    <div class="d-flex flex-row align-items-baseline border-bottom mb-3">
-      <h1 class="d-inline me-4">{% trans 'Observations' %}</h1>
-      <i id="search-button" class="bi-search fs-2" title="{% trans 'Search' %}"></i>
-      <div class="ms-auto">
-        <small class="text-muted">{% trans 'Updated every hour' %}</small>
-      </div>
+  <div class="d-flex flex-row align-items-center border-bottom pb-2 mb-3">
+    <h1 class="d-inline me-4">{% trans 'Observations' %}</h1>
+    <div class="col-6 offset-1">
+      <form method="get" id="autocomplete-form">
+        {% for key, value in filters.items %}
+          {% if value %}
+            <input type="hidden" name="{{ key }}" value="{{ value }}">
+          {% endif %}
+        {% endfor %}
+        <div class="input-group">
+          <input id="autocompleteInput"
+                 type="text"
+                 name="search"
+                 value="{{ search }}"
+                 class="form-control autocomplete"
+                 data-server="{% url 'observations:autocomplete' %}"
+                 placeholder="{{ autocomplete_placeholder }}"/>
+          <button id="search-button" type="button" class="btn btn-primary">
+            <i class="bi-search btn-primary" title="{% trans 'Search' %}"></i>
+          </button>
+        </div>
+      </form>
     </div>
-    <div id="search-panel">
-      {% include "observations/includes/filter-form.html" %}
-      <hr/>
+    <div class="ms-auto">
+      <small class="text-muted">{% trans 'Updated every hour' %}</small>
     </div>
-    <div>
-      {% with observations=page_obj %}
-        {% include "observations/includes/observation-table.html" %}
-      {% endwith %}
-    </div>
-    <div>
-      {% include "observations/includes/pagination.html" %}
-    </div>
+  </div>
+  <div>
+    {% with observations=page_obj %}
+      {% include "observations/includes/observation-table.html" %}
+    {% endwith %}
+  </div>
+  <div>
+    {% include "observations/includes/pagination.html" %}
   </div>
 {% endblock content %}
 
 {% block javascript %}
   {{ block.super }}
-  <script type="text/javascript"
-          src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
-  {{ filter.form.media.js }}
-  <script>
-    $(document).ready(function() {
-      $(':input[name$=country]').on('change', function() {
-          var prefix = $(this).getFormPrefix();
-          $(':input[name=' + prefix + 'district]').val(null).trigger('change');
-      });
-      $(':input[name$=district]').on('change', function() {
-          var prefix = $(this).getFormPrefix();
-          $(':input[name=' + prefix + 'county]').val(null).trigger('change');
-      });
-      $(':input[name$=county]').on('change', function() {
-          var prefix = $(this).getFormPrefix();
-          $(':input[name=' + prefix + 'location]').val(null).trigger('change');
-      });
+  <script type="module">
+    import Autocomplete from "{% static 'js/vendor/autocomplete-1.1.38.min.js' %}";
 
-      $("#search-button").on('click', function (event) {
-            event.preventDefault();
+    (function() {
+       new Autocomplete(document.getElementById("autocompleteInput"), {
+         highlightTyped: true,
+         fixed: true,
+         fullWidth: true,
+         hiddenInput: true,
+       });
 
-            var button = $(this);
-                panel = $("#search-panel");
-
-            if (button.hasClass('active')) {
-                button.removeClass('active');
-                panel.slideUp("slow");
-                if (window.sessionStorage) {
-                  sessionStorage.setItem("observationSearch", "closed");
-                }
-            } else {
-                button.addClass('active');
-                panel.slideDown("slow");
-                if (window.sessionStorage) {
-                  sessionStorage.setItem("observationSearch", "open");
-                }
-            }
-      });
-
-      $("#clear-button").on('click', function() {
-          $(':input[name$=country]').val(null).trigger('change');
-          $(':input[name$=observer]').val(null).trigger('change');
-          $(':input[name$=species]').val(null).trigger('change');
-      });
-
-      if (window.sessionStorage) {
-         var button = $("#search-button");
-             panel = $("#search-panel");
-
-         if (sessionStorage.getItem("observationSearch") == "closed") {
-            button.removeClass('active');
-            panel.addClass("hide");
-         } else {
-            button.addClass('active');
-            panel.removeClass("hide");
-         }
-      }
-
-      $("#page").show();
-    });
+       document.getElementById("search-button").addEventListener("click", (event) => {
+          document.getElementById("autocomplete-form").submit();
+       });
+       document.getElementById("search-button").addEventListener("enter", (event) => {
+        document.getElementById("autocomplete-form").submit();
+       });
+    })();
   </script>
 
 {% endblock %}
