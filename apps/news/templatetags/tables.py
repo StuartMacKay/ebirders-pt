@@ -80,17 +80,17 @@ def checklists_duration_table(country_id, district_id, county_id, start, end):
 
 
 @register.inclusion_tag("news/tables/checklists-species.html")
-def checklists_species_table(country_id, region_id, district_id, start, end):
+def checklists_species_table(country_id, district_id, county_id, start, end):
     filters = Q(observations__date__gte=start)
     filters &= Q(observations__date__lt=end)
     filters &= Q(observations__identified=True)
 
     if country_id:
         filters &= Q(observations__country_id=country_id)
-    elif region_id:
-        filters &= Q(observations__region_id=region_id)
     elif district_id:
         filters &= Q(observations__district_id=district_id)
+    elif county_id:
+        filters &= Q(observations__county_id=county_id)
 
     observers = (
         Observer.objects.values("name")
