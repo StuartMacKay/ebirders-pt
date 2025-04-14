@@ -29,11 +29,13 @@
     </div>
     <div class="col-md-2">
       {% if language_code == 'pt' %}
-        <span class="text-nowrap">{{ observation.date|date:"j b Y" }}, </span>
+        <span class="text-nowrap">{{ observation.date|date:"j b Y" }}{% if observation.time %},{% endif %}</span>
       {% else %}
-        <span class="text-nowrap">{{ observation.date|date:"jS M Y" }}, </span>
+        <span class="text-nowrap">{{ observation.date|date:"jS M Y" }}{% if observation.time %},{% endif %}</span>
       {% endif %}
-      <span class="text-nowrap">{{ observation.time }}</span>
+      {% if observation.time %}
+        <span class="text-nowrap">{{ observation.time }}</span>
+      {% endif %}
     </div>
     <div class="col-md-4">
       <a class="dark-link"
