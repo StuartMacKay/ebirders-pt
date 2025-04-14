@@ -60,10 +60,10 @@ class IndexView(generic.TemplateView):
 
         if Country.objects.all().count() == 1:
             autocomplete_placeholder = _("Enter District or County")
-            multiple_countries = False
+            show_country = False
         else:
             autocomplete_placeholder = _("Enter Country, District or County")
-            multiple_countries = True
+            show_country = True
 
         context["country"] = country
         context["district"] = district
@@ -78,7 +78,7 @@ class IndexView(generic.TemplateView):
         context["next_week"] = next_week.strftime("%Y-%W")
         context["subtitle"] = subtitle
         context["autocomplete_placeholder"] = autocomplete_placeholder
-        context["multiple_countries"] = multiple_countries
+        context["show_country"] = show_country
 
         return context
 

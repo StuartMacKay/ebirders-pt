@@ -38,7 +38,7 @@
           {% if checklist.area or checklist.county or checklist.district %}<span>, </span>{% endif %}
           <small class="text-muted">{{ checklist.region }}</small>
         {% endif %}
-        {% if multiple_countries %}
+        {% if show_country %}
           <small class="text-muted">, {{ checklist.country }}</small>
         {% endif %}
       {% endspaceless %}

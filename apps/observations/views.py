@@ -80,17 +80,17 @@ class ObservationsView(generic.ListView):
             autocomplete_placeholder = _(
                 "Enter District, County, Species, or Observer"
             )
-            multiple_countries = False
+            show_country = False
         else:
             autocomplete_placeholder = _(
                 "Enter Country, District, County, Species, or Observer"
             )
-            multiple_countries = True
+            show_country = True
 
         context["filters"] = self.get_filters()
         context["search"] = self.request.GET.get("search", "")
         context["autocomplete_placeholder"] = autocomplete_placeholder
-        context["multiple_countries"] = multiple_countries
+        context["show_country"] = show_country
 
         return context
 

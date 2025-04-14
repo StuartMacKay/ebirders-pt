@@ -38,7 +38,7 @@
           {% if observation.area or observation.county or observation.district %}<span>, </span>{% endif %}
           <small class="text-muted">{{ observation.region }}</small>
         {% endif %}
-        {% if multiple_countries %}
+        {% if show_country %}
           <small class="text-muted">, {{ observation.country }}</small>
         {% endif %}
       {% endspaceless %}</div>

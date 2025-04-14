@@ -68,15 +68,15 @@ class ChecklistsView(generic.ListView):
         context = super().get_context_data(**kwargs)
         if Country.objects.all().count() == 1:
             autocomplete_placeholder = _("Enter District, County, or Observer")
-            multiple_countries = False
+            show_country = False
         else:
             autocomplete_placeholder = _("Enter Country, District, County, or Observer")
-            multiple_countries = True
+            show_country = True
 
         context["filters"] = self.get_filters()
         context["search"] = self.request.GET.get("search", "")
         context["autocomplete_placeholder"] = autocomplete_placeholder
-        context["multiple_countries"] = multiple_countries
+        context["show_country"] = show_country
 
         return context
 
