@@ -17,7 +17,7 @@ class ObservationsView(generic.ListView):
     model = Observation
     template_name = "observations/index.html"
     paginate_by = 50
-    ordering = ("-checklist__started",)
+    ordering = ("-date", "-time")
 
     def get_filters(self):
         filters = {
@@ -63,7 +63,6 @@ class ObservationsView(generic.ListView):
             qs = qs.filter(observer__pk=observer)
 
         return qs.select_related(
-            "checklist",
             "country",
             "region",
             "district",
