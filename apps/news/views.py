@@ -2,7 +2,6 @@ import datetime as dt
 import re
 
 from dateutil.relativedelta import relativedelta, MO
-from django.db.models import Q
 from django.http import JsonResponse
 from django.utils import timezone
 from django.utils.dateformat import format
@@ -21,7 +20,7 @@ class IndexView(generic.TemplateView):
 
         week = self.request.GET.get("week", "")
         code = self.request.GET.get("code", "")
-        place = self.request.GET.get("_code", "")
+        search = self.request.GET.get("search", "")
 
         if week:
             week_start = dt.datetime.strptime("%s-1" % week, "%Y-%W-%w").date()
@@ -44,24 +43,20 @@ class IndexView(generic.TemplateView):
                     format(week_end, "d M Y"),
                 )
 
-        if get_language() == 'pt':
+        if get_language() == "pt":
             subtitle = subtitle.lower()
 
         last_week = week_start - relativedelta(days=1)
         next_week = week_start + relativedelta(days=7)
 
-        filters = Q()
-        country = region = district = None
+        country = district = county = None
 
         if is_country_code(code):
             country = Country.objects.get(code=code).pk
-            filters &= Q(country_id=country)
         elif is_state_code(code):
-            region = Region.objects.get(code=code).pk
-            filters &= Q(region_id=region)
-        elif is_county_code(code):
             district = District.objects.get(code=code).pk
-            filters &= Q(district_id=district)
+        elif is_county_code(code):
+            county = County.objects.get(code=code).pk
 
         if Country.objects.all().count() == 1:
             autocomplete_placeholder = _("Enter Region or County")
@@ -71,9 +66,9 @@ class IndexView(generic.TemplateView):
             multiple_countries = True
 
         context["country"] = country
-        context["region"] = region
         context["district"] = district
-        context["place"] = place
+        context["county"] = county
+        context["search"] = self.request.GET.get("search", "")
         context["week_start"] = week_start
         context["week_end"] = week_end + relativedelta(days=1)
         context["this_week"] = week_start.strftime("%Y-%W")
@@ -96,12 +91,7 @@ def autocomplete(request):
     data = []
 
     for code, place in Country.objects.all().values_list("code", "place"):
-        data.append(
-            {
-                "value": code,
-                "label": place,
-            }
-        )
+        data.append({"value": code, "label": place})
 
     if len(data) == 1:
         country = data.pop(0)["label"]
