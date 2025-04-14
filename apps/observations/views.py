@@ -1,7 +1,7 @@
 import re
 
 from django.http import JsonResponse
-from django.utils.translation import get_language, gettext_lazy as _
+from django.utils.translation import get_language
 from django.views import generic
 from ebird.codes.locations import (
     is_country_code,
@@ -76,22 +76,9 @@ class ObservationsView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        if Country.objects.all().count() == 1:
-            autocomplete_placeholder = _(
-                "Enter District, County, Species, or Observer"
-            )
-            show_country = False
-        else:
-            autocomplete_placeholder = _(
-                "Enter Country, District, County, Species, or Observer"
-            )
-            show_country = True
-
         context["filters"] = self.get_filters()
         context["search"] = self.request.GET.get("search", "")
-        context["autocomplete_placeholder"] = autocomplete_placeholder
-        context["show_country"] = show_country
-
+        context["show_country"] = Country.objects.all().count() > 1
         return context
 
 

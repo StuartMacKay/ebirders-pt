@@ -5,7 +5,7 @@ from dateutil.relativedelta import relativedelta, MO
 from django.http import JsonResponse
 from django.utils import timezone
 from django.utils.dateformat import format
-from django.utils.translation import gettext_lazy as _, get_language
+from django.utils.translation import get_language
 from django.views import generic
 from ebird.codes.locations import is_country_code, is_state_code, is_county_code
 
@@ -58,17 +58,10 @@ class IndexView(generic.TemplateView):
         elif is_county_code(code):
             county = County.objects.get(code=code).pk
 
-        if Country.objects.all().count() == 1:
-            autocomplete_placeholder = _("Enter District or County")
-            show_country = False
-        else:
-            autocomplete_placeholder = _("Enter Country, District or County")
-            show_country = True
-
         context["country"] = country
         context["district"] = district
         context["county"] = county
-        context["search"] = self.request.GET.get("search", "")
+        context["search"] = search
         context["week_start"] = week_start
         context["week_end"] = week_end + relativedelta(days=1)
         context["this_week"] = week_start.strftime("%Y-%W")
@@ -77,8 +70,7 @@ class IndexView(generic.TemplateView):
         context["last_week"] = last_week.strftime("%Y-%W")
         context["next_week"] = next_week.strftime("%Y-%W")
         context["subtitle"] = subtitle
-        context["autocomplete_placeholder"] = autocomplete_placeholder
-        context["show_country"] = show_country
+        context["show_country"] = Country.objects.all().count() > 1
 
         return context
 
