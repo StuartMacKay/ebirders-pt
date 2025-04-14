@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n l10n %}
 {%  get_current_language as language_code %}
 {% for checklist in checklists %}
   <div class="row mb-3">
@@ -19,14 +19,14 @@
     </div>
     <div class="col-lg-5 col-xl-6">
       <a class="dark-link"
-         href="{% querystring location=checklist.location.identifier page=1 %}"
+         href="?location={{ checklist.location.identifier }}&search={{ checklist.location|urlencode }}"
          title="{% trans 'Show checklists for this location' %}">{{ checklist.location.display_name }}</a>
       <br/>
       {% spaceless %}
         {% if checklist.area %}
           <small class="text-muted">
             <a class="dark-link"
-               href="{% querystring area=checklist.area.code location=None page=1 %}"
+               href="?area={{ checklist.area.code }}&search={{ checklist.area|urlencode }}"
                title="{% trans 'Show checklists for this area' %}">{{ checklist.area.name }}</a>
           </small>
         {% endif %}
@@ -34,7 +34,7 @@
           <small class="text-muted">
             {% if checklist.area %}<span>, </span>{% endif %}
             <a class="dark-link"
-               href="{% querystring county=checklist.county.code area=None location=None page=1 %}"
+               href="?county={{ checklist.county.code }}&search={{ checklist.county|urlencode }}"
                title="{% trans 'Show checklists for this county' %}">{{ checklist.county.name }}</a>
           </small>
         {% endif %}
@@ -42,7 +42,7 @@
           <small class="text-muted">
             {% if checklist.area or checklist.county %}<span>, </span>{% endif %}
             <a class="dark-link"
-               href="{% querystring district=checklist.district.code county=None area=None location=None page=1 %}"
+               href="?district={{ checklist.district.code }}&search={{ checklist.district|urlencode }}"
                title="{% trans 'Show checklists for this district' %}">{{ checklist.district.name }}</a>
           </small>
         {% endif %}
@@ -50,7 +50,7 @@
           <small class="text-muted">
             {% if checklist.area or checklist.county or checklist.district %}<span>, </span>{% endif %}
             <a class="dark-link"
-               href="{% querystring state=checklist.state.code district=None county=None area=None location=None page=1 %}"
+               href="?state={{ checklist.state.code }}&search={{ checklist.state|urlencode }}"
                title="{% trans 'Show checklists for this state' %}">{{ checklist.state.name }}</a>
           </small>
         {% endif %}
@@ -58,21 +58,23 @@
           <small class="text-muted">
             {% if checklist.area or checklist.county or checklist.district or checklist.state %}<span>, </span>{% endif %}
             <a class="dark-link"
-               href="{% querystring region=checklist.region.code state=None district=None county=None area=None location=None page=1 %}"
+               href="?region={{ checklist.region.code }}&search={{ checklist.region|urlencode }}"
                title="{% trans 'Show checklists for this region' %}">{{ checklist.region.name }}</a>
           </small>
         {% endif %}
-        <small class="text-muted">
-          <span>, </span>
-          <a class="dark-link"
-             href="{% querystring country=checklist.country.code region=None state=None district=None county=None area=None location=None page=1 %}"
-             title="{% trans 'Show checklists for this country' %}">{{ checklist.country }}</a>
-        </small>
+        {% if multiple_countries %}
+          <small class="text-muted">
+            <span>, </span>
+            <a class="dark-link"
+               href="?country={{ checklist.country.code }}&search={{ checklist.country|urlencode }}"
+               title="{% trans 'Show checklists for this country' %}">{{ checklist.country }}</a>
+          </small>
+        {% endif %}
       {% endspaceless %}
     </div>
     <div class="col-lg-2 col-xl-2">
       <a class="dark-link"
-         href="{% querystring page=1 observer=checklist.observer.name %}"
+         href="?observer={{ checklist.observer.pk|unlocalize }}&search={{ checklist.observer|urlencode }}"
          title="{% trans 'Show checklists for this observer' %}">{{ checklist.observer }}</a>
     </div>
     <div class="col-lg-1 col-xl-1">
