@@ -33,7 +33,7 @@
       {% else %}
         <span class="text-nowrap">{{ observation.date|date:"jS M Y" }}, </span>
       {% endif %}
-      <span class="text-nowrap">{{ observation.checklist.time }}</span>
+      <span class="text-nowrap">{{ observation.time }}</span>
     </div>
     <div class="col-md-4">
       <a class="dark-link"
@@ -84,7 +84,7 @@
           <small class="text-muted">
             <span>, </span>
             <a class="dark-link"
-               href="?country={{ checklist.country.code }}&search={{ checklist.country|urlencode }}"
+               href="?country={{ observation.country.code }}&search={{ observation.country|urlencode }}"
                title="{% trans 'Show observations for this country' %}">{{ observation.country }}</a>
           </small>
         {% endif %}
