@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_filters",
     "watchman",
+    "checklists",
     "data",
     "news",
     "observations",

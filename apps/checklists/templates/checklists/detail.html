@@ -4,7 +4,7 @@
 
 {% block language_selector %}
   <li><a class="dropdown-item disabled"
-         href="{% url 'data:detail' checklist.identifier %}">{{ lang_name }}</a>
+         href="{% url 'checklists:detail' checklist.identifier %}">{{ lang_name }}</a>
   </li>
 {% endblock %}
 
