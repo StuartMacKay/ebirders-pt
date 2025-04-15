@@ -3,7 +3,7 @@
 <table class="table">
   {% for observer in observers %}
     <tr>
-      <td>{{ observer.name }}</td>
+      <td>{{ observer.display_name }}</td>
       <td class="text-end">{% spaceless %}
         {% with hours=observer.hours minutes=observer.minutes %}
           {% blocktrans %}Duration: {{ hours }} hours {{ minutes }} minutes{% endblocktrans %}

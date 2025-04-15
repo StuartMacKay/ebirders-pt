@@ -19,6 +19,12 @@ class Observer(models.Model):
         help_text=_("The observer's name."),
     )
 
+    byname = models.TextField(
+        blank=True,
+        verbose_name=_("byname"),
+        help_text=_("The display name of the observer")
+    )
+
     data = models.JSONField(
         verbose_name=_("Data"),
         help_text=_("Data describing an Observer."),
@@ -31,3 +37,6 @@ class Observer(models.Model):
 
     def __str__(self) -> str:
         return str(self.name)
+
+    def display_name(self):
+        return str(self.byname or self.name)
