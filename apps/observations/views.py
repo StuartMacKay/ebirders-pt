@@ -17,7 +17,7 @@ class ObservationsView(generic.ListView):
     model = Observation
     template_name = "observations/index.html"
     paginate_by = 50
-    ordering = ("-date", "-time")
+    ordering = ("-started",)
 
     def get_filters(self):
         filters = {
