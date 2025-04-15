@@ -6,7 +6,7 @@ from django.views import generic
 from ebird.codes.locations import is_country_code, is_subnational1_code, \
     is_subnational2_code, is_location_code
 
-from checklists.models import Checklist, Country, County, District, Observer
+from data.models import Checklist, Country, County, District, Observer
 
 
 class ChecklistsView(generic.ListView):

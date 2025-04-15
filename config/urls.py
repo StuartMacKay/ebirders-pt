@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 urlpatterns = i18n_patterns(
     path("", RedirectView.as_view(url=reverse_lazy("news:index"))),
     path(_("news/"), include("news.urls")),
-    path(_("checklists/"), include("checklists.urls")),
+    path(_("checklists/"), include("data.urls")),
     path(_("observations/"), include("observations.urls")),
 )
 

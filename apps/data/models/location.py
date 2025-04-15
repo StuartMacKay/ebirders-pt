@@ -25,7 +25,7 @@ class Location(models.Model):
     )
 
     country = models.ForeignKey(
-        "checklists.Country",
+        "data.Country",
         related_name="locations",
         on_delete=models.PROTECT,
         verbose_name=_("country"),
@@ -33,7 +33,7 @@ class Location(models.Model):
     )
 
     region = models.ForeignKey(
-        "checklists.Region",
+        "data.Region",
         blank=True,
         null=True,
         related_name="locations",
@@ -43,7 +43,7 @@ class Location(models.Model):
     )
 
     state = models.ForeignKey(
-        "checklists.State",
+        "data.State",
         blank=True,
         null=True,
         related_name="locations",
@@ -53,7 +53,7 @@ class Location(models.Model):
     )
 
     district = models.ForeignKey(
-        "checklists.District",
+        "data.District",
         blank=True,
         null=True,
         related_name="locations",
@@ -63,7 +63,7 @@ class Location(models.Model):
     )
 
     county = models.ForeignKey(
-        "checklists.County",
+        "data.County",
         blank=True,
         null=True,
         related_name="locations",
@@ -73,7 +73,7 @@ class Location(models.Model):
     )
 
     area = models.ForeignKey(
-        "checklists.Area",
+        "data.Area",
         blank=True,
         null=True,
         related_name="locations",

@@ -24,7 +24,7 @@ class Observation(models.Model):
     )
 
     checklist = models.ForeignKey(
-        "checklists.Checklist",
+        "data.Checklist",
         related_name="observations",
         on_delete=models.CASCADE,
         verbose_name=_("checklist"),
@@ -32,7 +32,7 @@ class Observation(models.Model):
     )
 
     species = models.ForeignKey(
-        "checklists.Species",
+        "data.Species",
         related_name="observations",
         on_delete=models.PROTECT,
         verbose_name=_("species"),
@@ -45,7 +45,7 @@ class Observation(models.Model):
     )
 
     observer = models.ForeignKey(
-        "checklists.Observer",
+        "data.Observer",
         related_name="observations",
         on_delete=models.PROTECT,
         verbose_name=_("observer"),
@@ -53,7 +53,7 @@ class Observation(models.Model):
     )
 
     country = models.ForeignKey(
-        "checklists.Country",
+        "data.Country",
         related_name="observations",
         on_delete=models.PROTECT,
         verbose_name=_("country"),
@@ -61,7 +61,7 @@ class Observation(models.Model):
     )
 
     region = models.ForeignKey(
-        "checklists.Region",
+        "data.Region",
         blank=True,
         null=True,
         related_name="observations",
@@ -71,7 +71,7 @@ class Observation(models.Model):
     )
 
     state = models.ForeignKey(
-        "checklists.State",
+        "data.State",
         blank=True,
         null=True,
         related_name="observations",
@@ -81,7 +81,7 @@ class Observation(models.Model):
     )
 
     district = models.ForeignKey(
-        "checklists.District",
+        "data.District",
         blank=True,
         null=True,
         related_name="observations",
@@ -91,7 +91,7 @@ class Observation(models.Model):
     )
 
     county = models.ForeignKey(
-        "checklists.County",
+        "data.County",
         blank=True,
         null=True,
         related_name="observations",
@@ -101,7 +101,7 @@ class Observation(models.Model):
     )
 
     area = models.ForeignKey(
-        "checklists.Area",
+        "data.Area",
         blank=True,
         null=True,
         related_name="observations",
@@ -111,7 +111,7 @@ class Observation(models.Model):
     )
 
     location = models.ForeignKey(
-        "checklists.Location",
+        "data.Location",
         related_name="observations",
         on_delete=models.PROTECT,
         verbose_name=_("location"),

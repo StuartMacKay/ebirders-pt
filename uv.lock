@@ -200,6 +200,8 @@ dependencies = [
     { name = "django-spaceless-templates" },
     { name = "django-storages" },
     { name = "django-watchman" },
+    { name = "ebird-api" },
+    { name = "ebird-codes" },
     { name = "gunicorn" },
     { name = "ipython" },
     { name = "psycopg2-binary" },
@@ -232,6 +234,8 @@ requires-dist = [
     { name = "django-spaceless-templates", specifier = ">=1.0.2" },
     { name = "django-storages", specifier = ">=1.14.4" },
     { name = "django-watchman", specifier = ">=1.3.0" },
+    { name = "ebird-api", specifier = ">=3.4.2" },
+    { name = "ebird-codes", specifier = ">=0.0.2" },
     { name = "gunicorn", specifier = ">=23.0.0" },
     { name = "ipython", specifier = ">=8.29.0" },
     { name = "psycopg2-binary", specifier = ">=2.9.10" },
@@ -294,13 +298,12 @@ wheels = [
 
 [[package]]
 name = "ebird-api"
-version = "3.4.1"
+version = "3.4.2"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/0a/1b/6dd9844cff0a8968cb98a05c02c6fec64faa9a8ce5bd2cfa402d8719b91d/ebird_api-3.4.1.tar.gz", hash = "sha256:1f0421f55b0d38cbbdc4ec5fee85ea1f6b0a4e80b0770afe412f428f1789dbb7", size = 26335 }
+sdist = { url = "https://files.pythonhosted.org/packages/52/bb/9e5c8a58c15553a9149e9aa718d6a0497b1414a6a7fbc3ecbdfd164b9e30/ebird_api-3.4.2.tar.gz", hash = "sha256:68a5b34b743f5264eba9627d8e92ba176aab852465bdbe67657a975a56cae3d1", size = 26891 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a0/e1/beac65855f3760af9037304554043883af50a900132d3c1d063af4485ee4/ebird_api-3.4.1-py3-none-any.whl", hash = "sha256:5b0342f4eef310e5f5bd37edfed073d42d8eb82ef8f9abea200d7fb0195d2c12", size = 25901 },
+    { url = "https://files.pythonhosted.org/packages/66/54/66510c9a5cf5fa72f7476f54d9aff0d63ac2c3348a78fd239ac7a76e25d2/ebird_api-3.4.2-py3-none-any.whl", hash = "sha256:f74f084be8903f2e867d483b15a036cad7ac978443ffe2ea36537c2ea5c52794", size = 26284 },
 ]
-
 
 [[package]]
 name = "ebird-codes"

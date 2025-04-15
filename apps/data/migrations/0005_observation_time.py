@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("checklists", "0004_location_byname"),
+        ("data", "0004_location_byname"),
     ]
 
     operations = [

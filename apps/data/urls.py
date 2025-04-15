@@ -6,7 +6,7 @@ from .views import (
     ChecklistsView,
 )
 
-app_name = "checklists"
+app_name = "data"
 
 urlpatterns = [
     path("", ChecklistsView.as_view(), name="list"),

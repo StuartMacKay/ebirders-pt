@@ -4,7 +4,7 @@ from django.db import connection
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from checklists.models import Checklist
+from data.models import Checklist
 
 register = template.Library()
 
@@ -61,7 +61,7 @@ def checklist_species_chart(country_id, region_id, district_id, start, end):
             f"select "
             f"count(*), "
             f"((species_count - 1) / 5)::int as quantile "
-            f"from checklists_checklist "
+            f"from data_checklist "
             f"where date >= '{start}' "
             f"and date < '{end}' "
             f"and species_count > 0 "

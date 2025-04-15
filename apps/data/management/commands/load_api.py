@@ -76,7 +76,7 @@ import datetime as dt
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
-from checklists.loaders import APILoader
+from data.loaders import APILoader
 
 
 class Command(BaseCommand):

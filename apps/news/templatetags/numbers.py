@@ -2,7 +2,7 @@ from django import template
 from django.db.models import Sum
 from django.utils.translation import gettext_lazy as _
 
-from checklists.models import Checklist, Observation
+from data.models import Checklist, Observation
 
 register = template.Library()
 

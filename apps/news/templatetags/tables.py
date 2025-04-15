@@ -2,7 +2,7 @@ from django import template
 from django.db.models import Case, Count, F, Min, Q, Sum, When
 from django.utils.translation import gettext_lazy as _
 
-from checklists.models import Checklist, Observer, Observation, Species
+from data.models import Checklist, Observer, Observation, Species
 
 register = template.Library()
 

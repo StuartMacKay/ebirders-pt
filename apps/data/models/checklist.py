@@ -28,7 +28,7 @@ class Checklist(models.Model):
     )
 
     country = models.ForeignKey(
-        "checklists.Country",
+        "data.Country",
         related_name="checklists",
         on_delete=models.PROTECT,
         verbose_name=_("country"),
@@ -36,7 +36,7 @@ class Checklist(models.Model):
     )
 
     region = models.ForeignKey(
-        "checklists.Region",
+        "data.Region",
         blank=True,
         null=True,
         related_name="checklists",
@@ -46,7 +46,7 @@ class Checklist(models.Model):
     )
 
     state = models.ForeignKey(
-        "checklists.State",
+        "data.State",
         blank=True,
         null=True,
         related_name="checklists",
@@ -56,7 +56,7 @@ class Checklist(models.Model):
     )
 
     district = models.ForeignKey(
-        "checklists.District",
+        "data.District",
         blank=True,
         null=True,
         related_name="checklists",
@@ -66,7 +66,7 @@ class Checklist(models.Model):
     )
 
     county = models.ForeignKey(
-        "checklists.County",
+        "data.County",
         blank=True,
         null=True,
         related_name="checklists",
@@ -76,7 +76,7 @@ class Checklist(models.Model):
     )
 
     area = models.ForeignKey(
-        "checklists.Area",
+        "data.Area",
         blank=True,
         null=True,
         related_name="checklists",
@@ -86,7 +86,7 @@ class Checklist(models.Model):
     )
 
     location = models.ForeignKey(
-        "checklists.Location",
+        "data.Location",
         related_name="checklists",
         on_delete=models.PROTECT,
         verbose_name=_("location"),
@@ -94,7 +94,7 @@ class Checklist(models.Model):
     )
 
     observer = models.ForeignKey(
-        "checklists.Observer",
+        "data.Observer",
         related_name="checklists",
         on_delete=models.PROTECT,
         verbose_name=_("observer"),

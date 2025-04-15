@@ -3,7 +3,7 @@
 
 {% block language_selector %}
   <li><a class="dropdown-item"
-         href="{% url 'checklists:list' %}{% querystring %}">{{ lang_name }}</a></li>
+         href="{% url 'data:list' %}{% querystring %}">{{ lang_name }}</a></li>
 {% endblock %}
 
 {% block title %}{% trans 'Checklists' %}{% endblock %}
@@ -24,7 +24,7 @@
                  name="search"
                  value="{{ search }}"
                  class="form-control autocomplete"
-                 data-server="{% url 'checklists:autocomplete' %}"
+                 data-server="{% url 'data:autocomplete' %}"
                  {% if show_country %}
                    placeholder="{% trans 'Enter Country, District, County, or Observer' %}"
                  {% else %}

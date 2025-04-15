@@ -41,7 +41,7 @@ class User(AbstractUser):
     )
 
     observer = models.ForeignKey(
-        "checklists.Observer",
+        "data.Observer",
         blank=True,
         null=True,
         on_delete=models.SET_NULL,

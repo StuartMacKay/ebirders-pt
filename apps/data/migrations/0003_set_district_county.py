@@ -3,8 +3,8 @@
 from django.db import migrations
 
 def copy_district_to_county(apps, schema_editor):
-    District = apps.get_model("checklists", "District")
-    County = apps.get_model("checklists", "County")
+    District = apps.get_model("data", "District")
+    County = apps.get_model("data", "County")
 
     for district in District.objects.all():
         county = County.objects.create(
@@ -32,8 +32,8 @@ def copy_district_to_county(apps, schema_editor):
 
 
 def copy_region_to_district(apps, schema_editor):
-    Region = apps.get_model("checklists", "Region")
-    District = apps.get_model("checklists", "District")
+    Region = apps.get_model("data", "Region")
+    District = apps.get_model("data", "District")
 
     for region in Region.objects.all():
         district = District.objects.create(
@@ -64,7 +64,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         (
-            "checklists",
+            "data",
             "0002_add_state_county",
         ),
     ]

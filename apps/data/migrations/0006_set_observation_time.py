@@ -3,7 +3,7 @@
 from django.db import migrations
 
 def set_observation_time(apps, schema_editor):
-    Observation = apps.get_model("checklists", "Observation")
+    Observation = apps.get_model("data", "Observation")
 
     for observation in Observation.objects.all():
         observation.time = observation.checklist.time
@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         (
-            "checklists",
+            "data",
             "0005_observation_time",
         ),
     ]

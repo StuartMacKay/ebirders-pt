@@ -23,7 +23,7 @@ class ObservationInline(admin.TabularInline):
     @admin.display(description=_("Common name"))
     def common_name(self, obj):
         url = reverse(
-            "admin:checklists_observation_change", kwargs={"object_id": obj.id}
+            "admin:data_observation_change", kwargs={"object_id": obj.id}
         )
         return format_html('<a href="{}">{}</a>', url, obj.species.common_name)
 

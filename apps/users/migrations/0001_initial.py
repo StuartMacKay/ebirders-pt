@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ("auth", "0012_alter_user_first_name_max_length"),
-        ("checklists", "0001_initial"),
+        ("data", "0001_initial"),
     ]
 
     operations = [
@@ -104,7 +104,7 @@ class Migration(migrations.Migration):
                         help_text="The Observer associated with this user account",
                         null=True,
                         on_delete=django.db.models.deletion.SET_NULL,
-                        to="checklists.observer",
+                        to="data.observer",
                         verbose_name="observer",
                     ),
                 ),

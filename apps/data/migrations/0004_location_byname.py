@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("checklists", "0003_set_district_county"),
+        ("data", "0003_set_district_county"),
     ]
 
     operations = [

@@ -10,7 +10,7 @@ from ebird.codes.locations import (
     is_location_code,
 )
 
-from checklists.models import Observation, Country, District, County, Species, Observer
+from data.models import Observation, Country, District, County, Species, Observer
 
 
 class ObservationsView(generic.ListView):
