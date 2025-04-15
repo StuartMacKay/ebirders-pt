@@ -544,15 +544,15 @@ class APILoader:
         )
         data: dict = self.fetch_checklist(identifier)
         checklist, added = self.add_checklist(data)
-        
-        if checklist.observer.identifier == "":
-            logger.info(
-                "Scraping checklist: %s", identifier, extra={"identifier": identifier}
-            )
-            data = scrape_checklist(checklist.identifier)
-            checklist.observer.identifier = data["observer"]["identifier"]
-            checklist.observer.save()
-            
+
+        # if checklist.observer.identifier == "":
+        #     logger.info(
+        #         "Scraping checklist: %s", identifier, extra={"identifier": identifier}
+        #     )
+        #     data = scrape_checklist(checklist.identifier)
+        #     checklist.observer.identifier = data["observer"]["identifier"]
+        #     checklist.observer.save()
+
         return checklist, added
 
     def load_checklists(self, region: str, date: dt.date, new_only: bool) -> None:
