@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-14 14:10+0000\n"
+"POT-Creation-Date: 2025-04-15 09:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,14 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: apps/checklists/admin.py:23
-msgid "Common name"
-msgstr ""
-
-#: apps/checklists/admin.py:30 apps/checklists/models/species.py:79
-msgid "Scientific name"
-msgstr ""
-
 #: apps/checklists/apps.py:8
 #: apps/checklists/templates/checklists/detail.html:19
 #: apps/checklists/templates/checklists/index.html:9
@@ -33,719 +25,6 @@ msgstr ""
 #: apps/news/templatetags/numbers.py:43 templates/page.html:23
 msgid "Checklists"
 msgstr "Listas"
-
-#: apps/checklists/models/area.py:7 apps/checklists/models/checklist.py:84
-#: apps/checklists/models/checklist.py:184
-#: apps/checklists/models/location.py:81
-#: apps/checklists/models/observation.py:109
-msgid "area"
-msgstr ""
-
-#: apps/checklists/models/area.py:8
-msgid "areas"
-msgstr ""
-
-#: apps/checklists/models/area.py:13 apps/checklists/models/country.py:13
-#: apps/checklists/models/county.py:13 apps/checklists/models/district.py:13
-#: apps/checklists/models/region.py:13 apps/checklists/models/state.py:13
-msgid "code"
-msgstr ""
-
-#: apps/checklists/models/area.py:14
-msgid "The code used to identify the area."
-msgstr ""
-
-#: apps/checklists/models/area.py:18 apps/checklists/models/country.py:18
-#: apps/checklists/models/county.py:18 apps/checklists/models/district.py:18
-#: apps/checklists/models/location.py:17 apps/checklists/models/observer.py:18
-#: apps/checklists/models/region.py:18 apps/checklists/models/state.py:18
-msgid "name"
-msgstr ""
-
-#: apps/checklists/models/area.py:18
-msgid "The name of the area."
-msgstr ""
-
-#: apps/checklists/models/area.py:22 apps/checklists/models/country.py:22
-#: apps/checklists/models/county.py:22 apps/checklists/models/district.py:22
-#: apps/checklists/models/region.py:22 apps/checklists/models/state.py:22
-msgid "place"
-msgstr ""
-
-#: apps/checklists/models/area.py:22
-msgid "The hierarchical name of the area."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:7
-#: apps/checklists/models/observation.py:30
-msgid "checklist"
-msgstr "lista/"
-
-#: apps/checklists/models/checklist.py:8
-msgid "checklists"
-msgstr "listas/"
-
-#: apps/checklists/models/checklist.py:13
-msgid "The date and time the checklist was added to eBird"
-msgstr ""
-
-#: apps/checklists/models/checklist.py:14
-msgid "created"
-msgstr ""
-
-#: apps/checklists/models/checklist.py:20
-#: apps/checklists/models/observation.py:16
-msgid "The date and time the eBird checklist was last edited"
-msgstr ""
-
-#: apps/checklists/models/checklist.py:21
-#: apps/checklists/models/observation.py:17
-msgid "edited"
-msgstr ""
-
-#: apps/checklists/models/checklist.py:26 apps/checklists/models/location.py:12
-#: apps/checklists/models/observation.py:22
-#: apps/checklists/models/observer.py:11
-msgid "identifier"
-msgstr ""
-
-#: apps/checklists/models/checklist.py:27
-msgid "The unique identifier for the checklist."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:34 apps/checklists/models/country.py:7
-#: apps/checklists/models/location.py:31
-#: apps/checklists/models/observation.py:59
-msgid "country"
-msgstr "País"
-
-#: apps/checklists/models/checklist.py:35
-msgid "The country where the checklist was made."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:44 apps/checklists/models/location.py:41
-#: apps/checklists/models/observation.py:69 apps/checklists/models/region.py:7
-msgid "region"
-msgstr ""
-
-#: apps/checklists/models/checklist.py:45
-msgid "The region where the checklist was made."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:54 apps/checklists/models/location.py:51
-#: apps/checklists/models/observation.py:79 apps/checklists/models/state.py:7
-msgid "state"
-msgstr "Estado"
-
-#: apps/checklists/models/checklist.py:55
-msgid "The state where the checklist was made."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:64 apps/checklists/models/district.py:7
-#: apps/checklists/models/location.py:61
-#: apps/checklists/models/observation.py:89
-msgid "district"
-msgstr ""
-
-#: apps/checklists/models/checklist.py:65
-msgid "The district where the checklist was made."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:74 apps/checklists/models/county.py:7
-#: apps/checklists/models/location.py:71
-#: apps/checklists/models/observation.py:99
-msgid "county"
-msgstr "concelho"
-
-#: apps/checklists/models/checklist.py:75
-msgid "The county where the checklist was made."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:85
-msgid "The area where the checklist was made."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:92 apps/checklists/models/location.py:7
-#: apps/checklists/models/observation.py:117
-msgid "location"
-msgstr "Localização"
-
-#: apps/checklists/models/checklist.py:93
-msgid "The location where checklist was made."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:100
-#: apps/checklists/models/observation.py:51
-#: apps/checklists/models/observer.py:7 apps/users/models.py:49
-msgid "observer"
-msgstr ""
-
-#: apps/checklists/models/checklist.py:101
-msgid "The person who submitted the checklist."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:106
-msgid "group"
-msgstr "Grupo"
-
-#: apps/checklists/models/checklist.py:107
-msgid "The identifier for a group of observers."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:113
-msgid "observer count"
-msgstr ""
-
-#: apps/checklists/models/checklist.py:114
-msgid "The total number of observers."
-msgstr "Número de observadores"
-
-#: apps/checklists/models/checklist.py:120
-msgid "species count"
-msgstr "Espécies observadas"
-
-#: apps/checklists/models/checklist.py:121
-msgid "The number of species reported."
-msgstr "Número de espécies registadas"
-
-#: apps/checklists/models/checklist.py:126
-#: apps/checklists/models/observation.py:123
-msgid "date"
-msgstr ""
-
-#: apps/checklists/models/checklist.py:127
-msgid "The date the checklist was started."
-msgstr "Ver a lista no eBird"
-
-#: apps/checklists/models/checklist.py:133
-#: apps/checklists/models/observation.py:130
-msgid "time"
-msgstr ""
-
-#: apps/checklists/models/checklist.py:134
-msgid "The time the checklist was started."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:141
-msgid "date & time"
-msgstr ""
-
-#: apps/checklists/models/checklist.py:142
-msgid "The date and time the checklist was started."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:147
-msgid "protocol"
-msgstr "Protocolos"
-
-#: apps/checklists/models/checklist.py:148
-msgid "The protocol followed, e.g. travelling, stationary, etc."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:153
-msgid "protocol code"
-msgstr ""
-
-#: apps/checklists/models/checklist.py:154
-msgid "The code used to identify the protocol."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:159
-msgid "project code"
-msgstr ""
-
-#: apps/checklists/models/checklist.py:160
-msgid "The code used to identify the project (portal)."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:166
-msgid "duration"
-msgstr "Duração"
-
-#: apps/checklists/models/checklist.py:167
-msgid "The number of minutes spent counting."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:175
-msgid "distance"
-msgstr "%(distance)s km"
-
-#: apps/checklists/models/checklist.py:176
-msgid "The distance, in metres, covered while travelling."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:185
-msgid "The area covered, in hectares."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:190
-msgid "complete"
-msgstr ""
-
-#: apps/checklists/models/checklist.py:191
-msgid "All species seen are reported."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:196
-#: apps/checklists/models/observation.py:197
-msgid "comments"
-msgstr ""
-
-#: apps/checklists/models/checklist.py:197
-msgid "Any comments about the checklist."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:202
-#: apps/checklists/models/location.py:107
-msgid "url"
-msgstr ""
-
-#: apps/checklists/models/checklist.py:203
-msgid "URL where the original checklist can be viewed."
-msgstr ""
-
-#: apps/checklists/models/checklist.py:207
-#: apps/checklists/models/location.py:119
-#: apps/checklists/models/observation.py:208
-#: apps/checklists/models/observer.py:23 apps/checklists/models/species.py:92
-msgid "Data"
-msgstr ""
-
-#: apps/checklists/models/checklist.py:208
-msgid "Data describing a Checklist."
-msgstr ""
-
-#: apps/checklists/models/country.py:8
-msgid "countries"
-msgstr "País"
-
-#: apps/checklists/models/country.py:14
-msgid "The code used to identify the country."
-msgstr ""
-
-#: apps/checklists/models/country.py:18
-msgid "The name of the country."
-msgstr ""
-
-#: apps/checklists/models/country.py:22
-msgid "The hierarchical name of the country."
-msgstr ""
-
-#: apps/checklists/models/county.py:8
-msgid "counties"
-msgstr "concelhos"
-
-#: apps/checklists/models/county.py:14
-msgid "The code used to identify the county."
-msgstr ""
-
-#: apps/checklists/models/county.py:18
-msgid "The name of the county."
-msgstr ""
-
-#: apps/checklists/models/county.py:22
-msgid "The hierarchical name of the county."
-msgstr ""
-
-#: apps/checklists/models/district.py:8
-msgid "districts"
-msgstr ""
-
-#: apps/checklists/models/district.py:14
-msgid "The code used to identify the district."
-msgstr ""
-
-#: apps/checklists/models/district.py:18
-msgid "The name of the district."
-msgstr ""
-
-#: apps/checklists/models/district.py:22
-msgid "The hierarchical name of the district."
-msgstr ""
-
-#: apps/checklists/models/location.py:8
-msgid "locations"
-msgstr ""
-
-#: apps/checklists/models/location.py:13
-msgid "The unique identifier for the location"
-msgstr ""
-
-#: apps/checklists/models/location.py:17
-msgid "The name of the location"
-msgstr ""
-
-#: apps/checklists/models/location.py:23
-msgid "byname"
-msgstr ""
-
-#: apps/checklists/models/location.py:24
-msgid "The display name of the location"
-msgstr ""
-
-#: apps/checklists/models/location.py:32
-msgid "The country for the location."
-msgstr ""
-
-#: apps/checklists/models/location.py:42
-msgid "The region for the location."
-msgstr ""
-
-#: apps/checklists/models/location.py:52
-msgid "The state for the location."
-msgstr ""
-
-#: apps/checklists/models/location.py:62
-msgid "The district for the location."
-msgstr ""
-
-#: apps/checklists/models/location.py:72
-msgid "The county for the location."
-msgstr ""
-
-#: apps/checklists/models/location.py:82
-msgid "The area for the location."
-msgstr ""
-
-#: apps/checklists/models/location.py:90
-msgid "latitude"
-msgstr ""
-
-#: apps/checklists/models/location.py:91
-msgid "The decimal latitude of the location, relative to the equator"
-msgstr ""
-
-#: apps/checklists/models/location.py:99
-msgid "longitude"
-msgstr ""
-
-#: apps/checklists/models/location.py:101
-msgid "The decimal longitude of the location, relative to the prime meridian"
-msgstr ""
-
-#: apps/checklists/models/location.py:108
-msgid "URL of the location page on eBird."
-msgstr ""
-
-#: apps/checklists/models/location.py:114
-msgid "is hotspot"
-msgstr ""
-
-#: apps/checklists/models/location.py:115
-msgid "Is the location a hotspot"
-msgstr ""
-
-#: apps/checklists/models/location.py:120
-msgid "Data describing a Location"
-msgstr ""
-
-#: apps/checklists/models/observation.py:10
-msgid "observation"
-msgstr "observaçaõ"
-
-#: apps/checklists/models/observation.py:11
-msgid "observations"
-msgstr "observações"
-
-#: apps/checklists/models/observation.py:23
-msgid "A global unique identifier for the observation."
-msgstr ""
-
-#: apps/checklists/models/observation.py:31
-msgid "The checklist this observation belongs to."
-msgstr ""
-
-#: apps/checklists/models/observation.py:38 apps/checklists/models/species.py:7
-#: apps/checklists/models/species.py:8
-msgid "species"
-msgstr "Espécie"
-
-#: apps/checklists/models/observation.py:39
-msgid "The identified species."
-msgstr ""
-
-#: apps/checklists/models/observation.py:43
-msgid "identified"
-msgstr ""
-
-#: apps/checklists/models/observation.py:44
-msgid "Was the species identified precisely, i.e. species or sub-species"
-msgstr ""
-
-#: apps/checklists/models/observation.py:52
-msgid "The person who made the observation."
-msgstr ""
-
-#: apps/checklists/models/observation.py:60
-msgid "The country where the observation was made."
-msgstr ""
-
-#: apps/checklists/models/observation.py:70
-msgid "The region where the observation was made."
-msgstr ""
-
-#: apps/checklists/models/observation.py:80
-msgid "The state where the observation was made."
-msgstr ""
-
-#: apps/checklists/models/observation.py:90
-msgid "The district where the observation was made."
-msgstr ""
-
-#: apps/checklists/models/observation.py:100
-msgid "The county where the observation was made."
-msgstr ""
-
-#: apps/checklists/models/observation.py:110
-msgid "The area where the observation was made."
-msgstr ""
-
-#: apps/checklists/models/observation.py:118
-msgid "The location where the observation was made."
-msgstr ""
-
-#: apps/checklists/models/observation.py:124
-msgid "The date the observation was made."
-msgstr ""
-
-#: apps/checklists/models/observation.py:131
-msgid "The time the observation was made."
-msgstr ""
-
-#: apps/checklists/models/observation.py:138
-msgid "count"
-msgstr ""
-
-#: apps/checklists/models/observation.py:139
-msgid "The number of birds seen."
-msgstr ""
-
-#: apps/checklists/models/observation.py:144
-msgid "breeding code"
-msgstr ""
-
-#: apps/checklists/models/observation.py:145
-msgid "eBird code identifying the breeding status"
-msgstr ""
-
-#: apps/checklists/models/observation.py:150
-msgid "breeding category"
-msgstr ""
-
-#: apps/checklists/models/observation.py:151
-msgid "eBird code identifying the breeding category"
-msgstr ""
-
-#: apps/checklists/models/observation.py:156
-msgid "behaviour code"
-msgstr ""
-
-#: apps/checklists/models/observation.py:157
-msgid "eBird code identifying the behaviour"
-msgstr ""
-
-#: apps/checklists/models/observation.py:162
-msgid "Age & Sex"
-msgstr ""
-
-#: apps/checklists/models/observation.py:163
-msgid "The number of birds seen in each combination of age and sex."
-msgstr ""
-
-#: apps/checklists/models/observation.py:169
-msgid "has media"
-msgstr ""
-
-#: apps/checklists/models/observation.py:170
-msgid "Has audio, photo or video uploaded to the Macaulay library."
-msgstr ""
-
-#: apps/checklists/models/observation.py:176
-msgid "Approved"
-msgstr ""
-
-#: apps/checklists/models/observation.py:177
-msgid "Has the observation been accepted by eBird's review process."
-msgstr ""
-
-#: apps/checklists/models/observation.py:183
-msgid "Reviewed"
-msgstr ""
-
-#: apps/checklists/models/observation.py:184
-msgid "Was the observation reviewed because it failed automatic checks."
-msgstr ""
-
-#: apps/checklists/models/observation.py:189
-msgid "Reason"
-msgstr ""
-
-#: apps/checklists/models/observation.py:191
-msgid "The reason given for the observation to be marked as not confirmed."
-msgstr ""
-
-#: apps/checklists/models/observation.py:198
-msgid "Any comments about the observation."
-msgstr ""
-
-#: apps/checklists/models/observation.py:203
-msgid "URN"
-msgstr ""
-
-#: apps/checklists/models/observation.py:204
-msgid "The globally unique identifier for the observation"
-msgstr ""
-
-#: apps/checklists/models/observation.py:209
-msgid "Data describing an Observation."
-msgstr ""
-
-#: apps/checklists/models/observer.py:8
-msgid "observers"
-msgstr "Observadores"
-
-#: apps/checklists/models/observer.py:12
-msgid "The code for the person submitted the checklist."
-msgstr ""
-
-#: apps/checklists/models/observer.py:19
-msgid "The observer's name."
-msgstr ""
-
-#: apps/checklists/models/observer.py:24
-msgid "Data describing an Observer."
-msgstr ""
-
-#: apps/checklists/models/region.py:8
-msgid "regions"
-msgstr ""
-
-#: apps/checklists/models/region.py:14
-msgid "The code used to identify the region."
-msgstr ""
-
-#: apps/checklists/models/region.py:18
-msgid "The name of the region."
-msgstr ""
-
-#: apps/checklists/models/region.py:22
-msgid "The hierarchical name of the region."
-msgstr ""
-
-#: apps/checklists/models/species.py:13
-msgid "taxonomy order"
-msgstr ""
-
-#: apps/checklists/models/species.py:14
-msgid "The position in the eBird/Clements taxonomic order."
-msgstr ""
-
-#: apps/checklists/models/species.py:19
-msgid "order"
-msgstr ""
-
-#: apps/checklists/models/species.py:21
-msgid "The order, e.g. Struthioniformes, from the eBird/Clements taxonomy."
-msgstr ""
-
-#: apps/checklists/models/species.py:27
-msgid "category"
-msgstr ""
-
-#: apps/checklists/models/species.py:28
-msgid "The category from the eBird/Clements taxonomy."
-msgstr ""
-
-#: apps/checklists/models/species.py:33
-msgid "species code"
-msgstr ""
-
-#: apps/checklists/models/species.py:34
-msgid "The species code, e.g. ostric2, used in the eBird API."
-msgstr ""
-
-#: apps/checklists/models/species.py:39
-msgid "family code"
-msgstr ""
-
-#: apps/checklists/models/species.py:40
-msgid "The family code, e.g. struth1, used in the eBird API."
-msgstr ""
-
-#: apps/checklists/models/species.py:44
-msgid "common name"
-msgstr ""
-
-#: apps/checklists/models/species.py:45
-msgid "The species common name in the eBird/Clements taxonomy."
-msgstr ""
-
-#: apps/checklists/models/species.py:49
-msgid "scientific name"
-msgstr ""
-
-#: apps/checklists/models/species.py:50
-msgid "The species scientific name in the eBird/Clements taxonomy."
-msgstr ""
-
-#: apps/checklists/models/species.py:55
-msgid "family common name"
-msgstr ""
-
-#: apps/checklists/models/species.py:57
-msgid "The common name for the species family in the eBird/Clements taxonomy."
-msgstr ""
-
-#: apps/checklists/models/species.py:63
-msgid "family scientific name"
-msgstr ""
-
-#: apps/checklists/models/species.py:65
-msgid ""
-"The scientific name for the species family in the eBird/Clements taxonomy."
-msgstr ""
-
-#: apps/checklists/models/species.py:71
-msgid "subspecies common name"
-msgstr ""
-
-#: apps/checklists/models/species.py:73
-msgid ""
-"The subspecies, group or form common name in the eBird/Clements taxonomy."
-msgstr ""
-
-#: apps/checklists/models/species.py:81
-msgid ""
-"The subspecies, group or form scientific name in the eBird/Clements taxonomy."
-msgstr ""
-
-#: apps/checklists/models/species.py:87
-msgid "exotic code"
-msgstr ""
-
-#: apps/checklists/models/species.py:88
-msgid "The code used if the species is non-native."
-msgstr ""
-
-#: apps/checklists/models/species.py:93
-msgid "Data describing a Species."
-msgstr ""
-
-#: apps/checklists/models/state.py:8
-msgid "states"
-msgstr "estados"
-
-#: apps/checklists/models/state.py:14
-msgid "The code used to identify the state."
-msgstr ""
-
-#: apps/checklists/models/state.py:18
-msgid "The name of the state."
-msgstr ""
-
-#: apps/checklists/models/state.py:22
-msgid "The hierarchical name of the state."
-msgstr ""
 
 #: apps/checklists/templates/checklists/detail.html:11
 msgid "Checklist"
@@ -804,39 +83,39 @@ msgstr "Ver a lista no eBird"
 msgid "View this checklist"
 msgstr "Ver esta lista"
 
-#: apps/checklists/templates/checklists/includes/checklist-table.html:23
+#: apps/checklists/templates/checklists/includes/checklist-table.html:25
 msgid "Show checklists for this location"
 msgstr "Mostrar as listas para esta local"
 
-#: apps/checklists/templates/checklists/includes/checklist-table.html:30
+#: apps/checklists/templates/checklists/includes/checklist-table.html:32
 msgid "Show checklists for this area"
 msgstr "Mostrar as listas para este zona"
 
-#: apps/checklists/templates/checklists/includes/checklist-table.html:38
+#: apps/checklists/templates/checklists/includes/checklist-table.html:40
 msgid "Show checklists for this county"
 msgstr "Mostrar as listas para est concelho"
 
-#: apps/checklists/templates/checklists/includes/checklist-table.html:46
+#: apps/checklists/templates/checklists/includes/checklist-table.html:48
 msgid "Show checklists for this district"
 msgstr "Mostrar as listas para este distrito"
 
-#: apps/checklists/templates/checklists/includes/checklist-table.html:54
+#: apps/checklists/templates/checklists/includes/checklist-table.html:56
 msgid "Show checklists for this state"
 msgstr "Mostrar as listas para este região"
 
-#: apps/checklists/templates/checklists/includes/checklist-table.html:62
+#: apps/checklists/templates/checklists/includes/checklist-table.html:64
 msgid "Show checklists for this region"
 msgstr "Mostrar as listas para esta região"
 
-#: apps/checklists/templates/checklists/includes/checklist-table.html:70
+#: apps/checklists/templates/checklists/includes/checklist-table.html:72
 msgid "Show checklists for this country"
 msgstr "Mostrar as listas para esta país"
 
-#: apps/checklists/templates/checklists/includes/checklist-table.html:78
+#: apps/checklists/templates/checklists/includes/checklist-table.html:80
 msgid "Show checklists for this observer"
 msgstr "Mostrar as listas para este observador"
 
-#: apps/checklists/templates/checklists/includes/checklist-table.html:82
+#: apps/checklists/templates/checklists/includes/checklist-table.html:84
 #: apps/news/templates/news/tables/big-lists.html:51
 msgid "Number of species reported"
 msgstr "Número de espécies registadas"
@@ -873,25 +152,732 @@ msgid ""
 "        %(total)s"
 msgstr "Página %(number)s de %(total)s"
 
-#: apps/checklists/templates/checklists/index.html:30
-#: apps/news/templates/news/index.html:49
-#: apps/observations/templates/observations/index.html:30
-msgid "Search"
-msgstr "Pesquisar"
+#: apps/checklists/templates/checklists/index.html:29
+msgid "Enter Country, District, County, or Observer"
+msgstr "Introduzir país, distrito, concelho, ou observador"
 
-#: apps/checklists/templates/checklists/index.html:36
-#: apps/news/templates/news/index.html:15
-#: apps/observations/templates/observations/index.html:36
-msgid "Updated every hour"
-msgstr "Atualizado a cada hora"
-
-#: apps/checklists/views.py:70
+#: apps/checklists/templates/checklists/index.html:31
 msgid "Enter District, County, or Observer"
 msgstr "Introduzir distrito, concelho, ou observador"
 
-#: apps/checklists/views.py:73
-msgid "Enter Country, District, County, or Observer"
-msgstr "Introduzir país, distrito, concelho, ou observador"
+#: apps/checklists/templates/checklists/index.html:35
+#: apps/news/templates/news/index.html:54
+#: apps/observations/templates/observations/index.html:35
+msgid "Search"
+msgstr "Pesquisar"
+
+#: apps/checklists/templates/checklists/index.html:41
+#: apps/news/templates/news/index.html:15
+#: apps/observations/templates/observations/index.html:41
+msgid "Updated every hour"
+msgstr "Atualizado a cada hora"
+
+#: apps/data/admin.py:23
+msgid "Common name"
+msgstr ""
+
+#: apps/data/admin.py:30 apps/data/models/species.py:79
+msgid "Scientific name"
+msgstr ""
+
+#: apps/data/apps.py:8 apps/data/models/checklist.py:207
+#: apps/data/models/location.py:119 apps/data/models/observation.py:208
+#: apps/data/models/observer.py:23 apps/data/models/species.py:92
+msgid "Data"
+msgstr ""
+
+#: apps/data/models/area.py:7 apps/data/models/checklist.py:84
+#: apps/data/models/checklist.py:184 apps/data/models/location.py:81
+#: apps/data/models/observation.py:109
+msgid "area"
+msgstr ""
+
+#: apps/data/models/area.py:8
+msgid "areas"
+msgstr ""
+
+#: apps/data/models/area.py:13 apps/data/models/country.py:13
+#: apps/data/models/county.py:13 apps/data/models/district.py:13
+#: apps/data/models/region.py:13 apps/data/models/state.py:13
+msgid "code"
+msgstr ""
+
+#: apps/data/models/area.py:14
+msgid "The code used to identify the area."
+msgstr ""
+
+#: apps/data/models/area.py:18 apps/data/models/country.py:18
+#: apps/data/models/county.py:18 apps/data/models/district.py:18
+#: apps/data/models/location.py:17 apps/data/models/observer.py:18
+#: apps/data/models/region.py:18 apps/data/models/state.py:18
+msgid "name"
+msgstr ""
+
+#: apps/data/models/area.py:18
+msgid "The name of the area."
+msgstr ""
+
+#: apps/data/models/area.py:22 apps/data/models/country.py:22
+#: apps/data/models/county.py:22 apps/data/models/district.py:22
+#: apps/data/models/region.py:22 apps/data/models/state.py:22
+msgid "place"
+msgstr ""
+
+#: apps/data/models/area.py:22
+msgid "The hierarchical name of the area."
+msgstr ""
+
+#: apps/data/models/checklist.py:7 apps/data/models/observation.py:30
+msgid "checklist"
+msgstr "lista/"
+
+#: apps/data/models/checklist.py:8
+msgid "checklists"
+msgstr "listas/"
+
+#: apps/data/models/checklist.py:13
+msgid "The date and time the checklist was added to eBird"
+msgstr ""
+
+#: apps/data/models/checklist.py:14
+msgid "created"
+msgstr ""
+
+#: apps/data/models/checklist.py:20 apps/data/models/observation.py:16
+msgid "The date and time the eBird checklist was last edited"
+msgstr ""
+
+#: apps/data/models/checklist.py:21 apps/data/models/observation.py:17
+msgid "edited"
+msgstr ""
+
+#: apps/data/models/checklist.py:26 apps/data/models/location.py:12
+#: apps/data/models/observation.py:22 apps/data/models/observer.py:11
+msgid "identifier"
+msgstr ""
+
+#: apps/data/models/checklist.py:27
+msgid "The unique identifier for the checklist."
+msgstr ""
+
+#: apps/data/models/checklist.py:34 apps/data/models/country.py:7
+#: apps/data/models/location.py:31 apps/data/models/observation.py:59
+msgid "country"
+msgstr "País"
+
+#: apps/data/models/checklist.py:35
+msgid "The country where the checklist was made."
+msgstr ""
+
+#: apps/data/models/checklist.py:44 apps/data/models/location.py:41
+#: apps/data/models/observation.py:69 apps/data/models/region.py:7
+msgid "region"
+msgstr ""
+
+#: apps/data/models/checklist.py:45
+msgid "The region where the checklist was made."
+msgstr ""
+
+#: apps/data/models/checklist.py:54 apps/data/models/location.py:51
+#: apps/data/models/observation.py:79 apps/data/models/state.py:7
+msgid "state"
+msgstr "Estado"
+
+#: apps/data/models/checklist.py:55
+msgid "The state where the checklist was made."
+msgstr ""
+
+#: apps/data/models/checklist.py:64 apps/data/models/district.py:7
+#: apps/data/models/location.py:61 apps/data/models/observation.py:89
+msgid "district"
+msgstr ""
+
+#: apps/data/models/checklist.py:65
+msgid "The district where the checklist was made."
+msgstr ""
+
+#: apps/data/models/checklist.py:74 apps/data/models/county.py:7
+#: apps/data/models/location.py:71 apps/data/models/observation.py:99
+msgid "county"
+msgstr "concelho"
+
+#: apps/data/models/checklist.py:75
+msgid "The county where the checklist was made."
+msgstr ""
+
+#: apps/data/models/checklist.py:85
+msgid "The area where the checklist was made."
+msgstr ""
+
+#: apps/data/models/checklist.py:92 apps/data/models/location.py:7
+#: apps/data/models/observation.py:117
+msgid "location"
+msgstr "Localização"
+
+#: apps/data/models/checklist.py:93
+msgid "The location where checklist was made."
+msgstr ""
+
+#: apps/data/models/checklist.py:100 apps/data/models/observation.py:51
+#: apps/data/models/observer.py:7 apps/users/models.py:49
+msgid "observer"
+msgstr ""
+
+#: apps/data/models/checklist.py:101
+msgid "The person who submitted the checklist."
+msgstr ""
+
+#: apps/data/models/checklist.py:106
+msgid "group"
+msgstr "Grupo"
+
+#: apps/data/models/checklist.py:107
+msgid "The identifier for a group of observers."
+msgstr ""
+
+#: apps/data/models/checklist.py:113
+msgid "observer count"
+msgstr ""
+
+#: apps/data/models/checklist.py:114
+msgid "The total number of observers."
+msgstr "Número de observadores"
+
+#: apps/data/models/checklist.py:120
+msgid "species count"
+msgstr "Espécies observadas"
+
+#: apps/data/models/checklist.py:121
+msgid "The number of species reported."
+msgstr "Número de espécies registadas"
+
+#: apps/data/models/checklist.py:126 apps/data/models/observation.py:123
+msgid "date"
+msgstr ""
+
+#: apps/data/models/checklist.py:127
+msgid "The date the checklist was started."
+msgstr "Ver a lista no eBird"
+
+#: apps/data/models/checklist.py:133 apps/data/models/observation.py:130
+msgid "time"
+msgstr ""
+
+#: apps/data/models/checklist.py:134
+msgid "The time the checklist was started."
+msgstr ""
+
+#: apps/data/models/checklist.py:141
+msgid "date & time"
+msgstr ""
+
+#: apps/data/models/checklist.py:142
+msgid "The date and time the checklist was started."
+msgstr ""
+
+#: apps/data/models/checklist.py:147
+msgid "protocol"
+msgstr "Protocolos"
+
+#: apps/data/models/checklist.py:148
+msgid "The protocol followed, e.g. travelling, stationary, etc."
+msgstr ""
+
+#: apps/data/models/checklist.py:153
+msgid "protocol code"
+msgstr ""
+
+#: apps/data/models/checklist.py:154
+msgid "The code used to identify the protocol."
+msgstr ""
+
+#: apps/data/models/checklist.py:159
+msgid "project code"
+msgstr ""
+
+#: apps/data/models/checklist.py:160
+msgid "The code used to identify the project (portal)."
+msgstr ""
+
+#: apps/data/models/checklist.py:166
+msgid "duration"
+msgstr "Duração"
+
+#: apps/data/models/checklist.py:167
+msgid "The number of minutes spent counting."
+msgstr ""
+
+#: apps/data/models/checklist.py:175
+msgid "distance"
+msgstr "%(distance)s km"
+
+#: apps/data/models/checklist.py:176
+msgid "The distance, in metres, covered while travelling."
+msgstr ""
+
+#: apps/data/models/checklist.py:185
+msgid "The area covered, in hectares."
+msgstr ""
+
+#: apps/data/models/checklist.py:190
+msgid "complete"
+msgstr ""
+
+#: apps/data/models/checklist.py:191
+msgid "All species seen are reported."
+msgstr ""
+
+#: apps/data/models/checklist.py:196 apps/data/models/observation.py:197
+msgid "comments"
+msgstr ""
+
+#: apps/data/models/checklist.py:197
+msgid "Any comments about the checklist."
+msgstr ""
+
+#: apps/data/models/checklist.py:202 apps/data/models/location.py:107
+msgid "url"
+msgstr ""
+
+#: apps/data/models/checklist.py:203
+msgid "URL where the original checklist can be viewed."
+msgstr ""
+
+#: apps/data/models/checklist.py:208
+msgid "Data describing a Checklist."
+msgstr ""
+
+#: apps/data/models/country.py:8
+msgid "countries"
+msgstr "País"
+
+#: apps/data/models/country.py:14
+msgid "The code used to identify the country."
+msgstr ""
+
+#: apps/data/models/country.py:18
+msgid "The name of the country."
+msgstr ""
+
+#: apps/data/models/country.py:22
+msgid "The hierarchical name of the country."
+msgstr ""
+
+#: apps/data/models/county.py:8
+msgid "counties"
+msgstr "concelhos"
+
+#: apps/data/models/county.py:14
+msgid "The code used to identify the county."
+msgstr ""
+
+#: apps/data/models/county.py:18
+msgid "The name of the county."
+msgstr ""
+
+#: apps/data/models/county.py:22
+msgid "The hierarchical name of the county."
+msgstr ""
+
+#: apps/data/models/district.py:8
+msgid "districts"
+msgstr ""
+
+#: apps/data/models/district.py:14
+msgid "The code used to identify the district."
+msgstr ""
+
+#: apps/data/models/district.py:18
+msgid "The name of the district."
+msgstr ""
+
+#: apps/data/models/district.py:22
+msgid "The hierarchical name of the district."
+msgstr ""
+
+#: apps/data/models/location.py:8
+msgid "locations"
+msgstr ""
+
+#: apps/data/models/location.py:13
+msgid "The unique identifier for the location"
+msgstr ""
+
+#: apps/data/models/location.py:17
+msgid "The name of the location"
+msgstr ""
+
+#: apps/data/models/location.py:23
+msgid "byname"
+msgstr ""
+
+#: apps/data/models/location.py:24
+msgid "The display name of the location"
+msgstr ""
+
+#: apps/data/models/location.py:32
+msgid "The country for the location."
+msgstr ""
+
+#: apps/data/models/location.py:42
+msgid "The region for the location."
+msgstr ""
+
+#: apps/data/models/location.py:52
+msgid "The state for the location."
+msgstr ""
+
+#: apps/data/models/location.py:62
+msgid "The district for the location."
+msgstr ""
+
+#: apps/data/models/location.py:72
+msgid "The county for the location."
+msgstr ""
+
+#: apps/data/models/location.py:82
+msgid "The area for the location."
+msgstr ""
+
+#: apps/data/models/location.py:90
+msgid "latitude"
+msgstr ""
+
+#: apps/data/models/location.py:91
+msgid "The decimal latitude of the location, relative to the equator"
+msgstr ""
+
+#: apps/data/models/location.py:99
+msgid "longitude"
+msgstr ""
+
+#: apps/data/models/location.py:101
+msgid "The decimal longitude of the location, relative to the prime meridian"
+msgstr ""
+
+#: apps/data/models/location.py:108
+msgid "URL of the location page on eBird."
+msgstr ""
+
+#: apps/data/models/location.py:114
+msgid "is hotspot"
+msgstr ""
+
+#: apps/data/models/location.py:115
+msgid "Is the location a hotspot"
+msgstr ""
+
+#: apps/data/models/location.py:120
+msgid "Data describing a Location"
+msgstr ""
+
+#: apps/data/models/observation.py:10
+msgid "observation"
+msgstr "observaçaõ"
+
+#: apps/data/models/observation.py:11
+msgid "observations"
+msgstr "observações"
+
+#: apps/data/models/observation.py:23
+msgid "A global unique identifier for the observation."
+msgstr ""
+
+#: apps/data/models/observation.py:31
+msgid "The checklist this observation belongs to."
+msgstr ""
+
+#: apps/data/models/observation.py:38 apps/data/models/species.py:7
+#: apps/data/models/species.py:8
+msgid "species"
+msgstr "Espécie"
+
+#: apps/data/models/observation.py:39
+msgid "The identified species."
+msgstr ""
+
+#: apps/data/models/observation.py:43
+msgid "identified"
+msgstr ""
+
+#: apps/data/models/observation.py:44
+msgid "Was the species identified precisely, i.e. species or sub-species"
+msgstr ""
+
+#: apps/data/models/observation.py:52
+msgid "The person who made the observation."
+msgstr ""
+
+#: apps/data/models/observation.py:60
+msgid "The country where the observation was made."
+msgstr ""
+
+#: apps/data/models/observation.py:70
+msgid "The region where the observation was made."
+msgstr ""
+
+#: apps/data/models/observation.py:80
+msgid "The state where the observation was made."
+msgstr ""
+
+#: apps/data/models/observation.py:90
+msgid "The district where the observation was made."
+msgstr ""
+
+#: apps/data/models/observation.py:100
+msgid "The county where the observation was made."
+msgstr ""
+
+#: apps/data/models/observation.py:110
+msgid "The area where the observation was made."
+msgstr ""
+
+#: apps/data/models/observation.py:118
+msgid "The location where the observation was made."
+msgstr ""
+
+#: apps/data/models/observation.py:124
+msgid "The date the observation was made."
+msgstr ""
+
+#: apps/data/models/observation.py:131
+msgid "The time the observation was made."
+msgstr ""
+
+#: apps/data/models/observation.py:138
+msgid "count"
+msgstr ""
+
+#: apps/data/models/observation.py:139
+msgid "The number of birds seen."
+msgstr ""
+
+#: apps/data/models/observation.py:144
+msgid "breeding code"
+msgstr ""
+
+#: apps/data/models/observation.py:145
+msgid "eBird code identifying the breeding status"
+msgstr ""
+
+#: apps/data/models/observation.py:150
+msgid "breeding category"
+msgstr ""
+
+#: apps/data/models/observation.py:151
+msgid "eBird code identifying the breeding category"
+msgstr ""
+
+#: apps/data/models/observation.py:156
+msgid "behaviour code"
+msgstr ""
+
+#: apps/data/models/observation.py:157
+msgid "eBird code identifying the behaviour"
+msgstr ""
+
+#: apps/data/models/observation.py:162
+msgid "Age & Sex"
+msgstr ""
+
+#: apps/data/models/observation.py:163
+msgid "The number of birds seen in each combination of age and sex."
+msgstr ""
+
+#: apps/data/models/observation.py:169
+msgid "has media"
+msgstr ""
+
+#: apps/data/models/observation.py:170
+msgid "Has audio, photo or video uploaded to the Macaulay library."
+msgstr ""
+
+#: apps/data/models/observation.py:176
+msgid "Approved"
+msgstr ""
+
+#: apps/data/models/observation.py:177
+msgid "Has the observation been accepted by eBird's review process."
+msgstr ""
+
+#: apps/data/models/observation.py:183
+msgid "Reviewed"
+msgstr ""
+
+#: apps/data/models/observation.py:184
+msgid "Was the observation reviewed because it failed automatic checks."
+msgstr ""
+
+#: apps/data/models/observation.py:189
+msgid "Reason"
+msgstr ""
+
+#: apps/data/models/observation.py:191
+msgid "The reason given for the observation to be marked as not confirmed."
+msgstr ""
+
+#: apps/data/models/observation.py:198
+msgid "Any comments about the observation."
+msgstr ""
+
+#: apps/data/models/observation.py:203
+msgid "URN"
+msgstr ""
+
+#: apps/data/models/observation.py:204
+msgid "The globally unique identifier for the observation"
+msgstr ""
+
+#: apps/data/models/observation.py:209
+msgid "Data describing an Observation."
+msgstr ""
+
+#: apps/data/models/observer.py:8
+msgid "observers"
+msgstr "Observadores"
+
+#: apps/data/models/observer.py:12
+msgid "The code for the person submitted the checklist."
+msgstr ""
+
+#: apps/data/models/observer.py:19
+msgid "The observer's name."
+msgstr ""
+
+#: apps/data/models/observer.py:24
+msgid "Data describing an Observer."
+msgstr ""
+
+#: apps/data/models/region.py:8
+msgid "regions"
+msgstr ""
+
+#: apps/data/models/region.py:14
+msgid "The code used to identify the region."
+msgstr ""
+
+#: apps/data/models/region.py:18
+msgid "The name of the region."
+msgstr ""
+
+#: apps/data/models/region.py:22
+msgid "The hierarchical name of the region."
+msgstr ""
+
+#: apps/data/models/species.py:13
+msgid "taxonomy order"
+msgstr ""
+
+#: apps/data/models/species.py:14
+msgid "The position in the eBird/Clements taxonomic order."
+msgstr ""
+
+#: apps/data/models/species.py:19
+msgid "order"
+msgstr ""
+
+#: apps/data/models/species.py:21
+msgid "The order, e.g. Struthioniformes, from the eBird/Clements taxonomy."
+msgstr ""
+
+#: apps/data/models/species.py:27
+msgid "category"
+msgstr ""
+
+#: apps/data/models/species.py:28
+msgid "The category from the eBird/Clements taxonomy."
+msgstr ""
+
+#: apps/data/models/species.py:33
+msgid "species code"
+msgstr ""
+
+#: apps/data/models/species.py:34
+msgid "The species code, e.g. ostric2, used in the eBird API."
+msgstr ""
+
+#: apps/data/models/species.py:39
+msgid "family code"
+msgstr ""
+
+#: apps/data/models/species.py:40
+msgid "The family code, e.g. struth1, used in the eBird API."
+msgstr ""
+
+#: apps/data/models/species.py:44
+msgid "common name"
+msgstr ""
+
+#: apps/data/models/species.py:45
+msgid "The species common name in the eBird/Clements taxonomy."
+msgstr ""
+
+#: apps/data/models/species.py:49
+msgid "scientific name"
+msgstr ""
+
+#: apps/data/models/species.py:50
+msgid "The species scientific name in the eBird/Clements taxonomy."
+msgstr ""
+
+#: apps/data/models/species.py:55
+msgid "family common name"
+msgstr ""
+
+#: apps/data/models/species.py:57
+msgid "The common name for the species family in the eBird/Clements taxonomy."
+msgstr ""
+
+#: apps/data/models/species.py:63
+msgid "family scientific name"
+msgstr ""
+
+#: apps/data/models/species.py:65
+msgid ""
+"The scientific name for the species family in the eBird/Clements taxonomy."
+msgstr ""
+
+#: apps/data/models/species.py:71
+msgid "subspecies common name"
+msgstr ""
+
+#: apps/data/models/species.py:73
+msgid ""
+"The subspecies, group or form common name in the eBird/Clements taxonomy."
+msgstr ""
+
+#: apps/data/models/species.py:81
+msgid ""
+"The subspecies, group or form scientific name in the eBird/Clements taxonomy."
+msgstr ""
+
+#: apps/data/models/species.py:87
+msgid "exotic code"
+msgstr ""
+
+#: apps/data/models/species.py:88
+msgid "The code used if the species is non-native."
+msgstr ""
+
+#: apps/data/models/species.py:93
+msgid "Data describing a Species."
+msgstr ""
+
+#: apps/data/models/state.py:8
+msgid "states"
+msgstr "estados"
+
+#: apps/data/models/state.py:14
+msgid "The code used to identify the state."
+msgstr ""
+
+#: apps/data/models/state.py:18
+msgid "The name of the state."
+msgstr ""
+
+#: apps/data/models/state.py:22
+msgid "The hierarchical name of the state."
+msgstr ""
 
 #: apps/news/apps.py:8 apps/news/templates/news/index.html:9
 #: apps/news/templates/news/index.html:13 templates/page.html:20
@@ -905,6 +891,14 @@ msgstr "Espécies por lista"
 #: apps/news/templates/news/charts/protocol-pie-chart.html:3
 msgid "Protocols"
 msgstr "Protocolos"
+
+#: apps/news/templates/news/index.html:48
+msgid "Enter Country, District or County"
+msgstr "Introduzir país, distrito ou concelho"
+
+#: apps/news/templates/news/index.html:50
+msgid "Enter District or County"
+msgstr "Introduzir distrito ou concelho"
 
 #: apps/news/templates/news/tables/big-lists.html:58
 msgid "There are no Big Lists to report."
@@ -985,14 +979,6 @@ msgstr "Listas grandes"
 msgid "Year List"
 msgstr "Year List"
 
-#: apps/news/views.py:67
-msgid "Enter District or County"
-msgstr "Introduzir distrito ou concelho"
-
-#: apps/news/views.py:70
-msgid "Enter Country, District or County"
-msgstr "Introduzir país, distrito ou concelho"
-
 #: apps/observations/apps.py:8
 #: apps/observations/templates/observations/index.html:9
 #: apps/observations/templates/observations/index.html:13
@@ -1005,45 +991,45 @@ msgstr "Observações"
 msgid "Show observations of this species"
 msgstr "Mostrar observações desta espécie"
 
-#: apps/observations/templates/observations/includes/observation-table.html:41
+#: apps/observations/templates/observations/includes/observation-table.html:43
 msgid "Show observations for this location"
 msgstr "Mostrar os observaçãoes para este local"
 
-#: apps/observations/templates/observations/includes/observation-table.html:48
+#: apps/observations/templates/observations/includes/observation-table.html:50
 msgid "Show observations for this area"
 msgstr "Mostrar os observações para esta região"
 
-#: apps/observations/templates/observations/includes/observation-table.html:56
+#: apps/observations/templates/observations/includes/observation-table.html:58
 msgid "Show observations for this county"
 msgstr "Mostrar os observações para este concelho"
 
-#: apps/observations/templates/observations/includes/observation-table.html:64
+#: apps/observations/templates/observations/includes/observation-table.html:66
 msgid "Show observations for this district"
 msgstr "Mostrar os observações para esta distrito"
 
-#: apps/observations/templates/observations/includes/observation-table.html:72
+#: apps/observations/templates/observations/includes/observation-table.html:74
 msgid "Show observations for this state"
 msgstr "Mostrar os observações para esta estado"
 
-#: apps/observations/templates/observations/includes/observation-table.html:80
+#: apps/observations/templates/observations/includes/observation-table.html:82
 msgid "Show observations for this region"
 msgstr "Mostrar os observações para este concelho"
 
-#: apps/observations/templates/observations/includes/observation-table.html:88
+#: apps/observations/templates/observations/includes/observation-table.html:90
 msgid "Show observations for this country"
 msgstr "Mostrar os observações para este país"
 
-#: apps/observations/templates/observations/includes/observation-table.html:96
+#: apps/observations/templates/observations/includes/observation-table.html:98
 msgid "Show observations from this observer"
 msgstr "Mostrar os observações deste observador"
 
-#: apps/observations/views.py:81
-msgid "Enter District, County, Species, or Observer"
-msgstr "Introduzir distrito, concelho, especie. ou observador"
-
-#: apps/observations/views.py:86
+#: apps/observations/templates/observations/index.html:29
 msgid "Enter Country, District, County, Species, or Observer"
 msgstr "Introduzir país, distrito, concelho, especie, ou observador"
+
+#: apps/observations/templates/observations/index.html:31
+msgid "Enter District, County, Species, or Observer"
+msgstr "Introduzir distrito, concelho, especie. ou observador"
 
 #: apps/species/apps.py:8
 msgid "Species"
@@ -1081,11 +1067,11 @@ msgstr ""
 msgid "users"
 msgstr ""
 
-#: config/settings.py:218
+#: config/settings.py:217
 msgid "English"
 msgstr "Inglês"
 
-#: config/settings.py:219
+#: config/settings.py:218
 msgid "Portuguese"
 msgstr "Português"
 
