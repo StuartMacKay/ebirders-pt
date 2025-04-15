@@ -68,7 +68,7 @@ skip_glob=[
 ]
 
 [tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "main.settings"
+DJANGO_SETTINGS_MODULE = "config.settings"
 FAIL_INVALID_TEMPLATE_VARS = true
 
 addopts = "--strict-markers"
