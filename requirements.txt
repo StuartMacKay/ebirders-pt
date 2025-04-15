@@ -4,8 +4,8 @@ asgiref==3.8.1
     # via django
 asttokens==3.0.0
     # via stack-data
-beautifulsoup4==4.13.3
-    # via ebird-scrapers
+beautifulsoup4==4.13.4
+    # via django-project-template (pyproject.toml)
 brotli==1.1.0
     # via whitenoise
 certifi==2025.1.31
@@ -37,8 +37,6 @@ ebird-api==3.4.2
     # via django-project-template (pyproject.toml)
 ebird-codes==0.0.2
     # via django-project-template (pyproject.toml)
-ebird-scrapers==0.2.2
-    # via django-project-template (pyproject.toml)
 executing==2.2.0
     # via stack-data
 gunicorn==23.0.0
@@ -50,7 +48,7 @@ ipython==8.32.0
 jedi==0.19.2
     # via ipython
 lxml==5.3.2
-    # via ebird-scrapers
+    # via django-project-template (pyproject.toml)
 matplotlib-inline==0.1.7
     # via ipython
 packaging==24.2
@@ -76,7 +74,7 @@ python-dateutil==2.9.0.post0
 python-json-logger==3.2.1
     # via django-project-template (pyproject.toml)
 requests==2.32.3
-    # via ebird-scrapers
+    # via django-project-template (pyproject.toml)
 ruff==0.9.6
     # via django-project-template (pyproject.toml)
 sentry-sdk==2.21.0

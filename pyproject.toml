@@ -22,7 +22,9 @@ dependencies = [
     "whitenoise[brotli]>=6.8.2",
     "ebird-codes>=0.0.2",
     "ebird-api>=3.4.2",
-    "ebird-scrapers>=0.2.2",
+    "requests>=2.32.3",
+    "lxml>=5.3.2",
+    "beautifulsoup4>=4.13.4",
 ]
 
 [tool.coverage.run]

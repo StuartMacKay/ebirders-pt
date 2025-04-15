@@ -22,15 +22,15 @@ wheels = [
 
 [[package]]
 name = "beautifulsoup4"
-version = "4.13.3"
+version = "4.13.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "soupsieve" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f0/3c/adaf39ce1fb4afdd21b611e3d530b183bb7759c9b673d60db0e347fd4439/beautifulsoup4-4.13.3.tar.gz", hash = "sha256:1bd32405dacc920b42b83ba01644747ed77456a65760e285fbc47633ceddaf8b", size = 619516 }
+sdist = { url = "https://files.pythonhosted.org/packages/d8/e4/0c4c39e18fd76d6a628d4dd8da40543d136ce2d1752bd6eeeab0791f4d6b/beautifulsoup4-4.13.4.tar.gz", hash = "sha256:dbb3c4e1ceae6aefebdaf2423247260cd062430a410e38c66f2baa50a8437195", size = 621067 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f9/49/6abb616eb3cbab6a7cca303dc02fdf3836de2e0b834bf966a7f5271a34d8/beautifulsoup4-4.13.3-py3-none-any.whl", hash = "sha256:99045d7d3f08f91f0d656bc9b7efbae189426cd913d830294a15eefa0ea4df16", size = 186015 },
+    { url = "https://files.pythonhosted.org/packages/50/cd/30110dc0ffcf3b131156077b90e9f60ed75711223f306da4db08eff8403b/beautifulsoup4-4.13.4-py3-none-any.whl", hash = "sha256:9bbbb14bfde9d79f38b8cd5f8c7c85f4b8f2523190ebed90e950a8dea4cb1c4b", size = 187285 },
 ]
 
 [[package]]
@@ -204,6 +204,7 @@ name = "django-project-template"
 version = "0.0.2"
 source = { virtual = "." }
 dependencies = [
+    { name = "beautifulsoup4" },
     { name = "django" },
     { name = "django-environ" },
     { name = "django-extensions" },
@@ -212,13 +213,14 @@ dependencies = [
     { name = "django-watchman" },
     { name = "ebird-api" },
     { name = "ebird-codes" },
-    { name = "ebird-scrapers" },
     { name = "gunicorn" },
     { name = "ipython" },
+    { name = "lxml" },
     { name = "psycopg2-binary" },
     { name = "pymemcache" },
     { name = "python-dateutil" },
     { name = "python-json-logger" },
+    { name = "requests" },
     { name = "ruff" },
     { name = "sentry-sdk" },
     { name = "whitenoise", extra = ["brotli"] },
@@ -235,6 +237,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "beautifulsoup4", specifier = ">=4.13.4" },
     { name = "django", specifier = ">=5.1.3" },
     { name = "django-environ", specifier = ">=0.11.2" },
     { name = "django-extensions", specifier = ">=3.2.3" },
@@ -246,10 +249,12 @@ requires-dist = [
     { name = "ebird-scrapers", specifier = ">=0.2.2" },
     { name = "gunicorn", specifier = ">=23.0.0" },
     { name = "ipython", specifier = ">=8.29.0" },
+    { name = "lxml", specifier = ">=5.3.2" },
     { name = "psycopg2-binary", specifier = ">=2.9.10" },
     { name = "pymemcache", specifier = ">=4.0.0" },
     { name = "python-dateutil", specifier = ">=2.9.0.post0" },
     { name = "python-json-logger", specifier = ">=2.0.7" },
+    { name = "requests", specifier = ">=2.32.3" },
     { name = "ruff", specifier = ">=0.8.0" },
     { name = "sentry-sdk", specifier = ">=2.19.0" },
     { name = "whitenoise", extras = ["brotli"], specifier = ">=6.8.2" },
@@ -316,20 +321,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/bb/2d/b130de7fcdc28c43c961e6fcb86e70ff137b160838b91a4961c582b3163c/ebird_codes-0.0.2.tar.gz", hash = "sha256:c7e956ce86e85d0729969b3e444abd260e432090a195db7e2d8a15e36dd86084", size = 5570 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/58/d7/f17a061230139b4e587a43e4ece706470c1661759da8bcc865e24cfa4ab2/ebird_codes-0.0.2-py3-none-any.whl", hash = "sha256:854e0549e1eb520145d9ad701ca227c993f16505471b16ed97f2d7ea7de2d1df", size = 5451 },
-]
-
-[[package]]
-name = "ebird-scrapers"
-version = "0.2.2"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "beautifulsoup4" },
-    { name = "lxml" },
-    { name = "requests" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/41/a9/4e758b7a71e2d4fd7eb8ef7949cc86a57149821f1856d39b19c55084eef2/ebird_scrapers-0.2.2.tar.gz", hash = "sha256:bf1d3b6b197e7dc610740ad2096e2f03ea7fccc8cd308c7ccd253c219cd24d60", size = 11020 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/c5/b8/a02477a883927153a4b2a8d147231003b639defa0eb10d22f143e4e7273b/ebird_scrapers-0.2.2-py3-none-any.whl", hash = "sha256:89b0d2241fe771ba72ebdbc9f5fa8b615e007298063ff0be94c8e1ab4bde2c85", size = 8311 },
 ]
 
 [[package]]

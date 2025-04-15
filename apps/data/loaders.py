@@ -1,7 +1,9 @@
 import datetime as dt
 import logging
 import re
+import requests
 import socket
+from bs4 import BeautifulSoup
 from decimal import Decimal
 from typing import List, Optional, Tuple
 from urllib.error import HTTPError, URLError
@@ -519,6 +521,13 @@ class APILoader:
         data: dict = self.fetch_location(identifier)
         return self.add_location(data)
 
+    def extract_observer(self, checklist) -> str:
+        response = requests.get(checklist.url)
+        content = response.content
+        soup = BeautifulSoup(content, "lxml")
+        attribute = 'data-participant-userid'
+        return soup.find("span", attrs={attribute: True})[attribute]
+
     def load_checklist(self, identifier: str) -> Tuple[Checklist, bool]:
         """
         Load the checklist with the given identifier.
@@ -545,13 +554,13 @@ class APILoader:
         data: dict = self.fetch_checklist(identifier)
         checklist, added = self.add_checklist(data)
 
-        # if checklist.observer.identifier == "":
-        #     logger.info(
-        #         "Scraping checklist: %s", identifier, extra={"identifier": identifier}
-        #     )
-        #     data = scrape_checklist(checklist.identifier)
-        #     checklist.observer.identifier = data["observer"]["identifier"]
-        #     checklist.observer.save()
+        if checklist.observer.identifier == "":
+            logger.info(
+                "Scraping checklist: %s", identifier, extra={"identifier": identifier}
+            )
+            identifier = self.extract_observer(checklist)
+            checklist.observer.identifier = identifier
+            checklist.observer.save()
 
         return checklist, added
 
