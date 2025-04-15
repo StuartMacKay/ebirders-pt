@@ -73,29 +73,6 @@ FAIL_INVALID_TEMPLATE_VARS = true
 
 addopts = "--strict-markers"
 
-testpaths = [
-    "tests/apps"
-]
-
-filterwarnings = [
-    "ignore::DeprecationWarning:pytest_freezegun",
-    "ignore::DeprecationWarning:kombu"
-]
-
-isort_ignore = [
-    "*migrations/*.py"
-]
-
-[tool.mypy]
-plugins = ["mypy_django_plugin.main"]
-
-[[tool.mypy.overrides]]
-module = "*.migrations.*"
-ignore_errors = true
-
-[tool.django-stubs]
-django_settings_module = "main.settings"
-
 [tool.bumpver]
 current_version = "v2023.01.0"
 version_pattern = "vYYYY.0M.INC0"
@@ -124,12 +101,8 @@ push = true
 [tool.uv]
 dev-dependencies = [
     "isort>=5.13.2",
-    "mypy>=1.13.0",
     "pre-commit>=4.0.1",
     "pytest>=8.3.3",
-    "pytest-cov>=6.0.0",
     "pytest-django>=4.9.0",
-    "pytest-factoryboy>=2.7.0",
-    "pytest-freezegun>=0.4.2",
     "django-debug-toolbar>=4.4.6",
 ]
