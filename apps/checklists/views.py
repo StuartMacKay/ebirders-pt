@@ -33,7 +33,7 @@ class ChecklistsView(generic.ListView):
                 filters["county"] = code
             elif is_location_code(code):
                 filters["location"] = code
-            else:
+            elif code.startswith("USER"):
                 filters["observer"] = code
 
         return filters
@@ -51,7 +51,7 @@ class ChecklistsView(generic.ListView):
         elif location := filters.get("location"):
             qs = qs.filter(location__identifier=location)
         elif observer := filters.get("observer"):
-            qs = qs.filter(observer__pk=observer)
+            qs = qs.filter(observer__identifier=observer)
 
         return qs.select_related(
             "country",
@@ -119,7 +119,11 @@ def autocomplete(request):
             label = place
         data.append({"value": code, "label": label})
 
-    for code, name in Observer.objects.all().values_list("pk", "name"):
-        data.append({"value": code, "label": name})
+    observers = (
+        Observer.objects.all().values_list("identifier", "name").exclude(identifier="")
+    )
+
+    for identifier, name in observers:
+        data.append({"value": identifier, "label": name})
 
     return JsonResponse(data, safe=False)

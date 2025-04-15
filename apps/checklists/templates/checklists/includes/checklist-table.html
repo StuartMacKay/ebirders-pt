@@ -1,4 +1,4 @@
-{% load i18n l10n %}
+{% load i18n %}
 {%  get_current_language as language_code %}
 {% for checklist in checklists %}
   <div class="row mb-3">
@@ -76,7 +76,7 @@
     </div>
     <div class="col-lg-2 col-xl-2">
       <a class="dark-link"
-         href="?observer={{ checklist.observer.pk|unlocalize }}&search={{ checklist.observer|urlencode }}"
+         href="?observer={{ checklist.observer.identifier }}&search={{ checklist.observer|urlencode }}"
          title="{% trans 'Show checklists for this observer' %}">{{ checklist.observer }}</a>
     </div>
     <div class="col-lg-1 col-xl-1">

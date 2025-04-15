@@ -40,7 +40,7 @@ class ObservationsView(generic.ListView):
                 filters["location"] = code
             elif 4 < len(code) < 8:
                 filters["species"] = code
-            else:
+            elif code.startswith("USER"):
                 filters["observer"] = code
 
         return filters
@@ -60,7 +60,7 @@ class ObservationsView(generic.ListView):
         elif species := filters.get("species"):
             qs = qs.filter(species__species_code=species)
         elif observer := filters.get("observer"):
-            qs = qs.filter(observer__pk=observer)
+            qs = qs.filter(observer__identifier=observer)
 
         return qs.select_related(
             "country",
@@ -126,7 +126,11 @@ def autocomplete(request):
     ):
         data.append({"value": code, "label": name})
 
-    for code, name in Observer.objects.all().values_list("pk", "name"):
-        data.append({"value": code, "label": name})
+    observers = (
+        Observer.objects.all().values_list("identifier", "name").exclude(identifier="")
+    )
+
+    for identifier, name in observers:
+        data.append({"value": identifier, "label": name})
 
     return JsonResponse(data, safe=False)
