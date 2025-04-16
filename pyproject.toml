@@ -72,8 +72,10 @@ skip_glob=[
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "config.settings"
 FAIL_INVALID_TEMPLATE_VARS = true
-
-addopts = "--strict-markers"
+testpaths = [
+    "tests/unit"
+]
+log_cli = true
 
 [tool.bumpver]
 current_version = "v2023.01.0"
