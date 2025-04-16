@@ -19,7 +19,6 @@ import environ  # type: ignore
 
 CONFIG_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(CONFIG_DIR)
-DEPLOY_DIR = os.path.dirname(ROOT_DIR)
 
 sys.path.insert(0, os.path.join(ROOT_DIR, 'apps'))
 
@@ -260,11 +259,11 @@ STATICFILES_DIRS = [
 # DJANGO_STATIC_HOST only needs to be set when using a CDN such as CloudFront
 # to cache the files served by whitenoise.
 
-STATIC_ROOT = env.str("DJANGO_STATIC_ROOT", default=os.path.join(DEPLOY_DIR, "static"))
+STATIC_ROOT = env.str("DJANGO_STATIC_ROOT", default=os.path.join(ROOT_DIR, "static"))
 STATIC_HOST = env.str("DJANGO_STATIC_HOST", default="")
 STATIC_URL = STATIC_HOST + "/static/"
 
-MEDIA_ROOT = env.str("DJANGO_MEDIA_ROOT", default=os.path.join(DEPLOY_DIR, "media"))
+MEDIA_ROOT = env.str("DJANGO_MEDIA_ROOT", default=os.path.join(ROOT_DIR, "media"))
 MEDIA_URL = "/media/"
 
 # S3 storage options for serving uploaded files from an AWS S3 Bucket.
