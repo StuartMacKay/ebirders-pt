@@ -15,7 +15,6 @@ dependencies = [
     "pymemcache>=4.0.0",
     "python-dateutil>=2.9.0.post0",
     "python-json-logger>=2.0.7",
-    "ruff>=0.8.0",
     "whitenoise[brotli]>=6.8.2",
     "ebird-codes>=0.0.2",
     "ebird-api>=3.4.2",
@@ -107,4 +106,5 @@ dev-dependencies = [
     "pytest-django>=4.9.0",
     "django-debug-toolbar>=4.4.6",
     "faker>=37.1.0",
+    "ruff>=0.11.5",
 ]
