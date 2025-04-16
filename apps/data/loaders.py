@@ -1,18 +1,17 @@
 import datetime as dt
 import logging
 import re
-import requests
 import socket
-from bs4 import BeautifulSoup
 from decimal import Decimal
 from typing import List, Optional, Tuple
 from urllib.error import HTTPError, URLError
 
+import requests
+from bs4 import BeautifulSoup
 from django.conf import settings
 from django.utils.timezone import get_default_timezone
 from ebird.api import get_checklist, get_location, get_regions, get_visits, get_taxonomy
 from ebird.api.constants import API_MAX_RESULTS
-from ebird.scrapers import get_checklist as scrape_checklist
 
 from .models import (
     Checklist,
@@ -187,13 +186,10 @@ class APILoader:
         if key == "subnational1":
             return "%s, %s" % (data["subnational1Name"], data["countryName"])
         elif key == "subnational2":
-            return (
-                "%s, %s, %s"
-                % (
-                    data["subnational2Name"],
-                    data["subnational1Name"],
-                    data["countryName"],
-                )
+            return "%s, %s, %s" % (
+                data["subnational2Name"],
+                data["subnational1Name"],
+                data["countryName"],
             )
         return ""
 
@@ -521,12 +517,25 @@ class APILoader:
         data: dict = self.fetch_location(identifier)
         return self.add_location(data)
 
-    def extract_observer(self, checklist) -> str:
+    @staticmethod
+    def extract_observer(soup) -> str:
+        attribute = "data-participant-userid"
+        node = soup.find("span", attrs={attribute: True})
+        return node[attribute] if node else ""
+
+    def scrape_checklist(self, checklist) -> Checklist:
+        logger.info(
+            "Scraping checklist: %s",
+            checklist.identifier,
+            extra={"identifier": checklist.identifier},
+        )
         response = requests.get(checklist.url)
         content = response.content
         soup = BeautifulSoup(content, "lxml")
-        attribute = 'data-participant-userid'
-        return soup.find("span", attrs={attribute: True})[attribute]
+
+        checklist.observer.identifier = self.extract_observer(soup)
+        checklist.observer.save()
+        return checklist
 
     def load_checklist(self, identifier: str) -> Tuple[Checklist, bool]:
         """
@@ -555,12 +564,7 @@ class APILoader:
         checklist, added = self.add_checklist(data)
 
         if checklist.observer.identifier == "":
-            logger.info(
-                "Scraping checklist: %s", identifier, extra={"identifier": identifier}
-            )
-            identifier = self.extract_observer(checklist)
-            checklist.observer.identifier = identifier
-            checklist.observer.save()
+            self.scrape_checklist(checklist)
 
         return checklist, added
 
