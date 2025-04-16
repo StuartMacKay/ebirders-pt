@@ -357,7 +357,7 @@ class APILoader:
 
     @staticmethod
     def add_observer(data: dict) -> Observer:
-        name: str = data["userDisplayName"]
+        name: str = data.get("userDisplayName", "anonymous eBirder")
         observer, _ = Observer.objects.get_or_create(name=name)
         return observer
 
