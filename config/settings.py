@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_extensions",
     "django_filters",
-    "watchman",
     "checklists",
     "data",
     "news",
@@ -103,8 +102,6 @@ if DEBUG:
         "127.0.0.1",
         "10.0.2.2",
     ]
-
-WATCHMAN_TOKENS = env.str("DJANGO_WATCHMAN_TOKENS", None)
 
 # ############
 #   DATABASE

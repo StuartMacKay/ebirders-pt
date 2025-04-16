@@ -15,7 +15,6 @@ urlpatterns = i18n_patterns(
 urlpatterns += [
     # Change the path to the Django Admin to something non-standard.
     path(settings.ADMIN_PATH, admin.site.urls),  # type: ignore
-    path("watchman/", include("watchman.urls")),
 ]
 
 if settings.DEBUG:
