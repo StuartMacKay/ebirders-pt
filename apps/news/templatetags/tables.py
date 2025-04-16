@@ -45,12 +45,13 @@ def checklists_submitted_table(country_id, district_id, county_id, start, end):
     observers = (
         queryset.values("observer")
         .annotate(name=F("observer__name"))
+        .annotate(byname=F("observer__byname"))
         .annotate(count=Count("observer"))
         .filter(complete=True)
         .order_by("-count")
     )[:10]
 
-    return {"observers": observers}
+    return {"records": observers}
 
 
 @register.inclusion_tag("news/tables/checklists-duration.html")
@@ -67,6 +68,7 @@ def checklists_duration_table(country_id, district_id, county_id, start, end):
     observers = (
         queryset.values("observer")
         .annotate(name=F("observer__name"))
+        .annotate(byname=F("observer__byname"))
         .annotate(total=Sum("duration"))
         .filter(duration__isnull=False)
         .order_by("-total")
@@ -76,7 +78,7 @@ def checklists_duration_table(country_id, district_id, county_id, start, end):
         observer["hours"] = "%0d" % (observer["total"] / 60)
         observer["minutes"] = "%02d" % (observer["total"] % 60)
 
-    return {"observers": observers}
+    return {"records": observers}
 
 
 @register.inclusion_tag("news/tables/checklists-species.html")
@@ -93,7 +95,7 @@ def checklists_species_table(country_id, district_id, county_id, start, end):
         filters &= Q(observations__county_id=county_id)
 
     observers = (
-        Observer.objects.values("name")
+        Observer.objects.values("name", "byname")
         .annotate(
             count=Count(
                 Case(
@@ -107,7 +109,7 @@ def checklists_species_table(country_id, district_id, county_id, start, end):
         )
         .order_by("-count")[:10]
     )
-    return {"observers": [observer for observer in observers if observer["count"]]}
+    return {"records": [observer for observer in observers if observer["count"]]}
 
 
 @register.inclusion_tag("news/tables/yearlist.html", takes_context=True)

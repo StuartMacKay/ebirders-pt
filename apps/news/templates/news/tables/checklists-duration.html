@@ -1,11 +1,11 @@
 {% load i18n %}
 <h3>{% trans "Time spent birding" %}</h2>
 <table class="table">
-  {% for observer in observers %}
+  {% for record in records %}
     <tr>
-      <td>{{ observer.display_name }}</td>
+      <td>{{ record.byname|default:record.name }}</td>
       <td class="text-end">{% spaceless %}
-        {% with hours=observer.hours minutes=observer.minutes %}
+        {% with hours=record.hours minutes=record.minutes %}
           {% blocktrans %}Duration: {{ hours }} hours {{ minutes }} minutes{% endblocktrans %}
         {% endwith %}
       {% endspaceless %}</td>
