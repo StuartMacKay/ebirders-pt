@@ -3,29 +3,20 @@
 
 # Ignore dot files except those required for the project
 .*
-!.dockerignore
 !.editorconfig
 !.env.example
 !.envrc
-!.flake8
-!.gitattributes
-!.github
 !.gitignore
 !.gitkeep
-!.nvmrc
 !.pre-commit-config.yaml
-!.python-version
-
-# Docker
-docker-compose.override.yml
 
 # Python
 __pycache__/
 *.py[co]
 *.egg*
 
-# Javascript
-node_modules
+# Backups
+data
 
 # Ansible
 deploy
