@@ -23,25 +23,6 @@ dependencies = [
     "beautifulsoup4>=4.13.4",
 ]
 
-[tool.coverage.run]
-branch = true
-data_file = ".coverage"
-omit = [
-    "*/tests/*",
-]
-
-[tool.coverage.report]
-show_missing = true
-skip_covered = true
-fail_under = 30
-exclude_lines = [
-    "raise AssertionError",
-    "raise NotImplementedError",
-]
-
-[tool.coverage.html]
-directory = "coverage"
-
 [tool.isort]
 multi_line_output = 3
 include_trailing_comma = true
