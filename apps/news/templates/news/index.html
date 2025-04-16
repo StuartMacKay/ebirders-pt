@@ -105,12 +105,10 @@
 
 {% block javascript %}
   {{ block.super }}
-  <script type="text/javascript"
-          src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
   <script type="module">
     import Autocomplete from "{% static 'js/vendor/autocomplete-1.1.38.min.js' %}";
 
-    $(document).ready(function() {
+    (function() {
        new Autocomplete(document.getElementById("autocompleteInput"), {
          highlightTyped: true,
          fixed: true,
@@ -124,6 +122,6 @@
        document.getElementById("search-button").addEventListener("enter", (event) => {
         document.getElementById("autocomplete-form").submit();
        });
-    });
+    })();
   </script>
 {% endblock %}
