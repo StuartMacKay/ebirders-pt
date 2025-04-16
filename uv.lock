@@ -209,7 +209,6 @@ dependencies = [
     { name = "django-environ" },
     { name = "django-extensions" },
     { name = "django-spaceless-templates" },
-    { name = "django-storages" },
     { name = "ebird-api" },
     { name = "ebird-codes" },
     { name = "gunicorn" },
@@ -242,7 +241,6 @@ requires-dist = [
     { name = "django-environ", specifier = ">=0.11.2" },
     { name = "django-extensions", specifier = ">=3.2.3" },
     { name = "django-spaceless-templates", specifier = ">=1.0.2" },
-    { name = "django-storages", specifier = ">=1.14.4" },
     { name = "ebird-api", specifier = ">=3.4.2" },
     { name = "ebird-codes", specifier = ">=0.0.2" },
     { name = "gunicorn", specifier = ">=23.0.0" },
@@ -278,18 +276,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/7c/94/ec50e47664ef38d2d60191ae7b5eb75f2e2d6390ba351e3120e23e7bd545/django-spaceless-templates-1.0.2.tar.gz", hash = "sha256:7a105558b9982e122eade5db445de8e8304dfc3124443ba385e503e1dfa784e2", size = 4853 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/fa/c6/7ecfdf7f37cfe6b63f3478a502b59e67e0d8f47c08c24d14abb60c2d40f0/django_spaceless_templates-1.0.2-py3-none-any.whl", hash = "sha256:09d952979f9b4d6090428eb611395b964890af0bf362b80c4e2036db81c0f29d", size = 6241 },
-]
-
-[[package]]
-name = "django-storages"
-version = "1.14.4"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "django" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/6d/88/77b5ede11147941dece064bd80ac618f6a4b91b4c9d5d305a2660014941e/django-storages-1.14.4.tar.gz", hash = "sha256:69aca94d26e6714d14ad63f33d13619e697508ee33ede184e462ed766dc2a73f", size = 83496 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/e0/69/a4b2f2dfa51fd18fd898e10cc41d73a30965da7cb3b683f1375b1dc3dd5c/django_storages-1.14.4-py3-none-any.whl", hash = "sha256:d61930acb4a25e3aebebc6addaf946a3b1df31c803a6bf1af2f31c9047febaa3", size = 31809 },
 ]
 
 [[package]]
