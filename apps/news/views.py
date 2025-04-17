@@ -1,13 +1,14 @@
 import datetime as dt
 import re
 
-from dateutil.relativedelta import relativedelta, MO
 from django.http import JsonResponse
 from django.utils import timezone
 from django.utils.dateformat import format
 from django.utils.translation import get_language
 from django.views import generic
-from ebird.codes.locations import is_country_code, is_state_code, is_county_code
+
+from dateutil.relativedelta import MO, relativedelta
+from ebird.codes.locations import is_country_code, is_county_code, is_state_code
 
 from data.models import Country, County, District
 

@@ -3,8 +3,12 @@ import re
 from django.http import JsonResponse
 from django.views import generic
 
-from ebird.codes.locations import is_country_code, is_subnational1_code, \
-    is_subnational2_code, is_location_code
+from ebird.codes.locations import (
+    is_country_code,
+    is_location_code,
+    is_subnational1_code,
+    is_subnational2_code,
+)
 
 from data.models import Checklist, Country, County, District, Observer
 

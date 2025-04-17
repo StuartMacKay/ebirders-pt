@@ -1,5 +1,5 @@
 {% load i18n %}
-{%  get_current_language as language_code %}
+{% get_current_language as language_code %}
 {% for checklist in checklists %}
   <div class="row mb-3">
     <div class="col-lg-2 col-xl-1">
@@ -58,7 +58,9 @@
         {% endif %}
         {% if checklist.region %}
           <small class="text-muted">
-            {% if checklist.area or checklist.county or checklist.district or checklist.state %}<span>, </span>{% endif %}
+            {% if checklist.area or checklist.county or checklist.district or checklist.state %}
+              <span>, </span>
+            {% endif %}
             <a class="dark-link"
                href="?region={{ checklist.region.code }}&search={{ checklist.region|urlencode }}"
                title="{% trans 'Show checklists for this region' %}">{{ checklist.region.name }}</a>

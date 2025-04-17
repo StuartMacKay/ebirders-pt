@@ -1,6 +1,6 @@
 {% extends "page.html" %}
 {% load i18n static %}
-{%  get_current_language as language_code %}
+{% get_current_language as language_code %}
 
 {% block language_selector %}
   <li><a class="dropdown-item disabled"
@@ -72,11 +72,11 @@
       {% if checklist.observer_count %}
         <div class="me-3">
           <i {% if checklist.observer_count == 1 %}
-               class="bi bi-person-fill me-1"
-             {% else %}
-               class="bi bi-people-fill me-1"
-             {% endif %}
-             title="{% trans 'Number of Observers' %}"></i>
+            class="bi bi-person-fill me-1"
+          {% else %}
+            class="bi bi-people-fill me-1"
+          {% endif %}
+            title="{% trans 'Number of Observers' %}"></i>
           <span>{{ checklist.observer_count }}</span>
         </div>
       {% endif %}

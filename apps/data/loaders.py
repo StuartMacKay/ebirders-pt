@@ -2,15 +2,18 @@ import datetime as dt
 import logging
 import re
 import socket
+
 from decimal import Decimal
 from typing import List, Optional, Tuple
 from urllib.error import HTTPError, URLError
 
-import requests
-from bs4 import BeautifulSoup
 from django.conf import settings
 from django.utils.timezone import get_default_timezone
-from ebird.api import get_checklist, get_location, get_regions, get_visits, get_taxonomy
+
+import requests
+
+from bs4 import BeautifulSoup
+from ebird.api import get_checklist, get_location, get_regions, get_taxonomy, get_visits
 from ebird.api.constants import API_MAX_RESULTS
 
 from .models import (

@@ -2,7 +2,7 @@ from django import template
 from django.db.models import Case, Count, F, Min, Q, Sum, When
 from django.utils.translation import gettext_lazy as _
 
-from data.models import Checklist, Observer, Observation, Species
+from data.models import Checklist, Observation, Observer, Species
 
 register = template.Library()
 
@@ -132,7 +132,9 @@ def yearlist_table(context):
     else:
         species = species.annotate(added=Min("observations__date"))
 
-    species = species.filter(added__gte=context["week_start"], added__lt=context["week_end"]).order_by("added")
+    species = species.filter(
+        added__gte=context["week_start"], added__lt=context["week_end"]
+    ).order_by("added")
 
     observations = []
 
@@ -161,14 +163,12 @@ def yearlist_table(context):
             .first()
         )
 
-
     total = (
-        Observation.objects
-        .filter(filters)
+        Observation.objects.filter(filters)
         .filter(species__category="species")
         .filter(date__lt=context["week_end"], date__year=context["year"])
         .distinct()
-        .values('species_id')
+        .values("species_id")
         .count()
     )
 

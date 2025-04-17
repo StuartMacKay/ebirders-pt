@@ -1,15 +1,15 @@
 {% load i18n %}
 <h3>{% trans 'Species seen' %}</h2>
-<table class="table">
-  {% for record in records %}
-    <tr>
-      <td>{{ record.byname|default:record.name }}</td>
-      <td class="text-end">{{ record.count }}</td>
-    </tr>
-  {% empty %}
-    <tr>
-      <td>{% trans 'Your name here' %}</td>
-      <td>?</td>
-    </tr>
-  {% endfor %}
-</table>
+  <table class="table">
+    {% for record in records %}
+      <tr>
+        <td>{{ record.byname|default:record.name }}</td>
+        <td class="text-end">{{ record.count }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td>{% trans 'Your name here' %}</td>
+        <td>?</td>
+      </tr>
+    {% endfor %}
+  </table>

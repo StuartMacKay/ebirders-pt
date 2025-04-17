@@ -25,11 +25,11 @@
                  value="{{ search }}"
                  class="form-control autocomplete"
                  data-server="{% url 'observations:autocomplete' %}"
-                 {% if show_country %}
-                   placeholder="{% trans 'Enter Country, District, County, Species, or Observer' %}"
-                 {% else %}
-                   placeholder="{% trans 'Enter District, County, Species, or Observer' %}"
-                 {% endif %}
+            {% if show_country %}
+                 placeholder="{% trans 'Enter Country, District, County, Species, or Observer' %}"
+            {% else %}
+                 placeholder="{% trans 'Enter District, County, Species, or Observer' %}"
+            {% endif %}
           />
           <button id="search-button" type="button" class="btn btn-primary">
             <i class="bi-search btn-primary" title="{% trans 'Search' %}"></i>

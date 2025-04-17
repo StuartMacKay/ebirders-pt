@@ -22,7 +22,7 @@ class Observer(models.Model):
     byname = models.TextField(
         blank=True,
         verbose_name=_("byname"),
-        help_text=_("The display name of the observer")
+        help_text=_("The display name of the observer"),
     )
 
     data = models.JSONField(

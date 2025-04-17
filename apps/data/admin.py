@@ -22,9 +22,7 @@ class ObservationInline(admin.TabularInline):
 
     @admin.display(description=_("Common name"))
     def common_name(self, obj):
-        url = reverse(
-            "admin:data_observation_change", kwargs={"object_id": obj.id}
-        )
+        url = reverse("admin:data_observation_change", kwargs={"object_id": obj.id})
         return format_html('<a href="{}">{}</a>', url, obj.species.common_name)
 
     @admin.display(description=_("Scientific name"))
@@ -101,13 +99,13 @@ class ChecklistAdmin(admin.ModelAdmin):
         return field
 
     def save_model(self, request, obj, form, change):
-        if 'location' in form.changed_data:
+        if "location" in form.changed_data:
             location = obj.location
             obj.country = location.country
             obj.region = location.region
             obj.district = location.district
             obj.area = location.area
-        super().save_model(request,obj, form, change)
+        super().save_model(request, obj, form, change)
 
 
 @admin.register(models.Country)
@@ -159,17 +157,19 @@ class LocationAdmin(admin.ModelAdmin):
         return field
 
     def save_model(self, request, obj, form, change):
-        super().save_model(request,obj, form, change)
-        if 'country' in form.changed_data:
+        super().save_model(request, obj, form, change)
+        if "country" in form.changed_data:
             models.Checklist.objects.filter(location=obj).update(country=obj.country)
             models.Observation.objects.filter(location=obj).update(country=obj.country)
-        if 'region' in form.changed_data:
+        if "region" in form.changed_data:
             models.Checklist.objects.filter(location=obj).update(region=obj.region)
             models.Observation.objects.filter(location=obj).update(region=obj.region)
-        if 'district' in form.changed_data:
+        if "district" in form.changed_data:
             models.Checklist.objects.filter(location=obj).update(district=obj.district)
-            models.Observation.objects.filter(location=obj).update(district=obj.district)
-        if 'area' in form.changed_data:
+            models.Observation.objects.filter(location=obj).update(
+                district=obj.district
+            )
+        if "area" in form.changed_data:
             models.Checklist.objects.filter(location=obj).update(area=obj.area)
             models.Observation.objects.filter(location=obj).update(area=obj.area)
 
@@ -225,13 +225,13 @@ class ObservationAdmin(admin.ModelAdmin):
         return field
 
     def save_model(self, request, obj, form, change):
-        if 'location' in form.changed_data:
+        if "location" in form.changed_data:
             location = obj.location
             obj.country = location.country
             obj.region = location.region
             obj.district = location.district
             obj.area = location.area
-        super().save_model(request,obj, form, change)
+        super().save_model(request, obj, form, change)
 
 
 @admin.register(models.Observer)

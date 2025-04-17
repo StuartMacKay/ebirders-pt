@@ -1,11 +1,12 @@
 {% load i18n species_tags %}
-{%  get_current_language as language_code %}
+{% get_current_language as language_code %}
 <h3 class="mb-3">{{ title }} {{ year }}</h3>
 {% for observation in observations %}
   <div class="row mb-3">
     <div class="col-lg-3 col-xl-3">
       <div>
-        {% get_common_name observation.species language_code %} ({% if observation.count %}{{ observation.count }}{% else %}X{% endif %})
+        {% get_common_name observation.species language_code %} ({% if observation.count %}
+        {{ observation.count }}{% else %}X{% endif %})
       </div>
       <div>
         <small class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
@@ -54,7 +55,7 @@
       </a>
     </div>
   </div>
-{% empty %}
+  {% empty %}
   <div class="row">
     <div class="py-3">
       <span>{% trans "No new species were were seen this week." %}</span>

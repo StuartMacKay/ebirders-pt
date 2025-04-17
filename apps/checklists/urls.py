@@ -1,9 +1,9 @@
 from django.urls import path, re_path
 
 from .views import (
-    autocomplete,
-    DetailView,
     ChecklistsView,
+    DetailView,
+    autocomplete,
 )
 
 app_name = "checklists"

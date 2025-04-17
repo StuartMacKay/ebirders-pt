@@ -1,7 +1,8 @@
 from django.core.management import call_command
 
-from faker import Faker
 import pytest
+
+from faker import Faker
 
 pytestmark = pytest.mark.django_db
 

@@ -1,6 +1,6 @@
 from django.urls import reverse
 
-import pytest 
+import pytest
 
 
 @pytest.fixture

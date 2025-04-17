@@ -44,11 +44,11 @@
                    value="{{ search }}"
                    class="form-control autocomplete"
                    data-server="{% url 'news:autocomplete' %}"
-                   {% if show_country %}
-                      placeholder="{% trans 'Enter Country, District or County' %}"
-                   {% else %}
-                      placeholder="{% trans 'Enter District or County' %}"
-                   {% endif %}
+              {% if show_country %}
+                   placeholder="{% trans 'Enter Country, District or County' %}"
+              {% else %}
+                   placeholder="{% trans 'Enter District or County' %}"
+              {% endif %}
             />
             <button id="search-button" type="button" class="btn btn-primary">
               <i class="bi-search btn-primary" title="{% trans 'Search' %}"></i>
@@ -95,7 +95,7 @@
       {% endwith %}
       <div class="row">
         <div class="col-12">
-          {% big_lists_table country district county week_start week_end show_country%}
+          {% big_lists_table country district county week_start week_end show_country %}
         </div>
       </div>
       <hr>

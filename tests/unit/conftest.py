@@ -2,11 +2,11 @@ import pytest
 
 # Test against a local database which has been populated with data from the
 # eBird API, using the APILoader.
-# 
+#
 # This is by far the easiest and most effective option for several reasons:
-# 
+#
 # 1. It's real data.
-# 2. It's easy to set up. 
+# 2. It's easy to set up.
 # 3. Does not require maintenance.
 # 4. The data is not published, so there are no privacy issues.
 # 5. You can easily test different eBird regions or languages.
@@ -15,15 +15,15 @@ import pytest
 #
 # Compared to fixture files, the data is always up to date, particularly if
 # you run the APILoader in a cron job to download checklists daily.
-# 
+#
 # Compared to generated fixtures, the data is more accurate and comprehensive.
-# Generating data with a similar profile, using tools like Factory Boy, would 
+# Generating data with a similar profile, using tools like Factory Boy, would
 # take a significant amount of effort. The code would also need to be maintained.
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope="session")
 def django_db_setup():
-    # Don't create the database; don't run any migrations and don't tear 
+    # Don't create the database; don't run any migrations and don't tear
     # down the database when the tests are finished.
     pass
 

@@ -1,5 +1,5 @@
 {% load i18n %}
-{%  get_current_language as language_code %}
+{% get_current_language as language_code %}
 <h3 class="mb-3">{{ title }}</h3>
 {% for checklist in checklists %}
   <div class="row mb-2">
@@ -49,10 +49,10 @@
     <div class="col-lg-1 col-xl-1">
        <span class="bi bi-binoculars-fill me-1"
              title="{% trans 'Number of species reported' %}"></span>
-       <span>{{ checklist.species_count }}</span>
+      <span>{{ checklist.species_count }}</span>
     </div>
   </div>
-{% empty %}
+  {% empty %}
   <div class="row">
     <div>
       <span>{% trans 'There are no Big Lists to report.' %}</span>

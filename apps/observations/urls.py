@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import autocomplete, ObservationsView
+from .views import ObservationsView, autocomplete
 
 app_name = "observations"
 

@@ -21,7 +21,7 @@ class Location(models.Model):
         blank=True,
         default="",
         verbose_name=_("byname"),
-        help_text=_("The display name of the location")
+        help_text=_("The display name of the location"),
     )
 
     country = models.ForeignKey(

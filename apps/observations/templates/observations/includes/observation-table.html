@@ -76,7 +76,8 @@
         {% endif %}
         {% if observation.region %}
           <small class="text-muted">
-            {% if observation.area or observation.county or observation.district or observation.state %}<span>, </span>{% endif %}
+            {% if observation.area or observation.county or observation.district or observation.state %}
+              <span>, </span>{% endif %}
             <a class="dark-link"
                href="?region={{ observation.region.code }}&search={{ observation.region|urlencode }}"
                title="{% trans 'Show observations for this region' %}">{{ observation.region.name }}</a>

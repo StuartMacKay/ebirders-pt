@@ -3,14 +3,15 @@ import re
 from django.http import JsonResponse
 from django.utils.translation import get_language
 from django.views import generic
+
 from ebird.codes.locations import (
     is_country_code,
+    is_location_code,
     is_subnational1_code,
     is_subnational2_code,
-    is_location_code,
 )
 
-from data.models import Observation, Country, District, County, Species, Observer
+from data.models import Country, County, District, Observation, Observer, Species
 
 
 class ObservationsView(generic.ListView):

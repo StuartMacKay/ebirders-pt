@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import autocomplete, IndexView
+from .views import IndexView, autocomplete
 
 app_name = "news"
 
