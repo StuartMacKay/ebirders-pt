@@ -23,6 +23,32 @@ dependencies = [
     "beautifulsoup4>=4.13.4",
 ]
 
+[tool.ruff]
+fix = true
+src = [".", "apps"]
+extend-exclude = [
+    "**/migrations/*.py"
+]
+
+[tool.ruff.lint]
+extend-select = ["I"]
+
+[tool.ruff.lint.isort]
+lines-between-types = 1
+section-order = [
+    "future",
+    "standard-library",
+    "django",
+    "third-party",
+    "first-party",
+    "local-folder",
+    "testing",
+]
+
+[tool.ruff.lint.isort.sections]
+"django" = ["django"]
+"testing" = ["faker", "pytest"]
+
 [tool.isort]
 multi_line_output = 3
 include_trailing_comma = true
@@ -42,7 +68,7 @@ sections = [
     "FIRSTPARTY",
     "LOCALFOLDER",
 ]
-skip_glob=[
+skip_glob = [
     "*/migrations/*",
 ]
 
