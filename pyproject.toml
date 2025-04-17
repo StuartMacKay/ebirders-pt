@@ -3,6 +3,7 @@ name = "ebird-pages"
 version = "2025.04.17"
 description = "Birder-friendly data from eBird"
 readme = "README.md"
+license-files = ["LICENSE.txt"]
 requires-python = ">=3.12"
 dependencies = [
     "django-environ>=0.11.2",
