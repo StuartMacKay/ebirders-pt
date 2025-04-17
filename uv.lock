@@ -200,73 +200,6 @@ wheels = [
 ]
 
 [[package]]
-name = "django-project-template"
-version = "0.0.2"
-source = { virtual = "." }
-dependencies = [
-    { name = "beautifulsoup4" },
-    { name = "django" },
-    { name = "django-environ" },
-    { name = "django-extensions" },
-    { name = "django-spaceless-templates" },
-    { name = "ebird-api" },
-    { name = "ebird-codes" },
-    { name = "gunicorn" },
-    { name = "ipython" },
-    { name = "lxml" },
-    { name = "psycopg2-binary" },
-    { name = "pymemcache" },
-    { name = "python-dateutil" },
-    { name = "python-json-logger" },
-    { name = "requests" },
-    { name = "ruff" },
-    { name = "whitenoise", extra = ["brotli"] },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "django-debug-toolbar" },
-    { name = "faker" },
-    { name = "isort" },
-    { name = "pre-commit" },
-    { name = "pytest" },
-    { name = "pytest-django" },
-    { name = "ruff" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "beautifulsoup4", specifier = ">=4.13.4" },
-    { name = "django", specifier = ">=5.1.3" },
-    { name = "django-environ", specifier = ">=0.11.2" },
-    { name = "django-extensions", specifier = ">=3.2.3" },
-    { name = "django-spaceless-templates", specifier = ">=1.0.2" },
-    { name = "ebird-api", specifier = ">=3.4.2" },
-    { name = "ebird-codes", specifier = ">=0.0.2" },
-    { name = "gunicorn", specifier = ">=23.0.0" },
-    { name = "ipython", specifier = ">=8.29.0" },
-    { name = "lxml", specifier = ">=5.3.2" },
-    { name = "psycopg2-binary", specifier = ">=2.9.10" },
-    { name = "pymemcache", specifier = ">=4.0.0" },
-    { name = "python-dateutil", specifier = ">=2.9.0.post0" },
-    { name = "python-json-logger", specifier = ">=2.0.7" },
-    { name = "requests", specifier = ">=2.32.3" },
-    { name = "ruff", specifier = ">=0.8.0" },
-    { name = "whitenoise", extras = ["brotli"], specifier = ">=6.8.2" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "django-debug-toolbar", specifier = ">=4.4.6" },
-    { name = "faker", specifier = ">=37.1.0" },
-    { name = "isort", specifier = ">=5.13.2" },
-    { name = "pre-commit", specifier = ">=4.0.1" },
-    { name = "pytest", specifier = ">=8.3.3" },
-    { name = "pytest-django", specifier = ">=4.9.0" },
-    { name = "ruff", specifier = ">=0.11.5" },
-]
-
-[[package]]
 name = "django-spaceless-templates"
 version = "1.0.2"
 source = { registry = "https://pypi.org/simple" }
@@ -294,6 +227,69 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/bb/2d/b130de7fcdc28c43c961e6fcb86e70ff137b160838b91a4961c582b3163c/ebird_codes-0.0.2.tar.gz", hash = "sha256:c7e956ce86e85d0729969b3e444abd260e432090a195db7e2d8a15e36dd86084", size = 5570 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/58/d7/f17a061230139b4e587a43e4ece706470c1661759da8bcc865e24cfa4ab2/ebird_codes-0.0.2-py3-none-any.whl", hash = "sha256:854e0549e1eb520145d9ad701ca227c993f16505471b16ed97f2d7ea7de2d1df", size = 5451 },
+]
+
+[[package]]
+name = "ebird-pages"
+version = "2023.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "beautifulsoup4" },
+    { name = "django" },
+    { name = "django-environ" },
+    { name = "django-extensions" },
+    { name = "django-spaceless-templates" },
+    { name = "ebird-api" },
+    { name = "ebird-codes" },
+    { name = "gunicorn" },
+    { name = "ipython" },
+    { name = "lxml" },
+    { name = "psycopg2-binary" },
+    { name = "pymemcache" },
+    { name = "python-dateutil" },
+    { name = "python-json-logger" },
+    { name = "requests" },
+    { name = "whitenoise", extra = ["brotli"] },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "django-debug-toolbar" },
+    { name = "faker" },
+    { name = "pre-commit" },
+    { name = "pytest" },
+    { name = "pytest-django" },
+    { name = "ruff" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "beautifulsoup4", specifier = ">=4.13.4" },
+    { name = "django", specifier = ">=5.1.3" },
+    { name = "django-environ", specifier = ">=0.11.2" },
+    { name = "django-extensions", specifier = ">=3.2.3" },
+    { name = "django-spaceless-templates", specifier = ">=1.0.2" },
+    { name = "ebird-api", specifier = ">=3.4.2" },
+    { name = "ebird-codes", specifier = ">=0.0.2" },
+    { name = "gunicorn", specifier = ">=23.0.0" },
+    { name = "ipython", specifier = ">=8.29.0" },
+    { name = "lxml", specifier = ">=5.3.2" },
+    { name = "psycopg2-binary", specifier = ">=2.9.10" },
+    { name = "pymemcache", specifier = ">=4.0.0" },
+    { name = "python-dateutil", specifier = ">=2.9.0.post0" },
+    { name = "python-json-logger", specifier = ">=2.0.7" },
+    { name = "requests", specifier = ">=2.32.3" },
+    { name = "whitenoise", extras = ["brotli"], specifier = ">=6.8.2" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "django-debug-toolbar", specifier = ">=4.4.6" },
+    { name = "faker", specifier = ">=37.1.0" },
+    { name = "pre-commit", specifier = ">=4.0.1" },
+    { name = "pytest", specifier = ">=8.3.3" },
+    { name = "pytest-django", specifier = ">=4.9.0" },
+    { name = "ruff", specifier = ">=0.11.5" },
 ]
 
 [[package]]
@@ -383,15 +379,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/01/35/6f90fdddff7a08b7b715fccbd2427b5212c9525cd043d26fdc45bee0708d/ipython-8.31.0.tar.gz", hash = "sha256:b6a2274606bec6166405ff05e54932ed6e5cfecaca1fc05f2cacde7bb074d70b", size = 5501011 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/04/60/d0feb6b6d9fe4ab89fe8fe5b47cbf6cd936bfd9f1e7ffa9d0015425aeed6/ipython-8.31.0-py3-none-any.whl", hash = "sha256:46ec58f8d3d076a61d128fe517a51eb730e3aaf0c184ea8c17d16e366660c6a6", size = 821583 },
-]
-
-[[package]]
-name = "isort"
-version = "5.13.2"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/87/f9/c1eb8635a24e87ade2efce21e3ce8cd6b8630bb685ddc9cdaca1349b2eb5/isort-5.13.2.tar.gz", hash = "sha256:48fdfcb9face5d58a4f6dde2e72a1fb8dcaf8ab26f95ab49fab84c2ddefb0109", size = 175303 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/d1/b3/8def84f539e7d2289a02f0524b944b15d7c75dab7628bedf1c4f0992029c/isort-5.13.2-py3-none-any.whl", hash = "sha256:8ca5e72a8d85860d5a3fa69b8745237f2939afe12dbf656afbcb47fe72d947a6", size = 92310 },
 ]
 
 [[package]]
