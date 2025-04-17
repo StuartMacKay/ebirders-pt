@@ -2,7 +2,7 @@
 
 ## Latest
 
-## 2025.04.17 (2025-04-17)
+## 2025.04.17
 First formal/official release of the project with pages showing:
 - a paginated list of all observations
 - a paginated list of all checklists
