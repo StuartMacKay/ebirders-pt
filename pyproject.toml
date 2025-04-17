@@ -1,6 +1,6 @@
 [project]
 name = "ebird-pages"
-version = "2023.01.000"
+version = "2024.01.01"
 description = "Birder-friendly data from eBird"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -57,30 +57,51 @@ testpaths = [
 ]
 log_cli = true
 
-[tool.bumpver]
-current_version = "v2023.01.0"
-version_pattern = "vYYYY.0M.INC0"
-#current_version = "v0.0.0"
-#version_pattern = "vMAJOR.MINOR.PATCH"
-commit = true
-commit_message = "Bump version to {new_version}"
+[tool.bumpversion]
+current_version = "2024.01.01"
+parse = """(?x)                        # Verbose mode
+    (?P<release>                       # The release part
+        (?:[1-9][0-9]{3})\\.           # YYYY.
+        (?:1[0-2]|0[1-9])\\.           # 0M.
+        (?:3[0-1]|[1-2][0-9]|0[1-9])   # 0D
+    )
+    (?:\\.(?P<patch>\\d+))?            # .patch, optional
+"""
+serialize = ["{release}.{patch}", "{release}"]
+ignore_missing_version = false
 tag = true
-push = true
+sign_tags = true
+tag_name = "v{new_version}"
+tag_message = "New version: {current_version} → {new_version}"
+allow_dirty = false
+commit = true
+commit_args = "--no-verify"
+message = "New version: {current_version} → {new_version}"
+pre_commit_hooks = ["uv sync --upgrade", "git add uv.lock"]
 
-[tool.bumpver.file_patterns]
-"pyproject.toml" = [
-    '^current_version = "{version}"$',
-]
-"project/__init__.py" = [
-    '^__version__ = "{version}"$',
-]
-"../docs/conf.py" = [
-    '^copyright = "YYYY, Stuart MacKay"$',
-    '^version = "vYYYY.0M"$',
-    '^release = "{version}"$',
-    #'^version = "MAJOR.MINOR"$',
-    #'^release = "{version}"$',
-]
+[tool.bumpversion.parts.release]
+calver_format = "{YYYY}.{0M}.{0D}"
+
+[[tool.bumpversion.files]]
+filename = "config/__init__.py"
+search = '__version__ = "{current_version}"'
+replace = '__version__ = "{new_version}"'
+
+[[tool.bumpversion.files]]
+filename = "CHANGELOG.md"
+search = """
+## Latest
+"""
+replace = """
+## Latest
+
+## {new_version} ({now:%Y-%m-%d})
+"""
+
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"
+search = 'version = "{current_version}"'
+replace = 'version = "{new_version}"'
 
 [tool.uv]
 dev-dependencies = [
@@ -90,4 +111,5 @@ dev-dependencies = [
     "django-debug-toolbar>=4.4.6",
     "faker>=37.1.0",
     "ruff>=0.11.5",
+    "bump-my-version>=1.1.2",
 ]
