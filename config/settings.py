@@ -3,9 +3,11 @@ Django settings
 https://docs.djangoproject.com/en/4.2/topics/settings/
 
 """
+
 import os
 import socket
 import sys
+
 from email.utils import parseaddr
 
 from django.core.exceptions import ImproperlyConfigured
@@ -20,7 +22,7 @@ import environ  # type: ignore
 CONFIG_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(CONFIG_DIR)
 
-sys.path.insert(0, os.path.join(ROOT_DIR, 'apps'))
+sys.path.insert(0, os.path.join(ROOT_DIR, "apps"))
 
 # ###############
 #   ENVIRONMENT
@@ -28,7 +30,7 @@ sys.path.insert(0, os.path.join(ROOT_DIR, 'apps'))
 
 env = environ.Env()
 
-environ.Env.read_env(os.path.join(ROOT_DIR, '.env'))
+environ.Env.read_env(os.path.join(ROOT_DIR, ".env"))
 
 DJANGO_ENV = env.str("DJANGO_ENV", default="development")
 
@@ -346,7 +348,7 @@ vars().update(env.email("DJANGO_EMAIL_URL", default="consolemail://"))
 EMAIL_USE_SSL = env.bool("DJANGO_EMAIL_USE_SSL", default="True")
 
 if django_admins := env.str("DJANGO_ADMINS", ""):
-    ADMINS = tuple(parseaddr(email) for email in django_admins.split(','))
+    ADMINS = tuple(parseaddr(email) for email in django_admins.split(","))
     LOGGING["loggers"]["django"]["handlers"].append("mail_admins")
     LOGGING["loggers"][""]["handlers"].append("mail_admins")
 
