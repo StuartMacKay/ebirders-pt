@@ -88,7 +88,7 @@ class APILoader:
         country, created = Country.objects.get_or_create(code=code, defaults=values)
         if created:
             logger.info(
-                "Added country: %s", code, extra={"code": code, "name": values["name"]}
+                "Added country: %s", code, extra={"code": code, "country": values["name"]}
             )
         return country
 
@@ -102,7 +102,7 @@ class APILoader:
         state, created = State.objects.get_or_create(code=code, defaults=values)
         if created:
             logger.info(
-                "Added state: %s", code, extra={"code": code, "name": values["name"]}
+                "Added state: %s", code, extra={"code": code, "state": values["name"]}
             )
         return state
 
@@ -117,7 +117,7 @@ class APILoader:
         county, created = County.objects.get_or_create(code=code, defaults=values)
         if created:
             logger.info(
-                "Added county: %s", code, extra={"code": code, "name": values["name"]}
+                "Added county: %s", code, extra={"code": code, "county": values["name"]}
             )
         return county
 
@@ -144,7 +144,7 @@ class APILoader:
         logger.info(
             "Added location: %s",
             identifier,
-            extra={"identifier": identifier, "name": values["name"]},
+            extra={"identifier": identifier, "location": values["name"]},
         )
         return location
 
@@ -241,7 +241,7 @@ class APILoader:
         name: str = data.get("userDisplayName", "anonymous eBirder")
         observer, created = Observer.objects.get_or_create(name=name)
         if created:
-            logger.info("Added observer: %s", name, extra={"name": name})
+            logger.info("Added observer: %s", name, extra={"observer": name})
         return observer
 
     @staticmethod
