@@ -215,7 +215,6 @@ class APILoader:
             "location": checklist.location,
             "observer": checklist.observer,
             "species": species,
-            "identified": species.is_identified(),
             "date": checklist.date,
             "time": checklist.time,
             "started": checklist.started,

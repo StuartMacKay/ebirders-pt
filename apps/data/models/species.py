@@ -100,6 +100,3 @@ class Species(models.Model):
 
     def __str__(self) -> str:
         return str(self.common_name)
-
-    def is_identified(self) -> bool:
-        return self.category in ["species", "sub-species", "domestic"]

@@ -39,13 +39,6 @@ class Observation(models.Model):
         help_text=_("The identified species."),
     )
 
-    identified = models.BooleanField(
-        verbose_name=_("identified"),
-        help_text=_(
-            "Was the species identified precisely, i.e. species or sub-species"
-        ),
-    )
-
     observer = models.ForeignKey(
         "data.Observer",
         related_name="observations",

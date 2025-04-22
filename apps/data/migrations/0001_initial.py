@@ -693,13 +693,6 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "identified",
-                    models.BooleanField(
-                        help_text="Was the species identified precisely, i.e. species or sub-species",
-                        verbose_name="identified",
-                    ),
-                ),
-                (
                     "date",
                     models.DateField(
                         db_index=True,

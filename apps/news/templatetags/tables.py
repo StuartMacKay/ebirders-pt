@@ -85,7 +85,7 @@ def checklists_duration_table(country_id, state_id, county_id, start, end):
 def checklists_species_table(country_id, state_id, county_id, start, end):
     filters = Q(observations__date__gte=start)
     filters &= Q(observations__date__lt=end)
-    filters &= Q(observations__identified=True)
+    filters &= Q(observations__species__category__in=["species", "sub-species", "domestic"])
 
     if country_id:
         filters &= Q(observations__country_id=country_id)
