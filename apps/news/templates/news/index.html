@@ -45,9 +45,9 @@
                    class="form-control autocomplete"
                    data-server="{% url 'news:autocomplete' %}"
               {% if show_country %}
-                   placeholder="{% trans 'Enter Country, District or County' %}"
+                   placeholder="{% trans 'Enter Country, State or County' %}"
               {% else %}
-                   placeholder="{% trans 'Enter District or County' %}"
+                   placeholder="{% trans 'Enter State or County' %}"
               {% endif %}
             />
             <button id="search-button" type="button" class="btn btn-primary">
@@ -60,28 +60,28 @@
     <div class="container px-0">
       <div class="row mb-2">
         <div class="col-md-3 col-sm-6 mb-2">
-          {% species_count country district county week_start week_end %}
+          {% species_count country state county week_start week_end %}
         </div>
         <div class="col-md-3 col-sm-6 mb-2">
-          {% checklist_count country district county week_start week_end %}
+          {% checklist_count country state county week_start week_end %}
         </div>
         <div class="col-md-3 col-sm-6 mb-2">
-          {% observer_count country district county week_start week_end %}
+          {% observer_count country state county week_start week_end %}
         </div>
         <div class="col-md-3 col-sm-6 mb-2">
-          {% duration_count country district county week_start week_end %}
+          {% duration_count country state county week_start week_end %}
         </div>
       </div>
       <hr>
       <div class="row">
         <div class="col-md-4 col-sm-12">
-          {% checklists_species_table country district county week_start week_end %}
+          {% checklists_species_table country state county week_start week_end %}
         </div>
         <div class="col-md-4 col-sm-12">
-          {% checklists_submitted_table country district county week_start week_end %}
+          {% checklists_submitted_table country state county week_start week_end %}
         </div>
         <div class="col-md-4 col-sm-12">
-          {% checklists_duration_table country district county week_start week_end %}
+          {% checklists_duration_table country state county week_start week_end %}
         </div>
       </div>
       <hr>
@@ -95,7 +95,7 @@
       {% endwith %}
       <div class="row">
         <div class="col-12">
-          {% big_lists_table country district county week_start week_end show_country %}
+          {% big_lists_table country state county week_start week_end show_country %}
         </div>
       </div>
       <hr>

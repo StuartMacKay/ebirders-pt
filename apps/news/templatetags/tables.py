@@ -8,17 +8,17 @@ register = template.Library()
 
 
 @register.inclusion_tag("news/tables/big-lists.html")
-def big_lists_table(country_id, district_id, county_id, start, end, show_country):
+def big_lists_table(country_id, state_id, county_id, start, end, show_country):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
     if country_id:
         queryset = queryset.filter(country_id=country_id)
-    elif district_id:
-        queryset = queryset.filter(district_id=district_id)
+    elif state_id:
+        queryset = queryset.filter(state_id=state_id)
     elif county_id:
         queryset = queryset.filter(county_id=county_id)
 
-    related = ["district", "county", "location", "observer"]
+    related = ["state", "county", "location", "observer"]
 
     if show_country:
         related.append("country")
@@ -32,13 +32,13 @@ def big_lists_table(country_id, district_id, county_id, start, end, show_country
 
 
 @register.inclusion_tag("news/tables/checklists-submitted.html")
-def checklists_submitted_table(country_id, district_id, county_id, start, end):
+def checklists_submitted_table(country_id, state_id, county_id, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
     if country_id:
         queryset = queryset.filter(country_id=country_id)
-    elif district_id:
-        queryset = queryset.filter(district_id=district_id)
+    elif state_id:
+        queryset = queryset.filter(state_id=state_id)
     elif county_id:
         queryset = queryset.filter(county_id=county_id)
 
@@ -55,13 +55,13 @@ def checklists_submitted_table(country_id, district_id, county_id, start, end):
 
 
 @register.inclusion_tag("news/tables/checklists-duration.html")
-def checklists_duration_table(country_id, district_id, county_id, start, end):
+def checklists_duration_table(country_id, state_id, county_id, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
     if country_id:
         queryset = queryset.filter(country_id=country_id)
-    elif district_id:
-        queryset = queryset.filter(district_id=district_id)
+    elif state_id:
+        queryset = queryset.filter(state_id=state_id)
     elif county_id:
         queryset = queryset.filter(county_id=county_id)
 
@@ -82,15 +82,15 @@ def checklists_duration_table(country_id, district_id, county_id, start, end):
 
 
 @register.inclusion_tag("news/tables/checklists-species.html")
-def checklists_species_table(country_id, district_id, county_id, start, end):
+def checklists_species_table(country_id, state_id, county_id, start, end):
     filters = Q(observations__date__gte=start)
     filters &= Q(observations__date__lt=end)
     filters &= Q(observations__identified=True)
 
     if country_id:
         filters &= Q(observations__country_id=country_id)
-    elif district_id:
-        filters &= Q(observations__district_id=district_id)
+    elif state_id:
+        filters &= Q(observations__state_id=state_id)
     elif county_id:
         filters &= Q(observations__county_id=county_id)
 
@@ -118,8 +118,8 @@ def yearlist_table(context):
 
     if context["country"]:
         filters &= Q(observations__country_id=context["country"])
-    elif context["district"]:
-        filters &= Q(observations__district_id=context["district"])
+    elif context["state"]:
+        filters &= Q(observations__state_id=context["state"])
     elif context["county"]:
         filters &= Q(observations__county_id=context["county"])
 
@@ -142,8 +142,8 @@ def yearlist_table(context):
 
     if context["country"]:
         filters &= Q(country_id=context["country"])
-    elif context["district"]:
-        filters &= Q(district_id=context["district"])
+    elif context["state"]:
+        filters &= Q(state_id=context["state"])
     elif context["county"]:
         filters &= Q(county_id=context["county"])
 
@@ -154,7 +154,7 @@ def yearlist_table(context):
             .select_related(
                 "checklist",
                 "country",
-                "district",
+                "state",
                 "county",
                 "location",
                 "species",

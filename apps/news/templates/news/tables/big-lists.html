@@ -23,20 +23,12 @@
       <span>{{ checklist.location.display_name }}</span>
       <br/>
       {% spaceless %}
-        {% if checklist.area %}
-          <small class="text-muted">{{ checklist.area }}</small>
-        {% endif %}
         {% if checklist.county %}
-          {% if checklist.area %}<span>, </span>{% endif %}
           <small class="text-muted">{{ checklist.county }}</small>
         {% endif %}
-        {% if checklist.district %}
-          {% if checklist.area or checklist.county %}<span>, </span>{% endif %}
-          <small class="text-muted">{{ checklist.district }}</small>
-        {% endif %}
-        {% if checklist.region %}
-          {% if checklist.area or checklist.county or checklist.district %}<span>, </span>{% endif %}
-          <small class="text-muted">{{ checklist.region }}</small>
+        {% if checklist.state %}
+          {% if checklist.county %}<span>, </span>{% endif %}
+          <small class="text-muted">{{ checklist.state }}</small>
         {% endif %}
         {% if show_country %}
           <small class="text-muted">, {{ checklist.country }}</small>

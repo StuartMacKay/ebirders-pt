@@ -26,9 +26,9 @@
                  class="form-control autocomplete"
                  data-server="{% url 'checklists:autocomplete' %}"
             {% if show_country %}
-                 placeholder="{% trans 'Enter Country, District, County, or Observer' %}"
+                 placeholder="{% trans 'Enter Country, State, County, or Observer' %}"
             {% else %}
-                 placeholder="{% trans 'Enter District, County, or Observer' %}"
+                 placeholder="{% trans 'Enter State, County, or Observer' %}"
             {% endif %}
           />
           <button id="search-button" type="button" class="btn btn-primary">

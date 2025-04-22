@@ -25,45 +25,19 @@
          title="{% trans 'Show checklists for this location' %}">{{ checklist.location.display_name }}</a>
       <br/>
       {% spaceless %}
-        {% if checklist.area %}
-          <small class="text-muted">
-            <a class="dark-link"
-               href="?area={{ checklist.area.code }}&search={{ checklist.area|urlencode }}"
-               title="{% trans 'Show checklists for this area' %}">{{ checklist.area.name }}</a>
-          </small>
-        {% endif %}
         {% if checklist.county %}
           <small class="text-muted">
-            {% if checklist.area %}<span>, </span>{% endif %}
             <a class="dark-link"
                href="?county={{ checklist.county.code }}&search={{ checklist.county|urlencode }}"
                title="{% trans 'Show checklists for this county' %}">{{ checklist.county.name }}</a>
           </small>
         {% endif %}
-        {% if checklist.district %}
-          <small class="text-muted">
-            {% if checklist.area or checklist.county %}<span>, </span>{% endif %}
-            <a class="dark-link"
-               href="?district={{ checklist.district.code }}&search={{ checklist.district|urlencode }}"
-               title="{% trans 'Show checklists for this district' %}">{{ checklist.district.name }}</a>
-          </small>
-        {% endif %}
         {% if checklist.state %}
           <small class="text-muted">
-            {% if checklist.area or checklist.county or checklist.district %}<span>, </span>{% endif %}
+            {% if checklist.county %}<span>, </span>{% endif %}
             <a class="dark-link"
                href="?state={{ checklist.state.code }}&search={{ checklist.state|urlencode }}"
                title="{% trans 'Show checklists for this state' %}">{{ checklist.state.name }}</a>
-          </small>
-        {% endif %}
-        {% if checklist.region %}
-          <small class="text-muted">
-            {% if checklist.area or checklist.county or checklist.district or checklist.state %}
-              <span>, </span>
-            {% endif %}
-            <a class="dark-link"
-               href="?region={{ checklist.region.code }}&search={{ checklist.region|urlencode }}"
-               title="{% trans 'Show checklists for this region' %}">{{ checklist.region.name }}</a>
           </small>
         {% endif %}
         {% if show_country %}

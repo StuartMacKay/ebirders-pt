@@ -43,44 +43,19 @@
          title="{% trans 'Show observations for this location' %}">{{ observation.location.display_name }}</a>
       <br/>
       {% spaceless %}
-        {% if observation.area %}
-          <small class="text-muted">
-            <a class="dark-link"
-               href="?area={{ observation.area.code }}&search={{ observation.area|urlencode }}"
-               title="{% trans 'Show observations for this area' %}">{{ observation.area.name }}</a>
-          </small>
-        {% endif %}
         {% if observation.county %}
           <small class="text-muted">
-            {% if observation.area %}<span>, </span>{% endif %}
             <a class="dark-link"
                href="?county={{ observation.county.code }}&search={{ observation.county|urlencode }}"
                title="{% trans 'Show observations for this county' %}">{{ observation.county.name }}</a>
           </small>
         {% endif %}
-        {% if observation.district %}
-          <small class="text-muted">
-            {% if observation.area or observation.county %}<span>, </span>{% endif %}
-            <a class="dark-link"
-               href="?district={{ observation.district.code }}&search={{ observation.district|urlencode }}"
-               title="{% trans 'Show observations for this district' %}">{{ observation.district.name }}</a>
-          </small>
-        {% endif %}
         {% if observation.state %}
           <small class="text-muted">
-            {% if observation.area or observation.county or observation.district %}<span>, </span>{% endif %}
+            {% if observation.county %}<span>, </span>{% endif %}
             <a class="dark-link"
                href="?state={{ observation.state.code }}&search={{ observation.state|urlencode }}"
                title="{% trans 'Show observations for this state' %}">{{ observation.state.name }}</a>
-          </small>
-        {% endif %}
-        {% if observation.region %}
-          <small class="text-muted">
-            {% if observation.area or observation.county or observation.district or observation.state %}
-              <span>, </span>{% endif %}
-            <a class="dark-link"
-               href="?region={{ observation.region.code }}&search={{ observation.region|urlencode }}"
-               title="{% trans 'Show observations for this region' %}">{{ observation.region.name }}</a>
           </small>
         {% endif %}
         {% if show_country %}

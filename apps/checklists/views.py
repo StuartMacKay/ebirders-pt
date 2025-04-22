@@ -10,7 +10,7 @@ from ebird.codes.locations import (
     is_subnational2_code,
 )
 
-from data.models import Checklist, Country, County, District, Observer
+from data.models import Checklist, Country, County, Observer, State
 
 
 class ChecklistsView(generic.ListView):
@@ -22,7 +22,7 @@ class ChecklistsView(generic.ListView):
     def get_filters(self):
         filters = {
             "country": self.request.GET.get("country"),
-            "district": self.request.GET.get("district"),
+            "state": self.request.GET.get("state"),
             "county": self.request.GET.get("county"),
             "location": self.request.GET.get("location"),
             "observer": self.request.GET.get("observer"),
@@ -32,7 +32,7 @@ class ChecklistsView(generic.ListView):
             if is_country_code(code):
                 filters["country"] = code
             elif is_subnational1_code(code):
-                filters["district"] = code
+                filters["state"] = code
             elif is_subnational2_code(code):
                 filters["county"] = code
             elif is_location_code(code):
@@ -48,8 +48,8 @@ class ChecklistsView(generic.ListView):
 
         if country := filters.get("country"):
             qs = qs.filter(country__code=country)
-        elif district := filters.get("district"):
-            qs = qs.filter(district__code=district)
+        elif state := filters.get("state"):
+            qs = qs.filter(state__code=state)
         elif county := filters.get("county"):
             qs = qs.filter(county__code=county)
         elif location := filters.get("location"):
@@ -59,10 +59,8 @@ class ChecklistsView(generic.ListView):
 
         return qs.select_related(
             "country",
-            "region",
-            "district",
+            "state",
             "county",
-            "area",
             "location",
             "observer",
         )
@@ -91,8 +89,8 @@ class DetailView(generic.DetailView):
 
 def autocomplete(request):
     """
-    Return the list of countries, regions and districts for the search
-    field. If there is only one country, remove it from the label.
+    Return the list of countries and states for the search field.
+    If there is only one country, remove it from the label.
     """
     data = []
 
@@ -109,7 +107,7 @@ def autocomplete(request):
     else:
         country = None
 
-    for code, place in District.objects.all().values_list("code", "place"):
+    for code, place in State.objects.all().values_list("code", "place"):
         if country:
             label = re.sub(r", %s$" % country, "", place)
         else:

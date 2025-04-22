@@ -8,13 +8,13 @@ register = template.Library()
 
 
 @register.inclusion_tag("news/numbers/number.html")
-def species_count(country_id, district_id, county_id, start, end):
+def species_count(country_id, state_id, county_id, start, end):
     queryset = Observation.objects.filter(date__gte=start, date__lt=end)
 
     if country_id:
         queryset = queryset.filter(country_id=country_id)
-    elif district_id:
-        queryset = queryset.filter(district_id=district_id)
+    elif state_id:
+        queryset = queryset.filter(state_id=state_id)
     elif county_id:
         queryset = queryset.filter(county_id=county_id)
 
@@ -27,13 +27,13 @@ def species_count(country_id, district_id, county_id, start, end):
 
 
 @register.inclusion_tag("news/numbers/number.html")
-def checklist_count(country_id, district_id, county_id, start, end):
+def checklist_count(country_id, state_id, county_id, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
     if country_id:
         queryset = queryset.filter(country_id=country_id)
-    elif district_id:
-        queryset = queryset.filter(district_id=district_id)
+    elif state_id:
+        queryset = queryset.filter(state_id=state_id)
     elif county_id:
         queryset = queryset.filter(county_id=county_id)
 
@@ -46,13 +46,13 @@ def checklist_count(country_id, district_id, county_id, start, end):
 
 
 @register.inclusion_tag("news/numbers/number.html")
-def observer_count(country_id, district_id, county_id, start, end):
+def observer_count(country_id, state_id, county_id, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
     if country_id:
         queryset = queryset.filter(country_id=country_id)
-    elif district_id:
-        queryset = queryset.filter(district_id=district_id)
+    elif state_id:
+        queryset = queryset.filter(state_id=state_id)
     elif county_id:
         queryset = queryset.filter(county_id=county_id)
 
@@ -65,13 +65,13 @@ def observer_count(country_id, district_id, county_id, start, end):
 
 
 @register.inclusion_tag("news/numbers/number.html")
-def duration_count(country_id, district_id, county_id, start, end):
+def duration_count(country_id, state_id, county_id, start, end):
     queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
 
     if country_id:
         queryset = queryset.filter(country_id=country_id)
-    elif district_id:
-        queryset = queryset.filter(district_id=district_id)
+    elif state_id:
+        queryset = queryset.filter(state_id=state_id)
     elif county_id:
         queryset = queryset.filter(county_id=county_id)
 

@@ -32,34 +32,12 @@ class Location(models.Model):
         help_text=_("The country for the location."),
     )
 
-    region = models.ForeignKey(
-        "data.Region",
-        blank=True,
-        null=True,
-        related_name="locations",
-        on_delete=models.PROTECT,
-        verbose_name=_("region"),
-        help_text=_("The region for the location."),
-    )
-
     state = models.ForeignKey(
         "data.State",
-        blank=True,
-        null=True,
         related_name="locations",
         on_delete=models.PROTECT,
         verbose_name=_("state"),
         help_text=_("The state for the location."),
-    )
-
-    district = models.ForeignKey(
-        "data.District",
-        blank=True,
-        null=True,
-        related_name="locations",
-        on_delete=models.PROTECT,
-        verbose_name=_("district"),
-        help_text=_("The district for the location."),
     )
 
     county = models.ForeignKey(
@@ -70,16 +48,6 @@ class Location(models.Model):
         on_delete=models.PROTECT,
         verbose_name=_("county"),
         help_text=_("The county for the location."),
-    )
-
-    area = models.ForeignKey(
-        "data.Area",
-        blank=True,
-        null=True,
-        related_name="locations",
-        on_delete=models.PROTECT,
-        verbose_name=_("area"),
-        help_text=_("The area for the location."),
     )
 
     latitude = models.DecimalField(

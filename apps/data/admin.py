@@ -102,9 +102,8 @@ class ChecklistAdmin(admin.ModelAdmin):
         if "location" in form.changed_data:
             location = obj.location
             obj.country = location.country
-            obj.region = location.region
-            obj.district = location.district
-            obj.area = location.area
+            obj.state = location.state
+            obj.county = location.county
         super().save_model(request, obj, form, change)
 
 
@@ -115,22 +114,15 @@ class CountryAdmin(admin.ModelAdmin):
     readonly_fields = ("code",)
 
 
-@admin.register(models.Region)
-class RegionAdmin(admin.ModelAdmin):
+@admin.register(models.State)
+class StateAdmin(admin.ModelAdmin):
     list_display = ("code", "name")
     ordering = ("code",)
     readonly_fields = ("code",)
 
 
-@admin.register(models.District)
-class DistrictAdmin(admin.ModelAdmin):
-    list_display = ("code", "name")
-    ordering = ("code",)
-    readonly_fields = ("code",)
-
-
-@admin.register(models.Area)
-class AreaAdmin(admin.ModelAdmin):
+@admin.register(models.County)
+class CountyAdmin(admin.ModelAdmin):
     list_display = ("code", "name")
     ordering = ("code",)
     readonly_fields = ("code",)
@@ -138,9 +130,9 @@ class AreaAdmin(admin.ModelAdmin):
 
 @admin.register(models.Location)
 class LocationAdmin(admin.ModelAdmin):
-    list_display = ("identifier", "name", "district", "region", "country")
+    list_display = ("identifier", "name", "county", "state", "country")
     ordering = ("-identifier",)
-    search_fields = ("name", "district__name", "region__name", "country__name")
+    search_fields = ("name", "county__name", "state__name", "country__name")
     formfield_overrides = {
         TextField: {
             "widget": TextInput(attrs={"style": "width: 30%"}),
@@ -161,17 +153,12 @@ class LocationAdmin(admin.ModelAdmin):
         if "country" in form.changed_data:
             models.Checklist.objects.filter(location=obj).update(country=obj.country)
             models.Observation.objects.filter(location=obj).update(country=obj.country)
-        if "region" in form.changed_data:
-            models.Checklist.objects.filter(location=obj).update(region=obj.region)
-            models.Observation.objects.filter(location=obj).update(region=obj.region)
-        if "district" in form.changed_data:
-            models.Checklist.objects.filter(location=obj).update(district=obj.district)
-            models.Observation.objects.filter(location=obj).update(
-                district=obj.district
-            )
-        if "area" in form.changed_data:
-            models.Checklist.objects.filter(location=obj).update(area=obj.area)
-            models.Observation.objects.filter(location=obj).update(area=obj.area)
+        if "state" in form.changed_data:
+            models.Checklist.objects.filter(location=obj).update(state=obj.state)
+            models.Observation.objects.filter(location=obj).update(state=obj.state)
+        if "county" in form.changed_data:
+            models.Checklist.objects.filter(location=obj).update(county=obj.county)
+            models.Observation.objects.filter(location=obj).update(county=obj.county)
 
 
 @admin.register(models.Observation)
@@ -228,9 +215,8 @@ class ObservationAdmin(admin.ModelAdmin):
         if "location" in form.changed_data:
             location = obj.location
             obj.country = location.country
-            obj.region = location.region
-            obj.district = location.district
-            obj.area = location.area
+            obj.state = location.state
+            obj.county = location.county
         super().save_model(request, obj, form, change)
 
 
