@@ -60,7 +60,6 @@ INSTALLED_APPS = [
     "news",
     "observations",
     "species",
-    "users",
 ]
 
 MIDDLEWARE = [
@@ -108,8 +107,6 @@ if DEBUG:
 # ############
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
-
-AUTH_USER_MODEL = 'users.User'
 
 DATABASES = {
     "default": env.db_url(default="postgres://project:password@localhost:5432/project")
