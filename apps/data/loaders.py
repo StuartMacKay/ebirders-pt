@@ -317,8 +317,10 @@ class APILoader:
                 values["duration"] = int(duration * 60.0)
 
             if data["protocolId"] == "P22":
-                dist: str = data["effortDistanceKm"]
-                values["distance"] = round(Decimal(dist), 3)
+                # The distance travelled might not be reported.
+                if "effortDistanceKm" in data:
+                    dist: str = data["effortDistanceKm"]
+                    values["distance"] = round(Decimal(dist), 3)
             elif data["protocolId"] == "P23":
                 coverage: str = data["effortAreaHa"]
                 values["coverage"] = round(Decimal(coverage), 3)
