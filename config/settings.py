@@ -339,6 +339,25 @@ LOGGING = {
     },
 }
 
+# ##########
+#   SENTRY
+# ##########
+
+if DSN := env.str("DJANGO_SENTRY_DSN", default=""):
+    import sentry_sdk
+
+    from sentry_sdk.integrations.django import DjangoIntegration
+
+    sentry_sdk.init(  # type: ignore
+        DSN,
+        integrations=[
+            DjangoIntegration(),
+        ],
+        auto_session_tracking=False,
+        traces_sample_rate=0,
+        environment="production",
+    )
+
 # #########
 #   EMAIL
 # #########
