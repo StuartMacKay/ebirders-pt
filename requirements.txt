@@ -9,7 +9,9 @@ beautifulsoup4==4.13.4
 brotli==1.1.0
     # via whitenoise
 certifi==2025.1.31
-    # via requests
+    # via
+    #   requests
+    #   sentry-sdk
 charset-normalizer==3.4.1
     # via requests
 decorator==5.1.1
@@ -67,6 +69,8 @@ python-json-logger==3.2.1
     # via ebird-pages (pyproject.toml)
 requests==2.32.3
     # via ebird-pages (pyproject.toml)
+sentry-sdk==2.26.1
+    # via ebird-pages (pyproject.toml)
 six==1.17.0
     # via python-dateutil
 soupsieve==2.6
@@ -82,7 +86,9 @@ traitlets==5.14.3
 typing-extensions==4.13.2
     # via beautifulsoup4
 urllib3==2.3.0
-    # via requests
+    # via
+    #   requests
+    #   sentry-sdk
 wcwidth==0.2.13
     # via prompt-toolkit
 whitenoise==6.9.0
