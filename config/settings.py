@@ -310,15 +310,14 @@ LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
     "formatters": {
-        "json": {
-            "()": "pythonjsonlogger.json.JsonFormatter",
-            "format": "%(asctime)s %(levelname)s %(name)s %(message)s",
+        "simple": {
+            "format": "%(asctime)s %(levelname)s %(message)s",
         },
     },
     "handlers": {
         "stdout": {
             "class": "logging.StreamHandler",
-            "formatter": "json",
+            "formatter": "simple",
         },
         "mail_admins": {
             "level": "ERROR",
