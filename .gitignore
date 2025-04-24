@@ -19,8 +19,5 @@ __pycache__/
 media
 static
 
-# Backups
-./data
-
 # Ansible
 deploy
