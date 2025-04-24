@@ -18,6 +18,3 @@ __pycache__/
 # Django
 media
 static
-
-# Ansible
-deploy
