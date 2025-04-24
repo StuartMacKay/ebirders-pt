@@ -87,9 +87,7 @@ class APILoader:
         }
         country, created = Country.objects.get_or_create(code=code, defaults=values)
         if created:
-            logger.info(
-                "Added country: %s", code, extra={"code": code, "country": values["name"]}
-            )
+            logger.info("Added country: %s, %s", code, values["name"])
         return country
 
     @staticmethod
@@ -101,9 +99,7 @@ class APILoader:
         }
         state, created = State.objects.get_or_create(code=code, defaults=values)
         if created:
-            logger.info(
-                "Added state: %s", code, extra={"code": code, "state": values["name"]}
-            )
+            logger.info("Added state: %s, %s", code, values["name"])
         return state
 
     @staticmethod
@@ -116,9 +112,7 @@ class APILoader:
         }
         county, created = County.objects.get_or_create(code=code, defaults=values)
         if created:
-            logger.info(
-                "Added county: %s", code, extra={"code": code, "county": values["name"]}
-            )
+            logger.info("Added county: %s, %s", code, values["name"])
         return county
 
     def add_location(self, data: dict) -> Location:
@@ -141,11 +135,7 @@ class APILoader:
             values["county"] = self.get_county(data)
 
         location = Location.objects.create(**values)
-        logger.info(
-            "Added location: %s",
-            identifier,
-            extra={"identifier": identifier, "location": values["name"]},
-        )
+        logger.info("Added location: %s, %s", identifier, values["name"])
         return location
 
     def add_species(self, code: str) -> Species:
@@ -181,11 +171,7 @@ class APILoader:
 
         species.save()
 
-        logger.info(
-            "Added species: %s",
-            code,
-            extra={"code": code, "common name": species.common_name},
-        )
+        logger.info("Added species: %s, %s", code, species.common_name)
 
         return species
 
@@ -241,7 +227,7 @@ class APILoader:
         name: str = data.get("userDisplayName", "anonymous eBirder")
         observer, created = Observer.objects.get_or_create(name=name)
         if created:
-            logger.info("Added observer: %s", name, extra={"observer": name})
+            logger.info("Added observer: %s", name)
         return observer
 
     @staticmethod
@@ -251,11 +237,7 @@ class APILoader:
         return node[attribute] if node else ""
 
     def scrape_checklist(self, checklist) -> Checklist:
-        logger.info(
-            "Scraping checklist: %s",
-            checklist.identifier,
-            extra={"identifier": checklist.identifier},
-        )
+        logger.info("Scraping checklist: %s", checklist.identifier)
         response = requests.get(checklist.url)
         content = response.content
         soup = BeautifulSoup(content, "lxml")
@@ -272,9 +254,7 @@ class APILoader:
             identifier: the eBird identifier for the checklist, e.g. "S318722167"
 
         """
-        logger.info(
-            "Adding checklist: %s", identifier, extra={"identifier": identifier}
-        )
+        logger.info("Adding checklist: %s", identifier)
 
         with transaction.atomic():
             data: dict = get_checklist(self.api_key, identifier)
@@ -339,11 +319,6 @@ class APILoader:
         return checklist
 
     def fetch_subregions(self, region: str) -> List[str]:
-        logger.info(
-            "Fetching sub-regions: %s",
-            region,
-            extra={"region": region},
-        )
         region_types: list = ["subnational1", "subnational2", None]
         levels: int = len(region.split("-", 2))
         region_type: Optional[str] = region_types[levels - 1]
@@ -364,23 +339,16 @@ class APILoader:
         )
 
         if len(results) == API_MAX_RESULTS:
+            logger.info("API result limit reached - fetching visits for subregions")
             if sub_regions := self.fetch_subregions(region):
                 for sub_region in sub_regions:
-                    logger.info(
-                        "Adding checklists for sub-regions: %s, %s",
-                        sub_region,
-                        date,
-                        extra={"region": sub_region, "date": date},
-                    )
+                    logger.info("Fetching visits for sub-region: %s", sub_region)
                     visits.extend(self.fetch_visits(sub_region, date))
             else:
                 # No more sub-regions, issue a warning and return the results
                 visits.extend(results)
                 logger.warning(
-                    "Adding checklists - API limit reached: %s, %s",
-                    region,
-                    date,
-                    extra={"region": region, "date": date},
+                    "Fetching visits - API limit reached: %s, %s", region, date
                 )
         else:
             visits.extend(results)
@@ -400,19 +368,12 @@ class APILoader:
 
         """
 
-        logger.info(
-            "Adding checklists: %s, %s",
-            region,
-            date,
-            extra={"region": region, "date": date},
-        )
-        visits: list[dict]
-        total: int = 0
-        added: int = 0
+        logger.info("Adding checklists: %s, %s", region, date)
 
         try:
-            visits = self.fetch_visits(region, date)
-            total = len(visits)
+            visits: list[dict] = self.fetch_visits(region, date)
+
+            logger.info("Visits made: %d ", len(visits))
 
             for visit in visits:
                 data = visit["loc"]
@@ -420,33 +381,16 @@ class APILoader:
                 if not Location.objects.filter(identifier=identifier).exists():
                     self.add_location(data)
 
+            added: int = 0
+
             for visit in visits:
                 identifier = visit["subId"]
                 if not Checklist.objects.filter(identifier=identifier).exists():
                     self.add_checklist(identifier)
                     added += 1
 
-            logger.info(
-                "Adding checklists succeeded: %s, %s",
-                region,
-                date,
-                extra={
-                    "region": region,
-                    "date": date,
-                    "visits": total,
-                    "added": added,
-                },
-            )
+            logger.info("Checklists added: %d ", added)
+            logger.info("Adding checklists completed")
 
         except (URLError, HTTPError):
-            logger.exception(
-                "Adding checklists failed: %s, %s",
-                region,
-                date,
-                extra={
-                    "region": region,
-                    "date": date,
-                    "visits": total,
-                    "added": added,
-                },
-            )
+            logger.exception("Adding checklists failed: %s, %s", region, date)
