@@ -1,7 +1,7 @@
 [project]
-name = "ebird-pages"
+name = "ebirders-pt"
 version = "2025.04.17"
-description = "Birder-friendly data from eBird"
+description = "Data and statistics for checklists submitted to eBird Portugal"
 readme = "README.md"
 license-files = ["LICENSE.txt"]
 requires-python = ">=3.12"

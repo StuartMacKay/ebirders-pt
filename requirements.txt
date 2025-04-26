@@ -5,7 +5,7 @@ asgiref==3.8.1
 asttokens==3.0.0
     # via stack-data
 beautifulsoup4==4.13.4
-    # via ebird-pages (pyproject.toml)
+    # via ebirders= (pyproject.toml)
 brotli==1.1.0
     # via whitenoise
 certifi==2025.1.31
@@ -18,31 +18,31 @@ decorator==5.1.1
     # via ipython
 django==5.1.6
     # via
-    #   ebird-pages (pyproject.toml)
+    #   ebirders-pt (pyproject.toml)
     #   django-extensions
     #   django-spaceless-templates
 django-environ==0.12.0
-    # via ebird-pages (pyproject.toml)
+    # via ebirders-pt (pyproject.toml)
 django-extensions==3.2.3
-    # via ebird-pages (pyproject.toml)
+    # via ebirders-pt (pyproject.toml)
 django-spaceless-templates==1.0.2
-    # via ebird-pages (pyproject.toml)
+    # via ebirders-pt (pyproject.toml)
 ebird-api==3.4.2
-    # via ebird-pages (pyproject.toml)
+    # via ebirders-pt (pyproject.toml)
 ebird-codes==0.0.2
-    # via ebird-pages (pyproject.toml)
+    # via ebirders-pt (pyproject.toml)
 executing==2.2.0
     # via stack-data
 gunicorn==23.0.0
-    # via ebird-pages (pyproject.toml)
+    # via ebirders-pt (pyproject.toml)
 idna==3.10
     # via requests
 ipython==8.32.0
-    # via ebird-pages (pyproject.toml)
+    # via ebirders-pt (pyproject.toml)
 jedi==0.19.2
     # via ipython
 lxml==5.3.2
-    # via ebird-pages (pyproject.toml)
+    # via ebirders-pt (pyproject.toml)
 matplotlib-inline==0.1.7
     # via ipython
 packaging==24.2
@@ -54,7 +54,7 @@ pexpect==4.9.0
 prompt-toolkit==3.0.50
     # via ipython
 psycopg2-binary==2.9.10
-    # via ebird-pages (pyproject.toml)
+    # via ebirders-pt (pyproject.toml)
 ptyprocess==0.7.0
     # via pexpect
 pure-eval==0.2.3
@@ -62,15 +62,15 @@ pure-eval==0.2.3
 pygments==2.19.1
     # via ipython
 pymemcache==4.0.0
-    # via ebird-pages (pyproject.toml)
+    # via ebirders-pt (pyproject.toml)
 python-dateutil==2.9.0.post0
-    # via ebird-pages (pyproject.toml)
+    # via ebirders-pt (pyproject.toml)
 python-json-logger==3.2.1
-    # via ebird-pages (pyproject.toml)
+    # via ebirders-pt (pyproject.toml)
 requests==2.32.3
-    # via ebird-pages (pyproject.toml)
+    # via ebirders-pt (pyproject.toml)
 sentry-sdk==2.26.1
-    # via ebird-pages (pyproject.toml)
+    # via ebirders-pt (pyproject.toml)
 six==1.17.0
     # via python-dateutil
 soupsieve==2.6
@@ -92,4 +92,4 @@ urllib3==2.3.0
 wcwidth==0.2.13
     # via prompt-toolkit
 whitenoise==6.9.0
-    # via ebird-pages (pyproject.toml)
+    # via ebirders-pt (pyproject.toml)

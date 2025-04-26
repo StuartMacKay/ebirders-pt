@@ -294,7 +294,7 @@ wheels = [
 ]
 
 [[package]]
-name = "ebird-pages"
+name = "ebirders-pt"
 version = "2025.4.17"
 source = { virtual = "." }
 dependencies = [

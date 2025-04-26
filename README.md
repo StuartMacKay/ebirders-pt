@@ -1,17 +1,22 @@
-# eBird Pages
+# eBirders PT
 
-eBird Pages is a Django-based web site that publishes data from eBird in a birder
-friendly form.
+eBirders PT is a Django-based web site that publishes data from eBird Portugal 
+in a birder-friendly form.
 
 ## Overview
 
 The Cornell Laboratory of Ornithology in Ithaca, New York runs the eBird database
 which collects observations of birds from all over the world. The eBird web [site](https://ebird.org)
 is great, but the information of most interest to birders is not always easy to 
-find. eBird Pages uses the eBird [API](https://documenter.getpostman.com/view/664302/S1ENwy59) to publish observations, checklist,
-and interesting statistics so you can find out what's been seen in your part of 
-the world, where are the best places to go birding, and who are the eBirders 
-finding the most interesting birds.
+find. eBirders PT uses the eBird [API](https://documenter.getpostman.com/view/664302/S1ENwy59) to publish the observations submitted
+for Portugal so everyone can easily find out what has been seen in the different
+regions of the country, and where are the best places to go birding.
+
+Apart from the translations, the site is not specific to Portugal, and can be used
+for any country or region. The site is a regular Django web site, so it is easy to 
+adapt to add or remove features as you see fit. Eventually, once the code has 
+stabilised, the core parts of the site will be extracted to a separate repository 
+which can be used as a start to create similar sites for other part of the world.
 
 ## Getting Started
 
@@ -22,8 +27,8 @@ so don't abuse the service.
 
 Next, get a copy of the repository:
 
-    git clone https://git.sr.ht/~smackay/ebird-pages
-    cd ebird-pages
+    git clone https://git.sr.ht/~smackay/ebirders-pt
+    cd ebirders-pt
 
 Create the virtual environment:
 
@@ -78,8 +83,8 @@ To see a real site, developed using this code-base, please visit, https://www.eb
 
 ## Project Information
 
-* Issues: https://todo.sr.ht/~smackay/ebird-pages
-* Repository: https://git.sr.ht/~smackay/ebird-pages
+* Issues: https://todo.sr.ht/~smackay/ebirders-pt
+* Repository: https://git.sr.ht/~smackay/ebirders-pt
 * Announcements: https://lists.sr.ht/~smackay/ebirders-announce
 * Discussions: https://lists.sr.ht/~smackay/ebirders-discuss
 * Development: https://lists.sr.ht/~smackay/ebirders-devel
@@ -91,7 +96,7 @@ eBird Pages is released under the terms of the [MIT](https://opensource.org/lice
 ## Related Projects
 
 * ebird-checklists: https://todo.sr.ht/~smackay/ebird-checklists - the core project
-  one which eBird Pages is based. It contains all the code you need to set up a feed
+  one which eBirders PT is based. It contains all the code you need to set up a feed
   from the eBird API and load it into a database.
 
 * ebird-notebooks: https://todo.sr.ht/~smackay/ebird-notebooks - a set of Jupyter 
