@@ -2,6 +2,9 @@
 
 ## Latest
 
+- Create a byname when a location is saved by removing the coordinates, country code, 
+  and region names.
+
 ## 2025.04.17
 First formal/official release of the project with pages showing:
 - a paginated list of all observations

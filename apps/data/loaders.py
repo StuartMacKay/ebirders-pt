@@ -135,7 +135,7 @@ class APILoader:
             values["county"] = self.get_county(data)
 
         location = Location.objects.create(**values)
-        logger.info("Added location: %s, %s", identifier, values["name"])
+        logger.info("Added location: %s, %s", identifier, location.display_name())
         return location
 
     def add_species(self, code: str) -> Species:

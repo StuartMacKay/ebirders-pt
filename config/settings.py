@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "checklists",
     "data",
+    "locations",
     "news",
     "observations",
     "species",
