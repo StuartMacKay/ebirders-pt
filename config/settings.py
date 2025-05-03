@@ -21,6 +21,7 @@ import environ  # type: ignore
 
 CONFIG_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(CONFIG_DIR)
+NOTEBOOKS_DIR = os.path.join(ROOT_DIR, "notebooks")
 
 sys.path.insert(0, os.path.join(ROOT_DIR, "apps"))
 
@@ -388,6 +389,23 @@ if ADMIN_PATH[-1] != "/":
 # #####################
 
 SHELL_PLUS = "ipython"
+
+# #####################
+#   JUPYTER NOTEBOOKS
+# #####################
+
+if DJANGO_ENV == 'development':
+
+    NOTEBOOK_ARGUMENTS = [
+        '--ip', '0.0.0.0',
+        '--port', '8888',
+    ]
+
+    IPYTHON_KERNEL_DISPLAY_NAME = 'Django Kernel'
+
+    os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+
+    TEMPLATES[0]["DIRS"].append(os.path.join(NOTEBOOKS_DIR, "templates"))
 
 # #########
 #   eBird
