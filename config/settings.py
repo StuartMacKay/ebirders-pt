@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     "locations",
     "news",
     "observations",
+    "observers",
     "species",
 ]
 
