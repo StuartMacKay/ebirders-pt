@@ -27,24 +27,14 @@
     {% for observation in observations %}
       {% ifchanged observation.species %}
         <div class="row mb-3">
-          <div class="col-md-1">
-            <div class="show-if-wide text-end">
-              {% if observation.count %}{{ observation.count }}{% else %}X{% endif %}</div>
-          </div>
-          <div class="col-md-3">
+          <div class="col-md-4 col-sm-6">
             {% with species=observation.species %}
               {% get_common_name species language_code as common_name %}
-              <div class="show-if-wide">
-                {{ common_name }}<br>
-                <small class="text-muted fst-italic">{{ species.scientific_name }}</small>
-              </div>
-              <div class="show-if-narrow">
-                <span>{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}, </span>{{ common_name }}
-                <small class="ms-2 text-muted fst-italic">{{ species.scientific_name }}</small>
-              </div>
+              {{ common_name }} ({% if observation.count %}{{ observation.count }}{% else %}X{% endif %})<br>
+              <small class="text-muted fst-italic">{{ species.scientific_name }}</small>
             {% endwith %}
           </div>
-          <div class="col-md-6">
+          <div class="col">
             {{ observation.location.display_name }}<br/>
             {% spaceless %}
               {% if observation.county %}
