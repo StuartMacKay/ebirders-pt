@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-24 09:36+0000\n"
+"POT-Creation-Date: 2025-05-07 14:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,6 +104,7 @@ msgid "Show checklists for this observer"
 msgstr "Mostrar as listas para este observador"
 
 #: apps/checklists/templates/checklists/includes/checklist-table.html:60
+#: apps/news/templates/news/tables/big-days.html:25
 #: apps/news/templates/news/tables/big-lists.html:43
 msgid "Number of species reported"
 msgstr "Número de espécies registadas"
@@ -768,6 +769,10 @@ msgstr ""
 msgid "The hierarchical name of the state."
 msgstr ""
 
+#: apps/locations/apps.py:7
+msgid "Locations"
+msgstr ""
+
 #: apps/news/apps.py:8 apps/news/templates/news/index.html:9
 #: apps/news/templates/news/index.html:13 templates/page.html:20
 msgid "News"
@@ -789,6 +794,17 @@ msgstr "Introduzir país, distrito ou concelho"
 msgid "Enter State or County"
 msgstr "Introduzir distrito ou concelho"
 
+#: apps/news/templates/news/tables/big-days.html:12
+msgid "View the list of species"
+msgstr "Ver a lista de espécies"
+
+#: apps/news/templates/news/tables/big-days.html:31
+#: apps/news/templates/news/tables/checklists-duration.html:15
+#: apps/news/templates/news/tables/checklists-species.html:11
+#: apps/news/templates/news/tables/checklists-submitted.html:11
+msgid "Your name here"
+msgstr "O seu nome aqui"
+
 #: apps/news/templates/news/tables/big-lists.html:50
 msgid "There are no Big Lists to report."
 msgstr "Não há listas grandes a comunicar."
@@ -801,12 +817,6 @@ msgstr "Tempo passado"
 #, python-format
 msgid "Duration: %(hours)s hours %(minutes)s minutes"
 msgstr "%(hours)sh %(minutes)smin"
-
-#: apps/news/templates/news/tables/checklists-duration.html:15
-#: apps/news/templates/news/tables/checklists-species.html:11
-#: apps/news/templates/news/tables/checklists-submitted.html:11
-msgid "Your name here"
-msgstr "O seu nome aqui"
 
 #: apps/news/templates/news/tables/checklists-species.html:2
 msgid "Species seen"
@@ -852,7 +862,7 @@ msgstr "Percentagem"
 msgid "Species (plural)"
 msgstr "Espécies"
 
-#: apps/news/templatetags/numbers.py:62
+#: apps/news/templatetags/numbers.py:62 apps/observers/apps.py:7
 msgid "Observers"
 msgstr "Observadores"
 
@@ -868,12 +878,21 @@ msgstr "Listas grandes"
 msgid "Year List"
 msgstr "Year List"
 
+#: apps/news/templatetags/tables.py:205
+msgid "Big Days"
+msgstr "Dias Grandes"
+
 #: apps/observations/apps.py:8
 #: apps/observations/templates/observations/index.html:9
 #: apps/observations/templates/observations/index.html:13
 #: templates/page.html:26
 msgid "Observations"
 msgstr "Observações"
+
+#: apps/observations/templates/observations/big-day.html:9
+#: apps/observations/templates/observations/big-day.html:13
+msgid "Big Day"
+msgstr "Dia Grande"
 
 #: apps/observations/templates/observations/includes/observation-table.html:12
 #: apps/observations/templates/observations/includes/observation-table.html:23
@@ -912,11 +931,11 @@ msgstr "Introduzir distrito, concelho, especie, ou observador"
 msgid "Species"
 msgstr "Espécie"
 
-#: config/settings.py:212
+#: config/settings.py:214
 msgid "English"
 msgstr "Inglês"
 
-#: config/settings.py:213
+#: config/settings.py:215
 msgid "Portuguese"
 msgstr "Português"
 
