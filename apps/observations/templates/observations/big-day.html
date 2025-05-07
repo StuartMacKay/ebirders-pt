@@ -3,7 +3,7 @@
 
 {% block language_selector %}
   <li><a class="dropdown-item"
-         href="{% url 'observations:list' %}{% querystring %}">{{ lang_name }}</a></li>
+         href="{% url 'observations:big-day' %}{% querystring %}">{{ lang_name }}</a></li>
 {% endblock %}
 
 {% block title %}{% trans 'Big Day' %}{% endblock %}
