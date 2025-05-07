@@ -2,8 +2,12 @@
 
 ## Latest
 
-- Create a byname when a location is saved by removing the coordinates, country code, 
+- Create a byname when a location is created by removing the coordinates, country code, 
   and region names.
+- Create a byname when a observer is created by removing names of companies, and 
+  extra spaces.
+- Add a Big Days table to the News page, showing the top ten observers who saw the most
+  species in a day for that week. Each entry links to a page with the full list.
 
 ## 2025.04.17
 First formal/official release of the project with pages showing:
