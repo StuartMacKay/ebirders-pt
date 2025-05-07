@@ -34,7 +34,7 @@
           <div class="col-md-3">
             <div class="show-if-wide">
               <a class="dark-link"
-                 href="?species={{ observation.species.species_code }}&search={% get_common_name observation.species language_code %}"
+                 href="{% url 'observations:list' %}?species={{ observation.species.species_code }}&search={% get_common_name observation.species language_code %}"
                  title="{% trans 'Show observations of this species' %}">
                 {% get_common_name observation.species language_code %}
               </a><br>
@@ -45,7 +45,7 @@
               <span>{% if observation.count %}{{ observation.count }}{% else %}
                 X{% endif %}, </span>
               <a class="dark-link"
-                 href="?species={{ observation.species.species_code }}&search={% get_common_name observation.species language_code %}"
+                 href="{% url 'observations:list' %}?species={{ observation.species.species_code }}&search={% get_common_name observation.species language_code %}"
                  title="{% trans 'Show observations of this species' %}">
                 {% get_common_name observation.species language_code %}
               </a>
@@ -55,14 +55,14 @@
           </div>
           <div class="col-md-6">
             <a class="dark-link"
-               href="?location={{ observation.location.identifier }}&search={{ observation.location|urlencode }}"
+               href="{% url 'observations:list' %}?location={{ observation.location.identifier }}&search={{ observation.location|urlencode }}"
                title="{% trans 'Show observations for this location' %}">{{ observation.location.display_name }}</a>
             <br/>
             {% spaceless %}
               {% if observation.county %}
                 <small class="text-muted">
                   <a class="dark-link"
-                     href="?county={{ observation.county.code }}&search={{ observation.county|urlencode }}"
+                     href="{% url 'observations:list' %}?county={{ observation.county.code }}&search={{ observation.county|urlencode }}"
                      title="{% trans 'Show observations for this county' %}">{{ observation.county.name }}</a>
                 </small>
               {% endif %}
@@ -70,7 +70,7 @@
                 <small class="text-muted">
                   {% if observation.county %}<span>, </span>{% endif %}
                   <a class="dark-link"
-                     href="?state={{ observation.state.code }}&search={{ observation.state|urlencode }}"
+                     href="{% url 'observations:list' %}?state={{ observation.state.code }}&search={{ observation.state|urlencode }}"
                      title="{% trans 'Show observations for this state' %}">{{ observation.state.name }}</a>
                 </small>
               {% endif %}
@@ -78,7 +78,7 @@
                 <small class="text-muted">
                   <span>, </span>
                   <a class="dark-link"
-                     href="?country={{ observation.country.code }}&search={{ observation.country|urlencode }}"
+                     href="{% url 'observations:list' %}?country={{ observation.country.code }}&search={{ observation.country|urlencode }}"
                      title="{% trans 'Show observations for this country' %}">{{ observation.country }}</a>
                 </small>
               {% endif %}
