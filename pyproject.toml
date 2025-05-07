@@ -115,4 +115,5 @@ dev-dependencies = [
     "bump-my-version>=1.1.2",
     "matplotlib>=3.10.1",
     "jupyterlab>=4.4.1",
+    "factory-boy>=3.3.3",
 ]

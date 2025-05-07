@@ -179,3 +179,29 @@ def yearlist_table(context):
         "total": total,
         "show_country": context["show_country"],
     }
+
+
+@register.inclusion_tag("news/tables/big-days.html")
+def big_days_table(country_id, state_id, county_id, start, end):
+    queryset = (
+        Observation.objects.values(
+            'observer__identifier', 'date'
+        )
+        .annotate(name=F('observer__name'))
+        .annotate(species_count=Count('species', distinct=True))
+        .filter(date__gte=start, date__lt=end)
+    )
+
+    if country_id:
+        queryset = queryset.filter(country_id=country_id)
+    elif state_id:
+        queryset = queryset.filter(state_id=state_id)
+    elif county_id:
+        queryset = queryset.filter(county_id=county_id)
+
+    entries = queryset.order_by("-species_count")[:10]
+
+    return {
+        "title": _("Big Days"),
+        "entries": sorted(list(entries), key=lambda entry: entry["date"]),
+    }

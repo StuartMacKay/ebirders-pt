@@ -1,0 +1,91 @@
+{% extends "page.html" %}
+{% load static i18n species_tags %}
+
+{% block language_selector %}
+  <li><a class="dropdown-item"
+         href="{% url 'observations:list' %}{% querystring %}">{{ lang_name }}</a></li>
+{% endblock %}
+
+{% block title %}{% trans 'Big Day' %}{% endblock %}
+
+{% block content %}
+  <div class="d-flex flex-row align-items-center border-bottom pb-2 mb-3">
+    <h1 class="d-inline me-4">{% trans 'Big Day' %}</h1>
+  </div>
+  <div class="border-bottom pb-2 mb-3">
+    <h3>
+      <span class="text-nowrap">
+        {% if language_code == 'pt' %}
+          {{ date|date:"j b Y" }}
+        {% else %}
+          {{ date|date:"jS M Y" }}
+        {% endif %}
+      </span> - <span>{{ observer.name }}</span>
+    </h3>
+  </div>
+  <div class="mb-5">
+    {% for observation in observations %}
+      {% ifchanged observation.species %}
+        <div class="row mb-3">
+          <div class="col-md-1">
+            <div class="show-if-wide text-end">
+              {% if observation.count %}{{ observation.count }}{% else %}X{% endif %}</div>
+          </div>
+          <div class="col-md-3">
+            <div class="show-if-wide">
+              <a class="dark-link"
+                 href="?species={{ observation.species.species_code }}&search={% get_common_name observation.species language_code %}"
+                 title="{% trans 'Show observations of this species' %}">
+                {% get_common_name observation.species language_code %}
+              </a><br>
+              <small
+                class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
+            </div>
+            <div class="show-if-narrow">
+              <span>{% if observation.count %}{{ observation.count }}{% else %}
+                X{% endif %}, </span>
+              <a class="dark-link"
+                 href="?species={{ observation.species.species_code }}&search={% get_common_name observation.species language_code %}"
+                 title="{% trans 'Show observations of this species' %}">
+                {% get_common_name observation.species language_code %}
+              </a>
+              <small
+                class="ms-2 text-muted fst-italic">{{ observation.species.scientific_name }}</small>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <a class="dark-link"
+               href="?location={{ observation.location.identifier }}&search={{ observation.location|urlencode }}"
+               title="{% trans 'Show observations for this location' %}">{{ observation.location.display_name }}</a>
+            <br/>
+            {% spaceless %}
+              {% if observation.county %}
+                <small class="text-muted">
+                  <a class="dark-link"
+                     href="?county={{ observation.county.code }}&search={{ observation.county|urlencode }}"
+                     title="{% trans 'Show observations for this county' %}">{{ observation.county.name }}</a>
+                </small>
+              {% endif %}
+              {% if observation.state %}
+                <small class="text-muted">
+                  {% if observation.county %}<span>, </span>{% endif %}
+                  <a class="dark-link"
+                     href="?state={{ observation.state.code }}&search={{ observation.state|urlencode }}"
+                     title="{% trans 'Show observations for this state' %}">{{ observation.state.name }}</a>
+                </small>
+              {% endif %}
+              {% if show_country %}
+                <small class="text-muted">
+                  <span>, </span>
+                  <a class="dark-link"
+                     href="?country={{ observation.country.code }}&search={{ observation.country|urlencode }}"
+                     title="{% trans 'Show observations for this country' %}">{{ observation.country }}</a>
+                </small>
+              {% endif %}
+            {% endspaceless %}
+          </div>
+        </div>
+      {% endifchanged %}
+    {% endfor %}
+  </div>
+{% endblock content %}
