@@ -18,7 +18,7 @@ from data.models import Country, County, Observation, Observer, Species, State
 class ObservationsView(generic.ListView):
     model = Observation
     template_name = "observations/index.html"
-    paginate_by = 50
+    paginate_by = 100
     ordering = ("-started",)
 
     def get_filters(self):
