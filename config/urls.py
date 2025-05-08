@@ -1,15 +1,16 @@
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
-from django.views.generic import RedirectView
 from django.urls import include, path, reverse_lazy
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import RedirectView
 
 urlpatterns = i18n_patterns(
     path("", RedirectView.as_view(url=reverse_lazy("news:index")), name="index"),
     path(_("news/"), include("news.urls")),
     path(_("checklists/"), include("checklists.urls")),
     path(_("observations/"), include("observations.urls")),
+    path(_("species/"), include("species.urls")),
 )
 
 urlpatterns += [

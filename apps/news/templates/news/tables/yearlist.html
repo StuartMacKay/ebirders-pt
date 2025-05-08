@@ -1,6 +1,9 @@
 {% load i18n species_tags %}
 {% get_current_language as language_code %}
 <h3 class="mb-3">{{ title }} {{ year }}</h3>
+<div class="my-3">
+  <span class="h5">{% trans 'No. of Species' %}: {{ total }}</span>
+</div>
 {% for observation in observations %}
   <div class="row mb-3">
     <div class="col-lg-3 col-xl-3">
@@ -55,5 +58,5 @@
   </div>
 {% endfor %}
 <div class="my-2">
-  <span class="h4">{% trans 'No. of Species' %}: {{ total }}</span>
+  <a href="{% url 'species:yearlist' year %}{% querystring week=None %}" class="dark-link">{% trans 'View Yearlist' %}</a>
 </div>

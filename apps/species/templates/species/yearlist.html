@@ -1,0 +1,66 @@
+{% extends "page.html" %}
+{% load static i18n species_tags %}
+
+{% block language_selector %}
+  <li><a class="dropdown-item"
+         href="{% url 'species:yearlist' year %}{% querystring %}">{{ lang_name }}</a></li>
+{% endblock %}
+
+{% block title %}{% trans 'Yearlist' %} {{ year }}{% endblock %}
+
+{% block content %}
+  <div class="border-bottom pb-2 mb-3">
+    <h1>{% trans 'Yearlist' %} {{ year }}{% if place %} - {{ place }}{% endif %}</h1>
+  </div>
+  <div class="border-bottom pb-3 mb-3">
+    <span class="h4">{% trans 'No. of Species' %}: {{ total }}</span>
+  </div>
+  <div class="mb-5">
+    {% for observation in observations %}
+      <div class="row mb-3">
+        <div class="col-lg-3 col-xl-3">
+          <div>
+            {% get_common_name observation.species language_code %} ({% if observation.count %}{{ observation.count }}{% else %}X{% endif %})
+          </div>
+          <div>
+            <small class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
+          </div>
+        </div>
+        <div class="col-lg-1 col-xl-1">
+          <span class="text-nowrap">
+            {% if language_code == 'pt' %}
+              {{ observation.date|date:"j b" }}
+            {% else %}
+              {{ observation.date|date:"jS M" }}
+            {% endif %}
+          </span>
+        </div>
+        <div class="col-lg-3 col-xl-4">
+          <div>{{ observation.location.display_name }}</div>
+          <div>{% spaceless %}
+            {% if observation.county %}
+              <small class="text-muted">{{ observation.county }}</small>
+            {% endif %}
+            {% if observation.state %}
+              {% if observation.county %}<span>, </span>{% endif %}
+              <small class="text-muted">{{ observation.state }}</small>
+            {% endif %}
+            {% if show_country %}
+              <small class="text-muted">, {{ observation.country }}</small>
+            {% endif %}
+          {% endspaceless %}</div>
+        </div>
+        <div class="col-lg-2 col-xl-2">
+          <span>{{ observation.observer }}</span>
+        </div>
+        <div class="col-lg-2 col-xl-1">
+          <a class="dark-link"
+             href="{% url 'checklists:detail' observation.checklist.identifier %}"
+             title="{% trans 'View the checklist' %}">
+            <span>{{ observation.checklist.identifier }}</span>
+          </a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock content %}
