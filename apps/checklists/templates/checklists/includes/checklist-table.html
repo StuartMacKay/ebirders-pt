@@ -11,12 +11,12 @@
     </div>
     <div class="col-lg-2 col-xl-2">
       {% if language_code == 'pt' %}
-        <span class="text-nowrap">{{ checklist.date|date:"j b Y" }}{% if checklist.time %}, {% endif %}</span>
+        <span class="text-nowrap">{{ checklist.date|date:"j b Y" }}</span>
       {% else %}
-        <span class="text-nowrap">{{ checklist.date|date:"jS M Y" }}{% if checklist.time %}, {% endif %}</span>
+        <span class="text-nowrap">{{ checklist.date|date:"jS M Y" }}</span>
       {% endif %}
       {% if checklist.time %}
-        <span class="text-nowrap">{{ checklist.time }}</span>
+        <br/><small class="text-muted">{{ checklist.time }}</small>
       {% endif %}
     </div>
     <div class="col-lg-5 col-xl-6">
