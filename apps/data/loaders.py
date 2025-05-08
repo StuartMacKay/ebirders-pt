@@ -163,7 +163,7 @@ class APILoader:
             "data": {"common_name": {}},
         }
 
-        species = Species.objects.create(species_code=code, **values)
+        species = Species(species_code=code, **values)
 
         for language, locale in self.locales.items():
             data = get_taxonomy(self.api_key, locale=locale, species=code)[0]
