@@ -130,7 +130,7 @@ class CountyAdmin(admin.ModelAdmin):
 
 @admin.register(models.Location)
 class LocationAdmin(admin.ModelAdmin):
-    list_display = ("identifier", "name", "county", "state", "country")
+    list_display = ("identifier", "names", "county", "state", "country")
     ordering = ("-identifier",)
     search_fields = ("name", "county__name", "state__name", "country__name")
     formfield_overrides = {
@@ -139,6 +139,10 @@ class LocationAdmin(admin.ModelAdmin):
         }
     }
     readonly_fields = ("identifier",)
+
+    @admin.display(description=_("Name / Byname"))
+    def names(self, obj):
+        return format_html("%s<br/>%s" % (obj.name, obj.byname))
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         field = super().formfield_for_dbfield(db_field, request, **kwargs)
