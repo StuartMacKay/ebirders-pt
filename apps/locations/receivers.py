@@ -97,12 +97,19 @@ def remove_access(name: str) -> str:
     return name
 
 
+def remove_freguesias(name):
+    if "União das freguesias" in name:
+        name = name.split(",")[0]
+    return name
+
+
 def generate_byname(name) -> str:
     cleaned = remove_coordinates(name)
     cleaned = remove_country(cleaned)
     cleaned = remove_region(cleaned)
     cleaned = remove_state(cleaned)
     cleaned = remove_access(cleaned)
+    cleaned = remove_freguesias(cleaned)
     cleaned = remove_duplicates(cleaned)
     cleaned = truncate(cleaned)
     return cleaned if cleaned != name else ""
