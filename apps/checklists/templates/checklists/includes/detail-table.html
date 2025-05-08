@@ -5,7 +5,7 @@
     <tr>
     <td class="text-end">
       {% if observation.count %}{{ observation.count }}{% else %}X{% endif %}</td>
-    <td class="text-nowrap">
+    <td>
       {% get_common_name observation.species language_code %} <small
       class="ms-2 text-muted fst-italic">{{ observation.species.scientific_name }}</small>
       {% if observation.comments %}<br/>{{ observation.comments }}{% endif %}
