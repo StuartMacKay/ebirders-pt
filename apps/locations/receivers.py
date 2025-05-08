@@ -82,6 +82,18 @@ def remove_duplicates(name: str) -> str:
 def remove_access(name: str) -> str:
     if name.endswith(" (acesso condicionado)"):
         name = name.replace(" (acesso condicionado)", "")
+    elif name.endswith(" - acesso condicionado"):
+        name = name.replace(" - acesso condicionado", "")
+    elif name.endswith(" (Acesso Condicionado)"):
+        name = name.replace(" (Acesso Condicionado)", "")
+    elif name.endswith(", Acesso Condicionado"):
+        name = name.replace(", Acesso Condicionado", "")
+    elif name.endswith("--Acesso Condicionado"):
+        name = name.replace("--Acesso Condicionado", "")
+    elif name.endswith(" (acesso restrito)"):
+        name = name.replace(" (acesso restrito)", "")
+    elif name.endswith(" (Acesso Restrito)"):
+        name = name.replace(" (Acesso Restrito)", "")
     return name
 
 
