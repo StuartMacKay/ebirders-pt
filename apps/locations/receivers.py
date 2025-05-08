@@ -69,6 +69,16 @@ def truncate(name: str) -> str:
     return name
 
 
+def remove_duplicates(name: str) -> str:
+    """The name of larger towns and cities is shared with the county
+    or district so duplicate names are treated as the general area
+    for the town or city."""
+    elements = name.split(",")
+    if len(elements) == 2 and elements[0] == elements[1]:
+        name = "%s-área-geral" % elements[0]
+    return name
+
+
 def remove_access(name: str) -> str:
     if name.endswith(" (acesso condicionado)"):
         name = name.replace(" (acesso condicionado)", "")
@@ -81,6 +91,7 @@ def generate_byname(name) -> str:
     cleaned = remove_region(cleaned)
     cleaned = remove_state(cleaned)
     cleaned = remove_access(cleaned)
+    cleaned = remove_duplicates(cleaned)
     cleaned = truncate(cleaned)
     return cleaned if cleaned != name else ""
 
