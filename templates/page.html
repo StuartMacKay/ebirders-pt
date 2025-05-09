@@ -5,64 +5,58 @@
   {% get_current_language as language_code %}
   {% get_available_languages as languages %}
 
-  <div class="container">
-
-    {% block header %}
-      <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
-        <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand" href="{% url 'news:index' %}">eBirders Portugal</a>
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'news:index' %}">{% trans 'News' %}</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'checklists:list' %}">{% trans 'Checklists' %}</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'observations:list' %}">{% trans 'Observations' %}</a>
-              </li>
-              <li>
-                  <div class="dropdown">
-                    <button class="btn bg-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      {{ language_code }}
-                    </button>
-                    <ul class="dropdown-menu">
-                      {% for lang_code, lang_name in languages %}
-                          {% language lang_code %}
-                            {% block language_selector %}
-                            {% endblock %}
-                          {% endlanguage %}
-                      {% endfor %}
-                    </ul>
-                  </div>
-              </li>
-            </ul>
-          </div>
+  {% block header %}
+    <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <a class="navbar-brand" href="{% url 'news:index' %}">eBirders Portugal</a>
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'news:index' %}">{% trans 'News' %}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'checklists:list' %}">{% trans 'Checklists' %}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'observations:list' %}">{% trans 'Observations' %}</a>
+            </li>
+            <li>
+                <div class="dropdown">
+                  <button class="btn bg-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ language_code }}
+                  </button>
+                  <ul class="dropdown-menu">
+                    {% for lang_code, lang_name in languages %}
+                        {% language lang_code %}
+                          {% block language_selector %}
+                          {% endblock %}
+                        {% endlanguage %}
+                    {% endfor %}
+                  </ul>
+                </div>
+            </li>
+          </ul>
         </div>
-      </nav>
-    {% endblock %}
-
-    {% block page %}
-      <div class="row">
-        {% block main %}
-          <main class="col">
-            {% block content %}
-            {% endblock %}
-          </main>
-        {% endblock %}
-
       </div>
-    {% endblock %}
+    </nav>
+  {% endblock %}
 
-    {% block footer %}
+  {% block page %}
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+  {% endblock %}
+
+  {% block footer %}
+    <div class="container">
       <div class="row">
         <footer class="col"></footer>
       </div>
-    {% endblock %}
+    </div>
+  {% endblock %}
 
-  </div>
 {% endblock %}

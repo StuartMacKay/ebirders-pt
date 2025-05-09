@@ -2,7 +2,7 @@
 {% get_current_language as language_code %}
 <h3 class="mb-3">{{ title }}</h3>
 {% for checklist in checklists %}
-  <div class="row mb-2">
+  <div class="row {% if not forloop.last %}border-bottom{% endif %} pb-2 mb-2">
     <div class="col-lg-2 col-xl-2">
       <a class="dark-link"
          href="{% url 'checklists:detail' checklist.identifier %}"
