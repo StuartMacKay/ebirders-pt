@@ -9,6 +9,7 @@
 - Add a Big Days table to the News page, showing the top ten observers who saw the most
   species in a day for that week. Each entry links to a page with the full list.
 - Add a page showing the complete list of species seen during the year.
+- Split the Checklist search into separate fields again.
 
 ## 2025.04.17
 First formal/official release of the project with pages showing:

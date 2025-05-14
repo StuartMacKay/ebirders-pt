@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 14:58+0000\n"
+"POT-Creation-Date: 2025-05-14 12:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,9 +22,29 @@ msgstr ""
 #: apps/checklists/templates/checklists/detail.html:19
 #: apps/checklists/templates/checklists/index.html:9
 #: apps/checklists/templates/checklists/index.html:13
-#: apps/news/templatetags/numbers.py:43 templates/page.html:23
+#: apps/news/templatetags/numbers.py:43 templates/page.html:21
 msgid "Checklists"
 msgstr "Listas"
+
+#: apps/checklists/filters.py:12
+msgid "Country"
+msgstr "País"
+
+#: apps/checklists/filters.py:20
+msgid "State"
+msgstr "Distrito"
+
+#: apps/checklists/filters.py:29
+msgid "County"
+msgstr "Concelho"
+
+#: apps/checklists/filters.py:38
+msgid "Location"
+msgstr "Local"
+
+#: apps/checklists/filters.py:47
+msgid "Observer"
+msgstr "Observador"
 
 #: apps/checklists/templates/checklists/detail.html:11
 msgid "Checklist"
@@ -141,23 +161,9 @@ msgid ""
 "        %(total)s"
 msgstr "Página %(number)s de %(total)s"
 
-#: apps/checklists/templates/checklists/index.html:29
-msgid "Enter Country, State, County, or Observer"
-msgstr "Introduzir país, distrito, concelho, ou observador"
-
-#: apps/checklists/templates/checklists/index.html:31
-msgid "Enter State, County, or Observer"
-msgstr "Introduzir distrito, concelho, ou observador"
-
-#: apps/checklists/templates/checklists/index.html:35
-#: apps/news/templates/news/index.html:54
-#: apps/observations/templates/observations/index.html:35
-msgid "Search"
-msgstr "Pesquisar"
-
-#: apps/checklists/templates/checklists/index.html:41
-#: apps/news/templates/news/index.html:15
-#: apps/observations/templates/observations/index.html:41
+#: apps/checklists/templates/checklists/index.html:15
+#: apps/news/templates/news/index.html:17
+#: apps/observations/templates/observations/index.html:42
 msgid "Updated every hour"
 msgstr "Atualizado a cada hora"
 
@@ -167,6 +173,10 @@ msgstr ""
 
 #: apps/data/admin.py:28 apps/data/models/species.py:79
 msgid "Scientific name"
+msgstr ""
+
+#: apps/data/admin.py:143 apps/data/admin.py:234
+msgid "Name / Byname"
 msgstr ""
 
 #: apps/data/apps.py:8 apps/data/models/checklist.py:175
@@ -774,7 +784,7 @@ msgid "Locations"
 msgstr ""
 
 #: apps/news/apps.py:8 apps/news/templates/news/index.html:9
-#: apps/news/templates/news/index.html:13 templates/page.html:20
+#: apps/news/templates/news/index.html:14 templates/page.html:18
 msgid "News"
 msgstr "Notícias"
 
@@ -786,13 +796,18 @@ msgstr "Espécies por lista"
 msgid "Protocols"
 msgstr "Protocolos"
 
-#: apps/news/templates/news/index.html:48
+#: apps/news/templates/news/index.html:46
 msgid "Enter Country, State or County"
 msgstr "Introduzir país, distrito ou concelho"
 
-#: apps/news/templates/news/index.html:50
+#: apps/news/templates/news/index.html:48
 msgid "Enter State or County"
 msgstr "Introduzir distrito ou concelho"
+
+#: apps/news/templates/news/index.html:52
+#: apps/observations/templates/observations/index.html:36
+msgid "Search"
+msgstr "Pesquisar"
 
 #: apps/news/templates/news/tables/big-days.html:12
 msgid "View the list of species"
@@ -826,17 +841,23 @@ msgstr "Espécies observadas"
 msgid "Number of checklists completed"
 msgstr "Listas completas"
 
-#: apps/news/templates/news/tables/yearlist.html:45
+#: apps/news/templates/news/tables/yearlist.html:5
+#: apps/species/templates/species/yearlist.html:16
+msgid "No. of Species"
+msgstr "N.º de espécies"
+
+#: apps/news/templates/news/tables/yearlist.html:48
+#: apps/species/templates/species/yearlist.html:59
 msgid "View the checklist"
 msgstr "Ver esta lista"
 
-#: apps/news/templates/news/tables/yearlist.html:53
+#: apps/news/templates/news/tables/yearlist.html:56
 msgid "No new species were were seen this week."
 msgstr "Não foram observadas espécies novas esta semana."
 
-#: apps/news/templates/news/tables/yearlist.html:58
-msgid "No. of Species"
-msgstr "N.º de espécies"
+#: apps/news/templates/news/tables/yearlist.html:61
+msgid "View Yearlist"
+msgstr "Ver esta lista"
 
 #: apps/news/templatetags/charts.py:24
 msgid "Traveling"
@@ -874,7 +895,7 @@ msgstr "Horas de observação"
 msgid "Big Lists"
 msgstr "Listas grandes"
 
-#: apps/news/templatetags/tables.py:176
+#: apps/news/templatetags/tables.py:176 apps/species/views.py:67
 msgid "Year List"
 msgstr "Year List"
 
@@ -884,8 +905,8 @@ msgstr "Dias Grandes"
 
 #: apps/observations/apps.py:8
 #: apps/observations/templates/observations/index.html:9
-#: apps/observations/templates/observations/index.html:13
-#: templates/page.html:26
+#: apps/observations/templates/observations/index.html:14
+#: templates/page.html:24
 msgid "Observations"
 msgstr "Observações"
 
@@ -919,11 +940,11 @@ msgstr "Mostrar os observações para este país"
 msgid "Show observations from this observer"
 msgstr "Mostrar os observações deste observador"
 
-#: apps/observations/templates/observations/index.html:29
+#: apps/observations/templates/observations/index.html:30
 msgid "Enter Country, State, County, Species, or Observer"
 msgstr "Introduzir país, distrito, concelho, especie, ou observador"
 
-#: apps/observations/templates/observations/index.html:31
+#: apps/observations/templates/observations/index.html:32
 msgid "Enter State, County, Species, or Observer"
 msgstr "Introduzir distrito, concelho, especie, ou observador"
 
@@ -931,25 +952,38 @@ msgstr "Introduzir distrito, concelho, especie, ou observador"
 msgid "Species"
 msgstr "Espécie"
 
-#: config/settings.py:214
+#: apps/species/templates/species/yearlist.html:9
+#: apps/species/templates/species/yearlist.html:13
+msgid "Yearlist"
+msgstr "Year List"
+
+#: config/settings.py:216
 msgid "English"
 msgstr "Inglês"
 
-#: config/settings.py:215
+#: config/settings.py:217
 msgid "Portuguese"
 msgstr "Português"
 
 #: config/urls.py:10
+msgid "autocomplete/"
+msgstr ""
+
+#: config/urls.py:11
 msgid "news/"
 msgstr "notícias/"
 
-#: config/urls.py:11
+#: config/urls.py:12
 msgid "checklists/"
 msgstr "listas/"
 
-#: config/urls.py:12
+#: config/urls.py:13
 msgid "observations/"
 msgstr "observações/"
+
+#: config/urls.py:14
+msgid "species/"
+msgstr "espécies"
 
 #: templates/403.html:4 templates/403.html:8
 msgid "Forbidden (403)"
@@ -980,3 +1014,9 @@ msgid ""
 "This error was reported automatically, but if the problem persists please "
 "contact us. In the meantime, try refreshing the page."
 msgstr ""
+
+#~ msgid "Enter Country, State, County, or Observer"
+#~ msgstr "Introduzir país, distrito, concelho, ou observador"
+
+#~ msgid "Enter State, County, or Observer"
+#~ msgstr "Introduzir distrito, concelho, ou observador"
