@@ -2,6 +2,8 @@
 
 ## Latest
 
+## 2025.05.14
+
 - Create a byname when a location is created by removing the coordinates, country code, 
   and region names.
 - Create a byname when a observer is created by removing names of companies, and 
