@@ -1,6 +1,8 @@
 # Changelog
 
 ## Latest
+
+## 2025.05.15
 - Split the Observations search into separate fields again.
 
 ## 2025.05.14
