@@ -8,7 +8,7 @@
     <div class="col-md-3">
       <div class="show-if-wide">
         <a class="dark-link"
-           href="?species={{ observation.species.species_code }}&search={% get_common_name observation.species language_code %}"
+           href="{% querystring species=observation.species.species_code %}"
            title="{% trans 'Show observations of this species' %}">
           {% get_common_name observation.species language_code %}
         </a><br>
@@ -19,7 +19,7 @@
         <span>{% if observation.count %}{{ observation.count }}{% else %}
           X{% endif %}, </span>
         <a class="dark-link"
-           href="?species={{ observation.species.species_code }}&search={% get_common_name observation.species language_code %}"
+           href="{% querystring species=observation.species.species_code %}"
            title="{% trans 'Show observations of this species' %}">
           {% get_common_name observation.species language_code %}
         </a>
@@ -39,14 +39,14 @@
     </div>
     <div class="col-md-4">
       <a class="dark-link"
-         href="?location={{ observation.location.identifier }}&search={{ observation.location|urlencode }}"
+         href="{% querystring location=observation.location.identifier %}"
          title="{% trans 'Show observations for this location' %}">{{ observation.location.display_name }}</a>
       <br/>
       {% spaceless %}
         {% if observation.county %}
           <small class="text-muted">
             <a class="dark-link"
-               href="?county={{ observation.county.code }}&search={{ observation.county|urlencode }}"
+               href="{% querystring county=observation.county.code location=None %}"
                title="{% trans 'Show observations for this county' %}">{{ observation.county.name }}</a>
           </small>
         {% endif %}
@@ -54,7 +54,7 @@
           <small class="text-muted">
             {% if observation.county %}<span>, </span>{% endif %}
             <a class="dark-link"
-               href="?state={{ observation.state.code }}&search={{ observation.state|urlencode }}"
+               href="{% querystring state=observation.state.code county=None location=None %}"
                title="{% trans 'Show observations for this state' %}">{{ observation.state.name }}</a>
           </small>
         {% endif %}
@@ -62,7 +62,7 @@
           <small class="text-muted">
             <span>, </span>
             <a class="dark-link"
-               href="?country={{ observation.country.code }}&search={{ observation.country|urlencode }}"
+               href="{% querystring country=observation.country.code state=None county=None location=None %}"
                title="{% trans 'Show observations for this country' %}">{{ observation.country }}</a>
           </small>
         {% endif %}
@@ -70,7 +70,7 @@
     </div>
     <div class="col-md-2">
       <a class="dark-link"
-         href="?observer={{ observation.observer.identifier }}&search={{ observation.observer|urlencode }}"
+         href="{% querystring observer=observation.observer.identifier %}"
          title="{% trans 'Show observations from this observer' %}">{{ observation.observer }}</a>
     </div>
   </div>

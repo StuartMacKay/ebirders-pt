@@ -5,6 +5,7 @@ from .views import (
     CountyAutocomplete,
     LocationAutocomplete,
     ObserverAutocomplete,
+    SpeciesAutocomplete,
     StateAutocomplete,
 )
 
@@ -16,4 +17,5 @@ urlpatterns = [
     path("counties/", CountyAutocomplete.as_view(), name="counties"),
     path("locations/", LocationAutocomplete.as_view(), name="locations"),
     path("observers/", ObserverAutocomplete.as_view(), name="observers"),
+    path("species", SpeciesAutocomplete.as_view(), name="species"),
 ]
