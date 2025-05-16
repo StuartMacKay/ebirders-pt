@@ -6,11 +6,11 @@
          href="{% url 'species:yearlist' year %}{% querystring %}">{{ lang_name }}</a></li>
 {% endblock %}
 
-{% block title %}{% trans 'Yearlist' %} {{ year }}{% endblock %}
+{% block title %}{% trans 'Yearlist' %}-{{ year }}{% endblock %}
 
 {% block content %}
   <div class="border-bottom pb-2 mb-3">
-    <h1>{% trans 'Yearlist' %} {{ year }}{% if place %} - {{ place }}{% endif %}</h1>
+    <h1>{% trans 'Yearlist' %}<span> {{ year }}</span>{% if place %} - {{ place }}{% endif %}</h1>
   </div>
   <div class="border-bottom pb-3 mb-3">
     <span class="h4">{% trans 'No. of Species' %}: {{ total }}</span>
