@@ -10,12 +10,12 @@
         <span>{{ checklist.identifier }}</span>
       </a>
     </div>
-    <div class="col-lg-2 col-xl-2">
+    <div class="col-lg-1 col-xl-1">
       <span class="text-nowrap">
         {% if language_code == 'pt' %}
-          {{ checklist.date|date:"j b Y" }}
+          {{ checklist.date|date:"j b" }}
         {% else %}
-          {{ checklist.date|date:"jS M Y" }}
+          {{ checklist.date|date:"jS M" }}
         {% endif %}
       </span>
     </div>
@@ -35,7 +35,7 @@
         {% endif %}
       {% endspaceless %}
     </div>
-    <div class="col-lg-2 col-xl-2">
+    <div class="col-lg-3 col-xl-3">
       {{ checklist.observer }}
     </div>
     <div class="col-lg-1 col-xl-1">
