@@ -1,6 +1,8 @@
 # Changelog
 
 ## Latest
+
+## 2025.05.16
 - Changed the News page so it shows news for the past 7 days, not the current week.
 - Removed the year from the Big Lists table.
 - Removed the year from the Big Days table.
