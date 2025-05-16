@@ -2,54 +2,44 @@ import datetime as dt
 import re
 
 from django.http import JsonResponse
-from django.utils import timezone
 from django.utils.dateformat import format
 from django.utils.translation import get_language
 from django.views import generic
 
-from dateutil.relativedelta import MO, relativedelta
+from dateutil.relativedelta import relativedelta
 from ebird.codes.locations import is_country_code, is_county_code, is_state_code
 
 from data.models import Country, County, State
 
 
-class IndexView(generic.TemplateView):
-    template_name = "news/index.html"
+class LatestView(generic.TemplateView):
+    template_name = "news/latest.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        week = self.request.GET.get("week", "")
-        code = self.request.GET.get("code", "")
-        search = self.request.GET.get("search", "")
+        start_date = dt.date.today() - relativedelta(days=6)
+        end_date = dt.date.today()
 
-        if week:
-            week_start = dt.datetime.strptime("%s-1" % week, "%Y-%W-%w").date()
+        if start_date.month == end_date.month:
+            subtitle = "%s - %s" % (format(start_date, "d"), format(end_date, "d M Y"))
         else:
-            week_start = timezone.now().date() - relativedelta(weekday=MO(-1))
-
-        week_end = week_start + relativedelta(days=6)
-
-        if week_start.month == week_end.month:
-            subtitle = "%s - %s" % (format(week_start, "d"), format(week_end, "d M Y"))
-        else:
-            if week_start.year == week_end.year:
+            if start_date.year == end_date.year:
                 subtitle = "%s - %s" % (
-                    format(week_start, "d M"),
-                    format(week_end, "d M Y"),
+                    format(start_date, "d M"),
+                    format(end_date, "d M Y"),
                 )
             else:
                 subtitle = "%s - %s" % (
-                    format(week_start, "d M Y"),
-                    format(week_end, "d M Y"),
+                    format(start_date, "d M Y"),
+                    format(end_date, "d M Y"),
                 )
 
         if get_language() == "pt":
             subtitle = subtitle.lower()
 
-        last_week = week_start - relativedelta(days=1)
-        next_week = week_start + relativedelta(days=7)
-
+        code = self.request.GET.get("code", "")
+        search = self.request.GET.get("search", "")
         country = state = county = None
 
         if is_country_code(code):
@@ -59,19 +49,15 @@ class IndexView(generic.TemplateView):
         elif is_county_code(code):
             county = County.objects.get(code=code).pk
 
+        context["code"] = county
+        context["search"] = search
         context["country"] = country
         context["state"] = state
         context["county"] = county
-        context["search"] = search
-        context["week_start"] = week_start
-        context["week_end"] = week_end + relativedelta(days=1)
-        context["this_week"] = week_start.strftime("%Y-%W")
-        context["start_year"] = week_start.year
-        context["end_year"] = week_end.year
-        context["last_week"] = last_week.strftime("%Y-%W")
-        context["next_week"] = next_week.strftime("%Y-%W")
+        context["start_date"] = start_date
+        context["end_date"] = end_date
         context["subtitle"] = subtitle
-        context["show_country"] = Country.objects.all().count() > 1
+        context["show_country"] = Country.objects.count() > 1
 
         return context
 

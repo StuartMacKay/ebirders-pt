@@ -3,15 +3,15 @@
 
 {% block language_selector %}
   <li><a class="dropdown-item"
-         href="{% url 'news:index' %}{% querystring %}">{{ lang_name }}</a></li>
+         href="{% url 'news:latest' %}{% querystring %}">{{ lang_name }}</a></li>
 {% endblock %}
 
-{% block title %}{% trans 'News' %}{% endblock %}
+{% block title %}{% trans 'Latest News' %}{% endblock %}
 
 {% block content %}
   <div class="row border-bottom mb-3 align-items-baseline">
     <div class="col">
-      <h1>{% trans 'News' %}</h1>
+      <h1>{% trans 'Latest News' %}</h1>
     </div>
     <div class="col ms-auto text-end">
       <small class="text-muted">{% trans 'Updated every hour' %}</small>
@@ -19,22 +19,11 @@
   </div>
 
   <div class="row border-bottom mb-4 align-items-center">
-    <div class="col-lg-2 col-md-4 col-sm-4 mb-3">
-      <a class="btn btn-link link-dark bg-light me-2"
-         href="{% querystring week=last_week %}">
-        <i class="bi bi-chevron-left"></i>
-      </a>
-      <a class="btn btn-link link-dark bg-light me-3"
-         href="{% querystring week=next_week %}">
-        <i class="bi bi-chevron-right"></i>
-      </a>
-    </div>
     <div class="col-lg-4 col-md-8 col-sm-8 mb-3">
-      <span class="h2">{{ subtitle }}</span>
+      <span class="h4">{{ subtitle }}</span>
     </div>
     <div class="col-lg-4 mb-3">
       <form method="get" id="autocomplete-form">
-        <input type="hidden" name="week" value="{{ this_week }}">
         <div class="input-group">
           <input id="autocompleteInput"
                  type="text"
@@ -58,32 +47,32 @@
 
   <div class="row border-bottom mb-3">
     <div class="col-md-3 col-sm-6 col-6 mb-3">
-      {% species_count country state county week_start week_end %}
+      {% species_count country state county start_date end_date %}
     </div>
     <div class="col-md-3 col-sm-6 col-6 mb-3">
-      {% checklist_count country state county week_start week_end %}
+      {% checklist_count country state county start_date end_date %}
     </div>
     <div class="col-md-3 col-sm-6 col-6 mb-3">
-      {% observer_count country state county week_start week_end %}
+      {% observer_count country state county start_date end_date %}
     </div>
     <div class="col-md-3 col-sm-6 col-6 mb-3">
-      {% duration_count country state county week_start week_end %}
+      {% duration_count country state county start_date end_date %}
     </div>
   </div>
 
   <div class="row border-bottom py-2">
     <div class="col-lg-4 col-md-6 col-sm-12">
-      {% checklists_species_table country state county week_start week_end %}
+      {% checklists_species_table country state county start_date end_date %}
     </div>
     <div class="col-lg-4 col-md-6 col-sm-12">
-      {% checklists_submitted_table country state county week_start week_end %}
+      {% checklists_submitted_table country state county start_date end_date %}
     </div>
     <div class="col-lg-4 col-md-6 col-sm-12">
-      {% checklists_duration_table country state county week_start week_end %}
+      {% checklists_duration_table country state county start_date end_date %}
     </div>
   </div>
 
-  {% with year=start_year %}
+  {% with year=end_date.year %}
     <div class="row border-bottom py-2">
       <div class="col-12">
         {% yearlist_table %}
@@ -93,13 +82,13 @@
 
   <div class="row border-bottom py-2">
     <div class="col-12">
-      {% big_lists_table country state county week_start week_end show_country %}
+      {% big_lists_table country state county start_date end_date show_country %}
     </div>
   </div>
 
   <div class="row py-2">
     <div class="col-12">
-      {% big_days_table country state county week_start week_end %}
+      {% big_days_table country state county start_date end_date %}
     </div>
   </div>
 

@@ -5,7 +5,7 @@ import pytest
 
 @pytest.fixture
 def url():
-    return reverse("news:index")
+    return reverse("news:latest")
 
 
 def test_news_page__displayed(db_no_rollback, client, url):

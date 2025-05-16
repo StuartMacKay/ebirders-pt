@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views.generic import RedirectView
 
 urlpatterns = i18n_patterns(
-    path("", RedirectView.as_view(url=reverse_lazy("news:index")), name="index"),
+    path("", RedirectView.as_view(url=reverse_lazy("news:latest")), name="index"),
     path(_("autocomplete/"), include("data.urls")),
     path(_("news/"), include("news.urls")),
     path(_("checklists/"), include("checklists.urls")),

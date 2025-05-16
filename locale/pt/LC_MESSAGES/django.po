@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-14 12:30+0000\n"
+"POT-Creation-Date: 2025-05-16 08:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,23 +26,23 @@ msgstr ""
 msgid "Checklists"
 msgstr "Listas"
 
-#: apps/checklists/filters.py:12
+#: apps/checklists/filters.py:12 apps/observations/filters.py:13
 msgid "Country"
 msgstr "País"
 
-#: apps/checklists/filters.py:20
+#: apps/checklists/filters.py:20 apps/observations/filters.py:21
 msgid "State"
 msgstr "Distrito"
 
-#: apps/checklists/filters.py:29
+#: apps/checklists/filters.py:29 apps/observations/filters.py:30
 msgid "County"
 msgstr "Concelho"
 
-#: apps/checklists/filters.py:38
+#: apps/checklists/filters.py:38 apps/observations/filters.py:39
 msgid "Location"
 msgstr "Local"
 
-#: apps/checklists/filters.py:47
+#: apps/checklists/filters.py:47 apps/observations/filters.py:48
 msgid "Observer"
 msgstr "Observador"
 
@@ -162,8 +162,8 @@ msgid ""
 msgstr "Página %(number)s de %(total)s"
 
 #: apps/checklists/templates/checklists/index.html:15
-#: apps/news/templates/news/index.html:17
-#: apps/observations/templates/observations/index.html:42
+#: apps/news/templates/news/latest.html:17
+#: apps/observations/templates/observations/index.html:16
 msgid "Updated every hour"
 msgstr "Atualizado a cada hora"
 
@@ -783,8 +783,7 @@ msgstr ""
 msgid "Locations"
 msgstr ""
 
-#: apps/news/apps.py:8 apps/news/templates/news/index.html:9
-#: apps/news/templates/news/index.html:14 templates/page.html:18
+#: apps/news/apps.py:8 templates/page.html:18
 msgid "News"
 msgstr "Notícias"
 
@@ -796,16 +795,20 @@ msgstr "Espécies por lista"
 msgid "Protocols"
 msgstr "Protocolos"
 
-#: apps/news/templates/news/index.html:46
+#: apps/news/templates/news/latest.html:9
+#: apps/news/templates/news/latest.html:14
+msgid "Latest News"
+msgstr "Últimas Notícias"
+
+#: apps/news/templates/news/latest.html:36
 msgid "Enter Country, State or County"
 msgstr "Introduzir país, distrito ou concelho"
 
-#: apps/news/templates/news/index.html:48
+#: apps/news/templates/news/latest.html:38
 msgid "Enter State or County"
 msgstr "Introduzir distrito ou concelho"
 
-#: apps/news/templates/news/index.html:52
-#: apps/observations/templates/observations/index.html:36
+#: apps/news/templates/news/latest.html:42
 msgid "Search"
 msgstr "Pesquisar"
 
@@ -910,6 +913,10 @@ msgstr "Dias Grandes"
 msgid "Observations"
 msgstr "Observações"
 
+#: apps/observations/filters.py:56 apps/species/apps.py:8
+msgid "Species"
+msgstr "Espécie"
+
 #: apps/observations/templates/observations/big-day.html:9
 #: apps/observations/templates/observations/big-day.html:13
 msgid "Big Day"
@@ -939,18 +946,6 @@ msgstr "Mostrar os observações para este país"
 #: apps/observations/templates/observations/includes/observation-table.html:74
 msgid "Show observations from this observer"
 msgstr "Mostrar os observações deste observador"
-
-#: apps/observations/templates/observations/index.html:30
-msgid "Enter Country, State, County, Species, or Observer"
-msgstr "Introduzir país, distrito, concelho, especie, ou observador"
-
-#: apps/observations/templates/observations/index.html:32
-msgid "Enter State, County, Species, or Observer"
-msgstr "Introduzir distrito, concelho, especie, ou observador"
-
-#: apps/species/apps.py:8
-msgid "Species"
-msgstr "Espécie"
 
 #: apps/species/templates/species/yearlist.html:9
 #: apps/species/templates/species/yearlist.html:13
@@ -1014,9 +1009,3 @@ msgid ""
 "This error was reported automatically, but if the problem persists please "
 "contact us. In the meantime, try refreshing the page."
 msgstr ""
-
-#~ msgid "Enter Country, State, County, or Observer"
-#~ msgstr "Introduzir país, distrito, concelho, ou observador"
-
-#~ msgid "Enter State, County, or Observer"
-#~ msgstr "Introduzir distrito, concelho, ou observador"

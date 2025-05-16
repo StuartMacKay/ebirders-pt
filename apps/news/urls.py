@@ -1,10 +1,10 @@
 from django.urls import path
 
-from .views import IndexView, autocomplete
+from .views import LatestView, autocomplete
 
 app_name = "news"
 
 urlpatterns = [
-    path("", IndexView.as_view(), name="index"),
+    path("latest/", LatestView.as_view(), name="latest"),
     path("autocomplete/", autocomplete, name="autocomplete"),
 ]
