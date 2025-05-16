@@ -126,4 +126,6 @@ class ObservationFilter(django_filters.FilterSet):
     def filter_species(self, queryset, field_name, value):
         if not value:
             return queryset
-        return queryset.filter(species__species_code=value[1:])
+        if value[0] == '_':
+            value = value[1:]
+        return queryset.filter(species__species_code=value)
