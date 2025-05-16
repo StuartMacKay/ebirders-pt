@@ -9,7 +9,7 @@ register = template.Library()
 
 @register.inclusion_tag("news/tables/big-lists.html")
 def big_lists_table(country_id, state_id, county_id, start, end, show_country):
-    queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
+    queryset = Checklist.objects.filter(date__gte=start, date__lte=end)
 
     if country_id:
         queryset = queryset.filter(country_id=country_id)
@@ -33,7 +33,7 @@ def big_lists_table(country_id, state_id, county_id, start, end, show_country):
 
 @register.inclusion_tag("news/tables/checklists-submitted.html")
 def checklists_submitted_table(country_id, state_id, county_id, start, end):
-    queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
+    queryset = Checklist.objects.filter(date__gte=start, date__lte=end)
 
     if country_id:
         queryset = queryset.filter(country_id=country_id)
@@ -56,7 +56,7 @@ def checklists_submitted_table(country_id, state_id, county_id, start, end):
 
 @register.inclusion_tag("news/tables/checklists-duration.html")
 def checklists_duration_table(country_id, state_id, county_id, start, end):
-    queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
+    queryset = Checklist.objects.filter(date__gte=start, date__lte=end)
 
     if country_id:
         queryset = queryset.filter(country_id=country_id)
@@ -84,7 +84,7 @@ def checklists_duration_table(country_id, state_id, county_id, start, end):
 @register.inclusion_tag("news/tables/checklists-species.html")
 def checklists_species_table(country_id, state_id, county_id, start, end):
     filters = Q(observations__date__gte=start)
-    filters &= Q(observations__date__lt=end)
+    filters &= Q(observations__date__lte=end)
     filters &= Q(observations__species__category__in=["species", "sub-species", "domestic"])
 
     if country_id:
@@ -116,11 +116,11 @@ def checklists_species_table(country_id, state_id, county_id, start, end):
 def yearlist_table(context):
     filters = Q()
 
-    if context["country"]:
+    if context.get("country"):
         filters &= Q(observations__country_id=context["country"])
-    elif context["state"]:
+    elif context.get("state"):
         filters &= Q(observations__state_id=context["state"])
-    elif context["county"]:
+    elif context.get("county"):
         filters &= Q(observations__county_id=context["county"])
 
     species = Species.objects.filter(category="species")
@@ -133,18 +133,18 @@ def yearlist_table(context):
         species = species.annotate(added=Min("observations__date"))
 
     species = species.filter(
-        added__gte=context["week_start"], added__lt=context["week_end"]
+        added__gte=context["start_date"], added__lte=context["end_date"]
     ).order_by("added")
 
     observations = []
 
     filters = Q()
 
-    if context["country"]:
+    if context.get("country"):
         filters &= Q(country_id=context["country"])
-    elif context["state"]:
+    elif context.get("state"):
         filters &= Q(state_id=context["state"])
-    elif context["county"]:
+    elif context.get("county"):
         filters &= Q(county_id=context["county"])
 
     for item in species:
@@ -166,7 +166,7 @@ def yearlist_table(context):
     total = (
         Observation.objects.filter(filters)
         .filter(species__category="species")
-        .filter(date__lt=context["week_end"], date__year=context["year"])
+        .filter(date__lte=context["end_date"], date__year=context["year"])
         .distinct()
         .values("species_id")
         .count()
@@ -189,7 +189,7 @@ def big_days_table(country_id, state_id, county_id, start, end):
         )
         .annotate(name=F('observer__name'))
         .annotate(species_count=Count('species', distinct=True))
-        .filter(date__gte=start, date__lt=end)
+        .filter(date__gte=start, date__lte=end)
     )
 
     if country_id:

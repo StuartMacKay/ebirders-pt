@@ -41,7 +41,7 @@ def protocol_pie_chart():
 
 @register.inclusion_tag("news/charts/checklist-species.html")
 def checklist_species_chart(country_id, state_id, county_id, start, end):
-    queryset = Checklist.objects.filter(date__gte=start, date__lt=end)
+    queryset = Checklist.objects.filter(date__gte=start, date__lte=end)
 
     with connection.cursor() as cursor:
         if country_id:
