@@ -3,6 +3,7 @@
 ## Latest
 - Changed the News page so it shows news for the past 7 days, not the current week.
 - Removed the year from the Big Lists table.
+- Removed the year from the Big Days table.
 
 ## 2025.05.15
 - Split the Observations search into separate fields again.

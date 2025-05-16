@@ -12,9 +12,9 @@
                title="{% trans 'View the list of species' %}">
               <span class="text-nowrap">
                 {% if language_code == 'pt' %}
-                  {{ entry.date|date:"j b Y" }}
+                  {{ entry.date|date:"j b" }}
                 {% else %}
-                  {{ entry.date|date:"jS M Y" }}
+                  {{ entry.date|date:"jS M" }}
                 {% endif %}
               </span>
             </a>
