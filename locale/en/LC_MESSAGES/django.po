@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-16 08:13+0000\n"
+"POT-Creation-Date: 2025-05-17 09:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: apps/checklists/templates/checklists/detail.html:19
 #: apps/checklists/templates/checklists/index.html:9
 #: apps/checklists/templates/checklists/index.html:13
-#: apps/news/templatetags/numbers.py:43 templates/page.html:21
+#: apps/news/templatetags/numbers.py:43 templates/page.html:31
 msgid "Checklists"
 msgstr ""
 
@@ -163,6 +163,7 @@ msgstr ""
 
 #: apps/checklists/templates/checklists/index.html:15
 #: apps/news/templates/news/latest.html:17
+#: apps/news/templates/news/weekly.html:17
 #: apps/observations/templates/observations/index.html:16
 msgid "Updated every hour"
 msgstr ""
@@ -783,7 +784,7 @@ msgstr ""
 msgid "Locations"
 msgstr ""
 
-#: apps/news/apps.py:8 templates/page.html:18
+#: apps/news/apps.py:8 templates/page.html:20
 msgid "News"
 msgstr ""
 
@@ -797,18 +798,22 @@ msgstr ""
 
 #: apps/news/templates/news/latest.html:9
 #: apps/news/templates/news/latest.html:14
+#: apps/news/templates/news/weekly.html:9 templates/page.html:24
 msgid "Latest News"
 msgstr ""
 
-#: apps/news/templates/news/latest.html:36
+#: apps/news/templates/news/latest.html:35
+#: apps/news/templates/news/weekly.html:35
 msgid "Enter Country, State or County"
 msgstr "Enter Country, District or County"
 
-#: apps/news/templates/news/latest.html:38
+#: apps/news/templates/news/latest.html:37
+#: apps/news/templates/news/weekly.html:37
 msgid "Enter State or County"
 msgstr "Enter District or County"
 
-#: apps/news/templates/news/latest.html:42
+#: apps/news/templates/news/latest.html:41
+#: apps/news/templates/news/weekly.html:41
 msgid "Search"
 msgstr ""
 
@@ -862,6 +867,10 @@ msgstr ""
 msgid "View Yearlist"
 msgstr ""
 
+#: apps/news/templates/news/weekly.html:14 templates/page.html:26
+msgid "Weekly News"
+msgstr ""
+
 #: apps/news/templatetags/charts.py:24
 msgid "Traveling"
 msgstr ""
@@ -909,7 +918,7 @@ msgstr ""
 #: apps/observations/apps.py:8
 #: apps/observations/templates/observations/index.html:9
 #: apps/observations/templates/observations/index.html:14
-#: templates/page.html:24
+#: templates/page.html:34
 msgid "Observations"
 msgstr ""
 
