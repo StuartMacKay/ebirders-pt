@@ -15,8 +15,16 @@
           <a class="navbar-brand" href="{% url 'news:latest' %}">eBirders Portugal</a>
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'news:latest' %}">{% trans 'News' %}</a>
-            </li>
+              <div class="dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {% trans "News" %}
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item"
+                       href="{% url 'news:latest' %}">{% trans "Latest News" %}</a></li>
+              </ul>
+            </div>
+          </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'checklists:list' %}">{% trans 'Checklists' %}</a>
             </li>
