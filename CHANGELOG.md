@@ -13,14 +13,11 @@
 - Split the Observations search into separate fields again.
 
 ## 2025.05.14
-
-- Create a byname when a location is created by removing the coordinates, country code, 
-  and region names.
-- Create a byname when a observer is created by removing names of companies, and 
-  extra spaces.
-- Add a Big Days table to the News page, showing the top ten observers who saw the most
+- Remove the coordinates, country code, and region from location names.
+- Remove names of companies, and extra spaces from observer names.
+- Added a Big Days table to the News page, showing the top ten observers who saw the most
   species in a day for that week. Each entry links to a page with the full list.
-- Add a page showing the complete list of species seen during the year.
+- Added a Year list page showing the complete list of species seen during the year.
 - Split the Checklist search into separate fields again.
 
 ## 2025.04.17
