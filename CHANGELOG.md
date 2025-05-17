@@ -1,6 +1,8 @@
 # Changelog
 
 ## Latest
+
+## 2025.05.17
 - Added weekly news, showing all the statistics for a given week.
 - Added monthly news, showing all the statistics for a given month.
 
