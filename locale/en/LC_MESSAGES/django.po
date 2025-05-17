@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-17 09:49+0000\n"
+"POT-Creation-Date: 2025-05-17 10:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: apps/checklists/templates/checklists/detail.html:19
 #: apps/checklists/templates/checklists/index.html:9
 #: apps/checklists/templates/checklists/index.html:13
-#: apps/news/templatetags/numbers.py:43 templates/page.html:31
+#: apps/news/templatetags/numbers.py:43 templates/page.html:33
 msgid "Checklists"
 msgstr ""
 
@@ -803,17 +803,17 @@ msgid "Latest News"
 msgstr ""
 
 #: apps/news/templates/news/latest.html:35
-#: apps/news/templates/news/weekly.html:35
+#: apps/news/templates/news/weekly.html:45
 msgid "Enter Country, State or County"
 msgstr "Enter Country, District or County"
 
 #: apps/news/templates/news/latest.html:37
-#: apps/news/templates/news/weekly.html:37
+#: apps/news/templates/news/weekly.html:47
 msgid "Enter State or County"
 msgstr "Enter District or County"
 
 #: apps/news/templates/news/latest.html:41
-#: apps/news/templates/news/weekly.html:41
+#: apps/news/templates/news/weekly.html:51
 msgid "Search"
 msgstr ""
 
@@ -918,7 +918,7 @@ msgstr ""
 #: apps/observations/apps.py:8
 #: apps/observations/templates/observations/index.html:9
 #: apps/observations/templates/observations/index.html:14
-#: templates/page.html:34
+#: templates/page.html:36
 msgid "Observations"
 msgstr ""
 
@@ -1017,6 +1017,10 @@ msgstr ""
 msgid ""
 "This error was reported automatically, but if the problem persists please "
 "contact us. In the meantime, try refreshing the page."
+msgstr ""
+
+#: templates/page.html:28
+msgid "Monthly News"
 msgstr ""
 
 #~ msgid "Enter Country, State, County, Species, or Observer"

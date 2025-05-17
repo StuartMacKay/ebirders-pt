@@ -129,6 +129,61 @@ class WeeklyView(generic.TemplateView):
         return context
 
 
+class MonthlyView(generic.TemplateView):
+    template_name = "news/monthly.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        year = self.kwargs.get("year", dt.date.today().year)
+        month = self.kwargs.get("month", dt.date.today().month)
+
+        start_date = dt.date(year=year, month=month, day=1)
+        end_date = start_date + relativedelta(months=1, days=-1)
+
+        subtitle = format(start_date, "F Y")
+
+        next_date = start_date + relativedelta(months=1)
+        next_year = next_date.year
+        next_month = next_date.month
+
+        previous_date = start_date - relativedelta(months=1)
+        previous_year = previous_date.year
+        previous_month = previous_date.month
+
+        if get_language() == "pt":
+            subtitle = subtitle.lower()
+
+        code = self.request.GET.get("code", "")
+        search = self.request.GET.get("search", "")
+        country = state = county = None
+
+        if is_country_code(code):
+            country = Country.objects.get(code=code).pk
+        elif is_state_code(code):
+            state = State.objects.get(code=code).pk
+        elif is_county_code(code):
+            county = County.objects.get(code=code).pk
+
+        context["code"] = county
+        context["search"] = search
+        context["country"] = country
+        context["state"] = state
+        context["county"] = county
+        context["start_date"] = start_date
+        context["end_date"] = end_date
+        context["current_year"] = year
+        context["current_month"] = month
+        context["previous_year"] = previous_year
+        context["previous_month"] = previous_month
+        context["next_year"] = next_year
+        context["next_month"] = next_month
+        context["subtitle"] = subtitle
+        context["show_country"] = Country.objects.count() > 1
+
+        return context
+
+
 def autocomplete(request):
     """
     Return the list of countries and states for the search field.
