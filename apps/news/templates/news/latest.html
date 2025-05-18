@@ -61,14 +61,8 @@
   </div>
 
   <div class="row border-bottom py-2">
-    <div class="col-lg-4 col-md-6 col-sm-12">
-      {% checklists_species_table country state county start_date end_date %}
-    </div>
-    <div class="col-lg-4 col-md-6 col-sm-12">
-      {% checklists_submitted_table country state county start_date end_date %}
-    </div>
-    <div class="col-lg-4 col-md-6 col-sm-12">
-      {% checklists_duration_table country state county start_date end_date %}
+    <div class="col-12">
+      {% high_counts_table %}
     </div>
   </div>
 
@@ -86,19 +80,25 @@
     </div>
   </div>
 
-  <div class="row border-bottom py-2">
-    <div class="col-12">
+  <div class="row py-2">
+    <div class="col-lg-6 col-md-6 col-sm-12">
       {% big_days_table country state county start_date end_date %}
     </div>
-  </div>
-
-  <div class="row border-bottom py-2">
-    <div class="col-12">
-      {% high_counts_table %}
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      {% checklists_species_table country state county start_date end_date %}
     </div>
   </div>
 
- {% endblock content %}
+  <div class="row border-bottom py-2">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      {% checklists_submitted_table country state county start_date end_date %}
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      {% checklists_duration_table country state county start_date end_date %}
+    </div>
+  </div>
+
+{% endblock content %}
 
 {% block javascript %}
   {{ block.super }}
