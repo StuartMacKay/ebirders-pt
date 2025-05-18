@@ -6,6 +6,8 @@ This project uses calendar versioning, https://calver.org/, and this log provide
 a concise history of changes made.
 
 ## Latest
+
+## 2025.05.18
 - Added a High Count table to the Latest, Weekly and Monthly News pages.
 
 ## 2025.05.17
