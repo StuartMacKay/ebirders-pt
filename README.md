@@ -1,3 +1,7 @@
+**IMPORTANT: Although this site has been in production since the start of 2025 it 
+very much a prototype and there are likely to be breaking changes made, for 
+example resetting database migrations, as lessons are learned.**
+
 # eBirders PT
 
 eBirders PT is a Django-based web site that publishes data from eBird Portugal 
