@@ -1,6 +1,8 @@
 from django import template
-from django.db.models import Case, Count, F, Min, Q, Sum, When
+from django.db.models import Avg, Case, Count, F, Min, Q, Sum, When
 from django.utils.translation import gettext_lazy as _
+
+from dateutil.relativedelta import relativedelta
 
 from data.models import Checklist, Observation, Observer, Species
 
@@ -85,7 +87,9 @@ def checklists_duration_table(country_id, state_id, county_id, start, end):
 def checklists_species_table(country_id, state_id, county_id, start, end):
     filters = Q(observations__date__gte=start)
     filters &= Q(observations__date__lte=end)
-    filters &= Q(observations__species__category__in=["species", "sub-species", "domestic"])
+    filters &= Q(
+        observations__species__category__in=["species", "sub-species", "domestic"]
+    )
 
     if country_id:
         filters &= Q(observations__country_id=country_id)
@@ -184,11 +188,9 @@ def yearlist_table(context):
 @register.inclusion_tag("news/tables/big-days.html")
 def big_days_table(country_id, state_id, county_id, start, end):
     queryset = (
-        Observation.objects.values(
-            'observer__identifier', 'date'
-        )
-        .annotate(name=F('observer__name'))
-        .annotate(species_count=Count('species', distinct=True))
+        Observation.objects.values("observer__identifier", "date")
+        .annotate(name=F("observer__name"))
+        .annotate(species_count=Count("species", distinct=True))
         .filter(date__gte=start, date__lte=end)
     )
 
@@ -204,4 +206,64 @@ def big_days_table(country_id, state_id, county_id, start, end):
     return {
         "title": _("Big Days"),
         "entries": sorted(list(entries), key=lambda entry: entry["date"]),
+    }
+
+
+@register.inclusion_tag("news/tables/high-counts.html", takes_context=True)
+def high_counts_table(context):
+    filters = Q()
+
+    if context.get("country"):
+        filters &= Q(country_id=context["country"])
+    elif context.get("state"):
+        filters &= Q(state_id=context["state"])
+    elif context.get("county"):
+        filters &= Q(county_id=context["county"])
+
+    species = {}
+
+    records = (
+        Observation.objects.values_list("species_id", "count")
+            .filter(filters)
+            .filter(
+                species__category="species",
+                date__lt=context["start_date"],
+                date__gte=context["start_date"] - relativedelta(months=1),
+                count__isnull=False,
+            )
+            .order_by("species__taxon_order", "-count")
+    )
+
+    for record in records:
+        if record[0] not in species:
+            species[record[0]] = [record[1]]
+        elif len(species[record[0]]) == 1 and record[1] < species[record[0]][0]:
+            species[record[0]].append(record[1])
+        else:
+            continue
+
+    for id, counts in species.items():
+        species[id] = counts[-1]
+
+    observations = []
+
+    for species_id, count in species.items():
+        observation = (
+            Observation.objects.filter(filters)
+            .filter(
+                species_id=species_id,
+                count__gt=count,
+                date__gte=context["start_date"],
+                date__lte=context["end_date"],
+            )
+            .select_related("species", "location", "observer")
+            .order_by("-count")
+            .first()
+        )
+        if observation:
+            observations.append(observation)
+
+    return {
+        "observations": observations,
+        "show_country": context["show_country"],
     }

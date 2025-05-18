@@ -1,0 +1,55 @@
+{% load i18n species_tags %}
+{% get_current_language as language_code %}
+<h3 class="mb-3">{% trans "High Counts" %}</h3>
+{% for observation in observations %}
+  <div class="row {% if not forloop.last %}border-bottom{% endif %} pb-2 mb-2">
+    <div class="col-lg-3 col-xl-3">
+      <div>
+        {% get_common_name observation.species language_code %} ({{ observation.count }})
+      </div>
+      <div>
+        <small class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
+      </div>
+    </div>
+    <div class="col-lg-1">
+      <span class="text-nowrap">
+        {% if language_code == 'pt' %}
+          {{ observation.date|date:"j b" }}
+        {% else %}
+          {{ observation.date|date:"jS M" }}
+        {% endif %}
+      </span>
+    </div>
+    <div class="col-lg-4">
+      <div>{{ observation.location.display_name }}</div>
+      <div>{% spaceless %}
+        {% if observation.county %}
+          <small class="text-muted">{{ observation.county }}</small>
+        {% endif %}
+        {% if observation.state %}
+          {% if observation.county %}<span>, </span>{% endif %}
+          <small class="text-muted">{{ observation.state }}</small>
+        {% endif %}
+        {% if show_country %}
+          <small class="text-muted">, {{ observation.country }}</small>
+        {% endif %}
+      {% endspaceless %}</div>
+    </div>
+    <div class="col-lg-2 col-xl-2">
+      <span>{{ observation.observer }}</span>
+    </div>
+    <div class="col-lg-2 col-xl-1">
+      <a class="dark-link"
+         href="{% url 'checklists:detail' observation.checklist.identifier %}"
+         title="{% trans 'View the checklist' %}">
+        <span>{{ observation.checklist.identifier }}</span>
+      </a>
+    </div>
+  </div>
+  {% empty %}
+  <div class="row">
+    <div class="py-3">
+      <span>{% trans "No new species were were seen this week." %}</span>
+    </div>
+  </div>
+{% endfor %}
