@@ -25,6 +25,12 @@ class Observer(models.Model):
         help_text=_("The display name of the observer"),
     )
 
+    multiple = models.BooleanField(
+        default=False,
+        verbose_name=_("Multiple accounts"),
+        help_text=_("Is the name used by more than one eBird account."),
+    )
+
     data = models.JSONField(
         verbose_name=_("Data"),
         help_text=_("Data describing an Observer."),

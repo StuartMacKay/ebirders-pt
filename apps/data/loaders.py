@@ -1,7 +1,9 @@
 import datetime as dt
 import logging
+import random
 import re
 import socket
+import string
 
 from decimal import Decimal
 from typing import List, Optional
@@ -32,6 +34,11 @@ logger = logging.getLogger(__name__)
 
 def str2datetime(value: str) -> dt.datetime:
     return dt.datetime.fromisoformat(value).replace(tzinfo=get_default_timezone())
+
+
+def random_word(length):
+    letters = string.ascii_lowercase
+    return "".join(random.choice(letters) for i in range(length))
 
 
 class APILoader:
@@ -223,28 +230,33 @@ class APILoader:
         return observation
 
     @staticmethod
-    def get_observer(data: dict) -> Observer:
-        name: str = data.get("userDisplayName", "Anonymous eBirder")
-        observer, created = Observer.objects.get_or_create(name=name)
-        if created:
-            logger.info("Added observer: %s", observer.display_name())
-        return observer
-
-    @staticmethod
-    def extract_observer(soup) -> str:
+    def get_observer_identifier(data) -> str:
+        identifier: str = data["subId"]
+        logger.info("Scraping checklist: %s", identifier)
+        response = requests.get("https://ebird.org/checklist/%s" % identifier)
+        content = response.content
+        soup = BeautifulSoup(content, "lxml")
         attribute = "data-participant-userid"
         node = soup.find("span", attrs={attribute: True})
         return node[attribute] if node else ""
 
-    def scrape_checklist(self, checklist) -> Checklist:
-        logger.info("Scraping checklist: %s", checklist.identifier)
-        response = requests.get(checklist.url)
-        content = response.content
-        soup = BeautifulSoup(content, "lxml")
-
-        checklist.observer.identifier = self.extract_observer(soup)
-        checklist.observer.save()
-        return checklist
+    def get_observer(self, data: dict) -> Observer:
+        name: str = data.get("userDisplayName", "Anonymous eBirder")
+        observer, created = Observer.objects.get_or_create(name=name)
+        if observer.multiple:
+            observer, created = Observer.objects.get_or_create(
+                identifier=self.get_observer_identifier(data),
+                defaults={
+                    "name": random_word(8),
+                    "byname": name
+                }
+            )
+        elif observer.identifier == "":
+            observer.identifier = self.get_observer_identifier(data)
+            observer.save()
+        if created:
+            logger.info("Added observer: %s", observer.display_name())
+        return observer
 
     def add_checklist(self, identifier: str) -> Checklist:
         """
@@ -312,9 +324,6 @@ class APILoader:
 
             for observation_data in data["obs"]:
                 self.add_observation(observation_data, checklist)
-
-            if checklist.observer.identifier == "":
-                self.scrape_checklist(checklist)
 
         return checklist
 
