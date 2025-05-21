@@ -6,6 +6,7 @@ This project uses calendar versioning, https://calver.org/, and this log provide
 a concise history of changes made.
 
 ## Latest
+- Added the 'enabled' field to Observer so loading Checklists can be blocked.
 
 ## 2025.05.21
 - Added site logo.

@@ -226,10 +226,10 @@ class ObservationAdmin(admin.ModelAdmin):
 
 @admin.register(models.Observer)
 class ObserverAdmin(admin.ModelAdmin):
-    list_display = ("names", "identifier", "multiple")
+    list_display = ("names", "identifier", "multiple", "enabled")
     ordering = ("name",)
     search_fields = ("name", "identifier")
-    list_filter = ("multiple",)
+    list_filter = ("multiple", "enabled")
     formfield_overrides = {TextField: {"widget": TextInput}}
 
     @admin.display(description=_("Name / Byname"))

@@ -258,7 +258,7 @@ class APILoader:
             logger.info("Added observer: %s", observer.display_name())
         return observer
 
-    def add_checklist(self, identifier: str) -> Checklist:
+    def add_checklist(self, identifier: str) -> Checklist | None:
         """
         Add the checklist with the given identifier.
 
@@ -276,6 +276,10 @@ class APILoader:
             started: dt.datetime = str2datetime(data["obsDt"])
             location: Location = Location.objects.get(identifier=data["locId"])
             checklist: Checklist
+            observer: Observer = self.get_observer(data)
+
+            if not observer.enabled:
+                return None
 
             values: dict = {
                 "created": created,
@@ -284,7 +288,7 @@ class APILoader:
                 "state": location.state,
                 "county": location.county,
                 "location": location,
-                "observer": self.get_observer(data),
+                "observer": observer,
                 "observer_count": None,
                 "group": "",
                 "species_count": data["numSpecies"],

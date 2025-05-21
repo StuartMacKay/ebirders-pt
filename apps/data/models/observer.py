@@ -31,6 +31,12 @@ class Observer(models.Model):
         help_text=_("Is the name used by more than one eBird account."),
     )
 
+    enabled = models.BooleanField(
+        default=True,
+        verbose_name=_("Enabled"),
+        help_text=_("Load checklists from the eBird observer."),
+    )
+
     data = models.JSONField(
         verbose_name=_("Data"),
         help_text=_("Data describing an Observer."),
