@@ -6,6 +6,8 @@ This project uses calendar versioning, https://calver.org/, and this log provide
 a concise history of changes made.
 
 ## Latest
+
+## 2025.05.21
 - Added site logo.
 
 ## 2025.05.18
