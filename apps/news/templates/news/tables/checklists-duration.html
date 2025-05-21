@@ -1,6 +1,13 @@
 {% load i18n %}
 <h3>{% trans "Time spent birding" %}</h3>
-  <table class="table">
+<table class="table">
+  <thead>
+    <tr>
+      <th>{% trans "Observer" %}</th>
+      <th class="text-end">{% trans "Duration" %}</th>
+    </tr>
+  </thead>
+  <tbody>
     {% for record in records %}
       <tr>
         <td>{{ record.byname|default:record.name }}</td>
@@ -16,4 +23,5 @@
         <td>?</td>
       </tr>
     {% endfor %}
-  </table>
+  </tbody>
+</table>

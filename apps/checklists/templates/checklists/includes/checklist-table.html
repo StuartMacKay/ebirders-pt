@@ -1,8 +1,25 @@
 {% load i18n %}
 {% get_current_language as language_code %}
+<div class="row border-bottom pb-2 mb-2">
+  <div class="col-lg-1 col-xl-1">
+    <strong>{% trans "Checklist" %}</strong>
+  </div>
+  <div class="col-lg-2 col-xl-2">
+    <strong>{% trans "Date" %}</strong>
+  </div>
+  <div class="col-lg-5 col-xl-5">
+    <strong>{% trans "Location" %}</strong>
+  </div>
+  <div class="col-lg-2 col-xl-2">
+    <strong>{% trans "Observer" %}</strong>
+  </div>
+  <div class="col-lg-2 col-xl-2 text-end">
+    <strong>{% trans "No. of Species" %}</strong>
+  </div>
+</div>
 {% for checklist in checklists %}
-  <div class="row mb-3">
-    <div class="col-lg-2 col-xl-1">
+  <div class="row border-bottom py-2">
+    <div class="col-lg-1 col-xl-1">
       <a class="dark-link"
          href="{% url 'checklists:detail' checklist.identifier %}"
          title="{% trans 'View this checklist' %}">
@@ -19,7 +36,7 @@
         <br/><small class="text-muted">{{ checklist.time }}</small>
       {% endif %}
     </div>
-    <div class="col-lg-5 col-xl-6">
+    <div class="col-lg-5 col-xl-5">
       <a class="dark-link"
          href="?location={{ checklist.location.identifier }}&search={{ checklist.location|urlencode }}"
          title="{% trans 'Show checklists for this location' %}">{{ checklist.location.display_name }}</a>
@@ -55,9 +72,7 @@
          href="?observer={{ checklist.observer.identifier }}&search={{ checklist.observer|urlencode }}"
          title="{% trans 'Show checklists for this observer' %}">{{ checklist.observer }}</a>
     </div>
-    <div class="col-lg-1 col-xl-1">
-      <span class="bi bi-binoculars-fill me-1"
-            title="{% trans 'Number of species reported' %}"></span>
+    <div class="col-lg-2 col-xl-2 text-end">
       <span>{{ checklist.species_count }}</span>
     </div>
   </div>

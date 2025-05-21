@@ -2,32 +2,39 @@
 {% get_current_language as language_code %}
 <h3>{{ title }}</h3>
 <table class="table">
-  {% for entry in entries %}
+  <thead>
     <tr>
-      <td>
-        <a class="dark-link"
-           href="{% url 'observations:big-day' %}{% querystring observer=entry.observer__identifier date=entry.date %}"
-           title="{% trans 'View the list of species' %}">
-          <span class="text-nowrap">
-            {% if language_code == 'pt' %}
-              {{ entry.date|date:"j b" }}
-            {% else %}
-              {{ entry.date|date:"jS M" }}
-            {% endif %}
-          </span>
-        </a>
-      </td>
-      <td>{{ entry.name }}</td>
-      <td class="text-end">
-        <span class="bi bi-binoculars-fill me-1"
-              title="{% trans 'Number of species reported' %}"></span>
-        <span>{{ entry.species_count }}</span>
-      </td>
+      <th>{% trans "Date" %}</th>
+      <th>{% trans "Observer" %}</th>
+      <th class="text-end">{% trans "No. of Species" %}</th>
     </tr>
-    {% empty %}
-    <tr>
-      <td>{% trans 'Your name here' %}</td>
-      <td>?</td>
-    </tr>
-  {% endfor %}
+  </thead>
+  <tbody>
+    {% for entry in entries %}
+      <tr>
+        <td>
+          <a class="dark-link"
+             href="{% url 'observations:big-day' %}{% querystring observer=entry.observer__identifier date=entry.date %}"
+             title="{% trans 'View the list of species' %}">
+            <span class="text-nowrap">
+              {% if language_code == 'pt' %}
+                {{ entry.date|date:"j b" }}
+              {% else %}
+                {{ entry.date|date:"jS M" }}
+              {% endif %}
+            </span>
+          </a>
+        </td>
+        <td>{{ entry.name }}</td>
+        <td class="text-end">
+          <span>{{ entry.species_count }}</span>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td>{% trans 'Your name here' %}</td>
+        <td>?</td>
+      </tr>
+    {% endfor %}
+  </tbody>
 </table>

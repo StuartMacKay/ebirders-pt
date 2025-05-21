@@ -1,6 +1,23 @@
 {% load i18n species_tags %}
 {% get_current_language as language_code %}
 <h3 class="mb-3">{% trans "High Counts" %}</h3>
+<div class="row border-bottom pb-2 mb-2">
+  <div class="col-lg-3 col-xl-3">
+    <strong>{% trans "Species (Count)" %}</strong>
+  </div>
+  <div class="col-lg-1">
+    <strong>{% trans "Date" %}</strong>
+  </div>
+  <div class="col-lg-4">
+    <strong>{% trans "Location" %}</strong>
+  </div>
+  <div class="col-lg-3 col-xl-3">
+    <strong>{% trans "Observer" %}</strong>
+  </div>
+  <div class="col-lg-2 col-xl-1">
+    <strong>{% trans "Checklist" %}</strong>
+  </div>
+</div>
 {% for observation in observations %}
   <div class="row {% if not forloop.last %}border-bottom{% endif %} pb-2 mb-2">
     <div class="col-lg-3 col-xl-3">
@@ -35,10 +52,10 @@
         {% endif %}
       {% endspaceless %}</div>
     </div>
-    <div class="col-lg-2 col-xl-2">
+    <div class="col-lg-3 col-xl-3">
       <span>{{ observation.observer }}</span>
     </div>
-    <div class="col-lg-2 col-xl-1">
+    <div class="col-lg-1 col-xl-1">
       <a class="dark-link"
          href="{% url 'checklists:detail' observation.checklist.identifier %}"
          title="{% trans 'View the checklist' %}">

@@ -1,6 +1,23 @@
 {% load i18n %}
 {% get_current_language as language_code %}
 <h3 class="mb-3">{{ title }}</h3>
+<div class="row border-bottom pb-2 mb-2">
+  <div class="col-lg-2 col-xl-2">
+    <strong>{% trans "Checklist" %}</strong>
+  </div>
+  <div class="col-lg-1 col-xl-1">
+    <strong>{% trans "Date" %}</strong>
+  </div>
+  <div class="col-lg-5 col-xl-5">
+    <strong>{% trans "Location" %}</strong>
+  </div>
+  <div class="col-lg-2 col-xl-2">
+    <strong>{% trans "Observer" %}</strong>
+  </div>
+  <div class="col-lg-2 col-xl-2 text-end">
+    <strong>{% trans "No. of Species" %}</strong>
+  </div>
+</div>
 {% for checklist in checklists %}
   <div class="row {% if not forloop.last %}border-bottom{% endif %} pb-2 mb-2">
     <div class="col-lg-2 col-xl-2">
@@ -35,12 +52,10 @@
         {% endif %}
       {% endspaceless %}
     </div>
-    <div class="col-lg-3 col-xl-3">
+    <div class="col-lg-2 col-xl-2">
       {{ checklist.observer }}
     </div>
-    <div class="col-lg-1 col-xl-1">
-       <span class="bi bi-binoculars-fill me-1"
-             title="{% trans 'Number of species reported' %}"></span>
+    <div class="col-lg-2 col-xl-2 text-end">
       <span>{{ checklist.species_count }}</span>
     </div>
   </div>

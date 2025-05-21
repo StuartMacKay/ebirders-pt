@@ -1,6 +1,30 @@
 {% load i18n species_tags %}
+<div class="row border-bottom py-2 mb-3">
+  <div class="col-md-1">
+    <div class="show-if-wide text-end">
+      <strong>{% trans "Count" %}</strong>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="show-if-wide">
+      <strong>{% trans "Species" %}</strong>
+    </div>
+    <div class="show-if-narrow">
+      <strong>{% trans "Count" %}, {% trans "Species" %}</strong>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <strong>{% trans "Date" %}</strong>
+  </div>
+  <div class="col-md-4">
+    <strong>{% trans "Location" %}</strong>
+  </div>
+  <div class="col-md-2">
+    <strong>{% trans "Observer" %}</strong>
+  </div>
+</div>
 {% for observation in observations %}
-  <div class="row mb-3">
+  <div class="row border-bottom mb-3">
     <div class="col-md-1">
       <div class="show-if-wide text-end">
         {% if observation.count %}{{ observation.count }}{% else %}X{% endif %}</div>
