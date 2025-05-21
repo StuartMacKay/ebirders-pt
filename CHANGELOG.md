@@ -7,6 +7,7 @@ a concise history of changes made.
 
 ## Latest
 - Added the 'enabled' field to Observer so loading Checklists can be blocked.
+- Added caching to the Latest, Weekly and Monthly News pages.
 
 ## 2025.05.21
 - Added site logo.

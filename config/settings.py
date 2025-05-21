@@ -122,7 +122,7 @@ DATABASES = {
 #   CACHING
 # ###########
 
-CACHES = {"default": env.cache_url(default="pymemcache://localhost:11211")}
+CACHES = {"default": env.cache_url(default="pymemcache://127.0.0.1:11211")}
 
 # ############
 #   SECURITY
