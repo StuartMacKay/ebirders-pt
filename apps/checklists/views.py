@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from django.views import generic
 
 from django_filters.views import FilterView
@@ -31,7 +32,7 @@ class DetailView(generic.DetailView):
     context_object_name = "checklist"
 
     def get_object(self, queryset=None):
-        return Checklist.objects.get(identifier=self.kwargs["identifier"])
+        return get_object_or_404(Checklist, identifier=self.kwargs["identifier"])
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
