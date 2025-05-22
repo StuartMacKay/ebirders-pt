@@ -119,9 +119,11 @@ class ObservationFilter(django_filters.FilterSet):
                 species_code=code
             ).values_list("species_code", field).first()
 
-            choice = ("%s%s" % (prefix, choice[0]), choice[1])
-
-            self.declared_filters["species"].field.widget.choices = [choice]
+            if choice:
+                choice = ("%s%s" % (prefix, choice[0]), choice[1])
+                self.declared_filters["species"].field.widget.choices = [choice]
+            else:
+                self.declared_filters["species"].field.widget.choices = []
 
     def filter_species(self, queryset, field_name, value):
         if not value:
