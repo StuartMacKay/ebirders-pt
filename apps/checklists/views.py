@@ -1,4 +1,7 @@
+from django.conf import settings
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
+from django.utils import translation
 from django.views import generic
 
 from django_filters.views import FilterView
@@ -11,7 +14,7 @@ from .filters import ChecklistFilter
 class ChecklistsView(FilterView):
     model = Checklist
     filterset_class = ChecklistFilter
-    template_name = "checklists/index.html"
+    template_name = "checklists/list.html"
     paginate_by = 50
     ordering = ("-started",)
 
@@ -20,9 +23,18 @@ class ChecklistsView(FilterView):
         queryset = super().get_queryset().select_related(*related)
         return self.filterset_class(self.request.GET, queryset).qs
 
+    @staticmethod
+    def get_translations():
+        urls = []
+        for code, name in settings.LANGUAGES:
+            with translation.override(code):
+                urls.append((reverse("checklists:list"), name))
+        return urls
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["show_country"] = Country.objects.all().count() > 1
+        context["translations"] = self.get_translations()
         return context
 
 

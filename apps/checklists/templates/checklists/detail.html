@@ -1,16 +1,15 @@
 {% extends "page.html" %}
-{% load i18n static %}
+{% load i18n species_tags static %}
 {% get_current_language as language_code %}
-
-{% block language_selector %}
-  <li><a class="dropdown-item disabled"
-         href="{% url 'checklists:detail' checklist.identifier %}">{{ lang_name }}</a>
-  </li>
-{% endblock %}
 
 {% block title %}{% trans 'Checklist' %} {{ checklist.identifier }}{% endblock %}
 
-{% block content %}
+{% block header %}
+  {% include "includes/header.html" with url_name='checklists:detail' url_args=checklist.identifier %}
+{% endblock %}
+
+{% block main %}
+  <div class="container">
   <div class="mx-2">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
@@ -135,6 +134,20 @@
   </div>
 
   <div>
-    {% include "checklists/includes/detail-table.html" %}
+    <table class="table border-top">
+      <tbody>
+      {% for observation in observations %}
+        <tr>
+        <td class="text-end">
+          {% if observation.count %}{{ observation.count }}{% else %}X{% endif %}</td>
+        <td>
+          {% get_common_name observation.species language_code %} <small
+          class="ms-2 text-muted fst-italic">{{ observation.species.scientific_name }}</small>
+          {% if observation.comments %}<br/>{{ observation.comments }}{% endif %}
+        </td>
+      {% endfor %}
+      </tbody>
+    </table>
   </div>
-{% endblock content %}
+</div>
+{% endblock %}

@@ -1,9 +1,11 @@
 import datetime as dt
 import re
 
+from django.conf import settings
 from django.http import JsonResponse
+from django.urls import reverse
+from django.utils import translation
 from django.utils.dateformat import format
-from django.utils.translation import get_language
 from django.views import generic
 
 from dateutil.relativedelta import relativedelta
@@ -14,6 +16,14 @@ from data.models import Country, County, State
 
 class LatestView(generic.TemplateView):
     template_name = "news/latest.html"
+
+    @staticmethod
+    def get_translations():
+        urls = []
+        for code, name in settings.LANGUAGES:
+            with translation.override(code):
+                urls.append((reverse("news:latest"), name))
+        return urls
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -35,7 +45,7 @@ class LatestView(generic.TemplateView):
                     format(end_date, "d M Y"),
                 )
 
-        if get_language() == "pt":
+        if translation.get_language() == "pt":
             subtitle = subtitle.lower()
 
         code = self.request.GET.get("code", "")
@@ -58,12 +68,21 @@ class LatestView(generic.TemplateView):
         context["end_date"] = end_date
         context["subtitle"] = subtitle
         context["show_country"] = Country.objects.count() > 1
+        context["translations"] = self.get_translations()
 
         return context
 
 
 class WeeklyView(generic.TemplateView):
     template_name = "news/weekly.html"
+
+    @staticmethod
+    def get_translations(year, week):
+        urls = []
+        for code, name in settings.LANGUAGES:
+            with translation.override(code):
+                urls.append((reverse("news:for-week", args=(year, week)), name))
+        return urls
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -96,7 +115,7 @@ class WeeklyView(generic.TemplateView):
         previous_year = previous_date.year
         previous_week = previous_date.isocalendar().week - 1
 
-        if get_language() == "pt":
+        if translation.get_language() == "pt":
             subtitle = subtitle.lower()
 
         code = self.request.GET.get("code", "")
@@ -117,20 +136,27 @@ class WeeklyView(generic.TemplateView):
         context["county"] = county
         context["start_date"] = start_date
         context["end_date"] = end_date
-        context["current_year"] = year
-        context["current_week"] = week
         context["previous_year"] = previous_year
         context["previous_week"] = previous_week
         context["next_year"] = next_year
         context["next_week"] = next_week
         context["subtitle"] = subtitle
         context["show_country"] = Country.objects.count() > 1
+        context["translations"] = self.get_translations(year, week)
 
         return context
 
 
 class MonthlyView(generic.TemplateView):
     template_name = "news/monthly.html"
+
+    @staticmethod
+    def get_translations(year, month):
+        urls = []
+        for code, name in settings.LANGUAGES:
+            with translation.override(code):
+                urls.append((reverse("news:for-month", args=(year, month)), name))
+        return urls
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -151,7 +177,7 @@ class MonthlyView(generic.TemplateView):
         previous_year = previous_date.year
         previous_month = previous_date.month
 
-        if get_language() == "pt":
+        if translation.get_language() == "pt":
             subtitle = subtitle.lower()
 
         code = self.request.GET.get("code", "")
@@ -172,14 +198,13 @@ class MonthlyView(generic.TemplateView):
         context["county"] = county
         context["start_date"] = start_date
         context["end_date"] = end_date
-        context["current_year"] = year
-        context["current_month"] = month
         context["previous_year"] = previous_year
         context["previous_month"] = previous_month
         context["next_year"] = next_year
         context["next_month"] = next_month
         context["subtitle"] = subtitle
         context["show_country"] = Country.objects.count() > 1
+        context["translations"] = self.get_translations(year, month)
 
         return context
 

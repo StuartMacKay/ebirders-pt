@@ -1,0 +1,108 @@
+{% load i18n species_tags %}
+{% get_current_language as language_code %}
+<div class="row">
+  <div class="col">
+    <div class="border-top pt-3 overflow-hidden">
+      <div class="row py-2">
+        <div class="col-md-1">
+          <div class="show-if-wide text-end">
+            <strong>{% trans "Count" %}</strong>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="show-if-wide">
+            <strong>{% trans "Species" %}</strong>
+          </div>
+          <div class="show-if-narrow">
+            <strong>{% trans "Count" %}, {% trans "Species" %}</strong>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <strong>{% trans "Date" %}</strong>
+        </div>
+        <div class="col-md-4">
+          <strong>{% trans "Location" %}</strong>
+        </div>
+        <div class="col-md-2">
+          <strong>{% trans "Observer" %}</strong>
+        </div>
+      </div>
+      {% for observation in page_obj %}
+        <div class="row border-top py-2">
+          <div class="col-md-1">
+            <div class="show-if-wide text-end">
+              {% if observation.count %}{{ observation.count }}{% else %}X{% endif %}</div>
+          </div>
+          <div class="col-md-3">
+            <div class="show-if-wide">
+              <a class="dark-link"
+                 href="{% querystring species=observation.species.species_code %}"
+                 title="{% trans 'Show observations of this species' %}">
+                {% get_common_name observation.species language_code %}
+              </a><br>
+              <small
+                class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
+            </div>
+            <div class="show-if-narrow">
+              <span>{% if observation.count %}{{ observation.count }}{% else %}
+                X{% endif %}, </span>
+              <a class="dark-link"
+                 href="{% querystring species=observation.species.species_code %}"
+                 title="{% trans 'Show observations of this species' %}">
+                {% get_common_name observation.species language_code %}
+              </a>
+              <small
+                class="ms-2 text-muted fst-italic">{{ observation.species.scientific_name }}</small>
+            </div>
+          </div>
+          <div class="col-md-2">
+            {% if language_code == 'pt' %}
+              <span class="text-nowrap">{{ observation.date|date:"j b Y" }}</span>
+            {% else %}
+              <span class="text-nowrap">{{ observation.date|date:"jS M Y" }}</span>
+            {% endif %}
+            {% if observation.time %}
+              <br/><small class="text-muted">{{ observation.time }}</small>
+            {% endif %}
+          </div>
+          <div class="col-md-4">
+            <a class="dark-link"
+               href="{% querystring location=observation.location.identifier %}"
+               title="{% trans 'Show observations for this location' %}">{{ observation.location.display_name }}</a>
+            <br/>
+            {% spaceless %}
+              {% if observation.county %}
+                <small class="text-muted">
+                  <a class="dark-link"
+                     href="{% querystring county=observation.county.code location=None %}"
+                     title="{% trans 'Show observations for this county' %}">{{ observation.county.name }}</a>
+                </small>
+              {% endif %}
+              {% if observation.state %}
+                <small class="text-muted">
+                  {% if observation.county %}<span>, </span>{% endif %}
+                  <a class="dark-link"
+                     href="{% querystring state=observation.state.code county=None location=None %}"
+                     title="{% trans 'Show observations for this state' %}">{{ observation.state.name }}</a>
+                </small>
+              {% endif %}
+              {% if show_country %}
+                <small class="text-muted">
+                  <span>, </span>
+                  <a class="dark-link"
+                     href="{% querystring country=observation.country.code state=None county=None location=None %}"
+                     title="{% trans 'Show observations for this country' %}">{{ observation.country }}</a>
+                </small>
+              {% endif %}
+            {% endspaceless %}
+          </div>
+          <div class="col-md-2">
+            <a class="dark-link"
+               href="{% querystring observer=observation.observer.identifier %}"
+               title="{% trans 'Show observations from this observer' %}">{{ observation.observer }}</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

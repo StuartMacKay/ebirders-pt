@@ -1,5 +1,8 @@
 import datetime as dt
 
+from django.conf import settings
+from django.urls import reverse
+from django.utils import translation
 from django.views import generic
 
 from django_filters.views import FilterView
@@ -12,7 +15,7 @@ from .filters import ObservationFilter
 class ObservationsView(FilterView):
     model = Observation
     filterset_class = ObservationFilter
-    template_name = "observations/index.html"
+    template_name = "observations/list.html"
     paginate_by = 100
     ordering = ("-started",)
 
@@ -21,9 +24,18 @@ class ObservationsView(FilterView):
         queryset = super().get_queryset().select_related(*related)
         return self.filterset_class(self.request.GET, queryset).qs
 
+    @staticmethod
+    def get_translations():
+        urls = []
+        for code, name in settings.LANGUAGES:
+            with translation.override(code):
+                urls.append((reverse("observations:list"), name))
+        return urls
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["show_country"] = Country.objects.all().count() > 1
+        context["translations"] = self.get_translations()
         return context
 
 
@@ -57,9 +69,18 @@ class BigDayView(generic.ListView):
             "species",
         ).order_by('species__taxon_order')
 
+    @staticmethod
+    def get_translations():
+        urls = []
+        for code, name in settings.LANGUAGES:
+            with translation.override(code):
+                urls.append((reverse("observations:big-day"), name))
+        return urls
+
     def get_context_data(self, **kwargs):
         filters = self.get_filters()
         context = super().get_context_data(**kwargs)
         context["date"] = dt.datetime.strptime(filters["date"], "%Y-%m-%d")
         context["observer"] = Observer.objects.get(identifier=filters["observer"])
+        context["translations"] = self.get_translations()
         return context

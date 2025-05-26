@@ -1,7 +1,7 @@
 {% load i18n species_tags %}
 {% get_current_language as language_code %}
 <h3 class="mb-3">{{ title }} {{ year }}</h3>
-<div class="row border-bottom pb-2 mb-2">
+<div class="row py-2">
   <div class="col-lg-3 col-xl-3">
     <strong>{% trans "Species (Count)" %}</strong>
   </div>
@@ -19,7 +19,7 @@
   </div>
 </div>
 {% for observation in observations %}
-  <div class="row border-bottom pb-2 mb-2">
+  <div class="row border-top py-2">
     <div class="col-lg-3 col-xl-3">
       <div>
         {% get_common_name observation.species language_code %} ({% if observation.count %}{{ observation.count }}{% else %}X{% endif %})

@@ -1,114 +1,111 @@
 {% extends "page.html" %}
 {% load charts i18n numbers static tables %}
 
-{% block language_selector %}
-  <li><a class="dropdown-item"
-         href="{% url 'news:for-week' current_year current_week %}{% querystring %}">{{ lang_name }}</a></li>
-{% endblock %}
-
 {% block title %}{% trans 'Latest News' %}{% endblock %}
 
-{% block content %}
-  <div class="row border-bottom mb-3 align-items-baseline">
-    <div class="col">
-      <h1>{% trans 'Weekly News' %}</h1>
-    </div>
-    <div class="col ms-auto text-end">
-      <small class="text-muted">{% trans 'Updated every hour' %}</small>
-    </div>
-  </div>
+{% block main %}
+  <div class="container">
 
-  <div class="row border-bottom mb-4 align-items-center">
-    <div class="col-lg-2 col-md-2 col-sm-2 mb-3">
-      <a class="btn btn-link link-dark bg-light me-2"
-         href="{% url "news:for-week" previous_year previous_week %}">
-        <i class="bi bi-chevron-left"></i>
-      </a>
-      <a class="btn btn-link link-dark bg-light"
-         href="{% url "news:for-week" next_year next_week %}">
-        <i class="bi bi-chevron-right"></i>
-      </a>
-    </div>
-    <div class="col-lg-4 col-md-8 col-sm-8 mb-3">
-      <span class="h4">{{ subtitle }}</span>
-    </div>
-    <div class="col-lg-4 mb-3">
-      <form method="get" id="autocomplete-form">
-        <div class="input-group">
-          <input id="autocompleteInput"
-                 type="text"
-                 name="search"
-                 value="{{ search }}"
-                 class="form-control autocomplete"
-                 data-server="{% url 'news:autocomplete' %}"
-            {% if show_country %}
-                 placeholder="{% trans 'Enter Country, State or County' %}"
-            {% else %}
-                 placeholder="{% trans 'Enter State or County' %}"
-            {% endif %}
-          >
-          <button id="search-button" type="button" class="btn btn-primary">
-            <i class="bi-search btn-primary" title="{% trans 'Search' %}"></i>
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div class="row border-bottom mb-3">
-    <div class="col-md-3 col-sm-6 col-6 mb-3">
-      {% species_count country state county start_date end_date %}
-    </div>
-    <div class="col-md-3 col-sm-6 col-6 mb-3">
-      {% checklist_count country state county start_date end_date %}
-    </div>
-    <div class="col-md-3 col-sm-6 col-6 mb-3">
-      {% observer_count country state county start_date end_date %}
-    </div>
-    <div class="col-md-3 col-sm-6 col-6 mb-3">
-      {% duration_count country state county start_date end_date %}
-    </div>
-  </div>
-
-  <div class="row border-bottom py-2">
-    <div class="col-12">
-      {% high_counts_table %}
-    </div>
-  </div>
-
-  {% with year=end_date.year %}
-    <div class="row border-bottom py-2">
-      <div class="col-12">
-        {% yearlist_table %}
+    <div class="row border-bottom align-items-baseline">
+      <div class="col">
+        <h1>{% trans 'Weekly News' %}</h1>
+      </div>
+      <div class="col ms-auto text-end">
+        <small class="text-muted">{% trans 'Updated every hour' %}</small>
       </div>
     </div>
-  {% endwith %}
 
-  <div class="row border-bottom py-2">
-    <div class="col-12">
-      {% big_lists_table country state county start_date end_date show_country %}
+    <div class="row border-bottom align-items-center pt-3">
+      <div class="col-lg-2 col-md-2 col-sm-2 mb-3">
+        <a class="btn btn-link link-dark bg-light me-2"
+           href="{% url "news:for-week" previous_year previous_week %}">
+          <i class="bi bi-chevron-left"></i>
+        </a>
+        <a class="btn btn-link link-dark bg-light"
+           href="{% url "news:for-week" next_year next_week %}">
+          <i class="bi bi-chevron-right"></i>
+        </a>
+      </div>
+      <div class="col-lg-4 col-md-8 col-sm-8 mb-3">
+        <span class="h4">{{ subtitle }}</span>
+      </div>
+      <div class="col-lg-4 mb-3">
+        <form method="get" id="autocomplete-form">
+          <div class="input-group">
+            <input id="autocompleteInput"
+                   type="text"
+                   name="search"
+                   value="{{ search }}"
+                   class="form-control autocomplete"
+                   data-server="{% url 'news:autocomplete' %}"
+              {% if show_country %}
+                   placeholder="{% trans 'Enter Country, State or County' %}"
+              {% else %}
+                   placeholder="{% trans 'Enter State or County' %}"
+              {% endif %}
+            >
+            <button id="search-button" type="button" class="btn btn-primary">
+              <i class="bi-search btn-primary" title="{% trans 'Search' %}"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="row border-bottom pt-4 pb-2">
+      <div class="col-md-3 col-sm-6 col-6 mb-3">
+        {% species_count country state county start_date end_date %}
+      </div>
+      <div class="col-md-3 col-sm-6 col-6 mb-3">
+        {% checklist_count country state county start_date end_date %}
+      </div>
+      <div class="col-md-3 col-sm-6 col-6 mb-3">
+        {% observer_count country state county start_date end_date %}
+      </div>
+      <div class="col-md-3 col-sm-6 col-6 mb-3">
+        {% duration_count country state county start_date end_date %}
+      </div>
+    </div>
+
+    <div class="row border-bottom py-2">
+      <div class="col-12">
+        {% high_counts_table %}
+      </div>
+    </div>
+
+    {% with year=end_date.year %}
+      <div class="row border-bottom py-2">
+        <div class="col-12">
+          {% yearlist_table %}
+        </div>
+      </div>
+    {% endwith %}
+
+    <div class="row border-bottom py-2">
+      <div class="col-12">
+        {% big_lists_table country state county start_date end_date show_country %}
+      </div>
+    </div>
+
+    <div class="row py-2">
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        {% big_days_table country state county start_date end_date %}
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        {% checklists_species_table country state county start_date end_date %}
+      </div>
+    </div>
+
+    <div class="row py-2">
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        {% checklists_submitted_table country state county start_date end_date %}
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        {% checklists_duration_table country state county start_date end_date %}
+      </div>
     </div>
   </div>
-
-  <div class="row py-2">
-    <div class="col-lg-6 col-md-6 col-sm-12">
-      {% big_days_table country state county start_date end_date %}
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-12">
-      {% checklists_species_table country state county start_date end_date %}
-    </div>
-  </div>
-
-  <div class="row py-2">
-    <div class="col-lg-6 col-md-6 col-sm-12">
-      {% checklists_submitted_table country state county start_date end_date %}
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-12">
-      {% checklists_duration_table country state county start_date end_date %}
-    </div>
-  </div>
-
-{% endblock content %}
+{% endblock %}
 
 {% block javascript %}
   {{ block.super }}

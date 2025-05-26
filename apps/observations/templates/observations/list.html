@@ -1,36 +1,16 @@
 {% extends "page.html" %}
 {% load static i18n %}
 
-{% block language_selector %}
-  <li><a class="dropdown-item"
-         href="{% url 'observations:list' %}{% querystring %}">{{ lang_name }}</a></li>
-{% endblock %}
-
 {% block title %}{% trans 'Observations' %}{% endblock %}
 
-{% block content %}
-
-  <div class="row border-bottom align-items-baseline mb-3">
-    <h1 class="col-lg-4 col-md-6 mb-3">{% trans 'Observations' %}</h1>
-    <div class="ms-auto text-end col-lg-2 col-md-4 mb-3">
-      <small class="text-muted">{% trans 'Updated every hour' %}</small>
-    </div>
+{% block main %}
+  <div class="container">
+    {% include "observations/includes/list-title.html" %}
+    {% include "observations/includes/list-filter.html" %}
+    {% include "observations/includes/list-entries.html" %}
+    {% include "observations/includes/list-pagination.html" %}
   </div>
-
-  <div class="border-bottom pb-3 mb-3">
-    {% include "observations/includes/filter-form.html" %}
-  </div>
-
-  <div class="mb-3">
-    {% with observations=page_obj %}
-      {% include "observations/includes/observation-table.html" %}
-    {% endwith %}
-  </div>
-
-  <div>
-    {% include "observations/includes/pagination.html" %}
-  </div>
-{% endblock content %}
+{% endblock %}
 
 {% block javascript %}
   {{ block.super }}

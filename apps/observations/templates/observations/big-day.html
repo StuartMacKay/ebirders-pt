@@ -1,14 +1,9 @@
 {% extends "page.html" %}
 {% load static i18n species_tags %}
 
-{% block language_selector %}
-  <li><a class="dropdown-item"
-         href="{% url 'observations:big-day' %}{% querystring %}">{{ lang_name }}</a></li>
-{% endblock %}
-
 {% block title %}{% trans 'Big Day' %}{% endblock %}
 
-{% block content %}
+{% block main %}
   <div class="border-bottom pb-2 mb-3">
     <h1>{% trans 'Big Day' %}</h1>
   </div>
@@ -55,4 +50,4 @@
       {% endifchanged %}
     {% endfor %}
   </div>
-{% endblock content %}
+{% endblock %}
