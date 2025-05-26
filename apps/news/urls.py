@@ -1,4 +1,5 @@
 from django.urls import path
+from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import cache_page
 
 from .views import LatestView, MonthlyView, WeeklyView, autocomplete
@@ -12,27 +13,27 @@ days: int = 24 * hours
 
 urlpatterns = [
     path(
-        "latest/",
+        _("latest/"),
         cache_page(1 * hours)(LatestView.as_view()),
         name="latest",
     ),
     path(
-        "weekly/",
+        _("weekly/"),
         cache_page(1 * hours)(WeeklyView.as_view()),
         name="weekly",
     ),
     path(
-        "weekly/<int:year>/<int:week>/",
+        _("weekly/") + "<int:year>/<int:week>/",
         cache_page(1 * hours)(WeeklyView.as_view()),
         name="for-week",
     ),
     path(
-        "monthly/",
+        _("monthly/"),
         cache_page(1 * hours)(MonthlyView.as_view()),
         name="monthly",
     ),
     path(
-        "monthly/<int:year>/<int:month>/",
+        _("monthly/") + "<int:year>/<int:month>/",
         cache_page(1 * hours)(MonthlyView.as_view()),
         name="for-month",
     ),

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-26 12:28+0000\n"
+"POT-Creation-Date: 2025-05-26 13:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -186,12 +186,10 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: apps/checklists/templates/checklists/includes/list-pagination.html:35
-#: apps/observations/templates/observations/includes/list-pagination.html:35
+#: apps/checklists/templates/checklists/includes/list-pagination.html:36
+#: apps/observations/templates/observations/includes/list-pagination.html:36
 #, python-format
-msgid ""
-"Page %(number)s of\n"
-"              %(total)s"
+msgid "Page %(number)s of %(total)s"
 msgstr ""
 
 #: apps/checklists/templates/checklists/includes/list-title.html:5
@@ -1001,6 +999,18 @@ msgstr ""
 msgid "Big Days"
 msgstr ""
 
+#: apps/news/urls.py:16
+msgid "latest/"
+msgstr ""
+
+#: apps/news/urls.py:21 apps/news/urls.py:26
+msgid "weekly/"
+msgstr ""
+
+#: apps/news/urls.py:31 apps/news/urls.py:36
+msgid "monthly/"
+msgstr ""
+
 #: apps/observations/apps.py:8
 #: apps/observations/templates/observations/includes/list-title.html:3
 #: apps/observations/templates/observations/list.html:4
@@ -1061,10 +1071,6 @@ msgstr ""
 
 #: config/settings.py:217
 msgid "Portuguese"
-msgstr ""
-
-#: config/urls.py:10
-msgid "autocomplete/"
 msgstr ""
 
 #: config/urls.py:11

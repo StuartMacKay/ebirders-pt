@@ -32,8 +32,9 @@
         </nav>
         <div>
           {% with number=page_obj.number total=page_obj.paginator.num_pages %}
-            <span class="text-muted">{% blocktrans %}Page {{ number }} of
-              {{ total }}{% endblocktrans %}</span>
+            <span class="text-muted">
+              {% blocktrans %}Page {{ number }} of {{ total }}{% endblocktrans %}
+            </span>
           {% endwith %}
         </div>
       </div>
