@@ -211,14 +211,14 @@ class APILoader:
             "date": checklist.date,
             "time": checklist.time,
             "started": checklist.started,
-            "count": None,
+            "count": 0,
             "media": False,
             "comments": "",
             "urn": self.get_urn(checklist.project_code, data),
         }
 
         if re.match(r"\d+", data["howManyStr"]):
-            values["count"] = int(data["howManyStr"]) or None
+            values["count"] = int(data["howManyStr"])
 
         if "comments" in data:
             values["comments"] = data["comments"]

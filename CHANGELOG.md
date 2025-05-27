@@ -8,6 +8,7 @@ a concise history of changes made.
 ## Latest
 - Added field to order by number of species seen to the Checklists search panel.
 - Added field to order by number of species seen to the Observations search panel.
+- Observation model - changed count to be non-null, with a default of zero.
 
 ## 2025.05.27
 - Added the 'enabled' field to Observer so loading Checklists can be blocked.

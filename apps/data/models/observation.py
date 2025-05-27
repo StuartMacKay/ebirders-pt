@@ -103,8 +103,6 @@ class Observation(models.Model):
     )
 
     count = models.IntegerField(
-        blank=True,
-        null=True,
         validators=[MinValueValidator(0)],
         verbose_name=_("count"),
         help_text=_("The number of birds seen."),
