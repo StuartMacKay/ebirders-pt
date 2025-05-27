@@ -6,6 +6,8 @@ This project uses calendar versioning, https://calver.org/, and this log provide
 a concise history of changes made.
 
 ## Latest
+
+## 2025.05.27
 - Added the 'enabled' field to Observer so loading Checklists can be blocked.
 - Added caching to the Latest, Weekly and Monthly News pages.
 - Added date range fields to the Checklists search panel.
