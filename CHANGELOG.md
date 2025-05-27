@@ -7,6 +7,7 @@ a concise history of changes made.
 
 ## Latest
 - Added field to order by number of species seen to the Checklists search panel.
+- Added field to order by number of species seen to the Observations search panel.
 
 ## 2025.05.27
 - Added the 'enabled' field to Observer so loading Checklists can be blocked.

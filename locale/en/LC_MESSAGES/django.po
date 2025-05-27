@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-27 16:40+0000\n"
+"POT-Creation-Date: 2025-05-27 16:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,7 +74,7 @@ msgstr ""
 msgid "Location type"
 msgstr ""
 
-#: apps/checklists/filters.py:75
+#: apps/checklists/filters.py:75 apps/observations/filters.py:77
 msgid "Ordering"
 msgstr ""
 
@@ -1060,14 +1060,19 @@ msgstr ""
 msgid "Species"
 msgstr ""
 
-#: apps/observations/templates/observations/big-day.html:4
-#: apps/observations/templates/observations/big-day.html:8
-msgid "Big Day"
-msgstr ""
-
+#: apps/observations/filters.py:82
 #: apps/observations/templates/observations/includes/list-entries.html:9
 #: apps/observations/templates/observations/includes/list-entries.html:17
 msgid "Count"
+msgstr ""
+
+#: apps/observations/filters.py:83
+msgid "Count (descending)"
+msgstr ""
+
+#: apps/observations/templates/observations/big-day.html:4
+#: apps/observations/templates/observations/big-day.html:8
+msgid "Big Day"
 msgstr ""
 
 #: apps/observations/templates/observations/includes/list-entries.html:40

@@ -1,4 +1,4 @@
-from django.forms import DateInput
+from django.forms import DateInput, Select
 from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 
@@ -73,6 +73,17 @@ class ObservationFilter(django_filters.FilterSet):
         lookup_expr="lte",
         widget=DateInput(attrs={'type': 'date', 'class': 'form-control'})
     )
+    o = django_filters.OrderingFilter(
+        label=_("Ordering"),
+        fields=(
+            ('count', 'count'),
+        ),
+        choices=(
+            ('count', _('Count')),
+            ('-count', _('Count (descending)')),
+        ),
+        widget=Select
+    )
 
     class Meta:
         model = Observation
@@ -137,6 +148,8 @@ class ObservationFilter(django_filters.FilterSet):
                 self.declared_filters["species"].field.widget.choices = [choice]
             else:
                 self.declared_filters["species"].field.widget.choices = []
+
+        self.declared_filters["o"].field.widget.attrs = {"class": "form-control"}
 
     def filter_species(self, queryset, field_name, value):
         if not value:
