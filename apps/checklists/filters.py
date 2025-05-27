@@ -1,4 +1,4 @@
-from django.forms import DateInput
+from django.forms import DateInput, Select
 from django.utils.translation import gettext_lazy as _
 
 import django_filters
@@ -71,6 +71,17 @@ class ChecklistFilter(django_filters.FilterSet):
             attrs={"class": "form-control"}
         )
     )
+    o = django_filters.OrderingFilter(
+        label=_("Ordering"),
+        fields=(
+            ('species_count', 'species-count'),
+        ),
+        choices=(
+            ('species_count', _('Number of species')),
+            ('-species_count', _('Number of species (descending)')),
+        ),
+        widget=Select
+    )
 
     class Meta:
         model = Checklist
@@ -122,3 +133,5 @@ class ChecklistFilter(django_filters.FilterSet):
             ("true", _("Hotspot")),
             ("false", _("Private/Personal")),
         )
+
+        self.declared_filters["o"].field.widget.attrs = {"class": "form-control"}

@@ -6,6 +6,7 @@ This project uses calendar versioning, https://calver.org/, and this log provide
 a concise history of changes made.
 
 ## Latest
+- Added field to order by number of species seen to the Checklists search panel.
 
 ## 2025.05.27
 - Added the 'enabled' field to Observer so loading Checklists can be blocked.

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-27 09:48+0000\n"
+"POT-Creation-Date: 2025-05-27 16:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,15 +26,15 @@ msgstr ""
 msgid "Checklists"
 msgstr "Listas"
 
-#: apps/checklists/filters.py:13 apps/observations/filters.py:13
+#: apps/checklists/filters.py:13 apps/observations/filters.py:14
 msgid "Country"
 msgstr "País"
 
-#: apps/checklists/filters.py:21 apps/observations/filters.py:21
+#: apps/checklists/filters.py:21 apps/observations/filters.py:22
 msgid "State"
 msgstr "Distrito"
 
-#: apps/checklists/filters.py:30 apps/observations/filters.py:30
+#: apps/checklists/filters.py:30 apps/observations/filters.py:31
 msgid "County"
 msgstr "Concelho"
 
@@ -43,7 +43,7 @@ msgstr "Concelho"
 #: apps/news/templates/news/tables/big-lists.html:12
 #: apps/news/templates/news/tables/high-counts.html:12
 #: apps/news/templates/news/tables/yearlist.html:12
-#: apps/observations/filters.py:39
+#: apps/observations/filters.py:40
 #: apps/observations/templates/observations/includes/list-entries.html:24
 msgid "Location"
 msgstr "Local"
@@ -57,34 +57,46 @@ msgstr "Local"
 #: apps/news/templates/news/tables/checklists-submitted.html:6
 #: apps/news/templates/news/tables/high-counts.html:15
 #: apps/news/templates/news/tables/yearlist.html:15
-#: apps/observations/filters.py:48
+#: apps/observations/filters.py:49
 #: apps/observations/templates/observations/includes/list-entries.html:27
 msgid "Observer"
 msgstr "Observador"
 
-#: apps/checklists/filters.py:56
+#: apps/checklists/filters.py:56 apps/observations/filters.py:65
 msgid "From"
 msgstr "A partir de"
 
-#: apps/checklists/filters.py:62
+#: apps/checklists/filters.py:62 apps/observations/filters.py:71
 msgid "Until"
 msgstr "Até"
 
 #: apps/checklists/filters.py:68
-#, fuzzy
-#| msgid "Location"
 msgid "Location type"
 msgstr "Tipo de local"
 
-#: apps/checklists/filters.py:121
+#: apps/checklists/filters.py:75
+msgid "Ordering"
+msgstr "Ordenação"
+
+#: apps/checklists/filters.py:80
+#: apps/checklists/templates/checklists/detail.html:60
+#: apps/news/templatetags/charts.py:85
+msgid "Number of species"
+msgstr "Número de espécies"
+
+#: apps/checklists/filters.py:81
+msgid "Number of species (descending)"
+msgstr "Número de espécies (decrescente)"
+
+#: apps/checklists/filters.py:132
 msgid "All"
 msgstr "Todo os locais"
 
-#: apps/checklists/filters.py:122
+#: apps/checklists/filters.py:133
 msgid "Hotspot"
 msgstr "Só Hotspots"
 
-#: apps/checklists/filters.py:123
+#: apps/checklists/filters.py:134
 msgid "Private/Personal"
 msgstr "Locais privados"
 
@@ -95,11 +107,6 @@ msgstr "Locais privados"
 #: apps/news/templates/news/tables/yearlist.html:18
 msgid "Checklist"
 msgstr "Lista"
-
-#: apps/checklists/templates/checklists/detail.html:60
-#: apps/news/templatetags/charts.py:85
-msgid "Number of species"
-msgstr "Número de espécies registadas"
 
 #: apps/checklists/templates/checklists/detail.html:72
 msgid "Number of Observers"
@@ -1038,7 +1045,7 @@ msgstr "mensal/"
 msgid "Observations"
 msgstr "Observações"
 
-#: apps/observations/filters.py:56
+#: apps/observations/filters.py:57
 #: apps/observations/templates/observations/includes/list-entries.html:14
 #: apps/observations/templates/observations/includes/list-entries.html:17
 #: apps/species/apps.py:8
