@@ -1,3 +1,4 @@
+from django.forms import DateInput
 from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 
@@ -59,6 +60,18 @@ class ObservationFilter(django_filters.FilterSet):
             url="data:species",
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
+    )
+    start = django_filters.DateFilter(
+        label=_("From"),
+        field_name="date",
+        lookup_expr="gte",
+        widget=DateInput(attrs={'type': 'date', 'class': 'form-control'})
+    )
+    finish = django_filters.DateFilter(
+        label=_("Until"),
+        field_name="date",
+        lookup_expr="lte",
+        widget=DateInput(attrs={'type': 'date', 'class': 'form-control'})
     )
 
     class Meta:

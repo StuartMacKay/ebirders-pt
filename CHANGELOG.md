@@ -10,6 +10,7 @@ a concise history of changes made.
 - Added caching to the Latest, Weekly and Monthly News pages.
 - Added date range fields to the Checklists search panel.
 - Added filter for hotspots to the Checklists search panel.
+- Added date range fields to the Observations search panel.
 
 ## 2025.05.21
 - Added site logo.
