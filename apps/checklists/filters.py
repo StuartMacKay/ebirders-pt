@@ -64,6 +64,13 @@ class ChecklistFilter(django_filters.FilterSet):
         lookup_expr="lte",
         widget=DateInput(attrs={'type': 'date', 'class': 'form-control'})
     )
+    hotspot = django_filters.BooleanFilter(
+        label=_("Location type"),
+        field_name="location__hotspot",
+        widget=django_filters.widgets.BooleanWidget(
+            attrs={"class": "form-control"}
+        )
+    )
 
     class Meta:
         model = Checklist
@@ -107,3 +114,11 @@ class ChecklistFilter(django_filters.FilterSet):
             ].field.widget.choices = Observer.objects.filter(
                 identifier=observer
             ).values_list("identifier", "name")
+
+        self.declared_filters[
+            "hotspot"
+        ].field.widget.choices = (
+            ("", _("All")),
+            ("true", _("Hotspot")),
+            ("false", _("Private/Personal")),
+        )

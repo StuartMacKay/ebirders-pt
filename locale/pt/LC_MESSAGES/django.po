@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-27 09:45+0000\n"
+"POT-Creation-Date: 2025-05-27 09:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,6 +69,24 @@ msgstr "A partir de"
 #: apps/checklists/filters.py:62
 msgid "Until"
 msgstr "Até"
+
+#: apps/checklists/filters.py:68
+#, fuzzy
+#| msgid "Location"
+msgid "Location type"
+msgstr "Tipo de local"
+
+#: apps/checklists/filters.py:121
+msgid "All"
+msgstr "Todo os locais"
+
+#: apps/checklists/filters.py:122
+msgid "Hotspot"
+msgstr "Só Hotspots"
+
+#: apps/checklists/filters.py:123
+msgid "Private/Personal"
+msgstr "Locais privados"
 
 #: apps/checklists/templates/checklists/detail.html:5
 #: apps/checklists/templates/checklists/includes/list-entries.html:8
