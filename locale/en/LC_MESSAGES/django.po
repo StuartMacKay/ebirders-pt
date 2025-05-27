@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-26 13:05+0000\n"
+"POT-Creation-Date: 2025-05-27 09:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,19 +26,19 @@ msgstr ""
 msgid "Checklists"
 msgstr ""
 
-#: apps/checklists/filters.py:12 apps/observations/filters.py:13
+#: apps/checklists/filters.py:13 apps/observations/filters.py:13
 msgid "Country"
 msgstr ""
 
-#: apps/checklists/filters.py:20 apps/observations/filters.py:21
+#: apps/checklists/filters.py:21 apps/observations/filters.py:21
 msgid "State"
 msgstr "District"
 
-#: apps/checklists/filters.py:29 apps/observations/filters.py:30
+#: apps/checklists/filters.py:30 apps/observations/filters.py:30
 msgid "County"
 msgstr ""
 
-#: apps/checklists/filters.py:38
+#: apps/checklists/filters.py:39
 #: apps/checklists/templates/checklists/includes/list-entries.html:14
 #: apps/news/templates/news/tables/big-lists.html:12
 #: apps/news/templates/news/tables/high-counts.html:12
@@ -48,7 +48,7 @@ msgstr ""
 msgid "Location"
 msgstr ""
 
-#: apps/checklists/filters.py:47
+#: apps/checklists/filters.py:48
 #: apps/checklists/templates/checklists/includes/list-entries.html:17
 #: apps/news/templates/news/tables/big-days.html:8
 #: apps/news/templates/news/tables/big-lists.html:15
@@ -60,6 +60,26 @@ msgstr ""
 #: apps/observations/filters.py:48
 #: apps/observations/templates/observations/includes/list-entries.html:27
 msgid "Observer"
+msgstr ""
+
+#: apps/checklists/filters.py:56
+msgid "From"
+msgstr ""
+
+#: apps/checklists/filters.py:62
+msgid "Until"
+msgstr ""
+
+#: apps/checklists/filters.py:114
+msgid "All"
+msgstr ""
+
+#: apps/checklists/filters.py:115
+msgid "Hotspot"
+msgstr ""
+
+#: apps/checklists/filters.py:116
+msgid "Private/Personal"
 msgstr ""
 
 #: apps/checklists/templates/checklists/detail.html:5

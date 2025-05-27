@@ -1,3 +1,4 @@
+from django.forms import DateInput
 from django.utils.translation import gettext_lazy as _
 
 import django_filters
@@ -51,10 +52,22 @@ class ChecklistFilter(django_filters.FilterSet):
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
+    start = django_filters.DateFilter(
+        label=_("From"),
+        field_name="date",
+        lookup_expr="gte",
+        widget=DateInput(attrs={'type': 'date', 'class': 'form-control'})
+    )
+    finish = django_filters.DateFilter(
+        label=_("Until"),
+        field_name="date",
+        lookup_expr="lte",
+        widget=DateInput(attrs={'type': 'date', 'class': 'form-control'})
+    )
 
     class Meta:
         model = Checklist
-        fields = ("country", "state", "county", "location", "observer")
+        fields = ("country", "state", "county", "location", "observer",)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
