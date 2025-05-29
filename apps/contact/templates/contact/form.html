@@ -1,0 +1,63 @@
+{% extends "page.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans 'Contact' %}{% endblock %}
+
+{% block main %}
+<div class="container">
+  <div class="row">
+    <div class="mx-auto col-sm-12 col-lg-8 mb-4">
+      <h1>{% translate "Contact" %}</h1>
+
+      {% if messages %}
+        <ul class="list-unstyled fs-5">
+          {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+              <li class="text-success">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </svg>
+                <span style="vertical-align: middle;">{{ message }}</span>
+              </li>
+            {% elif  message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+              <li class="text-error">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                </svg>
+                <span style="vertical-align: middle;">{{ message }}</span>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      <p>
+        {% trans "If you have any questions, comments, or suggestions, please send us a message using the form below." %}
+      </p>
+
+      <form method="post" novalidate>
+        {% csrf_token %}
+
+        {% for field in form.visible_fields %}
+          <div class="mb-3">
+            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}{% if not field.field.required %}<span class="ms-1 text-muted">{% translate "(optional)" %}</span>{% endif %}</label>
+            {{ field }}
+            {% if field.errors %}
+              {% for error in field.errors %}
+                <div class="invalid-feedback">
+                  {{ error }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          </div>
+        {% endfor %}
+
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary">{% translate "Send message" %}</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-27 16:46+0000\n"
+"POT-Creation-Date: 2025-05-29 08:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -235,6 +235,54 @@ msgstr ""
 msgid "Updated every hour"
 msgstr ""
 
+#: apps/contact/apps.py:8 apps/contact/templates/contact/form.html:4
+#: apps/contact/templates/contact/form.html:10
+#: templates/includes/footer.html:11
+msgid "Contact"
+msgstr ""
+
+#: apps/contact/forms.py:8
+msgid "You did not write a message."
+msgstr ""
+
+#: apps/contact/forms.py:11
+msgid "Name"
+msgstr ""
+
+#: apps/contact/forms.py:12
+msgid "Email"
+msgstr ""
+
+#: apps/contact/forms.py:13
+msgid "Message"
+msgstr ""
+
+#: apps/contact/templates/contact/form.html:35
+msgid ""
+"If you have any questions, comments, or suggestions, please send us a "
+"message using the form below."
+msgstr ""
+
+#: apps/contact/templates/contact/form.html:43
+msgid "(optional)"
+msgstr ""
+
+#: apps/contact/templates/contact/form.html:56
+msgid "Send message"
+msgstr ""
+
+#: apps/contact/views.py:27
+msgid "Thanks for your message."
+msgstr ""
+
+#: apps/contact/views.py:28
+msgid "Thanks for your message. You will get a reply shortly."
+msgstr ""
+
+#: apps/contact/views.py:29
+msgid "Your message could not be sent. Please try again later."
+msgstr ""
+
 #: apps/data/admin.py:23
 msgid "Common name"
 msgstr ""
@@ -248,7 +296,7 @@ msgid "Name / Byname"
 msgstr ""
 
 #: apps/data/apps.py:8 apps/data/models/checklist.py:175
-#: apps/data/models/location.py:87 apps/data/models/observation.py:179
+#: apps/data/models/location.py:144 apps/data/models/observation.py:177
 #: apps/data/models/observer.py:41 apps/data/models/species.py:92
 msgid "Data"
 msgstr ""
@@ -277,7 +325,7 @@ msgstr ""
 msgid "edited"
 msgstr ""
 
-#: apps/data/models/checklist.py:26 apps/data/models/location.py:12
+#: apps/data/models/checklist.py:26 apps/data/models/location.py:69
 #: apps/data/models/observation.py:22 apps/data/models/observer.py:11
 msgid "identifier"
 msgstr ""
@@ -287,7 +335,7 @@ msgid "The unique identifier for the checklist."
 msgstr ""
 
 #: apps/data/models/checklist.py:34 apps/data/models/country.py:7
-#: apps/data/models/location.py:31 apps/data/models/observation.py:54
+#: apps/data/models/location.py:88 apps/data/models/observation.py:54
 msgid "country"
 msgstr ""
 
@@ -295,7 +343,7 @@ msgstr ""
 msgid "The country where the checklist was made."
 msgstr ""
 
-#: apps/data/models/checklist.py:42 apps/data/models/location.py:39
+#: apps/data/models/checklist.py:42 apps/data/models/location.py:96
 #: apps/data/models/observation.py:62 apps/data/models/state.py:7
 msgid "state"
 msgstr ""
@@ -305,7 +353,7 @@ msgid "The state where the checklist was made."
 msgstr ""
 
 #: apps/data/models/checklist.py:52 apps/data/models/county.py:7
-#: apps/data/models/location.py:49 apps/data/models/observation.py:72
+#: apps/data/models/location.py:106 apps/data/models/observation.py:72
 msgid "county"
 msgstr ""
 
@@ -313,7 +361,7 @@ msgstr ""
 msgid "The county where the checklist was made."
 msgstr ""
 
-#: apps/data/models/checklist.py:60 apps/data/models/location.py:7
+#: apps/data/models/checklist.py:60 apps/data/models/location.py:64
 #: apps/data/models/observation.py:80
 msgid "location"
 msgstr ""
@@ -435,7 +483,7 @@ msgstr ""
 msgid "All species seen are reported."
 msgstr ""
 
-#: apps/data/models/checklist.py:164 apps/data/models/observation.py:168
+#: apps/data/models/checklist.py:164 apps/data/models/observation.py:166
 msgid "comments"
 msgstr ""
 
@@ -443,7 +491,7 @@ msgstr ""
 msgid "Any comments about the checklist."
 msgstr ""
 
-#: apps/data/models/checklist.py:170 apps/data/models/location.py:75
+#: apps/data/models/checklist.py:170 apps/data/models/location.py:132
 msgid "url"
 msgstr ""
 
@@ -469,7 +517,7 @@ msgid "The code used to identify the country."
 msgstr ""
 
 #: apps/data/models/country.py:18 apps/data/models/county.py:18
-#: apps/data/models/location.py:17 apps/data/models/observer.py:18
+#: apps/data/models/location.py:74 apps/data/models/observer.py:18
 #: apps/data/models/state.py:18
 msgid "name"
 msgstr ""
@@ -503,67 +551,67 @@ msgstr ""
 msgid "The hierarchical name of the county."
 msgstr ""
 
-#: apps/data/models/location.py:8
+#: apps/data/models/location.py:65
 msgid "locations"
 msgstr ""
 
-#: apps/data/models/location.py:13
+#: apps/data/models/location.py:70
 msgid "The unique identifier for the location"
 msgstr ""
 
-#: apps/data/models/location.py:17
+#: apps/data/models/location.py:74
 msgid "The name of the location"
 msgstr ""
 
-#: apps/data/models/location.py:23 apps/data/models/observer.py:24
+#: apps/data/models/location.py:80 apps/data/models/observer.py:24
 msgid "byname"
 msgstr ""
 
-#: apps/data/models/location.py:24
+#: apps/data/models/location.py:81
 msgid "The display name of the location"
 msgstr ""
 
-#: apps/data/models/location.py:32
+#: apps/data/models/location.py:89
 msgid "The country for the location."
 msgstr ""
 
-#: apps/data/models/location.py:40
+#: apps/data/models/location.py:97
 msgid "The state for the location."
 msgstr ""
 
-#: apps/data/models/location.py:50
+#: apps/data/models/location.py:107
 msgid "The county for the location."
 msgstr ""
 
-#: apps/data/models/location.py:58
+#: apps/data/models/location.py:115
 msgid "latitude"
 msgstr ""
 
-#: apps/data/models/location.py:59
+#: apps/data/models/location.py:116
 msgid "The decimal latitude of the location, relative to the equator"
 msgstr ""
 
-#: apps/data/models/location.py:67
+#: apps/data/models/location.py:124
 msgid "longitude"
 msgstr ""
 
-#: apps/data/models/location.py:69
+#: apps/data/models/location.py:126
 msgid "The decimal longitude of the location, relative to the prime meridian"
 msgstr ""
 
-#: apps/data/models/location.py:76
+#: apps/data/models/location.py:133
 msgid "URL of the location page on eBird."
 msgstr ""
 
-#: apps/data/models/location.py:82
+#: apps/data/models/location.py:139
 msgid "is hotspot"
 msgstr ""
 
-#: apps/data/models/location.py:83
+#: apps/data/models/location.py:140
 msgid "Is the location a hotspot"
 msgstr ""
 
-#: apps/data/models/location.py:88
+#: apps/data/models/location.py:145
 msgid "Data describing a Location"
 msgstr ""
 
@@ -624,91 +672,91 @@ msgstr ""
 msgid "The date and time the observation was made."
 msgstr ""
 
-#: apps/data/models/observation.py:109
+#: apps/data/models/observation.py:107
 msgid "count"
 msgstr ""
 
-#: apps/data/models/observation.py:110
+#: apps/data/models/observation.py:108
 msgid "The number of birds seen."
 msgstr ""
 
-#: apps/data/models/observation.py:115
+#: apps/data/models/observation.py:113
 msgid "breeding code"
 msgstr ""
 
-#: apps/data/models/observation.py:116
+#: apps/data/models/observation.py:114
 msgid "eBird code identifying the breeding status"
 msgstr ""
 
-#: apps/data/models/observation.py:121
+#: apps/data/models/observation.py:119
 msgid "breeding category"
 msgstr ""
 
-#: apps/data/models/observation.py:122
+#: apps/data/models/observation.py:120
 msgid "eBird code identifying the breeding category"
 msgstr ""
 
-#: apps/data/models/observation.py:127
+#: apps/data/models/observation.py:125
 msgid "behaviour code"
 msgstr ""
 
-#: apps/data/models/observation.py:128
+#: apps/data/models/observation.py:126
 msgid "eBird code identifying the behaviour"
 msgstr ""
 
-#: apps/data/models/observation.py:133
+#: apps/data/models/observation.py:131
 msgid "Age & Sex"
 msgstr ""
 
-#: apps/data/models/observation.py:134
+#: apps/data/models/observation.py:132
 msgid "The number of birds seen in each combination of age and sex."
 msgstr ""
 
-#: apps/data/models/observation.py:140
+#: apps/data/models/observation.py:138
 msgid "has media"
 msgstr ""
 
-#: apps/data/models/observation.py:141
+#: apps/data/models/observation.py:139
 msgid "Has audio, photo or video uploaded to the Macaulay library."
 msgstr ""
 
-#: apps/data/models/observation.py:147
+#: apps/data/models/observation.py:145
 msgid "Approved"
 msgstr ""
 
-#: apps/data/models/observation.py:148
+#: apps/data/models/observation.py:146
 msgid "Has the observation been accepted by eBird's review process."
 msgstr ""
 
-#: apps/data/models/observation.py:154
+#: apps/data/models/observation.py:152
 msgid "Reviewed"
 msgstr ""
 
-#: apps/data/models/observation.py:155
+#: apps/data/models/observation.py:153
 msgid "Was the observation reviewed because it failed automatic checks."
 msgstr ""
 
-#: apps/data/models/observation.py:160
+#: apps/data/models/observation.py:158
 msgid "Reason"
 msgstr ""
 
-#: apps/data/models/observation.py:162
+#: apps/data/models/observation.py:160
 msgid "The reason given for the observation to be marked as not confirmed."
 msgstr ""
 
-#: apps/data/models/observation.py:169
+#: apps/data/models/observation.py:167
 msgid "Any comments about the observation."
 msgstr ""
 
-#: apps/data/models/observation.py:174
+#: apps/data/models/observation.py:172
 msgid "URN"
 msgstr ""
 
-#: apps/data/models/observation.py:175
+#: apps/data/models/observation.py:173
 msgid "The globally unique identifier for the observation"
 msgstr ""
 
-#: apps/data/models/observation.py:180
+#: apps/data/models/observation.py:178
 msgid "Data describing an Observation."
 msgstr ""
 
@@ -1105,28 +1153,32 @@ msgstr ""
 msgid "Yearlist"
 msgstr ""
 
-#: config/settings.py:216
+#: config/settings.py:217
 msgid "English"
 msgstr ""
 
-#: config/settings.py:217
+#: config/settings.py:218
 msgid "Portuguese"
 msgstr ""
 
-#: config/urls.py:11
+#: config/urls.py:13
 msgid "news/"
 msgstr ""
 
-#: config/urls.py:12
+#: config/urls.py:14
 msgid "checklists/"
 msgstr ""
 
-#: config/urls.py:13
+#: config/urls.py:15
 msgid "observations/"
 msgstr ""
 
-#: config/urls.py:14
+#: config/urls.py:16
 msgid "species/"
+msgstr ""
+
+#: config/urls.py:17
+msgid "contact/"
 msgstr ""
 
 #: templates/403.html:4 templates/403.html:8

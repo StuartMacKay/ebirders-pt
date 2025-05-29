@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_extensions",
     "checklists",
+    "contact",
     "data",
     "locations",
     "news",
@@ -369,10 +370,12 @@ vars().update(env.email("DJANGO_EMAIL_URL", default="consolemail://"))
 
 EMAIL_USE_SSL = env.bool("DJANGO_EMAIL_USE_SSL", default="True")
 
-if django_admins := env.str("DJANGO_ADMINS", ""):
-    ADMINS = tuple(parseaddr(email) for email in django_admins.split(","))
+if DJANGO_ADMINS := env.list("DJANGO_ADMINS", str, []):
+    ADMINS = [tuple(admin.split(":", 1)) for admin in DJANGO_ADMINS]
     LOGGING["loggers"]["django"]["handlers"].append("mail_admins")
     LOGGING["loggers"][""]["handlers"].append("mail_admins")
+
+MANAGERS = [tuple(manager.split(":")) for manager in env.list("DJANGO_MANAGERS", str, [])]
 
 # ########
 #   SITE

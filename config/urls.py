@@ -5,6 +5,8 @@ from django.urls import include, path
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import RedirectView
 
+from contact.views import ContactView
+
 urlpatterns = i18n_patterns(
     path("", RedirectView.as_view(pattern_name="news:latest"), name="index"),
     path("autocomplete/", include("data.urls")),
@@ -12,6 +14,7 @@ urlpatterns = i18n_patterns(
     path(_("checklists/"), include("checklists.urls")),
     path(_("observations/"), include("observations.urls")),
     path(_("species/"), include("species.urls")),
+    path(_("contact/"), ContactView.as_view(), name="contact"),
 )
 
 urlpatterns += [
