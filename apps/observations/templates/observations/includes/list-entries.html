@@ -39,7 +39,17 @@
                  href="{% querystring species=observation.species.species_code %}"
                  title="{% trans 'Show observations of this species' %}">
                 {% get_common_name observation.species language_code %}
-              </a><br>
+              </a>
+              {% if observation.reviewed %}
+                {% if observation.approved is None %}
+                  <i class="bi bi-flag-fill text-warning" title="{{ observation.reason }}"></i>
+                {% elif observation.approved is False %}
+                  <i class="bi bi-flag-fill text-danger" title="{{ observation.reason }}"></i>
+                {% else %}
+                  <i class="bi bi-flag-fill text-success" title="{{ observation.reason }}"></i>
+                {% endif %}
+              {% endif %}
+              <br>
               <small
                 class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
             </div>
@@ -51,8 +61,16 @@
                  title="{% trans 'Show observations of this species' %}">
                 {% get_common_name observation.species language_code %}
               </a>
-              <small
-                class="ms-2 text-muted fst-italic">{{ observation.species.scientific_name }}</small>
+              {% if observation.reviewed %}
+                {% if observation.approved is None %}
+                  <i class="bi bi-flag-fill text-warning" title="{{ observation.reason }}"></i>
+                {% elif observation.approved is False %}
+                  <i class="bi bi-flag-fill text-danger" title="{{ observation.reason }}"></i>
+                {% else %}
+                  <i class="bi bi-flag-fill text-success" title="{{ observation.reason }}"></i>
+                {% endif %}
+              {% endif %}
+              <small class="ms-2 text-muted fst-italic">{{ observation.species.scientific_name }}</small>
             </div>
           </div>
           <div class="col-md-2">

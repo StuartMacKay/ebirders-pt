@@ -1,4 +1,4 @@
-{% load i18n species_tags %}
+{% load i18n observation_tags species_tags %}
 {% get_current_language as language_code %}
 <h3 class="mb-3">{{ title }} {{ year }}</h3>
 <div class="row py-2">
@@ -23,6 +23,15 @@
     <div class="col-lg-3 col-xl-3">
       <div>
         {% get_common_name observation.species language_code %} ({% if observation.count %}{{ observation.count }}{% else %}X{% endif %})
+        {% if observation.reviewed %}
+          {% if observation.approved is None %}
+            <i class="bi bi-flag-fill text-warning" title="{% get_reason observation language_code %}"></i>
+          {% elif observation.approved is False %}
+            <i class="bi bi-flag-fill text-danger" title="{% get_reason observation language_code %}"></i>
+          {% else %}
+            <i class="bi bi-flag-fill text-success" title="{% get_reason observation language_code %}"></i>
+          {% endif %}
+        {% endif %}
       </div>
       <div>
         <small class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>

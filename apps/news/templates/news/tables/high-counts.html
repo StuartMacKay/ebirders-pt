@@ -23,6 +23,15 @@
     <div class="col-lg-3">
       <div>
         {% get_common_name observation.species language_code %} ({{ observation.count }})
+        {% if observation.reviewed %}
+          {% if observation.approved is None %}
+            <i class="bi bi-flag-fill text-warning" title="{{ observation.reason }}"></i>
+          {% elif observation.approved is False %}
+            <i class="bi bi-flag-fill text-danger" title="{{ observation.reason }}"></i>
+          {% else %}
+            <i class="bi bi-flag-fill text-success" title="{{ observation.reason }}"></i>
+          {% endif %}
+        {% endif %}
       </div>
       <div>
         <small class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>

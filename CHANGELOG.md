@@ -7,6 +7,7 @@ a concise history of changes made.
 
 ## Latest
 - Added notifications to the Latest News page.
+- Added moderator comments to Observations.
 - Added field to order by number of species seen to the Checklists search panel.
 - Added field to order by number of species seen to the Observations search panel.
 - Added contact page.
