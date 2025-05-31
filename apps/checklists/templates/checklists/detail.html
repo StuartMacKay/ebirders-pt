@@ -1,6 +1,5 @@
 {% extends "page.html" %}
 {% load i18n species_tags static %}
-{% get_current_language as language_code %}
 
 {% block title %}{% trans 'Checklist' %} {{ checklist.identifier }}{% endblock %}
 
@@ -9,6 +8,7 @@
 {% endblock %}
 
 {% block main %}
+  {% get_current_language as language_code %}
   <div class="container">
   <div class="mx-2">
     <nav aria-label="breadcrumb">
