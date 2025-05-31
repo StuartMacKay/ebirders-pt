@@ -1,4 +1,4 @@
-{% load i18n species_tags %}
+{% load i18n observation_tags species_tags %}
 {% get_current_language as language_code %}
 <div class="row">
   <div class="col">
@@ -42,11 +42,11 @@
               </a>
               {% if observation.reviewed %}
                 {% if observation.approved is None %}
-                  <i class="bi bi-flag-fill text-warning" title="{{ observation.reason }}"></i>
+                  <i class="bi bi-flag-fill text-warning" title="{% get_reason observation language_code %}"></i>
                 {% elif observation.approved is False %}
-                  <i class="bi bi-flag-fill text-danger" title="{{ observation.reason }}"></i>
+                  <i class="bi bi-flag-fill text-danger" title="{% get_reason observation language_code %}"></i>
                 {% else %}
-                  <i class="bi bi-flag-fill text-success" title="{{ observation.reason }}"></i>
+                  <i class="bi bi-flag-fill text-success" title="{% get_reason observation language_code %}"></i>
                 {% endif %}
               {% endif %}
               <br>
@@ -63,11 +63,11 @@
               </a>
               {% if observation.reviewed %}
                 {% if observation.approved is None %}
-                  <i class="bi bi-flag-fill text-warning" title="{{ observation.reason }}"></i>
+                  <i class="bi bi-flag-fill text-warning" title="{% get_reason observation language_code %}"></i>
                 {% elif observation.approved is False %}
-                  <i class="bi bi-flag-fill text-danger" title="{{ observation.reason }}"></i>
+                  <i class="bi bi-flag-fill text-danger" title="{% get_reason observation language_code %}"></i>
                 {% else %}
-                  <i class="bi bi-flag-fill text-success" title="{{ observation.reason }}"></i>
+                  <i class="bi bi-flag-fill text-success" title="{% get_reason observation language_code %}"></i>
                 {% endif %}
               {% endif %}
               <small class="ms-2 text-muted fst-italic">{{ observation.species.scientific_name }}</small>

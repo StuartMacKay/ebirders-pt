@@ -1,5 +1,5 @@
 {% extends "page.html" %}
-{% load i18n species_tags static %}
+{% load i18n observation_tags species_tags static %}
 
 {% block title %}{% trans 'Checklist' %} {{ checklist.identifier }}{% endblock %}
 
@@ -153,7 +153,7 @@
             {% else %}
               <i class="bi bi-flag-fill text-success"></i>
             {% endif %}
-            <small>{{ observation.reason }}</small>
+            <small class="ms-2">{% get_reason observation language_code %}</small>
           {% endif %}
         </td>
       {% endfor %}

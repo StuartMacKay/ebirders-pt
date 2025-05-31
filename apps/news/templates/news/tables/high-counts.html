@@ -1,4 +1,4 @@
-{% load i18n species_tags %}
+{% load i18n observation_tags species_tags %}
 {% get_current_language as language_code %}
 <h3 class="mb-3">{% trans "High Counts" %}</h3>
 <div class="row py-2">
@@ -25,11 +25,11 @@
         {% get_common_name observation.species language_code %} ({{ observation.count }})
         {% if observation.reviewed %}
           {% if observation.approved is None %}
-            <i class="bi bi-flag-fill text-warning" title="{{ observation.reason }}"></i>
+            <i class="bi bi-flag-fill text-warning" title="{% get_reason observation language_code %}"></i>
           {% elif observation.approved is False %}
-            <i class="bi bi-flag-fill text-danger" title="{{ observation.reason }}"></i>
+            <i class="bi bi-flag-fill text-danger" title="{% get_reason observation language_code %}"></i>
           {% else %}
-            <i class="bi bi-flag-fill text-success" title="{{ observation.reason }}"></i>
+            <i class="bi bi-flag-fill text-success" title="{% get_reason observation language_code %}"></i>
           {% endif %}
         {% endif %}
       </div>
