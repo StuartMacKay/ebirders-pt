@@ -168,7 +168,7 @@ msgstr ""
 #: apps/news/templates/news/tables/yearlist.html:74
 #: apps/species/templates/species/yearlist.html:16
 msgid "No. of Species"
-msgstr "N.º de espécies"
+msgstr "Nº. de espécies"
 
 #: apps/checklists/templates/checklists/includes/list-entries.html:28
 #: apps/news/templates/news/tables/big-lists.html:26
@@ -1170,7 +1170,7 @@ msgstr "observações/"
 
 #: config/urls.py:16
 msgid "species/"
-msgstr "espécies"
+msgstr "espécies/"
 
 #: config/urls.py:17
 msgid "contact/"

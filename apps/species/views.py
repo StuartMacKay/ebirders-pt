@@ -1,5 +1,8 @@
+from django.conf import settings
 from django.db.models import OuterRef, Q, Subquery
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django.utils.translation import override
 from django.views import generic
 
 from ebird.codes.locations import is_country_code, is_county_code, is_state_code
@@ -9,6 +12,14 @@ from data.models import Country, County, Observation, Species, State
 
 class YearlistView(generic.TemplateView):
     template_name = "species/yearlist.html"
+
+    @staticmethod
+    def get_translations(year):
+        urls = []
+        for code, name in settings.LANGUAGES:
+            with override(code):
+                urls.append((reverse("species:yearlist", kwargs={"year": year}), name))
+        return urls
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -38,7 +49,8 @@ class YearlistView(generic.TemplateView):
 
         observations = (
             Observation.objects.filter(species=OuterRef("pk"))
-            .filter(filters).order_by('started')
+            .filter(filters)
+            .order_by("started")
         )
 
         # Interestingly, using values_list() to fetch only the 'first'
@@ -70,4 +82,5 @@ class YearlistView(generic.TemplateView):
             "observations": observations,
             "total": len(observations),
             "show_country": show_country,
+            "translations": self.get_translations(context["year"]),
         }
