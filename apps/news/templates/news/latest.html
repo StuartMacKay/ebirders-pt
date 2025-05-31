@@ -3,6 +3,13 @@
 
 {% block title %}{% trans 'Latest News' %}{% endblock %}
 
+{% block header %}
+  {% block notifications %}
+    {% include "notifications/messages.html" %}
+  {% endblock %}
+  {{ block.super }}
+{% endblock %}
+
 {% block main %}
   <div class="container">
 

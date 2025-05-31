@@ -6,6 +6,7 @@ This project uses calendar versioning, https://calver.org/, and this log provide
 a concise history of changes made.
 
 ## Latest
+- Added notifications to the Latest News page.
 - Added field to order by number of species seen to the Checklists search panel.
 - Added field to order by number of species seen to the Observations search panel.
 - Added contact page.

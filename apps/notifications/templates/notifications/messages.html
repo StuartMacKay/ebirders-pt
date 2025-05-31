@@ -1,0 +1,17 @@
+{% load i18n notification_tags %}
+{% if notifications %}
+  {% get_current_language as language_code %}
+  {% block notifications %}
+    <div class="container-fluid">
+      <div class="row">
+            <div class="mb-4">
+              {% for notification in notifications %}
+                <div class="px-3 py-2 bg-{{ notification.level }}-subtle">
+                  {%  get_contents notification language_code %}
+                </div>
+              {% endfor %}
+          </div>
+      </div>
+    </div>
+  {% endblock %}
+{% endif %}

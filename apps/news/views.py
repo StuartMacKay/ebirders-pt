@@ -12,6 +12,7 @@ from dateutil.relativedelta import relativedelta
 from ebird.codes.locations import is_country_code, is_county_code, is_state_code
 
 from data.models import Country, County, State
+from notifications.models import Notification
 
 
 class LatestView(generic.TemplateView):
@@ -69,7 +70,7 @@ class LatestView(generic.TemplateView):
         context["subtitle"] = subtitle
         context["show_country"] = Country.objects.count() > 1
         context["translations"] = self.get_translations()
-
+        context["notifications"] = Notification.objects.published()
         return context
 
 
