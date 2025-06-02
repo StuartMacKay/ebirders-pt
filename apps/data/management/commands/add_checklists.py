@@ -101,9 +101,8 @@ class Command(BaseCommand):
     @staticmethod
     def get_loader() -> APILoader:
         key: str = getattr(settings, "EBIRD_API_KEY")
-        locale: str = getattr(settings, "EBIRD_LOCALE")
         locales: dict = getattr(settings, "EBIRD_LOCALES")
-        return APILoader(key, locale, locales)
+        return APILoader(key, locales)
 
     @staticmethod
     def get_dates(days) -> list[dt.date]:

@@ -1,4 +1,5 @@
 import datetime as dt
+import json
 import logging
 import random
 import re
@@ -52,8 +53,6 @@ class APILoader:
             Your can request a key at https://ebird.org/data/download.
             You will need an eBird account to do so.
 
-        locale: The (default) locale used for species common names, etc.
-
         locales: A map of Django language codes to eBird locales so the species
                  common name, family name, etc. is displayed in the language
                  selected by the user.
@@ -79,9 +78,8 @@ class APILoader:
 
     """
 
-    def __init__(self, api_key: str, locale: str, locales: dict, timeout: int = 30):
+    def __init__(self, api_key: str, locales: dict, timeout: int = 30):
         self.api_key: str = api_key
-        self.locale: str = locale
         self.locales: dict = locales
         socket.setdefaulttimeout(timeout)
 
@@ -153,32 +151,31 @@ class APILoader:
             code: the eBird code for the species, e.g. 'horlar' (Horned Lark).
 
         """
-        data: dict = get_taxonomy(self.api_key, locale=self.locale, species=code)[0]
-
         values: dict = {
-            "taxon_order": int(data["taxonOrder"]),
-            "order": data.get("order", ""),
-            "category": data["category"],
-            "family_code": data.get("familyCode", ""),
-            "common_name": data["comName"],
-            "scientific_name": data["sciName"],
-            "family_common_name": data.get("familyComName", ""),
-            "family_scientific_name": data.get("familySciName", ""),
+            "common_name": {},
+            "family_common_name": {},
             "subspecies_common_name": "",
             "subspecies_scientific_name": "",
             "exotic_code": "",
-            "data": {"common_name": {}},
         }
-
-        species = Species(species_code=code, **values)
 
         for language, locale in self.locales.items():
             data = get_taxonomy(self.api_key, locale=locale, species=code)[0]
-            species.data["common_name"][language] = data["comName"]
 
-        species.save()
+            values["taxon_order"] = int(data["taxonOrder"])
+            values["order"] = data.get("order", "")
+            values["category"] = data["category"]
+            values["family_code"] = data["familyCode"]
+            values["common_name"][language] = data["comName"]
+            values["scientific_name"] = data["sciName"]
+            values["family_common_name"][language] = data["familyComName"]
+            values["family_scientific_name"] = data["familySciName"]
 
-        logger.info("Added species: %s, %s", code, species.common_name)
+        values["common_name"] = json.dumps(values["common_name"])
+        values["family_common_name"] = json.dumps(values["family_common_name"])
+
+        species = Species.objects.create(species_code=code, **values)
+        logger.info("Added species: %s, %s", code, species.get_common_name())
 
         return species
 

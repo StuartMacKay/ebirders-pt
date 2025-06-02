@@ -421,10 +421,6 @@ if DJANGO_ENV == 'development':
 
 EBIRD_API_KEY = env.str("EBIRD_API_KEY")
 
-# The locale used to load the species' common names, family name, etc.
-# from the eBird taxonomy.
-EBIRD_LOCALE = env.str("EBIRD_LOCALE", "en")
-
 # JSON dict mapping languages codes used by Django to locales used by
 # eBird. This is used to create a table of common names in the Species
 # data JSONField, so the common name can be displayed in the language
