@@ -1,8 +1,14 @@
-# pyright: reportArgumentType=false
+import json
+import logging
+
+from json import JSONDecodeError
 
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
+
+log = logging.getLogger(__name__)
 
 
 class Observation(models.Model):
@@ -185,3 +191,12 @@ class Observation(models.Model):
 
     def __str__(self) -> str:
         return str(self.identifier)
+
+    def get_reason(self) -> str:
+        try:
+            data = json.loads(self.reason)
+            reason = data.get(get_language(), "")
+        except JSONDecodeError:
+            log.error("Incorrect JSON for Observation reason: %s", self.id)
+            reason = ""
+        return reason
