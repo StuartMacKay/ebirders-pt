@@ -1,5 +1,13 @@
+import json
+import logging
+
+from json import JSONDecodeError
+
 from django.db import models
+from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
+
+log = logging.getLogger(__name__)
 
 
 class Species(models.Model):
@@ -100,3 +108,21 @@ class Species(models.Model):
 
     def __str__(self) -> str:
         return str(self.common_name)
+
+    def get_common_name(self) -> str:
+        try:
+            data = json.loads(self.common_name)
+            common_name = data.get(get_language(), "")
+        except JSONDecodeError:
+            log.error("Incorrect JSON for Species common_name: %s", self.id)
+            common_name = ""
+        return common_name
+
+    def get_family_common_name(self) -> str:
+        try:
+            data = json.loads(self.family_common_name)
+            family_name = data.get(get_language(), "")
+        except JSONDecodeError:
+            log.error("Incorrect JSON for Species family_name: %s", self.id)
+            family_name = ""
+        return family_name
