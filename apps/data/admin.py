@@ -1,13 +1,12 @@
-# pyright: reportOptionalMemberAccess=false
-
 from django.contrib import admin
 from django.db.models import TextField
-from django.forms import Textarea, TextInput
+from django.forms import ModelForm, Textarea, TextInput
 from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
 from . import models
+from .fields import TranslationCharField, TranslationTextField
 
 
 class ObservationInline(admin.TabularInline):
@@ -75,7 +74,6 @@ class ChecklistAdmin(admin.ModelAdmin):
         "protocol_code",
         "duration",
         "distance",
-        "area",
         "comments",
         "data",
     )
@@ -88,7 +86,7 @@ class ChecklistAdmin(admin.ModelAdmin):
             "species_count",
             "duration",
             "distance",
-            "area'",
+            "area",
         )
 
         if db_field.name in text_fields:
@@ -224,17 +222,33 @@ class ObservationAdmin(admin.ModelAdmin):
         super().save_model(request, obj, form, change)
 
 
+class ObservationForm(ModelForm):
+    reason = TranslationTextField(required=False)
+
+    class Meta:
+        fields = "__all__"
+
+
 @admin.register(models.Observer)
 class ObserverAdmin(admin.ModelAdmin):
     list_display = ("names", "identifier", "multiple", "enabled")
     ordering = ("name",)
     search_fields = ("name", "identifier")
     list_filter = ("multiple", "enabled")
+    form = ObservationForm
     formfield_overrides = {TextField: {"widget": TextInput}}
 
     @admin.display(description=_("Name / Byname"))
     def names(self, obj):
         return format_html("%s<br/>%s" % (obj.name, obj.byname))
+
+
+class SpeciesForm(ModelForm):
+    common_name = TranslationCharField()
+    family_common_name = TranslationCharField(required=False)
+
+    class Meta:
+        fields = "__all__"
 
 
 @admin.register(models.Species)
@@ -248,6 +262,7 @@ class SpeciesAdmin(admin.ModelAdmin):
     )
     ordering = ("order",)
     search_fields = ("common_name", "scientific_name")
+    form = SpeciesForm
     formfield_overrides = {
         TextField: {
             "widget": TextInput(attrs={"style": "width: 30%"}),
