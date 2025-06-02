@@ -6,6 +6,7 @@ This project uses calendar versioning, https://calver.org/, and this log provide
 a concise history of changes made.
 
 ## Latest
+- Added form fields for editing translated text in the Django Admin.
 
 ## 2025.05.31
 - Added notifications to the Latest News page.
