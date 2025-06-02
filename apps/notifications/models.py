@@ -1,6 +1,15 @@
+import json
+import logging
+
+from json import JSONDecodeError
+
 from django.db import models
 from django.utils import timezone
+from django.utils.safestring import mark_safe
+from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
+
+log = logging.getLogger(__name__)
 
 
 class NotificationManager(models.Manager):
@@ -68,3 +77,12 @@ class Notification(models.Model):
 
     def __str__(self):
         return str(self.title)
+
+    def get_contents(self):
+        try:
+            data = json.loads(self.contents)
+            contents = data.get(get_language(), "")
+        except JSONDecodeError:
+            log.error("Incorrect JSON for Notification contents: %s", self.id)
+            contents = ""
+        return mark_safe(contents)
