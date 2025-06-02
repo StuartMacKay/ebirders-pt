@@ -1,5 +1,5 @@
 {% extends "page.html" %}
-{% load static i18n observation_tags species_tags %}
+{% load static i18n %}
 
 {% block title %}{% trans 'Big Day' %}{% endblock %}
 
@@ -26,21 +26,18 @@
           {% ifchanged observation.species %}
             <div class="row mb-3">
               <div class="col-md-4 col-sm-6">
-                {% with species=observation.species %}
-                  {% get_common_name species language_code as common_name %}
-                  {{ common_name }} ({% if observation.count %}{{ observation.count }}{% else %}X{% endif %})
-                  {% if observation.reviewed %}
-                    {% if observation.approved is None %}
-                      <i class="bi bi-flag-fill text-warning" title="{% get_reason observation language_code %}"></i>
-                    {% elif observation.approved is False %}
-                      <i class="bi bi-flag-fill text-danger" title="{% get_reason observation language_code %}"></i>
-                    {% else %}
-                      <i class="bi bi-flag-fill text-success" title="{% get_reason observation language_code %}"></i>
-                    {% endif %}
+                {{ observation.species.get_common_name }} ({% if observation.count %}{{ observation.count }}{% else %}X{% endif %})
+                {% if observation.reviewed %}
+                  {% if observation.approved is None %}
+                    <i class="bi bi-flag-fill text-warning" title="{{ observation.get_reason }}"></i>
+                  {% elif observation.approved is False %}
+                    <i class="bi bi-flag-fill text-danger" title="{{ observation.get_reason }}"></i>
+                  {% else %}
+                    <i class="bi bi-flag-fill text-success" title="{{ observation.get_reason }}"></i>
                   {% endif %}
-                  <br>
-                  <small class="text-muted fst-italic">{{ species.scientific_name }}</small>
-                {% endwith %}
+                {% endif %}
+                <br>
+                <small class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
               </div>
               <div class="col">
                 {{ observation.location.display_name }}<br/>

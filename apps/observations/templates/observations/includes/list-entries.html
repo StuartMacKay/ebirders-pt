@@ -1,4 +1,4 @@
-{% load i18n observation_tags species_tags %}
+{% load i18n %}
 {% get_current_language as language_code %}
 <div class="row">
   <div class="col">
@@ -38,15 +38,15 @@
               <a class="dark-link"
                  href="{% querystring species=observation.species.species_code %}"
                  title="{% trans 'Show observations of this species' %}">
-                {% get_common_name observation.species language_code %}
+                {{ observation.species.get_common_name }}
               </a>
               {% if observation.reviewed %}
                 {% if observation.approved is None %}
-                  <i class="bi bi-flag-fill text-warning" title="{% get_reason observation language_code %}"></i>
+                  <i class="bi bi-flag-fill text-warning" title="{{ observation.get_reason }}"></i>
                 {% elif observation.approved is False %}
-                  <i class="bi bi-flag-fill text-danger" title="{% get_reason observation language_code %}"></i>
+                  <i class="bi bi-flag-fill text-danger" title="{{ observation.get_reason }}"></i>
                 {% else %}
-                  <i class="bi bi-flag-fill text-success" title="{% get_reason observation language_code %}"></i>
+                  <i class="bi bi-flag-fill text-success" title="{{ observation.get_reason }}"></i>
                 {% endif %}
               {% endif %}
               <br>
@@ -59,15 +59,15 @@
               <a class="dark-link"
                  href="{% querystring species=observation.species.species_code %}"
                  title="{% trans 'Show observations of this species' %}">
-                {% get_common_name observation.species language_code %}
+                {{ observation.species.get_common_name }}
               </a>
               {% if observation.reviewed %}
                 {% if observation.approved is None %}
-                  <i class="bi bi-flag-fill text-warning" title="{% get_reason observation language_code %}"></i>
+                  <i class="bi bi-flag-fill text-warning" title="{{ observation.get_reason }}"></i>
                 {% elif observation.approved is False %}
-                  <i class="bi bi-flag-fill text-danger" title="{% get_reason observation language_code %}"></i>
+                  <i class="bi bi-flag-fill text-danger" title="{{ observation.get_reason }}"></i>
                 {% else %}
-                  <i class="bi bi-flag-fill text-success" title="{% get_reason observation language_code %}"></i>
+                  <i class="bi bi-flag-fill text-success" title="{{ observation.get_reason }}"></i>
                 {% endif %}
               {% endif %}
               <small class="ms-2 text-muted fst-italic">{{ observation.species.scientific_name }}</small>

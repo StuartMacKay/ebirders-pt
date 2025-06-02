@@ -1,5 +1,5 @@
 {% extends "page.html" %}
-{% load i18n observation_tags species_tags static %}
+{% load i18n static %}
 
 {% block title %}{% trans 'Checklist' %} {{ checklist.identifier }}{% endblock %}
 
@@ -141,7 +141,7 @@
         <td class="text-end">
           {% if observation.count %}{{ observation.count }}{% else %}X{% endif %}</td>
         <td>
-          {% get_common_name observation.species language_code %}
+          {{ observation.species.get_common_name }}
           <small class="ms-2 text-muted fst-italic">{{ observation.species.scientific_name }}</small>
           {% if observation.comments %}<br/>{{ observation.comments }}{% endif %}
           {% if observation.reviewed %}
@@ -153,7 +153,7 @@
             {% else %}
               <i class="bi bi-flag-fill text-success"></i>
             {% endif %}
-            <small class="ms-2">{% get_reason observation language_code %}</small>
+            <small class="ms-2">{{ observation.get_reason }}</small>
           {% endif %}
         </td>
       {% endfor %}
