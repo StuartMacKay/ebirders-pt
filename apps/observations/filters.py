@@ -1,3 +1,5 @@
+import json
+
 from django.forms import DateInput, Select
 from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
@@ -133,18 +135,19 @@ class ObservationFilter(django_filters.FilterSet):
             if param[0] == "_":
                 field = "scientific_name"
                 code = param[1:]
-                prefix = "_"
             else:
-                field = "data__common_name__%s" % get_language()
+                field = "common_name"
                 code = param
-                prefix = ""
 
             choice = Species.objects.filter(
                 species_code=code
             ).values_list("species_code", field).first()
 
             if choice:
-                choice = ("%s%s" % (prefix, choice[0]), choice[1])
+                if param[0] == "_":
+                    choice = ("_%s" % choice[0], choice[1])
+                else:
+                    choice = (choice[0], json.loads(choice[1])[get_language()])
                 self.declared_filters["species"].field.widget.choices = [choice]
             else:
                 self.declared_filters["species"].field.widget.choices = []
