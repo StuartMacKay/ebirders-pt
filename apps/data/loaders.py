@@ -5,6 +5,7 @@ import random
 import re
 import socket
 import string
+import time
 
 from decimal import Decimal
 from typing import List, Optional
@@ -32,6 +33,15 @@ from .models import (
 
 logger = logging.getLogger(__name__)
 
+# Set timeout, in seconds, for SSL socket connections
+socket.setdefaulttimeout(30)
+# Total number number of retries to attempt
+RETRY_LIMIT: int = 10
+# Time, in seconds, to wait after an API call fails
+RETRY_WAIT: int = 2
+# Multiplier to apply to wait time after each failed attempt
+RETRY_MULTIPLIER: float = 2.0
+
 
 def str2datetime(value: str) -> dt.datetime:
     return dt.datetime.fromisoformat(value).replace(tzinfo=get_default_timezone())
@@ -57,8 +67,15 @@ class APILoader:
                  common name, family name, etc. is displayed in the language
                  selected by the user.
 
-        timeout: The timeout, in seconds, to use when connecting to the
-                 eBird servers.
+        limit: The total number of retries that can be attempted when calling
+               the API or scraping a web page. Defaults to RETRY_LIMIT if not
+               set.
+
+        wait: The initial number of seconds to wait. Defaults to RETRY_WAIT
+              if not set.
+
+        multiplier: The multiplier to apply to the wait time after each retry.
+                    Defaults to RETRY_MULTIPLIER if not set.
 
     The eBird API limits the number of records returned to 200. When downloading
     the visits for a given region if 200 hundred records are returned then it is
@@ -70,18 +87,57 @@ class APILoader:
     AT HOME. Even if you don't get banned, if you melt the eBird servers, then
     karma will ensure bad things happen to you.
 
-    Just occasionally, when fetching data from the eBird API, the connection will
-    freeze and the APILoader will sit there doing nothing. The timeout will force
-    the connection to be dropped, so you can try again. The APILoader does not
-    retry making the connection. Connection freezes are sufficiently rare that
-    it's not worth adding code to handle this, for now.
+    The loader uses a budget for retry attempts when calling the eBird API or
+    fetching a web page. After each failure, a wait is applied, which increases
+    after each attempt. Once the total number of retries is reached, no
+    further attempts are made. You can set the number of retries, the initial
+    wait, and the multiplier when creating an APILoader object, otherwise
+    sensible defaults are used.
+
+    The default limit for retries is 10, with an initial wait of 2 seconds and
+    a multiplier also of 2. This means the loader will wait, 2, 4, 8, 16, etc.
+    seconds after each attempt. Since the loader will be run periodically,
+    using a scheduler such as cron, the retry limit is probably too high. Most
+    of the errors seen to date are timeout error when creating an SSL socket
+    connection. The are relatively rare - only one or two a week - with a
+    loader that is scheduled to run every hour. You could easily reduce the
+    limit to 3, as then, successive errors will usually mean something serious
+    is wrong with the network, or the eBird servers are overloaded, and you
+    should stop from making the situation any worse.
 
     """
 
-    def __init__(self, api_key: str, locales: dict, timeout: int = 30):
+    def __init__(
+        self,
+        api_key: str,
+        locales: dict,
+        limit: int = None,
+        wait: int = None,
+        multiplier: float = None,
+    ):
         self.api_key: str = api_key
         self.locales: dict = locales
-        socket.setdefaulttimeout(timeout)
+        self.retries: int = 0
+        self.retry_limit: int = limit if limit else RETRY_LIMIT
+        self.retry_wait: int = wait if wait else RETRY_WAIT
+        self.retry_multiplier: float = multiplier if multiplier else RETRY_MULTIPLIER
+
+    def call(self, func, *args, **kwargs):
+        wait: float = float(self.retry_wait)
+        while True:
+            try:
+                return func(*args, **kwargs)
+            except (URLError, HTTPError) as err:
+                logger.exception("Failed call #%d", self.retries)
+                self.retries += 1
+                if self.retries > self.retry_limit:
+                    logger.exception("Retry limit reached")
+                    raise err
+                time.sleep(wait)
+                wait *= self.retry_multiplier
+
+    def call_api(self, func, *args, **kwargs) -> dict | list:
+        return self.call(func, self.api_key, *args, **kwargs)
 
     @staticmethod
     def get_country(data: dict) -> Country:
@@ -160,8 +216,7 @@ class APILoader:
         }
 
         for language, locale in self.locales.items():
-            data = get_taxonomy(self.api_key, locale=locale, species=code)[0]
-
+            data = self.call_api(get_taxonomy, locale=locale, species=code)[0]
             values["taxon_order"] = int(data["taxonOrder"])
             values["order"] = data.get("order", "")
             values["category"] = data["category"]
@@ -226,11 +281,12 @@ class APILoader:
 
         return observation
 
-    @staticmethod
-    def get_observer_identifier(data) -> str:
+    def get_observer_identifier(self, data) -> str:
         identifier: str = data["subId"]
         logger.info("Scraping checklist: %s", identifier)
-        response = requests.get("https://ebird.org/checklist/%s" % identifier)
+        response = self.call(
+            requests.get, "https://ebird.org/checklist/%s" % identifier
+        )
         content = response.content
         soup = BeautifulSoup(content, "lxml")
         attribute = "data-participant-userid"
@@ -243,10 +299,7 @@ class APILoader:
         if observer.multiple:
             observer, created = Observer.objects.get_or_create(
                 identifier=self.get_observer_identifier(data),
-                defaults={
-                    "name": random_word(8),
-                    "byname": name
-                }
+                defaults={"name": random_word(8), "byname": name},
             )
         elif observer.identifier == "":
             observer.identifier = self.get_observer_identifier(data)
@@ -265,8 +318,14 @@ class APILoader:
         """
         logger.info("Adding checklist: %s", identifier)
 
+        # Make sure loading a checklist is an all or nothing proposition.
+        # All the data is available from the eBird API call but there can
+        # still be further calls to scrape the checklist web page to get
+        # identifier of the observer, or the eBird API when a new species
+        # is added.
+
         with transaction.atomic():
-            data: dict = get_checklist(self.api_key, identifier)
+            data: dict = self.call_api(get_checklist, identifier)
             identifier: str = data["subId"]
             created: dt.datetime = str2datetime(data["creationDt"])
             edited: dt.datetime = str2datetime(data["lastEditedDt"])
@@ -334,7 +393,7 @@ class APILoader:
         region_type: Optional[str] = region_types[levels - 1]
 
         if region_type:
-            items: list = get_regions(self.api_key, region_type, region)
+            items: list = self.call_api(get_regions, region_type, region)
             sub_regions = [item["code"] for item in items]
         else:
             sub_regions = []
@@ -380,27 +439,23 @@ class APILoader:
 
         logger.info("Adding checklists: %s, %s", region, date)
 
-        try:
-            visits: list[dict] = self.fetch_visits(region, date)
+        visits: list[dict] = self.fetch_visits(region, date)
 
-            logger.info("Visits made: %d ", len(visits))
+        logger.info("Visits made: %d ", len(visits))
 
-            for visit in visits:
-                data = visit["loc"]
-                identifier = data["locId"]
-                if not Location.objects.filter(identifier=identifier).exists():
-                    self.add_location(data)
+        for visit in visits:
+            data = visit["loc"]
+            identifier = data["locId"]
+            if not Location.objects.filter(identifier=identifier).exists():
+                self.add_location(data)
 
-            added: int = 0
+        added: int = 0
 
-            for visit in visits:
-                identifier = visit["subId"]
-                if not Checklist.objects.filter(identifier=identifier).exists():
-                    self.add_checklist(identifier)
-                    added += 1
+        for visit in visits:
+            identifier = visit["subId"]
+            if not Checklist.objects.filter(identifier=identifier).exists():
+                self.add_checklist(identifier)
+                added += 1
 
-            logger.info("Checklists added: %d ", added)
-            logger.info("Adding checklists completed")
-
-        except (URLError, HTTPError):
-            logger.exception("Adding checklists failed: %s, %s", region, date)
+        logger.info("Checklists added: %d ", added)
+        logger.info("Adding checklists completed")

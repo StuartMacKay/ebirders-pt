@@ -7,6 +7,7 @@ a concise history of changes made.
 
 ## Latest
 - Added form fields for editing translated text in the Django Admin.
+- Added retries for eBird API calls and page loads.
 
 ## 2025.05.31
 - Added notifications to the Latest News page.
