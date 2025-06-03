@@ -1,3 +1,5 @@
+import json
+
 from dal import autocomplete
 
 from data.models import Country, County, Location, Observer, Species, State
@@ -38,7 +40,6 @@ class ObserverAutocomplete(autocomplete.Select2ListView):
 
 
 class SpeciesAutocomplete(autocomplete.Select2ListView):
-
     # The autocomplete for species includes the common name in the currently
     # selected language, along with the scientific name. The filter uses the
     # species code, so the list of values contains an entry for common name
@@ -53,20 +54,20 @@ class SpeciesAutocomplete(autocomplete.Select2ListView):
     def get_list(self):
         queryset = (
             Species.objects.all()
-            .values_list(
-                "species_code",
-                "data__common_name__%s" % self.request.LANGUAGE_CODE
-            )
+            .values_list("species_code", "common_name")
             .order_by("taxon_order")
         )
-        common_names = [("%s" % code, name) for code, name in queryset]
+        common_names = [
+            ("%s" % code, json.loads(name)[self.request.LANGUAGE_CODE])
+            for code, name in queryset
+        ]
 
         queryset = (
             Species.objects.all()
             .values_list("species_code", "scientific_name")
             .order_by("taxon_order")
         )
-        scientific_names =[("_%s" % code, name) for code, name in queryset]
+        scientific_names = [("_%s" % code, name) for code, name in queryset]
 
         # Return the list showing the species common name followed by the
         # scientific name.
