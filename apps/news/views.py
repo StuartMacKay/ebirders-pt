@@ -212,7 +212,7 @@ class MonthlyView(generic.TemplateView):
 
 def autocomplete(request):
     """
-    Return the list of countries and states for the search field.
+    Return the list of countries, states, and counties for the search field.
     If there is only one country, remove it from the label.
     """
     data = []
