@@ -153,3 +153,9 @@ def ordered_by_species_count():
 def ordered_by_count():
     choice = random.choice(["", "count", "-count"])
     return urlencode({"o": choice})
+
+
+@pytest.fixture
+def ordered_by_seen():
+    choice = random.choice(["", "seen", "-seen"])
+    return urlencode({"o": choice})

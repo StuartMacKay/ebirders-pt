@@ -1,0 +1,35 @@
+{% extends "page.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans 'Species' %}{% endblock %}
+
+{% block main %}
+  <div class="container">
+    {% include "species/includes/list-title.html" %}
+    {% include "species/includes/list-filter.html" %}
+    {% include "species/includes/list-entries.html" %}
+  </div>
+{% endblock %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+  {{ filter.form.media.js }}
+  <script>
+    $(document).ready(function() {
+      $(':input[name$=country]').on('change', function() {
+          var prefix = $(this).getFormPrefix();
+          $(':input[name=' + prefix + 'state]').val(null).trigger('change');
+      });
+      $(':input[name$=state]').on('change', function() {
+          var prefix = $(this).getFormPrefix();
+          $(':input[name=' + prefix + 'county]').val(null).trigger('change');
+      });
+      $(':input[name$=county]').on('change', function() {
+          var prefix = $(this).getFormPrefix();
+          $(':input[name=' + prefix + 'location]').val(null).trigger('change');
+      });
+    });
+  </script>
+
+{% endblock %}
