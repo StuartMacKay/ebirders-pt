@@ -67,6 +67,8 @@ class LatestView(generic.TemplateView):
         context["county"] = county
         context["start_date"] = start_date
         context["end_date"] = end_date
+        context["start_year"] = start_date.replace(month=1, day=1)
+        context["end_year"] = end_date.replace(month=12, day=31)
         context["subtitle"] = subtitle
         context["show_country"] = Country.objects.count() > 1
         context["translations"] = self.get_translations()
@@ -91,7 +93,7 @@ class WeeklyView(generic.TemplateView):
         year = self.kwargs.get("year", dt.date.today().year)
         week = self.kwargs.get("week", dt.date.today().isocalendar().week - 1)
 
-        start_date = dt.datetime.strptime("%d-%d-1" % (year, week), "%Y-%W-%w")
+        start_date = dt.datetime.strptime("%d-%d-1" % (year, week), "%Y-%W-%w").date()
         end_date = start_date + dt.timedelta(days=6)
 
         if start_date.month == end_date.month:
@@ -137,6 +139,8 @@ class WeeklyView(generic.TemplateView):
         context["county"] = county
         context["start_date"] = start_date
         context["end_date"] = end_date
+        context["start_year"] = start_date.replace(month=1, day=1)
+        context["end_year"] = end_date.replace(month=12, day=31)
         context["previous_year"] = previous_year
         context["previous_week"] = previous_week
         context["next_year"] = next_year
@@ -199,6 +203,8 @@ class MonthlyView(generic.TemplateView):
         context["county"] = county
         context["start_date"] = start_date
         context["end_date"] = end_date
+        context["start_year"] = start_date.replace(month=1, day=1)
+        context["end_year"] = end_date.replace(month=12, day=31)
         context["previous_year"] = previous_year
         context["previous_month"] = previous_month
         context["next_year"] = next_year

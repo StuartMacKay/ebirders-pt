@@ -1,10 +1,10 @@
 from django import template
-from django.db.models import Avg, Case, Count, F, Min, Q, Sum, When
+from django.db.models import Case, Count, F, Q, Sum, When
 from django.utils.translation import gettext_lazy as _
 
 from dateutil.relativedelta import relativedelta
 
-from data.models import Checklist, Observation, Observer, Species
+from data.models import Checklist, Observation, Observer
 
 register = template.Library()
 
@@ -118,31 +118,11 @@ def checklists_species_table(country_id, state_id, county_id, start, end):
 
 @register.inclusion_tag("news/tables/yearlist.html", takes_context=True)
 def yearlist_table(context):
-    filters = Q()
-
-    if context.get("country"):
-        filters &= Q(observations__country_id=context["country"])
-    elif context.get("state"):
-        filters &= Q(observations__state_id=context["state"])
-    elif context.get("county"):
-        filters &= Q(observations__county_id=context["county"])
-
-    species = Species.objects.filter(category="species")
-
-    if filters:
-        species = species.annotate(
-            added=Min(Case(When(filters, then="observations__date")))
-        )
-    else:
-        species = species.annotate(added=Min("observations__date"))
-
-    species = species.filter(
-        added__gte=context["start_date"], added__lte=context["end_date"]
-    ).order_by("added")
-
-    observations = []
-
-    filters = Q()
+    filters = (
+        Q(species__category="species")
+        & Q(date__gte=context["start_year"])
+        & Q(date__lte=context["end_year"])
+    )
 
     if context.get("country"):
         filters &= Q(country_id=context["country"])
@@ -151,35 +131,36 @@ def yearlist_table(context):
     elif context.get("county"):
         filters &= Q(county_id=context["county"])
 
-    for item in species:
-        observations.append(
-            Observation.objects.filter(date=item.added, species_id=item.pk)
-            .filter(filters)
-            .select_related(
-                "checklist",
-                "country",
-                "state",
-                "county",
-                "location",
-                "species",
-                "observer",
-            )
-            .first()
-        )
+    related = [
+        "checklist",
+        "country",
+        "state",
+        "county",
+        "location",
+        "species",
+        "observer",
+    ]
 
-    total = (
+    species = list(
         Observation.objects.filter(filters)
-        .filter(species__category="species")
-        .filter(date__lte=context["end_date"], date__year=context["year"])
-        .distinct()
-        .values("species_id")
-        .count()
+        .select_related(*related)
+        .order_by("species", "started")
+        .distinct("species")
     )
+
+    total = len(species)
+
+    observations = [
+        entry
+        for entry in species
+        if context["start_date"] <= entry.date <= context["end_date"]
+    ]
 
     return {
         "title": _("Year List"),
-        "year": str(context["year"]),
-        "observations": observations,
+        "start_year": context["start_year"],
+        "end_year": context["end_year"],
+        "observations": sorted(observations, key=lambda obj: obj.species.taxon_order),
         "total": total,
         "show_country": context["show_country"],
     }
