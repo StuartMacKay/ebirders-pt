@@ -131,6 +131,21 @@ def yearlist_table(context):
     elif context.get("county"):
         filters &= Q(county_id=context["county"])
 
+    year_list = (
+        Observation.objects.filter(filters)
+        .values_list("id", "species", "date")
+        .order_by("species", "started")
+        .distinct("species")
+    )
+
+    total = len(year_list)
+
+    ids = [
+        entry[0]
+        for entry in year_list
+        if context["start_date"] <= entry[2] <= context["end_date"]
+    ]
+
     related = [
         "checklist",
         "country",
@@ -141,26 +156,17 @@ def yearlist_table(context):
         "observer",
     ]
 
-    species = list(
-        Observation.objects.filter(filters)
+    observations = (
+        Observation.objects.filter(id__in=ids)
         .select_related(*related)
-        .order_by("species", "started")
-        .distinct("species")
+        .order_by("species__taxon_order")
     )
-
-    total = len(species)
-
-    observations = [
-        entry
-        for entry in species
-        if context["start_date"] <= entry.date <= context["end_date"]
-    ]
 
     return {
         "title": _("Year List"),
         "start_year": context["start_year"],
         "end_year": context["end_year"],
-        "observations": sorted(observations, key=lambda obj: obj.species.taxon_order),
+        "observations": observations,
         "total": total,
         "show_country": context["show_country"],
     }
@@ -210,7 +216,7 @@ def high_counts_table(context):
             species__category="species",
             date__gte=context["start_date"] - relativedelta(months=1),
             date__lte=context["end_date"],
-            count__gt=0
+            count__gt=0,
         )
         .values_list("id", "species_id", "date")
         .order_by("species__taxon_order", "-count")
@@ -226,9 +232,10 @@ def high_counts_table(context):
                 high_counts[key] = observation[0]
 
     high_counts = (
-        Observation.objects
-        .filter(id__in=high_counts.values())
-        .select_related("species", "country", "state", "county", "location", "observer", "checklist")
+        Observation.objects.filter(id__in=high_counts.values())
+        .select_related(
+            "species", "country", "state", "county", "location", "observer", "checklist"
+        )
         .order_by("species__taxon_order")
     )
 
