@@ -6,6 +6,8 @@ This project uses calendar versioning, https://calver.org/, and this log provide
 a concise history of changes made.
 
 ## Latest
+
+## 2025.06.08
 - Added form fields for editing translated text in the Django Admin.
 - Added retries for eBird API calls and page loads.
 - Added the Species page for showing year lists, site list, personal lists, etc.
