@@ -201,50 +201,38 @@ def high_counts_table(context):
     elif context.get("county"):
         filters &= Q(county_id=context["county"])
 
-    species = {}
+    previous = {}
+    high_counts = {}
 
-    records = (
-        Observation.objects.values_list("species_id", "count")
-            .filter(filters)
-            .filter(
-                species__category="species",
-                date__lt=context["start_date"],
-                date__gte=context["start_date"] - relativedelta(months=1),
-                count__isnull=False,
-            )
-            .order_by("species__taxon_order", "-count")
+    observations = (
+        Observation.objects.filter(filters)
+        .filter(
+            species__category="species",
+            date__gte=context["start_date"] - relativedelta(months=1),
+            date__lte=context["end_date"],
+            count__gt=0
+        )
+        .values_list("id", "species_id", "date")
+        .order_by("species__taxon_order", "-count")
     )
 
-    for record in records:
-        if record[0] not in species:
-            species[record[0]] = [record[1]]
-        elif len(species[record[0]]) == 1 and record[1] < species[record[0]][0]:
-            species[record[0]].append(record[1])
+    for observation in observations:
+        key = observation[1]
+        previous.setdefault(key, 0)
+        if observation[2] < context["start_date"]:
+            previous[key] += 1
         else:
-            continue
+            if previous[key] < 3 and key not in high_counts:
+                high_counts[key] = observation[0]
 
-    for id, counts in species.items():
-        species[id] = counts[-1]
-
-    observations = []
-
-    for species_id, count in species.items():
-        observation = (
-            Observation.objects.filter(filters)
-            .filter(
-                species_id=species_id,
-                count__gt=count,
-                date__gte=context["start_date"],
-                date__lte=context["end_date"],
-            )
-            .select_related("species", "location", "observer")
-            .order_by("-count")
-            .first()
-        )
-        if observation:
-            observations.append(observation)
+    high_counts = (
+        Observation.objects
+        .filter(id__in=high_counts.values())
+        .select_related("species", "country", "state", "county", "location", "observer", "checklist")
+        .order_by("species__taxon_order")
+    )
 
     return {
-        "observations": observations,
+        "observations": high_counts,
         "show_country": context["show_country"],
     }
