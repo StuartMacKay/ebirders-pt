@@ -10,7 +10,7 @@ class TranslationTextInput(forms.MultiWidget):
 
     def __init__(self, *args, **kwargs):
         widgets = [
-            forms.TextInput(attrs={"locale": _(language), "style": "width: 100%"})
+            forms.TextInput(attrs={"locale": _(language), "class": "vTextField"})
             for code, language in settings.LANGUAGES
         ]
         super().__init__(widgets, **kwargs)
@@ -27,7 +27,9 @@ class TranslationTextarea(forms.MultiWidget):
 
     def __init__(self, *args, **kwargs):
         widgets = [
-            forms.Textarea(attrs={"locale": _(language), "rows": 10, "cols": 40})
+            forms.Textarea(
+                attrs={"locale": _(language), "rows": 10, "class": "vLargeTextField"}
+            )
             for code, language in settings.LANGUAGES
         ]
         super().__init__(widgets, **kwargs)
