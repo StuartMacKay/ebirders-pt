@@ -78,6 +78,15 @@ class Notification(models.Model):
     def __str__(self):
         return str(self.title)
 
+    def get_title(self):
+        try:
+            data = json.loads(self.title)
+            title = data.get(get_language(), "")
+        except JSONDecodeError:
+            log.error("Incorrect JSON for Notification contents: %s", self.id)
+            title = ""
+        return mark_safe(title)
+
     def get_contents(self):
         try:
             data = json.loads(self.contents)

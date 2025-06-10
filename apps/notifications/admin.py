@@ -1,22 +1,23 @@
-from django.contrib.admin import ModelAdmin, register
-from django.db import models
-from django.forms import ModelForm, widgets
+from django.contrib import admin
+from django.forms import ModelForm
+from django.utils.translation import gettext_lazy as _
 
-from data.fields import TranslationTextField
+from data.fields import TranslationCharField, TranslationTextField
 
 from .models import Notification
 
 
 class NotificationForm(ModelForm):
+    title = TranslationCharField()
     contents = TranslationTextField()
 
     class Meta:
         fields = '__all__'
 
 
-@register(Notification)
-class NotificationAdmin(ModelAdmin):
-    list_display = ("title", "level", "published", "expired")
+@admin.register(Notification)
+class NotificationAdmin(admin.ModelAdmin):
+    list_display = ("display_title", "level", "published", "expired")
 
     list_filter = ("level",)
 
@@ -26,6 +27,6 @@ class NotificationAdmin(ModelAdmin):
 
     ordering = ("-published",)
 
-    formfield_overrides = {
-        models.TextField: {"widget": widgets.Textarea(attrs={"cols": "80"})},
-    }
+    @admin.display(description=_("Title"))
+    def display_title(self, instance):
+        return instance.get_title()
