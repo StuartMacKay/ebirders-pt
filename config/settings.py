@@ -58,6 +58,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
+    "django.contrib.flatpages",
     "django_extensions",
     "checklists",
     "contact",
@@ -392,6 +394,8 @@ ADMIN_PATH = env.str("DJANGO_ADMIN_PATH", default="admin/")
 
 if ADMIN_PATH[-1] != "/":
     ADMIN_PATH += "/"
+
+SITE_ID = 1
 
 # #####################
 #   DJANGO EXTENSIONS
