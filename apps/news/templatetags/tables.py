@@ -236,7 +236,7 @@ def high_counts_table(context):
         .select_related(
             "species", "country", "state", "county", "location", "observer", "checklist"
         )
-        .order_by("species__taxon_order")
+        .order_by("date", "species__taxon_order")
     )
 
     return {

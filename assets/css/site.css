@@ -88,3 +88,26 @@ div.show-if-narrow {
     background: #f5f5f5;
   }
 }
+
+.calendar-date {
+  width: 3rem;
+  min-width: 3rem;
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 0;
+}
+
+.calendar-date .month {
+  border: 1px solid #dee2e6 !important;
+  border-bottom: 0 !important;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  color: white;
+}
+
+.calendar-date .day {
+  border: 1px solid #dee2e6 !important;
+  border-top: 0 !important;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}

@@ -7,6 +7,7 @@ a concise history of changes made.
 
 ## Latest
 - Added a "What's New" page for describing changes to the site.
+- Changed the list of High Counts so entries are ordered by date, then species.
 
 ## 2025.06.08
 - Added form fields for editing translated text in the Django Admin.

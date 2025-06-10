@@ -2,11 +2,11 @@
 {% get_current_language as language_code %}
 <h3 class="mb-3">{% trans "High Counts" %}</h3>
 <div class="row py-2">
-  <div class="col-lg-3">
-    <strong>{% trans "Species (Count)" %}</strong>
-  </div>
   <div class="col-lg-1">
     <strong>{% trans "Date" %}</strong>
+  </div>
+  <div class="col-lg-3">
+    <strong>{% trans "Species (Count)" %}</strong>
   </div>
   <div class="col-lg-4">
     <strong>{% trans "Location" %}</strong>
@@ -19,7 +19,15 @@
   </div>
 </div>
 {% for observation in observations %}
-  <div class="row border-top py-2">
+  <div class="row {% ifchanged observation.date %}border-top{% endifchanged %} py-2">
+    <div class="col-lg-1">
+      {% ifchanged observation.date %}
+        <div class="calendar-date">
+          <div class="month" style="background-color: #154ed8">{{ observation.date|date:"M" }}</div>
+          <div class="day">{{ observation.date|date:"j" }}</div>
+        </div>
+      {% endifchanged %}
+    </div>
     <div class="col-lg-3">
       <div>
         {{ observation.species.get_common_name }} ({{ observation.count }})
@@ -36,15 +44,6 @@
       <div>
         <small class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
       </div>
-    </div>
-    <div class="col-lg-1">
-      <span class="text-nowrap">
-        {% if language_code == 'pt' %}
-          {{ observation.date|date:"j b" }}
-        {% else %}
-          {{ observation.date|date:"jS M" }}
-        {% endif %}
-      </span>
     </div>
     <div class="col-lg-4">
       <div>{{ observation.location.display_name }}</div>
