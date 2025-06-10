@@ -23,7 +23,13 @@
     <div class="col-lg-1">
       {% ifchanged observation.date %}
         <div class="calendar-date">
-          <div class="month" style="background-color: #154ed8">{{ observation.date|date:"M" }}</div>
+          <div class="month" style="background-color: #154ed8">
+            {% if language_code == 'pt' %}
+              {{ observation.date|date:"b" }}
+            {% else %}
+              {{ observation.date|date:"M" }}
+            {% endif %}
+          </div>
           <div class="day">{{ observation.date|date:"j" }}</div>
         </div>
       {% endifchanged %}
