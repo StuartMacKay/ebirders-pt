@@ -9,7 +9,11 @@ register = template.Library()
 
 @register.inclusion_tag("news/numbers/number.html")
 def species_count(country_id, state_id, county_id, start, end):
-    queryset = Observation.objects.filter(date__gte=start, date__lte=end)
+    queryset = (
+        Observation.objects
+        .filter(date__gte=start, date__lte=end)
+        .filter(species__category="species")
+    )
 
     if country_id:
         queryset = queryset.filter(country_id=country_id)
