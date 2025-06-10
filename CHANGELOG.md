@@ -6,6 +6,7 @@ This project uses calendar versioning, https://calver.org/, and this log provide
 a concise history of changes made.
 
 ## Latest
+- Added an About page, describing the site.
 - Fixed error where the species total was also counting subspecies, forms, etc.
 
 ## 2025.06.10

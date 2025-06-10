@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
+from django.contrib.flatpages.views import flatpage
 from django.urls import include, path
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import RedirectView
@@ -16,6 +17,7 @@ urlpatterns = i18n_patterns(
     path(_("species/"), include("species.urls")),
     path(_("contact/"), ContactView.as_view(), name="contact"),
     path(_("updates/"), include("updates.urls")),
+    path(_("about/"), flatpage, {"url": _("/about/") }, name="about"),
 )
 
 urlpatterns += [

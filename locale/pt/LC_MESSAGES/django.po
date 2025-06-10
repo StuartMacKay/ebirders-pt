@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-10 12:21+0000\n"
+"POT-Creation-Date: 2025-06-10 15:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: apps/checklists/templates/checklists/detail.html:18
 #: apps/checklists/templates/checklists/includes/list-title.html:3
 #: apps/checklists/templates/checklists/list.html:4
-#: apps/news/templatetags/numbers.py:43 templates/includes/header.html:28
+#: apps/news/templatetags/numbers.py:47 templates/includes/header.html:28
 msgid "Checklists"
 msgstr "Listas"
 
@@ -255,7 +255,7 @@ msgstr "Atualizado a cada hora"
 
 #: apps/contact/apps.py:8 apps/contact/templates/contact/form.html:4
 #: apps/contact/templates/contact/form.html:10
-#: templates/includes/footer.html:14
+#: templates/includes/footer.html:17
 msgid "Contact"
 msgstr "Contacto"
 
@@ -1032,13 +1032,13 @@ msgstr "Contagens elevadas"
 msgid "Species (Count)"
 msgstr "Espécies (Contagem)"
 
-#: apps/news/templates/news/tables/high-counts.html:72
+#: apps/news/templates/news/tables/high-counts.html:75
 #: apps/news/templates/news/tables/yearlist.html:70
 #: apps/species/templates/species/includes/list-entries.html:95
 msgid "View the checklist"
 msgstr "Ver esta lista"
 
-#: apps/news/templates/news/tables/high-counts.html:80
+#: apps/news/templates/news/tables/high-counts.html:83
 msgid "No high counts were made this week."
 msgstr "Não foram efectuadas contagens elevadas esta semana."
 
@@ -1074,17 +1074,17 @@ msgstr "Percentagem de listas"
 msgid "Percentage"
 msgstr "Percentagem"
 
-#: apps/news/templatetags/numbers.py:24
+#: apps/news/templatetags/numbers.py:28
 #: apps/species/templates/species/includes/list-title.html:3
 #: apps/species/templates/species/list.html:4 templates/includes/header.html:36
 msgid "Species (plural)"
 msgstr "Espécies"
 
-#: apps/news/templatetags/numbers.py:62 apps/observers/apps.py:7
+#: apps/news/templatetags/numbers.py:66 apps/observers/apps.py:7
 msgid "Observers"
 msgstr "Observadores"
 
-#: apps/news/templatetags/numbers.py:88
+#: apps/news/templatetags/numbers.py:92
 msgid "Hours birding"
 msgstr "Horas de observação"
 
@@ -1111,6 +1111,11 @@ msgstr "semanal/"
 #: apps/news/urls.py:31 apps/news/urls.py:36
 msgid "monthly/"
 msgstr "mensal/"
+
+#: apps/notifications/admin.py:30 apps/notifications/models.py:59
+#: apps/updates/admin.py:31 apps/updates/models.py:34
+msgid "Title"
+msgstr ""
 
 #: apps/notifications/apps.py:8 apps/notifications/models.py:36
 msgid "Notifications"
@@ -1154,11 +1159,6 @@ msgstr ""
 
 #: apps/notifications/models.py:54
 msgid "The alert level for the notification"
-msgstr ""
-
-#: apps/notifications/models.py:59 apps/updates/admin.py:31
-#: apps/updates/models.py:34
-msgid "Title"
 msgstr ""
 
 #: apps/notifications/models.py:60
@@ -1268,7 +1268,7 @@ msgstr ""
 
 #: apps/updates/templates/updates/list.html:4
 #: apps/updates/templates/updates/list.html:10
-#: templates/includes/footer.html:11
+#: templates/includes/footer.html:14
 msgid "What's New"
 msgstr "Novidades"
 
@@ -1280,37 +1280,45 @@ msgstr ""
 "Uma lista do que mudou neste sítio, quer se trate de novas funcionalidades, "
 "decisões editoriais sobre observações ou apenas notícias gerais."
 
-#: config/settings.py:219
+#: config/settings.py:221
 msgid "English"
 msgstr "Inglês"
 
-#: config/settings.py:220
+#: config/settings.py:222
 msgid "Portuguese"
 msgstr "Português"
 
-#: config/urls.py:13
+#: config/urls.py:14
 msgid "news/"
 msgstr "notícias/"
 
-#: config/urls.py:14
+#: config/urls.py:15
 msgid "checklists/"
 msgstr "listas/"
 
-#: config/urls.py:15
+#: config/urls.py:16
 msgid "observations/"
 msgstr "observações/"
 
-#: config/urls.py:16
+#: config/urls.py:17
 msgid "species/"
 msgstr "espécies/"
 
-#: config/urls.py:17
+#: config/urls.py:18
 msgid "contact/"
 msgstr "contacto/"
 
-#: config/urls.py:18
+#: config/urls.py:19
 msgid "updates/"
 msgstr "novidades/"
+
+#: config/urls.py:20
+msgid "about/"
+msgstr "sobre/"
+
+#: config/urls.py:20
+msgid "/about/"
+msgstr "/sobre/"
 
 #: templates/403.html:4 templates/403.html:8
 msgid "Forbidden (403)"
@@ -1349,6 +1357,10 @@ msgstr "Parar de ler e..."
 #: templates/includes/footer.html:6
 msgid "Go Birding"
 msgstr "Fazer observação de aves"
+
+#: templates/includes/footer.html:11
+msgid "About"
+msgstr "Sobre"
 
 #~ msgid "Yearlist"
 #~ msgstr "Year List"

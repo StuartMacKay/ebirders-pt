@@ -1,0 +1,9 @@
+{% extends "flatpages/base.html" %}
+{% load i18n %}
+
+{% block translations %}
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="/en/about/">{% trans "English" %}</a></li>
+    <li><a class="dropdown-item" href="/pt/sobre/">{% trans "Portuguese" %}</a></li>
+  </ul>
+{% endblock %}
