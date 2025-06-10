@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     "observations",
     "observers",
     "species",
+    "updates"
 ]
 
 MIDDLEWARE = [

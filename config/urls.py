@@ -15,6 +15,7 @@ urlpatterns = i18n_patterns(
     path(_("observations/"), include("observations.urls")),
     path(_("species/"), include("species.urls")),
     path(_("contact/"), ContactView.as_view(), name="contact"),
+    path(_("updates/"), include("updates.urls")),
 )
 
 urlpatterns += [

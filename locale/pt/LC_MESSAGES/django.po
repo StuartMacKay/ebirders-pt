@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-08 09:00+0000\n"
+"POT-Creation-Date: 2025-06-10 12:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -166,7 +166,7 @@ msgstr "Ver a lista no eBird"
 #: apps/checklists/templates/checklists/includes/list-entries.html:11
 #: apps/news/templates/news/tables/big-days.html:7
 #: apps/news/templates/news/tables/big-lists.html:9
-#: apps/news/templates/news/tables/high-counts.html:9
+#: apps/news/templates/news/tables/high-counts.html:6
 #: apps/news/templates/news/tables/yearlist.html:9
 #: apps/observations/templates/observations/includes/list-entries.html:21
 #: apps/species/templates/species/includes/list-entries.html:16
@@ -209,6 +209,7 @@ msgstr "Mostrar as listas para este observador"
 
 #: apps/checklists/templates/checklists/includes/list-pagination.html:12
 #: apps/observations/templates/observations/includes/list-pagination.html:12
+#: apps/updates/templates/updates/includes/list-pagination.html:12
 msgid "Previous page"
 msgstr "Página anterior"
 
@@ -216,11 +217,14 @@ msgstr "Página anterior"
 #: apps/checklists/templates/checklists/includes/list-pagination.html:16
 #: apps/observations/templates/observations/includes/list-pagination.html:12
 #: apps/observations/templates/observations/includes/list-pagination.html:16
+#: apps/updates/templates/updates/includes/list-pagination.html:12
+#: apps/updates/templates/updates/includes/list-pagination.html:16
 msgid "Previous"
 msgstr "Anterior"
 
 #: apps/checklists/templates/checklists/includes/list-pagination.html:24
 #: apps/observations/templates/observations/includes/list-pagination.html:24
+#: apps/updates/templates/updates/includes/list-pagination.html:24
 msgid "Next page"
 msgstr "Página seguinte"
 
@@ -228,11 +232,14 @@ msgstr "Página seguinte"
 #: apps/checklists/templates/checklists/includes/list-pagination.html:28
 #: apps/observations/templates/observations/includes/list-pagination.html:24
 #: apps/observations/templates/observations/includes/list-pagination.html:28
+#: apps/updates/templates/updates/includes/list-pagination.html:24
+#: apps/updates/templates/updates/includes/list-pagination.html:28
 msgid "Next"
 msgstr "Seguinte"
 
 #: apps/checklists/templates/checklists/includes/list-pagination.html:36
 #: apps/observations/templates/observations/includes/list-pagination.html:36
+#: apps/updates/templates/updates/includes/list-pagination.html:36
 #, python-format
 msgid "Page %(number)s of %(total)s"
 msgstr "Página %(number)s de %(total)s"
@@ -248,7 +255,7 @@ msgstr "Atualizado a cada hora"
 
 #: apps/contact/apps.py:8 apps/contact/templates/contact/form.html:4
 #: apps/contact/templates/contact/form.html:10
-#: templates/includes/footer.html:11
+#: templates/includes/footer.html:14
 msgid "Contact"
 msgstr "Contacto"
 
@@ -1020,18 +1027,18 @@ msgstr "Não foram apresentadas listas."
 msgid "High Counts"
 msgstr "Contagens elevadas"
 
-#: apps/news/templates/news/tables/high-counts.html:6
+#: apps/news/templates/news/tables/high-counts.html:9
 #: apps/news/templates/news/tables/yearlist.html:6
 msgid "Species (Count)"
 msgstr "Espécies (Contagem)"
 
-#: apps/news/templates/news/tables/high-counts.html:70
+#: apps/news/templates/news/tables/high-counts.html:72
 #: apps/news/templates/news/tables/yearlist.html:70
 #: apps/species/templates/species/includes/list-entries.html:95
 msgid "View the checklist"
 msgstr "Ver esta lista"
 
-#: apps/news/templates/news/tables/high-counts.html:78
+#: apps/news/templates/news/tables/high-counts.html:80
 msgid "No high counts were made this week."
 msgstr "Não foram efectuadas contagens elevadas esta semana."
 
@@ -1085,11 +1092,11 @@ msgstr "Horas de observação"
 msgid "Big Lists"
 msgstr "Listas grandes"
 
-#: apps/news/templatetags/tables.py:160
+#: apps/news/templatetags/tables.py:166
 msgid "Year List"
 msgstr "Year List"
 
-#: apps/news/templatetags/tables.py:188
+#: apps/news/templatetags/tables.py:194
 msgid "Big Days"
 msgstr "Dias Grandes"
 
@@ -1129,7 +1136,7 @@ msgstr ""
 msgid "Notification"
 msgstr ""
 
-#: apps/notifications/models.py:39
+#: apps/notifications/models.py:39 apps/updates/models.py:27
 msgid "Published"
 msgstr ""
 
@@ -1149,7 +1156,8 @@ msgstr ""
 msgid "The alert level for the notification"
 msgstr ""
 
-#: apps/notifications/models.py:59
+#: apps/notifications/models.py:59 apps/updates/admin.py:31
+#: apps/updates/models.py:34
 msgid "Title"
 msgstr ""
 
@@ -1157,7 +1165,7 @@ msgstr ""
 msgid "The title of the Notification"
 msgstr ""
 
-#: apps/notifications/models.py:65
+#: apps/notifications/models.py:65 apps/updates/models.py:40
 msgid "Contents"
 msgstr ""
 
@@ -1238,11 +1246,45 @@ msgstr ""
 msgid "Last Seen"
 msgstr ""
 
-#: config/settings.py:218
+#: apps/updates/apps.py:7 apps/updates/models.py:24
+msgid "Updates"
+msgstr ""
+
+#: apps/updates/models.py:23
+msgid "Update"
+msgstr ""
+
+#: apps/updates/models.py:28
+msgid "The date the Update was published. May be in the future"
+msgstr ""
+
+#: apps/updates/models.py:35
+msgid "The title of the Update"
+msgstr ""
+
+#: apps/updates/models.py:41
+msgid "The contents of the Update. HTML is allowed"
+msgstr ""
+
+#: apps/updates/templates/updates/list.html:4
+#: apps/updates/templates/updates/list.html:10
+#: templates/includes/footer.html:11
+msgid "What's New"
+msgstr "Novidades"
+
+#: apps/updates/templates/updates/list.html:12
+msgid ""
+"A list of what has changed on this site, whether it is new features, "
+"editorial decisions on observations, or just general news."
+msgstr ""
+"Uma lista do que mudou neste sítio, quer se trate de novas funcionalidades, "
+"decisões editoriais sobre observações ou apenas notícias gerais."
+
+#: config/settings.py:219
 msgid "English"
 msgstr "Inglês"
 
-#: config/settings.py:219
+#: config/settings.py:220
 msgid "Portuguese"
 msgstr "Português"
 
@@ -1265,6 +1307,10 @@ msgstr "espécies/"
 #: config/urls.py:17
 msgid "contact/"
 msgstr "contacto/"
+
+#: config/urls.py:18
+msgid "updates/"
+msgstr "novidades/"
 
 #: templates/403.html:4 templates/403.html:8
 msgid "Forbidden (403)"
