@@ -42,11 +42,11 @@
               </a>
               {% if observation.reviewed %}
                 {% if observation.approved is None %}
-                  <i class="bi bi-flag-fill text-warning" title="{{ observation.get_reason }}"></i>
+                  <i class="bi bi-flag-fill text-warning ms-1" title="{{ observation.get_reason }}"></i>
                 {% elif observation.approved is False %}
-                  <i class="bi bi-flag-fill text-danger" title="{{ observation.get_reason }}"></i>
+                  <i class="bi bi-flag-fill text-danger ms-1" title="{{ observation.get_reason }}"></i>
                 {% else %}
-                  <i class="bi bi-flag-fill text-success" title="{{ observation.get_reason }}"></i>
+                  <i class="bi bi-flag-fill text-success ms-1" title="{{ observation.get_reason }}"></i>
                 {% endif %}
               {% endif %}
               <br>
