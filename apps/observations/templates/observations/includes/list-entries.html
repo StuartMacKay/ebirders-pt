@@ -40,14 +40,8 @@
                  title="{% trans 'Show observations of this species' %}">
                 {{ observation.species.get_common_name }}
               </a>
-              {% if observation.reviewed %}
-                {% if observation.approved is None %}
-                  <i class="bi bi-flag-fill text-warning ms-1" title="{{ observation.get_reason }}"></i>
-                {% elif observation.approved is False %}
-                  <i class="bi bi-flag-fill text-danger ms-1" title="{{ observation.get_reason }}"></i>
-                {% else %}
-                  <i class="bi bi-flag-fill text-success ms-1" title="{{ observation.get_reason }}"></i>
-                {% endif %}
+              {% if not observation.approved %}
+                <i class="bi bi-flag-fill text-danger ms-1" title="{{ observation.get_reason }}"></i>
               {% endif %}
               <br>
               <small
@@ -61,14 +55,8 @@
                  title="{% trans 'Show observations of this species' %}">
                 {{ observation.species.get_common_name }}
               </a>
-              {% if observation.reviewed %}
-                {% if observation.approved is None %}
-                  <i class="bi bi-flag-fill text-warning" title="{{ observation.get_reason }}"></i>
-                {% elif observation.approved is False %}
-                  <i class="bi bi-flag-fill text-danger" title="{{ observation.get_reason }}"></i>
-                {% else %}
-                  <i class="bi bi-flag-fill text-success" title="{{ observation.get_reason }}"></i>
-                {% endif %}
+              {% if not observation.approved %}
+                <i class="bi bi-flag-fill text-danger ms-1" title="{{ observation.get_reason }}"></i>
               {% endif %}
               <small class="ms-2 text-muted fst-italic">{{ observation.species.scientific_name }}</small>
             </div>

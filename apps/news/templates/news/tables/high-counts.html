@@ -36,15 +36,9 @@
     </div>
     <div class="col-lg-3">
       <div>
-        {{ observation.species.get_common_name }} ({{ observation.count }})
-        {% if observation.reviewed %}
-          {% if observation.approved is None %}
-            <i class="bi bi-flag-fill text-warning" title="{{ observation.get_reason }}"></i>
-          {% elif observation.approved is False %}
-            <i class="bi bi-flag-fill text-danger" title="{{ observation.get_reason }}"></i>
-          {% else %}
-            <i class="bi bi-flag-fill text-success" title="{{ observation.get_reason }}"></i>
-          {% endif %}
+        <span>{{ observation.species.get_common_name }} ({{ observation.count }})</span>
+        {% if not observation.approved %}
+          <i class="bi bi-flag-fill text-danger ms-1" title="{{ observation.get_reason }}"></i>
         {% endif %}
       </div>
       <div>

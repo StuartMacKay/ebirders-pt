@@ -33,14 +33,8 @@
                title="{% trans 'Show observations of this species' %}">
               {{ observation.species.get_common_name }} ({% if observation.count %}{{ observation.count }}{% else %}X{% endif %})
             </a>
-            {% if observation.reviewed %}
-              {% if observation.approved is None %}
-                <i class="bi bi-flag-fill text-warning" title="{{ observation.get_reason }}"></i>
-              {% elif observation.approved is False %}
-                <i class="bi bi-flag-fill text-danger" title="{{ observation.get_reason }}"></i>
-              {% else %}
-                <i class="bi bi-flag-fill text-success" title="{{ observation.get_reason }}"></i>
-              {% endif %}
+            {% if not observation.approved %}
+              <i class="bi bi-flag-fill text-danger ms-1" title="{{ observation.get_reason }}"></i>
             {% endif %}
             <br>
             <small

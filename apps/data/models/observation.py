@@ -146,24 +146,22 @@ class Observation(models.Model):
     )
 
     approved = models.BooleanField(
-        blank=True,
-        null=True,
+        default=True,
         verbose_name=_("Approved"),
-        help_text=_("Has the observation been accepted by eBird's review process."),
+        help_text=_("Has the observation been accepted."),
     )
 
     reviewed = models.BooleanField(
-        blank=True,
-        null=True,
+        default=False,
         verbose_name=_("Reviewed"),
-        help_text=_("Was the observation reviewed because it failed automatic checks."),
+        help_text=_("If the observation was not approved, has it been reviewed."),
     )
 
     reason = models.TextField(
         blank=True,
         verbose_name=_("Reason"),
         help_text=_(
-            "The reason given for the observation to be marked as not confirmed."
+            "The reason given for the observation to be marked as not approved."
         ),
     )
 

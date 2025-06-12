@@ -26,15 +26,9 @@
           {% ifchanged observation.species %}
             <div class="row mb-3">
               <div class="col-md-4 col-sm-6">
-                {{ observation.species.get_common_name }} ({% if observation.count %}{{ observation.count }}{% else %}X{% endif %})
-                {% if observation.reviewed %}
-                  {% if observation.approved is None %}
-                    <i class="bi bi-flag-fill text-warning" title="{{ observation.get_reason }}"></i>
-                  {% elif observation.approved is False %}
-                    <i class="bi bi-flag-fill text-danger" title="{{ observation.get_reason }}"></i>
-                  {% else %}
-                    <i class="bi bi-flag-fill text-success" title="{{ observation.get_reason }}"></i>
-                  {% endif %}
+                <span>{{ observation.species.get_common_name }} ({% if observation.count %}{{ observation.count }}{% else %}X{% endif %})</span>
+                {% if not observation.approved %}
+                  <i class="bi bi-flag-fill text-danger ms-1" title="{{ observation.get_reason }}"></i>
                 {% endif %}
                 <br>
                 <small class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>

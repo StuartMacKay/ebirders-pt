@@ -178,6 +178,10 @@ class ObservationAdmin(admin.ModelAdmin):
         "species__scientific_name",
         "observer__name",
     )
+    list_filter = (
+        "approved",
+        "reviewed",
+    )
     ordering = ("-checklist__started",)
     formfield_overrides = {
         TextField: {
