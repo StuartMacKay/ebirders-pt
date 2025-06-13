@@ -132,7 +132,7 @@ class Checklist(models.Model):
         help_text=_("The distance, in metres, covered while travelling."),
     )
 
-    coverage = models.DecimalField(
+    area = models.DecimalField(
         blank=True,
         null=True,
         decimal_places=3,

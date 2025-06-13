@@ -370,8 +370,8 @@ class APILoader:
                     dist: str = data["effortDistanceKm"]
                     values["distance"] = round(Decimal(dist), 3)
             elif data["protocolId"] == "P23":
-                coverage: str = data["effortAreaHa"]
-                values["coverage"] = round(Decimal(coverage), 3)
+                area: str = data["effortAreaHa"]
+                values["area"] = round(Decimal(area), 3)
 
             if "comments" in data:
                 values["comments"] = data["comments"]
