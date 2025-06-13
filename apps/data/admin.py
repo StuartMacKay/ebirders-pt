@@ -57,7 +57,7 @@ class ChecklistAdmin(admin.ModelAdmin):
     inlines = [ObservationInline]
     formfield_overrides = {
         TextField: {
-            "widget": TextInput(attrs={"style": "width: 30%"}),
+            "widget": TextInput(attrs={"class": "vTextField"}),
         }
     }
     readonly_fields = ("identifier", "edited")
@@ -133,7 +133,7 @@ class LocationAdmin(admin.ModelAdmin):
     search_fields = ("name", "county__name", "state__name", "country__name")
     formfield_overrides = {
         TextField: {
-            "widget": TextInput(attrs={"style": "width: 30%"}),
+            "widget": TextInput(attrs={"class": "vTextField"}),
         }
     }
     readonly_fields = ("identifier",)
@@ -185,7 +185,7 @@ class ObservationAdmin(admin.ModelAdmin):
     ordering = ("-checklist__started",)
     formfield_overrides = {
         TextField: {
-            "widget": TextInput(attrs={"style": "width: 30%"}),
+            "widget": TextInput(attrs={"class": "vTextField"}),
         }
     }
     autocomplete_fields = ("checklist", "location", "observer", "species")
@@ -269,7 +269,7 @@ class SpeciesAdmin(admin.ModelAdmin):
     form = SpeciesForm
     formfield_overrides = {
         TextField: {
-            "widget": TextInput(attrs={"style": "width: 30%"}),
+            "widget": TextInput(attrs={"class": "vTextField"}),
         }
     }
     readonly_fields = ("taxon_order",)
