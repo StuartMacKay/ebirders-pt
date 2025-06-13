@@ -107,7 +107,7 @@ class Species(models.Model):
         return str(self.species_code)
 
     def __str__(self) -> str:
-        return str(self.common_name)
+        return self.get_common_name()
 
     def get_common_name(self) -> str:
         try:
