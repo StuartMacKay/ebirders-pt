@@ -205,10 +205,6 @@ class ObservationAdmin(admin.ModelAdmin):
     fields = (
         "species",
         "count",
-        "age_sex",
-        "breeding_code",
-        "breeding_category",
-        "behavior_code",
         "media",
         "comments",
         "checklist",

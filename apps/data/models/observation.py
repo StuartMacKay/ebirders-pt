@@ -114,30 +114,6 @@ class Observation(models.Model):
         help_text=_("The number of birds seen."),
     )
 
-    breeding_code = models.TextField(
-        blank=True,
-        verbose_name=_("breeding code"),
-        help_text=_("eBird code identifying the breeding status"),
-    )
-
-    breeding_category = models.TextField(
-        blank=True,
-        verbose_name=_("breeding category"),
-        help_text=_("eBird code identifying the breeding category"),
-    )
-
-    behavior_code = models.TextField(
-        blank=True,
-        verbose_name=_("behaviour code"),
-        help_text=_("eBird code identifying the behaviour"),
-    )
-
-    age_sex = models.TextField(
-        blank=True,
-        verbose_name=_("Age & Sex"),
-        help_text=_("The number of birds seen in each combination of age and sex."),
-    )
-
     media = models.BooleanField(
         blank=True,
         null=True,
