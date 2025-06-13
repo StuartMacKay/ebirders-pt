@@ -267,9 +267,9 @@ class SpeciesForm(ModelForm):
 @admin.register(models.Species)
 class SpeciesAdmin(admin.ModelAdmin):
     list_display = (
-        "common_name",
+        "get_common_name",
         "scientific_name",
-        "family_common_name",
+        "get_family_common_name",
         "family_scientific_name",
         "order",
     )
