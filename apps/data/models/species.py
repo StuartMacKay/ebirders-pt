@@ -74,28 +74,6 @@ class Species(models.Model):
         ),
     )
 
-    subspecies_common_name = models.TextField(
-        blank=True,
-        verbose_name=_("subspecies common name"),
-        help_text=_(
-            "The subspecies, group or form common name in the eBird/Clements taxonomy."
-        ),
-    )
-
-    subspecies_scientific_name = models.TextField(
-        blank=True,
-        verbose_name=_("Scientific name"),
-        help_text=_(
-            "The subspecies, group or form scientific name in the eBird/Clements taxonomy."
-        ),
-    )
-
-    exotic_code = models.TextField(
-        blank=True,
-        verbose_name=_("exotic code"),
-        help_text=_("The code used if the species is non-native."),
-    )
-
     data = models.JSONField(
         verbose_name=_("Data"),
         help_text=_("Data describing a Species."),

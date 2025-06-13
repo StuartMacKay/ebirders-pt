@@ -210,9 +210,6 @@ class APILoader:
         values: dict = {
             "common_name": {},
             "family_common_name": {},
-            "subspecies_common_name": "",
-            "subspecies_scientific_name": "",
-            "exotic_code": "",
         }
 
         for language, locale in self.locales.items():
