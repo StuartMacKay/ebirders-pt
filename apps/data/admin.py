@@ -163,6 +163,17 @@ class LocationAdmin(admin.ModelAdmin):
             models.Observation.objects.filter(location=obj).update(county=obj.county)
 
 
+class ObservationForm(ModelForm):
+    reason = TranslationTextField(required=False)
+
+    class Meta:
+        fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["reason"].widget.attrs.update({"rows": 2})
+
+
 @admin.register(models.Observation)
 class ObservationAdmin(admin.ModelAdmin):
     list_display = (
@@ -183,6 +194,7 @@ class ObservationAdmin(admin.ModelAdmin):
         "reviewed",
     )
     ordering = ("-checklist__started",)
+    form = ObservationForm
     formfield_overrides = {
         TextField: {
             "widget": TextInput(attrs={"class": "vTextField"}),
@@ -224,13 +236,6 @@ class ObservationAdmin(admin.ModelAdmin):
             obj.state = location.state
             obj.county = location.county
         super().save_model(request, obj, form, change)
-
-
-class ObservationForm(ModelForm):
-    reason = TranslationTextField(required=False)
-
-    class Meta:
-        fields = "__all__"
 
 
 @admin.register(models.Observer)
