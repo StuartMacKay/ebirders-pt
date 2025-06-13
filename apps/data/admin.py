@@ -177,7 +177,7 @@ class ObservationForm(ModelForm):
 @admin.register(models.Observation)
 class ObservationAdmin(admin.ModelAdmin):
     list_display = (
-        "species__common_name",
+        "common_name",
         "count",
         "checklist__date",
         "checklist__time",
@@ -220,6 +220,10 @@ class ObservationAdmin(admin.ModelAdmin):
         "reason",
         "data",
     )
+
+    @admin.display(description=_("Species"))
+    def common_name(self, obj):
+        return obj.species.get_common_name()
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         field = super().formfield_for_dbfield(db_field, request, **kwargs)
