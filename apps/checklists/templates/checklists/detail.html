@@ -145,7 +145,8 @@
           <small class="ms-2 text-muted fst-italic">{{ observation.species.scientific_name }}</small>
           {% if observation.comments %}<br/>{{ observation.comments }}{% endif %}
           {% if not observation.approved %}
-            <br/><i class="bi bi-flag-fill text-danger"></i>
+            <br/><i class="bi bi-flag-fill text-danger me-1"></i>
+            <span>{{ observation.get_reason }}</span>
           {% endif %}
         </td>
       {% endfor %}
