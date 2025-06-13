@@ -69,12 +69,6 @@ class Checklist(models.Model):
         help_text=_("The person who submitted the checklist."),
     )
 
-    group = models.TextField(
-        blank=True,
-        verbose_name=_("group"),
-        help_text=_("The identifier for a group of observers."),
-    )
-
     observer_count = models.IntegerField(
         blank=True,
         null=True,
@@ -108,12 +102,6 @@ class Checklist(models.Model):
         null=True,
         verbose_name=_("date & time"),
         help_text=_("The date and time the checklist was started."),
-    )
-
-    protocol = models.TextField(
-        blank=True,
-        verbose_name=_("protocol"),
-        help_text=_("The protocol followed, e.g. travelling, stationary, etc."),
     )
 
     protocol_code = models.TextField(

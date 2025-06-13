@@ -343,7 +343,6 @@ class APILoader:
                 "location": location,
                 "observer": observer,
                 "observer_count": None,
-                "group": "",
                 "species_count": data["numSpecies"],
                 "date": started.date(),
                 "time": None,
