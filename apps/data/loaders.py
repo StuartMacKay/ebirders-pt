@@ -190,6 +190,7 @@ class APILoader:
             "latitude": Decimal(data["latitude"]),
             "longitude": Decimal(data["longitude"]),
             "url": "https://ebird.org/region/%s" % identifier,
+            "data": {"api": data}
         }
 
         if "subnational2Code" in data:
@@ -210,6 +211,7 @@ class APILoader:
         values: dict = {
             "common_name": {},
             "family_common_name": {},
+            "data": {"api": {}}
         }
 
         for language, locale in self.locales.items():
@@ -222,6 +224,7 @@ class APILoader:
             values["scientific_name"] = data["sciName"]
             values["family_common_name"][language] = data["familyComName"]
             values["family_scientific_name"] = data["familySciName"]
+            values["data"]["api"][locale] = data
 
         values["common_name"] = json.dumps(values["common_name"])
         values["family_common_name"] = json.dumps(values["family_common_name"])
@@ -249,7 +252,6 @@ class APILoader:
 
         values: dict = {
             "edited": checklist.edited,
-            "identifier": identifier,
             "checklist": checklist,
             "country": checklist.country,
             "state": checklist.state,
@@ -264,6 +266,7 @@ class APILoader:
             "media": False,
             "comments": "",
             "urn": self.get_urn(checklist.project_code, data),
+            "data": {"api": data},
         }
 
         if re.match(r"\d+", data["howManyStr"]):
@@ -272,9 +275,7 @@ class APILoader:
         if "comments" in data:
             values["comments"] = data["comments"]
 
-        observation, created = Observation.objects.get_or_create(
-            identifier=identifier, defaults=values
-        )
+        observation = Observation.objects.create(identifier=identifier, **values)
 
         return observation
 
@@ -330,6 +331,7 @@ class APILoader:
             location: Location = Location.objects.get(identifier=data["locId"])
             checklist: Checklist
             observer: Observer = self.get_observer(data)
+            observations: list = data.pop("obs", [])
 
             if not observer.enabled:
                 return None
@@ -353,6 +355,7 @@ class APILoader:
                 "complete": data["allObsReported"],
                 "comments": "",
                 "url": "https://ebird.org/checklist/%s" % identifier,
+                "data": {"api": data},
             }
 
             if data["obsTimeValid"]:
@@ -378,7 +381,7 @@ class APILoader:
 
             checklist = Checklist.objects.create(identifier=identifier, **values)
 
-            for observation_data in data["obs"]:
+            for observation_data in observations:
                 self.add_observation(observation_data, checklist)
 
         return checklist
