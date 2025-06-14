@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-14 05:55+0000\n"
+"POT-Creation-Date: 2025-06-14 06:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -302,19 +302,19 @@ msgstr ""
 msgid "Your message could not be sent. Please try again later."
 msgstr ""
 
-#: apps/data/admin.py:28
+#: apps/data/admin.py:31
 msgid "Common name"
 msgstr ""
 
-#: apps/data/admin.py:33
+#: apps/data/admin.py:36
 msgid "Scientific name"
 msgstr ""
 
-#: apps/data/admin.py:145 apps/data/admin.py:254
+#: apps/data/admin.py:148 apps/data/admin.py:289
 msgid "Name / Byname"
 msgstr ""
 
-#: apps/data/admin.py:224 apps/observations/filters.py:59
+#: apps/data/admin.py:235 apps/observations/filters.py:59
 #: apps/observations/templates/observations/includes/list-entries.html:14
 #: apps/observations/templates/observations/includes/list-entries.html:17
 #: apps/species/apps.py:8
@@ -322,7 +322,21 @@ msgstr ""
 msgid "Species"
 msgstr ""
 
-#: apps/data/admin.py:261
+#: apps/data/admin.py:239
+msgid "Change species for selected observations"
+msgstr ""
+
+#: apps/data/admin.py:248
+#, python-brace-format
+msgid "Changed species on {count} observation to {species}"
+msgstr ""
+
+#: apps/data/admin.py:252
+#, python-brace-format
+msgid "Changed species on {count} observations to {species}"
+msgstr ""
+
+#: apps/data/admin.py:296
 msgid "The eBird code for the species, e.g. cangoo, for Canada Goose."
 msgstr ""
 
@@ -878,8 +892,21 @@ msgstr ""
 msgid "Load %(name)s"
 msgstr ""
 
+#: apps/data/templates/admin/data/species/change_species.html:12
 #: apps/data/templates/admin/data/species/fetch_species.html:11
 msgid "Home"
+msgstr ""
+
+#: apps/data/templates/admin/data/species/change_species.html:22
+msgid "Change Species"
+msgstr ""
+
+#: apps/data/templates/admin/data/species/change_species.html:23
+msgid "Change the species for the following Observations:"
+msgstr ""
+
+#: apps/data/templates/admin/data/species/change_species.html:56
+msgid "Change"
 msgstr ""
 
 #: apps/data/templates/admin/data/species/fetch_species.html:21
