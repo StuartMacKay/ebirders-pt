@@ -1,12 +1,17 @@
+from django import forms
+from django.conf import settings
 from django.contrib import admin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.db.models import TextField
 from django.forms import ModelForm, Textarea, TextInput
-from django.urls import reverse
+from django.urls import path, reverse, reverse_lazy
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
+from django.views import generic
 
 from . import models
 from .fields import TranslationCharField, TranslationTextField
+from .loaders import APILoader
 
 
 class ObservationInline(admin.TabularInline):
@@ -69,8 +74,6 @@ class ChecklistAdmin(admin.ModelAdmin):
         "species_count",
         "complete",
         "observer_count",
-        "group",
-        "protocol",
         "protocol_code",
         "duration",
         "distance",
@@ -252,6 +255,33 @@ class ObserverAdmin(admin.ModelAdmin):
         return format_html("%s<br/>%s" % (obj.name, obj.byname))
 
 
+class FetchSpeciesForm(forms.Form):
+    species_code = forms.CharField(
+        help_text=_("The eBird code for the species, e.g. cangoo, for Canada Goose.")
+    )
+
+
+class FetchSpeciesView(PermissionRequiredMixin, generic.FormView):
+    form_class = FetchSpeciesForm
+    permission_required = "data.add_species"
+    success_url = reverse_lazy("admin:data_species_changelist")
+    template_name = "admin/data/species/fetch_species.html"
+
+    def form_valid(self, form):
+        self.fetch_species(form)
+        return super().form_valid(form)
+
+    def fetch_species(self, form):
+        species_code = form.cleaned_data["species_code"]
+        key: str = getattr(settings, "EBIRD_API_KEY")
+        locales: dict = getattr(settings, "EBIRD_LOCALES")
+        loader = APILoader(key, locales)
+        species = loader.add_species(species_code)
+        self.request.message(
+            self.request, "%s was added to the Species list" % species.get_common_name()
+        )
+
+
 class SpeciesForm(ModelForm):
     common_name = TranslationCharField()
     family_common_name = TranslationCharField(required=False)
@@ -289,3 +319,18 @@ class SpeciesAdmin(admin.ModelAdmin):
         "family_code",
         "data",
     )
+
+    def get_urls(self):
+        return [
+            path(
+                "fetch/",
+                self.admin_site.admin_view(FetchSpeciesView.as_view()),
+                name="data_species_fetch",
+            ),
+            *super().get_urls(),
+        ]
+
+    def changelist_view(self, request, extra_context=None):
+        extra_context = extra_context or {}
+        extra_context["fetch_species_url"] = reverse("admin:data_species_fetch")
+        return super().changelist_view(request, extra_context=extra_context)

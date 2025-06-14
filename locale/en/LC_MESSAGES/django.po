@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-10 15:56+0000\n"
+"POT-Creation-Date: 2025-06-14 05:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,8 @@ msgstr ""
 #: apps/checklists/templates/checklists/detail.html:18
 #: apps/checklists/templates/checklists/includes/list-title.html:3
 #: apps/checklists/templates/checklists/list.html:4
-#: apps/news/templatetags/numbers.py:47 templates/includes/header.html:28
+#: apps/news/templatetags/numbers.py:47 templates/flatpages/base.html:33
+#: templates/includes/header.html:28
 msgid "Checklists"
 msgstr ""
 
@@ -177,7 +178,7 @@ msgstr ""
 #: apps/news/templates/news/tables/big-days.html:9
 #: apps/news/templates/news/tables/big-lists.html:18
 #: apps/news/templates/news/tables/checklists-species.html:7
-#: apps/news/templates/news/tables/yearlist.html:83
+#: apps/news/templates/news/tables/yearlist.html:77
 #: apps/species/templates/species/includes/list-entries.html:5
 msgid "No. of Species"
 msgstr ""
@@ -301,21 +302,33 @@ msgstr ""
 msgid "Your message could not be sent. Please try again later."
 msgstr ""
 
-#: apps/data/admin.py:22
+#: apps/data/admin.py:28
 msgid "Common name"
 msgstr ""
 
-#: apps/data/admin.py:27 apps/data/models/species.py:87
+#: apps/data/admin.py:33
 msgid "Scientific name"
 msgstr ""
 
-#: apps/data/admin.py:141 apps/data/admin.py:241
+#: apps/data/admin.py:145 apps/data/admin.py:254
 msgid "Name / Byname"
 msgstr ""
 
-#: apps/data/apps.py:8 apps/data/models/checklist.py:175
-#: apps/data/models/location.py:144 apps/data/models/observation.py:183
-#: apps/data/models/observer.py:41 apps/data/models/species.py:100
+#: apps/data/admin.py:224 apps/observations/filters.py:59
+#: apps/observations/templates/observations/includes/list-entries.html:14
+#: apps/observations/templates/observations/includes/list-entries.html:17
+#: apps/species/apps.py:8
+#: apps/species/templates/species/includes/list-entries.html:13
+msgid "Species"
+msgstr ""
+
+#: apps/data/admin.py:261
+msgid "The eBird code for the species, e.g. cangoo, for Canada Goose."
+msgstr ""
+
+#: apps/data/apps.py:8 apps/data/models/checklist.py:163
+#: apps/data/models/location.py:144 apps/data/models/observation.py:157
+#: apps/data/models/observer.py:41 apps/data/models/species.py:78
 #: apps/notifications/models.py:70
 msgid "Data"
 msgstr ""
@@ -398,127 +411,111 @@ msgstr ""
 msgid "The person who submitted the checklist."
 msgstr ""
 
-#: apps/data/models/checklist.py:74
-msgid "group"
-msgstr ""
-
 #: apps/data/models/checklist.py:75
-msgid "The identifier for a group of observers."
-msgstr ""
-
-#: apps/data/models/checklist.py:81
 msgid "observer count"
 msgstr ""
 
-#: apps/data/models/checklist.py:82
+#: apps/data/models/checklist.py:76
 msgid "The total number of observers."
 msgstr ""
 
-#: apps/data/models/checklist.py:88
+#: apps/data/models/checklist.py:82
 msgid "species count"
 msgstr ""
 
-#: apps/data/models/checklist.py:89
+#: apps/data/models/checklist.py:83
 msgid "The number of species reported."
 msgstr ""
 
-#: apps/data/models/checklist.py:94 apps/data/models/observation.py:92
+#: apps/data/models/checklist.py:88 apps/data/models/observation.py:92
 msgid "date"
 msgstr ""
 
-#: apps/data/models/checklist.py:95
+#: apps/data/models/checklist.py:89
 msgid "The date the checklist was started."
 msgstr ""
 
-#: apps/data/models/checklist.py:101 apps/data/models/observation.py:99
+#: apps/data/models/checklist.py:95 apps/data/models/observation.py:99
 msgid "time"
 msgstr ""
 
-#: apps/data/models/checklist.py:102
+#: apps/data/models/checklist.py:96
 msgid "The time the checklist was started."
 msgstr ""
 
-#: apps/data/models/checklist.py:109 apps/data/models/observation.py:107
+#: apps/data/models/checklist.py:103 apps/data/models/observation.py:107
 msgid "date & time"
 msgstr ""
 
-#: apps/data/models/checklist.py:110
+#: apps/data/models/checklist.py:104
 msgid "The date and time the checklist was started."
 msgstr ""
 
-#: apps/data/models/checklist.py:115
-msgid "protocol"
-msgstr ""
-
-#: apps/data/models/checklist.py:116
-msgid "The protocol followed, e.g. travelling, stationary, etc."
-msgstr ""
-
-#: apps/data/models/checklist.py:121
+#: apps/data/models/checklist.py:109
 msgid "protocol code"
 msgstr ""
 
-#: apps/data/models/checklist.py:122
+#: apps/data/models/checklist.py:110
 msgid "The code used to identify the protocol."
 msgstr ""
 
-#: apps/data/models/checklist.py:127
+#: apps/data/models/checklist.py:115
 msgid "project code"
 msgstr ""
 
-#: apps/data/models/checklist.py:128
+#: apps/data/models/checklist.py:116
 msgid "The code used to identify the project (portal)."
 msgstr ""
 
-#: apps/data/models/checklist.py:134
+#: apps/data/models/checklist.py:122
 msgid "duration"
 msgstr ""
 
-#: apps/data/models/checklist.py:135
+#: apps/data/models/checklist.py:123
 msgid "The number of minutes spent counting."
 msgstr ""
 
-#: apps/data/models/checklist.py:143
+#: apps/data/models/checklist.py:131
 msgid "distance"
 msgstr ""
 
-#: apps/data/models/checklist.py:144
+#: apps/data/models/checklist.py:132
 msgid "The distance, in metres, covered while travelling."
 msgstr ""
 
-#: apps/data/models/checklist.py:152
+#: apps/data/models/checklist.py:140
 msgid "area"
 msgstr ""
 
-#: apps/data/models/checklist.py:153
+#: apps/data/models/checklist.py:141
 msgid "The area covered, in hectares."
 msgstr ""
 
-#: apps/data/models/checklist.py:158
+#: apps/data/models/checklist.py:146
 msgid "complete"
 msgstr ""
 
-#: apps/data/models/checklist.py:159
+#: apps/data/models/checklist.py:147
 msgid "All species seen are reported."
 msgstr ""
 
-#: apps/data/models/checklist.py:164 apps/data/models/observation.py:172
+#: apps/data/models/checklist.py:152 apps/data/models/observation.py:146
 msgid "comments"
 msgstr ""
 
-#: apps/data/models/checklist.py:165
+#: apps/data/models/checklist.py:153
 msgid "Any comments about the checklist."
 msgstr ""
 
-#: apps/data/models/checklist.py:170 apps/data/models/location.py:132
+#: apps/data/models/checklist.py:158 apps/data/models/location.py:132
 msgid "url"
 msgstr ""
 
-#: apps/data/models/checklist.py:171
+#: apps/data/models/checklist.py:159
 msgid "URL where the original checklist can be viewed."
 msgstr ""
 
-#: apps/data/models/checklist.py:176
+#: apps/data/models/checklist.py:164
 msgid "Data describing a Checklist."
 msgstr ""
 
@@ -699,83 +696,51 @@ msgstr ""
 msgid "The number of birds seen."
 msgstr ""
 
-#: apps/data/models/observation.py:119
-msgid "breeding code"
-msgstr ""
-
 #: apps/data/models/observation.py:120
-msgid "eBird code identifying the breeding status"
-msgstr ""
-
-#: apps/data/models/observation.py:125
-msgid "breeding category"
-msgstr ""
-
-#: apps/data/models/observation.py:126
-msgid "eBird code identifying the breeding category"
-msgstr ""
-
-#: apps/data/models/observation.py:131
-msgid "behaviour code"
-msgstr ""
-
-#: apps/data/models/observation.py:132
-msgid "eBird code identifying the behaviour"
-msgstr ""
-
-#: apps/data/models/observation.py:137
-msgid "Age & Sex"
-msgstr ""
-
-#: apps/data/models/observation.py:138
-msgid "The number of birds seen in each combination of age and sex."
-msgstr ""
-
-#: apps/data/models/observation.py:144
 msgid "has media"
 msgstr ""
 
-#: apps/data/models/observation.py:145
+#: apps/data/models/observation.py:121
 msgid "Has audio, photo or video uploaded to the Macaulay library."
 msgstr ""
 
-#: apps/data/models/observation.py:151
+#: apps/data/models/observation.py:126
 msgid "Approved"
 msgstr ""
 
-#: apps/data/models/observation.py:152
-msgid "Has the observation been accepted by eBird's review process."
+#: apps/data/models/observation.py:127
+msgid "Has the observation been accepted."
 msgstr ""
 
-#: apps/data/models/observation.py:158
+#: apps/data/models/observation.py:132
 msgid "Reviewed"
 msgstr ""
 
-#: apps/data/models/observation.py:159
-msgid "Was the observation reviewed because it failed automatic checks."
+#: apps/data/models/observation.py:133
+msgid "If the observation was not approved, has it been reviewed."
 msgstr ""
 
-#: apps/data/models/observation.py:164
+#: apps/data/models/observation.py:138
 msgid "Reason"
 msgstr ""
 
-#: apps/data/models/observation.py:166
-msgid "The reason given for the observation to be marked as not confirmed."
+#: apps/data/models/observation.py:140
+msgid "The reason given for the observation to be marked as not approved."
 msgstr ""
 
-#: apps/data/models/observation.py:173
+#: apps/data/models/observation.py:147
 msgid "Any comments about the observation."
 msgstr ""
 
-#: apps/data/models/observation.py:178
+#: apps/data/models/observation.py:152
 msgid "URN"
 msgstr ""
 
-#: apps/data/models/observation.py:179
+#: apps/data/models/observation.py:153
 msgid "The globally unique identifier for the observation"
 msgstr ""
 
-#: apps/data/models/observation.py:184
+#: apps/data/models/observation.py:158
 msgid "Data describing an Observation."
 msgstr ""
 
@@ -889,28 +854,6 @@ msgid ""
 msgstr ""
 
 #: apps/data/models/species.py:79
-msgid "subspecies common name"
-msgstr ""
-
-#: apps/data/models/species.py:81
-msgid ""
-"The subspecies, group or form common name in the eBird/Clements taxonomy."
-msgstr ""
-
-#: apps/data/models/species.py:89
-msgid ""
-"The subspecies, group or form scientific name in the eBird/Clements taxonomy."
-msgstr ""
-
-#: apps/data/models/species.py:95
-msgid "exotic code"
-msgstr ""
-
-#: apps/data/models/species.py:96
-msgid "The code used if the species is non-native."
-msgstr ""
-
-#: apps/data/models/species.py:101
 msgid "Data describing a Species."
 msgstr ""
 
@@ -930,11 +873,33 @@ msgstr ""
 msgid "The hierarchical name of the state."
 msgstr ""
 
+#: apps/data/templates/admin/data/species/change_list_object_tools.html:8
+#, python-format
+msgid "Load %(name)s"
+msgstr ""
+
+#: apps/data/templates/admin/data/species/fetch_species.html:11
+msgid "Home"
+msgstr ""
+
+#: apps/data/templates/admin/data/species/fetch_species.html:21
+msgid "Fetch Species"
+msgstr ""
+
+#: apps/data/templates/admin/data/species/fetch_species.html:22
+msgid "Add a species from the eBird taxonomy to the Species table."
+msgstr ""
+
+#: apps/data/templates/admin/data/species/fetch_species.html:50
+msgid "Fetch"
+msgstr ""
+
 #: apps/locations/apps.py:7
 msgid "Locations"
 msgstr ""
 
-#: apps/news/apps.py:8 templates/includes/header.html:14
+#: apps/news/apps.py:8 templates/flatpages/base.html:19
+#: templates/includes/header.html:14
 msgid "News"
 msgstr ""
 
@@ -949,7 +914,8 @@ msgstr ""
 #: apps/news/templates/news/latest.html:4
 #: apps/news/templates/news/latest.html:18
 #: apps/news/templates/news/monthly.html:4
-#: apps/news/templates/news/weekly.html:4 templates/includes/header.html:18
+#: apps/news/templates/news/weekly.html:4 templates/flatpages/base.html:23
+#: templates/includes/header.html:18
 msgid "Latest News"
 msgstr ""
 
@@ -971,7 +937,8 @@ msgstr "Enter District or County"
 msgid "Search"
 msgstr ""
 
-#: apps/news/templates/news/monthly.html:11 templates/includes/header.html:22
+#: apps/news/templates/news/monthly.html:11 templates/flatpages/base.html:27
+#: templates/includes/header.html:22
 msgid "Monthly News"
 msgstr ""
 
@@ -1029,25 +996,26 @@ msgstr ""
 msgid "Species (Count)"
 msgstr ""
 
-#: apps/news/templates/news/tables/high-counts.html:75
-#: apps/news/templates/news/tables/yearlist.html:70
-#: apps/species/templates/species/includes/list-entries.html:95
+#: apps/news/templates/news/tables/high-counts.html:69
+#: apps/news/templates/news/tables/yearlist.html:64
+#: apps/species/templates/species/includes/list-entries.html:89
 msgid "View the checklist"
 msgstr ""
 
-#: apps/news/templates/news/tables/high-counts.html:83
+#: apps/news/templates/news/tables/high-counts.html:77
 msgid "No high counts were made this week."
 msgstr ""
 
-#: apps/news/templates/news/tables/yearlist.html:78
+#: apps/news/templates/news/tables/yearlist.html:72
 msgid "No new species were seen this week."
 msgstr ""
 
-#: apps/news/templates/news/tables/yearlist.html:86
+#: apps/news/templates/news/tables/yearlist.html:80
 msgid "View Yearlist"
 msgstr ""
 
-#: apps/news/templates/news/weekly.html:11 templates/includes/header.html:20
+#: apps/news/templates/news/weekly.html:11 templates/flatpages/base.html:25
+#: templates/includes/header.html:20
 msgid "Weekly News"
 msgstr ""
 
@@ -1073,7 +1041,8 @@ msgstr ""
 
 #: apps/news/templatetags/numbers.py:28
 #: apps/species/templates/species/includes/list-title.html:3
-#: apps/species/templates/species/list.html:4 templates/includes/header.html:36
+#: apps/species/templates/species/list.html:4 templates/flatpages/base.html:41
+#: templates/includes/header.html:36
 msgid "Species (plural)"
 msgstr "Species"
 
@@ -1177,16 +1146,8 @@ msgstr ""
 #: apps/observations/apps.py:8
 #: apps/observations/templates/observations/includes/list-title.html:3
 #: apps/observations/templates/observations/list.html:4
-#: templates/includes/header.html:32
+#: templates/flatpages/base.html:37 templates/includes/header.html:32
 msgid "Observations"
-msgstr ""
-
-#: apps/observations/filters.py:59
-#: apps/observations/templates/observations/includes/list-entries.html:14
-#: apps/observations/templates/observations/includes/list-entries.html:17
-#: apps/species/apps.py:8
-#: apps/species/templates/species/includes/list-entries.html:13
-msgid "Species"
 msgstr ""
 
 #: apps/observations/filters.py:84
@@ -1205,33 +1166,33 @@ msgid "Big Day"
 msgstr ""
 
 #: apps/observations/templates/observations/includes/list-entries.html:40
-#: apps/observations/templates/observations/includes/list-entries.html:61
+#: apps/observations/templates/observations/includes/list-entries.html:55
 #: apps/species/templates/species/includes/list-entries.html:33
 msgid "Show observations of this species"
 msgstr ""
 
-#: apps/observations/templates/observations/includes/list-entries.html:89
-#: apps/species/templates/species/includes/list-entries.html:59
+#: apps/observations/templates/observations/includes/list-entries.html:77
+#: apps/species/templates/species/includes/list-entries.html:53
 msgid "Show observations for this location"
 msgstr ""
 
-#: apps/observations/templates/observations/includes/list-entries.html:96
-#: apps/species/templates/species/includes/list-entries.html:66
+#: apps/observations/templates/observations/includes/list-entries.html:84
+#: apps/species/templates/species/includes/list-entries.html:60
 msgid "Show observations for this county"
 msgstr ""
 
-#: apps/observations/templates/observations/includes/list-entries.html:104
-#: apps/species/templates/species/includes/list-entries.html:74
+#: apps/observations/templates/observations/includes/list-entries.html:92
+#: apps/species/templates/species/includes/list-entries.html:68
 msgid "Show observations for this state"
 msgstr "Show observations for this district"
 
-#: apps/observations/templates/observations/includes/list-entries.html:112
-#: apps/species/templates/species/includes/list-entries.html:82
+#: apps/observations/templates/observations/includes/list-entries.html:100
+#: apps/species/templates/species/includes/list-entries.html:76
 msgid "Show observations for this country"
 msgstr ""
 
-#: apps/observations/templates/observations/includes/list-entries.html:120
-#: apps/species/templates/species/includes/list-entries.html:90
+#: apps/observations/templates/observations/includes/list-entries.html:108
+#: apps/species/templates/species/includes/list-entries.html:84
 msgid "Show observations from this observer"
 msgstr ""
 
@@ -1275,11 +1236,11 @@ msgid ""
 "editorial decisions on observations, or just general news."
 msgstr ""
 
-#: config/settings.py:221
+#: config/settings.py:221 templates/flatpages/about.html:6
 msgid "English"
 msgstr ""
 
-#: config/settings.py:222
+#: config/settings.py:222 templates/flatpages/about.html:7
 msgid "Portuguese"
 msgstr ""
 
