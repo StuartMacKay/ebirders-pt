@@ -3,7 +3,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.contrib.admin.widgets import AutocompleteSelect
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.db.models import TextField
+from django.db.models import DecimalField, IntegerField, TextField
 from django.forms import ModelForm, Textarea, TextInput
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -65,9 +65,15 @@ class ChecklistAdmin(admin.ModelAdmin):
     autocomplete_fields = ("location", "observer")
     inlines = [ObservationInline]
     formfield_overrides = {
+        DecimalField: {
+            "widget": TextInput(),
+        },
+        IntegerField: {
+            "widget": TextInput(),
+        },
         TextField: {
             "widget": TextInput(attrs={"class": "vTextField"}),
-        }
+        },
     }
     readonly_fields = ("identifier", "edited")
     fields = (
@@ -87,19 +93,10 @@ class ChecklistAdmin(admin.ModelAdmin):
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         field = super().formfield_for_dbfield(db_field, request, **kwargs)
-
-        text_fields = (
-            "observer_count",
-            "species_count",
-            "duration",
-            "distance",
-            "area",
-        )
-
-        if db_field.name in text_fields:
-            field.widget = TextInput()
-        elif db_field.name == "comments":
-            field.widget = Textarea(attrs={"rows": 5, "style": "width: 60%"})
+        if db_field.name == "comments":
+            field.widget = Textarea(attrs={"rows": 5, "class": "vLargeTextField"})
+        elif db_field.name == "data":
+            field.widget = Textarea(attrs={"rows": 10, "class": "vLargeTextField"})
 
         return field
 
@@ -117,6 +114,11 @@ class CountryAdmin(admin.ModelAdmin):
     list_display = ("code", "name")
     ordering = ("code",)
     readonly_fields = ("code",)
+    formfield_overrides = {
+        TextField: {
+            "widget": TextInput(attrs={"class": "vTextField"}),
+        }
+    }
 
 
 @admin.register(models.State)
@@ -124,6 +126,11 @@ class StateAdmin(admin.ModelAdmin):
     list_display = ("code", "name")
     ordering = ("code",)
     readonly_fields = ("code",)
+    formfield_overrides = {
+        TextField: {
+            "widget": TextInput(attrs={"class": "vTextField"}),
+        }
+    }
 
 
 @admin.register(models.County)
@@ -131,6 +138,11 @@ class CountyAdmin(admin.ModelAdmin):
     list_display = ("code", "name")
     ordering = ("code",)
     readonly_fields = ("code",)
+    formfield_overrides = {
+        TextField: {
+            "widget": TextInput(attrs={"class": "vTextField"}),
+        }
+    }
 
 
 @admin.register(models.Location)
@@ -138,11 +150,6 @@ class LocationAdmin(admin.ModelAdmin):
     list_display = ("identifier", "names", "county", "state", "country")
     ordering = ("-identifier",)
     search_fields = ("name", "county__name", "state__name", "country__name")
-    formfield_overrides = {
-        TextField: {
-            "widget": TextInput(attrs={"class": "vTextField"}),
-        }
-    }
     readonly_fields = ("identifier",)
 
     @admin.display(description=_("Name / Byname"))
@@ -151,10 +158,16 @@ class LocationAdmin(admin.ModelAdmin):
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         field = super().formfield_for_dbfield(db_field, request, **kwargs)
-        if db_field.name == "latitude":
+        if db_field.name == "byname":
+            field.widget = TextInput(attrs={"class": "vLargeTextField"})
+        elif db_field.name == "name":
+            field.widget = TextInput(attrs={"class": "vLargeTextField"})
+        elif db_field.name == "latitude":
             field.widget = TextInput()
         elif db_field.name == "longitude":
             field.widget = TextInput()
+        elif db_field.name == "data":
+            field.widget = Textarea(attrs={"rows": 10, "class": "vLargeTextField"})
         return field
 
     def save_model(self, request, obj, form, change):
@@ -209,11 +222,6 @@ class ObservationAdmin(admin.ModelAdmin):
     )
     ordering = ("-checklist__started",)
     form = ObservationForm
-    formfield_overrides = {
-        TextField: {
-            "widget": TextInput(attrs={"class": "vTextField"}),
-        }
-    }
     autocomplete_fields = ("checklist", "location", "observer", "species")
     readonly_fields = ("identifier", "edited")
     fields = (
@@ -262,10 +270,12 @@ class ObservationAdmin(admin.ModelAdmin):
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         field = super().formfield_for_dbfield(db_field, request, **kwargs)
-        if db_field.name == "comments":
-            field.widget = Textarea(attrs={"rows": 5, "style": "width: 60%"})
-        elif db_field.name == "count":
+        if db_field.name == "count":
             field.widget = TextInput()
+        elif db_field.name == "comments":
+            field.widget = Textarea(attrs={"rows": 5, "class": "vLargeTextField"})
+        elif db_field.name == "data":
+            field.widget = Textarea(attrs={"rows": 5, "class": "vLargeTextField"})
         return field
 
     def save_model(self, request, obj, form, change):
@@ -284,11 +294,20 @@ class ObserverAdmin(admin.ModelAdmin):
     search_fields = ("name", "identifier")
     list_filter = ("multiple", "enabled")
     form = ObservationForm
-    formfield_overrides = {TextField: {"widget": TextInput}}
 
     @admin.display(description=_("Name / Byname"))
     def names(self, obj):
         return format_html("%s<br/>%s" % (obj.name, obj.byname))
+
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        field = super().formfield_for_dbfield(db_field, request, **kwargs)
+        if db_field.name == "byname":
+            field.widget = TextInput(attrs={"class": "vTextField"})
+        elif db_field.name == "name":
+            field.widget = TextInput(attrs={"class": "vTextField"})
+        elif db_field.name == "data":
+            field.widget = Textarea(attrs={"rows": 5, "class": "vLargeTextField"})
+        return field
 
 
 class FetchSpeciesForm(forms.Form):
@@ -355,6 +374,12 @@ class SpeciesAdmin(admin.ModelAdmin):
         "family_code",
         "data",
     )
+
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        field = super().formfield_for_dbfield(db_field, request, **kwargs)
+        if db_field.name == "data":
+            field.widget = Textarea(attrs={"rows": 5, "class": "vLargeTextField"})
+        return field
 
     def get_urls(self):
         return [
