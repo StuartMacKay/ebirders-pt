@@ -56,10 +56,6 @@ class ChecklistAdmin(admin.ModelAdmin):
         "location",
         "observer",
     )
-    list_select_related = (
-        "location",
-        "observer",
-    )
     ordering = ("-started",)
     search_fields = ("location__name", "observer__name")
     autocomplete_fields = ("location", "observer")
