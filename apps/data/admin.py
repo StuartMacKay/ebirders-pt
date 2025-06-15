@@ -203,8 +203,8 @@ class ObservationAdmin(admin.ModelAdmin):
     list_display = (
         "common_name",
         "count",
-        "checklist__date",
-        "checklist__time",
+        "date",
+        "time",
         "location",
         "observer",
     )
