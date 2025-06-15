@@ -144,6 +144,7 @@ class CountyAdmin(admin.ModelAdmin):
 @admin.register(models.Location)
 class LocationAdmin(admin.ModelAdmin):
     list_display = ("identifier", "names", "county", "state", "country")
+    list_select_related = ("country", "county", "state")
     ordering = ("-identifier",)
     search_fields = ("name", "county__name", "state__name", "country__name")
     readonly_fields = ("identifier",)
