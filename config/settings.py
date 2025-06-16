@@ -189,6 +189,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "config.context_processors.site_tracking_code",
             ],
         },
     },
@@ -431,3 +432,9 @@ EBIRD_API_KEY = env.str("EBIRD_API_KEY")
 # data JSONField, so the common name can be displayed in the language
 # selected by the user.
 EBIRD_LOCALES = env.json("EBIRD_LOCALES", "{}")
+
+# #############
+#   Analytics
+# #############
+
+UMAMI_WEBSITE_ID = env.str("UMAMI_WEBSITE_ID", "")
