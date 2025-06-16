@@ -14,7 +14,7 @@
       <tr>
         <td>
           <a class="dark-link"
-             href="{% url 'observations:big-day' %}{% querystring observer=entry.observer__identifier date=entry.date %}"
+             href="{% url 'species:list' %}{% querystring category="species" observer=entry.observer__identifier start=entry.date finish=entry.date %}"
              title="{% trans 'View the list of species' %}">
             <span class="text-nowrap">
               {% if language_code == 'pt' %}

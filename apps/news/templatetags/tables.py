@@ -182,6 +182,7 @@ def big_days_table(country_id, state_id, county_id, start, end):
         .annotate(name=F("observer__name"))
         .annotate(species_count=Count("species", distinct=True))
         .filter(date__gte=start, date__lte=end)
+        .filter(species__category="species")
     )
 
     if country_id:
