@@ -111,6 +111,12 @@ def filter_by_observer():
 
 
 @pytest.fixture
+def filter_by_category():
+    category = random.choice(["species", "issf", "domestic", "hybrid"])
+    return urlencode({"category": category})
+
+
+@pytest.fixture
 def filter_by_start_date():
     date = dt.date.today() - relativedelta(days=30)
     return urlencode({"start": date.strftime("%Y-%m-%d")})

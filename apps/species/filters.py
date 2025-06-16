@@ -1,3 +1,5 @@
+from random import choices
+
 from django.forms import DateInput, Select
 from django.utils.translation import gettext_lazy as _
 
@@ -82,11 +84,23 @@ class SpeciesFilter(django_filters.FilterSet):
         lookup_expr="lte",
         widget=DateInput(attrs={"type": "date", "class": "form-control"}),
     )
+    category = django_filters.ChoiceFilter(
+        label=_("Category"),
+        field_name="species__category",
+        choices=(
+            ("species", _("Species")),
+            ("issf", _("Subspecies")),
+            ("domestic", _("Domestic")),
+            ("hybrid", _("Hybrid")),
+        ),
+        widget=Select,
+    )
+
     o = SeenFilter(label=_("Ordering"), widget=Select)
 
     class Meta:
         model = Observation
-        fields = ("country", "state", "county", "location", "observer")
+        fields = ("country", "state", "county", "location", "observer", "category")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -126,5 +140,14 @@ class SpeciesFilter(django_filters.FilterSet):
             ].field.widget.choices = Observer.objects.filter(
                 identifier=identifier
             ).values_list("identifier", "name")
+        #
+        # if code := self.data.get("category"):
+        #     self.declared_filters[
+        #         "category"
+        #     ].field.widget.choices = County.objects.filter(code=code).values_list(
+        #         "code", "name"
+        #     )
+
+        self.declared_filters["category"].field.widget.attrs = {"class": "form-control"}
 
         self.declared_filters["o"].field.widget.attrs = {"class": "form-control"}

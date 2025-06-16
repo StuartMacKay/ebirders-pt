@@ -2,7 +2,9 @@
 {% get_current_language as language_code %}
 <div class="row">
   <div class="border-top pt-3 mb-3">
-    <span class="h4">{% trans 'No. of Species' %}: {{ species_list|length }}</span>
+    {% if species_list_title %}
+      <span class="h4">{{ species_list_title }}: {{ species_list|length }}</span>
+    {% endif %}
   </div>
 </div>
 <div class="row">

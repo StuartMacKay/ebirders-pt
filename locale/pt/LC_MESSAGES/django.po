@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-14 06:58+0000\n"
+"POT-Creation-Date: 2025-06-16 09:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,17 +28,17 @@ msgid "Checklists"
 msgstr "Listas"
 
 #: apps/checklists/filters.py:13 apps/observations/filters.py:16
-#: apps/species/filters.py:31
+#: apps/species/filters.py:33
 msgid "Country"
 msgstr "País"
 
 #: apps/checklists/filters.py:21 apps/observations/filters.py:24
-#: apps/species/filters.py:39
+#: apps/species/filters.py:41
 msgid "State"
 msgstr "Distrito"
 
 #: apps/checklists/filters.py:30 apps/observations/filters.py:33
-#: apps/species/filters.py:48
+#: apps/species/filters.py:50
 msgid "County"
 msgstr "Concelho"
 
@@ -49,8 +49,8 @@ msgstr "Concelho"
 #: apps/news/templates/news/tables/yearlist.html:12
 #: apps/observations/filters.py:42
 #: apps/observations/templates/observations/includes/list-entries.html:24
-#: apps/species/filters.py:57
-#: apps/species/templates/species/includes/list-entries.html:19
+#: apps/species/filters.py:59
+#: apps/species/templates/species/includes/list-entries.html:21
 msgid "Location"
 msgstr "Local"
 
@@ -65,18 +65,18 @@ msgstr "Local"
 #: apps/news/templates/news/tables/yearlist.html:15
 #: apps/observations/filters.py:51
 #: apps/observations/templates/observations/includes/list-entries.html:27
-#: apps/species/filters.py:66
-#: apps/species/templates/species/includes/list-entries.html:22
+#: apps/species/filters.py:68
+#: apps/species/templates/species/includes/list-entries.html:24
 msgid "Observer"
 msgstr "Observador"
 
 #: apps/checklists/filters.py:56 apps/observations/filters.py:67
-#: apps/species/filters.py:74
+#: apps/species/filters.py:76
 msgid "From"
 msgstr "A partir de"
 
 #: apps/checklists/filters.py:62 apps/observations/filters.py:73
-#: apps/species/filters.py:80
+#: apps/species/filters.py:82
 msgid "Until"
 msgstr "Até"
 
@@ -85,7 +85,7 @@ msgid "Location type"
 msgstr "Tipo de local"
 
 #: apps/checklists/filters.py:75 apps/observations/filters.py:79
-#: apps/species/filters.py:85
+#: apps/species/filters.py:99
 msgid "Ordering"
 msgstr "Ordenação"
 
@@ -116,7 +116,7 @@ msgstr "Locais privados"
 #: apps/news/templates/news/tables/big-lists.html:6
 #: apps/news/templates/news/tables/high-counts.html:18
 #: apps/news/templates/news/tables/yearlist.html:18
-#: apps/species/templates/species/includes/list-entries.html:25
+#: apps/species/templates/species/includes/list-entries.html:27
 msgid "Checklist"
 msgstr "Lista"
 
@@ -170,16 +170,16 @@ msgstr "Ver a lista no eBird"
 #: apps/news/templates/news/tables/high-counts.html:6
 #: apps/news/templates/news/tables/yearlist.html:9
 #: apps/observations/templates/observations/includes/list-entries.html:21
-#: apps/species/templates/species/includes/list-entries.html:16
+#: apps/species/templates/species/includes/list-entries.html:18
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: apps/checklists/templates/checklists/includes/list-entries.html:20
 #: apps/news/templates/news/tables/big-days.html:9
 #: apps/news/templates/news/tables/big-lists.html:18
 #: apps/news/templates/news/tables/checklists-species.html:7
-#: apps/news/templates/news/tables/yearlist.html:77
-#: apps/species/templates/species/includes/list-entries.html:5
+#: apps/news/templates/news/tables/yearlist.html:77 apps/species/views.py:37
+#: apps/species/views.py:41
 msgid "No. of Species"
 msgstr "Nº. de espécies"
 
@@ -313,33 +313,33 @@ msgstr ""
 msgid "Scientific name"
 msgstr ""
 
-#: apps/data/admin.py:148 apps/data/admin.py:289
+#: apps/data/admin.py:152 apps/data/admin.py:295
 msgid "Name / Byname"
 msgstr ""
 
-#: apps/data/admin.py:235 apps/observations/filters.py:59
+#: apps/data/admin.py:240 apps/observations/filters.py:59
 #: apps/observations/templates/observations/includes/list-entries.html:14
 #: apps/observations/templates/observations/includes/list-entries.html:17
-#: apps/species/apps.py:8
-#: apps/species/templates/species/includes/list-entries.html:13
+#: apps/species/apps.py:8 apps/species/filters.py:91
+#: apps/species/templates/species/includes/list-entries.html:15
 msgid "Species"
 msgstr "Espécie"
 
-#: apps/data/admin.py:239
+#: apps/data/admin.py:244
 msgid "Change species for selected observations"
 msgstr ""
 
-#: apps/data/admin.py:248
+#: apps/data/admin.py:253
 #, python-brace-format
 msgid "Changed species on {count} observation to {species}"
 msgstr ""
 
-#: apps/data/admin.py:252
+#: apps/data/admin.py:257
 #, python-brace-format
 msgid "Changed species on {count} observations to {species}"
 msgstr ""
 
-#: apps/data/admin.py:296
+#: apps/data/admin.py:312
 msgid "The eBird code for the species, e.g. cangoo, for Canada Goose."
 msgstr ""
 
@@ -348,7 +348,7 @@ msgstr ""
 #: apps/data/models/observer.py:41 apps/data/models/species.py:78
 #: apps/notifications/models.py:70
 msgid "Data"
-msgstr ""
+msgstr "Dados"
 
 #: apps/data/models/checklist.py:7 apps/data/models/observation.py:36
 msgid "checklist"
@@ -901,10 +901,8 @@ msgid "Home"
 msgstr ""
 
 #: apps/data/templates/admin/data/species/change_species.html:22
-#, fuzzy
-#| msgid "Species"
 msgid "Change Species"
-msgstr "Espécie"
+msgstr ""
 
 #: apps/data/templates/admin/data/species/change_species.html:23
 msgid "Change the species for the following Observations:"
@@ -915,10 +913,8 @@ msgid "Change"
 msgstr ""
 
 #: apps/data/templates/admin/data/species/fetch_species.html:21
-#, fuzzy
-#| msgid "Species"
 msgid "Fetch Species"
-msgstr "Espécie"
+msgstr ""
 
 #: apps/data/templates/admin/data/species/fetch_species.html:22
 msgid "Add a species from the eBird taxonomy to the Species table."
@@ -930,7 +926,7 @@ msgstr ""
 
 #: apps/locations/apps.py:7
 msgid "Locations"
-msgstr ""
+msgstr "Locais"
 
 #: apps/news/apps.py:8 templates/flatpages/base.html:19
 #: templates/includes/header.html:14
@@ -1032,7 +1028,7 @@ msgstr "Espécies (Contagem)"
 
 #: apps/news/templates/news/tables/high-counts.html:69
 #: apps/news/templates/news/tables/yearlist.html:64
-#: apps/species/templates/species/includes/list-entries.html:89
+#: apps/species/templates/species/includes/list-entries.html:91
 msgid "View the checklist"
 msgstr "Ver esta lista"
 
@@ -1201,42 +1197,66 @@ msgstr "Dia Grande"
 
 #: apps/observations/templates/observations/includes/list-entries.html:40
 #: apps/observations/templates/observations/includes/list-entries.html:55
-#: apps/species/templates/species/includes/list-entries.html:33
+#: apps/species/templates/species/includes/list-entries.html:35
 msgid "Show observations of this species"
 msgstr "Mostrar observações desta espécie"
 
 #: apps/observations/templates/observations/includes/list-entries.html:77
-#: apps/species/templates/species/includes/list-entries.html:53
+#: apps/species/templates/species/includes/list-entries.html:55
 msgid "Show observations for this location"
 msgstr "Mostrar os observaçãoes para este local"
 
 #: apps/observations/templates/observations/includes/list-entries.html:84
-#: apps/species/templates/species/includes/list-entries.html:60
+#: apps/species/templates/species/includes/list-entries.html:62
 msgid "Show observations for this county"
 msgstr "Mostrar os observações para este concelho"
 
 #: apps/observations/templates/observations/includes/list-entries.html:92
-#: apps/species/templates/species/includes/list-entries.html:68
+#: apps/species/templates/species/includes/list-entries.html:70
 msgid "Show observations for this state"
 msgstr "Mostrar os observações para esta estado"
 
 #: apps/observations/templates/observations/includes/list-entries.html:100
-#: apps/species/templates/species/includes/list-entries.html:76
+#: apps/species/templates/species/includes/list-entries.html:78
 msgid "Show observations for this country"
 msgstr "Mostrar os observações para este país"
 
 #: apps/observations/templates/observations/includes/list-entries.html:108
-#: apps/species/templates/species/includes/list-entries.html:84
+#: apps/species/templates/species/includes/list-entries.html:86
 msgid "Show observations from this observer"
 msgstr "Mostrar os observações deste observador"
 
-#: apps/species/filters.py:16
+#: apps/species/filters.py:18
 msgid "First Seen"
-msgstr ""
+msgstr "Primeiro visto"
 
-#: apps/species/filters.py:17
+#: apps/species/filters.py:19
 msgid "Last Seen"
-msgstr ""
+msgstr "Último visto"
+
+#: apps/species/filters.py:88
+msgid "Category"
+msgstr "Categoria"
+
+#: apps/species/filters.py:92
+msgid "Subspecies"
+msgstr "Subespécie"
+
+#: apps/species/filters.py:93
+msgid "Domestic"
+msgstr "Doméstica"
+
+#: apps/species/filters.py:94
+msgid "Hybrid"
+msgstr "Híbrido"
+
+#: apps/species/views.py:39
+msgid "No. of Subspecies"
+msgstr "Nº. de Subespécies"
+
+#: apps/species/views.py:43
+msgid "No. of Forms"
+msgstr "Nº. de Formas"
 
 #: apps/updates/apps.py:7 apps/updates/models.py:24
 msgid "Updates"
@@ -1353,9 +1373,3 @@ msgstr "Fazer observação de aves"
 #: templates/includes/footer.html:11
 msgid "About"
 msgstr "Sobre"
-
-#~ msgid "protocol"
-#~ msgstr "Protocolos"
-
-#~ msgid "Yearlist"
-#~ msgstr "Year List"

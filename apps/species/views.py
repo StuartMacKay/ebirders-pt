@@ -19,7 +19,7 @@ class SpeciesView(FilterView):
 
     def get_queryset(self):
         related = ["checklist", "country", "state", "county", "location", "observer", "species"]
-        queryset = super().get_queryset().filter(species__category="species").select_related(*related)
+        queryset = super().get_queryset().select_related(*related)
         filtered_queryset = self.filterset_class(self.request.GET, queryset).qs
         return filtered_queryset
 
@@ -31,9 +31,26 @@ class SpeciesView(FilterView):
                 urls.append((reverse("species:list"), name))
         return urls
 
+    def get_species_list_title(self):
+        if category := self.filterset.data.get("category"):
+            if category == "species":
+                title = _("No. of Species")
+            elif category == "issf":
+                title = _("No. of Subspecies")
+            elif category == "domestic":
+                title = _("No. of Species")
+            elif category == "hybrid":
+                title = _("No. of Forms")
+            else:
+                title = ""
+        else:
+            title = ""
+        return title
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["show_country"] = Country.objects.all().count() > 1
         context["translations"] = self.get_translations()
+        context["species_list_title"] = self.get_species_list_title()
         context["species_list"] = sorted(list(context["object_list"]), key=lambda obj: obj.species.taxon_order)
         return context

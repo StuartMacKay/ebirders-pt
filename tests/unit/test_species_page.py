@@ -45,6 +45,13 @@ def test_species_page__filtered_by_observer(
     assert has_species(response)
 
 
+def test_species_page__filtered_by_category(
+    db_no_rollback, client, url, filter_by_category
+):
+    response = client.get("%s?%s" % (url, filter_by_category))
+    assert has_species(response)
+
+
 def test_species_page__filtered_by_start_date(
     db_no_rollback, client, url, filter_by_start_date
 ):
