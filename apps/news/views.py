@@ -110,16 +110,48 @@ class WeeklyView(generic.TemplateView):
                     format(end_date, "d M Y"),
                 )
 
-        next_date = start_date + dt.timedelta(days=7)
-        next_year = next_date.year
-        next_week = next_date.isocalendar().week - 1
+        next_start_date = start_date + dt.timedelta(days=7)
+        next_end_date = end_date + dt.timedelta(days=7)
+        next_year = next_start_date.year
+        next_week = next_start_date.isocalendar().week - 1
 
-        previous_date = start_date - dt.timedelta(days=7)
-        previous_year = previous_date.year
-        previous_week = previous_date.isocalendar().week - 1
+        if next_start_date.month == next_end_date.month:
+            next_label = "%s - %s" % (format(next_start_date, "d"), format(next_end_date, "d M Y"))
+        else:
+            if next_start_date.year == next_end_date.year:
+                next_label = "%s - %s" % (
+                    format(next_start_date, "d M"),
+                    format(next_end_date, "d M Y"),
+                )
+            else:
+                next_label = "%s - %s" % (
+                    format(next_start_date, "d M Y"),
+                    format(next_end_date, "d M Y"),
+                )
+
+        previous_start_date = start_date - dt.timedelta(days=7)
+        previous_end_date = end_date - dt.timedelta(days=7)
+        previous_year = previous_start_date.year
+        previous_week = previous_start_date.isocalendar().week - 1
+
+        if previous_start_date.month == previous_end_date.month:
+            previous_label = "%s - %s" % (format(previous_start_date, "d"), format(previous_end_date, "d M Y"))
+        else:
+            if previous_start_date.year == previous_end_date.year:
+                previous_label = "%s - %s" % (
+                    format(previous_start_date, "d M"),
+                    format(previous_end_date, "d M Y"),
+                )
+            else:
+                previous_label = "%s - %s" % (
+                    format(previous_start_date, "d M Y"),
+                    format(previous_end_date, "d M Y"),
+                )
 
         if translation.get_language() == "pt":
             subtitle = subtitle.lower()
+            previous_label = previous_label.lower()
+            next_label = next_label.lower()
 
         code = self.request.GET.get("code", "")
         search = self.request.GET.get("search", "")
@@ -143,8 +175,10 @@ class WeeklyView(generic.TemplateView):
         context["end_year"] = end_date.replace(month=12, day=31)
         context["previous_year"] = previous_year
         context["previous_week"] = previous_week
+        context["previous_label"] = previous_label
         context["next_year"] = next_year
         context["next_week"] = next_week
+        context["next_label"] = next_label
         context["subtitle"] = subtitle
         context["show_country"] = Country.objects.count() > 1
         context["translations"] = self.get_translations(year, week)
@@ -177,13 +211,17 @@ class MonthlyView(generic.TemplateView):
         next_date = start_date + relativedelta(months=1)
         next_year = next_date.year
         next_month = next_date.month
+        next_label = format(next_date, "F Y")
 
         previous_date = start_date - relativedelta(months=1)
         previous_year = previous_date.year
         previous_month = previous_date.month
+        previous_label = format(previous_date, "F Y")
 
         if translation.get_language() == "pt":
             subtitle = subtitle.lower()
+            previous_label = previous_label.lower()
+            next_label = next_label.lower()
 
         code = self.request.GET.get("code", "")
         search = self.request.GET.get("search", "")
@@ -205,8 +243,10 @@ class MonthlyView(generic.TemplateView):
         context["end_date"] = end_date
         context["start_year"] = start_date.replace(month=1, day=1)
         context["end_year"] = end_date.replace(month=12, day=31)
+        context["previous_label"] = previous_label
         context["previous_year"] = previous_year
         context["previous_month"] = previous_month
+        context["next_label"] = next_label
         context["next_year"] = next_year
         context["next_month"] = next_month
         context["subtitle"] = subtitle
