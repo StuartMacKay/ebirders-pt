@@ -60,6 +60,7 @@ class LatestView(generic.TemplateView):
         elif is_county_code(code):
             county = County.objects.get(code=code).pk
 
+        context["interval"] = "latest"
         context["code"] = county
         context["search"] = search
         context["country"] = country
@@ -164,6 +165,7 @@ class WeeklyView(generic.TemplateView):
         elif is_county_code(code):
             county = County.objects.get(code=code).pk
 
+        context["interval"] = "week"
         context["code"] = county
         context["search"] = search
         context["country"] = country
@@ -234,6 +236,7 @@ class MonthlyView(generic.TemplateView):
         elif is_county_code(code):
             county = County.objects.get(code=code).pk
 
+        context["interval"] = "month"
         context["code"] = county
         context["search"] = search
         context["country"] = country

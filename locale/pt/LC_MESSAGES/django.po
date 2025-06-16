@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-16 09:01+0000\n"
+"POT-Creation-Date: 2025-06-16 10:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,7 +59,7 @@ msgstr "Local"
 #: apps/news/templates/news/tables/big-days.html:8
 #: apps/news/templates/news/tables/big-lists.html:15
 #: apps/news/templates/news/tables/checklists-duration.html:6
-#: apps/news/templates/news/tables/checklists-species.html:6
+#: apps/news/templates/news/tables/checklists-species.html:14
 #: apps/news/templates/news/tables/checklists-submitted.html:6
 #: apps/news/templates/news/tables/high-counts.html:15
 #: apps/news/templates/news/tables/yearlist.html:15
@@ -177,7 +177,7 @@ msgstr "Data"
 #: apps/checklists/templates/checklists/includes/list-entries.html:20
 #: apps/news/templates/news/tables/big-days.html:9
 #: apps/news/templates/news/tables/big-lists.html:18
-#: apps/news/templates/news/tables/checklists-species.html:7
+#: apps/news/templates/news/tables/checklists-species.html:15
 #: apps/news/templates/news/tables/yearlist.html:77 apps/species/views.py:37
 #: apps/species/views.py:41
 msgid "No. of Species"
@@ -950,20 +950,20 @@ msgid "Latest News"
 msgstr "Últimas Notícias"
 
 #: apps/news/templates/news/latest.html:39
-#: apps/news/templates/news/monthly.html:42
-#: apps/news/templates/news/weekly.html:42
+#: apps/news/templates/news/monthly.html:44
+#: apps/news/templates/news/weekly.html:44
 msgid "Enter Country, State or County"
 msgstr "Introduzir país, distrito ou concelho"
 
 #: apps/news/templates/news/latest.html:41
-#: apps/news/templates/news/monthly.html:44
-#: apps/news/templates/news/weekly.html:44
+#: apps/news/templates/news/monthly.html:46
+#: apps/news/templates/news/weekly.html:46
 msgid "Enter State or County"
 msgstr "Introduzir distrito ou concelho"
 
 #: apps/news/templates/news/latest.html:45
-#: apps/news/templates/news/monthly.html:48
-#: apps/news/templates/news/weekly.html:48
+#: apps/news/templates/news/monthly.html:50
+#: apps/news/templates/news/weekly.html:50
 msgid "Search"
 msgstr "Pesquisar"
 
@@ -997,11 +997,19 @@ msgstr "%(hours)sh %(minutes)smin"
 msgid "Nobody has been out birding."
 msgstr "Ninguém tem andado a observar aves."
 
-#: apps/news/templates/news/tables/checklists-species.html:2
+#: apps/news/templates/news/tables/checklists-species.html:4
+msgid "Big Week"
+msgstr "Semana Grande"
+
+#: apps/news/templates/news/tables/checklists-species.html:6
+msgid "Big Month"
+msgstr "Mês Grande"
+
+#: apps/news/templates/news/tables/checklists-species.html:8
 msgid "Species seen"
 msgstr "Espécies observadas"
 
-#: apps/news/templates/news/tables/checklists-species.html:18
+#: apps/news/templates/news/tables/checklists-species.html:26
 msgid "There are no species totals to report."
 msgstr "Não há totais de espécies a comunicar."
 
@@ -1088,11 +1096,11 @@ msgstr "Horas de observação"
 msgid "Big Lists"
 msgstr "Listas grandes"
 
-#: apps/news/templatetags/tables.py:166
+#: apps/news/templatetags/tables.py:169
 msgid "Year List"
 msgstr "Year List"
 
-#: apps/news/templatetags/tables.py:194
+#: apps/news/templatetags/tables.py:197
 msgid "Big Days"
 msgstr "Dias Grandes"
 

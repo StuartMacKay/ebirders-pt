@@ -84,7 +84,7 @@ def checklists_duration_table(country_id, state_id, county_id, start, end):
 
 
 @register.inclusion_tag("news/tables/checklists-species.html")
-def checklists_species_table(country_id, state_id, county_id, start, end):
+def checklists_species_table(country_id, state_id, county_id, start, end, interval):
     filters = Q(observations__date__gte=start)
     filters &= Q(observations__date__lte=end)
     filters &= Q(
@@ -113,7 +113,10 @@ def checklists_species_table(country_id, state_id, county_id, start, end):
         )
         .order_by("-count")[:10]
     )
-    return {"records": [observer for observer in observers if observer["count"]]}
+    return {
+        "records": [observer for observer in observers if observer["count"]],
+        "interval": interval,
+    }
 
 
 @register.inclusion_tag("news/tables/yearlist.html", takes_context=True)
