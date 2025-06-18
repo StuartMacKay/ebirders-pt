@@ -71,7 +71,7 @@ class ChecklistFilter(django_filters.FilterSet):
             attrs={"class": "form-control"}
         )
     )
-    o = django_filters.OrderingFilter(
+    order = django_filters.OrderingFilter(
         label=_("Ordering"),
         fields=(
             ('species_count', 'species-count'),
@@ -133,4 +133,4 @@ class ChecklistFilter(django_filters.FilterSet):
             ("true", _("Yes")),
         )
 
-        self.declared_filters["o"].field.widget.attrs = {"class": "form-control"}
+        self.declared_filters["order"].field.widget.attrs = {"class": "form-control"}
