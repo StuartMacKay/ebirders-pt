@@ -88,9 +88,10 @@ class ChecklistFilter(django_filters.FilterSet):
         fields = ("country", "state", "county", "location", "observer",)
 
     def __init__(self, *args, **kwargs):
+        show_country = kwargs.pop("show_country")
         super().__init__(*args, **kwargs)
 
-        if Country.objects.all().count() == 1:
+        if not show_country:
             del self.filters["country"]
 
         if country := self.data.get("country"):

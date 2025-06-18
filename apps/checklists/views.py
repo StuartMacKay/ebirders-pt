@@ -2,6 +2,7 @@ from django.conf import settings
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils import translation
+from django.utils.functional import cached_property
 from django.views import generic
 
 from django_filters.views import FilterView
@@ -18,10 +19,18 @@ class ChecklistsView(FilterView):
     paginate_by = 50
     ordering = ("-started",)
 
+    @cached_property
+    def show_country(self):
+        return Country.objects.all().count() > 1
+
     def get_queryset(self):
         related = ["country", "state", "county", "location", "observer"]
-        queryset = super().get_queryset().select_related(*related)
-        return self.filterset_class(self.request.GET, queryset).qs
+        return super().get_queryset().select_related(*related)
+
+    def get_filterset(self, filterset_class):
+        kwargs = self.get_filterset_kwargs(filterset_class)
+        kwargs["show_country"] = self.show_country
+        return filterset_class(**kwargs)
 
     @staticmethod
     def get_translations():
@@ -33,7 +42,7 @@ class ChecklistsView(FilterView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["show_country"] = Country.objects.all().count() > 1
+        context["show_country"] = self.show_country
         context["translations"] = self.get_translations()
         return context
 
