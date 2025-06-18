@@ -73,6 +73,7 @@ class ChecklistFilter(django_filters.FilterSet):
     )
     order = django_filters.OrderingFilter(
         label=_("Ordering"),
+        empty_label = _("Most recent first"),
         fields=(
             ('species_count', 'species-count'),
         ),
