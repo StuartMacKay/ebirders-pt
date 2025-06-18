@@ -5,6 +5,7 @@ import django_filters
 
 from dal import autocomplete
 
+from checklists.forms import ChecklistFilterForm
 from data.models import Checklist, Country, County, Location, Observer, State
 
 
@@ -91,6 +92,7 @@ class ChecklistFilter(django_filters.FilterSet):
     class Meta:
         model = Checklist
         fields = ("country", "state", "county", "location", "observer",)
+        form = ChecklistFilterForm
 
     def __init__(self, *args, **kwargs):
         show_country = kwargs.pop("show_country")
