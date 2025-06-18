@@ -44,6 +44,12 @@ class ChecklistsView(FilterView):
         context = super().get_context_data(**kwargs)
         context["show_country"] = self.show_country
         context["translations"] = self.get_translations()
+
+        # For reasons unknown the order field, although the widget class is set on
+        # the field and the bootstrap css class is set on the filterset instance,
+        # the fields in the form still has the default widget, CSVSelect.
+        context["filter"].form.fields["order"].widget.attrs = {"class": "form-control"}
+
         return context
 
 
