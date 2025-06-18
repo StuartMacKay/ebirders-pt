@@ -65,7 +65,7 @@ class ChecklistFilter(django_filters.FilterSet):
         widget=DateInput(attrs={'type': 'date', 'class': 'form-control'})
     )
     hotspot = django_filters.BooleanFilter(
-        label=_("Location type"),
+        label=_("Hotspots only"),
         field_name="location__hotspot",
         widget=django_filters.widgets.BooleanWidget(
             attrs={"class": "form-control"}
@@ -129,9 +129,8 @@ class ChecklistFilter(django_filters.FilterSet):
         self.declared_filters[
             "hotspot"
         ].field.widget.choices = (
-            ("", _("All")),
-            ("true", _("Hotspot")),
-            ("false", _("Private/Personal")),
+            ("", _("No")),
+            ("true", _("Yes")),
         )
 
         self.declared_filters["o"].field.widget.attrs = {"class": "form-control"}
