@@ -1,13 +1,36 @@
+{% load i18n %}
 <div class="row">
   <div class="col">
     <div class="border-top py-3">
       <form method="get">
         {{ filter.form.media.css }}
+        {% if filter.errors %}
+          <div class="row">
+            <div class="col">
+              <div class="text-danger mb-3">{% trans 'Please correct the errors below.' %}</div>
+              {% for error in filter.form.non_field_errors %}
+                <div class="text-danger">{{ error }}</div>
+              {% endfor %}
+              {% for field in filter.form.hidden_fields %}
+                {% if field.errors %}
+                  {% for error in field.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                  {% endfor %}
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
         <div class="row">
           {% for field in filter.form.visible_fields %}
             <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
                 <label class="form-label text-muted mb-1" for="{{ field.auto_id }}">{{ field.label }}</label>
                 {{ field }}
+                {% if field.errors %}
+                  {% for error in field.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                  {% endfor %}
+                {% endif %}
             </div>
           {% endfor %}
         </div>
