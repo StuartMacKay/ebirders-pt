@@ -8,6 +8,69 @@ def test_list_view__is_paginated(db_no_rollback, client):
     assert view.paginate_by is not None
 
 
+def test_list_view__filter_by_country(db_no_rollback, client, country):
+    url = reverse("checklists:list")
+    response = client.get(url, data={"country": country.code})
+    objects = response.context["object_list"]
+    assert objects.count() != 0
+    for obj in objects:
+        assert obj.country == country
+
+
+def test_list_view__filter_by_state(db_no_rollback, client, state):
+    url = reverse("checklists:list")
+    response = client.get(url, data={"state": state.code})
+    objects = response.context["object_list"]
+    assert objects.count() != 0
+    for obj in objects:
+        assert obj.state == state
+
+
+def test_list_view__filter_by_county(db_no_rollback, client, county):
+    url = reverse("checklists:list")
+    response = client.get(url, data={"county": county.code})
+    objects = response.context["object_list"]
+    assert objects.count() != 0
+    for obj in objects:
+        assert obj.county == county
+
+
+def test_list_view__filter_by_location(db_no_rollback, client, location):
+    url = reverse("checklists:list")
+    response = client.get(url, data={"location": location.identifier})
+    objects = response.context["object_list"]
+    assert objects.count() != 0
+    for obj in objects:
+        assert obj.location == location
+
+
+def test_list_view__filter_by_observer(db_no_rollback, client, observer):
+    url = reverse("checklists:list")
+    response = client.get(url, data={"observer": observer.identifier})
+    objects = response.context["object_list"]
+    assert objects.count() != 0
+    for obj in objects:
+        assert obj.observer == observer
+
+
+def test_list_view__filter_by_start(db_no_rollback, client, last_week):
+    url = reverse("checklists:list")
+    response = client.get(url, data={"start": last_week})
+    objects = response.context["object_list"]
+    assert objects.count() != 0
+    for obj in objects:
+        assert obj.date >= last_week
+
+
+def test_list_view__filter_by_finish(db_no_rollback, client, last_week):
+    url = reverse("checklists:list")
+    response = client.get(url, data={"finish": last_week})
+    objects = response.context["object_list"]
+    assert objects.count() != 0
+    for obj in objects:
+        assert obj.date <= last_week
+
+
 def test_detail_view__checklist_displayed(db_no_rollback, client, checklist):
     headers = {'HTTP_REFERER': reverse("checklists:list")}
     url = reverse("checklists:detail", kwargs={"identifier": checklist.identifier})

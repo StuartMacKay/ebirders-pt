@@ -1,83 +1,142 @@
-import re
-
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
-from ebird.codes.locations import (
-    is_country_code,
-    is_county_code,
-    is_location_code,
-    is_state_code,
-)
+from dal import autocomplete
 
 from data.models import Country, County, Location, Observer, State
 
-INVALID_COUNTRY_CODE = _("Please select a country.")
-INVALID_STATE_CODE = _("Please select a state.")
-INVALID_COUNTY_CODE = _("Please select a county.")
-INVALID_LOCATION_CODE = _("Please select a location.")
-INVALID_OBSERVER_CODE = _("Please select an observer.")
 DATES_SWAPPED = _("This date is later than the until date.")
-
-OBSERVER_CODE = re.compile(r"^USER\d+$")
-
-
-def is_observer_code(code: str) -> bool:
-    """Is the code for an Observer, e.g. 'USER123456'."""
-    return OBSERVER_CODE.match(code) is not None
 
 
 class ChecklistFilterForm(forms.Form):
-    """
-    ChecklistFilterForm is used to provide feedback if there are any invalid
-    codes passed in the querystring for the ChecklistFilterSet.
+    country = forms.ChoiceField(
+        label=_("Country"),
+        required=False,
+        widget=autocomplete.Select2(
+            url="data:countries",
+            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+        ),
+    )
+    state = forms.ChoiceField(
+        label=_("State"),
+        required=False,
+        widget=autocomplete.Select2(
+            url="data:states",
+            forward=["country"],
+            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+        ),
+    )
+    county = forms.ChoiceField(
+        label=_("County"),
+        required=False,
+        widget=autocomplete.Select2(
+            url="data:counties",
+            forward=["state"],
+            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+        ),
+    )
+    location = forms.ChoiceField(
+        label=_("Location"),
+        required=False,
+        widget=autocomplete.Select2(
+            url="data:locations",
+            forward=["county"],
+            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+        ),
+    )
+    observer = forms.ChoiceField(
+        label=_("Observer"),
+        required=False,
+        widget=autocomplete.Select2(
+            url="data:observers",
+            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+        ),
+    )
+    start = forms.DateField(
+        label=_("From"),
+        required=False,
+        widget=forms.DateInput(attrs={"type": "date", "class": "form-control"}),
+    )
+    finish = forms.DateField(
+        label=_("Until"),
+        required=False,
+        widget=forms.DateInput(attrs={"type": "date", "class": "form-control"}),
+    )
+    hotspot = forms.ChoiceField(
+        label=_("Hotspots only"),
+        choices=(
+            ("", _("No")),
+            ("True", _("Yes")),
+        ),
+        required=False,
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
+    order = forms.ChoiceField(
+        label=_("Ordering"),
+        choices=(
+            ("", _("Most recent first")),
+            ("species_count", _("Number of species")),
+            ("-species_count", _("Number of species (descending)")),
+        ),
+        required=False,
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
 
-    Since the filtering of Checklists is based on the user selecting codes
-    from autocomplete lists, it is unlikely incorrect codes would be entered.
-    However if the querystring parameters are edited directly or if a link
-    to the checklists page is incorrect, then feedback on which code or
-    identifier is incorrect is useful.
+    def __init__(self, *args, **kwargs):
+        show_country = kwargs.pop("show_country")
+        super().__init__(*args, **kwargs)
 
-    """
-    def clean_country(self):
-        if code := self.cleaned_data["country"]:
-            if not is_country_code(code):
-                raise forms.ValidationError(INVALID_COUNTRY_CODE)
-            if not Country.objects.filter(code=code).exists():
-                raise forms.ValidationError(INVALID_COUNTRY_CODE)
-        return code
+        if not show_country:
+            del self.fields["country"]
+        else:
+            self.fields["country"].choices = self.get_country_choices()
 
-    def clean_state(self):
-        if code := self.cleaned_data["state"]:
-            if not is_state_code(code):
-                raise forms.ValidationError(INVALID_STATE_CODE)
-            if not State.objects.filter(code=code).exists():
-                raise forms.ValidationError(INVALID_STATE_CODE)
-        return code
+        self.fields["state"].choices = self.get_state_choices()
+        self.fields["county"].choices = self.get_county_choices()
+        self.fields["location"].choices = self.get_location_choices()
+        self.fields["observer"].choices = self.get_observer_choices()
 
-    def clean_county(self):
-        if code := self.cleaned_data["county"]:
-            if not is_county_code(code):
-                raise forms.ValidationError(INVALID_COUNTY_CODE)
-            if not County.objects.filter(code=code).exists():
-                raise forms.ValidationError(INVALID_COUNTY_CODE)
-        return code
+    def get_country_choices(self):
+        queryset = Country.objects.all().values_list("code", "name")
+        if country := self.data.get("country"):
+            queryset = queryset.filter(code=country)
+        return queryset
 
-    def clean_location(self):
-        if identifier := self.cleaned_data["location"]:
-            if not is_location_code(identifier):
-                raise forms.ValidationError(INVALID_LOCATION_CODE)
-            if not Location.objects.filter(identifier=identifier).exists():
-                raise forms.ValidationError(INVALID_LOCATION_CODE)
-        return identifier
+    def get_state_choices(self):
+        queryset = State.objects.all().values_list("code", "name")
+        if country := self.data.get("country"):
+            queryset = queryset.filter(code__startswith=country)
+        if state := self.data.get("state"):
+            queryset = queryset.filter(code=state)
+        return queryset
 
-    def clean_observer(self):
-        if identifier := self.cleaned_data["observer"]:
-            if not is_observer_code(identifier):
-                raise forms.ValidationError(INVALID_OBSERVER_CODE)
-            if not Observer.objects.filter(identifier=identifier).exists():
-                raise forms.ValidationError(INVALID_OBSERVER_CODE)
-        return identifier
+    def get_county_choices(self):
+        queryset = County.objects.all().values_list("code", "name")
+        if country := self.data.get("country"):
+            queryset = queryset.filter(code__startswith=country)
+        if state := self.data.get("state"):
+            queryset = queryset.filter(code__startswith=state)
+        if county := self.data.get("county"):
+            queryset = queryset.filter(code=county)
+        return queryset
+
+    def get_location_choices(self):
+        queryset = Location.objects.all().values_list("identifier", "name")
+        if country := self.data.get("country"):
+            queryset = queryset.filter(country__code=country)
+        if state := self.data.get("state"):
+            queryset = queryset.filter(state__code=state)
+        if county := self.data.get("county"):
+            queryset = queryset.filter(county__code=county)
+        if location := self.data.get("location"):
+            queryset = queryset.filter(identifier=location)
+        return queryset
+
+    def get_observer_choices(self):
+        queryset = Observer.objects.all().values_list("identifier", "name")
+        if observer := self.data.get("observer"):
+            queryset = queryset.filter(identifier=observer)
+        return queryset
 
     def clean(self):
         start = self.cleaned_data.get("start")
