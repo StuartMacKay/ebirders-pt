@@ -1,4 +1,5 @@
 from django import forms
+from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 
 from dal import autocomplete
@@ -144,3 +145,28 @@ class ChecklistFilterForm(forms.Form):
 
         if start and finish and start > finish:
             self.add_error("start", DATES_SWAPPED)
+
+    def get_filters(self):
+        filters = Q()
+        if country := self.cleaned_data.get("country"):
+            filters &= Q(country__code=country)
+        if state := self.cleaned_data.get("state"):
+            filters &= Q(state__code=state)
+        if county := self.cleaned_data.get("county"):
+            filters &= Q(county__code=county)
+        if location := self.cleaned_data.get("location"):
+            filters &= Q(location__identifier=location)
+        if observer := self.cleaned_data.get("observer"):
+            filters &= Q(observer__identifier=observer)
+        if start := self.cleaned_data.get("start"):
+            filters &= Q(date__gte=start)
+        if finish := self.cleaned_data.get("finish"):
+            filters &= Q(date__lte=finish)
+        if hotspot := self.cleaned_data.get("hotspot"):
+            filters &= Q(location__hotspot=hotspot)
+        return filters
+
+    def get_ordering(self):
+        if order := self.cleaned_data.get("order"):
+            return (order,)
+        return ("-started",)
