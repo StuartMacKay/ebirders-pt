@@ -74,6 +74,11 @@ def species(db_no_rollback):
 
 
 @pytest.fixture
+def category(db_no_rollback):
+    return random.choice(["species", "issf", "domestic", "hybrid"])
+
+
+@pytest.fixture
 def checklist(db_no_rollback):
     return random.choice(list(Checklist.objects.all()))
 

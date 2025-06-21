@@ -1,38 +1,56 @@
 from django.conf import settings
-from django.db.models import OuterRef, Q, Subquery
-from django.urls import reverse
+from django.urls import reverse_lazy
+from django.utils import translation
+from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
-from django.utils.translation import override
-from django.views import generic
 
-from django_filters.views import FilterView
-from ebird.codes.locations import is_country_code, is_county_code, is_state_code
+from data.models import Country, Observation
+from data.views import FilteredListView
 
-from data.models import Country, County, Observation, Species, State
-from species.filters import SpeciesFilter
+from .forms import SpeciesFilterForm
 
 
-class SpeciesView(FilterView):
+class SpeciesView(FilteredListView):
+    form_class = SpeciesFilterForm
     model = Observation
-    filterset_class = SpeciesFilter
     template_name = "species/list.html"
+    url = reverse_lazy("species:list")
+
+    def get_url(self):
+        return self.url
+
+    @cached_property
+    def show_country(self):
+        return Country.objects.all().count() > 1
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["show_country"] = self.show_country
+        return kwargs
+
+    def get_related(self):  # noqa
+        return [
+            "checklist",
+            "country",
+            "state",
+            "county",
+            "location",
+            "observer",
+            "species",
+        ]
 
     def get_queryset(self):
-        related = ["checklist", "country", "state", "county", "location", "observer", "species"]
-        queryset = super().get_queryset().select_related(*related)
-        filtered_queryset = self.filterset_class(self.request.GET, queryset).qs
-        return filtered_queryset
+        return super().get_queryset().distinct("species")
 
-    @staticmethod
-    def get_translations():
+    def get_translated_urls(self):
         urls = []
         for code, name in settings.LANGUAGES:
-            with override(code):
-                urls.append((reverse("species:list"), name))
+            with translation.override(code):
+                urls.append((self.get_url(), name))
         return urls
 
     def get_species_list_title(self):
-        if category := self.filterset.data.get("category"):
+        if category := self.form.data.get("category"):
             if category == "species":
                 title = _("No. of Species")
             elif category == "issf":
@@ -49,8 +67,10 @@ class SpeciesView(FilterView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["show_country"] = Country.objects.all().count() > 1
-        context["translations"] = self.get_translations()
+        context["show_country"] = self.show_country
+        context["translations"] = self.get_translated_urls()
         context["species_list_title"] = self.get_species_list_title()
-        context["species_list"] = sorted(list(context["object_list"]), key=lambda obj: obj.species.taxon_order)
+        context["species_list"] = sorted(
+            list(context["object_list"]), key=lambda obj: obj.species.taxon_order
+        )
         return context

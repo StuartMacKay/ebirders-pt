@@ -2,12 +2,14 @@ from django import forms
 from django.db.models import Q
 
 from data.forms import (
+    CategoryFilter,
     ChecklistOrder,
     DateRangeFilter,
     HotspotFilter,
     LocationFilter,
     ObservationOrder,
     ObserverFilter,
+    SeenOrder,
 )
 
 
@@ -52,6 +54,15 @@ class HotspotForm(HotspotFilter, forms.Form):
         return HotspotFilter.get_filters(self)
 
 
+class CategoryForm(HotspotFilter, forms.Form):
+    def __init__(self, *args, **kwargs):
+        forms.Form.__init__(self, *args, **kwargs)
+        CategoryFilter.__init__(self)
+
+    def get_filters(self):
+        return CategoryFilter.get_filters(self)
+
+
 class ChecklistOrderForm(ChecklistOrder, forms.Form):
     def __init__(self, *args, **kwargs):
         forms.Form.__init__(self, *args, **kwargs)
@@ -68,6 +79,15 @@ class ObservationOrderForm(ObservationOrder, forms.Form):
 
     def get_ordering(self):
         return ObservationOrder.get_ordering(self)
+
+
+class SeenOrderForm(ObservationOrder, forms.Form):
+    def __init__(self, *args, **kwargs):
+        forms.Form.__init__(self, *args, **kwargs)
+        SeenOrder.__init__(self)
+
+    def get_ordering(self):
+        return SeenOrder.get_ordering(self)
 
 
 def test_country_field__with_valid_code__form_is_valid(country):
@@ -349,5 +369,23 @@ def test_observation_order_field__ordering_set(db_no_rollback):
 
 def test_observation_order_field__invalid_order__field_error_reported(db_no_rollback):
     form = ObservationOrderForm(data={"order": "-coun"})
+    form.is_valid()
+    assert "order" in form.errors
+
+
+def test_seen_order_field__default_order(db_no_rollback):
+    form = SeenOrderForm(data={})
+    form.is_valid()
+    assert ("species", "date") == form.get_ordering()
+
+
+def test_seen_order_field__ordering_set(db_no_rollback):
+    form = SeenOrderForm(data={"order": "-seen"})
+    form.is_valid()
+    assert ("species", "-date") == form.get_ordering()
+
+
+def test_seen_order_field__invalid_order__field_error_reported(db_no_rollback):
+    form = SeenOrderForm(data={"order": "-see"})
     form.is_valid()
     assert "order" in form.errors

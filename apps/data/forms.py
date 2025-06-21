@@ -245,6 +245,27 @@ class HotspotFilter:
         return filters
 
 
+class CategoryFilter:
+    def __init__(self):
+        getattr(self, "fields")["category"] = forms.ChoiceField(
+            label=_("Category"),
+            choices=(
+                ("species", _("Species")),
+                ("issf", _("Subspecies")),
+                ("domestic", _("Domestic")),
+                ("hybrid", _("Hybrid")),
+            ),
+            required=False,
+            widget=forms.Select(attrs={"class": "form-control"}),
+        )
+
+    def get_filters(self):
+        filters = Q()
+        if category := getattr(self, "cleaned_data").get("category"):
+            filters &= Q(species__category=category)
+        return filters
+
+
 class ChecklistOrder:
     def __init__(self):
         getattr(self, "fields")["order"] = forms.ChoiceField(
@@ -281,3 +302,22 @@ class ObservationOrder:
         if order := getattr(self, "cleaned_data").get("order"):
             return (order,)
         return ("-started",)
+
+
+class SeenOrder:
+    def __init__(self):
+        getattr(self, "fields")["order"] = forms.ChoiceField(
+            label=_("Ordering"),
+            choices=(
+                ("seen", _("First Seen")),
+                ("-seen", _("Last Seen")),
+            ),
+            required=False,
+            widget=forms.Select(attrs={"class": "form-control"}),
+        )
+
+    def get_ordering(self):
+        if order := getattr(self, "cleaned_data").get("order"):
+            if order == "-seen":
+                return ("species", "-date")
+        return ("species", "date")
