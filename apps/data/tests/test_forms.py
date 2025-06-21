@@ -6,6 +6,7 @@ from data.forms import (
     DateRangeFilter,
     HotspotFilter,
     LocationFilter,
+    ObservationOrder,
     ObserverFilter,
 )
 
@@ -51,13 +52,22 @@ class HotspotForm(HotspotFilter, forms.Form):
         return HotspotFilter.get_filters(self)
 
 
-class OrderForm(ChecklistOrder, forms.Form):
+class ChecklistOrderForm(ChecklistOrder, forms.Form):
     def __init__(self, *args, **kwargs):
         forms.Form.__init__(self, *args, **kwargs)
         ChecklistOrder.__init__(self)
 
     def get_ordering(self):
         return ChecklistOrder.get_ordering(self)
+
+
+class ObservationOrderForm(ObservationOrder, forms.Form):
+    def __init__(self, *args, **kwargs):
+        forms.Form.__init__(self, *args, **kwargs)
+        ObservationOrder.__init__(self)
+
+    def get_ordering(self):
+        return ObservationOrder.get_ordering(self)
 
 
 def test_country_field__with_valid_code__form_is_valid(country):
@@ -307,19 +317,37 @@ def test_hotspot_field__with_valid_data__filter_is_defined(db_no_rollback):
     assert Q(location__hotspot="True") == form.get_filters()
 
 
-def test_order_field__default_order(db_no_rollback):
-    form = OrderForm(data={})
+def test_checklist_order_field__default_order(db_no_rollback):
+    form = ChecklistOrderForm(data={})
     form.is_valid()
     assert "-started" in form.get_ordering()
 
 
-def test_order_field__ordering_set(db_no_rollback):
-    form = OrderForm(data={"order": "-species_count"})
+def test_checklist_order_field__ordering_set(db_no_rollback):
+    form = ChecklistOrderForm(data={"order": "-species_count"})
     form.is_valid()
     assert "-species_count" in form.get_ordering()
 
 
-def test_order_field__invalid_order__field_error_reported(db_no_rollback):
-    form = OrderForm(data={"order": "-species_coun"})
+def test_checklist_order_field__invalid_order__field_error_reported(db_no_rollback):
+    form = ChecklistOrderForm(data={"order": "-species_coun"})
+    form.is_valid()
+    assert "order" in form.errors
+
+
+def test_observation_order_field__default_order(db_no_rollback):
+    form = ObservationOrderForm(data={})
+    form.is_valid()
+    assert "-started" in form.get_ordering()
+
+
+def test_observation_order_field__ordering_set(db_no_rollback):
+    form = ObservationOrderForm(data={"order": "-count"})
+    form.is_valid()
+    assert "-count" in form.get_ordering()
+
+
+def test_observation_order_field__invalid_order__field_error_reported(db_no_rollback):
+    form = ObservationOrderForm(data={"order": "-coun"})
     form.is_valid()
     assert "order" in form.errors

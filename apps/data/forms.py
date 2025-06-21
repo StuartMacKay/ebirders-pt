@@ -1,10 +1,13 @@
+import json
+
 from django import forms
 from django.db.models import Q
+from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 
 from dal import autocomplete
 
-from data.models import Country, County, Location, Observer, State
+from data.models import Country, County, Location, Observer, Species, State
 
 
 class LocationFilter:
@@ -134,6 +137,61 @@ class ObserverFilter:
         return filters
 
 
+class SpeciesFilter:
+    def __init__(self):
+        getattr(self, "fields")["species"] = forms.ChoiceField(
+            label=_("Species"),
+            choices=self.get_species_choices(),
+            required=False,
+            widget=autocomplete.Select2(
+                url="data:species",
+                attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+            ),
+        )
+
+    def get_species_choices(self):
+        if param := getattr(self, "data").get("species"):
+            if param[0] == "_":
+                field = "scientific_name"
+                code = param[1:]
+            else:
+                field = "common_name"
+                code = param
+
+            choice = (
+                Species.objects.filter(species_code=code)
+                .values_list("species_code", field)
+                .first()
+            )
+
+            if choice:
+                if param[0] == "_":
+                    choice = ("_%s" % choice[0], choice[1])
+                else:
+                    choice = (choice[0], json.loads(choice[1])[get_language()])
+                choices = [choice]
+            else:
+                choices = []
+        else:
+            queryset = Species.objects.all().values_list(
+                "species_code", "common_name", "scientific_name"
+            )
+
+            choices = [
+                (item[0], json.loads(item[1])[get_language()]) for item in queryset
+            ] + [(item[0], item[2]) for item in queryset]
+
+        return choices
+
+    def get_filters(self):
+        filters = Q()
+        if species := getattr(self, "cleaned_data").get("species"):
+            if species[0] == "_":
+                species = species[1:]
+            filters &= Q(species__species_code=species)
+        return filters
+
+
 class DateRangeFilter:
     DATES_SWAPPED = _("This date is later than the until date.")
 
@@ -195,6 +253,25 @@ class ChecklistOrder:
                 ("", _("Most recent first")),
                 ("species_count", _("Number of species")),
                 ("-species_count", _("Number of species (descending)")),
+            ),
+            required=False,
+            widget=forms.Select(attrs={"class": "form-control"}),
+        )
+
+    def get_ordering(self):
+        if order := getattr(self, "cleaned_data").get("order"):
+            return (order,)
+        return ("-started",)
+
+
+class ObservationOrder:
+    def __init__(self):
+        getattr(self, "fields")["order"] = forms.ChoiceField(
+            label=_("Ordering"),
+            choices=(
+                ("", _("Most recent first")),
+                ("count", _("Count")),
+                ("-count", _("Count (descending)")),
             ),
             required=False,
             widget=forms.Select(attrs={"class": "form-control"}),

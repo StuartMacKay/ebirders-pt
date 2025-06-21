@@ -3,7 +3,7 @@ import random
 
 from dateutil.relativedelta import MO, relativedelta
 
-from data.models import Checklist, Country, County, Location, Observer, State
+from data.models import Checklist, Country, County, Location, Observer, Species, State
 
 import pytest
 
@@ -66,6 +66,11 @@ def location(db_no_rollback):
 @pytest.fixture
 def observer(db_no_rollback):
     return random.choice(list(Observer.objects.all()))
+
+
+@pytest.fixture
+def species(db_no_rollback):
+    return random.choice(list(Species.objects.all()))
 
 
 @pytest.fixture
