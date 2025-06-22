@@ -59,44 +59,47 @@ class LocationFilter:
         )
 
     def get_country_choices(self):
-        data = getattr(self, "data")
-        queryset = Country.objects.all().values_list("code", "name")
-        if country := data.get("country"):
-            queryset = queryset.filter(code=country)
-        return queryset
+        choices = []
+        if country := getattr(self, "data").get("country"):
+            choices = Country.objects.filter(code=country).values_list("code", "name")
+        return choices
 
     def get_state_choices(self):
         data = getattr(self, "data")
-        queryset = State.objects.all().values_list("code", "name")
-        if country := data.get("country"):
-            queryset = queryset.filter(code__startswith=country)
+        choices = []
         if state := data.get("state"):
-            queryset = queryset.filter(code=state)
-        return queryset
+            choices = State.objects.filter(code=state).values_list("code", "name")
+            if country := data.get("country"):
+                choices = choices.filter(code__startswith=country)
+        return choices
 
     def get_county_choices(self):
         data = getattr(self, "data")
-        queryset = County.objects.all().values_list("code", "name")
-        if country := data.get("country"):
-            queryset = queryset.filter(code__startswith=country)
-        if state := data.get("state"):
-            queryset = queryset.filter(code__startswith=state)
+        choices = []
         if county := data.get("county"):
-            queryset = queryset.filter(code=county)
-        return queryset
+            choices = County.objects.filter(code=county).values_list("code", "name")
+            if state := data.get("state"):
+                choices = choices.filter(code__startswith=state)
+            if country := data.get("country"):
+                choices = choices.filter(code__startswith=country)
+        return choices
 
     def get_location_choices(self):
         data = getattr(self, "data")
-        queryset = Location.objects.all().values_list("identifier", "name")
-        if country := data.get("country"):
-            queryset = queryset.filter(country__code=country)
-        if state := data.get("state"):
-            queryset = queryset.filter(state__code=state)
-        if county := data.get("county"):
-            queryset = queryset.filter(county__code=county)
+        choices = []
         if location := data.get("location"):
-            queryset = queryset.filter(identifier=location)
-        return queryset
+            choices = (
+                Location.objects.all()
+                .filter(identifier=location)
+                .values_list("identifier", "name")
+            )
+            if county := data.get("county"):
+                choices = choices.filter(county__code=county)
+            if state := data.get("state"):
+                choices = choices.filter(state__code=state)
+            if country := data.get("country"):
+                choices = choices.filter(country__code=country)
+        return choices
 
     def get_filters(self):
         cleaned_data = getattr(self, "cleaned_data")
@@ -125,10 +128,10 @@ class ObserverFilter:
         )
 
     def get_observer_choices(self):
-        queryset = Observer.objects.all().values_list("identifier", "name")
+        choices = []
         if observer := getattr(self, "data").get("observer"):
-            queryset = queryset.filter(identifier=observer)
-        return queryset
+            choices = Observer.objects.filter(identifier=observer).values_list("identifier", "name")
+        return choices
 
     def get_filters(self):
         filters = Q()
@@ -150,6 +153,7 @@ class SpeciesFilter:
         )
 
     def get_species_choices(self):
+        choices = []
         if param := getattr(self, "data").get("species"):
             if param[0] == "_":
                 field = "scientific_name"
@@ -157,30 +161,17 @@ class SpeciesFilter:
             else:
                 field = "common_name"
                 code = param
-
             choice = (
                 Species.objects.filter(species_code=code)
                 .values_list("species_code", field)
                 .first()
             )
-
             if choice:
                 if param[0] == "_":
                     choice = ("_%s" % choice[0], choice[1])
                 else:
                     choice = (choice[0], json.loads(choice[1])[get_language()])
                 choices = [choice]
-            else:
-                choices = []
-        else:
-            queryset = Species.objects.all().values_list(
-                "species_code", "common_name", "scientific_name"
-            )
-
-            choices = [
-                (item[0], json.loads(item[1])[get_language()]) for item in queryset
-            ] + [(item[0], item[2]) for item in queryset]
-
         return choices
 
     def get_filters(self):
