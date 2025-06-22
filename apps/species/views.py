@@ -4,14 +4,25 @@ from django.utils import translation
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
+from data.forms import (
+    CategoryFilter,
+    DateRangeFilter,
+    LocationFilter,
+    ObserverFilter,
+    SeenOrder,
+)
 from data.models import Country, Observation
 from data.views import FilteredListView
 
-from .forms import SpeciesFilterForm
-
 
 class SpeciesView(FilteredListView):
-    form_class = SpeciesFilterForm
+    form_classes = (
+        LocationFilter,
+        ObserverFilter,
+        DateRangeFilter,
+        CategoryFilter,
+        SeenOrder,
+    )
     model = Observation
     template_name = "species/list.html"
     url = reverse_lazy("species:list")
@@ -22,11 +33,6 @@ class SpeciesView(FilteredListView):
     @cached_property
     def show_country(self):
         return Country.objects.all().count() > 1
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs["show_country"] = self.show_country
-        return kwargs
 
     def get_related(self):  # noqa
         return [
@@ -50,7 +56,7 @@ class SpeciesView(FilteredListView):
         return urls
 
     def get_species_list_title(self):
-        if category := self.form.data.get("category"):
+        if category := self.request.GET.get("category"):
             if category == "species":
                 title = _("No. of Species")
             elif category == "issf":

@@ -5,13 +5,25 @@ from django.utils import translation
 from django.utils.functional import cached_property
 from django.views import generic
 
-from checklists.forms import ChecklistFilterForm
+from data.forms import (
+    ChecklistOrder,
+    DateRangeFilter,
+    HotspotFilter,
+    LocationFilter,
+    ObserverFilter,
+)
 from data.models import Checklist, Country
 from data.views import FilteredListView
 
 
 class ChecklistsView(FilteredListView):
-    form_class = ChecklistFilterForm
+    form_classes = (
+        LocationFilter,
+        ObserverFilter,
+        DateRangeFilter,
+        HotspotFilter,
+        ChecklistOrder,
+    )
     model = Checklist
     paginate_by = 50
     template_name = "checklists/list.html"
@@ -23,11 +35,6 @@ class ChecklistsView(FilteredListView):
     @cached_property
     def show_country(self):
         return Country.objects.all().count() > 1
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs["show_country"] = self.show_country
-        return kwargs
 
     def get_related(self):  # noqa
         return ["country", "state", "county", "location", "observer"]

@@ -1,5 +1,6 @@
 import json
 
+from django.db.models import Q
 from django.views import generic
 
 from dal import autocomplete
@@ -7,44 +8,46 @@ from dal import autocomplete
 from data.models import Country, County, Location, Observer, Species, State
 
 
-class FilteredListView(generic.list.MultipleObjectMixin, generic.FormView):
+class FilteredListView(generic.ListView):
+    form_classes = None
     related = None
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.form = None
+        self.object_list = None
+        self.forms = []
 
     def get_related(self):
         return self.related
 
     def get_ordering(self):
-        ordering = super().get_ordering()
-        if value := self.form.get_ordering():
-            ordering = value
+        ordering = []
+        for form in self.forms:
+            ordering.extend(form.get_ordering())
         return ordering
+
+    def get_filters(self):
+        filters = Q()
+        for form in self.forms:
+            filters &= form.get_filters()
+        return filters
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        if filters := self.form.get_filters():
-            queryset = queryset.filter(filters)
-        if related := self.get_related():
-            queryset = queryset.select_related(*related)
+        queryset = queryset.filter(self.get_filters())
+        queryset = queryset.select_related(*self.get_related())
         return queryset
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs["data"] = self.request.GET
-        return kwargs
-
-    def get_form(self, form_class=None):
-        form = super().get_form(form_class=form_class)
-        form.is_valid()
-        return form
+    def get_forms(self, form_class=None):
+        forms = [klass(data=self.request.GET) for klass in self.form_classes]
+        for form in forms:
+            form.is_valid()
+        return forms
 
     def get(self, request, *args, **kwargs):
-        self.form = self.get_form()
-        objects = self.get_queryset()
-        context = self.get_context_data(object_list=objects, form=self.form)
+        self.forms = self.get_forms()
+        self.object_list = self.get_queryset()
+        context = self.get_context_data(forms=self.forms)
         return self.render_to_response(context)
 
 

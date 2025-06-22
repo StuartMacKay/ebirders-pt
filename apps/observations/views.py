@@ -3,14 +3,25 @@ from django.urls import reverse_lazy
 from django.utils import translation
 from django.utils.functional import cached_property
 
+from data.forms import (
+    DateRangeFilter,
+    LocationFilter,
+    ObservationOrder,
+    ObserverFilter,
+    SpeciesFilter,
+)
 from data.models import Country, Observation
 from data.views import FilteredListView
 
-from .forms import ObservationFilterForm
-
 
 class ObservationsView(FilteredListView):
-    form_class = ObservationFilterForm
+    form_classes = (
+        LocationFilter,
+        ObserverFilter,
+        DateRangeFilter,
+        SpeciesFilter,
+        ObservationOrder,
+    )
     model = Observation
     template_name = "observations/list.html"
     paginate_by = 100
@@ -22,11 +33,6 @@ class ObservationsView(FilteredListView):
     @cached_property
     def show_country(self):
         return Country.objects.all().count() > 1
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs["show_country"] = self.show_country
-        return kwargs
 
     def get_related(self):  # noqa
         return ["country", "state", "county", "location", "observer", "species"]

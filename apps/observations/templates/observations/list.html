@@ -15,7 +15,9 @@
 {% block javascript %}
   {{ block.super }}
   <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
-  {{ form.media.js }}
+  {% for form in forms %}
+    {{ form.media.js }}
+  {% endfor %}
   <script>
     $(document).ready(function() {
       $(':input[name$=country]').on('change', function() {

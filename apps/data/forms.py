@@ -10,151 +10,158 @@ from dal import autocomplete
 from data.models import Country, County, Location, Observer, Species, State
 
 
-class LocationFilter:
-    def __init__(self, show_country):
-        fields = getattr(self, "fields")
+class LocationFilter(forms.Form):
+    country = forms.ChoiceField(
+        label=_("Country"),
+        required=False,
+        widget=autocomplete.Select2(
+            url="data:countries",
+            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+        ),
+    )
+    state = forms.ChoiceField(
+        label=_("State"),
+        required=False,
+        widget=autocomplete.Select2(
+            url="data:states",
+            forward=["country"],
+            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+        ),
+    )
 
-        if show_country:
-            fields["country"] = forms.ChoiceField(
-                label=_("Country"),
-                choices=self.get_country_choices(),
-                required=False,
-                widget=autocomplete.Select2(
-                    url="data:countries",
-                    attrs={"class": "form-select", "data-theme": "bootstrap-5"},
-                ),
-            )
+    county = forms.ChoiceField(
+        label=_("County"),
+        required=False,
+        widget=autocomplete.Select2(
+            url="data:counties",
+            forward=["state"],
+            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+        ),
+    )
 
-        fields["state"] = forms.ChoiceField(
-            label=_("State"),
-            choices=self.get_state_choices(),
-            required=False,
-            widget=autocomplete.Select2(
-                url="data:states",
-                forward=["country"],
-                attrs={"class": "form-select", "data-theme": "bootstrap-5"},
-            ),
-        )
+    location= forms.ChoiceField(
+        label=_("Location"),
+        required=False,
+        widget=autocomplete.Select2(
+            url="data:locations",
+            forward=["county"],
+            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+        ),
+    )
 
-        fields["county"] = forms.ChoiceField(
-            label=_("County"),
-            choices=self.get_county_choices(),
-            required=False,
-            widget=autocomplete.Select2(
-                url="data:counties",
-                forward=["state"],
-                attrs={"class": "form-select", "data-theme": "bootstrap-5"},
-            ),
-        )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.is_bound:
+            self.fields["county"].choices = self.get_country_choice()
+            self.fields["state"].choices = self.get_state_choice()
+            self.fields["county"].choices = self.get_county_choice()
+            self.fields["location"].choices = self.get_location_choice()
 
-        fields["location"] = forms.ChoiceField(
-            label=_("Location"),
-            choices=self.get_location_choices(),
-            required=False,
-            widget=autocomplete.Select2(
-                url="data:locations",
-                forward=["county"],
-                attrs={"class": "form-select", "data-theme": "bootstrap-5"},
-            ),
-        )
-
-    def get_country_choices(self):
+    def get_country_choice(self):
         choices = []
-        if country := getattr(self, "data").get("country"):
+        if country := self.data.get("country"):
             choices = Country.objects.filter(code=country).values_list("code", "name")
         return choices
 
-    def get_state_choices(self):
-        data = getattr(self, "data")
+    def get_state_choice(self):
         choices = []
-        if state := data.get("state"):
+        if state := self.data.get("state"):
             choices = State.objects.filter(code=state).values_list("code", "name")
-            if country := data.get("country"):
+            if country := self.data.get("country"):
                 choices = choices.filter(code__startswith=country)
         return choices
 
-    def get_county_choices(self):
-        data = getattr(self, "data")
+    def get_county_choice(self):
         choices = []
-        if county := data.get("county"):
+        if county := self.data.get("county"):
             choices = County.objects.filter(code=county).values_list("code", "name")
-            if state := data.get("state"):
+            if state := self.data.get("state"):
                 choices = choices.filter(code__startswith=state)
-            if country := data.get("country"):
+            if country := self.data.get("country"):
                 choices = choices.filter(code__startswith=country)
         return choices
 
-    def get_location_choices(self):
-        data = getattr(self, "data")
+    def get_location_choice(self):
         choices = []
-        if location := data.get("location"):
+        if location := self.data.get("location"):
             choices = (
                 Location.objects.all()
                 .filter(identifier=location)
                 .values_list("identifier", "name")
             )
-            if county := data.get("county"):
+            if county := self.data.get("county"):
                 choices = choices.filter(county__code=county)
-            if state := data.get("state"):
+            if state := self.data.get("state"):
                 choices = choices.filter(state__code=state)
-            if country := data.get("country"):
+            if country := self.data.get("country"):
                 choices = choices.filter(country__code=country)
         return choices
 
     def get_filters(self):
-        cleaned_data = getattr(self, "cleaned_data")
         filters = Q()
-        if country := cleaned_data.get("country"):
+        if country := self.cleaned_data.get("country"):
             filters &= Q(country__code=country)
-        if state := cleaned_data.get("state"):
+        if state := self.cleaned_data.get("state"):
             filters &= Q(state__code=state)
-        if county := cleaned_data.get("county"):
+        if county := self.cleaned_data.get("county"):
             filters &= Q(county__code=county)
-        if location := cleaned_data.get("location"):
+        if location := self.cleaned_data.get("location"):
             filters &= Q(location__identifier=location)
         return filters
 
+    def get_ordering(self):
+        return []
 
-class ObserverFilter:
-    def __init__(self):
-        getattr(self, "fields")["observer"] = forms.ChoiceField(
-            label=_("Observer"),
-            choices=self.get_observer_choices(),
-            required=False,
-            widget=autocomplete.Select2(
-                url="data:observers",
-                attrs={"class": "form-select", "data-theme": "bootstrap-5"},
-            ),
-        )
 
-    def get_observer_choices(self):
+class ObserverFilter(forms.Form):
+    observer = forms.ChoiceField(
+        label=_("Observer"),
+        required=False,
+        widget=autocomplete.Select2(
+            url="data:observers",
+            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+        ),
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.is_bound:
+            self.fields["observer"].choices = self.get_observer_choice()
+
+    def get_observer_choice(self):
         choices = []
-        if observer := getattr(self, "data").get("observer"):
+        if observer := self.data.get("observer"):
             choices = Observer.objects.filter(identifier=observer).values_list("identifier", "name")
         return choices
 
     def get_filters(self):
         filters = Q()
-        if observer := getattr(self, "cleaned_data").get("observer"):
+        if observer := self.cleaned_data.get("observer"):
             filters &= Q(observer__identifier=observer)
         return filters
 
+    def get_ordering(self):
+        return []
 
-class SpeciesFilter:
-    def __init__(self):
-        getattr(self, "fields")["species"] = forms.ChoiceField(
-            label=_("Species"),
-            choices=self.get_species_choices(),
-            required=False,
-            widget=autocomplete.Select2(
-                url="data:species",
-                attrs={"class": "form-select", "data-theme": "bootstrap-5"},
-            ),
-        )
 
-    def get_species_choices(self):
+class SpeciesFilter(forms.Form):
+    species = forms.ChoiceField(
+        label=_("Species"),
+        required=False,
+        widget=autocomplete.Select2(
+            url="data:species",
+            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+        ),
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.is_bound:
+            self.fields["species"].choices = self.get_species_choice()
+
+    def get_species_choice(self):
         choices = []
-        if param := getattr(self, "data").get("species"):
+        if param := self.data.get("species"):
             if param[0] == "_":
                 field = "scientific_name"
                 code = param[1:]
@@ -176,139 +183,151 @@ class SpeciesFilter:
 
     def get_filters(self):
         filters = Q()
-        if species := getattr(self, "cleaned_data").get("species"):
+        if species := self.cleaned_data.get("species"):
             if species[0] == "_":
                 species = species[1:]
             filters &= Q(species__species_code=species)
         return filters
 
+    def get_ordering(self):
+        return []
 
-class DateRangeFilter:
+
+class DateRangeFilter(forms.Form):
     DATES_SWAPPED = _("This date is later than the until date.")
 
-    def __init__(self):
-        fields = getattr(self, "fields")
-        fields["start"] = forms.DateField(
-            label=_("From"),
-            required=False,
-            widget=forms.DateInput(attrs={"type": "date", "class": "form-control"}),
-        )
-        fields["finish"] = forms.DateField(
-            label=_("Until"),
-            required=False,
-            widget=forms.DateInput(attrs={"type": "date", "class": "form-control"}),
-        )
+    start = forms.DateField(
+        label=_("From"),
+        required=False,
+        widget=forms.DateInput(attrs={"type": "date", "class": "form-control"}),
+    )
+    finish = forms.DateField(
+        label=_("Until"),
+        required=False,
+        widget=forms.DateInput(attrs={"type": "date", "class": "form-control"}),
+    )
 
     def clean(self):
-        cleaned_data = getattr(self, "cleaned_data")
-        start = cleaned_data.get("start")
-        finish = cleaned_data.get("finish")
+        start = self.cleaned_data.get("start")
+        finish = self.cleaned_data.get("finish")
 
         if start and finish and start > finish:
-            getattr(self, "add_error")("start", self.DATES_SWAPPED)
+            self.add_error("start", self.DATES_SWAPPED)
 
     def get_filters(self):
-        cleaned_data = getattr(self, "cleaned_data")
         filters = Q()
-        if start := cleaned_data.get("start"):
+        if start := self.cleaned_data.get("start"):
             filters &= Q(date__gte=start)
-        if finish := cleaned_data.get("finish"):
+        if finish := self.cleaned_data.get("finish"):
             filters &= Q(date__lte=finish)
         return filters
 
+    def get_ordering(self):
+        return []
 
-class HotspotFilter:
-    def __init__(self):
-        getattr(self, "fields")["hotspot"] = forms.ChoiceField(
-            label=_("Hotspots only"),
-            choices=(
-                ("", _("No")),
-                ("True", _("Yes")),
-            ),
-            required=False,
-            widget=forms.Select(attrs={"class": "form-control"}),
-        )
+
+class HotspotFilter(forms.Form):
+    hotspot = forms.ChoiceField(
+        label=_("Hotspots only"),
+        choices=(
+            ("", _("No")),
+            ("True", _("Yes")),
+        ),
+        required=False,
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
 
     def get_filters(self):
         filters = Q()
-        if hotspot := getattr(self, "cleaned_data").get("hotspot"):
+        if hotspot := self.cleaned_data.get("hotspot"):
             filters &= Q(location__hotspot=hotspot)
         return filters
 
+    def get_ordering(self):
+        return []
 
-class CategoryFilter:
-    def __init__(self):
-        getattr(self, "fields")["category"] = forms.ChoiceField(
-            label=_("Category"),
-            choices=(
-                ("species", _("Species")),
-                ("issf", _("Subspecies")),
-                ("domestic", _("Domestic")),
-                ("hybrid", _("Hybrid")),
-            ),
-            required=False,
-            widget=forms.Select(attrs={"class": "form-control"}),
-        )
+
+class CategoryFilter(forms.Form):
+    category = forms.ChoiceField(
+        label=_("Category"),
+        choices=(
+            ("species", _("Species")),
+            ("issf", _("Subspecies")),
+            ("domestic", _("Domestic")),
+            ("hybrid", _("Hybrid")),
+        ),
+        required=False,
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
 
     def get_filters(self):
         filters = Q()
-        if category := getattr(self, "cleaned_data").get("category"):
+        if category := self.cleaned_data.get("category"):
             filters &= Q(species__category=category)
         return filters
 
+    def get_ordering(self):
+        return []
 
-class ChecklistOrder:
-    def __init__(self):
-        getattr(self, "fields")["order"] = forms.ChoiceField(
-            label=_("Ordering"),
-            choices=(
-                ("", _("Most recent first")),
-                ("species_count", _("Number of species")),
-                ("-species_count", _("Number of species (descending)")),
-            ),
-            required=False,
-            widget=forms.Select(attrs={"class": "form-control"}),
-        )
+
+class ChecklistOrder(forms.Form):
+    order = forms.ChoiceField(
+        label=_("Ordering"),
+        choices=(
+            ("", _("Most recent first")),
+            ("species_count", _("Number of species")),
+            ("-species_count", _("Number of species (descending)")),
+        ),
+        required=False,
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
+
+    def get_filters(self):
+        return Q()
 
     def get_ordering(self):
-        if order := getattr(self, "cleaned_data").get("order"):
+        if order := self.cleaned_data.get("order"):
             return (order,)
         return ("-started",)
 
 
-class ObservationOrder:
-    def __init__(self):
-        getattr(self, "fields")["order"] = forms.ChoiceField(
-            label=_("Ordering"),
-            choices=(
-                ("", _("Most recent first")),
-                ("count", _("Count")),
-                ("-count", _("Count (descending)")),
-            ),
-            required=False,
-            widget=forms.Select(attrs={"class": "form-control"}),
-        )
+class ObservationOrder(forms.Form):
+    order = forms.ChoiceField(
+        label=_("Ordering"),
+        choices=(
+            ("", _("Most recent first")),
+            ("count", _("Count")),
+            ("-count", _("Count (descending)")),
+        ),
+        required=False,
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
+
+    def get_filters(self):
+        return Q()
 
     def get_ordering(self):
-        if order := getattr(self, "cleaned_data").get("order"):
+        if order := self.cleaned_data.get("order"):
             return (order,)
         return ("-started",)
 
 
-class SeenOrder:
-    def __init__(self):
-        getattr(self, "fields")["order"] = forms.ChoiceField(
-            label=_("Ordering"),
-            choices=(
-                ("seen", _("First Seen")),
-                ("-seen", _("Last Seen")),
-            ),
-            required=False,
-            widget=forms.Select(attrs={"class": "form-control"}),
-        )
+class SeenOrder(forms.Form):
+    order = forms.ChoiceField(
+        label=_("Ordering"),
+        choices=(
+            ("seen", _("First Seen")),
+            ("-seen", _("Last Seen")),
+        ),
+        required=False,
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
+
+    def get_filters(self):
+        return Q()
 
     def get_ordering(self):
-        if order := getattr(self, "cleaned_data").get("order"):
+        if order := self.cleaned_data.get("order"):
             if order == "-seen":
-                return ("species", "-date")
-        return ("species", "date")
+                return "species", "-date"
+        return "species", "date"
