@@ -41,14 +41,14 @@
           </div>
           <div class="col-lg-4 col-xl-4">
             <a class="dark-link"
-               href="?location={{ checklist.location.identifier }}&search={{ checklist.location|urlencode }}"
+               href="?location={{ checklist.location.identifier }}"
                title="{% trans 'Show checklists for this location' %}">{{ checklist.location.display_name }}</a>
             <br/>
             {% spaceless %}
               {% if checklist.county %}
                 <small class="text-muted">
                   <a class="dark-link"
-                     href="?county={{ checklist.county.code }}&search={{ checklist.county|urlencode }}"
+                     href="?county={{ checklist.county.code }}"
                      title="{% trans 'Show checklists for this county' %}">{{ checklist.county.name }}</a>
                 </small>
               {% endif %}
@@ -56,7 +56,7 @@
                 <small class="text-muted">
                   {% if checklist.county %}<span>, </span>{% endif %}
                   <a class="dark-link"
-                     href="?state={{ checklist.state.code }}&search={{ checklist.state|urlencode }}"
+                     href="?state={{ checklist.state.code }}"
                      title="{% trans 'Show checklists for this state' %}">{{ checklist.state.name }}</a>
                 </small>
               {% endif %}
@@ -64,7 +64,7 @@
                 <small class="text-muted">
                   <span>, </span>
                   <a class="dark-link"
-                     href="?country={{ checklist.country.code }}&search={{ checklist.country|urlencode }}"
+                     href="?country={{ checklist.country.code }}"
                      title="{% trans 'Show checklists for this country' %}">{{ checklist.country }}</a>
                 </small>
               {% endif %}
@@ -72,7 +72,7 @@
           </div>
           <div class="col-lg-2 col-xl-2">
             <a class="dark-link"
-               href="?observer={{ checklist.observer.identifier }}&search={{ checklist.observer|urlencode }}"
+               href="?observer={{ checklist.observer.identifier }}"
                title="{% trans 'Show checklists for this observer' %}">{{ checklist.observer }}</a>
           </div>
           <div class="col-lg-2 col-xl-2 text-md-end">
