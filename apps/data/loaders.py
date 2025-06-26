@@ -252,6 +252,7 @@ class APILoader:
 
         values: dict = {
             "edited": checklist.edited,
+            "published": True,
             "checklist": checklist,
             "country": checklist.country,
             "state": checklist.state,
@@ -339,6 +340,7 @@ class APILoader:
             values: dict = {
                 "created": created,
                 "edited": edited,
+                "published": True,
                 "country": location.country,
                 "state": location.state,
                 "county": location.county,

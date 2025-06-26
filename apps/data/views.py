@@ -27,7 +27,7 @@ class FilteredListView(generic.ListView):
         return ordering
 
     def get_filters(self):
-        filters = Q()
+        filters = Q(published=True)
         for form in self.forms:
             filters &= form.get_filters()
         return filters

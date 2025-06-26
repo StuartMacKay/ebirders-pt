@@ -23,6 +23,11 @@ class Observation(models.Model):
         verbose_name=_("edited"),
     )
 
+    published = models.BooleanField(
+        help_text=_("Is the observation published?"),
+        verbose_name=_("published"),
+    )
+
     identifier = models.TextField(
         unique=True,
         verbose_name=_("identifier"),

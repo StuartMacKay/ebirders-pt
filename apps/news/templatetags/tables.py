@@ -11,7 +11,7 @@ register = template.Library()
 
 @register.inclusion_tag("news/tables/big-lists.html")
 def big_lists_table(country_id, state_id, county_id, start, end, show_country):
-    queryset = Checklist.objects.filter(date__gte=start, date__lte=end)
+    queryset = Checklist.objects.filter(published=True, date__gte=start, date__lte=end)
 
     if country_id:
         queryset = queryset.filter(country_id=country_id)
@@ -35,7 +35,7 @@ def big_lists_table(country_id, state_id, county_id, start, end, show_country):
 
 @register.inclusion_tag("news/tables/checklists-submitted.html")
 def checklists_submitted_table(country_id, state_id, county_id, start, end):
-    queryset = Checklist.objects.filter(date__gte=start, date__lte=end)
+    queryset = Checklist.objects.filter(published=True, date__gte=start, date__lte=end)
 
     if country_id:
         queryset = queryset.filter(country_id=country_id)
@@ -58,7 +58,7 @@ def checklists_submitted_table(country_id, state_id, county_id, start, end):
 
 @register.inclusion_tag("news/tables/checklists-duration.html")
 def checklists_duration_table(country_id, state_id, county_id, start, end):
-    queryset = Checklist.objects.filter(date__gte=start, date__lte=end)
+    queryset = Checklist.objects.filter(published=True, date__gte=start, date__lte=end)
 
     if country_id:
         queryset = queryset.filter(country_id=country_id)
@@ -122,7 +122,8 @@ def checklists_species_table(country_id, state_id, county_id, start, end, interv
 @register.inclusion_tag("news/tables/yearlist.html", takes_context=True)
 def yearlist_table(context):
     filters = (
-        Q(species__category="species")
+        Q(published=True)
+        & Q(species__category="species")
         & Q(date__gte=context["start_year"])
         & Q(date__lte=context["end_year"])
     )
@@ -181,6 +182,7 @@ def big_days_table(country_id, state_id, county_id, start, end):
         Observation.objects.values("observer__identifier", "date")
         .annotate(name=F("observer__name"))
         .annotate(species_count=Count("species", distinct=True))
+        .filter(published=True)
         .filter(date__gte=start, date__lte=end)
         .filter(species__category="species")
     )
@@ -202,7 +204,7 @@ def big_days_table(country_id, state_id, county_id, start, end):
 
 @register.inclusion_tag("news/tables/high-counts.html", takes_context=True)
 def high_counts_table(context):
-    filters = Q()
+    filters = Q(published=True)
 
     if context.get("country"):
         filters &= Q(country_id=context["country"])

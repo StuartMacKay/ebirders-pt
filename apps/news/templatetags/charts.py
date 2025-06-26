@@ -24,12 +24,14 @@ def protocol_pie_chart():
         ("P22", _("Traveling")),
     ):
         data.append(
-            Checklist.objects.filter(date__gt=one_week_ago, protocol_code=code).count()
+            Checklist.objects.filter(
+                published=True, date__gt=one_week_ago, protocol_code=code
+            ).count()
         )
         labels.append(label)
 
     if (
-        other := Checklist.objects.filter(date__gt=one_week_ago)
+        other := Checklist.objects.filter(published=True, date__gt=one_week_ago)
         .exclude(protocol_code__in=["P20", "P21", "P22"])
         .count()
     ):
@@ -41,7 +43,7 @@ def protocol_pie_chart():
 
 @register.inclusion_tag("news/charts/checklist-species.html")
 def checklist_species_chart(country_id, state_id, county_id, start, end):
-    queryset = Checklist.objects.filter(date__gte=start, date__lte=end)
+    queryset = Checklist.objects.filter(published=True, date__gte=start, date__lte=end)
 
     with connection.cursor() as cursor:
         if country_id:
