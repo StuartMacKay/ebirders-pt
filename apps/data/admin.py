@@ -189,6 +189,7 @@ class ChangeSpeciesForm(forms.Form):
 
 class ObservationForm(ModelForm):
     reason = TranslationTextField(required=False)
+    decision = TranslationTextField(required=False)
 
     class Meta:
         fields = "__all__"
@@ -196,6 +197,7 @@ class ObservationForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["reason"].widget.attrs.update({"rows": 2})
+        self.fields["decision"].widget.attrs.update({"rows": 2})
 
 
 @admin.register(models.Observation)
@@ -231,8 +233,9 @@ class ObservationAdmin(admin.ModelAdmin):
         "observer",
         "edited",
         "approved",
-        "reviewed",
         "reason",
+        "reviewed",
+        "decision",
         "data",
     )
     actions = ["change_species"]

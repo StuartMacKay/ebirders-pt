@@ -146,6 +146,14 @@ class Observation(models.Model):
         ),
     )
 
+    decision = models.TextField(
+        blank=True,
+        verbose_name=_("Decision"),
+        help_text=_(
+            "The decision given when the observation was reviewed."
+        ),
+    )
+
     comments = models.TextField(
         blank=True,
         verbose_name=_("comments"),
@@ -179,3 +187,12 @@ class Observation(models.Model):
             log.error("Incorrect JSON for Observation reason: %s", self.id)
             reason = ""
         return reason
+
+    def get_decision(self) -> str:
+        try:
+            data = json.loads(self.decision)
+            decision = data.get(get_language(), "")
+        except JSONDecodeError:
+            log.error("Incorrect JSON for Observation decision: %s", self.id)
+            decision = ""
+        return decision
