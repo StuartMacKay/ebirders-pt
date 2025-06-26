@@ -392,3 +392,16 @@ class SpeciesAdmin(admin.ModelAdmin):
         extra_context = extra_context or {}
         extra_context["fetch_species_url"] = reverse("admin:data_species_fetch")
         return super().changelist_view(request, extra_context=extra_context)
+
+
+@admin.register(models.Filter)
+class FilterAdmin(admin.ModelAdmin):
+    list_display = ("name", "enabled")
+    search_fields = ("name", "initial_species__common_name")
+    list_filter = ("enabled",)
+    autocomplete_fields = ("initial_species", "result_species")
+    formfield_overrides = {
+        TextField: {
+            "widget": TextInput(attrs={"class": "vTextField"}),
+        }
+    }
