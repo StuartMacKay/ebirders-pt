@@ -6,6 +6,8 @@ This project uses calendar versioning, https://calver.org/, and this log provide
 a concise history of changes made.
 
 ## Latest
+
+## 2025.06.26
 - Added an About page, describing the site.
 - Added a field to the Species page, so you can search for species, subspecies, etc.
 - Added a Filter model for mapping Guineafowls, etc. to their domestic form.
