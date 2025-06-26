@@ -276,7 +276,19 @@ class ObservationAdmin(admin.ModelAdmin):
             obj.country = location.country
             obj.state = location.state
             obj.county = location.county
+
         super().save_model(request, obj, form, change)
+
+        if "approved" in form.changed_data and not obj.approved:
+            models.Event.objects.create(
+                type=models.Event.Type.OBSERVATION_REJECTED,
+                observation=obj
+            )
+        if "reviewed" in form.changed_data and obj.reviewed:
+            models.Event.objects.create(
+                type=models.Event.Type.OBSERVATION_REVIEWED,
+                observation=obj
+            )
 
 
 @admin.register(models.Observer)
@@ -400,3 +412,21 @@ class FilterAdmin(admin.ModelAdmin):
             "widget": TextInput(attrs={"class": "vTextField"}),
         }
     }
+
+
+@admin.register(models.Event)
+class EventAdmin(admin.ModelAdmin):
+    list_display = ("created", "type", "observation")
+    readonly_fields = ("created", "type", "observation",)
+    fields = (
+        "created",
+        "type",
+        "observation",
+        "data",
+    )
+
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        field = super().formfield_for_dbfield(db_field, request, **kwargs)
+        if db_field.name == "data":
+            field.widget = Textarea(attrs={"rows": 5, "class": "vLargeTextField"})
+        return field
