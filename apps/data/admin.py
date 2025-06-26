@@ -194,10 +194,29 @@ class ObservationForm(ModelForm):
     class Meta:
         fields = "__all__"
 
+    REASON_MISSING = _("You must give a reason when rejecting an Observation.")
+    DECISION_MISSING = _("You must give a decision when an Observation is reviewed")
+    REVIEWED_MISSING = _("You must set the reviewed field when an Observation")
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["reason"].widget.attrs.update({"rows": 2})
         self.fields["decision"].widget.attrs.update({"rows": 2})
+
+    def clean(self):
+        if "approved" in self.changed_data and not self.cleaned_data["approved"]:
+            if "reason" not in self.changed_data or not self.cleaned_data["reason"]:
+                self.add_error(None, self.REASON_MISSING)
+
+        if "reviewed" in self.changed_data and self.cleaned_data["reviewed"]:
+            if "decision" not in self.changed_data or not self.cleaned_data["decision"]:
+                self.add_error(None, self.DECISION_MISSING)
+
+        if "species" in self.changed_data:
+            if "reviewed" not in self.changed_data or not self.cleaned_data["reviewed"]:
+                self.add_error(None, self.REVIEWED_MISSING)
+
+        return self.cleaned_data
 
 
 @admin.register(models.Observation)
