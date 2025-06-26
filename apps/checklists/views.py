@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.shortcuts import get_object_or_404
-from django.urls import reverse_lazy
+from django.urls import reverse
 from django.utils import translation
 from django.utils.functional import cached_property
 from django.views import generic
@@ -27,10 +27,10 @@ class ChecklistsView(FilteredListView):
     model = Checklist
     paginate_by = 50
     template_name = "checklists/list.html"
-    url = reverse_lazy("checklists:list")
+    url = "checklists:list"
 
     def get_url(self):
-        return self.url
+        return reverse(self.url)
 
     @cached_property
     def show_country(self):

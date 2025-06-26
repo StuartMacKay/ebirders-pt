@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.urls import reverse_lazy
+from django.urls import reverse
 from django.utils import translation
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
@@ -25,10 +25,10 @@ class SpeciesView(FilteredListView):
     )
     model = Observation
     template_name = "species/list.html"
-    url = reverse_lazy("species:list")
+    url = "species:list"
 
     def get_url(self):
-        return self.url
+        return reverse(self.url)
 
     @cached_property
     def show_country(self):
