@@ -11,6 +11,7 @@ a concise history of changes made.
 - Added an About page, describing the site.
 - Added a field to the Species page, so you can search for species, subspecies, etc.
 - Added a Filter model for mapping Guineafowls, etc. to their domestic form.
+- Added a page showing the list of Observations that were moderated.
 - Fixed error where the species total was also counting subspecies, forms, etc.
 
 ## 2025.06.10

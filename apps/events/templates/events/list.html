@@ -1,0 +1,12 @@
+{% extends "page.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans 'Moderation History' %}{% endblock %}
+
+{% block main %}
+  <div class="container">
+    {% include "events/includes/list-title.html" %}
+    {% include "events/includes/list-entries.html" %}
+    {% include "events/includes/list-pagination.html" %}
+  </div>
+{% endblock %}

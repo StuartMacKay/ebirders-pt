@@ -1,6 +1,6 @@
 {% load i18n %}
 <div class="container">
-  <div class="row row-cols-1 row-cols-sm-2 pt-5 pb-sm-3 border-top">
+  <div class="row row-cols-3 pt-5 pb-sm-3 border-top">
     <div class="col mb-3">
       <div class="fs-6">{% trans "Stop reading and..." %}</div>
       <div class="fs-1">{% trans "Go Birding" %}</div>
@@ -15,6 +15,13 @@
         </li>
         <li class="nav-item mb-2">
           <a href="{% url 'contact' %}" class="nav-link p-0 fs-5 text-body-secondary">{% trans "Contact" %}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col mb-3">
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2">
+          <a href="{% url 'events:list' %}" class="nav-link p-0 fs-5 text-body-secondary">{% trans "Moderation History" %}</a>
         </li>
       </ul>
     </div>
