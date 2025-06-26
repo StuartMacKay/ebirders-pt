@@ -5,8 +5,6 @@ from django.contrib.admin.widgets import AutocompleteSelect
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.db.models import DecimalField, IntegerField, TextField
 from django.forms import ModelForm, Textarea, TextInput
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.urls import path, reverse, reverse_lazy
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
@@ -257,35 +255,10 @@ class ObservationAdmin(admin.ModelAdmin):
         "decision",
         "data",
     )
-    actions = ["change_species"]
 
     @admin.display(description=_("Species"))
     def common_name(self, obj):
         return obj.species.get_common_name()
-
-    @admin.action(description=_("Change species for selected observations"))
-    def change_species(self, request, queryset):
-        if "apply" in request.POST:
-            species_id = request.POST["species"]
-            count = queryset.count()
-            if species := Species.objects.filter(pk=species_id).first():
-                queryset.update(species=species)
-                if count == 1:
-                    message = _(
-                        "Changed species on {count} observation to {species}"
-                    ).format(count=count, species=species)
-                else:
-                    message = _(
-                        "Changed species on {count} observations to {species}"
-                    ).format(count=count, species=species)
-                self.message_user(request, message)
-            return HttpResponseRedirect(request.get_full_path())
-
-        return render(
-            request,
-            "admin/data/species/change_species.html",
-            context={"form": ChangeSpeciesForm(), "observations": queryset},
-        )
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         field = super().formfield_for_dbfield(db_field, request, **kwargs)
