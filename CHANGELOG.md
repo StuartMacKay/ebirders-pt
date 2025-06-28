@@ -6,6 +6,8 @@ This project uses calendar versioning, https://calver.org/, and this log provide
 a concise history of changes made.
 
 ## Latest
+
+## 2025.06.28
 - Added separate layouts when lists are viewed on mobile devices.
 - Changed page layout to reduce the amount of empty space.
 - Changed filters so they are displayed in a sidebar on the left side of the page.
