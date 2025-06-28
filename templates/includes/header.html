@@ -1,13 +1,11 @@
 {% load i18n static %}
 {% get_current_language as language_code %}
-{% get_available_languages as languages %}
-<nav class="navbar navbar-expand-lg p-1 mb-2">
-  <div class="container align-items-end">
-    <a class="col-12 col-lg-6 mb-2" href="{% url 'index' %}">
-    </a>
-    <ul class="navbar-nav ms-lg-auto pb-lg-3 mb-lg-0 fs-5">
+<nav class="navbar navbar-expand-lg border-bottom mb-2">
   <div class="container-fluid">
+    <ul class="navbar-nav col fs-5">
+      <li class="nav-item">
         <a class="nav-link text-nowrap fw-bold me-5" href="{% url 'index' %}">eBirders Portugal</a>
+      </li>
       <li class="nav-item">
         <div class="dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
