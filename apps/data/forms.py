@@ -11,6 +11,9 @@ from data.models import Country, County, Location, Observer, Species, State
 
 
 class LocationFilter(forms.Form):
+    title = _("By Location")
+    identifier = "location"
+
     country = forms.ChoiceField(
         label=_("Country"),
         required=False,
@@ -62,7 +65,7 @@ class LocationFilter(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if self.is_bound:
-            self.fields["county"].choices = self.get_country_choice()
+            self.fields["country"].choices = self.get_country_choice()
             self.fields["state"].choices = self.get_state_choice()
             self.fields["county"].choices = self.get_county_choice()
             self.fields["location"].choices = self.get_location_choice()
@@ -117,6 +120,8 @@ class LocationFilter(forms.Form):
             filters &= Q(county__code=county)
         if location := self.cleaned_data.get("location"):
             filters &= Q(location__identifier=location)
+        if hotspot := self.cleaned_data.get("hotspot"):
+            filters &= Q(location__hotspot=hotspot)
         return filters
 
     def get_ordering(self):
@@ -124,6 +129,9 @@ class LocationFilter(forms.Form):
 
 
 class ObserverFilter(forms.Form):
+    title = _("By Observer")
+    identifier = "observer"
+
     observer = forms.ChoiceField(
         label=_("Observer"),
         required=False,
@@ -155,6 +163,9 @@ class ObserverFilter(forms.Form):
 
 
 class SpeciesFilter(forms.Form):
+    title = _("By Species")
+    identifier = "species"
+
     species = forms.ChoiceField(
         label=_("Species"),
         required=False,
@@ -204,6 +215,9 @@ class SpeciesFilter(forms.Form):
 
 
 class DateRangeFilter(forms.Form):
+    title = _("By Date")
+    identifier = "date-range"
+
     DATES_SWAPPED = _("This date is later than the until date.")
 
     start = forms.DateField(
@@ -236,28 +250,10 @@ class DateRangeFilter(forms.Form):
         return []
 
 
-class HotspotFilter(forms.Form):
-    hotspot = forms.ChoiceField(
-        label=_("Hotspots only"),
-        choices=(
-            ("", _("No")),
-            ("True", _("Yes")),
-        ),
-        required=False,
-        widget=forms.Select(attrs={"class": "form-control"}),
-    )
-
-    def get_filters(self):
-        filters = Q()
-        if hotspot := self.cleaned_data.get("hotspot"):
-            filters &= Q(location__hotspot=hotspot)
-        return filters
-
-    def get_ordering(self):
-        return []
-
-
 class CategoryFilter(forms.Form):
+    title = _("By Category")
+    identifier = "category"
+
     category = forms.ChoiceField(
         label=_("Category"),
         choices=(
@@ -281,6 +277,9 @@ class CategoryFilter(forms.Form):
 
 
 class ChecklistOrder(forms.Form):
+    title = _("Order By")
+    identifier = "checklist-order"
+
     order = forms.ChoiceField(
         label=_("Ordering"),
         choices=(
@@ -302,6 +301,9 @@ class ChecklistOrder(forms.Form):
 
 
 class ObservationOrder(forms.Form):
+    title = _("Order By")
+    identifier = "observation-order"
+
     order = forms.ChoiceField(
         label=_("Ordering"),
         choices=(
@@ -323,6 +325,9 @@ class ObservationOrder(forms.Form):
 
 
 class SeenOrder(forms.Form):
+    title = _("Order By")
+    identifier = "seen-order"
+
     order = forms.ChoiceField(
         label=_("Ordering"),
         choices=(

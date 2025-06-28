@@ -1,53 +1,58 @@
 {% load i18n %}
-<div class="row">
-  <div class="col">
-    <div class="border-top py-3">
-      <form method="get" class="remove-empty-values">
-        {% for form in forms %}
-          {{ form.media.css }}
-        {% endfor %}
-        {% if filter.errors %}
-          <div class="row">
-            <div class="col">
-              <div class="text-danger mb-3">{% trans 'Please correct the errors below.' %}</div>
-              {% for form in forms %}
-                {% for error in form.non_field_errors %}
-                  <div class="text-danger">{{ error }}</div>
-                {% endfor %}
-              {% endfor %}
-              {% for form in forms %}
-                {% for field in form.hidden_fields %}
-                  {% if field.errors %}
-                    {% for error in field.errors %}
-                      <div class="text-danger">{{ error }}</div>
-                    {% endfor %}
-                  {% endif %}
-                {% endfor %}
-              {% endfor %}
-            </div>
-          </div>
-        {% endif %}
-        <div class="row">
-          {% for form in forms %}
-            {% for field in form.visible_fields %}
-              <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                  <label class="form-label text-muted mb-1" for="{{ field.auto_id }}">{{ field.label }}</label>
-                  {{ field }}
-                  {% if field.errors %}
-                    {% for error in field.errors %}
-                      <div class="text-danger">{{ error }}</div>
-                    {% endfor %}
-                  {% endif %}
-              </div>
-            {% endfor %}
+<h3 class="mt-2 pt-2 pb-2 mb-4 fs-5 border-bottom">{% trans "Find Observations" %}</h3>
+
+<form method="get" class="remove-empty-values">
+
+  {% for form in forms %}
+    {{ form.media.css }}
+  {% endfor %}
+
+  {% if filter.errors %}
+    <div class="text-danger mb-3">{% trans 'Please correct the errors below.' %}</div>
+    {% for form in forms %}
+      {% for error in form.non_field_errors %}
+        <div class="text-danger">{{ error }}</div>
+      {% endfor %}
+    {% endfor %}
+    {% for form in forms %}
+      {% for field in form.hidden_fields %}
+        {% if field.errors %}
+          {% for error in field.errors %}
+            <div class="text-danger">{{ error }}</div>
           {% endfor %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+
+  {% for form in forms %}
+    <div class="mb-4">
+    <div class="border-bottom">
+      <a href="#form-{{ form.identifier }}"
+         class="text-decoration-none link-dark"
+         data-bs-toggle="collapse"
+         aria-expanded="false">
+        <div class="d-flex">
+          <span class="me-auto">{{ form.title }}</span>
+          <i class="bi bi-chevron-down filter-collapsed me-1"></i>
+          <i class="bi bi-chevron-up filter-expanded me-1"></i>
         </div>
-        <div class="row">
-          <div class="col">
-            <button type="submit" class="btn btn-primary">Search</button>
-          </div>
-        </div>
-      </form>
+      </a>
     </div>
-  </div>
-</div>
+    <div class="collapse multi-collapse my-2" id="form-{{ form.identifier }}">
+    {% for field in form.visible_fields %}
+      <label class="form-label text-muted mb-0" for="{{ field.auto_id }}"><small>{{ field.label }}</small></label>
+      <div class="mb-1">{{ field }}</div>
+          {% if field.errors %}
+            {% for error in field.errors %}
+              <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+          {% endif %}
+    {% endfor %}
+    </div>
+    </div>
+  {% endfor %}
+
+  <button type="submit" class="btn btn-primary">{% trans "Search" %}</button>
+
+</form>
