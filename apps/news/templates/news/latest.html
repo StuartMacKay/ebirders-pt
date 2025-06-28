@@ -4,10 +4,10 @@
 {% block title %}{% trans 'Latest News' %}{% endblock %}
 
 {% block header %}
+  {{ block.super }}
   {% block notifications %}
     {% include "notifications/messages.html" %}
   {% endblock %}
-  {{ block.super }}
 {% endblock %}
 
 {% block content %}

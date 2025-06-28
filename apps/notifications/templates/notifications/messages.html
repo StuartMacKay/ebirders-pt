@@ -1,15 +1,13 @@
 {% if notifications %}
   {% block notifications %}
-    <div class="container-fluid">
-      <div class="row">
-            <div class="mb-4">
-              {% for notification in notifications %}
-                <div class="px-3 py-2 bg-{{ notification.level }}-subtle">
-                  {{ notification.get_contents }}
-                </div>
-              {% endfor %}
-          </div>
-      </div>
+    <div class="row border-bottom">
+          <div>
+            {% for notification in notifications %}
+              <div class="px-3 py-2 bg-{{ notification.level }}-subtle">
+                {{ notification.get_contents }}
+              </div>
+            {% endfor %}
+        </div>
     </div>
   {% endblock %}
 {% endif %}
