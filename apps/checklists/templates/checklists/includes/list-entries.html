@@ -3,9 +3,6 @@
 <div class="pt-2 px-md-4">
   <div class="row py-2">
     <div class="col-lg-2">
-      <strong>{% trans "Checklist" %}</strong>
-    </div>
-    <div class="col-lg-2">
       <strong>{% trans "Date" %}</strong>
     </div>
     <div class="col-lg-4">
@@ -17,16 +14,12 @@
     <div class="col-lg-2 text-lg-end">
       <strong>{% trans "No. of Species" %}</strong>
     </div>
+    <div class="col-lg-2">
+      <strong>{% trans "Checklist" %}</strong>
+    </div>
   </div>
   {% for checklist in page_obj %}
     <div class="row border-top py-2">
-      <div class="col-lg-2 col-xl-2">
-        <a class="dark-link"
-           href="{% url 'checklists:detail' checklist.identifier %}"
-           title="{% trans 'View this checklist' %}">
-          <span>{{ checklist.identifier }}</span>
-        </a>
-      </div>
       <div class="col-lg-2 col-xl-2">
         {% if language_code == 'pt' %}
           <span class="text-nowrap">{{ checklist.date|date:"j b Y" }}</span>
@@ -76,6 +69,13 @@
       <div class="col-lg-2 col-xl-2 text-lg-end">
         <span class="d-lg-none">{% trans "No. of species" %}:</span>
         <span>{{ checklist.species_count }}</span>
+      </div>
+      <div class="col-lg-2 col-xl-2">
+        <a class="dark-link"
+           href="{{ checklist.url }}"
+           title="{% trans 'View this checklist on eBird.org' %}">
+        <i class="bi bi-box-arrow-up-right"></i>
+        </a>
       </div>
     </div>
   {% endfor %}

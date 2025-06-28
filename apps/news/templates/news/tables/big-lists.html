@@ -2,9 +2,6 @@
 {% get_current_language as language_code %}
 <h3 class="mb-3">{{ title }}</h3>
 <div class="row border-bottom pb-2 mb-2">
-  <div class="col-lg-2 col-xl-2">
-    <strong>{% trans "Checklist" %}</strong>
-  </div>
   <div class="col-lg-1 col-xl-1">
     <strong>{% trans "Date" %}</strong>
   </div>
@@ -17,16 +14,12 @@
   <div class="col-lg-2 col-xl-2 text-lg-end">
     <strong>{% trans "No. of Species" %}</strong>
   </div>
+  <div class="col-lg-1 col-xl-1">
+    <strong>{% trans "Checklist" %}</strong>
+  </div>
 </div>
 {% for checklist in checklists %}
   <div class="row {% if not forloop.last %}border-bottom{% endif %} pb-2 mb-2">
-    <div class="col-lg-2 col-xl-2">
-      <a class="dark-link"
-         href="{% url 'checklists:detail' checklist.identifier %}"
-         title="{% trans 'View this checklist' %}">
-        <span>{{ checklist.identifier }}</span>
-      </a>
-    </div>
     <div class="col-lg-1 col-xl-1">
       <span class="text-nowrap">
         {% if language_code == 'pt' %}
@@ -57,6 +50,13 @@
     </div>
     <div class="col-lg-2 col-xl-2 text-lg-end">
       <span>{{ checklist.species_count }}</span>
+    </div>
+    <div class="col-lg-1 col-xl-1">
+      <a class="dark-link"
+         href="{{ checklist.url }}"
+         title="{% trans 'View this checklist on eBird.org' %}">
+        <i class="bi bi-box-arrow-up-right"></i>
+      </a>
     </div>
   </div>
   {% empty %}

@@ -65,9 +65,9 @@
     </div>
     <div class="col-lg-1">
       <a class="dark-link"
-         href="{% url 'checklists:detail' observation.checklist.identifier %}"
-         title="{% trans 'View the checklist' %}">
-        <span>{{ observation.checklist.identifier }}</span>
+         href="{{ observation.checklist.url }}"
+         title="{% trans 'View this checklist on eBird.org' %}">
+        <i class="bi bi-box-arrow-up-right"></i>
       </a>
     </div>
   </div>
