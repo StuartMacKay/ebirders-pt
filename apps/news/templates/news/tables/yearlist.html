@@ -3,12 +3,15 @@
 <h3 class="mb-3">{{ title }}</h3>
 <div class="row py-2">
   <div class="col-lg-3 col-xl-3">
-    <strong>{% trans "Species (Count)" %}</strong>
+    <strong>{% trans "Species" %}</strong>
+  </div>
+  <div class="col-lg-1 col-xl-1">
+    <strong>{% trans "Count" %}</strong>
   </div>
   <div class="col-lg-1">
     <strong>{% trans "Date" %}</strong>
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-3">
     <strong>{% trans "Location" %}</strong>
   </div>
   <div class="col-lg-3 col-xl-3">
@@ -22,7 +25,7 @@
   <div class="row border-top py-2">
     <div class="col-lg-3 col-xl-3">
       <div>
-        <span>{{ observation.species.get_common_name }} ({% if observation.count %}{{ observation.count }}{% else %}X{% endif %})</span>
+        <span>{{ observation.species.get_common_name }}</span>
         {% if not observation.approved %}
           <i class="bi bi-flag-fill text-danger ms-1" title="{{ observation.get_reason }}"></i>
         {% endif %}
@@ -30,6 +33,9 @@
       <div>
         <small class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
       </div>
+    </div>
+    <div class="col-lg-1 col-xl-1 text-end">
+      <span>{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}</span>
     </div>
     <div class="col-lg-1">
       <span class="text-nowrap">
@@ -40,7 +46,7 @@
         {% endif %}
       </span>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
       <div>{{ observation.location.display_name }}</div>
       <div>{% spaceless %}
         {% if observation.county %}
