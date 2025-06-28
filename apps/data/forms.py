@@ -49,6 +49,16 @@ class LocationFilter(forms.Form):
         ),
     )
 
+    hotspot = forms.ChoiceField(
+        label=_("Hotspots only"),
+        choices=(
+            ("", _("No")),
+            ("True", _("Yes")),
+        ),
+        required=False,
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if self.is_bound:

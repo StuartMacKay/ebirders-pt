@@ -8,7 +8,6 @@ from django.views import generic
 from data.forms import (
     ChecklistOrder,
     DateRangeFilter,
-    HotspotFilter,
     LocationFilter,
     ObserverFilter,
 )
@@ -21,7 +20,6 @@ class ChecklistsView(FilteredListView):
         LocationFilter,
         ObserverFilter,
         DateRangeFilter,
-        HotspotFilter,
         ChecklistOrder,
     )
     model = Checklist
