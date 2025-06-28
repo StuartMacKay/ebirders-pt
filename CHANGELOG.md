@@ -6,6 +6,10 @@ This project uses calendar versioning, https://calver.org/, and this log provide
 a concise history of changes made.
 
 ## Latest
+- Added separate layouts when lists are viewed on mobile devices.
+- Changed page layout to reduce the amount of empty space.
+- Changed filters so they are displayed in a sidebar on the left side of the page.
+- Changed links to checklists so they go direct to eBird.org.
 
 ## 2025.06.26
 - Added an About page, describing the site.
