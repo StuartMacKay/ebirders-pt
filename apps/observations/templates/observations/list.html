@@ -3,12 +3,20 @@
 
 {% block title %}{% trans 'Observations' %}{% endblock %}
 
-{% block main %}
-  <div class="container">
-    {% include "observations/includes/list-title.html" %}
-    {% include "observations/includes/list-filter.html" %}
-    {% include "observations/includes/list-entries.html" %}
-    {% include "observations/includes/list-pagination.html" %}
+{% block content %}
+  <div class="container-fluid">
+    <div class="row">
+      {% include "observations/includes/list-title.html" %}
+    </div>
+    <div class="row">
+      <aside class="col-md-4 col-lg-2">
+        {% include "observations/includes/list-filter.html" %}
+      </aside>
+      <main class="col-md-8 col-lg-10">
+        {% include "observations/includes/list-entries.html" %}
+        {% include "observations/includes/list-pagination.html" %}
+      </main>
+    </div>
   </div>
 {% endblock %}
 

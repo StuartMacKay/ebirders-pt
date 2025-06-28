@@ -3,11 +3,19 @@
 
 {% block title %}{% trans 'Species (plural)' %}{% endblock %}
 
-{% block main %}
-  <div class="container">
-    {% include "species/includes/list-title.html" %}
-    {% include "species/includes/list-filter.html" %}
-    {% include "species/includes/list-entries.html" %}
+{% block content %}
+  <div class="container-fluid">
+    <div class="row">
+      {% include "species/includes/list-title.html" %}
+    </div>
+    <div class="row">
+      <aside class="col-md-4 col-lg-2">
+        {% include "species/includes/list-filter.html" %}
+      </aside>
+      <main class="col-md-8 col-lg-10">
+        {% include "species/includes/list-entries.html" %}
+      </main>
+    </div>
   </div>
 {% endblock %}
 
