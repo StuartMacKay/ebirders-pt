@@ -1,0 +1,100 @@
+{% load i18n %}
+<table class="table table-borderless">
+  <thead>
+  <tr>
+    <th>{% trans "Date" %}</th>
+    <th>{% trans "Count" %}</th>
+    <th>{% trans "Species" %}</th>
+    <th>{% trans "Location" %}</th>
+    <th>{% trans "Observer" %}</th>
+    <th>{% trans "Checklist" %}</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for observation in page_obj %}
+    <tr {% ifchanged observation.date %}class="border-top"{% endifchanged %}>
+      <td>
+        {% if language_code == 'pt' %}
+          <span class="text-nowrap">{{ observation.date|date:"j b Y" }}</span>
+        {% else %}
+          <span class="text-nowrap">{{ observation.date|date:"jS M Y" }}</span>
+        {% endif %}
+        {% if observation.time %}
+          <br/><small class="text-muted">{{ observation.time }}</small>
+        {% endif %}
+      </td>
+      <td class="text-end">{{ observation.count }}</td>
+      <td>
+        <a class="dark-link"
+           href="{% querystring species=observation.species.species_code %}"
+           title="{% trans 'Show observations of this species' %}">
+          {{ observation.species.get_common_name }}
+        </a>
+        <br>
+        <small
+          class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
+      </td>
+      <td>
+        <a class="dark-link"
+           href="{% querystring location=observation.location.identifier %}"
+           title="{% trans 'Show observations for this location' %}">{{ observation.location.display_name }}</a>
+        <br/>
+        {% spaceless %}
+          {% if observation.county %}
+            <small class="text-muted">
+              <a class="dark-link"
+                 href="{% querystring county=observation.county.code location=None %}"
+                 title="{% trans 'Show observations for this county' %}">{{ observation.county.name }}</a>
+            </small>
+          {% endif %}
+          {% if observation.state %}
+            <small class="text-muted">
+              {% if observation.county %}<span>, </span>{% endif %}
+              <a class="dark-link"
+                 href="{% querystring state=observation.state.code county=None location=None %}"
+                 title="{% trans 'Show observations for this state' %}">{{ observation.state.name }}</a>
+            </small>
+          {% endif %}
+          {% if show_country %}
+            <small class="text-muted">
+              <span>, </span>
+              <a class="dark-link"
+                 href="{% querystring country=observation.country.code state=None county=None location=None %}"
+                 title="{% trans 'Show observations for this country' %}">{{ observation.country }}</a>
+            </small>
+          {% endif %}
+        {% endspaceless %}
+      </td>
+      <td>
+        <a class="dark-link me-3"
+           href="{% querystring observer=observation.observer.identifier %}"
+           title="{% trans 'Show observations from this observer' %}">{{ observation.observer }}</a>
+      </td>
+      <td>
+        <a class="dark-link"
+           href="{{ observation.checklist.url }}"
+           target="_blank"
+           title="{% trans 'View this checklist on eBird.org' %}">
+          <i class="bi bi-box-arrow-up-right"></i>
+        </a>
+      </td>
+    </tr>
+    {% if not observation.approved %}
+      <tr class="border-top-0">
+        <td></td>
+        <td></td>
+        <td colspan="4" class="pt-0">
+          <i class="bi bi-flag-fill text-danger me-1"></i>
+          <span class="fst-italic">{{ observation.get_reason }}</span>
+        </td>
+      </tr>
+    {% endif %}
+  {% empty %}
+    <tr>
+      <td colspan="6" class="py-3">
+        {% trans "No high counts were found." %}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
