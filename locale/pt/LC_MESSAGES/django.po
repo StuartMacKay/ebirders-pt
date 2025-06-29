@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-28 10:43+0000\n"
+"POT-Creation-Date: 2025-06-29 13:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,8 +30,8 @@ msgstr "Listas"
 #: apps/checklists/templates/checklists/detail.html:4
 #: apps/checklists/templates/checklists/includes/list-entries.html:19
 #: apps/news/templates/news/tables/big-lists.html:18
-#: apps/news/templates/news/tables/high-counts.html:21
-#: apps/news/templates/news/tables/yearlist.html:21
+#: apps/news/templates/news/tables/high-counts-wide.html:10
+#: apps/news/templates/news/tables/yearlist-wide.html:10
 #: apps/species/templates/species/includes/list-entries.html:25
 msgid "Checklist"
 msgstr "Lista"
@@ -96,8 +96,8 @@ msgstr "Espécies"
 #: apps/checklists/templates/checklists/includes/list-entries.html:7
 #: apps/news/templates/news/tables/big-days.html:7
 #: apps/news/templates/news/tables/big-lists.html:6
-#: apps/news/templates/news/tables/high-counts.html:6
-#: apps/news/templates/news/tables/yearlist.html:12
+#: apps/news/templates/news/tables/high-counts-wide.html:5
+#: apps/news/templates/news/tables/yearlist-wide.html:5
 #: apps/observations/templates/observations/includes/list-entries.html:12
 #: apps/species/templates/species/includes/list-entries.html:16
 msgid "Date"
@@ -105,8 +105,8 @@ msgstr "Data"
 
 #: apps/checklists/templates/checklists/includes/list-entries.html:10
 #: apps/data/forms.py:46 apps/news/templates/news/tables/big-lists.html:9
-#: apps/news/templates/news/tables/high-counts.html:15
-#: apps/news/templates/news/tables/yearlist.html:15
+#: apps/news/templates/news/tables/high-counts-wide.html:8
+#: apps/news/templates/news/tables/yearlist-wide.html:8
 #: apps/observations/templates/observations/includes/list-entries.html:15
 #: apps/species/templates/species/includes/list-entries.html:19
 msgid "Location"
@@ -118,8 +118,8 @@ msgstr "Local"
 #: apps/news/templates/news/tables/checklists-duration.html:6
 #: apps/news/templates/news/tables/checklists-species.html:14
 #: apps/news/templates/news/tables/checklists-submitted.html:6
-#: apps/news/templates/news/tables/high-counts.html:18
-#: apps/news/templates/news/tables/yearlist.html:18
+#: apps/news/templates/news/tables/high-counts-wide.html:9
+#: apps/news/templates/news/tables/yearlist-wide.html:9
 #: apps/observations/templates/observations/includes/list-entries.html:18
 #: apps/species/templates/species/includes/list-entries.html:22
 msgid "Observer"
@@ -129,7 +129,7 @@ msgstr "Observador"
 #: apps/news/templates/news/tables/big-days.html:9
 #: apps/news/templates/news/tables/big-lists.html:15
 #: apps/news/templates/news/tables/checklists-species.html:15
-#: apps/news/templates/news/tables/yearlist.html:128 apps/species/views.py:61
+#: apps/news/templates/news/tables/yearlist.html:11 apps/species/views.py:61
 #: apps/species/views.py:65
 msgid "No. of Species"
 msgstr "Nº. de espécies"
@@ -166,10 +166,10 @@ msgstr "Nº. de espécies"
 #: apps/checklists/templates/checklists/includes/list-entries.html:78
 #: apps/checklists/templates/checklists/includes/list-entries.html:125
 #: apps/news/templates/news/tables/big-lists.html:58
-#: apps/news/templates/news/tables/high-counts.html:76
-#: apps/news/templates/news/tables/high-counts.html:120
-#: apps/news/templates/news/tables/yearlist.html:71
-#: apps/news/templates/news/tables/yearlist.html:115
+#: apps/news/templates/news/tables/high-counts-narrow.html:15
+#: apps/news/templates/news/tables/high-counts-wide.html:57
+#: apps/news/templates/news/tables/yearlist-narrow.html:15
+#: apps/news/templates/news/tables/yearlist-wide.html:58
 #: apps/species/templates/species/includes/list-entries.html:90
 #: apps/species/templates/species/includes/list-entries.html:144
 msgid "View this checklist on eBird.org"
@@ -323,8 +323,8 @@ msgid "You must set the reviewed field when an Observation"
 msgstr ""
 
 #: apps/data/admin.py:259 apps/data/forms.py:170 apps/data/forms.py:260
-#: apps/news/templates/news/tables/high-counts.html:12
-#: apps/news/templates/news/tables/yearlist.html:6
+#: apps/news/templates/news/tables/high-counts-wide.html:7
+#: apps/news/templates/news/tables/yearlist-wide.html:7
 #: apps/observations/templates/observations/includes/list-entries.html:9
 #: apps/species/apps.py:8
 #: apps/species/templates/species/includes/list-entries.html:13
@@ -430,8 +430,9 @@ msgstr "Mais recente primeiro"
 msgid "Number of species (descending)"
 msgstr "Número de espécies (decrescente)"
 
-#: apps/data/forms.py:311 apps/news/templates/news/tables/high-counts.html:9
-#: apps/news/templates/news/tables/yearlist.html:9
+#: apps/data/forms.py:311
+#: apps/news/templates/news/tables/high-counts-wide.html:6
+#: apps/news/templates/news/tables/yearlist-wide.html:6
 #: apps/observations/templates/observations/includes/list-entries.html:6
 msgid "Count"
 msgstr "Contagem"
@@ -1205,19 +1206,21 @@ msgstr "Número de listas"
 msgid "No checklists have been submitted."
 msgstr "Não foram apresentadas listas."
 
+#: apps/news/templates/news/tables/high-counts-narrow.html:50
+#: apps/news/templates/news/tables/high-counts-wide.html:75
+msgid "No high counts were found."
+msgstr "Não foram encontradas contagens elevadas."
+
 #: apps/news/templates/news/tables/high-counts.html:3
 msgid "High Counts"
 msgstr "Contagens elevadas"
 
-#: apps/news/templates/news/tables/high-counts.html:128
-msgid "No high counts were made this week."
-msgstr "Não foram efectuadas contagens elevadas esta semana."
+#: apps/news/templates/news/tables/yearlist-narrow.html:50
+#: apps/news/templates/news/tables/yearlist-wide.html:76
+msgid "No species were added to the year list."
+msgstr "Não foi acrescentada nenhuma espécie à lista anual."
 
-#: apps/news/templates/news/tables/yearlist.html:123
-msgid "No new species were seen this week."
-msgstr "Não foram observadas espécies novas esta semana."
-
-#: apps/news/templates/news/tables/yearlist.html:131
+#: apps/news/templates/news/tables/yearlist.html:15
 msgid "View Yearlist"
 msgstr "Ver esta lista"
 
@@ -1515,6 +1518,9 @@ msgstr ""
 #: templates/includes/footer.html:10
 msgid "About"
 msgstr "Sobre"
+
+#~ msgid "No new species were seen this week."
+#~ msgstr "Não foram observadas espécies novas esta semana."
 
 #~ msgid "View this checklist"
 #~ msgstr "Ver esta lista"
