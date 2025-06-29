@@ -63,12 +63,6 @@ def remove_state(name: str) -> str:
     return name
 
 
-def truncate(name: str) -> str:
-    if len(name) > 80:
-        name = name[:78] + "..."
-    return name
-
-
 def remove_duplicates(name: str) -> str:
     """The name of larger towns and cities is shared with the county
     or district so duplicate names are treated as the general area
@@ -111,7 +105,6 @@ def generate_byname(name) -> str:
     cleaned = remove_access(cleaned)
     cleaned = remove_freguesias(cleaned)
     cleaned = remove_duplicates(cleaned)
-    cleaned = truncate(cleaned)
     return cleaned if cleaned != name else ""
 
 
