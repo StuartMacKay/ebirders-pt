@@ -39,7 +39,7 @@ urlpatterns = [
     ),
     path(
         "autocomplete/",
-        cache_page(1 * hours)(autocomplete),
+        cache_page(1 * days)(autocomplete),
         name="autocomplete",
     ),
 ]
