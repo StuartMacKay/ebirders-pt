@@ -1,0 +1,50 @@
+{% load i18n %}
+{% for checklist in page_obj %}
+  <div class="row border-top d-lg-none py-2">
+    <div>
+      <span class="me-3">
+        {% if language_code == 'pt' %}
+          {{ checklist.date|date:"j F Y"|lower }}
+        {% else %}
+          {{ checklist.date|date:"jS F Y" }}
+        {% endif %}
+      </span>
+      <a class="dark-link"
+         href="{{ checklist.url }}"
+         target="_blank"
+         title="{% trans 'View this checklist on eBird.org' %}">
+        <i class="bi bi-box-arrow-up-right"></i>
+      </a>
+    </div>
+    <div>{% spaceless %}
+      <a class="dark-link"
+         href="?location={{ checklist.location.identifier }}"
+         title="{% trans 'Show checklists for this location' %}">{{ checklist.location.display_name }}</a>
+      {% if checklist.county %}
+          <span>, </span>
+          <a class="dark-link text-muted"
+               href="?county={{ checklist.county.code }}"
+               title="{% trans 'Show checklists for this county' %}">{{ checklist.county.name }}</a>
+      {% endif %}
+        {% if checklist.state %}
+          {% if checklist.county %}<span>, </span>{% endif %}
+            <a class="dark-link text-muted"
+               href="?state={{ checklist.state.code }}"
+               title="{% trans 'Show checklists for this state' %}">{{ checklist.state.name }}</a>
+        {% endif %}
+        {% if show_country %}
+          <a class="dark-link text-muted"
+             href="?country={{ checklist.country.code }}"
+             title="{% trans 'Show checklists for this country' %}">{{ checklist.country }}</a>
+        {% endif %}
+    {% endspaceless %}</div>
+    <div>
+      <a class="dark-link me-3"
+         href="?observer={{ checklist.observer.identifier }}"
+         title="{% trans 'Show checklists for this observer' %}">{{ checklist.observer }}</a>
+    </div>
+    <div>
+      <span class="me-3">{{ checklist.species_count }} {{ species_label|lower }}</span>
+    </div>
+  </div>
+{% endfor %}
