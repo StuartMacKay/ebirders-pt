@@ -1,0 +1,53 @@
+{% load i18n %}
+{% for observation in observations %}
+  <div class="row border-top {% if forloop.last %}border-bottom{% endif %} py-2">
+    <div>
+      <span class="me-3">
+        {% if language_code == 'pt' %}
+          {{ observation.date|date:"j F" }}
+        {% else %}
+          {{ observation.date|date:"jS F" }}
+        {% endif %}
+      </span>
+      <a class="dark-link"
+         href="{{ observation.checklist.url }}"
+         target="_blank"
+         title="{% trans 'View this checklist on eBird.org' %}">
+        <i class="bi bi-box-arrow-up-right"></i>
+      </a>
+    </div>
+    <div>
+      <span>{{ observation.count }}, </span>
+      <span class="me-2">{{ observation.species.get_common_name }}</span>
+      <span class="fst-italic">({{ observation.species.scientific_name }})</span>
+    </div>
+    <div>{% spaceless %}
+        <span>{{ observation.location.display_name }}</span>
+        {% if observation.county %}
+          <span>, </span><span class="text-muted">{{ observation.county }}</span>
+        {% endif %}
+        {% if observation.state %}
+          {% if observation.county %}<span>, </span>{% endif %}
+          <span class="text-muted">{{ observation.state }}</span>
+        {% endif %}
+        {% if show_country %}
+          <span class="text-muted">, {{ observation.country }}</span>
+        {% endif %}
+    {% endspaceless %}</div>
+    <div>
+      {{ observation.observer }}
+    </div>
+    {% if not observation.approved %}
+      <div>
+        <i class="bi bi-flag-fill text-danger me-1"></i>
+        <span>{{ observation.get_reason }}</span>
+      </div>
+    {% endif %}
+  </div>
+  {% empty %}
+  <div class="row">
+    <div class="py-3">
+      <span>{% trans "No species were added to the year list." %}</span>
+    </div>
+  </div>
+{% endfor %}

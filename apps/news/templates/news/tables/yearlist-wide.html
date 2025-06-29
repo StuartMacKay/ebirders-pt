@@ -1,0 +1,81 @@
+{% load i18n %}
+<table class="table table-borderless">
+  <thead>
+    <tr>
+      <th>{% trans "Date" %}</th>
+      <th>{% trans "Count" %}</th>
+      <th>{% trans "Species" %}</th>
+      <th>{% trans "Location" %}</th>
+      <th>{% trans "Observer" %}</th>
+      <th>{% trans "Checklist" %}</th>
+    </tr>
+  </thead>
+  <tbody class="border-bottom">
+    {% for observation in observations %}
+      <tr class="border-top">
+        <td>
+          <span class="text-nowrap">
+            {% if language_code == 'pt' %}
+              {{ observation.date|date:"j b" }}
+            {% else %}
+              {{ observation.date|date:"jS M" }}
+            {% endif %}
+          </span>
+        </td>
+        <td>
+          <span>{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}</span>
+        </td>
+        <td>
+          <div>
+            <span>{{ observation.species.get_common_name }}</span>
+          </div>
+          <div>
+            <small class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
+          </div>
+        </td>
+        <td>
+          <div>{{ observation.location.display_name }}</div>
+          <div>{% spaceless %}
+            {% if observation.county %}
+              <small class="text-muted">{{ observation.county }}</small>
+            {% endif %}
+            {% if observation.state %}
+              {% if observation.county %}<span>, </span>{% endif %}
+              <small class="text-muted">{{ observation.state }}</small>
+            {% endif %}
+            {% if show_country %}
+              <small class="text-muted">, {{ observation.country }}</small>
+            {% endif %}
+          {% endspaceless %}</div>
+        </td>
+        <td>
+          <span>{{ observation.observer }}</span>
+        </td>
+        <td>
+          <a class="dark-link"
+             href="{{ observation.checklist.url }}"
+             target="_blank"
+             title="{% trans 'View this checklist on eBird.org' %}">
+            <i class="bi bi-box-arrow-up-right"></i>
+          </a>
+        </td>
+      </tr>
+      {% if not observation.approved %}
+        <tr class="border-top-0">
+          <td></td>
+          <td></td>
+          <td colspan="4" class="pt-0">
+            <i class="bi bi-flag-fill text-danger me-1"></i>
+            <span class="fst-italic">{{ observation.get_reason }}</span>
+          </td>
+        </tr>
+      {% endif %}
+    {% empty %}
+    <tr>
+      <td colspan="6" class="py-3">
+        <span>{% trans "No species were added to the year list." %}</span>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
