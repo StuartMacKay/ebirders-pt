@@ -33,7 +33,7 @@
           <br/><small class="text-muted">{{ observation.time }}</small>
         {% endif %}
       </td>
-      <td class="text-end">{{ observation.count }}</td>
+      <td class="text-end">{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}</td>
       <td>
         <a class="dark-link"
            href="{% querystring location=observation.location.identifier %}"

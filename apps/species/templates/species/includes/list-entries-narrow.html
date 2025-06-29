@@ -2,7 +2,7 @@
 {% for observation in species_list %}
   <div class="row {% if not forloop.first %}border-top{% endif %} py-2">
     <div>
-      <span>{{ observation.count }}, </span>
+      <span>{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}, </span>
       <a class="dark-link me-1"
          href="{% querystring species=observation.species.species_code %}"
          title="{% trans 'Show observations of this species' %}">

@@ -17,7 +17,7 @@
       </a>
     </div>
     <div>
-      <span>{{ observation.count }}, </span>
+      <span>{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}, </span>
       <span class="me-2">{{ observation.species.get_common_name }} </span>
       <span class="fst-italic">({{ observation.species.scientific_name }})</span>
     </div>
