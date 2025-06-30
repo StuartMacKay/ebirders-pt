@@ -3,9 +3,13 @@
   <div class="row {% if not forloop.first %}border-top{% endif %} py-2">
     <div>{% spaceless %}
       {% if language_code == 'pt' %}
-        {{ observation.date|date:"j F Y"|lower }}{% if observation.time %}, {{ observation.time }}{% endif %}
+        <a class="dark-link"
+           href="{% querystring start=observation.date|date:'Y-m-d' finish=observation.date|date:'Y-m-d' %}"
+           title="{% trans 'Show observations for this date' %}">{{ observation.date|date:"j b Y" }}</a>{% if observation.time %}, {{ observation.time }}{% endif %}
       {% else %}
-        {{ observation.date|date:"jS F Y" }}{% if observation.time %}, {{ observation.time }}{% endif %}
+        <a class="dark-link"
+           href="{% querystring start=observation.date|date:'Y-m-d' finish=observation.date|date:'Y-m-d' %}"
+           title="{% trans 'Show observations for this date' %}">{{ observation.date|date:"jS M Y" }}</a>{% if observation.time %}, {{ observation.time }}{% endif %}
       {% endif %}
       <a class="dark-link ms-3"
          href="{{ observation.checklist.url }}"
