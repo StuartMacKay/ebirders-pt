@@ -55,7 +55,7 @@ class ChecklistAdmin(admin.ModelAdmin):
         "observer",
     )
     ordering = ("-started",)
-    search_fields = ("location__name", "observer__name")
+    search_fields = ("identifier", "location__name", "observer__name")
     autocomplete_fields = ("location", "observer")
     inlines = [ObservationInline]
     formfield_overrides = {
@@ -144,7 +144,13 @@ class LocationAdmin(admin.ModelAdmin):
     list_display = ("identifier", "names", "county", "state", "country")
     list_select_related = ("country", "county", "state")
     ordering = ("-identifier",)
-    search_fields = ("name", "county__name", "state__name", "country__name")
+    search_fields = (
+        "identifier",
+        "name",
+        "county__name",
+        "state__name",
+        "country__name",
+    )
     readonly_fields = ("identifier",)
 
     @admin.display(description=_("Name / Byname"))
@@ -228,6 +234,7 @@ class ObservationAdmin(admin.ModelAdmin):
         "observer",
     )
     search_fields = (
+        "identifier",
         "species__common_name",
         "species__scientific_name",
         "observer__name",
@@ -281,13 +288,11 @@ class ObservationAdmin(admin.ModelAdmin):
 
         if "approved" in form.changed_data and not obj.approved:
             models.Event.objects.create(
-                type=models.Event.Type.OBSERVATION_REJECTED,
-                observation=obj
+                type=models.Event.Type.OBSERVATION_REJECTED, observation=obj
             )
         if "reviewed" in form.changed_data and obj.reviewed:
             models.Event.objects.create(
-                type=models.Event.Type.OBSERVATION_REVIEWED,
-                observation=obj
+                type=models.Event.Type.OBSERVATION_REVIEWED, observation=obj
             )
 
 
@@ -417,7 +422,11 @@ class FilterAdmin(admin.ModelAdmin):
 @admin.register(models.Event)
 class EventAdmin(admin.ModelAdmin):
     list_display = ("created", "type", "observation")
-    readonly_fields = ("created", "type", "observation",)
+    readonly_fields = (
+        "created",
+        "type",
+        "observation",
+    )
     fields = (
         "created",
         "type",
