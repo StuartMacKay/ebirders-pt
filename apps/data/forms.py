@@ -64,6 +64,10 @@ class LocationFilter(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        if Country.objects.count() == 1:
+            self.fields["country"].widget = forms.HiddenInput()
+
         if self.is_bound:
             self.fields["country"].choices = self.get_country_choice()
             self.fields["state"].choices = self.get_state_choice()
