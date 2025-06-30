@@ -14,11 +14,7 @@
   {% for observation in species_list %}
     <tr {% if not observation.approved %}style="border-bottom-color: white"{% endif %}>
       <td>
-        <a class="dark-link"
-           href="{% querystring species=observation.species.species_code %}"
-           title="{% trans 'Show species of this species' %}">
-          {{ observation.species.get_common_name }}
-        </a>
+        {{ observation.species.get_common_name }}
         <br>
         <small
           class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
@@ -68,7 +64,7 @@
       <td>
         <a class="dark-link me-3"
            href="{% querystring observer=observation.observer.identifier %}"
-           title="{% trans 'Show species from this observer' %}">{{ observation.observer }}</a>
+           title="{% trans 'Show species seen by this observer' %}">{{ observation.observer }}</a>
       </td>
       <td>
         <a class="dark-link"
