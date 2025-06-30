@@ -53,6 +53,9 @@
     </div>
   {% endfor %}
 
-  <button type="submit" class="btn btn-primary mb-4">{% trans "Search" %}</button>
+  <div class="mb-4">
+    <button type="submit" class="btn btn-primary me-2">{% trans "Search" %}</button>
+    <button type="reset" class="btn btn-secondary" id="clear-form">{% trans "Clear" %}</button>
+  </div>
 
 </form>

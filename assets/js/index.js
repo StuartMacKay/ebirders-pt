@@ -18,7 +18,7 @@ function open_filter_panels() {
         get: (searchParams, prop) => searchParams.get(prop),
     });
 
-    if (params.country || params.state || params.country || params.location || params.hotspot) {
+    if (params.country || params.state || params.county || params.location || params.hotspot) {
         const list = document.querySelectorAll('a[href="#form-location"]');
         for (const link of list) {
             link.click();
@@ -64,8 +64,27 @@ function open_filter_panels() {
     }
 }
 
+function activate_clear_button() {
+    const button = document.getElementById("clear-form");
+    const forms = document.getElementsByTagName("form");
+    button.addEventListener("click", (event) => {
+        var elements = document.getElementsByTagName("input");
+        for (var i=0; i < elements.length; i++) {
+            elements[i].name = "";
+            elements[i].value = "";
+        }
+        var elements = document.getElementsByTagName("select");
+        for (var i=0; i < elements.length; i++) {
+            elements[i].name = "";
+            elements[i].value = "";
+        }
+        forms[0].submit();
+    });
+}
+
 document.addEventListener('DOMContentLoaded', (event) => {
   'use strict';
   open_filter_panels();
   remove_blank_form_fields();
+  activate_clear_button();
 });
