@@ -35,7 +35,7 @@
         {% endif %}
     {% endspaceless %}</div>
     <div>
-      {{ observation.observer }}
+      {{ observation.observer.display_name }}
     </div>
     {% if not observation.approved %}
       <div>

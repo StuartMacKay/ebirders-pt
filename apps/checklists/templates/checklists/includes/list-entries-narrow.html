@@ -41,7 +41,7 @@
     <div>
       <a class="dark-link me-3"
          href="?observer={{ checklist.observer.identifier }}"
-         title="{% trans 'Show checklists for this observer' %}">{{ checklist.observer }}</a>
+         title="{% trans 'Show checklists for this observer' %}">{{ checklist.observer.display_name }}</a>
     </div>
     <div>
       <span class="me-3">{{ checklist.species_count }} {{ species_label|lower }}</span>

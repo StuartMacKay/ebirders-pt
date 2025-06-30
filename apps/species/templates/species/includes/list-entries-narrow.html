@@ -52,7 +52,7 @@
     <div>
       <a class="dark-link me-3"
          href="{% querystring observer=observation.observer.identifier %}"
-         title="{% trans 'Show species seen by this observer' %}">{{ observation.observer }}</a>
+         title="{% trans 'Show species seen by this observer' %}">{{ observation.observer.display_name }}</a>
     </div>
   </div>
 {% endfor %}

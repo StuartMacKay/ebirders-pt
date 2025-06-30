@@ -68,7 +68,7 @@
       <td>
         <a class="dark-link me-3"
            href="{% querystring observer=observation.observer.identifier %}"
-           title="{% trans 'Show observations from this observer' %}">{{ observation.observer }}</a>
+           title="{% trans 'Show observations from this observer' %}">{{ observation.observer.display_name }}</a>
       </td>
       <td>
         <a class="dark-link"
