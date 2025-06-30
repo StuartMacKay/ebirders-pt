@@ -22,19 +22,29 @@ class Filter(models.Model):
         verbose_name=_("name"), help_text=_("The name of the filter.")
     )
 
-    initial_species = models.ForeignKey(
+    species = models.ForeignKey(
         "data.Species",
         related_name="filtered_on",
         on_delete=models.CASCADE,
-        verbose_name=_("initial species"),
+        verbose_name=_("species"),
         help_text=_("The species used to find matching Observations."),
     )
 
-    result_species = models.ForeignKey(
+    location = models.ForeignKey(
+        "data.Location",
+        blank=True,
+        null=True,
+        related_name="filtered_on",
+        on_delete=models.CASCADE,
+        verbose_name=_("location"),
+        help_text=_("The location used to find matching Observations."),
+    )
+
+    update_species = models.ForeignKey(
         "data.Species",
         related_name="filtered_by",
         on_delete=models.CASCADE,
-        verbose_name=_("result species"),
+        verbose_name=_("update species"),
         help_text=_("Matching Observations are updated to this species."),
     )
 
@@ -47,8 +57,15 @@ class Filter(models.Model):
     def apply(self):
         log.info("Applying filter: %s", self.name)
         count = 0
-        for observation in Observation.objects.filter(species=self.initial_species):
-            observation.species = self.result_species
+        filters = models.Q()
+
+        if self.species:
+            filters &= models.Q(species=self.species)
+        if self.location:
+            filters &= models.Q(location=self.location)
+
+        for observation in Observation.objects.filter(filters):
+            observation.species = self.update_species
             observation.save()
             count += 1
         log.info("Observations updated: %d", count)

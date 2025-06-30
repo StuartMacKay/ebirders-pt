@@ -17,8 +17,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('enabled', models.BooleanField(help_text='Is the filter active?', verbose_name='enabled')),
                 ('name', models.TextField(help_text='The name of the filter.', verbose_name='name')),
-                ('initial_species', models.ForeignKey(help_text='The species used to find matching Observations.', on_delete=django.db.models.deletion.CASCADE, related_name='filtered_on', to='data.species', verbose_name='initial species')),
-                ('result_species', models.ForeignKey(help_text='Matching Observations are updated to this species.', on_delete=django.db.models.deletion.CASCADE, related_name='filtered_by', to='data.species', verbose_name='result species')),
+                ('species', models.ForeignKey(help_text='The species used to find matching Observations.', on_delete=django.db.models.deletion.CASCADE, related_name='filtered_on', to='data.species', verbose_name='species')),
+                ('update_species', models.ForeignKey(help_text='Matching Observations are updated to this species.', on_delete=django.db.models.deletion.CASCADE, related_name='filtered_by', to='data.species', verbose_name='update species')),
             ],
             options={
                 'verbose_name': 'filter',
