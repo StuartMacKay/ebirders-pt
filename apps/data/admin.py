@@ -240,6 +240,9 @@ class ObservationAdmin(admin.ModelAdmin):
         "observer__name",
     )
     list_filter = (
+        "audio",
+        "photo",
+        "video",
         "approved",
         "reviewed",
     )
@@ -250,7 +253,9 @@ class ObservationAdmin(admin.ModelAdmin):
     fields = (
         "species",
         "count",
-        "media",
+        "audio",
+        "photo",
+        "video",
         "comments",
         "checklist",
         "location",

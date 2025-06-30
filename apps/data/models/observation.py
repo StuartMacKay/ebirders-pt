@@ -119,11 +119,22 @@ class Observation(models.Model):
         help_text=_("The number of birds seen."),
     )
 
-    media = models.BooleanField(
-        blank=True,
-        null=True,
-        verbose_name=_("has media"),
-        help_text=_("Has audio, photo or video uploaded to the Macaulay library."),
+    audio = models.BooleanField(
+        default=False,
+        verbose_name=_("has audio"),
+        help_text=_("Have audio recordings been uploaded to the Macaulay library."),
+    )
+
+    photo = models.BooleanField(
+        default=False,
+        verbose_name=_("has photos"),
+        help_text=_("Have photos been uploaded to the Macaulay library."),
+    )
+
+    video = models.BooleanField(
+        default=False,
+        verbose_name=_("has video"),
+        help_text=_("Have video recordings been uploaded to the Macaulay library."),
     )
 
     approved = models.BooleanField(
@@ -196,3 +207,6 @@ class Observation(models.Model):
             log.error("Incorrect JSON for Observation decision: %s", self.id)
             decision = ""
         return decision
+
+    def has_media(self):
+        return self.audio or self.photo or self.video

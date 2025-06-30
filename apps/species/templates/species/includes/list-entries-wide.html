@@ -73,6 +73,15 @@
            title="{% trans 'View this checklist on eBird.org' %}">
           <i class="bi bi-box-arrow-up-right"></i>
         </a>
+        {% if observation.audio %}
+          <i class="bi bi-volume-up-fill ms-1"></i>
+        {% endif %}
+        {% if observation.photo %}
+          <i class="bi bi-camera-fill ms-1"></i>
+        {% endif %}
+        {% if observation.video %}
+          <i class="bi bi-camera-video-fill ms-1"></i>
+        {% endif %}
       </td>
     </tr>
     {% if not observation.approved %}

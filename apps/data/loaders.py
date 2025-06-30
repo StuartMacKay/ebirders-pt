@@ -264,7 +264,9 @@ class APILoader:
             "time": checklist.time,
             "started": checklist.started,
             "count": 0,
-            "media": False,
+            "audio": False,
+            "photo": False,
+            "video": False,
             "comments": "",
             "urn": self.get_urn(checklist.project_code, data),
             "data": {"api": data},
@@ -272,6 +274,11 @@ class APILoader:
 
         if re.match(r"\d+", data["howManyStr"]):
             values["count"] = int(data["howManyStr"])
+
+        if "mediaCounts" in data:
+            values["audio"] = "A" in data["mediaCounts"]
+            values["photo"] = "P" in data["mediaCounts"]
+            values["video"] = "V" in data["mediaCounts"]
 
         if "comments" in data:
             values["comments"] = data["comments"]

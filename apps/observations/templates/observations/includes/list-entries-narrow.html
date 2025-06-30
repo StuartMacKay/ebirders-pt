@@ -7,12 +7,21 @@
       {% else %}
         {{ observation.date|date:"jS F Y" }}{% if observation.time %}, {{ observation.time }}{% endif %}
       {% endif %}
-      <a class="dark-link"
+      <a class="dark-link ms-3"
          href="{{ observation.checklist.url }}"
          target="_blank"
          title="{% trans 'View this checklist on eBird.org' %}">
-        <i class="bi bi-box-arrow-up-right ms-3"></i>
+        <i class="bi bi-box-arrow-up-right"></i>
       </a>
+      {% if observation.audio %}
+        <i class="bi bi-volume-up-fill ms-1"></i>
+      {% endif %}
+      {% if observation.photo %}
+        <i class="bi bi-camera-fill ms-1"></i>
+      {% endif %}
+      {% if observation.video %}
+        <i class="bi bi-camera-video-fill ms-1"></i>
+      {% endif %}
     {% endspaceless %}</div>
     <div>
       <span>{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}, </span>
