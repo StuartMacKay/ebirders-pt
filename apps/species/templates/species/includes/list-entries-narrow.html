@@ -14,9 +14,13 @@
     {% endif %}
     <div>{% spaceless %}
       {% if language_code == 'pt' %}
-        {{ observation.date|date:"j F Y"|lower }}{% if observation.time %}, {{ observation.time }}{% endif %}
+        <a class="dark-link"
+           href="{% querystring start=observation.date|date:'Y-m-d' finish=observation.date|date:'Y-m-d' %}"
+           title="{% trans 'Show species seen on this date' %}">{{ observation.date|date:"j b Y" }}</a>{% if observation.time %}, {{ observation.time }}{% endif %}
       {% else %}
-        {{ observation.date|date:"jS F Y" }}{% if observation.time %}, {{ observation.time }}{% endif %}
+        <a class="dark-link"
+           href="{% querystring start=observation.date|date:'Y-m-d' finish=observation.date|date:'Y-m-d' %}"
+           title="{% trans 'Show species seen on this date' %}">{{ observation.date|date:"jS M Y" }}</a>{% if observation.time %}, {{ observation.time }}{% endif %}
       {% endif %}
       <a class="dark-link"
          href="{{ observation.checklist.url }}"

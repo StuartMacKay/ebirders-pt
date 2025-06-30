@@ -21,9 +21,13 @@
       </td>
       <td>
         {% if language_code == 'pt' %}
-          <span class="text-nowrap">{{ observation.date|date:"j b Y" }}</span>
+          <a class="dark-link text-nowrap"
+             href="{% querystring start=observation.date|date:'Y-m-d' finish=observation.date|date:'Y-m-d' %}"
+             title="{% trans 'Show species seen on this date' %}">{{ observation.date|date:"j b Y" }}</a>
         {% else %}
-          <span class="text-nowrap">{{ observation.date|date:"jS M Y" }}</span>
+          <a class="dark-link text-nowrap"
+             href="{% querystring start=observation.date|date:'Y-m-d' finish=observation.date|date:'Y-m-d' %}"
+             title="{% trans 'Show species seen on this date' %}">{{ observation.date|date:"jS M Y" }}</a>
         {% endif %}
         {% if observation.time %}
           <br/><small class="text-muted">{{ observation.time }}</small>
