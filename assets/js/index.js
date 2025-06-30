@@ -30,7 +30,7 @@ function open_filter_panels() {
             link.click();
         }
     }
-    if (params.from || params.until) {
+    if (params.start || params.finish) {
         const list = document.querySelectorAll('a[href="#form-date-range"]');
         for (const link of list) {
             link.click();
