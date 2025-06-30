@@ -11,6 +11,13 @@ log = logging.getLogger(__name__)
 
 
 class Species(models.Model):
+    class Category(models.TextChoices):
+        ALL = "", _("All categories")
+        SPECIES = "species", _("Species")
+        SUBSPECIES = "issf", _("Subspecies")
+        DOMESTIC = "domestic", _("Domestic")
+        HYBRID = "hybrid", _("Hybrid")
+
     class Meta:
         verbose_name = _("species")
         verbose_name_plural = _("species")
@@ -32,6 +39,7 @@ class Species(models.Model):
 
     category = models.TextField(
         blank=True,
+        choices=Category,
         verbose_name=_("category"),
         help_text=_("The category from the eBird/Clements taxonomy."),
     )

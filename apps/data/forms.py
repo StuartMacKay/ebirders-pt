@@ -256,13 +256,7 @@ class CategoryFilter(forms.Form):
 
     category = forms.ChoiceField(
         label=_("Category"),
-        choices=(
-            ("", _("All categories")),
-            ("species", _("Species")),
-            ("issf", _("Subspecies")),
-            ("domestic", _("Domestic")),
-            ("hybrid", _("Hybrid")),
-        ),
+        choices=Species.Category.choices,
         required=False,
         widget=forms.Select(attrs={"class": "form-control"}),
     )
