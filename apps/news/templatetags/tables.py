@@ -129,11 +129,11 @@ def yearlist_table(context):
     )
 
     if context.get("country"):
-        filters &= Q(country_id=context["country"])
+        filters &= Q(country=context["country"])
     elif context.get("state"):
-        filters &= Q(state_id=context["state"])
+        filters &= Q(state=context["state"])
     elif context.get("county"):
-        filters &= Q(county_id=context["county"])
+        filters &= Q(county=context["county"])
 
     year_list = (
         Observation.objects.filter(filters)
@@ -168,6 +168,9 @@ def yearlist_table(context):
 
     return {
         "title": _("Year List"),
+        "country": context["country"].code if context["country"] else None,
+        "state": context["state"].code if context["state"] else None,
+        "county": context["county"].code if context["county"] else None,
         "start_year": context["start_year"],
         "end_year": context["end_year"],
         "observations": observations,
