@@ -4,9 +4,13 @@
     <div>
       <span class="me-3">
         {% if language_code == 'pt' %}
-          {{ checklist.date|date:"j F Y"|lower }}
+          <a class="dark-link"
+             href="{% querystring start=checklist.date|date:'Y-m-d' finish=checklist.date|date:'Y-m-d' %}"
+             title="{% trans 'Show checklists for this date' %}">{{ checklist.date|date:"j b Y" }}</a>{% if checklist.time %}, {{ checklist.time }}{% endif %}
         {% else %}
-          {{ checklist.date|date:"jS F Y" }}
+          <a class="dark-link"
+             href="{% querystring start=checklist.date|date:'Y-m-d' finish=checklist.date|date:'Y-m-d' %}"
+             title="{% trans 'Show checklists for this date' %}">{{ checklist.date|date:"jS M Y" }}</a>{% if checklist.time %}, {{ checklist.time }}{% endif %}
         {% endif %}
       </span>
       <a class="dark-link"
@@ -18,29 +22,29 @@
     </div>
     <div>{% spaceless %}
       <a class="dark-link"
-         href="?location={{ checklist.location.identifier }}"
+         href="{% querystring location=checklist.location.identifier %}"
          title="{% trans 'Show checklists for this location' %}">{{ checklist.location.display_name }}</a>
       {% if checklist.county %}
           <span>, </span>
           <a class="dark-link text-muted"
-               href="?county={{ checklist.county.code }}"
+               href="{% querystring county=checklist.county.code location=None %}"
                title="{% trans 'Show checklists for this county' %}">{{ checklist.county.name }}</a>
       {% endif %}
         {% if checklist.state %}
           {% if checklist.county %}<span>, </span>{% endif %}
             <a class="dark-link text-muted"
-               href="?state={{ checklist.state.code }}"
+               href="{% querystring state=checklist.state.code county=None location=None %}"
                title="{% trans 'Show checklists for this state' %}">{{ checklist.state.name }}</a>
         {% endif %}
         {% if show_country %}
           <a class="dark-link text-muted"
-             href="?country={{ checklist.country.code }}"
+             href="{% querystring country=checklist.country.code state=None county=None location=None %}"
              title="{% trans 'Show checklists for this country' %}">{{ checklist.country }}</a>
         {% endif %}
     {% endspaceless %}</div>
     <div>
       <a class="dark-link me-3"
-         href="?observer={{ checklist.observer.identifier }}"
+         href="{% querystring observer=checklist.observer.identifier %}"
          title="{% trans 'Show checklists for this observer' %}">{{ checklist.observer.display_name }}</a>
     </div>
     <div>
