@@ -416,7 +416,7 @@ class FilterAdmin(admin.ModelAdmin):
     list_display = ("name", "enabled")
     search_fields = ("name", "species__common_name")
     list_filter = ("enabled",)
-    autocomplete_fields = ("species", "update_species")
+    autocomplete_fields = ("species", "location", "update_species")
     formfield_overrides = {
         TextField: {
             "widget": TextInput(attrs={"class": "vTextField"}),
