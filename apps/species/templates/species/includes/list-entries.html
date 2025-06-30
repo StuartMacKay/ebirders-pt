@@ -1,12 +1,12 @@
 {% load i18n %}
 {% get_current_language as language_code %}
-<div class="row">
-  <div class="border-top pt-3 mb-3">
-    {% if species_list_title %}
-      <span class="h4">{{ species_list_title }}: {{ species_list|length }}</span>
-    {% endif %}
+{% if species_list_title %}
+  <div class="row">
+    <div class="mt-2 pt-2">
+      <h3 class="fs-5">{{ species_list_title }}: {{ species_list|length }}</h3>
+    </div>
   </div>
-</div>
+{% endif %}
 <div class="d-none d-lg-block">
   {% include "species/includes/list-entries-wide.html" %}
 </div>

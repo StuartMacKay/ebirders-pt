@@ -257,6 +257,7 @@ class CategoryFilter(forms.Form):
     category = forms.ChoiceField(
         label=_("Category"),
         choices=(
+            ("", _("All categories")),
             ("species", _("Species")),
             ("issf", _("Subspecies")),
             ("domestic", _("Domestic")),
