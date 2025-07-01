@@ -64,7 +64,6 @@ INSTALLED_APPS = [
     "checklists",
     "contact",
     "data",
-    "events",
     "locations",
     "news",
     "notifications",

@@ -1,7 +1,6 @@
 from django import forms
 from django.conf import settings
-from django.contrib import admin
-from django.contrib import messages
+from django.contrib import admin, messages
 from django.contrib.admin.widgets import AutocompleteSelect
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.db.models import DecimalField, IntegerField, TextField
@@ -194,34 +193,13 @@ class ChangeSpeciesForm(forms.Form):
 
 class ObservationForm(ModelForm):
     reason = TranslationTextField(required=False)
-    decision = TranslationTextField(required=False)
 
     class Meta:
         fields = "__all__"
 
-    REASON_MISSING = _("You must give a reason when rejecting an Observation.")
-    DECISION_MISSING = _("You must give a decision when an Observation is reviewed")
-    REVIEWED_MISSING = _("You must set the reviewed field when changing the species")
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["reason"].widget.attrs.update({"rows": 2})
-        self.fields["decision"].widget.attrs.update({"rows": 2})
-
-    def clean(self):
-        if "approved" in self.changed_data and not self.cleaned_data["approved"]:
-            if not self.cleaned_data["reason"]:
-                self.add_error(None, self.REASON_MISSING)
-
-        if "reviewed" in self.changed_data and self.cleaned_data["reviewed"]:
-            if not self.cleaned_data["decision"]:
-                self.add_error(None, self.DECISION_MISSING)
-
-        if "species" in self.changed_data:
-            if not self.cleaned_data["reviewed"]:
-                self.add_error(None, self.REVIEWED_MISSING)
-
-        return self.cleaned_data
 
 
 @admin.register(models.Observation)
@@ -245,7 +223,6 @@ class ObservationAdmin(admin.ModelAdmin):
         "photo",
         "video",
         "approved",
-        "reviewed",
     )
     ordering = ("-checklist__started",)
     form = ObservationForm
@@ -264,8 +241,6 @@ class ObservationAdmin(admin.ModelAdmin):
         "edited",
         "approved",
         "reason",
-        "reviewed",
-        "decision",
         "data",
     )
 
@@ -291,21 +266,6 @@ class ObservationAdmin(admin.ModelAdmin):
             obj.county = location.county
 
         super().save_model(request, obj, form, change)
-
-        if "approved" in form.changed_data and not obj.approved:
-            models.Event.objects.create(
-                type=models.Event.Type.OBSERVATION_REJECTED, observation=obj
-            )
-
-        if "reviewed" in form.changed_data and obj.reviewed:
-            if obj.approved:
-                models.Event.objects.create(
-                    type=models.Event.Type.OBSERVATION_ACCEPTED, observation=obj
-                )
-            else:
-                models.Event.objects.create(
-                    type=models.Event.Type.OBSERVATION_REJECTED, observation=obj
-                )
 
 
 @admin.register(models.Observer)
@@ -354,7 +314,9 @@ class FetchSpeciesView(PermissionRequiredMixin, generic.FormView):
         loader = APILoader(key, locales)
         species = loader.add_species(species_code)
         messages.add_message(
-            self.request, messages.INFO, "%s was added to the Species list" % species.get_common_name()
+            self.request,
+            messages.INFO,
+            "%s was added to the Species list" % species.get_common_name(),
         )
 
 
@@ -429,25 +391,3 @@ class FilterAdmin(admin.ModelAdmin):
             "widget": TextInput(attrs={"class": "vTextField"}),
         }
     }
-
-
-@admin.register(models.Event)
-class EventAdmin(admin.ModelAdmin):
-    list_display = ("created", "type", "observation")
-    readonly_fields = (
-        "created",
-        "type",
-        "observation",
-    )
-    fields = (
-        "created",
-        "type",
-        "observation",
-        "data",
-    )
-
-    def formfield_for_dbfield(self, db_field, request, **kwargs):
-        field = super().formfield_for_dbfield(db_field, request, **kwargs)
-        if db_field.name == "data":
-            field.widget = Textarea(attrs={"rows": 5, "class": "vLargeTextField"})
-        return field

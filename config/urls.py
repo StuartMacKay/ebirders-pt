@@ -18,7 +18,6 @@ urlpatterns = i18n_patterns(
     path(_("contact/"), ContactView.as_view(), name="contact"),
     path(_("updates/"), include("updates.urls")),
     path(_("about/"), flatpage, {"url": _("/about/") }, name="about"),
-    path(_("events/"), include("events.urls")),
 )
 
 urlpatterns += [

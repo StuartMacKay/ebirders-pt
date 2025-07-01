@@ -143,25 +143,11 @@ class Observation(models.Model):
         help_text=_("Has the observation been accepted."),
     )
 
-    reviewed = models.BooleanField(
-        default=False,
-        verbose_name=_("Reviewed"),
-        help_text=_("If the observation was not approved, has it been reviewed."),
-    )
-
     reason = models.TextField(
         blank=True,
         verbose_name=_("Reason"),
         help_text=_(
             "The reason given for the observation to be marked as not approved."
-        ),
-    )
-
-    decision = models.TextField(
-        blank=True,
-        verbose_name=_("Decision"),
-        help_text=_(
-            "The decision given when the observation was reviewed."
         ),
     )
 
@@ -198,15 +184,6 @@ class Observation(models.Model):
             log.error("Incorrect JSON for Observation reason: %s", self.id)
             reason = ""
         return reason
-
-    def get_decision(self) -> str:
-        try:
-            data = json.loads(self.decision)
-            decision = data.get(get_language(), "")
-        except JSONDecodeError:
-            log.error("Incorrect JSON for Observation decision: %s", self.id)
-            decision = ""
-        return decision
 
     def has_media(self):
         return self.audio or self.photo or self.video
