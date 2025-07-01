@@ -201,7 +201,7 @@ class ObservationForm(ModelForm):
 
     REASON_MISSING = _("You must give a reason when rejecting an Observation.")
     DECISION_MISSING = _("You must give a decision when an Observation is reviewed")
-    REVIEWED_MISSING = _("You must set the reviewed field when an Observation")
+    REVIEWED_MISSING = _("You must set the reviewed field when changing the species")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -218,7 +218,7 @@ class ObservationForm(ModelForm):
                 self.add_error(None, self.DECISION_MISSING)
 
         if "species" in self.changed_data:
-            if "reviewed" not in self.changed_data or not self.cleaned_data["reviewed"]:
+            if not self.cleaned_data["reviewed"]:
                 self.add_error(None, self.REVIEWED_MISSING)
 
         return self.cleaned_data
