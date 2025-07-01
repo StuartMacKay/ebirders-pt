@@ -4,14 +4,8 @@
     <div>
       <span>{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}, </span>
       <span class="me-2">{{ observation.species.get_common_name }}</span>
-      <span class="fst-italic">({{ observation.species.scientific_name }})</span>
+      <span class="fst-italic text-nowrap">({{ observation.species.scientific_name }})</span>
     </div>
-    {% if not observation.approved %}
-      <div>
-        <i class="bi bi-flag-fill text-danger me-1"></i>
-        <span>{{ observation.get_reason }}"></span>
-      </div>
-    {% endif %}
     <div>{% spaceless %}
       {% if language_code == 'pt' %}
         <a class="dark-link"
@@ -22,21 +16,6 @@
            href="{% querystring start=observation.date|date:'Y-m-d' finish=observation.date|date:'Y-m-d' %}"
            title="{% trans 'Show species seen on this date' %}">{{ observation.date|date:"jS M Y" }}</a>{% if observation.time %}, {{ observation.time }}{% endif %}
       {% endif %}
-      <a class="dark-link"
-         href="{{ observation.checklist.url }}"
-         target="_blank"
-         title="{% trans 'View this checklist on eBird.org' %}">
-        <i class="bi bi-box-arrow-up-right"></i>
-      </a>
-      {% if observation.audio %}
-        <i class="bi bi-volume-up-fill ms-1"></i>
-      {% endif %}
-      {% if observation.photo %}
-        <i class="bi bi-camera-fill ms-1"></i>
-      {% endif %}
-      {% if observation.video %}
-        <i class="bi bi-camera-video-fill ms-1"></i>
-      {% endif %}
     {% endspaceless %}</div>
     <div>{% spaceless %}
       <a class="dark-link"
@@ -44,7 +23,7 @@
          title="{% trans 'Show species for this location' %}">{{ observation.location.display_name }}</a>
       {% if observation.county %}
         <span>, </span>
-        <a class="dark-link text-muted"
+        <a class="dark-link"
              href="{% querystring county=observation.county.code location=None %}"
              title="{% trans 'Show species for this county' %}">{{ observation.county.name }}</a>
       {% endif %}
@@ -52,12 +31,12 @@
         {% if observation.county %}
           <span>, </span>
         {% endif %}
-        <a class="dark-link text-muted"
+        <a class="dark-link"
                href="{% querystring state=observation.state.code county=None location=None %}"
                title="{% trans 'Show species for this state' %}">{{ observation.state.name }}</a>
       {% endif %}
       {% if show_country %}
-        <a class="dark-link text-muted"
+        <a class="dark-link"
            href="{% querystring country=observation.country.code state=None county=None location=None %}"
            title="{% trans 'Show species for this country' %}">{{ observation.country }}</a>
       {% endif %}
@@ -67,5 +46,28 @@
          href="{% querystring observer=observation.observer.identifier %}"
          title="{% trans 'Show species seen by this observer' %}">{{ observation.observer.display_name }}</a>
     </div>
+    <div>
+      {% if observation.audio %}
+        <i class="bi bi-volume-up-fill me-1"></i>
+      {% endif %}
+      {% if observation.photo %}
+        <i class="bi bi-camera-fill me-1"></i>
+      {% endif %}
+      {% if observation.video %}
+        <i class="bi bi-camera-video-fill me-1"></i>
+      {% endif %}
+      <a class="dark-link"
+         href="{{ observation.checklist.url }}"
+         target="_blank"
+         title="{% trans 'View this checklist on eBird.org' %}">
+        <i class="bi bi-box-arrow-up-right"></i>
+      </a>
+    </div>
+    {% if not observation.approved %}
+      <div class="mt-1">
+        <i class="bi bi-flag-fill text-danger me-1"></i>
+        <span>{{ observation.get_reason }}"></span>
+      </div>
+    {% endif %}
   </div>
 {% endfor %}
