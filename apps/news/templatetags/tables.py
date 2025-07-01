@@ -76,6 +76,7 @@ def checklists_duration_table(country_id, state_id, county_id, start, end):
         queryset.values("observer")
         .annotate(name=F("observer__name"))
         .annotate(byname=F("observer__byname"))
+        .annotate(identifier=F("observer__identifier"))
         .annotate(total=Sum("duration"))
         .filter(duration__isnull=False)
         .order_by("-total")
@@ -85,7 +86,11 @@ def checklists_duration_table(country_id, state_id, county_id, start, end):
         observer["hours"] = "%0d" % (observer["total"] / 60)
         observer["minutes"] = "%02d" % (observer["total"] % 60)
 
-    return {"records": observers}
+    return {
+        "records": observers,
+        "start": start,
+        "finish": end,
+    }
 
 
 @register.inclusion_tag("news/tables/checklists-species.html")
