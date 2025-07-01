@@ -9,7 +9,7 @@ log = logging.getLogger(__name__)
 class Event(models.Model):
     class Type(models.IntegerChoices):
         OBSERVATION_REJECTED = 1, _("Observation rejected")
-        OBSERVATION_REVIEWED = 2, _("Observation reviewed")
+        OBSERVATION_ACCEPTED = 2, _("Observation accepted")
 
     class Meta:
         verbose_name = _("event")

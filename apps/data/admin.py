@@ -296,10 +296,16 @@ class ObservationAdmin(admin.ModelAdmin):
             models.Event.objects.create(
                 type=models.Event.Type.OBSERVATION_REJECTED, observation=obj
             )
+
         if "reviewed" in form.changed_data and obj.reviewed:
-            models.Event.objects.create(
-                type=models.Event.Type.OBSERVATION_REVIEWED, observation=obj
-            )
+            if obj.approved:
+                models.Event.objects.create(
+                    type=models.Event.Type.OBSERVATION_ACCEPTED, observation=obj
+                )
+            else:
+                models.Event.objects.create(
+                    type=models.Event.Type.OBSERVATION_REJECTED, observation=obj
+                )
 
 
 @admin.register(models.Observer)

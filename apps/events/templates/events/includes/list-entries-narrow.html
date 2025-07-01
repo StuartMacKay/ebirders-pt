@@ -72,6 +72,12 @@
         <i class="bi bi-flag-fill text-danger me-1"></i>
         <span>{{ observation.get_reason }}</span>
       </div>
+      {% if observation.reviewed %}
+        <div class="mt-1">
+          <i class="bi bi-flag-fill {% if observation.approved %}text-success{% else %}text-danger{% endif %} me-1"></i>
+          <span>{{ event.created|date:"Y-m-d" }} - {{ observation.get_decision }}</span>
+        </div>
+      {% endif %}
     </div>
   {% endwith %}
 {% endfor %}
