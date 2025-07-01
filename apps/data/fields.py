@@ -10,19 +10,23 @@ from .widgets import TranslationTextarea, TranslationTextInput
 class TranslationField(forms.MultiValueField):
     def __init__(self, **kwargs):
         # Define one set of messages for all fields.
-        error_messages = {
+        kwargs["error_messages"] = {
             "required": "Enter the text for the translation",
             "incomplete": "Enter text for every translation",
         }
-        super().__init__(
-            error_messages=error_messages, require_all_fields=True, **kwargs
-        )
+        super().__init__(require_all_fields=True, **kwargs)
 
     def compress(self, data_list):
         codes = [code for code, language in settings.LANGUAGES]
         values = zip(codes, data_list)
         translations = {code: value for code, value in values}
         return json.dumps(translations)
+
+    def has_changed(self, initial, data):
+        # If the value from the database is an empty string rather than the
+        # string representation of an empty dict, for the value to None so
+        # the value gets decompresses correctly.
+        return super().has_changed(initial or None, data)
 
 
 class TranslationCharField(TranslationField):
