@@ -1,7 +1,7 @@
 {% load i18n %}
 {% for observation in page_obj %}
   <div class="row {% if not forloop.first %}border-top{% endif %} py-2">
-    <div>{% spaceless %}
+    <div>
       {% if language_code == 'pt' %}
         <a class="dark-link"
            href="{% querystring start=observation.date|date:'Y-m-d' finish=observation.date|date:'Y-m-d' %}"
@@ -11,22 +11,7 @@
            href="{% querystring start=observation.date|date:'Y-m-d' finish=observation.date|date:'Y-m-d' %}"
            title="{% trans 'Show observations for this date' %}">{{ observation.date|date:"jS M Y" }}</a>{% if observation.time %}, {{ observation.time }}{% endif %}
       {% endif %}
-      <a class="dark-link ms-3"
-         href="{{ observation.checklist.url }}"
-         target="_blank"
-         title="{% trans 'View this checklist on eBird.org' %}">
-        <i class="bi bi-box-arrow-up-right"></i>
-      </a>
-      {% if observation.audio %}
-        <i class="bi bi-volume-up-fill ms-1"></i>
-      {% endif %}
-      {% if observation.photo %}
-        <i class="bi bi-camera-fill ms-1"></i>
-      {% endif %}
-      {% if observation.video %}
-        <i class="bi bi-camera-video-fill ms-1"></i>
-      {% endif %}
-    {% endspaceless %}</div>
+    </div>
     <div>
       <span>{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}, </span>
       <a class="dark-link me-1"
@@ -70,6 +55,23 @@
       <a class="dark-link me-3"
          href="{% querystring observer=observation.observer.identifier %}"
          title="{% trans 'Show observations from this observer' %}">{{ observation.observer.display_name }}</a>
+    </div>
+    <div>
+      {% if observation.audio %}
+        <i class="bi bi-volume-up-fill me-1"></i>
+      {% endif %}
+      {% if observation.photo %}
+        <i class="bi bi-camera-fill me-1"></i>
+      {% endif %}
+      {% if observation.video %}
+        <i class="bi bi-camera-video-fill me-1"></i>
+      {% endif %}
+      <a class="dark-link"
+         href="{{ observation.checklist.url }}"
+         target="_blank"
+         title="{% trans 'View this checklist on eBird.org' %}">
+        <i class="bi bi-box-arrow-up-right"></i>
+      </a>
     </div>
   </div>
 {% endfor %}
