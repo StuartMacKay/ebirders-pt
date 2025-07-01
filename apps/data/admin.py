@@ -1,6 +1,7 @@
 from django import forms
 from django.conf import settings
 from django.contrib import admin
+from django.contrib import messages
 from django.contrib.admin.widgets import AutocompleteSelect
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.db.models import DecimalField, IntegerField, TextField
@@ -346,8 +347,8 @@ class FetchSpeciesView(PermissionRequiredMixin, generic.FormView):
         locales: dict = getattr(settings, "EBIRD_LOCALES")
         loader = APILoader(key, locales)
         species = loader.add_species(species_code)
-        self.request.message(
-            self.request, "%s was added to the Species list" % species.get_common_name()
+        messages.add_message(
+            self.request, messages.INFO, "%s was added to the Species list" % species.get_common_name()
         )
 
 
