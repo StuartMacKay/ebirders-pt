@@ -21,12 +21,6 @@
       </a>
       <span class="fst-italic">({{ observation.species.scientific_name }})</span>
     </div>
-    {% if not observation.approved %}
-      <div>
-        <i class="bi bi-flag-fill text-danger me-1"></i>
-        <span>{{ observation.get_reason }}"></span>
-      </div>
-    {% endif %}
     <div>{% spaceless %}
       <a class="dark-link"
          href="{% querystring location=observation.location.identifier %}"
@@ -73,5 +67,11 @@
         <i class="bi bi-box-arrow-up-right"></i>
       </a>
     </div>
+    {% if not observation.approved %}
+      <div class="mt-1">
+        <i class="bi bi-flag-fill text-danger me-1"></i>
+        <span>{{ observation.get_reason }}</span>
+      </div>
+    {% endif %}
   </div>
 {% endfor %}
