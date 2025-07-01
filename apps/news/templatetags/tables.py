@@ -48,12 +48,17 @@ def checklists_submitted_table(country_id, state_id, county_id, start, end):
         queryset.values("observer")
         .annotate(name=F("observer__name"))
         .annotate(byname=F("observer__byname"))
+        .annotate(identifier=F("observer__identifier"))
         .annotate(count=Count("observer"))
         .filter(complete=True)
         .order_by("-count")
     )[:10]
 
-    return {"records": observers}
+    return {
+        "records": observers,
+        "start": start,
+        "finish": end,
+    }
 
 
 @register.inclusion_tag("news/tables/checklists-duration.html")

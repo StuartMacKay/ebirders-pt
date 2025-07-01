@@ -5,6 +5,7 @@
     <tr>
       <th>{% trans "Observer" %}</th>
       <th class="text-end">{% trans "No. of Checklists" %}</th>
+      <th>{% trans "View" %}</th>
     </tr>
   </thead>
   <tbody>
@@ -12,6 +13,13 @@
       <tr>
         <td>{{ record.byname|default:record.name }}</td>
         <td class="text-end">{{ record.count }}</td>
+        <td>
+          <a class="dark-link"
+             href="{% url 'checklists:list' %}{% querystring observer=record.identifier start=start|date:"Y-m-d" finish=finish|date:"Y-m-d" %}"
+             title="{% trans 'View the checklists' %}">
+            <i class="bi bi-box-arrow-in-down-right"></i>
+          </a>
+        </td>
       </tr>
       {% empty %}
       <tr>
