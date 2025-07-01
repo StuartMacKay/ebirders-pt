@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-30 08:11+0000\n"
+"POT-Creation-Date: 2025-07-01 10:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: apps/checklists/apps.py:8
-#: apps/checklists/templates/checklists/detail.html:18
 #: apps/checklists/templates/checklists/includes/list-title.html:4
 #: apps/checklists/templates/checklists/list.html:4
 #: apps/news/templatetags/numbers.py:47 templates/flatpages/base.html:33
@@ -27,109 +26,102 @@ msgstr ""
 msgid "Checklists"
 msgstr "Listas"
 
-#: apps/checklists/templates/checklists/detail.html:4
-#: apps/checklists/templates/checklists/includes/list-entries-wide.html:9
-#: apps/news/templates/news/tables/big-lists.html:18
-#: apps/news/templates/news/tables/high-counts-wide.html:10
-#: apps/news/templates/news/tables/yearlist-wide.html:10
-#: apps/observations/templates/observations/includes/list-entries-wide.html:10
-#: apps/species/templates/species/includes/list-entries-wide.html:10
-msgid "Checklist"
-msgstr "Lista"
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:9
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:13
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:19
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:23
+msgid "Show checklists for this date"
+msgstr "Mostrar as listas para esta data"
 
-#: apps/checklists/templates/checklists/detail.html:60 apps/data/forms.py:288
-#: apps/news/templatetags/charts.py:87
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:20
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:35
+msgid "Show checklists for this location"
+msgstr "Mostrar as listas para esta local"
+
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:25
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:42
+msgid "Show checklists for this county"
+msgstr "Mostrar as listas para est concelho"
+
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:31
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:50
+msgid "Show checklists for this state"
+msgstr "Mostrar as listas para este districto"
+
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:36
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:58
+msgid "Show checklists for this country"
+msgstr "Mostrar as listas para esta país"
+
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:42
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:106
+msgid "Show checklists for this observer"
+msgstr "Mostrar as listas para este observador"
+
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:47
+#: apps/data/forms.py:286 apps/news/templatetags/charts.py:87
 msgid "Number of species"
 msgstr "Número de espécies"
 
-#: apps/checklists/templates/checklists/detail.html:72
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:52
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:66
+msgid "Complete"
+msgstr "Completa"
+
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:54
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:68
+msgid "Incomplete"
+msgstr "Incompleta"
+
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:64
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:80
 msgid "Number of Observers"
 msgstr "Número de observadores"
 
-#: apps/checklists/templates/checklists/detail.html:80
-#: apps/news/templates/news/tables/checklists-duration.html:7
-msgid "Duration"
-msgstr "Duração"
-
-#: apps/checklists/templates/checklists/detail.html:88
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:71
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:89
 #: apps/news/templatetags/charts.py:23
 msgid "Stationary"
 msgstr "Parado"
 
-#: apps/checklists/templates/checklists/detail.html:93
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:77
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:93
 msgid "Travelling"
 msgstr "Em movimento"
 
-#: apps/checklists/templates/checklists/detail.html:95
-#, python-format
-msgid "%(distance)s km"
-msgstr "%(distance)s km"
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:79
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:95
+msgid "%(distance)s km,"
+msgstr "%(distance)s km,"
 
-#: apps/checklists/templates/checklists/detail.html:100
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:85
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:99
 #: apps/news/templatetags/charts.py:22
 msgid "Incidental"
 msgstr "Incidental"
 
-#: apps/checklists/templates/checklists/detail.html:106
-msgid "Complete"
-msgstr "Completa"
-
-#: apps/checklists/templates/checklists/detail.html:108
-msgid "Incomplete"
-msgstr "Incompleta"
-
-#: apps/checklists/templates/checklists/detail.html:119
-msgid "Show location on OpenStreetMap"
-msgstr "Mostrar a localização no OpenStreetMap"
-
-#: apps/checklists/templates/checklists/detail.html:128
-msgid "View the checklist on eBird"
-msgstr "Ver a lista no eBird"
-
-#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:15
-#: apps/checklists/templates/checklists/includes/list-entries-wide.html:67
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:91
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:112
+#: apps/events/templates/events/includes/list-entries-narrow.html:67
+#: apps/events/templates/events/includes/list-entries-wide.html:82
 #: apps/news/templates/news/tables/big-lists.html:58
 #: apps/news/templates/news/tables/high-counts-narrow.html:15
 #: apps/news/templates/news/tables/high-counts-wide.html:57
 #: apps/news/templates/news/tables/yearlist-narrow.html:15
-#: apps/news/templates/news/tables/yearlist-wide.html:58
-#: apps/observations/templates/observations/includes/list-entries-narrow.html:13
-#: apps/observations/templates/observations/includes/list-entries-wide.html:77
-#: apps/species/templates/species/includes/list-entries-narrow.html:24
-#: apps/species/templates/species/includes/list-entries-wide.html:73
+#: apps/news/templates/news/tables/yearlist-wide.html:59
+#: apps/observations/templates/observations/includes/list-entries-narrow.html:66
+#: apps/observations/templates/observations/includes/list-entries-wide.html:81
+#: apps/species/templates/species/includes/list-entries-narrow.html:28
+#: apps/species/templates/species/includes/list-entries-wide.html:77
 msgid "View this checklist on eBird.org"
 msgstr "Ver a lista no eBird.org"
 
-#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:22
-#: apps/checklists/templates/checklists/includes/list-entries-wide.html:30
-msgid "Show checklists for this location"
-msgstr "Mostrar as listas para esta local"
-
-#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:27
-#: apps/checklists/templates/checklists/includes/list-entries-wide.html:37
-msgid "Show checklists for this county"
-msgstr "Mostrar as listas para est concelho"
-
-#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:33
-#: apps/checklists/templates/checklists/includes/list-entries-wide.html:45
-msgid "Show checklists for this state"
-msgstr "Mostrar as listas para este districto"
-
-#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:38
-#: apps/checklists/templates/checklists/includes/list-entries-wide.html:53
-msgid "Show checklists for this country"
-msgstr "Mostrar as listas para esta país"
-
-#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:44
-#: apps/checklists/templates/checklists/includes/list-entries-wide.html:61
-msgid "Show checklists for this observer"
-msgstr "Mostrar as listas para este observador"
-
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:5
+#: apps/events/templates/events/includes/list-entries-wide.html:5
 #: apps/news/templates/news/tables/big-days.html:7
 #: apps/news/templates/news/tables/big-lists.html:6
 #: apps/news/templates/news/tables/high-counts-wide.html:5
-#: apps/news/templates/news/tables/yearlist-wide.html:5
+#: apps/news/templates/news/tables/yearlist-wide.html:6
 #: apps/observations/templates/observations/includes/list-entries-wide.html:5
 #: apps/species/templates/species/includes/list-entries-wide.html:6
 msgid "Date"
@@ -145,26 +137,44 @@ msgid "Species (plural)"
 msgstr "Espécies"
 
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:7
-#: apps/data/forms.py:46 apps/news/templates/news/tables/big-lists.html:9
+#: apps/data/forms.py:46
+#: apps/events/templates/events/includes/list-entries-wide.html:8
+#: apps/news/templates/news/tables/big-lists.html:9
 #: apps/news/templates/news/tables/high-counts-wide.html:8
-#: apps/news/templates/news/tables/yearlist-wide.html:8
+#: apps/news/templates/news/tables/yearlist-wide.html:9
 #: apps/observations/templates/observations/includes/list-entries-wide.html:8
 #: apps/species/templates/species/includes/list-entries-wide.html:8
 msgid "Location"
 msgstr "Local"
 
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:8
-#: apps/data/forms.py:136 apps/news/templates/news/tables/big-days.html:8
+msgid "Protocol"
+msgstr "Protocolos"
+
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:9
+#: apps/data/forms.py:140
+#: apps/events/templates/events/includes/list-entries-wide.html:9
+#: apps/news/templates/news/tables/big-days.html:8
 #: apps/news/templates/news/tables/big-lists.html:12
 #: apps/news/templates/news/tables/checklists-duration.html:6
 #: apps/news/templates/news/tables/checklists-species.html:14
 #: apps/news/templates/news/tables/checklists-submitted.html:6
 #: apps/news/templates/news/tables/high-counts-wide.html:9
-#: apps/news/templates/news/tables/yearlist-wide.html:9
+#: apps/news/templates/news/tables/yearlist-wide.html:10
 #: apps/observations/templates/observations/includes/list-entries-wide.html:9
 #: apps/species/templates/species/includes/list-entries-wide.html:9
 msgid "Observer"
 msgstr "Observador"
+
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:10
+#: apps/events/templates/events/includes/list-entries-wide.html:10
+#: apps/news/templates/news/tables/big-lists.html:18
+#: apps/news/templates/news/tables/high-counts-wide.html:10
+#: apps/news/templates/news/tables/yearlist-wide.html:11
+#: apps/observations/templates/observations/includes/list-entries-wide.html:10
+#: apps/species/templates/species/includes/list-entries-wide.html:10
+msgid "Checklist"
+msgstr "Lista"
 
 #: apps/checklists/templates/checklists/includes/list-filter.html:2
 msgid "Find Checklists"
@@ -174,16 +184,22 @@ msgstr "Procurar Listas"
 #: apps/observations/templates/observations/includes/list-filter.html:11
 #: apps/species/templates/species/includes/list-filter.html:11
 msgid "Please correct the errors below."
-msgstr ""
+msgstr "Por favor, corrija os erros abaixo."
 
-#: apps/checklists/templates/checklists/includes/list-filter.html:56
+#: apps/checklists/templates/checklists/includes/list-filter.html:57
 #: apps/news/templates/news/latest.html:45
 #: apps/news/templates/news/monthly.html:50
 #: apps/news/templates/news/weekly.html:50
-#: apps/observations/templates/observations/includes/list-filter.html:56
-#: apps/species/templates/species/includes/list-filter.html:56
+#: apps/observations/templates/observations/includes/list-filter.html:57
+#: apps/species/templates/species/includes/list-filter.html:57
 msgid "Search"
 msgstr "Pesquisar"
+
+#: apps/checklists/templates/checklists/includes/list-filter.html:58
+#: apps/observations/templates/observations/includes/list-filter.html:58
+#: apps/species/templates/species/includes/list-filter.html:58
+msgid "Clear"
+msgstr "Limpar"
 
 #: apps/checklists/templates/checklists/includes/list-pagination.html:10
 #: apps/events/templates/events/includes/list-pagination.html:12
@@ -297,39 +313,40 @@ msgstr ""
 msgid "Scientific name"
 msgstr ""
 
-#: apps/data/admin.py:150 apps/data/admin.py:302
+#: apps/data/admin.py:156 apps/data/admin.py:312
 msgid "Name / Byname"
 msgstr ""
 
-#: apps/data/admin.py:195
+#: apps/data/admin.py:201
 msgid "You must give a reason when rejecting an Observation."
 msgstr ""
 
-#: apps/data/admin.py:196
+#: apps/data/admin.py:202
 msgid "You must give a decision when an Observation is reviewed"
 msgstr ""
 
-#: apps/data/admin.py:197
+#: apps/data/admin.py:203
 msgid "You must set the reviewed field when an Observation"
 msgstr ""
 
-#: apps/data/admin.py:259 apps/data/forms.py:170 apps/data/forms.py:261
+#: apps/data/admin.py:271 apps/data/forms.py:174 apps/data/models/species.py:16
+#: apps/events/templates/events/includes/list-entries-wide.html:7
 #: apps/news/templates/news/tables/high-counts-wide.html:7
-#: apps/news/templates/news/tables/yearlist-wide.html:7
+#: apps/news/templates/news/tables/yearlist-wide.html:8
 #: apps/observations/templates/observations/includes/list-entries-wide.html:7
 #: apps/species/apps.py:8
 #: apps/species/templates/species/includes/list-entries-wide.html:5
 msgid "Species"
 msgstr "Espécie"
 
-#: apps/data/admin.py:319
+#: apps/data/admin.py:329
 msgid "The eBird code for the species, e.g. cangoo, for Canada Goose."
 msgstr ""
 
 #: apps/data/apps.py:8 apps/data/models/checklist.py:168
 #: apps/data/models/event.py:41 apps/data/models/location.py:144
-#: apps/data/models/observation.py:170 apps/data/models/observer.py:41
-#: apps/data/models/species.py:78 apps/notifications/models.py:70
+#: apps/data/models/observation.py:181 apps/data/models/observer.py:41
+#: apps/data/models/species.py:86 apps/notifications/models.py:70
 msgid "Data"
 msgstr "Dados"
 
@@ -355,93 +372,78 @@ msgstr "Só Hotspots"
 
 #: apps/data/forms.py:58
 msgid "No"
-msgstr ""
+msgstr "Não"
 
 #: apps/data/forms.py:59
 msgid "Yes"
-msgstr ""
+msgstr "Sim"
 
-#: apps/data/forms.py:132
+#: apps/data/forms.py:136
 msgid "By Observer"
 msgstr "Por Observador"
 
-#: apps/data/forms.py:166
+#: apps/data/forms.py:170
 msgid "By Species"
 msgstr "Por Espécie"
 
-#: apps/data/forms.py:218
+#: apps/data/forms.py:222
 msgid "By Date"
 msgstr "Por Data"
 
-#: apps/data/forms.py:221
+#: apps/data/forms.py:225
 msgid "This date is later than the until date."
 msgstr "Esta data é posterior à data até."
 
-#: apps/data/forms.py:224
+#: apps/data/forms.py:228
 msgid "From"
 msgstr "A partir de"
 
-#: apps/data/forms.py:229
+#: apps/data/forms.py:233
 msgid "Until"
 msgstr "Até"
 
-#: apps/data/forms.py:254
+#: apps/data/forms.py:258
 msgid "By Category"
 msgstr "Por Categoria"
 
-#: apps/data/forms.py:258
+#: apps/data/forms.py:262
 msgid "Category"
 msgstr "Categoria"
 
-#: apps/data/forms.py:260
-msgid "All categories"
-msgstr "Todas as categorias"
-
-#: apps/data/forms.py:262
-msgid "Subspecies"
-msgstr "Subespécie"
-
-#: apps/data/forms.py:263
-msgid "Domestic"
-msgstr "Doméstica"
-
-#: apps/data/forms.py:264
-msgid "Hybrid"
-msgstr "Híbrido"
-
-#: apps/data/forms.py:281 apps/data/forms.py:305 apps/data/forms.py:329
+#: apps/data/forms.py:279 apps/data/forms.py:303 apps/data/forms.py:327
 msgid "Order By"
 msgstr "Por Ordenação"
 
-#: apps/data/forms.py:285 apps/data/forms.py:309 apps/data/forms.py:333
+#: apps/data/forms.py:283 apps/data/forms.py:307 apps/data/forms.py:331
 msgid "Ordering"
 msgstr "Ordenação"
 
-#: apps/data/forms.py:287 apps/data/forms.py:311
+#: apps/data/forms.py:285 apps/data/forms.py:309
 msgid "Most recent first"
 msgstr "Mais recente primeiro"
 
-#: apps/data/forms.py:289
+#: apps/data/forms.py:287
 msgid "Number of species (descending)"
 msgstr "Número de espécies (decrescente)"
 
-#: apps/data/forms.py:312
+#: apps/data/forms.py:310
+#: apps/events/templates/events/includes/list-entries-wide.html:6
 #: apps/news/templates/news/tables/high-counts-wide.html:6
-#: apps/news/templates/news/tables/yearlist-wide.html:6
+#: apps/news/templates/news/tables/yearlist-wide.html:7
 #: apps/observations/templates/observations/includes/list-entries-wide.html:6
 #: apps/species/templates/species/includes/list-entries-wide.html:7
 msgid "Count"
 msgstr "Contagem"
 
-#: apps/data/forms.py:313
+#: apps/data/forms.py:311
 msgid "Count (descending)"
 msgstr "Contagem (descendente)"
 
-#: apps/data/forms.py:335
+#: apps/data/forms.py:333
 msgid "First Seen"
 msgstr "Primeiro visto"
 
-#: apps/data/forms.py:336
+#: apps/data/forms.py:334
 msgid "Last Seen"
 msgstr "Último visto"
 
@@ -513,8 +515,8 @@ msgstr "concelho"
 msgid "The county where the checklist was made."
 msgstr ""
 
-#: apps/data/models/checklist.py:65 apps/data/models/location.py:64
-#: apps/data/models/observation.py:91
+#: apps/data/models/checklist.py:65 apps/data/models/filter.py:39
+#: apps/data/models/location.py:64 apps/data/models/observation.py:91
 msgid "location"
 msgstr "Localização"
 
@@ -619,7 +621,7 @@ msgstr ""
 msgid "All species seen are reported."
 msgstr ""
 
-#: apps/data/models/checklist.py:157 apps/data/models/observation.py:159
+#: apps/data/models/checklist.py:157 apps/data/models/observation.py:170
 msgid "comments"
 msgstr ""
 
@@ -747,19 +749,24 @@ msgstr ""
 msgid "The name of the filter."
 msgstr ""
 
-#: apps/data/models/filter.py:29
-msgid "initial species"
-msgstr ""
+#: apps/data/models/filter.py:29 apps/data/models/observation.py:49
+#: apps/data/models/species.py:22 apps/data/models/species.py:23
+msgid "species"
+msgstr "Espécie"
 
 #: apps/data/models/filter.py:30
 msgid "The species used to find matching Observations."
 msgstr ""
 
-#: apps/data/models/filter.py:37
-msgid "result species"
+#: apps/data/models/filter.py:40
+msgid "The location used to find matching Observations."
 msgstr ""
 
-#: apps/data/models/filter.py:38
+#: apps/data/models/filter.py:47
+msgid "update species"
+msgstr "Subespécie"
+
+#: apps/data/models/filter.py:48
 msgid "Matching Observations are updated to this species."
 msgstr ""
 
@@ -843,11 +850,6 @@ msgstr ""
 msgid "The checklist this observation belongs to."
 msgstr ""
 
-#: apps/data/models/observation.py:49 apps/data/models/species.py:15
-#: apps/data/models/species.py:16
-msgid "species"
-msgstr "Espécie"
-
 #: apps/data/models/observation.py:50
 msgid "The identified species."
 msgstr ""
@@ -892,59 +894,75 @@ msgstr ""
 msgid "The number of birds seen."
 msgstr ""
 
-#: apps/data/models/observation.py:125
-msgid "has media"
+#: apps/data/models/observation.py:124
+msgid "has audio"
 msgstr ""
 
-#: apps/data/models/observation.py:126
-msgid "Has audio, photo or video uploaded to the Macaulay library."
+#: apps/data/models/observation.py:125
+msgid "Have audio recordings been uploaded to the Macaulay library."
+msgstr ""
+
+#: apps/data/models/observation.py:130
+msgid "has photos"
 msgstr ""
 
 #: apps/data/models/observation.py:131
-msgid "Approved"
+msgid "Have photos been uploaded to the Macaulay library."
 msgstr ""
 
-#: apps/data/models/observation.py:132
-msgid "Has the observation been accepted."
+#: apps/data/models/observation.py:136
+msgid "has video"
 msgstr ""
 
 #: apps/data/models/observation.py:137
-msgid "Reviewed"
+msgid "Have video recordings been uploaded to the Macaulay library."
 msgstr ""
 
-#: apps/data/models/observation.py:138
-msgid "If the observation was not approved, has it been reviewed."
+#: apps/data/models/observation.py:142
+msgid "Approved"
 msgstr ""
 
 #: apps/data/models/observation.py:143
+msgid "Has the observation been accepted."
+msgstr ""
+
+#: apps/data/models/observation.py:148
+msgid "Reviewed"
+msgstr ""
+
+#: apps/data/models/observation.py:149
+msgid "If the observation was not approved, has it been reviewed."
+msgstr ""
+
+#: apps/data/models/observation.py:154
 msgid "Reason"
 msgstr ""
 
-#: apps/data/models/observation.py:145
+#: apps/data/models/observation.py:156
 msgid "The reason given for the observation to be marked as not approved."
 msgstr ""
 
-#: apps/data/models/observation.py:151
+#: apps/data/models/observation.py:162
 msgid "Decision"
 msgstr ""
 
-#: apps/data/models/observation.py:153
+#: apps/data/models/observation.py:164
 msgid "The decision given when the observation was reviewed."
 msgstr ""
 
-#: apps/data/models/observation.py:160
+#: apps/data/models/observation.py:171
 msgid "Any comments about the observation."
 msgstr ""
 
-#: apps/data/models/observation.py:165
+#: apps/data/models/observation.py:176
 msgid "URN"
 msgstr ""
 
-#: apps/data/models/observation.py:166
+#: apps/data/models/observation.py:177
 msgid "The globally unique identifier for the observation"
 msgstr ""
 
-#: apps/data/models/observation.py:171
+#: apps/data/models/observation.py:182
 msgid "Data describing an Observation."
 msgstr ""
 
@@ -984,80 +1002,96 @@ msgstr ""
 msgid "Data describing an Observer."
 msgstr ""
 
-#: apps/data/models/species.py:21
+#: apps/data/models/species.py:15
+msgid "All categories"
+msgstr "Todas as categorias"
+
+#: apps/data/models/species.py:17
+msgid "Subspecies"
+msgstr "Subespécie"
+
+#: apps/data/models/species.py:18
+msgid "Domestic"
+msgstr "Doméstica"
+
+#: apps/data/models/species.py:19
+msgid "Hybrid"
+msgstr "Híbrido"
+
+#: apps/data/models/species.py:28
 msgid "taxonomy order"
 msgstr ""
 
-#: apps/data/models/species.py:22
+#: apps/data/models/species.py:29
 msgid "The position in the eBird/Clements taxonomic order."
 msgstr ""
 
-#: apps/data/models/species.py:27
+#: apps/data/models/species.py:34
 msgid "order"
 msgstr ""
 
-#: apps/data/models/species.py:29
+#: apps/data/models/species.py:36
 msgid "The order, e.g. Struthioniformes, from the eBird/Clements taxonomy."
 msgstr ""
 
-#: apps/data/models/species.py:35
+#: apps/data/models/species.py:43
 msgid "category"
 msgstr ""
 
-#: apps/data/models/species.py:36
+#: apps/data/models/species.py:44
 msgid "The category from the eBird/Clements taxonomy."
 msgstr ""
 
-#: apps/data/models/species.py:41
+#: apps/data/models/species.py:49
 msgid "species code"
 msgstr ""
 
-#: apps/data/models/species.py:42
+#: apps/data/models/species.py:50
 msgid "The species code, e.g. ostric2, used in the eBird API."
 msgstr ""
 
-#: apps/data/models/species.py:47
+#: apps/data/models/species.py:55
 msgid "family code"
 msgstr ""
 
-#: apps/data/models/species.py:48
+#: apps/data/models/species.py:56
 msgid "The family code, e.g. struth1, used in the eBird API."
 msgstr ""
 
-#: apps/data/models/species.py:52
+#: apps/data/models/species.py:60
 msgid "common name"
 msgstr ""
 
-#: apps/data/models/species.py:53
+#: apps/data/models/species.py:61
 msgid "The species common name in the eBird/Clements taxonomy."
 msgstr ""
 
-#: apps/data/models/species.py:57
+#: apps/data/models/species.py:65
 msgid "scientific name"
 msgstr ""
 
-#: apps/data/models/species.py:58
+#: apps/data/models/species.py:66
 msgid "The species scientific name in the eBird/Clements taxonomy."
 msgstr ""
 
-#: apps/data/models/species.py:63
+#: apps/data/models/species.py:71
 msgid "family common name"
 msgstr ""
 
-#: apps/data/models/species.py:65
+#: apps/data/models/species.py:73
 msgid "The common name for the species family in the eBird/Clements taxonomy."
 msgstr ""
 
-#: apps/data/models/species.py:71
+#: apps/data/models/species.py:79
 msgid "family scientific name"
 msgstr ""
 
-#: apps/data/models/species.py:73
+#: apps/data/models/species.py:81
 msgid ""
 "The scientific name for the species family in the eBird/Clements taxonomy."
 msgstr ""
 
-#: apps/data/models/species.py:79
+#: apps/data/models/species.py:87
 msgid "Data describing a Species."
 msgstr ""
 
@@ -1101,6 +1135,66 @@ msgstr ""
 #: apps/events/apps.py:7
 msgid "Events"
 msgstr ""
+
+#: apps/events/templates/events/includes/list-entries-narrow.html:9
+#: apps/events/templates/events/includes/list-entries-narrow.html:13
+#: apps/events/templates/events/includes/list-entries-wide.html:21
+#: apps/events/templates/events/includes/list-entries-wide.html:25
+#: apps/observations/templates/observations/includes/list-entries-narrow.html:8
+#: apps/observations/templates/observations/includes/list-entries-narrow.html:12
+#: apps/observations/templates/observations/includes/list-entries-wide.html:20
+#: apps/observations/templates/observations/includes/list-entries-wide.html:24
+msgid "Show observations for this date"
+msgstr "Mostrar os observações para esta data"
+
+#: apps/events/templates/events/includes/list-entries-narrow.html:20
+#: apps/events/templates/events/includes/list-entries-wide.html:35
+#: apps/observations/templates/observations/includes/list-entries-narrow.html:19
+#: apps/observations/templates/observations/includes/list-entries-wide.html:34
+msgid "Show observations of this species"
+msgstr "Mostrar observações desta espécie"
+
+#: apps/events/templates/events/includes/list-entries-narrow.html:28
+#: apps/events/templates/events/includes/list-entries-wide.html:45
+#: apps/observations/templates/observations/includes/list-entries-narrow.html:27
+#: apps/observations/templates/observations/includes/list-entries-wide.html:44
+msgid "Show observations for this location"
+msgstr "Mostrar os observaçãoes para este local"
+
+#: apps/events/templates/events/includes/list-entries-narrow.html:33
+#: apps/events/templates/events/includes/list-entries-wide.html:52
+#: apps/observations/templates/observations/includes/list-entries-narrow.html:32
+#: apps/observations/templates/observations/includes/list-entries-wide.html:51
+msgid "Show observations for this county"
+msgstr "Mostrar os observações para este concelho"
+
+#: apps/events/templates/events/includes/list-entries-narrow.html:41
+#: apps/events/templates/events/includes/list-entries-wide.html:60
+#: apps/observations/templates/observations/includes/list-entries-narrow.html:40
+#: apps/observations/templates/observations/includes/list-entries-wide.html:59
+msgid "Show observations for this state"
+msgstr "Mostrar os observações para esta estado"
+
+#: apps/events/templates/events/includes/list-entries-narrow.html:46
+#: apps/events/templates/events/includes/list-entries-wide.html:68
+#: apps/observations/templates/observations/includes/list-entries-narrow.html:45
+#: apps/observations/templates/observations/includes/list-entries-wide.html:67
+msgid "Show observations for this country"
+msgstr "Mostrar os observações para este país"
+
+#: apps/events/templates/events/includes/list-entries-narrow.html:52
+#: apps/events/templates/events/includes/list-entries-wide.html:76
+#: apps/observations/templates/observations/includes/list-entries-narrow.html:51
+#: apps/observations/templates/observations/includes/list-entries-wide.html:75
+msgid "Show observations from this observer"
+msgstr "Mostrar os observações deste observador"
+
+#: apps/events/templates/events/includes/list-entries-wide.html:106
+#: apps/news/templates/news/tables/high-counts-narrow.html:50
+#: apps/news/templates/news/tables/high-counts-wide.html:75
+#: apps/observations/templates/observations/includes/list-entries-wide.html:108
+msgid "No high counts were found."
+msgstr "Não foram encontradas contagens elevadas."
 
 #: apps/events/templates/events/includes/list-title.html:3
 #: apps/events/templates/events/list.html:4 templates/includes/footer.html:23
@@ -1157,11 +1251,19 @@ msgstr "Notícias Mensais"
 msgid "No. of Species"
 msgstr "Nº. de espécies"
 
-#: apps/news/templates/news/tables/big-days.html:18
+#: apps/news/templates/news/tables/big-days.html:10
+#: apps/news/templates/news/tables/checklists-duration.html:8
+#: apps/news/templates/news/tables/checklists-species.html:16
+#: apps/news/templates/news/tables/checklists-submitted.html:8
+msgid "View"
+msgstr "Ver"
+
+#: apps/news/templates/news/tables/big-days.html:32
+#: apps/news/templates/news/tables/checklists-species.html:27
 msgid "View the list of species"
 msgstr "Ver a lista de espécies"
 
-#: apps/news/templates/news/tables/big-days.html:35
+#: apps/news/templates/news/tables/big-days.html:39
 msgid "There are no Big Days to report."
 msgstr "Não há dias grandes a comunicar."
 
@@ -1173,12 +1275,21 @@ msgstr "Não há listas grandes a comunicar."
 msgid "Time spent birding"
 msgstr "Tempo passado"
 
-#: apps/news/templates/news/tables/checklists-duration.html:16
+#: apps/news/templates/news/tables/checklists-duration.html:7
+msgid "Duration"
+msgstr "Duração"
+
+#: apps/news/templates/news/tables/checklists-duration.html:17
 #, python-format
 msgid "Duration: %(hours)s hours %(minutes)s minutes"
 msgstr "%(hours)sh %(minutes)smin"
 
-#: apps/news/templates/news/tables/checklists-duration.html:22
+#: apps/news/templates/news/tables/checklists-duration.html:23
+#: apps/news/templates/news/tables/checklists-submitted.html:19
+msgid "View the checklists"
+msgstr "Ver as listas"
+
+#: apps/news/templates/news/tables/checklists-duration.html:30
 msgid "Nobody has been out birding."
 msgstr "Ninguém tem andado a observar aves."
 
@@ -1194,7 +1305,7 @@ msgstr "Mês Grande"
 msgid "Species seen"
 msgstr "Espécies observadas"
 
-#: apps/news/templates/news/tables/checklists-species.html:26
+#: apps/news/templates/news/tables/checklists-species.html:34
 msgid "There are no species totals to report."
 msgstr "Não há totais de espécies a comunicar."
 
@@ -1206,22 +1317,16 @@ msgstr "Listas completas"
 msgid "No. of Checklists"
 msgstr "Número de listas"
 
-#: apps/news/templates/news/tables/checklists-submitted.html:18
+#: apps/news/templates/news/tables/checklists-submitted.html:26
 msgid "No checklists have been submitted."
 msgstr "Não foram apresentadas listas."
-
-#: apps/news/templates/news/tables/high-counts-narrow.html:50
-#: apps/news/templates/news/tables/high-counts-wide.html:75
-#: apps/observations/templates/observations/includes/list-entries-wide.html:95
-msgid "No high counts were found."
-msgstr "Não foram encontradas contagens elevadas."
 
 #: apps/news/templates/news/tables/high-counts.html:3
 msgid "High Counts"
 msgstr "Contagens elevadas"
 
 #: apps/news/templates/news/tables/yearlist-narrow.html:50
-#: apps/news/templates/news/tables/yearlist-wide.html:76
+#: apps/news/templates/news/tables/yearlist-wide.html:79
 msgid "No species were added to the year list."
 msgstr "Não foi acrescentada nenhuma espécie à lista anual."
 
@@ -1266,11 +1371,11 @@ msgstr "Horas de observação"
 msgid "Big Lists"
 msgstr "Listas grandes"
 
-#: apps/news/templatetags/tables.py:170
+#: apps/news/templatetags/tables.py:180
 msgid "Year List"
 msgstr "Year List"
 
-#: apps/news/templatetags/tables.py:200
+#: apps/news/templatetags/tables.py:213
 msgid "Big Days"
 msgstr "Dias Grandes"
 
@@ -1358,62 +1463,39 @@ msgstr ""
 msgid "Observations"
 msgstr "Observações"
 
-#: apps/observations/templates/observations/includes/list-entries-narrow.html:21
-#: apps/observations/templates/observations/includes/list-entries-wide.html:30
-msgid "Show observations of this species"
-msgstr "Mostrar observações desta espécie"
-
-#: apps/observations/templates/observations/includes/list-entries-narrow.html:35
-#: apps/observations/templates/observations/includes/list-entries-wide.html:40
-msgid "Show observations for this location"
-msgstr "Mostrar os observaçãoes para este local"
-
-#: apps/observations/templates/observations/includes/list-entries-narrow.html:40
-#: apps/observations/templates/observations/includes/list-entries-wide.html:47
-msgid "Show observations for this county"
-msgstr "Mostrar os observações para este concelho"
-
-#: apps/observations/templates/observations/includes/list-entries-narrow.html:48
-#: apps/observations/templates/observations/includes/list-entries-wide.html:55
-msgid "Show observations for this state"
-msgstr "Mostrar os observações para esta estado"
-
-#: apps/observations/templates/observations/includes/list-entries-narrow.html:53
-#: apps/observations/templates/observations/includes/list-entries-wide.html:63
-msgid "Show observations for this country"
-msgstr "Mostrar os observações para este país"
-
-#: apps/observations/templates/observations/includes/list-entries-narrow.html:59
-#: apps/observations/templates/observations/includes/list-entries-wide.html:71
-msgid "Show observations from this observer"
-msgstr "Mostrar os observações deste observador"
-
 #: apps/observations/templates/observations/includes/list-filter.html:2
 msgid "Find Observations"
 msgstr "Procurar Observações"
 
-#: apps/species/templates/species/includes/list-entries-narrow.html:31
-#: apps/species/templates/species/includes/list-entries-wide.html:36
+#: apps/species/templates/species/includes/list-entries-narrow.html:19
+#: apps/species/templates/species/includes/list-entries-narrow.html:23
+#: apps/species/templates/species/includes/list-entries-wide.html:26
+#: apps/species/templates/species/includes/list-entries-wide.html:30
+msgid "Show species seen on this date"
+msgstr "Mostrar as espécies observadas nesta data"
+
+#: apps/species/templates/species/includes/list-entries-narrow.html:44
+#: apps/species/templates/species/includes/list-entries-wide.html:40
 msgid "Show species for this location"
 msgstr "Mostrar as espécies para esta local"
 
-#: apps/species/templates/species/includes/list-entries-narrow.html:36
-#: apps/species/templates/species/includes/list-entries-wide.html:43
+#: apps/species/templates/species/includes/list-entries-narrow.html:49
+#: apps/species/templates/species/includes/list-entries-wide.html:47
 msgid "Show species for this county"
 msgstr "Mostrar as espécies para est concelho"
 
-#: apps/species/templates/species/includes/list-entries-narrow.html:44
-#: apps/species/templates/species/includes/list-entries-wide.html:51
+#: apps/species/templates/species/includes/list-entries-narrow.html:57
+#: apps/species/templates/species/includes/list-entries-wide.html:55
 msgid "Show species for this state"
 msgstr "Mostrar as espécies para este districto"
 
-#: apps/species/templates/species/includes/list-entries-narrow.html:49
-#: apps/species/templates/species/includes/list-entries-wide.html:59
+#: apps/species/templates/species/includes/list-entries-narrow.html:62
+#: apps/species/templates/species/includes/list-entries-wide.html:63
 msgid "Show species for this country"
 msgstr "Mostrar as espécies para esta país"
 
-#: apps/species/templates/species/includes/list-entries-narrow.html:55
-#: apps/species/templates/species/includes/list-entries-wide.html:67
+#: apps/species/templates/species/includes/list-entries-narrow.html:68
+#: apps/species/templates/species/includes/list-entries-wide.html:71
 msgid "Show species seen by this observer"
 msgstr "Mostrar as espécies vistas por este observador"
 
@@ -1541,6 +1623,12 @@ msgstr ""
 msgid "About"
 msgstr "Sobre"
 
+#~ msgid "Show location on OpenStreetMap"
+#~ msgstr "Mostrar a localização no OpenStreetMap"
+
+#~ msgid "View the checklist on eBird"
+#~ msgstr "Ver a lista no eBird"
+
 #~ msgid "No. of species"
 #~ msgstr "Nº. de espécies"
 
@@ -1552,9 +1640,6 @@ msgstr "Sobre"
 
 #~ msgid "Species (Count)"
 #~ msgstr "Espécies (Contagem)"
-
-#~ msgid "View the checklist"
-#~ msgstr "Ver esta lista"
 
 #~ msgid "Stop reading and..."
 #~ msgstr "Parar de ler e..."
