@@ -1,30 +1,32 @@
 {% load i18n %}
 <h3>{% trans 'Number of checklists completed' %}</h3>
-<table class="table">
-  <thead>
-    <tr>
-      <th>{% trans "Observer" %}</th>
-      <th class="text-end">{% trans "No. of Checklists" %}</th>
-      <th>{% trans "View" %}</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for record in records %}
+{% if records|length %}
+  <table class="table">
+    <thead>
       <tr>
-        <td>{{ record.byname|default:record.name }}</td>
-        <td class="text-end">{{ record.count }}</td>
-        <td>
-          <a class="dark-link"
-             href="{% url 'checklists:list' %}{% querystring observer=record.identifier start=start|date:"Y-m-d" finish=finish|date:"Y-m-d" %}"
-             title="{% trans 'View the checklists' %}">
-            <i class="bi bi-box-arrow-in-down-right"></i>
-          </a>
-        </td>
+        <th>{% trans "Observer" %}</th>
+        <th class="text-end">{% trans "No. of Checklists" %}</th>
+        <th>{% trans "View" %}</th>
       </tr>
-      {% empty %}
-      <tr>
-        <td colspan="2">{% trans 'No checklists have been submitted.' %}</td>
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {% for record in records %}
+        <tr>
+          <td>{{ record.byname|default:record.name }}</td>
+          <td class="text-end">{{ record.count }}</td>
+          <td>
+            <a class="dark-link"
+               href="{% url 'checklists:list' %}{% querystring observer=record.identifier start=start|date:"Y-m-d" finish=finish|date:"Y-m-d" %}"
+               title="{% trans 'View the checklists' %}">
+              <i class="bi bi-box-arrow-in-down-right"></i>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <div class="row py-3">
+    <span>{% trans 'No checklists have been submitted.' %}</span>
+  </div>
+{% endif %}

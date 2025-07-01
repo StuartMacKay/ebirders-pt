@@ -6,31 +6,33 @@
     {% trans 'Big Week' %}
   {% endif %}
 {% endspaceless %}</h3>
-<table class="table">
-  <thead>
-    <tr>
-      <th>{% trans "Observer" %}</th>
-      <th class="text-end">{% trans "No. of Species" %}</th>
-      <th>{% trans "View" %}</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for record in records %}
+{% if records|length %}
+  <table class="table">
+    <thead>
       <tr>
-        <td>{{ record.byname|default:record.name }}</td>
-        <td class="text-end">{{ record.count }}</td>
-        <td>
-          <a class="dark-link"
-             href="{% url 'species:list' %}{% querystring category="species" observer=record.identifier start=start|date:"Y-m-d" finish=finish|date:"Y-m-d" %}"
-             title="{% trans 'View the list of species' %}">
-            <i class="bi bi-box-arrow-in-down-right"></i>
-          </a>
-        </td>
+        <th>{% trans "Observer" %}</th>
+        <th class="text-end">{% trans "No. of Species" %}</th>
+        <th>{% trans "View" %}</th>
       </tr>
-      {% empty %}
-      <tr>
-        <td colspan="2">{% trans 'There are no species totals to report.' %}</td>
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {% for record in records %}
+        <tr>
+          <td>{{ record.byname|default:record.name }}</td>
+          <td class="text-end">{{ record.count }}</td>
+          <td>
+            <a class="dark-link"
+               href="{% url 'species:list' %}{% querystring category="species" observer=record.identifier start=start|date:"Y-m-d" finish=finish|date:"Y-m-d" %}"
+               title="{% trans 'View the list of species' %}">
+              <i class="bi bi-box-arrow-in-down-right"></i>
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <div class="row py-3">
+    <span>{% trans 'There are no species totals to report.' %}</span>
+  </div>
+{% endif %}

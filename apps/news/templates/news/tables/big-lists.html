@@ -1,69 +1,70 @@
 {% load i18n %}
 {% get_current_language as language_code %}
 <h3 class="mb-3">{{ title }}</h3>
-<div class="row border-bottom pb-2 mb-2">
-  <div class="col-lg-1 col-xl-1">
-    <strong>{% trans "Date" %}</strong>
-  </div>
-  <div class="col-lg-5 col-xl-5">
-    <strong>{% trans "Location" %}</strong>
-  </div>
-  <div class="col-lg-2 col-xl-2">
-    <strong>{% trans "Observer" %}</strong>
-  </div>
-  <div class="col-lg-2 col-xl-2 text-lg-end">
-    <strong>{% trans "No. of Species" %}</strong>
-  </div>
-  <div class="col-lg-1 col-xl-1">
-    <strong>{% trans "Checklist" %}</strong>
-  </div>
-</div>
-{% for checklist in checklists %}
-  <div class="row {% if not forloop.last %}border-bottom{% endif %} pb-2 mb-2">
+{% if checklists|length %}
+  <div class="row border-bottom pb-2 mb-2">
     <div class="col-lg-1 col-xl-1">
-      <span class="text-nowrap">
-        {% if language_code == 'pt' %}
-          {{ checklist.date|date:"j b" }}
-        {% else %}
-          {{ checklist.date|date:"jS M" }}
-        {% endif %}
-      </span>
+      <strong>{% trans "Date" %}</strong>
     </div>
     <div class="col-lg-5 col-xl-5">
-      <span>{{ checklist.location.display_name }}</span>
-      <br/>
-      {% spaceless %}
-        {% if checklist.county %}
-          <small class="text-muted">{{ checklist.county }}</small>
-        {% endif %}
-        {% if checklist.state %}
-          {% if checklist.county %}<span>, </span>{% endif %}
-          <small class="text-muted">{{ checklist.state }}</small>
-        {% endif %}
-        {% if show_country %}
-          <small class="text-muted">, {{ checklist.country }}</small>
-        {% endif %}
-      {% endspaceless %}
+      <strong>{% trans "Location" %}</strong>
     </div>
     <div class="col-lg-2 col-xl-2">
-      {{ checklist.observer.display_name }}
+      <strong>{% trans "Observer" %}</strong>
     </div>
     <div class="col-lg-2 col-xl-2 text-lg-end">
-      <span>{{ checklist.species_count }}</span>
+      <strong>{% trans "No. of Species" %}</strong>
     </div>
     <div class="col-lg-1 col-xl-1">
-      <a class="dark-link"
-         href="{{ checklist.url }}"
-         target="_blank"
-         title="{% trans 'View this checklist on eBird.org' %}">
-        <i class="bi bi-box-arrow-up-right"></i>
-      </a>
+      <strong>{% trans "Checklist" %}</strong>
     </div>
   </div>
-  {% empty %}
-  <div class="row">
-    <div class="mb-3">
-      <span>{% trans 'There are no Big Lists to report.' %}</span>
+  {% for checklist in checklists %}
+    <div class="row {% if not forloop.last %}border-bottom{% endif %} pb-2 mb-2">
+      <div class="col-lg-1 col-xl-1">
+        <span class="text-nowrap">
+          {% if language_code == 'pt' %}
+            {{ checklist.date|date:"j b" }}
+          {% else %}
+            {{ checklist.date|date:"jS M" }}
+          {% endif %}
+        </span>
+      </div>
+      <div class="col-lg-5 col-xl-5">
+        <span>{{ checklist.location.display_name }}</span>
+        <br/>
+        {% spaceless %}
+          {% if checklist.county %}
+            <small class="text-muted">{{ checklist.county }}</small>
+          {% endif %}
+          {% if checklist.state %}
+            {% if checklist.county %}<span>, </span>{% endif %}
+            <small class="text-muted">{{ checklist.state }}</small>
+          {% endif %}
+          {% if show_country %}
+            <small class="text-muted">, {{ checklist.country }}</small>
+          {% endif %}
+        {% endspaceless %}
+      </div>
+      <div class="col-lg-2 col-xl-2">
+        {{ checklist.observer.display_name }}
+      </div>
+      <div class="col-lg-2 col-xl-2 text-lg-end">
+        <span>{{ checklist.species_count }}</span>
+      </div>
+      <div class="col-lg-1 col-xl-1">
+        <a class="dark-link"
+           href="{{ checklist.url }}"
+           target="_blank"
+           title="{% trans 'View this checklist on eBird.org' %}">
+          <i class="bi bi-box-arrow-up-right"></i>
+        </a>
+      </div>
     </div>
+    {% empty %}
+  {% endfor %}
+{% else %}
+  <div class="row py-3">
+    <span>{% trans 'There are no Big Lists to report.' %}</span>
   </div>
-{% endfor %}
+{% endif %}
