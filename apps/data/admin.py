@@ -209,11 +209,11 @@ class ObservationForm(ModelForm):
 
     def clean(self):
         if "approved" in self.changed_data and not self.cleaned_data["approved"]:
-            if "reason" not in self.changed_data or not self.cleaned_data["reason"]:
+            if not self.cleaned_data["reason"]:
                 self.add_error(None, self.REASON_MISSING)
 
         if "reviewed" in self.changed_data and self.cleaned_data["reviewed"]:
-            if "decision" not in self.changed_data or not self.cleaned_data["decision"]:
+            if not self.cleaned_data["decision"]:
                 self.add_error(None, self.DECISION_MISSING)
 
         if "species" in self.changed_data:
