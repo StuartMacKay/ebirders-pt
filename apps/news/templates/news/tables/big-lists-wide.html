@@ -1,0 +1,64 @@
+{% load i18n %}
+{% if checklists|length %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>{% trans "Date" %}</th>
+        <th>{% trans "Location" %}</th>
+        <th>{% trans "Observer" %}</th>
+        <th>{% trans "No. of Species" %}</th>
+        <th>{% trans "Checklist" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for checklist in checklists %}
+        <tr>
+          <td>
+            <span class="text-nowrap">
+              {% if language_code == 'pt' %}
+                {{ checklist.date|date:"j b" }}
+              {% else %}
+                {{ checklist.date|date:"jS M" }}
+              {% endif %}
+            </span>
+          </td>
+          <td>
+            <span>{{ checklist.location.display_name }}</span>
+            <br/>
+            {% spaceless %}
+              {% if checklist.county %}
+                <small class="text-muted">{{ checklist.county }}</small>
+              {% endif %}
+              {% if checklist.state %}
+                {% if checklist.county %}<span>, </span>{% endif %}
+                <small class="text-muted">{{ checklist.state }}</small>
+              {% endif %}
+              {% if show_country %}
+                <small class="text-muted">, {{ checklist.country }}</small>
+              {% endif %}
+            {% endspaceless %}
+          </td>
+          <td>
+            {{ checklist.observer.display_name }}
+          </td>
+          <td>
+            <span>{{ checklist.species_count }}</span>
+          </td>
+          <td>
+            <a class="dark-link"
+               href="{{ checklist.url }}"
+               target="_blank"
+               title="{% trans 'View this checklist on eBird.org' %}">
+              <i class="bi bi-box-arrow-up-right"></i>
+            </a>
+          </td>
+        </tr>
+        {% empty %}
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <div class="row py-3">
+    <span>{% trans 'There are no Big Lists to report.' %}</span>
+  </div>
+{% endif %}
