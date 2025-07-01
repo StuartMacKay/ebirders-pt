@@ -92,9 +92,7 @@ def checklists_duration_table(country_id, state_id, county_id, start, end):
 def checklists_species_table(country_id, state_id, county_id, start, end, interval):
     filters = Q(observations__date__gte=start)
     filters &= Q(observations__date__lte=end)
-    filters &= Q(
-        observations__species__category__in=["species", "sub-species", "domestic"]
-    )
+    filters &= Q(observations__species__category="species")
 
     if country_id:
         filters &= Q(observations__country_id=country_id)
@@ -104,7 +102,7 @@ def checklists_species_table(country_id, state_id, county_id, start, end, interv
         filters &= Q(observations__county_id=county_id)
 
     observers = (
-        Observer.objects.values("name", "byname")
+        Observer.objects.values("name", "byname", "identifier")
         .annotate(
             count=Count(
                 Case(
@@ -121,6 +119,8 @@ def checklists_species_table(country_id, state_id, county_id, start, end, interv
     return {
         "records": [observer for observer in observers if observer["count"]],
         "interval": interval,
+        "start": start,
+        "finish": end,
     }
 
 
