@@ -7,27 +7,31 @@
       <th>{% trans "Date" %}</th>
       <th>{% trans "Observer" %}</th>
       <th class="text-end">{% trans "No. of Species" %}</th>
+      <th>{% trans "View" %}</th>
     </tr>
   </thead>
   <tbody>
     {% for entry in entries %}
       <tr>
         <td>
-          <a class="dark-link"
-             href="{% url 'species:list' %}{% querystring category="species" observer=entry.observer__identifier start=entry.date finish=entry.date %}"
-             title="{% trans 'View the list of species' %}">
-            <span class="text-nowrap">
-              {% if language_code == 'pt' %}
-                {{ entry.date|date:"j b" }}
-              {% else %}
-                {{ entry.date|date:"jS M" }}
-              {% endif %}
-            </span>
-          </a>
+          <span class="text-nowrap">
+            {% if language_code == 'pt' %}
+              {{ entry.date|date:"j b" }}
+            {% else %}
+              {{ entry.date|date:"jS M" }}
+            {% endif %}
+          </span>
         </td>
         <td>{{ entry.name }}</td>
         <td class="text-end">
           <span>{{ entry.species_count }}</span>
+        </td>
+        <td>
+          <a class="dark-link"
+             href="{% url 'species:list' %}{% querystring category="species" observer=entry.observer__identifier start=entry.date finish=entry.date %}"
+             title="{% trans 'View the list of species' %}">
+            <i class="bi bi-box-arrow-in-down-right"></i>
+          </a>
         </td>
       </tr>
       {% empty %}
