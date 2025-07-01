@@ -159,11 +159,11 @@ class WeeklyView(generic.TemplateView):
         country = state = county = None
 
         if is_country_code(code):
-            country = Country.objects.get(code=code).pk
+            country = Country.objects.get(code=code)
         elif is_state_code(code):
-            state = State.objects.get(code=code).pk
+            state = State.objects.get(code=code)
         elif is_county_code(code):
-            county = County.objects.get(code=code).pk
+            county = County.objects.get(code=code)
 
         context["interval"] = "week"
         context["code"] = county
@@ -230,11 +230,11 @@ class MonthlyView(generic.TemplateView):
         country = state = county = None
 
         if is_country_code(code):
-            country = Country.objects.get(code=code).pk
+            country = Country.objects.get(code=code)
         elif is_state_code(code):
-            state = State.objects.get(code=code).pk
+            state = State.objects.get(code=code)
         elif is_county_code(code):
-            county = County.objects.get(code=code).pk
+            county = County.objects.get(code=code)
 
         context["interval"] = "month"
         context["code"] = county
