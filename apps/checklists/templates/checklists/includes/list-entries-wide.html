@@ -5,6 +5,7 @@
       <th>{% trans "Date" %}</th>
       <th>{% trans "Species (plural)" %}</th>
       <th>{% trans "Location" %}</th>
+      <th colspan="3">{% trans "Protocol" %}</th>
       <th>{% trans "Observer" %}</th>
       <th>{% trans "Checklist" %}</th>
     </tr>
@@ -58,6 +59,46 @@
             </small>
           {% endif %}
         {% endspaceless %}
+      </td>
+      <td class="pe-0">
+        <span class="me-1">
+          {% if checklist.complete %}
+            <i class="bi bi-check-circle" title="{% trans 'Complete' %}"></i>
+          {% else %}
+            <i class="bi bi-circle" title="{% trans 'Incomplete' %}"></i>
+          {% endif %}
+        </span>
+      </td>
+      <td class="px-0">
+        {% if checklist.observer_count %}
+          <span class="me-1">
+            <i {% if checklist.observer_count == 1 %}
+              class="bi bi-person-fill"
+            {% else %}
+              class="bi bi-people-fill"
+            {% endif %}
+              title="{% trans 'Number of Observers' %}"></i>
+            <span>{{ checklist.observer_count }}</span>
+          </span>
+        {% endif %}
+      </td>
+      <td class="px-0">
+        <span class="me-1">
+          {% if checklist.protocol_code == "P21" %}
+            <i class="bi bi-person-standing"
+               title="{% trans 'Stationary' %}"></i>
+            <span>{{ checklist.duration }} mins</span>
+          {% elif checklist.protocol_code == "P22" %}
+            <i class="bi bi-person-walking"
+               title="{% trans 'Travelling' %}"></i>
+            {% with distance=checklist.distance|floatformat %}
+              <span>{% blocktrans %}{{ distance }} km,{% endblocktrans %}</span>
+              <span>{{ checklist.duration }} {% if checklist.duration == 1 %}min{% else %}mins{% endif %}</span>
+            {% endwith %}
+          {% elif checklist.protocol_code == "P20" %}
+            <span>{% trans "Incidental" %}</span>
+          {% endif %}
+        </span>
       </td>
       <td>
         <a class="dark-link"
