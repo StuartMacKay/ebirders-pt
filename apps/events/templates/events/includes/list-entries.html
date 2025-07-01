@@ -1,77 +1,8 @@
 {% load i18n %}
 {% get_current_language as language_code %}
-<div class="overflow-hidden">
-  {% for event in page_obj %}
-    {% with observation=event.observation %}
-      <div class="row border-top py-2">
-        <div class="col-md-1">
-          <div class="show-if-wide text-end">
-            {% if observation.count %}{{ observation.count }}{% else %}X{% endif %}</div>
-        </div>
-        <div class="col-md-3">
-          <div class="show-if-wide">
-            <span>{{ observation.species.get_common_name }}</span>
-            <br>
-            <small class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
-          </div>
-          <div class="show-if-narrow">
-            <span>{% if observation.count %}{{ observation.count }}{% else %}
-              X{% endif %}, </span>
-            <span>{{ observation.species.get_common_name }}</span>
-            <small class="ms-2 text-muted fst-italic">{{ observation.species.scientific_name }}</small>
-          </div>
-        </div>
-        <div class="col-md-2">
-          {% if language_code == 'pt' %}
-            <span class="text-nowrap">{{ observation.date|date:"j b Y" }}</span>
-          {% else %}
-            <span class="text-nowrap">{{ observation.date|date:"jS M Y" }}</span>
-          {% endif %}
-          {% if observation.time %}
-            <br/><small class="text-muted">{{ observation.time }}</small>
-          {% endif %}
-        </div>
-        <div class="col-md-4">
-          <span>{{ observation.location.display_name }}</span>
-          <br/>
-          {% spaceless %}
-            {% if observation.county %}
-              <small class="text-muted">{{ observation.county.name }}</small>
-            {% endif %}
-            {% if observation.state %}
-              <small class="text-muted">
-                {% if observation.county %}<span>, </span>{% endif %}
-                {{ observation.state.name }}
-              </small>
-            {% endif %}
-            {% if show_country %}
-              <small class="text-muted">
-                <span>, </span>
-                {{ observation.country }}
-              </small>
-            {% endif %}
-          {% endspaceless %}
-        </div>
-        <div class="col-md-2">
-          {{ observation.observer.display_name }}
-        </div>
-      </div>
-      <div class="row pb-2">
-        <div class="col-md-1 text-end">
-          {% if event.type == 1 %}
-            <i class="bi bi-flag-fill text-danger"></i>
-          {% else %}
-            <i class="bi bi-flag-fill {% if observation.approved %}text-success{% else %}text-danger{% endif %}"></i>
-          {% endif %}
-        </div>
-        <div class="col">
-          {% if event.type == 1 %}
-            <span>{{ observation.get_reason }}</span>
-          {% else %}
-            <span>{{ observation.get_decision }}</span>
-          {% endif %}
-        </div>
-      </div>
-    {% endwith %}
-  {% endfor %}
+<div class="d-none d-lg-block">
+  {% include "events/includes/list-entries-wide.html" %}
+</div>
+<div class="d-lg-none">
+  {% include "events/includes/list-entries-narrow.html" %}
 </div>
