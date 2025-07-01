@@ -66,20 +66,22 @@ function open_filter_panels() {
 
 function activate_clear_button() {
     const button = document.getElementById("clear-form");
-    const forms = document.getElementsByTagName("form");
-    button.addEventListener("click", (event) => {
-        var elements = document.getElementsByTagName("input");
-        for (var i=0; i < elements.length; i++) {
-            elements[i].name = "";
-            elements[i].value = "";
-        }
-        var elements = document.getElementsByTagName("select");
-        for (var i=0; i < elements.length; i++) {
-            elements[i].name = "";
-            elements[i].value = "";
-        }
-        forms[0].submit();
-    });
+    if (button) {
+        const forms = document.getElementsByTagName("form");
+        button.addEventListener("click", (event) => {
+            var elements = document.getElementsByTagName("input");
+            for (var i=0; i < elements.length; i++) {
+                elements[i].name = "";
+                elements[i].value = "";
+            }
+            var elements = document.getElementsByTagName("select");
+            for (var i=0; i < elements.length; i++) {
+                elements[i].name = "";
+                elements[i].value = "";
+            }
+            forms[0].submit();
+        });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
