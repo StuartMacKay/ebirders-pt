@@ -89,16 +89,16 @@
         {% big_days_table country state county start_date end_date %}
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12">
-        {% checklists_species_table country state county start_date end_date interval%}
+        {% big_week_month_table country state county start_date end_date interval%}
       </div>
     </div>
 
     <div class="row py-2">
       <div class="col-lg-6 col-md-6 col-sm-12">
-        {% checklists_submitted_table country state county start_date end_date %}
+        {% checklists_completed_table country state county start_date end_date %}
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12">
-        {% checklists_duration_table country state county start_date end_date %}
+        {% time_spent_birding_table country state county start_date end_date %}
       </div>
     </div>
   </div>

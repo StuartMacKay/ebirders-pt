@@ -33,8 +33,8 @@ def big_lists_table(country_id, state_id, county_id, start, end, show_country):
     }
 
 
-@register.inclusion_tag("news/tables/checklists-submitted.html")
-def checklists_submitted_table(country_id, state_id, county_id, start, end):
+@register.inclusion_tag("news/tables/checklists-completed.html")
+def checklists_completed_table(country_id, state_id, county_id, start, end):
     queryset = Checklist.objects.filter(published=True, date__gte=start, date__lte=end)
 
     if country_id:
@@ -61,8 +61,8 @@ def checklists_submitted_table(country_id, state_id, county_id, start, end):
     }
 
 
-@register.inclusion_tag("news/tables/checklists-duration.html")
-def checklists_duration_table(country_id, state_id, county_id, start, end):
+@register.inclusion_tag("news/tables/time-spent-birding.html")
+def time_spent_birding_table(country_id, state_id, county_id, start, end):
     queryset = Checklist.objects.filter(published=True, date__gte=start, date__lte=end)
 
     if country_id:
@@ -93,8 +93,8 @@ def checklists_duration_table(country_id, state_id, county_id, start, end):
     }
 
 
-@register.inclusion_tag("news/tables/checklists-species.html")
-def checklists_species_table(country_id, state_id, county_id, start, end, interval):
+@register.inclusion_tag("news/tables/big_week_month.html")
+def big_week_month_table(country_id, state_id, county_id, start, end, interval):
     filters = Q(observations__date__gte=start)
     filters &= Q(observations__date__lte=end)
     filters &= Q(observations__species__category="species")

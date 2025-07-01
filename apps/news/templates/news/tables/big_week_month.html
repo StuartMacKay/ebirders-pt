@@ -1,11 +1,9 @@
 {% load i18n %}
 <h3>{% spaceless %}
-  {% if interval == "week" %}
-    {% trans 'Big Week' %}
-  {% elif interval == "month" %}
+  {% if interval == "month" %}
     {% trans 'Big Month' %}
   {% else %}
-    {% trans 'Species seen' %}
+    {% trans 'Big Week' %}
   {% endif %}
 {% endspaceless %}</h3>
 <table class="table">
