@@ -59,16 +59,21 @@ class CountryAutocomplete(autocomplete.Select2ListView):
 class StateAutocomplete(autocomplete.Select2ListView):
     def get_list(self):
         queryset = State.objects.all().values_list("code", "name")
-        if country := self.forwarded.get("country"):
-            queryset = queryset.filter(code__startswith=country)
+        if countries := self.forwarded.get("country"):
+            queryset = queryset.filter(code__in=countries)
         return queryset
 
 
 class CountyAutocomplete(autocomplete.Select2ListView):
     def get_list(self):
         queryset = County.objects.all().values_list("code", "name")
-        if state := self.forwarded.get("state"):
-            queryset = queryset.filter(code__startswith=state)
+        if states := self.forwarded.get("state"):
+            filters = Q()
+            for state in states:
+                filters |= Q(code__startswith=state)
+            queryset = queryset.filter(filters)
+        elif country := self.forwarded.get("country"):
+            queryset = queryset.filter(code__startswith=country)
         return queryset
 
 
@@ -76,10 +81,11 @@ class LocationAutocomplete(autocomplete.Select2ListView):
     def get_list(self):
         queryset = Location.objects.all().values_list("identifier", "byname")
         if counties := self.forwarded.get("county"):
-            filters = Q()
-            for county in counties:
-                filters |= Q(county__code__startswith=county)
-            queryset = queryset.filter(filters)
+            queryset = queryset.filter(county__code__in=counties)
+        elif states := self.forwarded.get("state"):
+            queryset = queryset.filter(state__code__in=states)
+        elif country := self.forwarded.get("country"):
+            queryset = queryset.filter(country__code=country)
         return queryset
 
 
