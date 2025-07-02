@@ -74,15 +74,18 @@ class CountyAutocomplete(autocomplete.Select2ListView):
 
 class LocationAutocomplete(autocomplete.Select2ListView):
     def get_list(self):
-        if county := self.forwarded.get("county"):
-            queryset = queryset.filter(county__code=county)
         queryset = Location.objects.all().values_list("identifier", "byname")
+        if counties := self.forwarded.get("county"):
+            filters = Q()
+            for county in counties:
+                filters |= Q(county__code__startswith=county)
+            queryset = queryset.filter(filters)
         return queryset
 
 
 class ObserverAutocomplete(autocomplete.Select2ListView):
     def get_list(self):
-        return Observer.objects.all().values_list("identifier", "name")
+        return Observer.objects.all().values_list("identifier", "byname")
 
 
 class SpeciesAutocomplete(autocomplete.Select2ListView):

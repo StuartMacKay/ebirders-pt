@@ -36,10 +36,8 @@ def flag_keywords(name):
 def generate_byname(name) -> str:
     cleaned = remove_adverts(name)
     cleaned = remove_extra_spaces(cleaned)
-
     flag_keywords(cleaned)
-
-    return cleaned if cleaned != name else ""
+    return cleaned
 
 
 @receiver(pre_save, sender=Observer)
