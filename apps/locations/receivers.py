@@ -105,7 +105,7 @@ def generate_byname(name) -> str:
     cleaned = remove_access(cleaned)
     cleaned = remove_freguesias(cleaned)
     cleaned = remove_duplicates(cleaned)
-    return cleaned if cleaned != name else ""
+    return cleaned
 
 
 @receiver(pre_save, sender=Location)

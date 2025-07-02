@@ -74,9 +74,9 @@ class CountyAutocomplete(autocomplete.Select2ListView):
 
 class LocationAutocomplete(autocomplete.Select2ListView):
     def get_list(self):
-        queryset = Location.objects.all().values_list("identifier", "name")
         if county := self.forwarded.get("county"):
             queryset = queryset.filter(county__code=county)
+        queryset = Location.objects.all().values_list("identifier", "byname")
         return queryset
 
 
