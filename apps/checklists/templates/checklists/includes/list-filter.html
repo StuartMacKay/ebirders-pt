@@ -41,7 +41,9 @@
     </div>
     <div class="collapse multi-collapse my-2" id="form-{{ form.identifier }}">
     {% for field in form.visible_fields %}
-      <label class="form-label text-muted mb-0" for="{{ field.auto_id }}"><small>{{ field.label }}</small></label>
+      {% if field.label %}
+        <label class="form-label text-muted mb-0" for="{{ field.auto_id }}"><small>{{ field.label }}</small></label>
+      {% endif %}
       <div class="mb-1">{{ field }}</div>
           {% if field.errors %}
             {% for error in field.errors %}
