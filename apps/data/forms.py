@@ -37,8 +37,8 @@ class LocationFilter(forms.Form):
         required=False,
         widget=autocomplete.Select2(
             url="data:counties",
-            forward=["state"],
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+            forward=["state", "country"],
         ),
     )
 
@@ -47,8 +47,8 @@ class LocationFilter(forms.Form):
         required=False,
         widget=autocomplete.Select2(
             url="data:locations",
-            forward=["county"],
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+            forward=["county", "state", "country"],
         ),
     )
 
