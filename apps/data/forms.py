@@ -279,9 +279,8 @@ class ChecklistOrder(forms.Form):
     order = forms.ChoiceField(
         label=_("Ordering"),
         choices=(
-            ("", _("Most recent first")),
-            ("species_count", _("Number of species")),
-            ("-species_count", _("Number of species (descending)")),
+            ("-started", _("Most recent first")),
+            ("-species_count,-started", _("Number of species")),
         ),
         required=False,
         widget=forms.Select(attrs={"class": "form-control"}),
@@ -292,7 +291,7 @@ class ChecklistOrder(forms.Form):
 
     def get_ordering(self):
         if order := self.cleaned_data.get("order"):
-            return (order,)
+            return order.split(",")
         return ("-started",)
 
 

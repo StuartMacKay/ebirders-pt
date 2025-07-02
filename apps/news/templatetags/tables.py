@@ -30,6 +30,8 @@ def big_lists_table(country_id, state_id, county_id, start, end, show_country):
     return {
         "title": _("Big Lists"),
         "checklists": checklists,
+        "start": start,
+        "finish": end,
     }
 
 

@@ -57,6 +57,10 @@
       {% endfor %}
     </tbody>
   </table>
+  <div class="mb-3">
+    <a class="dark-link"
+       href="{% url 'checklists:list' %}{% querystring start=start|date:"Y-m-d" finish=finish|date:"Y-m-d" order="-species_count,-started" %}">{% trans "View more" %}</a>
+  </div>
 {% else %}
   <div class="row py-3">
     <span>{% trans 'There are no Big Lists to report.' %}</span>
