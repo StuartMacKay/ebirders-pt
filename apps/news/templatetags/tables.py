@@ -25,11 +25,11 @@ def big_lists_table(country_id, state_id, county_id, start, end, show_country):
     if show_country:
         related.append("country")
 
-    checklists = queryset.select_related(*related).order_by("-species_count")[:10]
+    checklists = queryset.select_related(*related).order_by("-species_count", "-date")[:10]
 
     return {
         "title": _("Big Lists"),
-        "checklists": sorted(list(checklists), key=lambda checklist: checklist.started),
+        "checklists": checklists,
     }
 
 
