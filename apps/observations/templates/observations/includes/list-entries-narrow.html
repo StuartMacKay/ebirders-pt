@@ -3,11 +3,11 @@
   <div class="row {% if not forloop.first %}border-top{% endif %} py-2">
     <div>
       {% if language_code == 'pt' %}
-        <a class="dark-link"
+        <a class="dark-link text-nowrap"
            href="{% querystring start=observation.date|date:'Y-m-d' finish=observation.date|date:'Y-m-d' %}"
            title="{% trans 'Show observations for this date' %}">{{ observation.date|date:"j b Y" }}</a>{% if observation.time %}, {{ observation.time }}{% endif %}
       {% else %}
-        <a class="dark-link"
+        <a class="dark-link text-nowrap"
            href="{% querystring start=observation.date|date:'Y-m-d' finish=observation.date|date:'Y-m-d' %}"
            title="{% trans 'Show observations for this date' %}">{{ observation.date|date:"jS M Y" }}</a>{% if observation.time %}, {{ observation.time }}{% endif %}
       {% endif %}

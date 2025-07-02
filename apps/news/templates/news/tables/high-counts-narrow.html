@@ -3,7 +3,7 @@
   {% for observation in observations %}
     <div class="row border-top py-2">
       <div>
-        <span class="me-3">
+        <span class="text-nowrap me-3">
           {% if language_code == 'pt' %}
             {{ observation.date|date:"j F"|lower }}
           {% else %}

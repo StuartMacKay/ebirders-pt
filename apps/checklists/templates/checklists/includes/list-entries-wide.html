@@ -14,11 +14,11 @@
     <tr>
       <td>
         {% if language_code == 'pt' %}
-          <a class="dark-link"
+          <a class="dark-link text-nowrap"
              href="{% querystring start=checklist.date|date:'Y-m-d' finish=checklist.date|date:'Y-m-d' %}"
              title="{% trans 'Show checklists for this date' %}">{{ checklist.date|date:"j b Y" }}</a>
         {% else %}
-          <a class="dark-link"
+          <a class="dark-link text-nowrap"
              href="{% querystring start=checklist.date|date:'Y-m-d' finish=checklist.date|date:'Y-m-d' %}"
              title="{% trans 'Show checklists for this date' %}">{{ checklist.date|date:"jS M Y" }}</a>
         {% endif %}
