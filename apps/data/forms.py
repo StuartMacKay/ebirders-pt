@@ -19,36 +19,44 @@ class LocationFilter(forms.Form):
         required=False,
         widget=autocomplete.Select2(
             url="data:countries",
-            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+            attrs={
+                "placeholder": _("Select one or more countries")
+            },
         ),
     )
-    state = forms.ChoiceField(
+    state = forms.MultipleChoiceField(
         label=_("State"),
         required=False,
-        widget=autocomplete.Select2(
+        widget=autocomplete.Select2Multiple(
             url="data:states",
             forward=["country"],
-            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+            attrs={
+                "data-placeholder": _("Select one or more states"),
+            },
         ),
     )
 
-    county = forms.ChoiceField(
+    county = forms.MultipleChoiceField(
         label=_("County"),
         required=False,
-        widget=autocomplete.Select2(
+        widget=autocomplete.Select2Multiple(
             url="data:counties",
-            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
             forward=["state", "country"],
+            attrs={
+                "data-placeholder": _("Select one or more counties"),
+            },
         ),
     )
 
-    location= forms.ChoiceField(
+    location= forms.MultipleChoiceField(
         label=_("Location"),
         required=False,
-        widget=autocomplete.Select2(
+        widget=autocomplete.Select2Multiple(
             url="data:locations",
-            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
             forward=["county", "state", "country"],
+            attrs={
+                "data-placeholder": _("Select one or more locations"),
+            },
         ),
     )
 
@@ -70,9 +78,9 @@ class LocationFilter(forms.Form):
 
         if self.is_bound:
             self.fields["country"].choices = self.get_country_choice()
-            self.fields["state"].choices = self.get_state_choice()
-            self.fields["county"].choices = self.get_county_choice()
-            self.fields["location"].choices = self.get_location_choice()
+            self.fields["state"].choices = self.get_state_choices()
+            self.fields["county"].choices = self.get_county_choices()
+            self.fields["location"].choices = self.get_location_choices()
 
     def get_country_choice(self):
         choices = []
@@ -80,50 +88,39 @@ class LocationFilter(forms.Form):
             choices = Country.objects.filter(code=country).values_list("code", "name")
         return choices
 
-    def get_state_choice(self):
+    def get_state_choices(self):
         choices = []
-        if state := self.data.get("state"):
-            choices = State.objects.filter(code=state).values_list("code", "name")
-            if country := self.data.get("country"):
-                choices = choices.filter(code__startswith=country)
+        if states := self.data.getlist("state"):
+            choices = State.objects.filter(code__in=states).values_list("code", "name")
         return choices
 
-    def get_county_choice(self):
+    def get_county_choices(self):
         choices = []
-        if county := self.data.get("county"):
-            choices = County.objects.filter(code=county).values_list("code", "name")
-            if state := self.data.get("state"):
-                choices = choices.filter(code__startswith=state)
-            if country := self.data.get("country"):
-                choices = choices.filter(code__startswith=country)
+        if counties := self.data.getlist("county"):
+            choices = County.objects.filter(code__in=counties).values_list("code", "name")
         return choices
 
-    def get_location_choice(self):
+    def get_location_choices(self):
         choices = []
-        if location := self.data.get("location"):
+        if locations := self.data.getlist("location"):
             choices = (
                 Location.objects.all()
-                .filter(identifier=location)
-                .values_list("identifier", "name")
+                .filter(identifier__in=locations)
+                .values_list("identifier", "byname")
             )
-            if county := self.data.get("county"):
-                choices = choices.filter(county__code=county)
-            if state := self.data.get("state"):
-                choices = choices.filter(state__code=state)
-            if country := self.data.get("country"):
-                choices = choices.filter(country__code=country)
         return choices
 
     def get_filters(self):
-        filters = Q()
-        if country := self.cleaned_data.get("country"):
-            filters &= Q(country__code=country)
-        if state := self.cleaned_data.get("state"):
-            filters &= Q(state__code=state)
-        if county := self.cleaned_data.get("county"):
-            filters &= Q(county__code=county)
         if location := self.cleaned_data.get("location"):
-            filters &= Q(location__identifier=location)
+            filters = Q(location__identifier__in=location)
+        elif county := self.cleaned_data.get("county"):
+            filters = Q(county__code__in=county)
+        elif states := self.cleaned_data.get("state"):
+            filters = Q(state__code__in=states)
+        elif country := self.cleaned_data.get("country"):
+            filters = Q(country__code=country)
+        else:
+            filters = Q()
         if hotspot := self.cleaned_data.get("hotspot"):
             filters &= Q(location__hotspot=hotspot)
         return filters

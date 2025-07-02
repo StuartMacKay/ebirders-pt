@@ -38,14 +38,23 @@
 
 .select2-container .select2-selection--single {
   height: 32px !important;
-}
-
-.select2-container .select2-selection--single.form-select{
   padding-top: 0.25rem !important;
 }
 
-.select2-container .select2-selection.select2-selection--single .select2-selection__rendered {
+.select2-container .select2-selection--single .select2-selection__rendered {
   padding: 0;
+}
+
+.select2-container--default.select2-container .select2-selection--multiple {
+  border-color: #dee2e6 !important;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+  border-color: #dee2e6 !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background-color: #f0f0ff !important;
 }
 
 .select2-selection__clear {

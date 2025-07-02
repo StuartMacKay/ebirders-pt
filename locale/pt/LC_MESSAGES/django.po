@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-01 16:47+0000\n"
+"POT-Creation-Date: 2025-07-02 14:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,7 +59,7 @@ msgid "Show checklists for this observer"
 msgstr "Mostrar as listas para este observador"
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:47
-#: apps/data/forms.py:286 apps/news/templatetags/charts.py:87
+#: apps/data/forms.py:283 apps/news/templatetags/charts.py:87
 msgid "Number of species"
 msgstr "Número de espécies"
 
@@ -136,7 +136,7 @@ msgid "Species (plural)"
 msgstr "Espécies"
 
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:7
-#: apps/data/forms.py:46 apps/news/templates/news/tables/big-lists-wide.html:7
+#: apps/data/forms.py:52 apps/news/templates/news/tables/big-lists-wide.html:7
 #: apps/news/templates/news/tables/high-counts-wide.html:9
 #: apps/news/templates/news/tables/yearlist-wide.html:9
 #: apps/observations/templates/observations/includes/list-entries-wide.html:8
@@ -149,7 +149,7 @@ msgid "Protocol"
 msgstr "Protocolos"
 
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:9
-#: apps/data/forms.py:140 apps/news/templates/news/tables/big-days.html:9
+#: apps/data/forms.py:137 apps/news/templates/news/tables/big-days.html:9
 #: apps/news/templates/news/tables/big-lists-wide.html:8
 #: apps/news/templates/news/tables/big_week_month.html:13
 #: apps/news/templates/news/tables/checklists-completed.html:7
@@ -180,18 +180,18 @@ msgstr "Procurar Listas"
 msgid "Please correct the errors below."
 msgstr "Por favor, corrija os erros abaixo."
 
-#: apps/checklists/templates/checklists/includes/list-filter.html:57
+#: apps/checklists/templates/checklists/includes/list-filter.html:59
 #: apps/news/templates/news/latest.html:45
 #: apps/news/templates/news/monthly.html:50
 #: apps/news/templates/news/weekly.html:50
-#: apps/observations/templates/observations/includes/list-filter.html:57
-#: apps/species/templates/species/includes/list-filter.html:57
+#: apps/observations/templates/observations/includes/list-filter.html:59
+#: apps/species/templates/species/includes/list-filter.html:59
 msgid "Search"
 msgstr "Pesquisar"
 
-#: apps/checklists/templates/checklists/includes/list-filter.html:58
-#: apps/observations/templates/observations/includes/list-filter.html:58
-#: apps/species/templates/species/includes/list-filter.html:58
+#: apps/checklists/templates/checklists/includes/list-filter.html:60
+#: apps/observations/templates/observations/includes/list-filter.html:60
+#: apps/species/templates/species/includes/list-filter.html:60
 msgid "Clear"
 msgstr "Limpar"
 
@@ -304,7 +304,7 @@ msgstr ""
 msgid "Name / Byname"
 msgstr ""
 
-#: apps/data/admin.py:247 apps/data/forms.py:174 apps/data/models/species.py:16
+#: apps/data/admin.py:247 apps/data/forms.py:171 apps/data/models/species.py:16
 #: apps/news/templates/news/tables/high-counts-wide.html:8
 #: apps/news/templates/news/tables/yearlist-wide.html:8
 #: apps/observations/templates/observations/includes/list-entries-wide.html:7
@@ -332,75 +332,91 @@ msgstr "Por Local"
 msgid "Country"
 msgstr "País"
 
-#: apps/data/forms.py:26
+#: apps/data/forms.py:23
+msgid "Select one or more countries"
+msgstr "Selecionar um ou mais países"
+
+#: apps/data/forms.py:28
 msgid "State"
 msgstr "Distrito"
 
-#: apps/data/forms.py:36
+#: apps/data/forms.py:34
+msgid "Select one or more states"
+msgstr "Selecionar um ou mais distritos"
+
+#: apps/data/forms.py:40
 msgid "County"
 msgstr "Concelho"
 
-#: apps/data/forms.py:56
+#: apps/data/forms.py:46
+msgid "Select one or more counties"
+msgstr "Selecionar um ou mais concelhos"
+
+#: apps/data/forms.py:58
+msgid "Select one or more locations"
+msgstr "Selecionar um ou mais locais"
+
+#: apps/data/forms.py:64
 msgid "Hotspots only"
 msgstr "Só Hotspots"
 
-#: apps/data/forms.py:58
+#: apps/data/forms.py:66
 msgid "No"
 msgstr "Não"
 
-#: apps/data/forms.py:59
+#: apps/data/forms.py:67
 msgid "Yes"
 msgstr "Sim"
 
-#: apps/data/forms.py:136
+#: apps/data/forms.py:133
 msgid "By Observer"
 msgstr "Por Observador"
 
-#: apps/data/forms.py:170
+#: apps/data/forms.py:167
 msgid "By Species"
 msgstr "Por Espécie"
 
-#: apps/data/forms.py:222
+#: apps/data/forms.py:219
 msgid "By Date"
 msgstr "Por Data"
 
-#: apps/data/forms.py:225
+#: apps/data/forms.py:222
 msgid "This date is later than the until date."
 msgstr "Esta data é posterior à data até."
 
-#: apps/data/forms.py:228
+#: apps/data/forms.py:225
 msgid "From"
 msgstr "A partir de"
 
-#: apps/data/forms.py:233
+#: apps/data/forms.py:230
 msgid "Until"
 msgstr "Até"
 
-#: apps/data/forms.py:258
+#: apps/data/forms.py:255
 msgid "By Category"
 msgstr "Por Categoria"
 
-#: apps/data/forms.py:262
+#: apps/data/forms.py:259
 msgid "Category"
 msgstr "Categoria"
 
-#: apps/data/forms.py:279 apps/data/forms.py:303 apps/data/forms.py:327
+#: apps/data/forms.py:276 apps/data/forms.py:300 apps/data/forms.py:324
 msgid "Order By"
 msgstr "Por Ordenação"
 
-#: apps/data/forms.py:283 apps/data/forms.py:307 apps/data/forms.py:331
+#: apps/data/forms.py:280 apps/data/forms.py:304 apps/data/forms.py:328
 msgid "Ordering"
 msgstr "Ordenação"
 
-#: apps/data/forms.py:285 apps/data/forms.py:309
+#: apps/data/forms.py:282 apps/data/forms.py:306
 msgid "Most recent first"
 msgstr "Mais recente primeiro"
 
-#: apps/data/forms.py:287
+#: apps/data/forms.py:284
 msgid "Number of species (descending)"
 msgstr "Número de espécies (decrescente)"
 
-#: apps/data/forms.py:310
+#: apps/data/forms.py:307
 #: apps/news/templates/news/tables/high-counts-wide.html:7
 #: apps/news/templates/news/tables/yearlist-wide.html:7
 #: apps/observations/templates/observations/includes/list-entries-wide.html:6
@@ -408,15 +424,15 @@ msgstr "Número de espécies (decrescente)"
 msgid "Count"
 msgstr "Contagem"
 
-#: apps/data/forms.py:311
+#: apps/data/forms.py:308
 msgid "Count (descending)"
 msgstr "Contagem (descendente)"
 
-#: apps/data/forms.py:333
+#: apps/data/forms.py:330
 msgid "First Seen"
 msgstr "Primeiro visto"
 
-#: apps/data/forms.py:334
+#: apps/data/forms.py:331
 msgid "Last Seen"
 msgstr "Último visto"
 

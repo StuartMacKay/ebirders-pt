@@ -6,6 +6,7 @@ This project uses calendar versioning, https://calver.org/, and this log provide
 a concise history of changes made.
 
 ## Latest
+- Added multi-select to fields when filtering by location. 
 
 ## 2025.06.28
 - Added separate layouts when lists are viewed on mobile devices.
