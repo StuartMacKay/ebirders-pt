@@ -53,11 +53,11 @@ function open_filter_panels() {
         for (const link of checklist_list) {
             link.click();
         }
-        const observation_list = document.querySelectorAll('a[href="#form-checklist-order"]');
+        const observation_list = document.querySelectorAll('a[href="#form-observation-order"]');
         for (const link of observation_list) {
             link.click();
         }
-        const seen_list = document.querySelectorAll('a[href="#form-checklist-order"]');
+        const seen_list = document.querySelectorAll('a[href="#form-seen-order"]');
         for (const link of seen_list) {
             link.click();
         }
