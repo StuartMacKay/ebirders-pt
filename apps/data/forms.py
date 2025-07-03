@@ -302,7 +302,7 @@ class ObservationOrder(forms.Form):
     order = forms.ChoiceField(
         label=_("Ordering"),
         choices=(
-            ("", _("Most recent first")),
+            ("-started", _("Most recent first")),
             ("count", _("Count")),
             ("-count", _("Count (descending)")),
         ),
