@@ -22,7 +22,7 @@
 {% block javascript %}
   {{ block.super }}
   <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
-  {% for form in forms %}
+  {% for form in forms.values %}
     {{ form.media.js }}
   {% endfor %}
   <script>

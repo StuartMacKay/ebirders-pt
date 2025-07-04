@@ -1,133 +1,127 @@
-import json
 
+from django.core.exceptions import ImproperlyConfigured
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 from django.views import generic
-
-from dal import autocomplete
-
-from data.models import Country, County, Location, Observer, Species, State
+from django.views.generic.base import ContextMixin
 
 
-class FilteredListView(generic.ListView):
-    form_classes = None
-    related = None
+class FormsMixin(ContextMixin):
+    """Provide a way to show and handle multiple form in a request."""
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    form_classes = []
+    initial = {}
+    extra = {}
+    methods = []
+    prefixes = {}
+    success_url = None
+
+    def __init__(self):
         self.object_list = None
-        self.forms = []
+
+    def get_initial(self, identifier):
+        """Return the initial data to use for forms on this view."""
+        return self.initial.get(identifier, {}).copy()
+
+    def get_methods(self):
+        return self.methods
+
+    def get_prefix(self, identifier):
+        """Return the prefixes to use for forms."""
+        return self.prefixes.get(identifier)
+
+    def get_forms(self):
+        """Return set of form sto be used in this view."""
+        forms = {}
+        for form_class in self.form_classes:
+            identifier = form_class.identifier
+            forms[identifier] = form_class(**self.get_form_kwargs(identifier))
+        return forms
+
+    def get_extra_kwargs(self, identifier):
+        return self.extra.get(identifier, {})
+
+    def get_form_kwargs(self, identifier):
+        """Return the keyword arguments for instantiating the form."""
+        kwargs = {
+            "initial": self.get_initial(identifier),
+            "prefix": self.get_prefix(identifier),
+        }
+
+        kwargs.update(self.get_extra_kwargs(identifier))
+
+        request = getattr(self, "request")
+
+        if request.method in self.get_methods():
+            kwargs.update(
+                {
+                    "data": getattr(request, request.method),
+                    "files": request.FILES,
+                }
+            )
+        return kwargs
+
+    def get_success_url(self):
+        """Return the URL to redirect to after processing a valid form."""
+        if not self.success_url:
+            raise ImproperlyConfigured("No URL to redirect to. Provide a success_url.")
+        return str(self.success_url)  # success_url may be lazy
+
+    def forms_valid(self, forms, **kwargs):
+        return HttpResponseRedirect(self.get_success_url())
+
+    def forms_invalid(self, forms, **kwargs):
+        return self.render_to_response(self.get_context_data(forms=forms, **kwargs))
+
+    def get_context_data(self, **kwargs):
+        """Insert the form into the context dict."""
+        if "forms" not in kwargs:
+            kwargs["forms"] = self.get_forms()
+        return super().get_context_data(**kwargs)
+
+
+class FilteredListView(FormsMixin, generic.ListView):
+    default_filter = None
+    default_order = None
+    related = None
+    methods = ["GET"]
+
+    def get_default_filter(self):
+        return self.default_filter or Q()
 
     def get_related(self):
         return self.related
 
-    def get_ordering(self):
-        ordering = []
-        for form in self.forms:
-            ordering.extend(form.get_ordering())
-        return ordering
+    def get_default_order(self):
+        return self.default_order or []
 
-    def get_filters(self):
-        filters = Q(published=True)
-        for form in self.forms:
+    def get_order(self, forms):
+        order = self.get_default_order()
+        for identifier, form in forms.items():
+            order.extend(form.get_ordering())
+        return order
+
+    def get_filters(self, forms):
+        filters = self.get_default_filter()
+        for identifier, form in forms.items():
             filters &= form.get_filters()
         return filters
 
-    def get_queryset(self):
+    def get_filtered_queryset(self, forms):
+        self.ordering = self.get_order(forms)
         queryset = super().get_queryset()
-        queryset = queryset.filter(self.get_filters())
+        queryset = queryset.filter(self.get_filters(forms))
         queryset = queryset.select_related(*self.get_related())
         return queryset
 
-    def get_forms(self, form_class=None):
-        forms = [klass(data=self.request.GET) for klass in self.form_classes]
-        for form in forms:
-            form.is_valid()
-        return forms
+    def forms_invalid(self, forms, **kwargs):
+        self.object_list = self.get_filtered_queryset(forms)
+        return super().forms_invalid(forms=forms)
+
+    def handle_request(self, request, *args, **kwargs):
+        forms = self.get_forms()
+        [form.is_valid() for identifier, form in forms.items()]
+        return self.forms_invalid(forms)
 
     def get(self, request, *args, **kwargs):
-        self.forms = self.get_forms()
-        self.object_list = self.get_queryset()
-        context = self.get_context_data(forms=self.forms)
-        return self.render_to_response(context)
-
-
-class CountryAutocomplete(autocomplete.Select2ListView):
-    def get_list(self):
-        return Country.objects.all().values_list("code", "name")
-
-
-class StateAutocomplete(autocomplete.Select2ListView):
-    def get_list(self):
-        queryset = State.objects.all().values_list("code", "name")
-        if countries := self.forwarded.get("country"):
-            queryset = queryset.filter(code__in=countries)
-        return queryset
-
-
-class CountyAutocomplete(autocomplete.Select2ListView):
-    def get_list(self):
-        queryset = County.objects.all().values_list("code", "name")
-        if states := self.forwarded.get("state"):
-            filters = Q()
-            for state in states:
-                filters |= Q(code__startswith=state)
-            queryset = queryset.filter(filters)
-        elif country := self.forwarded.get("country"):
-            queryset = queryset.filter(code__startswith=country)
-        return queryset
-
-
-class LocationAutocomplete(autocomplete.Select2ListView):
-    def get_list(self):
-        queryset = Location.objects.all().values_list("identifier", "byname")
-        if counties := self.forwarded.get("county"):
-            queryset = queryset.filter(county__code__in=counties)
-        elif states := self.forwarded.get("state"):
-            queryset = queryset.filter(state__code__in=states)
-        elif country := self.forwarded.get("country"):
-            queryset = queryset.filter(country__code=country)
-        return queryset
-
-
-class ObserverAutocomplete(autocomplete.Select2ListView):
-    def get_list(self):
-        return Observer.objects.all().values_list("identifier", "byname")
-
-
-class SpeciesAutocomplete(autocomplete.Select2ListView):
-    # The autocomplete for species includes the common name in the currently
-    # selected language, along with the scientific name. The filter uses the
-    # species code, so the list of values contains an entry for common name
-    # and an entry for the scientific name, with the same species code. The
-    # problem is that when a selection is made and the page is redisplayed
-    # the first entry in the list with the chosen species code is shown, for
-    # instance, the common name, even though the scientific name was selected.
-    # To get around this a single character prefix, '_' is added to the code
-    # for the entries of scientific names, so the correct species name can
-    # be displayed.
-
-    def get_list(self):
-        queryset = (
-            Species.objects.all()
-            .values_list("species_code", "common_name")
-            .order_by("taxon_order")
-        )
-        common_names = [
-            ("%s" % code, json.loads(name)[self.request.LANGUAGE_CODE])
-            for code, name in queryset
-        ]
-
-        queryset = (
-            Species.objects.all()
-            .values_list("species_code", "scientific_name")
-            .order_by("taxon_order")
-        )
-        scientific_names = [("_%s" % code, name) for code, name in queryset]
-
-        # Return the list showing the species common name followed by the
-        # scientific name.
-        return [
-            val
-            for pair in zip(list(common_names), list(scientific_names))
-            for val in pair
-        ]
+        return self.handle_request(request, *args, **kwargs)

@@ -10,7 +10,18 @@ from dal import autocomplete
 from data.models import Country, County, Location, Observer, Species, State
 
 
-class LocationFilter(forms.Form):
+class FilterForm(forms.Form):
+    identifier = None
+    title = None
+
+    def get_filters(self):
+        return Q()
+
+    def get_ordering(self):
+        return []
+
+
+class LocationFilter(FilterForm):
     title = _("By Location")
     identifier = "location"
 
@@ -71,9 +82,10 @@ class LocationFilter(forms.Form):
     )
 
     def __init__(self, *args, **kwargs):
+        show_country = kwargs.pop("show_country")
         super().__init__(*args, **kwargs)
 
-        if Country.objects.count() == 1:
+        if not show_country:
             self.fields["country"].widget = forms.HiddenInput()
 
         if self.is_bound:
@@ -125,11 +137,8 @@ class LocationFilter(forms.Form):
             filters &= Q(location__hotspot=hotspot)
         return filters
 
-    def get_ordering(self):
-        return []
 
-
-class ObserverFilter(forms.Form):
+class ObserverFilter(FilterForm):
     title = _("By Observer")
     identifier = "observer"
 
@@ -159,11 +168,8 @@ class ObserverFilter(forms.Form):
             filters &= Q(observer__identifier=observer)
         return filters
 
-    def get_ordering(self):
-        return []
 
-
-class SpeciesFilter(forms.Form):
+class SpeciesFilter(FilterForm):
     title = _("By Species")
     identifier = "species"
 
@@ -211,11 +217,8 @@ class SpeciesFilter(forms.Form):
             filters &= Q(species__species_code=species)
         return filters
 
-    def get_ordering(self):
-        return []
 
-
-class DateRangeFilter(forms.Form):
+class DateRangeFilter(FilterForm):
     title = _("By Date")
     identifier = "date-range"
 
@@ -247,11 +250,8 @@ class DateRangeFilter(forms.Form):
             filters &= Q(date__lte=finish)
         return filters
 
-    def get_ordering(self):
-        return []
 
-
-class CategoryFilter(forms.Form):
+class CategoryFilter(FilterForm):
     title = _("By Category")
     identifier = "category"
 
@@ -268,11 +268,8 @@ class CategoryFilter(forms.Form):
             filters &= Q(species__category=category)
         return filters
 
-    def get_ordering(self):
-        return []
 
-
-class ChecklistOrder(forms.Form):
+class ChecklistOrder(FilterForm):
     title = _("Order By")
     identifier = "checklist-order"
 
@@ -286,16 +283,13 @@ class ChecklistOrder(forms.Form):
         widget=forms.Select(attrs={"class": "form-control"}),
     )
 
-    def get_filters(self):
-        return Q()
-
     def get_ordering(self):
         if order := self.cleaned_data.get("order"):
             return order.split(",")
         return ("-started",)
 
 
-class ObservationOrder(forms.Form):
+class ObservationOrder(FilterForm):
     title = _("Order By")
     identifier = "observation-order"
 
@@ -310,16 +304,13 @@ class ObservationOrder(forms.Form):
         widget=forms.Select(attrs={"class": "form-control"}),
     )
 
-    def get_filters(self):
-        return Q()
-
     def get_ordering(self):
         if order := self.cleaned_data.get("order"):
             return (order,)
         return ("-started",)
 
 
-class SeenOrder(forms.Form):
+class SeenOrder(FilterForm):
     title = _("Order By")
     identifier = "seen-order"
 
@@ -333,11 +324,8 @@ class SeenOrder(forms.Form):
         widget=forms.Select(attrs={"class": "form-control"}),
     )
 
-    def get_filters(self):
-        return Q()
-
     def get_ordering(self):
         if order := self.cleaned_data.get("order"):
             if order == "-seen":
-                return "species", "-date"
-        return "species", "date"
+                return "species", "-started"
+        return "species", "started"

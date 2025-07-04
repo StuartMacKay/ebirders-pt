@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.db.models import Q
 from django.urls import reverse
 from django.utils import translation
 from django.utils.functional import cached_property
@@ -15,6 +16,7 @@ from data.views import FilteredListView
 
 
 class ObservationsView(FilteredListView):
+    default_filter = Q(published=True)
     form_classes = (
         LocationFilter,
         ObserverFilter,
@@ -26,6 +28,10 @@ class ObservationsView(FilteredListView):
     template_name = "observations/list.html"
     paginate_by = 100
     url = "observations:list"
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.extra["location"] = {"show_country": self.show_country}
 
     def get_url(self):
         return reverse(self.url)

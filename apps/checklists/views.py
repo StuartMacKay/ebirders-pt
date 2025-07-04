@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.db.models import Q
 from django.urls import reverse
 from django.utils import translation
 from django.utils.functional import cached_property
@@ -14,16 +15,21 @@ from data.views import FilteredListView
 
 
 class ChecklistsView(FilteredListView):
-    form_classes = (
+    default_filter = Q(published=True)
+    form_classes = [
         LocationFilter,
         ObserverFilter,
         DateRangeFilter,
         ChecklistOrder,
-    )
+    ]
     model = Checklist
     paginate_by = 50
     template_name = "checklists/list.html"
     url = "checklists:list"
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.extra["location"] = {"show_country": self.show_country}
 
     def get_url(self):
         return reverse(self.url)
