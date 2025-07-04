@@ -50,40 +50,24 @@ class ObserverList(autocomplete.Select2ListView):
         return Observer.objects.all().values_list("identifier", "byname")
 
 
-class SpeciesList(autocomplete.Select2ListView):
-    # The autocomplete for species includes the common name in the currently
-    # selected language, along with the scientific name. The filter uses the
-    # species code, so the list of values contains an entry for common name
-    # and an entry for the scientific name, with the same species code. The
-    # problem is that when a selection is made and the page is redisplayed
-    # the first entry in the list with the chosen species code is shown, for
-    # instance, the common name, even though the scientific name was selected.
-    # To get around this a single character prefix, '_' is added to the code
-    # for the entries of scientific names, so the correct species name can
-    # be displayed.
-
+class CommonNameList(autocomplete.Select2ListView):
     def get_list(self):
         queryset = (
             Species.objects.all()
             .values_list("species_code", "common_name")
             .order_by("taxon_order")
         )
-        common_names = [
+        return [
             ("%s" % code, json.loads(name)[self.request.LANGUAGE_CODE])
             for code, name in queryset
         ]
 
+
+class ScientificNameList(autocomplete.Select2ListView):
+    def get_list(self):
         queryset = (
             Species.objects.all()
             .values_list("species_code", "scientific_name")
             .order_by("taxon_order")
         )
-        scientific_names = [("_%s" % code, name) for code, name in queryset]
-
-        # Return the list showing the species common name followed by the
-        # scientific name.
-        return [
-            val
-            for pair in zip(list(common_names), list(scientific_names))
-            for val in pair
-        ]
+        return [(code, name) for code, name in queryset]

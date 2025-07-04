@@ -174,11 +174,20 @@ class SpeciesFilter(FilterForm):
     title = _("By Species")
     identifier = "species"
 
-    species = forms.ChoiceField(
-        label=_("Species"),
+    common_name = forms.ChoiceField(
+        label=_("Common name"),
         required=False,
         widget=autocomplete.Select2(
-            url="data:species",
+            url="data:common-name",
+            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+        ),
+    )
+
+    scientific_name = forms.ChoiceField(
+        label=_("Scientific name"),
+        required=False,
+        widget=autocomplete.Select2(
+            url="data:scientific-name",
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
@@ -186,36 +195,39 @@ class SpeciesFilter(FilterForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if self.is_bound:
-            self.fields["species"].choices = self.get_species_choice()
+            self.fields["common_name"].choices = self.get_common_name_choice()
+            self.fields["scientific_name"].choices = self.get_scientific_name_choice()
 
-    def get_species_choice(self):
+    def get_common_name_choice(self):
         choices = []
-        if param := self.data.get("species"):
-            if param[0] == "_":
-                field = "scientific_name"
-                code = param[1:]
-            else:
-                field = "common_name"
-                code = param
+        if code := self.data.get("common_name"):
             choice = (
                 Species.objects.filter(species_code=code)
-                .values_list("species_code", field)
+                .values_list("species_code", "common_name")
                 .first()
             )
             if choice:
-                if param[0] == "_":
-                    choice = ("_%s" % choice[0], choice[1])
-                else:
-                    choice = (choice[0], json.loads(choice[1])[get_language()])
+                choices = [(choice[0], json.loads(choice[1])[get_language()])]
+        return choices
+
+    def get_scientific_name_choice(self):
+        choices = []
+        if code := self.data.get("scientific_name"):
+            choice = (
+                Species.objects.filter(species_code=code)
+                .values_list("species_code", "scientific_name")
+                .first()
+            )
+            if choice:
                 choices = [choice]
         return choices
 
     def get_filters(self):
         filters = super().get_filters()
-        if species := self.cleaned_data.get("species"):
-            if species[0] == "_":
-                species = species[1:]
-            filters &= Q(species__species_code=species)
+        if species_code := self.cleaned_data.get("common_name"):
+            filters &= Q(species__species_code=species_code)
+        if species_code := self.cleaned_data.get("scientific_name"):
+            filters &= Q(species__species_code=species_code)
         return filters
 
 

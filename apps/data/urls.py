@@ -1,11 +1,12 @@
 from django.urls import path
 
 from .autocompletes import (
+    CommonNameList,
     CountryList,
     CountyList,
     LocationList,
     ObserverList,
-    SpeciesList,
+    ScientificNameList,
     StateList,
 )
 
@@ -17,5 +18,6 @@ urlpatterns = [
     path("counties/", CountyList.as_view(), name="counties"),
     path("locations/", LocationList.as_view(), name="locations"),
     path("observers/", ObserverList.as_view(), name="observers"),
-    path("species", SpeciesList.as_view(), name="species"),
+    path("common-name", CommonNameList.as_view(), name="common-name"),
+    path("scientific-name", ScientificNameList.as_view(), name="scientific-name"),
 ]
