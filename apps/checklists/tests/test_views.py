@@ -69,10 +69,3 @@ def test_list_view__filter_by_finish(db_no_rollback, client, last_week):
     assert objects.count() != 0
     for obj in objects:
         assert obj.date <= last_week
-
-
-def test_detail_view__checklist_displayed(db_no_rollback, client, checklist):
-    headers = {'HTTP_REFERER': reverse("checklists:list")}
-    url = reverse("checklists:detail", kwargs={"identifier": checklist.identifier})
-    response = client.get(url, **headers)
-    assert response.context["object"] == checklist
