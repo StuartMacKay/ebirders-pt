@@ -123,16 +123,15 @@ class LocationFilter(FilterForm):
         return choices
 
     def get_filters(self):
+        filters = super().get_filters()
         if location := self.cleaned_data.get("location"):
-            filters = Q(location__identifier__in=location)
+            filters &= Q(location__identifier__in=location)
         elif county := self.cleaned_data.get("county"):
-            filters = Q(county__code__in=county)
+            filters &= Q(county__code__in=county)
         elif states := self.cleaned_data.get("state"):
-            filters = Q(state__code__in=states)
+            filters &= Q(state__code__in=states)
         elif country := self.cleaned_data.get("country"):
-            filters = Q(country__code=country)
-        else:
-            filters = Q()
+            filters &= Q(country__code=country)
         if hotspot := self.cleaned_data.get("hotspot"):
             filters &= Q(location__hotspot=hotspot)
         return filters
@@ -163,7 +162,7 @@ class ObserverFilter(FilterForm):
         return choices
 
     def get_filters(self):
-        filters = Q()
+        filters = super().get_filters()
         if observer := self.cleaned_data.get("observer"):
             filters &= Q(observer__identifier=observer)
         return filters
@@ -210,7 +209,7 @@ class SpeciesFilter(FilterForm):
         return choices
 
     def get_filters(self):
-        filters = Q()
+        filters = super().get_filters()
         if species := self.cleaned_data.get("species"):
             if species[0] == "_":
                 species = species[1:]
@@ -243,7 +242,7 @@ class DateRangeFilter(FilterForm):
             self.add_error("start", self.DATES_SWAPPED)
 
     def get_filters(self):
-        filters = Q()
+        filters = super().get_filters()
         if start := self.cleaned_data.get("start"):
             filters &= Q(date__gte=start)
         if finish := self.cleaned_data.get("finish"):
@@ -263,9 +262,9 @@ class CategoryFilter(FilterForm):
     )
 
     def get_filters(self):
-        filters = Q()
+        filters = super().get_filters()
         if category := self.cleaned_data.get("category"):
-            filters &= Q(species__category=category)
+           filters &= Q(species__category=category)
         return filters
 
 
@@ -297,8 +296,7 @@ class ObservationOrder(FilterForm):
         label=_("Ordering"),
         choices=(
             ("-started", _("Most recent first")),
-            ("count", _("Count")),
-            ("-count", _("Count (descending)")),
+            ("-count", _("Highest count first")),
         ),
         required=False,
         widget=forms.Select(attrs={"class": "form-control"}),
@@ -310,15 +308,15 @@ class ObservationOrder(FilterForm):
         return ("-started",)
 
 
-class SeenOrder(FilterForm):
+class SpeciesOrder(FilterForm):
     title = _("Order By")
-    identifier = "seen-order"
+    identifier = "species-order"
 
     order = forms.ChoiceField(
         label=_("Ordering"),
         choices=(
-            ("seen", _("First Seen")),
-            ("-seen", _("Last Seen")),
+            ("species,started", _("First Seen")),
+            ("species,-started", _("Last Seen")),
         ),
         required=False,
         widget=forms.Select(attrs={"class": "form-control"}),
@@ -326,6 +324,5 @@ class SeenOrder(FilterForm):
 
     def get_ordering(self):
         if order := self.cleaned_data.get("order"):
-            if order == "-seen":
-                return "species", "-started"
+            return order.split(",")
         return "species", "started"

@@ -10,7 +10,7 @@ from data.forms import (
     DateRangeFilter,
     LocationFilter,
     ObserverFilter,
-    SeenOrder,
+    SpeciesOrder,
 )
 from data.models import Country, Observation
 from data.views import FilteredListView
@@ -23,7 +23,7 @@ class SpeciesView(FilteredListView):
         ObserverFilter,
         DateRangeFilter,
         CategoryFilter,
-        SeenOrder,
+        SpeciesOrder,
     )
     model = Observation
     template_name = "species/list.html"
