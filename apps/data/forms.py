@@ -255,6 +255,43 @@ class SpeciesFilter(FilterForm):
         return filters
 
 
+class FamilyFilter(FilterForm):
+    title = _("By Family")
+    identifier = "family"
+
+    family = forms.ChoiceField(
+        label=_("Family"),
+        required=False,
+        widget=autocomplete.Select2(
+            url="data:families",
+            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+        ),
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.is_bound:
+            self.fields["family"].choices = self.get_family_choice()
+
+    def get_family_choice(self):
+        choices = []
+        if code := self.data.get("family"):
+            choice = (
+                Species.objects.filter(family_code=code)
+                .values_list("family_code", "family_scientific_name")
+                .first()
+            )
+            if choice:
+                choices = [choice]
+        return choices
+
+    def get_filters(self):
+        filters = super().get_filters()
+        if family := self.cleaned_data.get("family"):
+            filters &= Q(species__family_code=family)
+        return filters
+
+
 class DateRangeFilter(FilterForm):
     title = _("By Date")
     identifier = "date-range"

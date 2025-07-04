@@ -8,6 +8,7 @@ from django.utils.translation import gettext_lazy as _
 from data.forms import (
     CategoryFilter,
     DateRangeFilter,
+    FamilyFilter,
     LocationFilter,
     ObserverFilter,
     SpeciesOrder,
@@ -23,6 +24,7 @@ class SpeciesView(FilteredListView):
         ObserverFilter,
         DateRangeFilter,
         CategoryFilter,
+        FamilyFilter,
         SpeciesOrder,
     )
     model = Observation
