@@ -294,6 +294,28 @@ class ProtocolFilter(FilterForm):
         return filters
 
 
+class ObservationFilter(FilterForm):
+    title = _("Options")
+    identifier = "observation"
+
+    approved = forms.ChoiceField(
+        label=_("Status"),
+        choices=(
+            ("", _("All")),
+            ("True", _("Accepted")),
+            ("False", _("Rejected")),
+        ),
+        required=False,
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
+
+    def get_filters(self):
+        filters = super().get_filters()
+        if approved := self.cleaned_data.get("approved"):
+            filters &= Q(approved=approved)
+        return filters
+
+
 class CategoryFilter(FilterForm):
     title = _("By Category")
     identifier = "category"

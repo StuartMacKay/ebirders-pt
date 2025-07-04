@@ -7,6 +7,7 @@ from django.utils.functional import cached_property
 from data.forms import (
     DateRangeFilter,
     LocationFilter,
+    ObservationFilter,
     ObservationOrder,
     ObserverFilter,
     SpeciesFilter,
@@ -22,6 +23,7 @@ class ObservationsView(FilteredListView):
         ObserverFilter,
         DateRangeFilter,
         SpeciesFilter,
+        ObservationFilter,
         ObservationOrder,
     )
     model = Observation
