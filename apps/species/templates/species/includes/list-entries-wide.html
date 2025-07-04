@@ -12,7 +12,7 @@
   </thead>
   <tbody>
   {% for observation in species_list %}
-    <tr {% if not observation.approved %}style="border-bottom-color: white"{% endif %}>
+    <tr {% if not observation.approved or forloop.last %}style="border-bottom-color: white"{% endif %}>
       <td>
         {{ observation.species.get_common_name }}
         <br>
@@ -89,7 +89,7 @@
       </td>
     </tr>
     {% if not observation.approved %}
-      <tr>
+      <tr {% if forloop.last %}style="border-bottom-color: white"{% endif %}>
         <td colspan="6" class="pt-0">
           <i class="bi bi-flag-fill text-danger me-1"></i>
           <span class="fst-italic">{{ observation.get_reason }}</span>
