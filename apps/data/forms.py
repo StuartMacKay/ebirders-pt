@@ -309,10 +309,49 @@ class ObservationFilter(FilterForm):
         widget=forms.Select(attrs={"class": "form-control"}),
     )
 
+    audio = forms.ChoiceField(
+        label=_("With audio"),
+        choices=(
+            ("", _("All")),
+            ("True", _("Yes")),
+            ("False", _("No")),
+        ),
+        required=False,
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
+
+    photo = forms.ChoiceField(
+        label=_("With photos"),
+        choices=(
+            ("", _("All")),
+            ("True", _("Yes")),
+            ("False", _("No")),
+        ),
+        required=False,
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
+
+    video = forms.ChoiceField(
+        label=_("With video"),
+        choices=(
+            ("", _("All")),
+            ("True", _("Yes")),
+            ("False", _("No")),
+        ),
+        required=False,
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
+
     def get_filters(self):
         filters = super().get_filters()
         if approved := self.cleaned_data.get("approved"):
             filters &= Q(approved=approved)
+        if audio := self.cleaned_data.get("audio"):
+            filters &= Q(audio=audio)
+        if photo := self.cleaned_data.get("photo"):
+            filters &= Q(photo=photo)
+        if video := self.cleaned_data.get("video"):
+            filters &= Q(video=video)
         return filters
 
 

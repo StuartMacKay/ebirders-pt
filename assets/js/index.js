@@ -54,7 +54,7 @@ function open_filter_panels() {
             link.click();
         }
     }
-    if (params.approved) {
+    if (params.approved || params.audio || params.photo || params.video) {
         const list = document.querySelectorAll('a[href="#form-observation"]');
         for (const link of list) {
             link.click();
