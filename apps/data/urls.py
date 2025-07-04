@@ -1,21 +1,21 @@
 from django.urls import path
 
-from .views import (
-    CountryAutocomplete,
-    CountyAutocomplete,
-    LocationAutocomplete,
-    ObserverAutocomplete,
-    SpeciesAutocomplete,
-    StateAutocomplete,
+from .autocompletes import (
+    CountryList,
+    CountyList,
+    LocationList,
+    ObserverList,
+    SpeciesList,
+    StateList,
 )
 
 app_name = "data"
 
 urlpatterns = [
-    path("countries/", CountryAutocomplete.as_view(), name="countries"),
-    path("states/", StateAutocomplete.as_view(), name="states"),
-    path("counties/", CountyAutocomplete.as_view(), name="counties"),
-    path("locations/", LocationAutocomplete.as_view(), name="locations"),
-    path("observers/", ObserverAutocomplete.as_view(), name="observers"),
-    path("species", SpeciesAutocomplete.as_view(), name="species"),
+    path("countries/", CountryList.as_view(), name="countries"),
+    path("states/", StateList.as_view(), name="states"),
+    path("counties/", CountyList.as_view(), name="counties"),
+    path("locations/", LocationList.as_view(), name="locations"),
+    path("observers/", ObserverList.as_view(), name="observers"),
+    path("species", SpeciesList.as_view(), name="species"),
 ]
