@@ -4,6 +4,7 @@ from .autocompletes import (
     CommonNameList,
     CountryList,
     CountyList,
+    FamilyList,
     LocationList,
     ObserverList,
     ScientificNameList,
@@ -20,4 +21,5 @@ urlpatterns = [
     path("observers/", ObserverList.as_view(), name="observers"),
     path("common-name", CommonNameList.as_view(), name="common-name"),
     path("scientific-name", ScientificNameList.as_view(), name="scientific-name"),
+    path("families", FamilyList.as_view(), name="families"),
 ]

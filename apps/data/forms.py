@@ -192,11 +192,21 @@ class SpeciesFilter(FilterForm):
         ),
     )
 
+    family = forms.ChoiceField(
+        label=_("Family"),
+        required=False,
+        widget=autocomplete.Select2(
+            url="data:families",
+            attrs={"class": "form-select", "data-theme": "bootstrap-5"},
+        ),
+    )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if self.is_bound:
             self.fields["common_name"].choices = self.get_common_name_choice()
             self.fields["scientific_name"].choices = self.get_scientific_name_choice()
+            self.fields["family"].choices = self.get_family_choice()
 
     def get_common_name_choice(self):
         choices = []
@@ -222,12 +232,26 @@ class SpeciesFilter(FilterForm):
                 choices = [choice]
         return choices
 
+    def get_family_choice(self):
+        choices = []
+        if code := self.data.get("family"):
+            choice = (
+                Species.objects.filter(family_code=code)
+                .values_list("family_code", "family_scientific_name")
+                .first()
+            )
+            if choice:
+                choices = [choice]
+        return choices
+
     def get_filters(self):
         filters = super().get_filters()
         if species_code := self.cleaned_data.get("common_name"):
             filters &= Q(species__species_code=species_code)
         if species_code := self.cleaned_data.get("scientific_name"):
             filters &= Q(species__species_code=species_code)
+        if family := self.cleaned_data.get("family"):
+            filters &= Q(species__family_code=family)
         return filters
 
 

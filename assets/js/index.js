@@ -36,7 +36,7 @@ function open_filter_panels() {
             link.click();
         }
     }
-    if (params.common_name || params.scientific_name) {
+    if (params.common_name || params.scientific_name || params.family) {
         const list = document.querySelectorAll('a[href="#form-species"]');
         for (const link of list) {
             link.click();

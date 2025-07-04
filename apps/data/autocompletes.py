@@ -71,3 +71,13 @@ class ScientificNameList(autocomplete.Select2ListView):
             .order_by("taxon_order")
         )
         return [(code, name) for code, name in queryset]
+
+
+class FamilyList(autocomplete.Select2ListView):
+    def get_list(self):
+        queryset = (
+            Species.objects.all()
+            .values_list("family_code", "family_scientific_name")
+            .order_by("taxon_order")
+        )
+        return list({(code, name) for code, name in queryset})
