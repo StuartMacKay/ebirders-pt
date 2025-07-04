@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-02 14:11+0000\n"
+"POT-Creation-Date: 2025-07-04 13:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: apps/checklists/templates/checklists/includes/list-title.html:4
 #: apps/checklists/templates/checklists/list.html:4
 #: apps/news/templatetags/numbers.py:47 templates/flatpages/base.html:33
-#: templates/includes/header.html:27
+#: templates/includes/header.html:28
 msgid "Checklists"
 msgstr ""
 
@@ -61,17 +61,19 @@ msgid "Show checklists for this observer"
 msgstr ""
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:47
-#: apps/data/forms.py:283 apps/news/templatetags/charts.py:87
+#: apps/data/forms.py:456 apps/news/templatetags/charts.py:87
 msgid "Number of species"
 msgstr ""
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:52
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:66
+#: apps/data/forms.py:353
 msgid "Complete"
 msgstr ""
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:54
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:68
+#: apps/data/forms.py:354
 msgid "Incomplete"
 msgstr ""
 
@@ -82,12 +84,13 @@ msgstr ""
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:71
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:89
-#: apps/news/templatetags/charts.py:23
+#: apps/data/forms.py:336 apps/news/templatetags/charts.py:23
 msgid "Stationary"
 msgstr ""
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:77
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:93
+#: apps/data/forms.py:335
 msgid "Travelling"
 msgstr ""
 
@@ -99,7 +102,7 @@ msgstr ""
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:85
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:99
-#: apps/news/templatetags/charts.py:22
+#: apps/data/forms.py:338 apps/news/templatetags/charts.py:22
 msgid "Incidental"
 msgstr ""
 
@@ -133,12 +136,12 @@ msgstr ""
 #: apps/news/templatetags/numbers.py:28
 #: apps/species/templates/species/includes/list-title.html:4
 #: apps/species/templates/species/list.html:4 templates/flatpages/base.html:41
-#: templates/includes/header.html:35
+#: templates/includes/header.html:36
 msgid "Species (plural)"
 msgstr "Species"
 
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:7
-#: apps/data/forms.py:52 apps/news/templates/news/tables/big-lists-wide.html:7
+#: apps/data/forms.py:63 apps/news/templates/news/tables/big-lists-wide.html:7
 #: apps/news/templates/news/tables/high-counts-wide.html:9
 #: apps/news/templates/news/tables/yearlist-wide.html:9
 #: apps/observations/templates/observations/includes/list-entries-wide.html:8
@@ -147,11 +150,12 @@ msgid "Location"
 msgstr ""
 
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:8
+#: apps/data/forms.py:333
 msgid "Protocol"
 msgstr ""
 
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:9
-#: apps/data/forms.py:137 apps/news/templates/news/tables/big-days.html:9
+#: apps/data/forms.py:147 apps/news/templates/news/tables/big-days.html:9
 #: apps/news/templates/news/tables/big-lists-wide.html:8
 #: apps/news/templates/news/tables/big_week_month.html:13
 #: apps/news/templates/news/tables/checklists-completed.html:7
@@ -176,24 +180,18 @@ msgstr ""
 msgid "Find Checklists"
 msgstr ""
 
-#: apps/checklists/templates/checklists/includes/list-filter.html:11
-#: apps/observations/templates/observations/includes/list-filter.html:11
-#: apps/species/templates/species/includes/list-filter.html:11
-msgid "Please correct the errors below."
-msgstr ""
-
-#: apps/checklists/templates/checklists/includes/list-filter.html:59
+#: apps/checklists/templates/checklists/includes/list-filter.html:8
 #: apps/news/templates/news/latest.html:45
 #: apps/news/templates/news/monthly.html:50
 #: apps/news/templates/news/weekly.html:50
-#: apps/observations/templates/observations/includes/list-filter.html:59
-#: apps/species/templates/species/includes/list-filter.html:59
+#: apps/observations/templates/observations/includes/list-filter.html:8
+#: apps/species/templates/species/includes/list-filter.html:8
 msgid "Search"
 msgstr ""
 
-#: apps/checklists/templates/checklists/includes/list-filter.html:60
-#: apps/observations/templates/observations/includes/list-filter.html:60
-#: apps/species/templates/species/includes/list-filter.html:60
+#: apps/checklists/templates/checklists/includes/list-filter.html:9
+#: apps/observations/templates/observations/includes/list-filter.html:9
+#: apps/species/templates/species/includes/list-filter.html:9
 msgid "Clear"
 msgstr ""
 
@@ -291,11 +289,11 @@ msgstr ""
 msgid "Your message could not be sent. Please try again later."
 msgstr ""
 
-#: apps/data/admin.py:29
+#: apps/data/admin.py:29 apps/data/forms.py:178
 msgid "Common name"
 msgstr ""
 
-#: apps/data/admin.py:34
+#: apps/data/admin.py:34 apps/data/forms.py:187
 msgid "Scientific name"
 msgstr ""
 
@@ -303,7 +301,7 @@ msgstr ""
 msgid "Name / Byname"
 msgstr ""
 
-#: apps/data/admin.py:247 apps/data/forms.py:171 apps/data/models/species.py:16
+#: apps/data/admin.py:247 apps/data/models/species.py:16
 #: apps/news/templates/news/tables/high-counts-wide.html:8
 #: apps/news/templates/news/tables/yearlist-wide.html:8
 #: apps/observations/templates/observations/includes/list-entries-wide.html:7
@@ -323,115 +321,176 @@ msgstr ""
 msgid "Data"
 msgstr ""
 
-#: apps/data/forms.py:14
+#: apps/data/forms.py:25
 msgid "By Location"
 msgstr ""
 
-#: apps/data/forms.py:18
+#: apps/data/forms.py:29
 msgid "Country"
 msgstr ""
 
-#: apps/data/forms.py:23
+#: apps/data/forms.py:34
 msgid "Select one or more countries"
 msgstr ""
 
-#: apps/data/forms.py:28
+#: apps/data/forms.py:39
 msgid "State"
 msgstr "District"
 
-#: apps/data/forms.py:34
+#: apps/data/forms.py:45
 msgid "Select one or more states"
 msgstr "Select one or more regions"
 
-#: apps/data/forms.py:40
+#: apps/data/forms.py:51
 msgid "County"
 msgstr ""
 
-#: apps/data/forms.py:46
+#: apps/data/forms.py:57
 msgid "Select one or more counties"
 msgstr ""
 
-#: apps/data/forms.py:58
+#: apps/data/forms.py:69
 msgid "Select one or more locations"
 msgstr ""
 
-#: apps/data/forms.py:64
+#: apps/data/forms.py:75
 msgid "Hotspots only"
 msgstr ""
 
-#: apps/data/forms.py:66
+#: apps/data/forms.py:77 apps/data/forms.py:389 apps/data/forms.py:400
+#: apps/data/forms.py:411
 msgid "No"
 msgstr ""
 
-#: apps/data/forms.py:67
+#: apps/data/forms.py:78 apps/data/forms.py:388 apps/data/forms.py:399
+#: apps/data/forms.py:410
 msgid "Yes"
 msgstr ""
 
-#: apps/data/forms.py:133
+#: apps/data/forms.py:143
 msgid "By Observer"
 msgstr ""
 
-#: apps/data/forms.py:167
+#: apps/data/forms.py:174
 msgid "By Species"
 msgstr ""
 
-#: apps/data/forms.py:219
-msgid "By Date"
-msgstr ""
-
-#: apps/data/forms.py:222
-msgid "This date is later than the until date."
-msgstr ""
-
-#: apps/data/forms.py:225
-msgid "From"
-msgstr ""
-
-#: apps/data/forms.py:230
-msgid "Until"
-msgstr ""
-
-#: apps/data/forms.py:255
-msgid "By Category"
+#: apps/data/forms.py:196 apps/data/forms.py:263
+msgid "Family"
 msgstr ""
 
 #: apps/data/forms.py:259
-msgid "Category"
+msgid "By Family"
 msgstr ""
 
-#: apps/data/forms.py:276 apps/data/forms.py:300 apps/data/forms.py:324
-msgid "Order By"
+#: apps/data/forms.py:296
+msgid "By Date"
 msgstr ""
 
-#: apps/data/forms.py:280 apps/data/forms.py:304 apps/data/forms.py:328
-msgid "Ordering"
+#: apps/data/forms.py:299
+msgid "This date is later than the until date."
 msgstr ""
 
-#: apps/data/forms.py:282 apps/data/forms.py:306
-msgid "Most recent first"
-msgstr ""
-
-#: apps/data/forms.py:284
-msgid "Number of species (descending)"
+#: apps/data/forms.py:302
+msgid "From"
 msgstr ""
 
 #: apps/data/forms.py:307
-#: apps/news/templates/news/tables/high-counts-wide.html:7
-#: apps/news/templates/news/tables/yearlist-wide.html:7
-#: apps/observations/templates/observations/includes/list-entries-wide.html:6
-#: apps/species/templates/species/includes/list-entries-wide.html:7
-msgid "Count"
+msgid "Until"
 msgstr ""
 
-#: apps/data/forms.py:308
-msgid "Count (descending)"
+#: apps/data/forms.py:329
+msgid "By Protocol"
 msgstr ""
 
-#: apps/data/forms.py:330
+#: apps/data/forms.py:337
+msgid "Historical"
+msgstr ""
+
+#: apps/data/forms.py:339
+msgid "Area"
+msgstr ""
+
+#: apps/data/forms.py:340
+msgid "Banding"
+msgstr ""
+
+#: apps/data/forms.py:341
+msgid "Pelagic"
+msgstr ""
+
+#: apps/data/forms.py:342
+msgid "Nocturnal Flight Call Count"
+msgstr ""
+
+#: apps/data/forms.py:343
+msgid "Random"
+msgstr ""
+
+#: apps/data/forms.py:350 apps/data/forms.py:374
+#, fuzzy
+#| msgid "State"
+msgid "Status"
+msgstr "District"
+
+#: apps/data/forms.py:352 apps/data/forms.py:376 apps/data/forms.py:387
+#: apps/data/forms.py:398 apps/data/forms.py:409
+msgid "All"
+msgstr ""
+
+#: apps/data/forms.py:370
+msgid "Options"
+msgstr ""
+
+#: apps/data/forms.py:377
+msgid "Accepted"
+msgstr ""
+
+#: apps/data/forms.py:378
+msgid "Rejected"
+msgstr ""
+
+#: apps/data/forms.py:385
+msgid "With audio"
+msgstr ""
+
+#: apps/data/forms.py:396
+msgid "With photos"
+msgstr ""
+
+#: apps/data/forms.py:407
+msgid "With video"
+msgstr ""
+
+#: apps/data/forms.py:431
+msgid "By Category"
+msgstr ""
+
+#: apps/data/forms.py:435
+msgid "Category"
+msgstr ""
+
+#: apps/data/forms.py:449 apps/data/forms.py:469 apps/data/forms.py:489
+msgid "Order By"
+msgstr ""
+
+#: apps/data/forms.py:453 apps/data/forms.py:473 apps/data/forms.py:493
+msgid "Ordering"
+msgstr ""
+
+#: apps/data/forms.py:455 apps/data/forms.py:475
+msgid "Most recent first"
+msgstr ""
+
+#: apps/data/forms.py:476
+msgid "Highest count first"
+msgstr ""
+
+#: apps/data/forms.py:495
 msgid "First Seen"
 msgstr ""
 
-#: apps/data/forms.py:331
+#: apps/data/forms.py:496
 msgid "Last Seen"
 msgstr ""
 
@@ -1073,7 +1132,7 @@ msgid "Locations"
 msgstr ""
 
 #: apps/news/apps.py:8 templates/flatpages/base.html:19
-#: templates/includes/header.html:13
+#: templates/includes/header.html:14
 msgid "News"
 msgstr ""
 
@@ -1089,7 +1148,7 @@ msgstr ""
 #: apps/news/templates/news/latest.html:18
 #: apps/news/templates/news/monthly.html:4
 #: apps/news/templates/news/weekly.html:4 templates/flatpages/base.html:23
-#: templates/includes/header.html:17
+#: templates/includes/header.html:18
 msgid "Latest News"
 msgstr ""
 
@@ -1106,15 +1165,15 @@ msgid "Enter State or County"
 msgstr "Enter District or County"
 
 #: apps/news/templates/news/monthly.html:11 templates/flatpages/base.html:27
-#: templates/includes/header.html:21
+#: templates/includes/header.html:22
 msgid "Monthly News"
 msgstr ""
 
 #: apps/news/templates/news/tables/big-days.html:10
 #: apps/news/templates/news/tables/big-lists-wide.html:9
 #: apps/news/templates/news/tables/big_week_month.html:14
-#: apps/news/templates/news/tables/yearlist.html:11 apps/species/views.py:61
-#: apps/species/views.py:65
+#: apps/news/templates/news/tables/yearlist.html:11 apps/species/views.py:69
+#: apps/species/views.py:73
 msgid "No. of Species"
 msgstr ""
 
@@ -1136,6 +1195,11 @@ msgstr ""
 
 #: apps/news/templates/news/tables/big-lists-narrow.html:50
 #: apps/news/templates/news/tables/big-lists-wide.html:62
+msgid "View more"
+msgstr ""
+
+#: apps/news/templates/news/tables/big-lists-narrow.html:54
+#: apps/news/templates/news/tables/big-lists-wide.html:66
 msgid "There are no Big Lists to report."
 msgstr ""
 
@@ -1174,6 +1238,13 @@ msgstr ""
 msgid "No high counts were found."
 msgstr ""
 
+#: apps/news/templates/news/tables/high-counts-wide.html:7
+#: apps/news/templates/news/tables/yearlist-wide.html:7
+#: apps/observations/templates/observations/includes/list-entries-wide.html:6
+#: apps/species/templates/species/includes/list-entries-wide.html:7
+msgid "Count"
+msgstr ""
+
 #: apps/news/templates/news/tables/high-counts.html:3
 msgid "High Counts"
 msgstr ""
@@ -1205,7 +1276,7 @@ msgid "View Yearlist"
 msgstr ""
 
 #: apps/news/templates/news/weekly.html:11 templates/flatpages/base.html:25
-#: templates/includes/header.html:19
+#: templates/includes/header.html:20
 msgid "Weekly News"
 msgstr ""
 
@@ -1241,11 +1312,11 @@ msgstr ""
 msgid "Big Lists"
 msgstr ""
 
-#: apps/news/templatetags/tables.py:180
+#: apps/news/templatetags/tables.py:182
 msgid "Year List"
 msgstr ""
 
-#: apps/news/templatetags/tables.py:213
+#: apps/news/templatetags/tables.py:215
 msgid "Big Days"
 msgstr ""
 
@@ -1329,7 +1400,7 @@ msgstr ""
 #: apps/observations/apps.py:8
 #: apps/observations/templates/observations/includes/list-title.html:4
 #: apps/observations/templates/observations/list.html:4
-#: templates/flatpages/base.html:37 templates/includes/header.html:31
+#: templates/flatpages/base.html:37 templates/includes/header.html:32
 msgid "Observations"
 msgstr ""
 
@@ -1424,11 +1495,11 @@ msgstr "Show checklists for this district"
 msgid "Find Species"
 msgstr ""
 
-#: apps/species/views.py:63
+#: apps/species/views.py:71
 msgid "No. of Subspecies"
 msgstr ""
 
-#: apps/species/views.py:67
+#: apps/species/views.py:75
 msgid "No. of Forms"
 msgstr ""
 

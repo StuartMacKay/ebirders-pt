@@ -340,7 +340,6 @@ class ProtocolFilter(FilterForm):
             ("P33", _("Banding")),
             ("P60", _("Pelagic")),
             ("P54", _("Nocturnal Flight Call Count")),
-            ("P52", _("Oiled Birds")),
             ("P48", _("Random")),
         ),
         required=False,
