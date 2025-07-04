@@ -9,6 +9,7 @@ from data.forms import (
     DateRangeFilter,
     LocationFilter,
     ObserverFilter,
+    ProtocolFilter,
 )
 from data.models import Checklist, Country
 from data.views import FilteredListView
@@ -20,6 +21,7 @@ class ChecklistsView(FilteredListView):
         LocationFilter,
         ObserverFilter,
         DateRangeFilter,
+        ProtocolFilter,
         ChecklistOrder,
     ]
     model = Checklist

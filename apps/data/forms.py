@@ -59,7 +59,7 @@ class LocationFilter(FilterForm):
         ),
     )
 
-    location= forms.MultipleChoiceField(
+    location = forms.MultipleChoiceField(
         label=_("Location"),
         required=False,
         widget=autocomplete.Select2Multiple(
@@ -109,7 +109,9 @@ class LocationFilter(FilterForm):
     def get_county_choices(self):
         choices = []
         if counties := self.data.getlist("county"):
-            choices = County.objects.filter(code__in=counties).values_list("code", "name")
+            choices = County.objects.filter(code__in=counties).values_list(
+                "code", "name"
+            )
         return choices
 
     def get_location_choices(self):
@@ -250,6 +252,35 @@ class DateRangeFilter(FilterForm):
         return filters
 
 
+class ProtocolFilter(FilterForm):
+    title = _("By Protocol")
+    identifier = "protocol"
+
+    protocol = forms.ChoiceField(
+        label=_("Protocol"),
+        choices=(
+            ("P22", _("Travelling")),
+            ("P21", _("Stationary")),
+            ("P62", _("Historical")),
+            ("P20", _("Incidental")),
+            ("P23", _("Area")),
+            ("P33", _("Banding")),
+            ("P60", _("Pelagic")),
+            ("P54", _("Nocturnal Flight Call Count")),
+            ("P52", _("Oiled Birds")),
+            ("P48", _("Random")),
+        ),
+        required=False,
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
+
+    def get_filters(self):
+        filters = super().get_filters()
+        if protocol := self.cleaned_data.get("protocol"):
+            filters &= Q(protocol_code=protocol)
+        return filters
+
+
 class CategoryFilter(FilterForm):
     title = _("By Category")
     identifier = "category"
@@ -264,7 +295,7 @@ class CategoryFilter(FilterForm):
     def get_filters(self):
         filters = super().get_filters()
         if category := self.cleaned_data.get("category"):
-           filters &= Q(species__category=category)
+            filters &= Q(species__category=category)
         return filters
 
 
