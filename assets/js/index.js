@@ -48,7 +48,7 @@ function open_filter_panels() {
             link.click();
         }
     }
-    if (params.protocol) {
+    if (params.protocol || params.complete) {
         const list = document.querySelectorAll('a[href="#form-protocol"]');
         for (const link of list) {
             link.click();

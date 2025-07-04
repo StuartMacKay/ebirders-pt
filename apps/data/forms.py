@@ -274,10 +274,23 @@ class ProtocolFilter(FilterForm):
         widget=forms.Select(attrs={"class": "form-control"}),
     )
 
+    complete = forms.ChoiceField(
+        label=_("Status"),
+        choices=(
+            ("", _("All")),
+            ("True", _("Complete")),
+            ("False", _("Incomplete")),
+        ),
+        required=False,
+        widget=forms.Select(attrs={"class": "form-control"}),
+    )
+
     def get_filters(self):
         filters = super().get_filters()
         if protocol := self.cleaned_data.get("protocol"):
             filters &= Q(protocol_code=protocol)
+        if complete := self.cleaned_data.get("complete"):
+            filters &= Q(complete=complete)
         return filters
 
 
