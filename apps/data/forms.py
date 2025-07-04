@@ -494,6 +494,7 @@ class SpeciesOrder(FilterForm):
         choices=(
             ("species,started", _("First Seen")),
             ("species,-started", _("Last Seen")),
+            ("species,-count", _("Highest Count")),
         ),
         required=False,
         widget=forms.Select(attrs={"class": "form-control"}),

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-04 13:05+0000\n"
+"POT-Creation-Date: 2025-07-04 13:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -492,6 +492,10 @@ msgstr "Primeiro visto"
 #: apps/data/forms.py:496
 msgid "Last Seen"
 msgstr "Último visto"
+
+#: apps/data/forms.py:497
+msgid "Highest Count"
+msgstr "Contagem mais elevada"
 
 #: apps/data/models/checklist.py:7 apps/data/models/observation.py:41
 msgid "checklist"
