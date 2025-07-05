@@ -4,19 +4,13 @@
     <div class="row border-top py-2">
       {% ifchanged observation.date %}
         <div class="border-bottom pb-2 mb-2">
-          <span class="text-nowrap me-3">
+          <span class="text-nowrap">
             {% if language_code == 'pt' %}
               {{ observation.date|date:"j F"|lower }}
             {% else %}
               {{ observation.date|date:"jS F" }}
             {% endif %}
           </span>
-          <a class="dark-link"
-             href="{{ observation.checklist.url }}"
-             target="_blank"
-             title="{% trans 'View this checklist on eBird.org' %}">
-            <i class="bi bi-box-arrow-up-right"></i>
-          </a>
         </div>
       {% endifchanged %}
       <div>
@@ -38,7 +32,13 @@
           {% endif %}
       {% endspaceless %}</div>
       <div>
-        {{ observation.observer.display_name }}
+        <span class="me-3">{{ observation.observer.display_name }}</span>
+        <a class="dark-link"
+           href="{{ observation.checklist.url }}"
+           target="_blank"
+           title="{% trans 'View this checklist on eBird.org' %}">
+          <i class="bi bi-box-arrow-up-right"></i>
+        </a>
       </div>
       {% if not observation.approved %}
         <div>
