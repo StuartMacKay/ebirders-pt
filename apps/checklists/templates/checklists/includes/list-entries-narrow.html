@@ -1,6 +1,6 @@
 {% load i18n %}
 {% for checklist in page_obj %}
-  <div class="row border-top d-lg-none py-2">
+  <div class="row {% if not forloop.first %}border-top{% endif %} d-lg-none py-2">
     <div>
       <span>
         {% if language_code == 'pt' %}
