@@ -14,3 +14,4 @@ def country():
 
 def test_loader(db_no_rollback, country):
     call_command("add_checklists", "--days", 2, country.code)
+    call_command("filter_observations")
