@@ -50,8 +50,17 @@ def test_data_autocomplete__returns_observers(db_no_rollback, client):
         assert table.get(observer.identifier)
 
 
-def test_data_autocomplete__returns_species(db_no_rollback, client):
-    url = reverse("data:species")
+def test_data_autocomplete__returns_common_names(db_no_rollback, client):
+    url = reverse("data:common-name")
+    response = client.get(url)
+    data = json.loads(response.content)
+    table = {item["id"]: item["text"] for item in data["results"]}
+    for species in Species.objects.all():
+        assert table.get(species.species_code)
+
+
+def test_data_autocomplete__returns_scientifc_names(db_no_rollback, client):
+    url = reverse("data:scientific-name")
     response = client.get(url)
     data = json.loads(response.content)
     table = {item["id"]: item["text"] for item in data["results"]}
