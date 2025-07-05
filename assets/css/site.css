@@ -1,3 +1,10 @@
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
 /* highlightTyped use mark */
 .autocomplete-menu mark {
   text-decoration: underline;
