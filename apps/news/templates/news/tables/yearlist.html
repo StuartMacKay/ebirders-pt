@@ -8,7 +8,7 @@
   {% include "news/tables/yearlist-narrow.html" %}
 </div>
 <div class="my-3">
-  <span class="h5 mb-3">{% trans 'No. of Species' %}: {{ total }}</span>
+  <span class="h5 mb-3">{% trans 'Species' %}: {{ total }}</span>
 </div>
 <div class="mb-3">
   <a href="{% url 'species:list' %}{% querystring state=state county=county category="species" start=start_year finish=end_year code=None search=None week=None %}"

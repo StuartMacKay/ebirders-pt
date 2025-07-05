@@ -66,11 +66,11 @@ class SpeciesView(FilteredListView):
     def get_species_list_title(self):
         if category := self.request.GET.get("category"):
             if category == "species":
-                title = _("No. of Species")
+                title = _("Species")
             elif category == "issf":
                 title = _("No. of Subspecies")
             elif category == "domestic":
-                title = _("No. of Species")
+                title = _("Species")
             elif category == "hybrid":
                 title = _("No. of Forms")
             else:
