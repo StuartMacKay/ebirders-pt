@@ -55,7 +55,7 @@ def test_list_view__filter_by_observer(db_no_rollback, client, observer):
 
 def test_list_view__filter_by_species(db_no_rollback, client, species):
     url = reverse("observations:list")
-    response = client.get(url, data={"species": species.species_code})
+    response = client.get(url, data={"common_name": species.species_code})
     objects = response.context["object_list"]
     assert objects.count() != 0
     for obj in objects:
