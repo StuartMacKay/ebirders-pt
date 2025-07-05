@@ -136,6 +136,14 @@ div.show-if-narrow {
   border-bottom-right-radius: 0.5rem;
 }
 
+a[aria-expanded=false] .panel-expanded {
+  display: none;
+}
+
+a[aria-expanded=true] .panel-collapsed {
+  display: none;
+}
+
 a[aria-expanded=false] .filter-expanded {
   display: none;
 }
