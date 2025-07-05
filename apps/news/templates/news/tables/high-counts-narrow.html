@@ -15,8 +15,8 @@
       {% endifchanged %}
       <div>
         <span>{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}, </span>
-        <span class="me-2">{{ observation.species.get_common_name }} </span>
-        <span class="fst-italic">({{ observation.species.scientific_name }})</span>
+        <span class="text-nowrap me-2">{{ observation.species.get_common_name }} </span>
+        <span class="text-nowrap fst-italic">({{ observation.species.scientific_name }})</span>
       </div>
       <div>{% spaceless %}
           <span>{{ observation.location.display_name }}</span>
