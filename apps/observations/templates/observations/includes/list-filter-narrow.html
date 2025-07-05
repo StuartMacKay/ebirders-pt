@@ -1,0 +1,20 @@
+{% load i18n %}
+<a href="#filter-panel"
+   class="text-decoration-none link-dark"
+   data-bs-toggle="collapse"
+   aria-expanded="false">
+  <div class="d-flex flex-row align-items-center py-2">
+    <span class="fs-5 mb-1 me-auto">{% trans "Find Observations" %}</span>
+    <i class="bi bi-chevron-down panel-collapsed me-1"></i>
+    <i class="bi bi-chevron-up panel-expanded me-1"></i>
+  </div>
+</a>
+<form method="get" id="filter-panel" class="remove-empty-values collapse">
+  {% for identifier, form in forms.items %}
+    {% include "observations/includes/list-filter-form.html" %}
+  {% endfor %}
+  <div class="mb-3">
+    <button type="submit" class="btn btn-primary me-2">{% trans "Search" %}</button>
+    <button type="reset" class="btn btn-secondary" id="clear-form">{% trans "Clear" %}</button>
+  </div>
+</form>

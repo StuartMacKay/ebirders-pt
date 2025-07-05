@@ -1,11 +1,7 @@
 {% load i18n %}
-<h3 class="mt-2 pt-2 pb-2 mb-4 fs-5 border-bottom">{% trans "Find Observations" %}</h3>
-<form method="get" class="remove-empty-values">
-  {% for identifier, form in forms.items %}
-    {% include "observations/includes/list-filter-form.html" %}
-  {% endfor %}
-  <div class="mb-4">
-    <button type="submit" class="btn btn-primary me-2">{% trans "Search" %}</button>
-    <button type="reset" class="btn btn-secondary" id="clear-form">{% trans "Clear" %}</button>
-  </div>
-</form>
+<div class="d-none d-lg-block">
+  {% include "observations/includes/list-filter-wide.html" %}
+</div>
+<div class="d-lg-none">
+  {% include "observations/includes/list-filter-narrow.html" %}
+</div>
