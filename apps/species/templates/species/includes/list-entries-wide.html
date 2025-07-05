@@ -2,9 +2,10 @@
 <table class="table">
   <thead>
   <tr>
-    <th>{% trans "Species" %}</th>
-    <th>{% trans "Date" %}</th>
-    <th>{% trans "Count" %}</th>
+    <th>#</th>
+    <th>{{ species_column_title }}</th>
+    <th>{{ date_column_title }}</th>
+    <th>{{ count_column_title }}</th>
     <th>{% trans "Location" %}</th>
     <th>{% trans "Observer" %}</th>
     <th>{% trans "Checklist" %}</th>
@@ -13,6 +14,7 @@
   <tbody>
   {% for observation in species_list %}
     <tr {% if not observation.approved or forloop.last %}style="border-bottom-color: white"{% endif %}>
+      <td>{{ forloop.counter }}</td>
       <td>
         {{ observation.species.get_common_name }}
         <br>

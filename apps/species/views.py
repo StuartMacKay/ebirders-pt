@@ -63,27 +63,53 @@ class SpeciesView(FilteredListView):
                 urls.append((self.get_url(), name))
         return urls
 
-    def get_species_list_title(self):
+    def get_species_column_title(self):
         if category := self.request.GET.get("category"):
             if category == "species":
                 title = _("Species")
             elif category == "issf":
-                title = _("No. of Subspecies")
+                title = _("Subspecies")
             elif category == "domestic":
-                title = _("Species")
+                title = _("Domestics")
             elif category == "hybrid":
-                title = _("No. of Forms")
+                title = _("Hybrids")
             else:
-                title = ""
+                title = _("Species, Forms, etc.")
         else:
-            title = ""
+            title = _("Species, Forms, etc.")
+        return title
+
+    def get_date_column_title(self):
+        if order := self.request.GET.get("order"):
+            if order == "species,started":
+                title = _("First seen")
+            elif order == "species,-started":
+                title = _("Last seen")
+            elif order == "species,-count":
+                title = _("Date")
+            else:
+                title = _("First seen")
+        else:
+            title = _("First seen")
+        return title
+
+    def get_count_column_title(self):
+        if order := self.request.GET.get("order"):
+            if order == "species,-count":
+                title = _("Highest")
+            else:
+                title = _("Count")
+        else:
+            title = _("Count")
         return title
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["show_country"] = self.show_country
         context["translations"] = self.get_translated_urls()
-        context["species_list_title"] = self.get_species_list_title()
+        context["species_column_title"] = self.get_species_column_title()
+        context["date_column_title"] = self.get_date_column_title()
+        context["count_column_title"] = self.get_count_column_title()
         context["species_list"] = sorted(
             list(context["object_list"]), key=lambda obj: obj.species.taxon_order
         )
