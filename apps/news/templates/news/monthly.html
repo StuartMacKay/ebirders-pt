@@ -15,8 +15,8 @@
       </div>
     </div>
 
-    <div class="row border-bottom align-items-center pt-3">
-      <div class="col-lg-2 col-md-2 col-sm-2 mb-3">
+    <div class="row border-bottom align-items-baseline">
+      <div class="col-sm-3 col-md-2 col-lg-2 my-3">
         <a class="btn btn-link link-dark bg-light me-2"
            href="{% url "news:for-month" previous_year previous_month %}"
            title="{{ previous_label }}">
@@ -28,7 +28,7 @@
           <i class="bi bi-chevron-right"></i>
         </a>
       </div>
-      <div class="col-lg-4 col-md-8 col-sm-8 mb-3">
+      <div class="col-sm-9 col-md-10 col-lg-4 mb-3">
         <span class="h4">{{ subtitle }}</span>
       </div>
       <div class="col-lg-4 mb-3">
@@ -54,55 +54,55 @@
       </div>
     </div>
 
-    <div class="row border-bottom pt-4 pb-2">
-      <div class="col-md-3 col-sm-6 col-6 mb-3">
-        {% species_count country state county start_date end_date%}
+    <div class="row border-bottom">
+      <div class="col-md-3 col-sm-6 col-6 my-3">
+        {% species_count country state county start_date end_date %}
       </div>
-      <div class="col-md-3 col-sm-6 col-6 mb-3">
+      <div class="col-md-3 col-sm-6 col-6 my-3">
         {% checklist_count country state county start_date end_date %}
       </div>
-      <div class="col-md-3 col-sm-6 col-6 mb-3">
+      <div class="col-md-3 col-sm-6 col-6 mt-lg-3 mb-3">
         {% observer_count country state county start_date end_date %}
       </div>
-      <div class="col-md-3 col-sm-6 col-6 mb-3">
+      <div class="col-md-3 col-sm-6 col-6 mt-lg-3 mb-3">
         {% duration_count country state county start_date end_date %}
       </div>
     </div>
 
-    <div class="row border-bottom py-2">
+    <div class="row border-bottom">
       <div class="col-12">
         {% high_counts_table %}
       </div>
     </div>
 
     {% with year=end_date.year %}
-      <div class="row border-bottom py-2">
+      <div class="row border-bottom">
         <div class="col-12">
           {% yearlist_table %}
         </div>
       </div>
     {% endwith %}
 
-    <div class="row border-bottom py-2">
+    <div class="row">
       <div class="col-12">
         {% big_lists_table country state county start_date end_date show_country %}
       </div>
     </div>
 
-    <div class="row py-2">
-      <div class="col-lg-6 col-md-6 col-sm-12">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12 border-top">
         {% big_days_table country state county start_date end_date %}
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-12">
-        {% big_week_month_table country state county start_date end_date interval %}
+      <div class="col-lg-6 col-md-6 col-sm-12 border-top">
+        {% big_week_month_table country state county start_date end_date interval%}
       </div>
     </div>
 
-    <div class="row py-2">
-      <div class="col-lg-6 col-md-6 col-sm-12">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12 border-top">
         {% checklists_completed_table country state county start_date end_date %}
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="col-lg-6 col-md-6 col-sm-12 border-top">
         {% time_spent_birding_table country state county start_date end_date %}
       </div>
     </div>

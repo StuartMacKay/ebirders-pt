@@ -1,7 +1,7 @@
 {% load i18n %}
 {% if checklists|length %}
   {% for checklist in checklists %}
-    <div class="row {% if not forloop.first %}border-top{% endif %} py-2">
+    <div class="row border-top py-2">
       <div>
         <span class="text-nowrap">
           {% if language_code == 'pt' %}
@@ -50,7 +50,9 @@
        href="{% url 'checklists:list' %}{% querystring start=start|date:"Y-m-d" finish=finish|date:"Y-m-d" order="-species_count,-started" %}">{% trans "View more" %}</a>
   </div>
 {% else %}
-  <div class="row py-3">
-    <span>{% trans 'There are no Big Lists to report.' %}</span>
+  <div class="row">
+    <div class="col">
+      <div class="py-3">{% trans 'There are no Big Lists to report.' %}</div>
+    </div>
   </div>
 {% endif %}

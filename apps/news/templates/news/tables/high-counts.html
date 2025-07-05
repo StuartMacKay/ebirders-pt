@@ -1,7 +1,7 @@
-  {% load i18n %}
+{% load i18n %}
 {% get_current_language as language_code %}
-<h3 class="mb-3">{% trans "High Counts" %}</h3>
-<div class="d-none d-lg-block">
+<h3 class="my-2">{% trans "High Counts" %}</h3>
+<div class="d-none d-lg-block ">
   {% include "news/tables/high-counts-wide.html" %}
 </div>
 <div class="d-lg-none">

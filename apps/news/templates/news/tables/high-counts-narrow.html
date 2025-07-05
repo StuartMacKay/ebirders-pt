@@ -47,7 +47,9 @@
     </div>
   {% endfor %}
 {% else %}
-  <div class="row py-3">
-    <span>{% trans "No high counts were found." %}</span>
+  <div class="row">
+    <div class="col">
+      <div class="py-3">{% trans "No high counts were found." %}</div>
+    </div>
   </div>
 {% endif %}
