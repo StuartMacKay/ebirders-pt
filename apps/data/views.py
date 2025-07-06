@@ -1,6 +1,7 @@
 
 from django.core.exceptions import ImproperlyConfigured
 from django.db.models import Q
+from django.forms.widgets import Media
 from django.http import HttpResponseRedirect
 from django.views import generic
 from django.views.generic.base import ContextMixin
@@ -37,6 +38,12 @@ class FormsMixin(ContextMixin):
             identifier = form_class.identifier
             forms[identifier] = form_class(**self.get_form_kwargs(identifier))
         return forms
+
+    def get_media(self, forms):
+        media = Media()
+        for form in forms.values():
+            media += form.media
+        return media
 
     def get_extra_kwargs(self, identifier):
         return self.extra.get(identifier, {})
@@ -77,6 +84,7 @@ class FormsMixin(ContextMixin):
         """Insert the form into the context dict."""
         if "forms" not in kwargs:
             kwargs["forms"] = self.get_forms()
+        kwargs["media"] = self.get_media(kwargs["forms"])
         return super().get_context_data(**kwargs)
 
 

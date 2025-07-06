@@ -5,9 +5,9 @@
     <table class="table">
       <thead>
         <tr>
-          <th>{% trans "Date" %}</th>
-          <th>{% trans "Location" %}</th>
           <th>{% trans "Observer" %}</th>
+          <th>{% trans "Location" %}</th>
+          <th>{% trans "Date" %}</th>
           <th>{% trans "Species" %}</th>
           <th>{% trans "Checklist" %}</th>
         </tr>
@@ -16,13 +16,7 @@
         {% for checklist in checklists %}
           <tr>
             <td>
-              <span class="text-nowrap">
-                {% if language_code == 'pt' %}
-                  {{ checklist.date|date:"j b" }}
-                {% else %}
-                  {{ checklist.date|date:"jS M" }}
-                {% endif %}
-              </span>
+              {{ checklist.observer.display_name }}
             </td>
             <td>
               <span>{{ checklist.location.display_name }}</span>
@@ -41,7 +35,13 @@
               {% endspaceless %}
             </td>
             <td>
-              {{ checklist.observer.display_name }}
+              <span class="text-nowrap">
+                {% if language_code == 'pt' %}
+                  {{ checklist.date|date:"j b" }}
+                {% else %}
+                  {{ checklist.date|date:"jS M" }}
+                {% endif %}
+              </span>
             </td>
             <td>
               <span>{{ checklist.species_count }}</span>
