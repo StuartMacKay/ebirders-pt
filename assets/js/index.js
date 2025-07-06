@@ -96,9 +96,20 @@ function activate_clear_button() {
     }
 }
 
+function show_filter_panel() {
+    const mediaQuery = window.matchMedia("(min-width: 992px)");
+    const panel = document.getElementById("filter-panel");
+    if (panel && mediaQuery.matches) {
+        var bsCollapse = new bootstrap.Collapse(panel, {
+            toggle: true
+        });
+    }
+}
+
 document.addEventListener('DOMContentLoaded', (event) => {
   'use strict';
   open_filter_panels();
   remove_blank_form_fields();
   activate_clear_button();
+  show_filter_panel();
 });
