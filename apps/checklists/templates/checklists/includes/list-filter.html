@@ -1,8 +1,14 @@
 {% load i18n %}
 {{ media.css }}
-<div class="d-none d-lg-block">
-  {% include "checklists/includes/list-filter-wide.html" %}
-</div>
-<div class="d-lg-none">
-  {% include "checklists/includes/list-filter-narrow.html" %}
-</div>
+
+<h3 class="mt-2 pt-2 pb-2 mb-4 fs-5 border-bottom">{% trans "Find Checklists" %}</h3>
+
+<form method="get" id="filter-panel" class="remove-empty-values">
+  {% for identifier, form in forms.items %}
+    {% include "checklists/includes/list-filter-form.html" %}
+  {% endfor %}
+  <div class="mb-3">
+    <button type="submit" class="btn btn-primary me-2">{% trans "Search" %}</button>
+    <button type="reset" class="btn btn-secondary" id="clear-form">{% trans "Clear" %}</button>
+  </div>
+</form>
