@@ -1,5 +1,9 @@
 {% load i18n %}
-<h3 class="my-2">{% trans 'Number of checklists completed' %}</h3>
+<div class="row">
+  <div class="col px-3 py-2">
+    <h3 class="p-0 m-0">{% trans 'Number of checklists completed' %}</h3>
+  </div>
+</div>
 {% if records|length %}
   <div class="row border-top">
     <div class="col">

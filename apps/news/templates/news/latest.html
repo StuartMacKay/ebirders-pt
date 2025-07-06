@@ -15,7 +15,7 @@
 
     <div class="row border-bottom align-items-baseline">
       <div class="col">
-        <h1>{% trans 'Latest News' %}</h1>
+        <h1 class="pt-2">{% trans 'Latest News' %}</h1>
       </div>
       <div class="col ms-auto text-end">
         <small class="text-muted">{% trans 'Updated every hour' %}</small>
@@ -64,25 +64,13 @@
       </div>
     </div>
 
-    <div class="row border-bottom">
-      <div class="col-12">
-        {% high_counts_table %}
-      </div>
-    </div>
+    {% high_counts_table %}
 
     {% with year=end_date.year %}
-      <div class="row border-bottom">
-        <div class="col-12">
-          {% yearlist_table %}
-        </div>
-      </div>
+      {% yearlist_table %}
     {% endwith %}
 
-    <div class="row">
-      <div class="col-12">
-        {% big_lists_table country state county start_date end_date show_country %}
-      </div>
-    </div>
+    {% big_lists_table country state county start_date end_date show_country %}
 
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12 border-top">

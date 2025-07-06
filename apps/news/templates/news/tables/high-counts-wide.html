@@ -1,6 +1,6 @@
 {% load i18n %}
 {% if observations|length %}
-  <div class="row border-top">
+  <div class="row">
     <div class="col">
       <table class="table table-borderless">
         <thead>
@@ -19,7 +19,7 @@
             <td>
               {% ifchanged observation.date %}
                 <div class="calendar-date">
-                  <div class="month" style="background-color: #154ed8">
+                  <div class="month">
                     {% if language_code == 'pt' %}
                       {{ observation.date|date:"b" }}
                     {% else %}
@@ -78,7 +78,7 @@
     </div>
   </div>
 {% else %}
-  <div class="row border-top">
+  <div class="row">
     <div class="col">
       <div class="py-3">{% trans "No high counts were found." %}</div>
     </div>

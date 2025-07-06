@@ -1,3 +1,52 @@
+/*
+ * Colour palette based on colours from the Hoopoe's plumage.
+ */
+
+header {
+  background-color: #E1965A;
+}
+
+div.row:has(h1) {
+  background-color: #f1d290;
+  border-color: #f1d290;
+}
+
+div.col:has(h3) {
+  background-color: #fceab2;
+}
+
+div.number {
+  background-color: #fffdf1;
+}
+
+div.month {
+  background-color: #fceab2;
+}
+
+.btn.btn-primary {
+  background-color: #faad48 !important;
+  border-color: #faad48 !important;
+  color: #000000;
+}
+
+.btn.btn-link, a.page-link {
+  background-color: #faad48 !important;
+  border-color: #faad48 !important;
+  color: #000000;
+}
+
+.btn.btn-link, a.page-link:hover {
+  color: #ffffff;
+}
+
+.btn.btn-link.disable, a.page-link.disabled {
+  background-color: #b7b7b7 !important;
+  border-color: #b7b7b7 !important;
+  color: #000000;
+}
+
+/* End of palette. */
+
 .navbar-toggler:focus,
 .navbar-toggler:active,
 .navbar-toggler-icon:focus {
@@ -126,7 +175,6 @@ div.show-if-narrow {
   border-bottom: 0 !important;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
-  color: white;
 }
 
 .calendar-date .day {

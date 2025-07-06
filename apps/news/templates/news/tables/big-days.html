@@ -1,6 +1,10 @@
 {% load i18n %}
 {% get_current_language as language_code %}
-<h3 class="my-2">{{ title }}</h3>
+<div class="row">
+  <div class="col px-3 py-2">
+    <h3 class="p-0 m-0">{{ title }}</h3>
+  </div>
+</div>
 {% if entries|length %}
 <div class="row border-top">
   <div class="col">
