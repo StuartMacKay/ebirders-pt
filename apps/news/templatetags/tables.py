@@ -209,11 +209,11 @@ def big_days_table(country_id, state_id, county_id, start, end):
     elif county_id:
         queryset = queryset.filter(county_id=county_id)
 
-    entries = queryset.order_by("-species_count")[:10]
+    entries = queryset.order_by("-species_count", "-date")[:10]
 
     return {
         "title": _("Big Days"),
-        "entries": sorted(list(entries), key=lambda entry: entry["date"]),
+        "entries": entries
     }
 
 
