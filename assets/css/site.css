@@ -15,12 +15,16 @@ div.col:has(h3) {
   background-color: #fceab2;
 }
 
+div.col:has(h4) {
+  background-color: #fff0c3;
+}
+
 div.number {
   background-color: #fffdf1;
 }
 
 div.month {
-  background-color: #fceab2;
+  background-color: #fff0c3;
 }
 
 .btn.btn-primary {
