@@ -44,7 +44,7 @@ class Update(models.Model):
     objects = UpdateManager()
 
     def __str__(self):
-        return str(self.title)
+        return self.get_title()
 
     def get_title(self):
         try:
