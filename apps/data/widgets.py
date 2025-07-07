@@ -26,13 +26,14 @@ class TranslationTextarea(forms.MultiWidget):
     template_name = "data/widgets/translation_field.html"
 
     def __init__(self, *args, **kwargs):
-        widgets = [
-            forms.Textarea(
-                attrs={"locale": _(language), "rows": 10, "class": "vLargeTextField"}
-            )
-            for code, language in settings.LANGUAGES
-        ]
-        super().__init__(widgets, **kwargs)
+        if "widgets" not in kwargs:
+            kwargs["widgets"] = [
+                forms.Textarea(
+                    attrs={"locale": _(language), "rows": 10, "class": "vLargeTextField"}
+                )
+                for code, language in settings.LANGUAGES
+            ]
+        super().__init__(**kwargs)
 
     def decompress(self, value):
         if value:

@@ -23,6 +23,7 @@ dependencies = [
     "beautifulsoup4>=4.13.4",
     "sentry-sdk>=2.26.1",
     "django-autocomplete-light>=3.12.1",
+    "django-ckeditor>=6.7.3",
 ]
 
 [tool.ruff]

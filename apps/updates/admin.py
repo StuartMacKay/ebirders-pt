@@ -1,17 +1,17 @@
 from django import forms
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin, register
-from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from data.fields import TranslationCharField, TranslationTextField
+from data.fields import TranslationCharField
 
+from .fields import TranslationRichTextField
 from .models import Update
 
 
 class UpdateForm(forms.ModelForm):
     title = TranslationCharField()
-    contents = TranslationTextField()
+    contents = TranslationRichTextField()
 
     class Meta:
         fields = "__all__"
@@ -23,10 +23,6 @@ class UpdateAdmin(ModelAdmin):
     search_fields = ("title",)
     ordering = ("-published_at",)
     form = UpdateForm
-
-    formfield_overrides = {
-        models.TextField: {"widget": forms.widgets.Textarea(attrs={"cols": "80"})},
-    }
 
     @admin.display(description=_("Title"))
     def display_title(self, instance):

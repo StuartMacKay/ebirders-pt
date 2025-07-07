@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.flatpages",
     "django_extensions",
+    "ckeditor",
     "checklists",
     "contact",
     "data",
