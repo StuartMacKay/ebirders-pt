@@ -4,10 +4,18 @@
 {% block title %}{% translate "What's New" %}{% endblock %}
 
 {% block content %}
+  <div class="container-fluid static mb-3">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1 class="pt-2">{% translate "What's New" %}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="container">
     <div class="row">
       <div class="col">
-        <h1>{% translate "What's New" %}</h1>
         <p>
           {% trans "A list of what has changed on this site, whether it is new features, editorial decisions on observations, or just general news." %}
         </p>

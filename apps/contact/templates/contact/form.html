@@ -4,11 +4,18 @@
 {% block title %}{% trans 'Contact' %}{% endblock %}
 
 {% block content %}
+<div class="container-fluid static mb-3">
+  <div class="container">
+    <div class="row">
+      <div class="mx-auto col-sm-12 col-lg-8">
+        <h1 class="pt-2">{% translate "Contact" %}</h1>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container">
   <div class="row">
     <div class="mx-auto col-sm-12 col-lg-8 mb-4">
-      <h1>{% translate "Contact" %}</h1>
-
       {% if messages %}
         <ul class="list-unstyled fs-5">
           {% for message in messages %}

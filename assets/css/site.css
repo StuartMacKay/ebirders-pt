@@ -27,6 +27,11 @@ div.month {
   background-color: #fff0c3;
 }
 
+div.static {
+  background-color: #f1d290;
+  border-color: #f1d290;
+}
+
 .btn.btn-primary {
   background-color: #faad48 !important;
   border-color: #faad48 !important;
