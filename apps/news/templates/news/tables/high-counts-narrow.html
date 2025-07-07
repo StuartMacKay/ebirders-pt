@@ -1,52 +1,56 @@
 {% load i18n %}
 {% if observations|length %}
   {% for observation in observations %}
-    <div class="row border-top py-2">
-      {% ifchanged observation.date %}
-        <div class="border-bottom pb-2 mb-2">
+    {% ifchanged observation.date %}
+      <div class="row">
+        <div class="col px-3 py-2 {% if not forloop.first %}border-top{% endif %}">
           <span class="text-nowrap">
             {% if language_code == 'pt' %}
-              {{ observation.date|date:"j F"|lower }}
+              <h4 class="p-0 m-0 fs-6">{{ observation.date|date:"j b Y" }}</h4>
             {% else %}
-              {{ observation.date|date:"jS F" }}
+              <h4 class="p-0 m-0 fs-6">{{ observation.date|date:"jS M Y" }}</h4>
             {% endif %}
           </span>
         </div>
+      </div>
       {% endifchanged %}
-      <div>
-        <span>{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}, </span>
-        <span class="text-nowrap me-2">{{ observation.species.get_common_name }} </span>
-        <span class="text-nowrap fst-italic">({{ observation.species.scientific_name }})</span>
-      </div>
-      <div>{% spaceless %}
-          <span>{{ observation.location.display_name }}</span>
-          {% if observation.county %}
-            <span>, </span><span>{{ observation.county }}</span>
+      <div class="row">
+        <div class="col px-3 py-2 border-top">
+          <div>
+            <span>{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}, </span>
+            <span class="text-nowrap me-2">{{ observation.species.get_common_name }} </span>
+            <span class="text-nowrap fst-italic">({{ observation.species.scientific_name }})</span>
+          </div>
+          <div>{% spaceless %}
+              <span>{{ observation.location.display_name }}</span>
+              {% if observation.county %}
+                <span>, </span><span>{{ observation.county }}</span>
+              {% endif %}
+              {% if observation.state %}
+                {% if observation.county %}<span>, </span>{% endif %}
+                <span>{{ observation.state }}</span>
+              {% endif %}
+              {% if show_country %}
+                <span>, {{ observation.country }}</span>
+              {% endif %}
+          {% endspaceless %}</div>
+          <div>
+            <span class="me-3">{{ observation.observer.display_name }}</span>
+            <a class="dark-link"
+               href="{{ observation.checklist.url }}"
+               target="_blank"
+               title="{% trans 'View this checklist on eBird.org' %}">
+              <i class="bi bi-box-arrow-up-right"></i>
+            </a>
+          </div>
+          {% if not observation.approved %}
+            <div>
+              <i class="bi bi-flag-fill text-danger me-1"></i>
+              <span>{{ observation.get_reason }}</span>
+            </div>
           {% endif %}
-          {% if observation.state %}
-            {% if observation.county %}<span>, </span>{% endif %}
-            <span>{{ observation.state }}</span>
-          {% endif %}
-          {% if show_country %}
-            <span>, {{ observation.country }}</span>
-          {% endif %}
-      {% endspaceless %}</div>
-      <div>
-        <span class="me-3">{{ observation.observer.display_name }}</span>
-        <a class="dark-link"
-           href="{{ observation.checklist.url }}"
-           target="_blank"
-           title="{% trans 'View this checklist on eBird.org' %}">
-          <i class="bi bi-box-arrow-up-right"></i>
-        </a>
-      </div>
-      {% if not observation.approved %}
-        <div>
-          <i class="bi bi-flag-fill text-danger me-1"></i>
-          <span>{{ observation.get_reason }}</span>
         </div>
-      {% endif %}
-    </div>
+      </div>
   {% endfor %}
 {% else %}
   <div class="row">
