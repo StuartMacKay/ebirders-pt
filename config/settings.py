@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     "notifications",
     "observations",
     "observers",
+    "pages",
     "species",
     "updates"
 ]
