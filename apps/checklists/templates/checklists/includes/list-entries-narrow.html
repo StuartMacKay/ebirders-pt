@@ -1,21 +1,17 @@
 {% load i18n %}
 {% for checklist in page_obj %}
-  {% ifchanged checklist.date %}
-    <div class="row border-top">
-      <div class="col px-3 py-2">
-        <a class="dark-link text-nowrap"
-           href="{% querystring start=checklist.date|date:'Y-m-d' finish=checklist.date|date:'Y-m-d' %}"
-           title="{% trans 'Show checklists for this date' %}">
-          {% if language_code == 'pt' %}
-            <h4 class="p-0 m-0 fs-6">{{ checklist.date|date:"j b Y" }}</h4>
-          {% else %}
-            <h4 class="p-0 m-0 fs-6">{{ checklist.date|date:"jS M Y" }}</h4>
-          {% endif %}
-        </a>
-      </div>
+  <div class="row border-top py-2">
+    <div>
+      <a class="dark-link text-nowrap"
+         href="{% querystring start=checklist.date|date:'Y-m-d' finish=checklist.date|date:'Y-m-d' %}"
+         title="{% trans 'Show checklists for this date' %}">
+        {% if language_code == 'pt' %}
+          <span>{{ checklist.date|date:"j b Y" }}</span>
+        {% else %}
+          <span>{{ checklist.date|date:"jS M Y" }}</span>
+        {% endif %}
+      </a>
     </div>
-  {% endifchanged %}
-  <div class="row border-top d-lg-none py-2">
     <div>{% spaceless %}
       <a class="dark-link"
          href="{% querystring location=checklist.location.identifier %}"
