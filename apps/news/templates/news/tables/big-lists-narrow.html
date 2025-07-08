@@ -3,10 +3,10 @@
   {% for checklist in checklists %}
     <div class="row border-top py-2">
       <div>
-        <span class="me-3">
-          <i class="bi bi-binoculars-fill"></i>
+        <span class="me-2">{% spaceless %}
+          <i class="bi bi-binoculars-fill me-1"></i>
           <span>{{ checklist.species_count }}</span>
-        </span>
+        {% endspaceless %}</span>
         <span class="text-nowrap">
           {% if language_code == 'pt' %}
             {{ checklist.date|date:"j b" }}
@@ -15,8 +15,7 @@
           {% endif %}
         </span>
       </div>
-      <div>
-        {% spaceless %}
+      <div>{% spaceless %}
           <span>{{ checklist.location.display_name }}</span>
           {% if checklist.county %}
             <span>, {{ checklist.county }}</span>
@@ -28,8 +27,7 @@
           {% if show_country %}
             <span>, {{ checklist.country }}</span>
           {% endif %}
-        {% endspaceless %}
-      </div>
+      {% endspaceless %}</div>
       <div>
         <span class="me-3">{{ checklist.observer.display_name }}</span>
         <a class="dark-link"

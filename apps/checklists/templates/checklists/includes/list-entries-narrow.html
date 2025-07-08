@@ -44,11 +44,11 @@
          title="{% trans 'Show checklists for this observer' %}">{{ checklist.observer.display_name }}</a>
     </div>
     <div>
-      <span class="me-2">
+      <span class="me-2">{% spaceless %}
         <i class="bi bi-binoculars-fill me-1"
            title="{% trans 'Number of species' %}"></i>
-        {{ checklist.species_count }}
-      </span>
+        <span>{{ checklist.species_count }}</span>
+      {% endspaceless %}</span>
       <span class="me-2">
         {% if checklist.complete %}
           <i class="bi bi-check-circle" title="{% trans 'Complete' %}"></i>
@@ -57,38 +57,44 @@
         {% endif %}
       </span>
       {% if checklist.observer_count %}
-        <span class="me-2">
+        <span class="me-2">{% spaceless %}
           <i {% if checklist.observer_count == 1 %}
-            class="bi bi-person-fill"
+            class="bi bi-person-fill me-1"
           {% else %}
-            class="bi bi-people-fill"
+            class="bi bi-people-fill me-1"
           {% endif %}
             title="{% trans 'Number of Observers' %}"></i>
           <span>{{ checklist.observer_count }}</span>
-        </span>
+        {% endspaceless %}</span>
       {% endif %}
       {% if checklist.protocol_code == "P21" %}
-        <i class="bi bi-person-standing me-2"
-           title="{% trans 'Stationary' %}"></i>
-        {% if checklist.time %}
-          <span class="me-2">{{ checklist.time }}</span>
-        {% endif %}
-        <span class="me-2">{{ checklist.duration }} mins</span>
+        <span class="me-2">{% spaceless %}
+          <i class="bi bi-person-standing me-2"
+             title="{% trans 'Stationary' %}"></i>
+          {% if checklist.time %}
+            <span class="me-2">{{ checklist.time }}</span>
+          {% endif %}
+          <span>{{ checklist.duration }} mins</span>
+        {% endspaceless %}</span>
       {% elif checklist.protocol_code == "P22" %}
-        <i class="bi bi-person-walking me-2"
-           title="{% trans 'Travelling' %}"></i>
-        {% if checklist.time %}
-          <span class="me-2">{{ checklist.time }}</span>
-        {% endif %}
-        {% with distance=checklist.distance|floatformat %}
-          <span>{% blocktrans %}{{ distance }} km,{% endblocktrans %}</span>
-          <span class="me-2">{{ checklist.duration }} {% if checklist.duration == 1 %}min{% else %}mins{% endif %}</span>
-        {% endwith %}
+        <span class="me-2">{% spaceless %}
+          <i class="bi bi-person-walking me-2"
+             title="{% trans 'Travelling' %}"></i>
+          {% if checklist.time %}
+            <span class="me-2">{{ checklist.time }}</span>
+          {% endif %}
+          {% with distance=checklist.distance|floatformat %}
+            <span class="me-1">{% blocktrans %}{{ distance }} km,{% endblocktrans %}</span>
+            <span>{{ checklist.duration }} {% if checklist.duration == 1 %}min{% else %}mins{% endif %}</span>
+          {% endwith %}
+        {% endspaceless %}</span>
       {% elif checklist.protocol_code == "P20" %}
-        <span class="me-2">{% trans "Incidental" %}</span>
-        {% if checklist.time %}
-          <span class="me-2">{{ checklist.time }}</span>
-        {% endif %}
+        <span class="me-2">{% spaceless %}
+          <span class="me-2">{% trans "Incidental" %}</span>
+          {% if checklist.time %}
+            <span>{{ checklist.time }}</span>
+          {% endif %}
+        {% endspaceless %}</span>
       {% endif %}
       <a class="dark-link"
          href="{{ checklist.url }}"
