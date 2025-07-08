@@ -1,7 +1,7 @@
 {% load i18n %}
 {% if observations|length %}
   {% for observation in observations %}
-    <div class="row border-top {% if forloop.last %}border-bottom{% endif %}">
+    <div class="row border-bottom py-2">
       <div>
         <span class="text-nowrap me-3">
           {% if language_code == 'pt' %}
@@ -47,9 +47,9 @@
     </div>
   {% endfor %}
 {% else %}
-  <div class="row border-top">
-    <div class="py-3">
-      <span>{% trans "No species were added to the year list." %}</span>
+  <div class="row">
+    <div class="col">
+      <div class="py-3">{% trans "No species were added to the year list." %}</div>
     </div>
   </div>
 {% endif %}
