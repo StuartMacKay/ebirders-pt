@@ -16,11 +16,11 @@
       {% endifchanged %}
       <div class="row">
         <div class="col px-3 py-2 border-top">
-          <div>
-            <span>{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}, </span>
-            <span class="text-nowrap me-2">{{ observation.species.get_common_name }} </span>
-            <span class="text-nowrap fst-italic">({{ observation.species.scientific_name }})</span>
-          </div>
+          <div class="d-flex flex-row flex-wrap">{% spaceless %}
+            <div class="text-nowrap me-2">{% if observation.count %}{{ observation.count }}{% else %}X{% endif %},</div>
+            <div class="text-nowrap me-2">{{ observation.species.get_common_name }}</div>
+            <div class="text-nowrap fst-italic">({{ observation.species.scientific_name }})</div>
+          {% endspaceless %}</div>
           <div>{% spaceless %}
               <span>{{ observation.location.display_name }}</span>
               {% if observation.county %}
