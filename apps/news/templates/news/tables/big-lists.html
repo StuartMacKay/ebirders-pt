@@ -2,7 +2,14 @@
 {% get_current_language as language_code %}
 <div class="row border-bottom">
   <div class="col">
-    <h3 class="my-2">{{ title }}</h3>
+    <h3 class="my-2">
+      <span class="me-3">{{ title }}</span>
+      <a class="dark-link"
+         href="{% url 'checklists:list' %}{% querystring start=start|date:"Y-m-d" finish=finish|date:"Y-m-d" order="-species_count,-started" %}"
+         title="{% trans 'View more' %}">
+        <i class="bi bi-box-arrow-in-down-right fs-5"></i>
+      </a>
+    </h3>
   </div>
 </div>
 <div class="d-none d-lg-block">
