@@ -23,7 +23,7 @@
         <span class="fst-italic">({{ observation.species.scientific_name }})</span>
       </div>
       <div>{% spaceless %}
-          <span>{{ observation.location.display_name }}</span>
+          <span>{{ observation.location.name }}</span>
           {% if observation.county %}
             <span>, </span><span class="text-muted">{{ observation.county }}</span>
           {% endif %}
@@ -36,7 +36,7 @@
           {% endif %}
       {% endspaceless %}</div>
       <div>
-        {{ observation.observer.display_name }}
+        {{ observation.observer.name }}
       </div>
       {% if not observation.approved %}
         <div>

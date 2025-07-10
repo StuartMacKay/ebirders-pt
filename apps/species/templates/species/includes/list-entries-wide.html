@@ -39,7 +39,7 @@
       <td>
         <a class="dark-link"
            href="{% querystring location=observation.location.identifier %}"
-           title="{% trans 'Show species for this location' %}">{{ observation.location.display_name }}</a>
+           title="{% trans 'Show species for this location' %}">{{ observation.location.name }}</a>
         <br/>
         {% spaceless %}
           {% if observation.county %}
@@ -70,7 +70,7 @@
       <td>
         <a class="dark-link me-3"
            href="{% querystring observer=observation.observer.identifier %}"
-           title="{% trans 'Show species seen by this observer' %}">{{ observation.observer.display_name }}</a>
+           title="{% trans 'Show species seen by this observer' %}">{{ observation.observer.name }}</a>
       </td>
       <td>
         <a class="dark-link"

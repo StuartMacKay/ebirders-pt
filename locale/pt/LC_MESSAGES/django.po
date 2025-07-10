@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-08 14:06+0000\n"
+"POT-Creation-Date: 2025-07-10 10:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -299,7 +299,7 @@ msgid "Scientific name"
 msgstr ""
 
 #: apps/data/admin.py:156 apps/data/admin.py:279
-msgid "Name / Byname"
+msgid "Name / Original"
 msgstr ""
 
 #: apps/data/admin.py:247 apps/data/models/species.py:16
@@ -708,8 +708,9 @@ msgid "The code used to identify the country."
 msgstr ""
 
 #: apps/data/models/country.py:18 apps/data/models/county.py:18
-#: apps/data/models/filter.py:22 apps/data/models/location.py:74
-#: apps/data/models/observer.py:18 apps/data/models/state.py:18
+#: apps/data/models/filter.py:22 apps/data/models/location.py:80
+#: apps/data/models/observer.py:18 apps/data/models/observer.py:24
+#: apps/data/models/state.py:18
 msgid "name"
 msgstr ""
 
@@ -792,11 +793,11 @@ msgid "The unique identifier for the location"
 msgstr ""
 
 #: apps/data/models/location.py:74
-msgid "The name of the location"
-msgstr ""
+msgid "original"
+msgstr "original"
 
-#: apps/data/models/location.py:80 apps/data/models/observer.py:24
-msgid "byname"
+#: apps/data/models/location.py:74
+msgid "The name of the location from eBird"
 msgstr ""
 
 #: apps/data/models/location.py:81
@@ -976,7 +977,7 @@ msgid "The code for the person submitted the checklist."
 msgstr ""
 
 #: apps/data/models/observer.py:19
-msgid "The observer's name."
+msgid "The observer's name from eBird."
 msgstr ""
 
 #: apps/data/models/observer.py:25

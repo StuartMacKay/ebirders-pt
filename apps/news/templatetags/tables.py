@@ -49,7 +49,7 @@ def checklists_completed_table(country_id, state_id, county_id, start, end):
     observers = (
         queryset.values("observer")
         .annotate(name=F("observer__name"))
-        .annotate(byname=F("observer__byname"))
+        .annotate(name=F("observer__name"))
         .annotate(identifier=F("observer__identifier"))
         .annotate(count=Count("observer"))
         .filter(complete=True)
@@ -77,7 +77,7 @@ def time_spent_birding_table(country_id, state_id, county_id, start, end):
     observers = (
         queryset.values("observer")
         .annotate(name=F("observer__name"))
-        .annotate(byname=F("observer__byname"))
+        .annotate(name=F("observer__name"))
         .annotate(identifier=F("observer__identifier"))
         .annotate(total=Sum("duration"))
         .filter(duration__isnull=False)
@@ -109,7 +109,7 @@ def big_week_month_table(country_id, state_id, county_id, start, end, interval):
         filters &= Q(observations__county_id=county_id)
 
     observers = (
-        Observer.objects.values("name", "byname", "identifier")
+        Observer.objects.values("name", "name", "identifier")
         .annotate(
             count=Count(
                 Case(

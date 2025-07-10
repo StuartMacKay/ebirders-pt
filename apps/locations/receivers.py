@@ -97,7 +97,7 @@ def remove_freguesias(name):
     return name
 
 
-def generate_byname(name) -> str:
+def generate_name(name) -> str:
     cleaned = remove_coordinates(name)
     cleaned = remove_country(cleaned)
     cleaned = remove_region(cleaned)
@@ -109,6 +109,6 @@ def generate_byname(name) -> str:
 
 
 @receiver(pre_save, sender=Location)
-def set_location_byname(sender, instance, **kwargs):
+def set_location_name(sender, instance, **kwargs):
     if instance.pk is None:
-        instance.byname = generate_byname(instance.name)
+        instance.name = generate_name(instance.original)

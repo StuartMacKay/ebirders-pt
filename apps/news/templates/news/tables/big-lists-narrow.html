@@ -16,7 +16,7 @@
         </span>
       </div>
       <div>{% spaceless %}
-          <span>{{ checklist.location.display_name }}</span>
+          <span>{{ checklist.location.name }}</span>
           {% if checklist.county %}
             <span>, {{ checklist.county }}</span>
           {% endif %}
@@ -29,7 +29,7 @@
           {% endif %}
       {% endspaceless %}</div>
       <div>
-        <span class="me-3">{{ checklist.observer.display_name }}</span>
+        <span class="me-3">{{ checklist.observer.name }}</span>
         <a class="dark-link"
            href="{{ checklist.url }}"
            target="_blank"

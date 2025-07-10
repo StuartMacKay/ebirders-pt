@@ -22,7 +22,7 @@
             <div class="text-nowrap fst-italic">({{ observation.species.scientific_name }})</div>
           {% endspaceless %}</div>
           <div>{% spaceless %}
-              <span>{{ observation.location.display_name }}</span>
+              <span>{{ observation.location.name }}</span>
               {% if observation.county %}
                 <span>, </span><span>{{ observation.county }}</span>
               {% endif %}
@@ -35,7 +35,7 @@
               {% endif %}
           {% endspaceless %}</div>
           <div>
-            <span class="me-3">{{ observation.observer.display_name }}</span>
+            <span class="me-3">{{ observation.observer.name }}</span>
             <a class="dark-link"
                href="{{ observation.checklist.url }}"
                target="_blank"

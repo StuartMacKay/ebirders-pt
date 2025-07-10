@@ -18,7 +18,7 @@
         <tbody>
           {% for record in records %}
             <tr {% if forloop.last %}style="border-bottom-color: white"{% endif %}>
-              <td>{{ record.byname|default:record.name }}</td>
+              <td>{{ record.name }}</td>
               <td class="text-end">{{ record.count }}</td>
               <td>
                 <a class="dark-link"

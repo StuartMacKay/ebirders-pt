@@ -153,15 +153,15 @@ class LocationAdmin(admin.ModelAdmin):
     )
     readonly_fields = ("identifier",)
 
-    @admin.display(description=_("Name / Byname"))
+    @admin.display(description=_("Name / Original"))
     def names(self, obj):
-        return format_html("%s<br/>%s" % (obj.name, obj.byname))
+        return format_html("%s<br/>%s" % (obj.name, obj.original))
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         field = super().formfield_for_dbfield(db_field, request, **kwargs)
-        if db_field.name == "byname":
+        if db_field.name == "name":
             field.widget = TextInput(attrs={"class": "vLargeTextField"})
-        elif db_field.name == "name":
+        elif db_field.name == "original":
             field.widget = TextInput(attrs={"class": "vLargeTextField"})
         elif db_field.name == "latitude":
             field.widget = TextInput()
@@ -271,20 +271,20 @@ class ObservationAdmin(admin.ModelAdmin):
 @admin.register(models.Observer)
 class ObserverAdmin(admin.ModelAdmin):
     list_display = ("names", "identifier", "multiple", "enabled")
-    ordering = ("name",)
+    ordering = ("-identifier",)
     search_fields = ("name", "identifier")
     list_filter = ("multiple", "enabled")
     form = ObservationForm
 
-    @admin.display(description=_("Name / Byname"))
+    @admin.display(description=_("Name / Original"))
     def names(self, obj):
-        return format_html("%s<br/>%s" % (obj.name, obj.byname))
+        return format_html("%s<br/>%s" % (obj.name, obj.original))
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         field = super().formfield_for_dbfield(db_field, request, **kwargs)
-        if db_field.name == "byname":
+        if db_field.name == "name":
             field.widget = TextInput(attrs={"class": "vTextField"})
-        elif db_field.name == "name":
+        elif db_field.name == "original":
             field.widget = TextInput(attrs={"class": "vTextField"})
         elif db_field.name == "data":
             field.widget = Textarea(attrs={"rows": 5, "class": "vLargeTextField"})

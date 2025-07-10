@@ -15,7 +15,7 @@
     <div>{% spaceless %}
       <a class="dark-link"
          href="{% querystring location=checklist.location.identifier %}"
-         title="{% trans 'Show checklists for this location' %}">{{ checklist.location.display_name }}</a>
+         title="{% trans 'Show checklists for this location' %}">{{ checklist.location.name }}</a>
       {% if checklist.county %}
           <span>, </span>
           <a class="dark-link"
@@ -37,7 +37,7 @@
     <div>
       <a class="dark-link me-3"
          href="{% querystring observer=checklist.observer.identifier %}"
-         title="{% trans 'Show checklists for this observer' %}">{{ checklist.observer.display_name }}</a>
+         title="{% trans 'Show checklists for this observer' %}">{{ checklist.observer.name }}</a>
     </div>
     <div>
       <span class="me-2">{% spaceless %}

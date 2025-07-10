@@ -182,6 +182,7 @@ class APILoader:
 
         values: dict = {
             "identifier": identifier,
+            "original": data["name"],
             "name": data["name"],
             "country": self.get_country(data),
             "state": self.get_state(data),
@@ -197,7 +198,7 @@ class APILoader:
             values["county"] = self.get_county(data)
 
         location = Location.objects.create(**values)
-        logger.info("Added location: %s, %s", identifier, location.display_name())
+        logger.info("Added location: %s, %s", identifier, location.name)
         return location
 
     def add_species(self, code: str) -> Species:
@@ -301,17 +302,17 @@ class APILoader:
 
     def get_observer(self, data: dict) -> Observer:
         name: str = data.get("userDisplayName", "Anonymous eBirder")
-        observer, created = Observer.objects.get_or_create(name=name)
+        observer, created = Observer.objects.get_or_create(original=name, defaults={"name": name})
         if observer.multiple:
             observer, created = Observer.objects.get_or_create(
                 identifier=self.get_observer_identifier(data),
-                defaults={"name": random_word(8), "byname": name},
+                defaults={"original": random_word(8), "name": name},
             )
         elif observer.identifier == "":
             observer.identifier = self.get_observer_identifier(data)
             observer.save()
         if created:
-            logger.info("Added observer: %s", observer.display_name())
+            logger.info("Added observer: %s", observer.name)
         return observer
 
     def add_checklist(self, identifier: str) -> Checklist | None:

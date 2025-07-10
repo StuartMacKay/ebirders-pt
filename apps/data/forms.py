@@ -120,7 +120,7 @@ class LocationFilter(FilterForm):
             choices = (
                 Location.objects.all()
                 .filter(identifier__in=locations)
-                .values_list("identifier", "byname")
+                .values_list("identifier", "name")
             )
         return choices
 

@@ -35,7 +35,7 @@ class CountyList(autocomplete.Select2ListView):
 
 class LocationList(autocomplete.Select2ListView):
     def get_list(self):
-        queryset = Location.objects.all().values_list("identifier", "byname")
+        queryset = Location.objects.all().values_list("identifier", "name")
         if counties := self.forwarded.get("county"):
             queryset = queryset.filter(county__code__in=counties)
         elif states := self.forwarded.get("state"):
@@ -47,7 +47,7 @@ class LocationList(autocomplete.Select2ListView):
 
 class ObserverList(autocomplete.Select2ListView):
     def get_list(self):
-        return Observer.objects.all().values_list("identifier", "byname")
+        return Observer.objects.all().values_list("identifier", "name")
 
 
 class CommonNameList(autocomplete.Select2ListView):

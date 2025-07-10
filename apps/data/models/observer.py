@@ -13,16 +13,13 @@ class Observer(models.Model):
     )
 
     name = models.TextField(
-        blank=True,
-        unique=True,
         verbose_name=_("name"),
-        help_text=_("The observer's name."),
+        help_text=_("The display name of the observer."),
     )
 
-    byname = models.TextField(
-        blank=True,
-        verbose_name=_("byname"),
-        help_text=_("The display name of the observer"),
+    original = models.TextField(
+        verbose_name=_("original name"),
+        help_text=_("The original name of the observer from eBird."),
     )
 
     multiple = models.BooleanField(
@@ -49,6 +46,3 @@ class Observer(models.Model):
 
     def __str__(self) -> str:
         return str(self.name)
-
-    def display_name(self):
-        return str(self.byname or self.name)

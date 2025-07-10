@@ -16,10 +16,10 @@
         {% for checklist in checklists %}
           <tr>
             <td>
-              {{ checklist.observer.display_name }}
+              {{ checklist.observer.name }}
             </td>
             <td>
-              <span>{{ checklist.location.display_name }}</span>
+              <span>{{ checklist.location.name }}</span>
               <br/>
               {% spaceless %}
                 {% if checklist.county %}

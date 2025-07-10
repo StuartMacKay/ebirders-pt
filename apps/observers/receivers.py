@@ -33,7 +33,7 @@ def flag_keywords(name):
             logger.warning("Review observer name: %s", name)
 
 
-def generate_byname(name) -> str:
+def generate_name(name) -> str:
     cleaned = remove_adverts(name)
     cleaned = remove_extra_spaces(cleaned)
     flag_keywords(cleaned)
@@ -41,6 +41,6 @@ def generate_byname(name) -> str:
 
 
 @receiver(pre_save, sender=Observer)
-def set_observer_byname(sender, instance, **kwargs):
+def set_observer_name(sender, instance, **kwargs):
     if instance.pk is None:
-        instance.byname = generate_byname(instance.name)
+        instance.name = generate_name(instance.original)

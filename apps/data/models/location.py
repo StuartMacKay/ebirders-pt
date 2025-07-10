@@ -67,18 +67,17 @@ class Location(models.Model):
     identifier = models.TextField(
         unique=True,
         verbose_name=_("identifier"),
-        help_text=_("The unique identifier for the location"),
+        help_text=_("The unique identifier for the location."),
+    )
+
+    original = models.TextField(
+        verbose_name=_("original name"),
+        help_text=_("The original name of the location from eBird."),
     )
 
     name = models.TextField(
-        verbose_name=_("name"), help_text=_("The name of the location")
-    )
-
-    byname = models.TextField(
-        blank=True,
-        default="",
-        verbose_name=_("byname"),
-        help_text=_("The display name of the location"),
+        verbose_name=_("name"),
+        help_text=_("The display name of the location."),
     )
 
     country = models.ForeignKey(
@@ -151,7 +150,4 @@ class Location(models.Model):
         return str(self.identifier)
 
     def __str__(self) -> str:
-        return self.display_name()
-
-    def display_name(self):
-        return str(self.byname or self.name)
+        return self.name
