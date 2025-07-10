@@ -6,7 +6,7 @@ from ebird.api.data.models import Country, County, Location, Observer, Species, 
 
 
 def test_data_autocomplete__returns_countries(db_no_rollback, client):
-    url = reverse("data:countries")
+    url = reverse("filters:countries")
     response = client.get(url)
     data = json.loads(response.content)
     table = {item["id"]: item["text"] for item in data["results"]}
@@ -15,7 +15,7 @@ def test_data_autocomplete__returns_countries(db_no_rollback, client):
 
 
 def test_data_autocomplete__returns_states(db_no_rollback, client):
-    url = reverse("data:states")
+    url = reverse("filters:states")
     response = client.get(url)
     data = json.loads(response.content)
     table = {item["id"]: item["text"] for item in data["results"]}
@@ -24,7 +24,7 @@ def test_data_autocomplete__returns_states(db_no_rollback, client):
 
 
 def test_data_autocomplete__returns_counties(db_no_rollback, client):
-    url = reverse("data:counties")
+    url = reverse("filters:counties")
     response = client.get(url)
     data = json.loads(response.content)
     table = {item["id"]: item["text"] for item in data["results"]}
@@ -33,7 +33,7 @@ def test_data_autocomplete__returns_counties(db_no_rollback, client):
 
 
 def test_data_autocomplete__returns_locations(db_no_rollback, client):
-    url = reverse("data:locations")
+    url = reverse("filters:locations")
     response = client.get(url)
     data = json.loads(response.content)
     table = {item["id"]: item["text"] for item in data["results"]}
@@ -42,7 +42,7 @@ def test_data_autocomplete__returns_locations(db_no_rollback, client):
 
 
 def test_data_autocomplete__returns_observers(db_no_rollback, client):
-    url = reverse("data:observers")
+    url = reverse("filters:observers")
     response = client.get(url)
     data = json.loads(response.content)
     table = {item["id"]: item["text"] for item in data["results"]}
@@ -51,7 +51,7 @@ def test_data_autocomplete__returns_observers(db_no_rollback, client):
 
 
 def test_data_autocomplete__returns_common_names(db_no_rollback, client):
-    url = reverse("data:common-name")
+    url = reverse("filters:common-name")
     response = client.get(url)
     data = json.loads(response.content)
     table = {item["id"]: item["text"] for item in data["results"]}
@@ -60,7 +60,7 @@ def test_data_autocomplete__returns_common_names(db_no_rollback, client):
 
 
 def test_data_autocomplete__returns_scientifc_names(db_no_rollback, client):
-    url = reverse("data:scientific-name")
+    url = reverse("filters:scientific-name")
     response = client.get(url)
     data = json.loads(response.content)
     table = {item["id"]: item["text"] for item in data["results"]}

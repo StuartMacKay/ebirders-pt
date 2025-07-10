@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.utils import translation
 from django.utils.functional import cached_property
 
-from data.forms import (
+from filters.forms import (
     ChecklistOrder,
     DateRangeFilter,
     LocationFilter,
@@ -12,7 +12,7 @@ from data.forms import (
     ProtocolFilter,
 )
 from ebird.api.data.models import Checklist, Country
-from data.views import FilteredListView
+from filters.views import FilteredListView
 
 
 class ChecklistsView(FilteredListView):

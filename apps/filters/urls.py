@@ -11,7 +11,7 @@ from .autocompletes import (
     StateList,
 )
 
-app_name = "data"
+app_name = "filters"
 
 urlpatterns = [
     path("countries/", CountryList.as_view(), name="countries"),

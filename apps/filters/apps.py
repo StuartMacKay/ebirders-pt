@@ -3,6 +3,5 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Config(AppConfig):
-    label = "_data"
-    name = "data"
-    verbose_name = _("Data")
+    name = "filters"
+    verbose_name = _("filters")

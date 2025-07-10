@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.utils import translation
 from django.utils.functional import cached_property
 
-from data.forms import (
+from filters.forms import (
     DateRangeFilter,
     LocationFilter,
     ObservationFilter,
@@ -13,7 +13,7 @@ from data.forms import (
     SpeciesFilter,
 )
 from ebird.api.data.models import Country, Observation
-from data.views import FilteredListView
+from filters.views import FilteredListView
 
 
 class ObservationsView(FilteredListView):

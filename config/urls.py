@@ -10,7 +10,7 @@ from contact.views import ContactView
 
 urlpatterns = i18n_patterns(
     path("", RedirectView.as_view(pattern_name="news:latest"), name="index"),
-    path("autocomplete/", include("data.urls")),
+    path("autocomplete/", include("filters.urls")),
     path(_("news/"), include("news.urls")),
     path(_("checklists/"), include("checklists.urls")),
     path(_("observations/"), include("observations.urls")),

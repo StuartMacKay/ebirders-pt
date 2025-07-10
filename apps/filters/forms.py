@@ -28,7 +28,7 @@ class LocationFilter(FilterForm):
         label=_("Country"),
         required=False,
         widget=autocomplete.Select2(
-            url="data:countries",
+            url="filters:countries",
             attrs={"placeholder": _("Select one or more countries")},
         ),
     )
@@ -36,7 +36,7 @@ class LocationFilter(FilterForm):
         label=_("State"),
         required=False,
         widget=autocomplete.Select2Multiple(
-            url="data:states",
+            url="filters:states",
             forward=["country"],
             attrs={
                 "data-placeholder": _("Select one or more states"),
@@ -48,7 +48,7 @@ class LocationFilter(FilterForm):
         label=_("County"),
         required=False,
         widget=autocomplete.Select2Multiple(
-            url="data:counties",
+            url="filters:counties",
             forward=["state", "country"],
             attrs={
                 "data-placeholder": _("Select one or more counties"),
@@ -60,7 +60,7 @@ class LocationFilter(FilterForm):
         label=_("Location"),
         required=False,
         widget=autocomplete.Select2Multiple(
-            url="data:locations",
+            url="filters:locations",
             forward=["county", "state", "country"],
             attrs={
                 "data-placeholder": _("Select one or more locations"),
@@ -144,7 +144,7 @@ class ObserverFilter(FilterForm):
         label=_("Observer"),
         required=False,
         widget=autocomplete.Select2(
-            url="data:observers",
+            url="filters:observers",
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
@@ -177,7 +177,7 @@ class SpeciesFilter(FilterForm):
         label=_("Common name"),
         required=False,
         widget=autocomplete.Select2(
-            url="data:common-name",
+            url="filters:common-name",
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
@@ -186,7 +186,7 @@ class SpeciesFilter(FilterForm):
         label=_("Scientific name"),
         required=False,
         widget=autocomplete.Select2(
-            url="data:scientific-name",
+            url="filters:scientific-name",
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
@@ -195,7 +195,7 @@ class SpeciesFilter(FilterForm):
         label=_("Family"),
         required=False,
         widget=autocomplete.Select2(
-            url="data:families",
+            url="filters:families",
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
@@ -262,7 +262,7 @@ class FamilyFilter(FilterForm):
         label=_("Family"),
         required=False,
         widget=autocomplete.Select2(
-            url="data:families",
+            url="filters:families",
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )

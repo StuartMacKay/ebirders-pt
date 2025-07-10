@@ -65,7 +65,7 @@ INSTALLED_APPS = [
     "ebird.api.data",
     "checklists",
     "contact",
-    "data",
+    "filters",
     "locations",
     "news",
     "notifications",

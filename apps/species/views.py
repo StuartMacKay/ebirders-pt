@@ -5,7 +5,7 @@ from django.utils import translation
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 
-from data.forms import (
+from filters.forms import (
     CategoryFilter,
     DateRangeFilter,
     FamilyFilter,
@@ -14,7 +14,7 @@ from data.forms import (
     SpeciesOrder,
 )
 from ebird.api.data.models import Country, Observation
-from data.views import FilteredListView
+from filters.views import FilteredListView
 
 
 class SpeciesView(FilteredListView):
