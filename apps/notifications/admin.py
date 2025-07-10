@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
 
-from data.fields import TranslationCharField, TranslationTextField
+from ebird.api.data.fields import TranslationCharField, TranslationTextField
 
 from .models import Notification
 
@@ -12,7 +12,7 @@ class NotificationForm(ModelForm):
     contents = TranslationTextField()
 
     class Meta:
-        fields = '__all__'
+        fields = "__all__"
 
 
 @admin.register(Notification)

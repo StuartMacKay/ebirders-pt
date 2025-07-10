@@ -13,7 +13,6 @@ log = logging.getLogger(__name__)
 
 
 class UpdateManager(models.Manager):
-
     def published(self):
         return self.filter(published_at__isnull=False, published_at__lt=timezone.now())
 

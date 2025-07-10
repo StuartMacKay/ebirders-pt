@@ -13,7 +13,7 @@ from data.forms import (
     ObserverFilter,
     SpeciesOrder,
 )
-from data.models import Country, Observation
+from ebird.api.data.models import Country, Observation
 from data.views import FilteredListView
 
 

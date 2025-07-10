@@ -2,7 +2,7 @@ import json
 
 from django.urls import reverse
 
-from data.models import Country, County, Location, Observer, Species, State
+from ebird.api.data.models import Country, County, Location, Observer, Species, State
 
 
 def test_data_autocomplete__returns_countries(db_no_rollback, client):

@@ -12,7 +12,7 @@ from data.forms import (
     ObserverFilter,
     SpeciesFilter,
 )
-from data.models import Country, Observation
+from ebird.api.data.models import Country, Observation
 from data.views import FilteredListView
 
 

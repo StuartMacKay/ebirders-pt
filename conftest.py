@@ -3,7 +3,7 @@ import random
 
 from dateutil.relativedelta import MO, relativedelta
 
-from data.models import Checklist, Country, County, Location, Observer, Species, State
+from ebird.api.data.models import Checklist, Country, County, Location, Observer, Species, State
 
 import pytest
 

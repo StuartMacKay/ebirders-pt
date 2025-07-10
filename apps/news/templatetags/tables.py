@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 from dateutil.relativedelta import relativedelta
 
-from data.models import Checklist, Observation, Observer
+from ebird.api.data.models import Checklist, Observation, Observer
 
 register = template.Library()
 
@@ -25,7 +25,9 @@ def big_lists_table(country_id, state_id, county_id, start, end, show_country):
     if show_country:
         related.append("country")
 
-    checklists = queryset.select_related(*related).order_by("-species_count", "-date")[:10]
+    checklists = queryset.select_related(*related).order_by("-species_count", "-date")[
+        :10
+    ]
 
     return {
         "title": _("Big Lists"),
@@ -211,10 +213,7 @@ def big_days_table(country_id, state_id, county_id, start, end):
 
     entries = queryset.order_by("-species_count", "-date")[:10]
 
-    return {
-        "title": _("Big Days"),
-        "entries": entries
-    }
+    return {"title": _("Big Days"), "entries": entries}
 
 
 @register.inclusion_tag("news/tables/high-counts.html", takes_context=True)

@@ -13,29 +13,39 @@ from data.forms import (
 
 
 def test_country_field__with_valid_code__form_is_valid(country):
-    form = LocationFilter(show_country=True, data=QueryDict("country=%s" % country.code))
+    form = LocationFilter(
+        show_country=True, data=QueryDict("country=%s" % country.code)
+    )
     assert form.is_valid()
 
 
 def test_country_field__with_invalid_code__form_is_invalid(country):
-    form = LocationFilter(show_country=True, data=QueryDict("country=%s" % country.code[::-1]))
+    form = LocationFilter(
+        show_country=True, data=QueryDict("country=%s" % country.code[::-1])
+    )
     assert not (form.is_valid())
 
 
 def test_country_field__with_invalid_code__field_error_reported(country):
-    form = LocationFilter(show_country=True, data=QueryDict("country=%s" % country.code[::-1]))
+    form = LocationFilter(
+        show_country=True, data=QueryDict("country=%s" % country.code[::-1])
+    )
     form.is_valid()
     assert "country" in form.errors
 
 
 def test_country_field__with_lowercase_code__field_error_reported(country):
-    form = LocationFilter(show_country=True, data=QueryDict("country=%s" % country.code.lower()))
+    form = LocationFilter(
+        show_country=True, data=QueryDict("country=%s" % country.code.lower())
+    )
     form.is_valid()
     assert "country" in form.errors
 
 
 def test_country_field__with_valid_code__filter_is_defined(country):
-    form = LocationFilter(show_country=True, data=QueryDict("country=%s" % country.code))
+    form = LocationFilter(
+        show_country=True, data=QueryDict("country=%s" % country.code)
+    )
     form.is_valid()
     assert Q(country__code=country.code) == form.get_filters()
 
@@ -46,18 +56,24 @@ def test_state_field__with_valid_code__form_is_valid(state):
 
 
 def test_state_field__with_invalid_code__form_is_invalid(state):
-    form = LocationFilter(show_country=False, data=QueryDict("state=%s" % state.code[::-1]))
+    form = LocationFilter(
+        show_country=False, data=QueryDict("state=%s" % state.code[::-1])
+    )
     assert not form.is_valid()
 
 
 def test_state_field__with_invalid_code__field_error_reported(state):
-    form = LocationFilter(show_country=False, data=QueryDict("state=%s" % state.code[::-1]))
+    form = LocationFilter(
+        show_country=False, data=QueryDict("state=%s" % state.code[::-1])
+    )
     form.is_valid()
     assert "state" in form.errors
 
 
 def test_state_field__with_lowercase_code__field_error_reported(state):
-    form = LocationFilter(show_country=False, data=QueryDict("state=%s" % state.code.lower()))
+    form = LocationFilter(
+        show_country=False, data=QueryDict("state=%s" % state.code.lower())
+    )
     form.is_valid()
     assert "state" in form.errors
 
@@ -82,18 +98,24 @@ def test_county_field__with_valid_code__form_is_valid(county):
 
 
 def test_county_field__with_invalid_code__form_is_invalid(county):
-    form = LocationFilter(show_country=False, data=QueryDict("county=%s" % county.code[::-1]))
+    form = LocationFilter(
+        show_country=False, data=QueryDict("county=%s" % county.code[::-1])
+    )
     assert not form.is_valid()
 
 
 def test_county_field__with_invalid_code__field_error_reported(county):
-    form = LocationFilter(show_country=False, data=QueryDict("county=%s" % county.code[::-1]))
+    form = LocationFilter(
+        show_country=False, data=QueryDict("county=%s" % county.code[::-1])
+    )
     form.is_valid()
     assert "county" in form.errors
 
 
 def test_county_field__with_lowercase_code__field_error_reported(county):
-    form = LocationFilter(show_country=False, data=QueryDict("county=%s" % county.code.lower()))
+    form = LocationFilter(
+        show_country=False, data=QueryDict("county=%s" % county.code.lower())
+    )
     form.is_valid()
     assert "county" in form.errors
 
@@ -121,7 +143,9 @@ def test_county_field__with_valid_code__filter_is_defined(county):
 
 
 def test_location_field__with_valid_code__form_is_valid(location):
-    form = LocationFilter(show_country=False, data=QueryDict("location=%s" % location.identifier))
+    form = LocationFilter(
+        show_country=False, data=QueryDict("location=%s" % location.identifier)
+    )
     assert form.is_valid()
 
 
@@ -150,8 +174,7 @@ def test_location_field__with_lowercase_code__field_error_reported(location):
 
 def test_location_field__with_other_country__field_error_reported(country):
     form = LocationFilter(
-        show_country=True,
-        data=QueryDict("country=%s&location=L00" % country.code)
+        show_country=True, data=QueryDict("country=%s&location=L00" % country.code)
     )
     form.is_valid()
     assert "location" in form.errors
@@ -159,8 +182,7 @@ def test_location_field__with_other_country__field_error_reported(country):
 
 def test_location_field__with_other_state__field_error_reported(state, location):
     form = LocationFilter(
-        show_country=False,
-        data=QueryDict("state=%s&location=L00" % state.code)
+        show_country=False, data=QueryDict("state=%s&location=L00" % state.code)
     )
     form.is_valid()
     assert "location" in form.errors
@@ -168,15 +190,16 @@ def test_location_field__with_other_state__field_error_reported(state, location)
 
 def test_location_field__with_other_county__field_error_reported(county, location):
     form = LocationFilter(
-        show_country=False,
-        data=QueryDict("county=%s&location=L00" % county.code)
+        show_country=False, data=QueryDict("county=%s&location=L00" % county.code)
     )
     form.is_valid()
     assert "location" in form.errors
 
 
 def test_location_field__with_valid_code__filter_is_defined(location):
-    form = LocationFilter(show_country=False, data=QueryDict("location=%s" % location.identifier))
+    form = LocationFilter(
+        show_country=False, data=QueryDict("location=%s" % location.identifier)
+    )
     form.is_valid()
     assert Q(location__identifier__in=[location.identifier]) == form.get_filters()
 
@@ -198,24 +221,18 @@ def test_observer_field__with_valid_code__form_is_valid(observer):
 
 
 def test_observer_field__with_invalid_code__form_is_invalid(observer):
-    form = ObserverFilter(
-        data=QueryDict("observer=%s" % observer.identifier[::-1])
-    )
+    form = ObserverFilter(data=QueryDict("observer=%s" % observer.identifier[::-1]))
     assert not form.is_valid()
 
 
 def test_observer_field__with_invalid_code__field_error_reported(observer):
-    form = ObserverFilter(
-        data=QueryDict("observer=%s" % observer.identifier[::-1])
-    )
+    form = ObserverFilter(data=QueryDict("observer=%s" % observer.identifier[::-1]))
     form.is_valid()
     assert "observer" in form.errors
 
 
 def test_observer_field__with_lowercase_code__field_error_reported(observer):
-    form = ObserverFilter(
-        data=QueryDict("observer=%s" % observer.identifier.lower())
-    )
+    form = ObserverFilter(data=QueryDict("observer=%s" % observer.identifier.lower()))
     form.is_valid()
     assert "observer" in form.errors
 

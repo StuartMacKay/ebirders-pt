@@ -3,8 +3,7 @@ import json
 from django.db.models import Q
 
 from dal import autocomplete
-
-from data.models import Country, County, Location, Observer, Species, State
+from ebird.api.data.models import Country, County, Location, Observer, Species, State
 
 
 class CountryList(autocomplete.Select2ListView):

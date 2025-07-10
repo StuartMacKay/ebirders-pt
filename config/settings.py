@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     "django.contrib.flatpages",
     "django_extensions",
     "ckeditor",
+    "ebird.api.data",
     "checklists",
     "contact",
     "data",

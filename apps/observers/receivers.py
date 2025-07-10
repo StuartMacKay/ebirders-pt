@@ -3,7 +3,7 @@ import logging
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
-from data.models import Observer
+from ebird.api.data.models import Observer
 
 logger = logging.getLogger(__name__)
 

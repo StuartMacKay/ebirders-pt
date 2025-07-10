@@ -6,8 +6,7 @@ from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 
 from dal import autocomplete
-
-from data.models import Country, County, Location, Observer, Species, State
+from ebird.api.data.models import Country, County, Location, Observer, Species, State
 
 
 class FilterForm(forms.Form):
@@ -30,9 +29,7 @@ class LocationFilter(FilterForm):
         required=False,
         widget=autocomplete.Select2(
             url="data:countries",
-            attrs={
-                "placeholder": _("Select one or more countries")
-            },
+            attrs={"placeholder": _("Select one or more countries")},
         ),
     )
     state = forms.MultipleChoiceField(
@@ -160,7 +157,9 @@ class ObserverFilter(FilterForm):
     def get_observer_choice(self):
         choices = []
         if observer := self.data.get("observer"):
-            choices = Observer.objects.filter(identifier=observer).values_list("identifier", "name")
+            choices = Observer.objects.filter(identifier=observer).values_list(
+                "identifier", "name"
+            )
         return choices
 
     def get_filters(self):

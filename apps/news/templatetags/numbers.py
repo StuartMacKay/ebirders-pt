@@ -2,17 +2,15 @@ from django import template
 from django.db.models import Sum
 from django.utils.translation import gettext_lazy as _
 
-from data.models import Checklist, Observation
+from ebird.api.data.models import Checklist, Observation
 
 register = template.Library()
 
 
 @register.inclusion_tag("news/numbers/number.html")
 def species_count(country_id, state_id, county_id, start, end):
-    queryset = (
-        Observation.objects
-        .filter(date__gte=start, date__lte=end)
-        .filter(species__category="species")
+    queryset = Observation.objects.filter(date__gte=start, date__lte=end).filter(
+        species__category="species"
     )
 
     if country_id:

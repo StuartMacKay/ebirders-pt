@@ -11,7 +11,7 @@ from data.forms import (
     ObserverFilter,
     ProtocolFilter,
 )
-from data.models import Checklist, Country
+from ebird.api.data.models import Checklist, Country
 from data.views import FilteredListView
 
 

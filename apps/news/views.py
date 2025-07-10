@@ -11,7 +11,7 @@ from django.views import generic
 from dateutil.relativedelta import relativedelta
 from ebird.codes.locations import is_country_code, is_county_code, is_state_code
 
-from data.models import Country, County, State
+from ebird.api.data.models import Country, County, State
 from notifications.models import Notification
 
 
@@ -117,7 +117,10 @@ class WeeklyView(generic.TemplateView):
         next_week = next_start_date.isocalendar().week - 1
 
         if next_start_date.month == next_end_date.month:
-            next_label = "%s - %s" % (format(next_start_date, "d"), format(next_end_date, "d M Y"))
+            next_label = "%s - %s" % (
+                format(next_start_date, "d"),
+                format(next_end_date, "d M Y"),
+            )
         else:
             if next_start_date.year == next_end_date.year:
                 next_label = "%s - %s" % (
@@ -136,7 +139,10 @@ class WeeklyView(generic.TemplateView):
         previous_week = previous_start_date.isocalendar().week - 1
 
         if previous_start_date.month == previous_end_date.month:
-            previous_label = "%s - %s" % (format(previous_start_date, "d"), format(previous_end_date, "d M Y"))
+            previous_label = "%s - %s" % (
+                format(previous_start_date, "d"),
+                format(previous_end_date, "d M Y"),
+            )
         else:
             if previous_start_date.year == previous_end_date.year:
                 previous_label = "%s - %s" % (

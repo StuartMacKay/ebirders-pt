@@ -2,7 +2,7 @@ from django import forms
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
-from data.fields import TranslationField
+from ebird.api.data.fields import TranslationField
 
 from .widgets import TranslationRichTextarea
 

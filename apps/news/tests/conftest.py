@@ -3,7 +3,7 @@ import re
 
 from django.utils.http import urlencode
 
-from data.models import Country, County, State
+from ebird.api.data.models import Country, County, State
 
 import pytest
 

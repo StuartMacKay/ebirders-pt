@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.admin import ModelAdmin, register
 from django.utils.translation import gettext_lazy as _
 
-from data.fields import TranslationCharField
+from ebird.api.data.fields import TranslationCharField
 
 from .fields import TranslationRichTextField
 from .models import Update

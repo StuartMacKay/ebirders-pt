@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 from dateutil.relativedelta import relativedelta
 
-from data.models import Checklist
+from ebird.api.data.models import Checklist
 
 register = template.Library()
 

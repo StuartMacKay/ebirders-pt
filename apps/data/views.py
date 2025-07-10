@@ -1,4 +1,3 @@
-
 from django.core.exceptions import ImproperlyConfigured
 from django.db.models import Q
 from django.forms.widgets import Media

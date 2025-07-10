@@ -3,7 +3,7 @@ import re
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 
-from data.models import Location
+from ebird.api.data.models import Location
 
 # +/- 90 degrees with comma or period for the decimal point,
 # followed by 2-5 decimal places.
@@ -18,7 +18,10 @@ longitude_regex = r"-?\d{1,3}[.,]\d{1,7}"
 # comma and a space. The initial part of the name is captured in a
 # group for the next step. The word boundary is added since the .*
 # is greedy, consume the comma, and so the match will fail.
-coordinates_regex = r"^(.*)\b,? (:?\()?%s, ?%s(:?\))?$" % (latitude_regex, longitude_regex)
+coordinates_regex = r"^(.*)\b,? (:?\()?%s, ?%s(:?\))?$" % (
+    latitude_regex,
+    longitude_regex,
+)
 
 # Country code (hard-wired to PT). The initial part of the name
 # is captured in a group for the next step.

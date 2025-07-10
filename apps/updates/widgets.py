@@ -3,11 +3,10 @@ from django.utils.translation import gettext_lazy as _
 
 from ckeditor.fields import CKEditorWidget
 
-from data.widgets import TranslationTextarea
+from ebird.api.data.widgets import TranslationTextarea
 
 
 class TranslationRichTextarea(TranslationTextarea):
-
     def __init__(self, **kwargs):
         widgets = [
             CKEditorWidget(attrs={"locale": _(language)})

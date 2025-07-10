@@ -11,5 +11,5 @@ days: int = 24 * hours
 app_name = "checklists"
 
 urlpatterns = [
-    path("",  cache_page(1 * hours)(ChecklistsView.as_view()), name="list"),
+    path("", cache_page(1 * hours)(ChecklistsView.as_view()), name="list"),
 ]

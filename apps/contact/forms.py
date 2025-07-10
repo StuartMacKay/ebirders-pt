@@ -3,7 +3,6 @@ from django.utils.translation import gettext_lazy as _
 
 
 class ContactForm(forms.Form):
-
     ERRORS = {
         "message-required": _("You did not write a message."),
     }
