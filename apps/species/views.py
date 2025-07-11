@@ -66,7 +66,7 @@ class SpeciesView(FilteredListView):
     def get_species_column_title(self):
         if category := self.request.GET.get("category"):
             if category == "species":
-                title = _("Species")
+                title = _("species.singular")
             elif category == "issf":
                 title = _("Subspecies")
             elif category == "domestic":

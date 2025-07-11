@@ -23,7 +23,7 @@ def species_count(country_id, state_id, county_id, start, end):
     count = queryset.values_list("species_id", flat=True).distinct().count()
 
     return {
-        "title": _("Species (plural)"),
+        "title": _("species.plural"),
         "count": count,
     }
 
