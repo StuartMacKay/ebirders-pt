@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-10 20:34+0000\n"
+"POT-Creation-Date: 2025-07-11 10:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,7 +58,7 @@ msgid "Show checklists for this observer"
 msgstr "Mostrar as listas para este observador"
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:45
-#: apps/filters/forms.py:455 apps/news/templatetags/charts.py:87
+#: apps/filters/forms.py:455
 msgid "Number of species"
 msgstr "Número de espécies"
 
@@ -81,7 +81,7 @@ msgstr "Número de observadores"
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:69
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:89
-#: apps/filters/forms.py:335 apps/news/templatetags/charts.py:23
+#: apps/filters/forms.py:335
 msgid "Stationary"
 msgstr "Parado"
 
@@ -99,7 +99,7 @@ msgstr "%(distance)s km,"
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:89
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:99
-#: apps/filters/forms.py:337 apps/news/templatetags/charts.py:22
+#: apps/filters/forms.py:337
 msgid "Incidental"
 msgstr "Incidental"
 
@@ -132,10 +132,13 @@ msgstr "Data"
 
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:6
 #: apps/checklists/templates/checklists/includes/list-entries.html:3
-#: apps/news/templatetags/numbers.py:26
+#: apps/news/templates/news/tables/big-days.html:16
+#: apps/news/templates/news/tables/big_week_month.html:20
+#: apps/news/templates/news/tables/yearlist.html:22
+#: apps/news/templatetags/numbers.py:26 apps/species/apps.py:8
 #: apps/species/templates/species/includes/list-title.html:4
 #: apps/species/templates/species/list.html:4 templates/includes/header.html:49
-msgid "Species (plural)"
+msgid "species.plural"
 msgstr "Espécies"
 
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:7
@@ -403,7 +406,7 @@ msgstr "Pelágico"
 
 #: apps/filters/forms.py:341
 msgid "Nocturnal Flight Call Count"
-msgstr ""
+msgstr "Nocturnal Flight Call Count"
 
 #: apps/filters/forms.py:342
 msgid "Random"
@@ -469,15 +472,16 @@ msgstr "Mais recente primeiro"
 msgid "Highest count first"
 msgstr "A contagem mais elevada primeiro"
 
-#: apps/filters/forms.py:494
+#: apps/filters/forms.py:494 apps/species/views.py:85 apps/species/views.py:91
+#: apps/species/views.py:93
 msgid "First Seen"
 msgstr "Primeiro visto"
 
-#: apps/filters/forms.py:495
+#: apps/filters/forms.py:495 apps/species/views.py:87
 msgid "Last Seen"
 msgstr "Último visto"
 
-#: apps/filters/forms.py:496
+#: apps/filters/forms.py:496 apps/species/views.py:99
 msgid "Highest Count"
 msgstr "Contagem mais elevada"
 
@@ -488,14 +492,6 @@ msgstr "Locais"
 #: apps/news/apps.py:8 templates/includes/header.html:27
 msgid "News"
 msgstr "Notícias"
-
-#: apps/news/templates/news/charts/checklist-species.html:3
-msgid "Species per checklist"
-msgstr "Espécies por lista"
-
-#: apps/news/templates/news/charts/protocol-pie-chart.html:3
-msgid "Protocols"
-msgstr "Protocolos"
 
 #: apps/news/templates/news/latest.html:4
 #: apps/news/templates/news/latest.html:18
@@ -520,17 +516,6 @@ msgstr "Introduzir distrito ou concelho"
 msgid "Monthly News"
 msgstr "Notícias Mensais"
 
-#: apps/news/templates/news/tables/big-days.html:16
-#: apps/news/templates/news/tables/big-lists-wide.html:11
-#: apps/news/templates/news/tables/big_week_month.html:20
-#: apps/news/templates/news/tables/high-counts-wide.html:10
-#: apps/news/templates/news/tables/yearlist-wide.html:10
-#: apps/news/templates/news/tables/yearlist.html:22
-#: apps/observations/templates/observations/includes/list-entries-wide.html:7
-#: apps/species/apps.py:8 apps/species/views.py:69
-msgid "Species"
-msgstr "Espécie"
-
 #: apps/news/templates/news/tables/big-days.html:17
 #: apps/news/templates/news/tables/big_week_month.html:21
 #: apps/news/templates/news/tables/checklists-completed.html:15
@@ -551,6 +536,14 @@ msgstr "Não há dias grandes a comunicar."
 #: apps/news/templates/news/tables/big-lists-wide.html:67
 msgid "There are no Big Lists to report."
 msgstr "Não há listas grandes a comunicar."
+
+#: apps/news/templates/news/tables/big-lists-wide.html:11
+#: apps/news/templates/news/tables/high-counts-wide.html:10
+#: apps/news/templates/news/tables/yearlist-wide.html:10
+#: apps/observations/templates/observations/includes/list-entries-wide.html:7
+#: apps/species/views.py:69
+msgid "species.singular"
+msgstr "Espécie"
 
 #: apps/news/templates/news/tables/big-lists.html:9
 msgid "View more"
@@ -628,26 +621,6 @@ msgstr "Ver esta lista"
 msgid "Weekly News"
 msgstr "Notícias Semanais"
 
-#: apps/news/templatetags/charts.py:24
-msgid "Traveling"
-msgstr "Em movimento"
-
-#: apps/news/templatetags/charts.py:39
-msgid "Other"
-msgstr "Outros"
-
-#: apps/news/templatetags/charts.py:41
-msgid "Number of checklists"
-msgstr "Número de espécies registadas"
-
-#: apps/news/templatetags/charts.py:88
-msgid "Percentage of checklists"
-msgstr "Percentagem de listas"
-
-#: apps/news/templatetags/charts.py:89
-msgid "Percentage"
-msgstr "Percentagem"
-
 #: apps/news/templatetags/numbers.py:64 apps/observers/apps.py:7
 msgid "Observers"
 msgstr "Observadores"
@@ -683,7 +656,7 @@ msgstr "mensal/"
 #: apps/notifications/admin.py:30 apps/notifications/models.py:59
 #: apps/updates/admin.py:27 apps/updates/models.py:33
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 #: apps/notifications/apps.py:8 apps/notifications/models.py:36
 msgid "Notifications"
@@ -853,25 +826,13 @@ msgstr "Híbridos"
 msgid "Species, Forms, etc."
 msgstr "Espécies, formas, etc."
 
-#: apps/species/views.py:85 apps/species/views.py:91 apps/species/views.py:93
-msgid "First seen"
-msgstr "Primeiro visto"
-
-#: apps/species/views.py:87
-msgid "Last seen"
-msgstr "Último visto"
-
-#: apps/species/views.py:99
-msgid "Highest"
-msgstr "Contagem mais elevada"
-
 #: apps/updates/apps.py:7 apps/updates/models.py:23
 msgid "Updates"
-msgstr "Notícias"
+msgstr "Mudanças"
 
 #: apps/updates/models.py:22
 msgid "Update"
-msgstr "Notícia"
+msgstr "Mudança"
 
 #: apps/updates/models.py:27
 msgid "The date the Update was published. May be in the future"
@@ -967,8 +928,9 @@ msgstr "Parece que algo correu mal!"
 msgid ""
 "This error was reported automatically, but if the problem persists please "
 "contact us. In the meantime, try refreshing the page."
-msgstr "Este erro foi reportado automaticamente, mas se o problema persistir, por favor "
-"contacte-nos. Entretanto, tente atualizar a página."
+msgstr ""
+"Este erro foi reportado automaticamente, mas se o problema persistir, por "
+"favor contacte-nos. Entretanto, tente atualizar a página."
 
 #: templates/includes/footer.html:10
 msgid "About"
