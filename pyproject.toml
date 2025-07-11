@@ -57,7 +57,8 @@ section-order = [
 DJANGO_SETTINGS_MODULE = "config.settings"
 FAIL_INVALID_TEMPLATE_VARS = true
 testpaths = [
-    "apps"
+    "apps",
+    "tests"
 ]
 log_cli = true
 
@@ -119,4 +120,5 @@ dev-dependencies = [
     "matplotlib>=3.10.1",
     "jupyterlab>=4.4.1",
     "factory-boy>=3.3.3",
+    "polib>=1.2.0",
 ]
