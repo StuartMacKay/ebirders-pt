@@ -1,16 +1,25 @@
-{% extends "base.html" %}
-{% load i18n %}
+{% extends "page.html" %}
+{% load i18n static %}
 
 {% block title %}{{ block.super }} - {% translate "Server Error" %}{% endblock %}
 
-{% block main %}
-	<main>
-    <h1>{% translate "Looks like something went wrong!" %}</h1>
-    <p>
-      {% blocktranslate trimmed %}
-        This error was reported automatically, but if the problem persists
-        please contact us. In the meantime, try refreshing the page.
-      {% endblocktranslate %}
-    </p>
-	</main>
+{% block content %}
+	<div class="container">
+    <div class="row align-items-center justify-content-center py-lg-4 my-lg-5">
+      <div class="col-lg-3">
+        <img src="{% static 'images/500.png' %}"
+             alt="{% trans 'An error occurred' %}"
+             width="256px" height="256px">
+      </div>
+      <div class="col-lg-6">
+        <div class="fs-1">{% translate "Looks like something went wrong!" %}</div>
+        <p>
+          {% blocktranslate trimmed %}
+            This error was reported automatically, but if the problem persists
+            please contact us. In the meantime, try refreshing the page.
+          {% endblocktranslate %}
+        </p>
+      </div>
+`    </div>
+	</div>
 {% endblock %}

@@ -1,17 +1,22 @@
-{% extends "base.html" %}
-{% load i18n %}
+{% extends "page.html" %}
+{% load i18n static %}
 
 {% block title %}{{ block.super }} - {% translate "Page Not Found" %}{% endblock %}
 
-{% block main %}
-	<main>
-    <h1>{% translate "Page Not Found" %}</h1>
-    <p>
-      {% if exception %}
-        {{ exception }}
-      {% else %}
-        {% translate "The page you were looking for cannot be found." %}
-      {% endif %}
-    </p>
-	</main>
+{% block content %}
+	<div class="container">
+    <div class="row align-items-center justify-content-center py-lg-5 my-lg-5">
+      <div class="col-lg-3">
+        <img src="{% static 'images/404.png' %}"
+             alt="{% trans 'An error occurred' %}"
+             width="256px" height="128px">
+      </div>
+      <div class="col-lg-6">
+        <div class="fs-1">{% translate "Page Not Found!" %}</div>
+        <p>
+          {% trans "The page you were looking for cannot be found."  %}
+        </p>
+      </div>
+`    </div>
+	</div>
 {% endblock %}

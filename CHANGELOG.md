@@ -7,6 +7,7 @@ a concise history of changes made.
 
 ## Latest
 - Added multi-select to fields when filtering by location. 
+- Added pages for server errors and page not found errors.
 
 ## 2025.06.28
 - Added separate layouts when lists are viewed on mobile devices.
