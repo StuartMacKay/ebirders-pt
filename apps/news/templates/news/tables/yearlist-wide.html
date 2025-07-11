@@ -5,9 +5,9 @@
       <table class="table table-borderless">
         <thead>
           <tr>
+            <th>{% trans "species.singular" %}</th>
             <th>{% trans "Date" %}</th>
             <th>{% trans "Count" %}</th>
-            <th>{% trans "species.singular" %}</th>
             <th>{% trans "Location" %}</th>
             <th>{% trans "Observer" %}</th>
             <th>{% trans "Checklist" %}</th>
@@ -16,6 +16,14 @@
         <tbody class="border-bottom">
           {% for observation in observations %}
             <tr class="border-top">
+              <td>
+                <div>
+                  <span>{{ observation.species.get_common_name }}</span>
+                </div>
+                <div>
+                  <small class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
+                </div>
+              </td>
               <td>
                 <span class="text-nowrap">
                   {% if language_code == 'pt' %}
@@ -27,14 +35,6 @@
               </td>
               <td>
                 <span>{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}</span>
-              </td>
-              <td>
-                <div>
-                  <span>{{ observation.species.get_common_name }}</span>
-                </div>
-                <div>
-                  <small class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
-                </div>
               </td>
               <td>
                 <div>{{ observation.location.name }}</div>

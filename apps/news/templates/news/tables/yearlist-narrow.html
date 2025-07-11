@@ -3,24 +3,18 @@
   {% for observation in observations %}
     <div class="row border-bottom py-2">
       <div>
-        <span class="text-nowrap me-3">
-          {% if language_code == 'pt' %}
-            {{ observation.date|date:"j F" }}
-          {% else %}
-            {{ observation.date|date:"jS F" }}
-          {% endif %}
-        </span>
-        <a class="dark-link"
-           href="{{ observation.checklist.url }}"
-           target="_blank"
-           title="{% trans 'View this checklist on eBird.org' %}">
-          <i class="bi bi-box-arrow-up-right"></i>
-        </a>
-      </div>
-      <div>
         <span>{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}, </span>
         <span class="me-2">{{ observation.species.get_common_name }}</span>
         <span class="fst-italic">({{ observation.species.scientific_name }})</span>
+      </div>
+      <div>
+        <span class="text-nowrap me-3">
+          {% if language_code == 'pt' %}
+            {{ observation.date|date:"j F" }}{% if observation.time %}, {{ observation.time }}{% endif %}
+          {% else %}
+            {{ observation.date|date:"jS F" }}{% if observation.time %}, {{ observation.time }}{% endif %}
+          {% endif %}
+        </span>
       </div>
       <div>{% spaceless %}
           <span>{{ observation.location.name }}</span>
@@ -36,7 +30,13 @@
           {% endif %}
       {% endspaceless %}</div>
       <div>
-        {{ observation.observer.name }}
+        <span class="me-3">{{ observation.observer.name }}</span>
+        <a class="dark-link"
+           href="{{ observation.checklist.url }}"
+           target="_blank"
+           title="{% trans 'View this checklist on eBird.org' %}">
+          <i class="bi bi-box-arrow-up-right"></i>
+        </a>
       </div>
       {% if not observation.approved %}
         <div>
