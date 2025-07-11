@@ -82,21 +82,21 @@ class SpeciesView(FilteredListView):
     def get_date_column_title(self):
         if order := self.request.GET.get("order"):
             if order == "species,started":
-                title = _("First seen")
+                title = _("First Seen")
             elif order == "species,-started":
-                title = _("Last seen")
+                title = _("Last Seen")
             elif order == "species,-count":
                 title = _("Date")
             else:
-                title = _("First seen")
+                title = _("First Seen")
         else:
-            title = _("First seen")
+            title = _("First Seen")
         return title
 
     def get_count_column_title(self):
         if order := self.request.GET.get("order"):
             if order == "species,-count":
-                title = _("Highest")
+                title = _("Highest Count")
             else:
                 title = _("Count")
         else:
