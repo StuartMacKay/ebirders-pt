@@ -1,3 +1,5 @@
+import json
+
 from django.urls import reverse
 
 import pytest
@@ -8,13 +10,27 @@ redirects = [
     (reverse("index"), reverse("news:latest")),
 ]
 
-urls = [
+autocompletes = [
+    reverse("filters:counties"),
+    reverse("filters:states"),
+    reverse("filters:counties"),
+    reverse("filters:locations"),
+    reverse("filters:observers"),
+    reverse("filters:common-name"),
+    reverse("filters:scientific-name"),
+    reverse("news:autocomplete"),
+]
+
+pages = [
+    (reverse("news:latest"), None),
     (reverse("news:latest"), None),
     (reverse("news:weekly"), None),
     (reverse("news:monthly"), None),
     (reverse("checklists:list"), None),
     (reverse("observations:list"), None),
     (reverse("species:list"), None),
+    (reverse("about"), None),
+    (reverse("contact"), None),
 ]
 
 errors = [
@@ -30,7 +46,13 @@ def test_page_redirects(client, url, redirect):
     assert response.url == redirect
 
 
-@pytest.mark.parametrize("url,params", urls)
+@pytest.mark.parametrize("url", autocompletes)
+def test_autocomplete_returns_data(client, url):
+    response = client.get(url)
+    json.loads(response.content)
+
+
+@pytest.mark.parametrize("url,params", pages)
 def test_page_is_displayed(client, url, params):
     response = client.get(url, query_params=params)
     assert response.status_code == 200

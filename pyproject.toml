@@ -57,7 +57,6 @@ section-order = [
 DJANGO_SETTINGS_MODULE = "config.settings"
 FAIL_INVALID_TEMPLATE_VARS = true
 testpaths = [
-    "apps",
     "tests"
 ]
 log_cli = true
