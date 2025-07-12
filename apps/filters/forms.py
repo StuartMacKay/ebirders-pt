@@ -1,7 +1,6 @@
 import json
 
 from django import forms
-from django.db.models import Q
 from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 
@@ -12,9 +11,14 @@ from ebird.api.data.models import Country, County, Location, Observer, Species, 
 class FilterForm(forms.Form):
     form_id = None
     form_title = None
+    filters = {}
 
     def get_filters(self):
-        return Q()
+        return {
+            expr: self.cleaned_data[field]
+            for field, expr in self.filters.items()
+            if self.cleaned_data.get(field)
+        }
 
     def get_ordering(self):
         return []
@@ -79,6 +83,14 @@ class LocationFilter(FilterForm):
         widget=forms.Select(attrs={"class": "form-control"}),
     )
 
+    filters = {
+        "country": "country__code",
+        "state": "state__code__in",
+        "county": "county__code__in",
+        "location": "location__identifier__in",
+        "hotspot": "location__hotspot",
+    }
+
     def __init__(self, *args, **kwargs):
         show_country = kwargs.pop("show_country")
         super().__init__(*args, **kwargs)
@@ -122,20 +134,6 @@ class LocationFilter(FilterForm):
             )
         return choices
 
-    def get_filters(self):
-        filters = super().get_filters()
-        if location := self.cleaned_data.get("location"):
-            filters &= Q(location__identifier__in=location)
-        elif county := self.cleaned_data.get("county"):
-            filters &= Q(county__code__in=county)
-        elif states := self.cleaned_data.get("state"):
-            filters &= Q(state__code__in=states)
-        elif country := self.cleaned_data.get("country"):
-            filters &= Q(country__code=country)
-        if hotspot := self.cleaned_data.get("hotspot"):
-            filters &= Q(location__hotspot=hotspot)
-        return filters
-
 
 class ObserverFilter(FilterForm):
     form_id = "observer"
@@ -150,6 +148,10 @@ class ObserverFilter(FilterForm):
         ),
     )
 
+    filters = {
+        "observer": "observer__identifier",
+    }
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if self.is_bound:
@@ -162,12 +164,6 @@ class ObserverFilter(FilterForm):
                 "identifier", "name"
             )
         return choices
-
-    def get_filters(self):
-        filters = super().get_filters()
-        if observer := self.cleaned_data.get("observer"):
-            filters &= Q(observer__identifier=observer)
-        return filters
 
 
 class SpeciesFilter(FilterForm):
@@ -200,6 +196,12 @@ class SpeciesFilter(FilterForm):
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
+
+    filters = {
+        "common_name": "species__species_code",
+        "scientific_name": "species__species_code",
+        "family": "species__family_code",
+    }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -244,16 +246,6 @@ class SpeciesFilter(FilterForm):
                 choices = [choice]
         return choices
 
-    def get_filters(self):
-        filters = super().get_filters()
-        if species_code := self.cleaned_data.get("common_name"):
-            filters &= Q(species__species_code=species_code)
-        if species_code := self.cleaned_data.get("scientific_name"):
-            filters &= Q(species__species_code=species_code)
-        if family := self.cleaned_data.get("family"):
-            filters &= Q(species__family_code=family)
-        return filters
-
 
 class FamilyFilter(FilterForm):
     form_id = "family"
@@ -267,6 +259,10 @@ class FamilyFilter(FilterForm):
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
+
+    filters = {
+        "family": "species__family_code",
+    }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -284,12 +280,6 @@ class FamilyFilter(FilterForm):
             if choice:
                 choices = [choice]
         return choices
-
-    def get_filters(self):
-        filters = super().get_filters()
-        if family := self.cleaned_data.get("family"):
-            filters &= Q(species__family_code=family)
-        return filters
 
 
 class DateRangeFilter(FilterForm):
@@ -309,20 +299,17 @@ class DateRangeFilter(FilterForm):
         widget=forms.DateInput(attrs={"type": "date", "class": "form-control"}),
     )
 
+    filters = {
+        "start": "date__gte",
+        "finish": "date__lte",
+    }
+
     def clean(self):
         start = self.cleaned_data.get("start")
         finish = self.cleaned_data.get("finish")
 
         if start and finish and start > finish:
             self.add_error("start", self.DATES_SWAPPED)
-
-    def get_filters(self):
-        filters = super().get_filters()
-        if start := self.cleaned_data.get("start"):
-            filters &= Q(date__gte=start)
-        if finish := self.cleaned_data.get("finish"):
-            filters &= Q(date__lte=finish)
-        return filters
 
 
 class ProtocolFilter(FilterForm):
@@ -357,13 +344,10 @@ class ProtocolFilter(FilterForm):
         widget=forms.Select(attrs={"class": "form-control"}),
     )
 
-    def get_filters(self):
-        filters = super().get_filters()
-        if protocol := self.cleaned_data.get("protocol"):
-            filters &= Q(protocol_code=protocol)
-        if complete := self.cleaned_data.get("complete"):
-            filters &= Q(complete=complete)
-        return filters
+    filters = {
+        "protocol": "protocol_code",
+        "complete": "complete"
+    }
 
 
 class ObservationFilter(FilterForm):
@@ -414,17 +398,12 @@ class ObservationFilter(FilterForm):
         widget=forms.Select(attrs={"class": "form-control"}),
     )
 
-    def get_filters(self):
-        filters = super().get_filters()
-        if approved := self.cleaned_data.get("approved"):
-            filters &= Q(approved=approved)
-        if audio := self.cleaned_data.get("audio"):
-            filters &= Q(audio=audio)
-        if photo := self.cleaned_data.get("photo"):
-            filters &= Q(photo=photo)
-        if video := self.cleaned_data.get("video"):
-            filters &= Q(video=video)
-        return filters
+    filters = {
+        "approved": "approved",
+        "audio": "audio",
+        "photo": "photo",
+        "video": "video"
+    }
 
 
 class CategoryFilter(FilterForm):
@@ -438,11 +417,9 @@ class CategoryFilter(FilterForm):
         widget=forms.Select(attrs={"class": "form-control"}),
     )
 
-    def get_filters(self):
-        filters = super().get_filters()
-        if category := self.cleaned_data.get("category"):
-            filters &= Q(species__category=category)
-        return filters
+    filters = {
+        "category": "species__category",
+    }
 
 
 class ChecklistOrder(FilterForm):

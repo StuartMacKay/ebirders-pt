@@ -1,5 +1,4 @@
 from django.core.exceptions import ImproperlyConfigured
-from django.db.models import Q
 from django.forms.widgets import Media
 from django.http import HttpResponseRedirect
 from django.views import generic
@@ -88,13 +87,13 @@ class FormsMixin(ContextMixin):
 
 
 class FilteredListView(FormsMixin, generic.ListView):
-    default_filter = None
+    default_filters = None
     default_order = None
     related = None
     methods = ["GET"]
 
-    def get_default_filter(self):
-        return self.default_filter or Q()
+    def get_default_filters(self):
+        return self.default_filters or {}
 
     def get_related(self):
         return self.related
@@ -109,15 +108,15 @@ class FilteredListView(FormsMixin, generic.ListView):
         return order
 
     def get_filters(self, forms):
-        filters = self.get_default_filter()
+        filters = self.get_default_filters()
         for identifier, form in forms.items():
-            filters &= form.get_filters()
+            filters.update(form.get_filters())
         return filters
 
     def get_filtered_queryset(self, forms):
         self.ordering = self.get_order(forms)
         queryset = super().get_queryset()
-        queryset = queryset.filter(self.get_filters(forms))
+        queryset = queryset.filter(**self.get_filters(forms))
         queryset = queryset.select_related(*self.get_related())
         return queryset
 
