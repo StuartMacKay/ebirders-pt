@@ -34,7 +34,7 @@ class FormsMixin(ContextMixin):
         """Return set of form sto be used in this view."""
         forms = {}
         for form_class in self.form_classes:
-            identifier = form_class.identifier
+            identifier = form_class.form_id
             forms[identifier] = form_class(**self.get_form_kwargs(identifier))
         return forms
 

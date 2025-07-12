@@ -10,8 +10,8 @@ from ebird.api.data.models import Country, County, Location, Observer, Species, 
 
 
 class FilterForm(forms.Form):
-    identifier = None
-    title = None
+    form_id = None
+    form_title = None
 
     def get_filters(self):
         return Q()
@@ -21,8 +21,8 @@ class FilterForm(forms.Form):
 
 
 class LocationFilter(FilterForm):
-    title = _("By Location")
-    identifier = "location"
+    form_id = "location"
+    form_title = _("By Location")
 
     country = forms.ChoiceField(
         label=_("Country"),
@@ -32,6 +32,7 @@ class LocationFilter(FilterForm):
             attrs={"placeholder": _("Select one or more countries")},
         ),
     )
+
     state = forms.MultipleChoiceField(
         label=_("State"),
         required=False,
@@ -137,8 +138,8 @@ class LocationFilter(FilterForm):
 
 
 class ObserverFilter(FilterForm):
-    title = _("By Observer")
-    identifier = "observer"
+    form_id = "observer"
+    form_title = _("By Observer")
 
     observer = forms.ChoiceField(
         label=_("Observer"),
@@ -170,8 +171,8 @@ class ObserverFilter(FilterForm):
 
 
 class SpeciesFilter(FilterForm):
-    title = _("By Species")
-    identifier = "species"
+    form_id = "species"
+    form_title = _("By Species")
 
     common_name = forms.ChoiceField(
         label=_("Common name"),
@@ -255,8 +256,8 @@ class SpeciesFilter(FilterForm):
 
 
 class FamilyFilter(FilterForm):
-    title = _("By Family")
-    identifier = "family"
+    form_id = "family"
+    form_title = _("By Family")
 
     family = forms.ChoiceField(
         label=_("Family"),
@@ -292,8 +293,8 @@ class FamilyFilter(FilterForm):
 
 
 class DateRangeFilter(FilterForm):
-    title = _("By Date")
-    identifier = "date-range"
+    form_id = "date-range"
+    form_title = _("By Date")
 
     DATES_SWAPPED = _("This date is later than the until date.")
 
@@ -325,8 +326,8 @@ class DateRangeFilter(FilterForm):
 
 
 class ProtocolFilter(FilterForm):
-    title = _("By Protocol")
-    identifier = "protocol"
+    form_id = "protocol"
+    form_title = _("By Protocol")
 
     protocol = forms.ChoiceField(
         label=_("Protocol"),
@@ -366,8 +367,8 @@ class ProtocolFilter(FilterForm):
 
 
 class ObservationFilter(FilterForm):
-    title = _("Options")
-    identifier = "observation"
+    form_id = "observation"
+    form_title = _("Options")
 
     approved = forms.ChoiceField(
         label=_("Status"),
@@ -427,8 +428,8 @@ class ObservationFilter(FilterForm):
 
 
 class CategoryFilter(FilterForm):
-    title = _("By Category")
-    identifier = "category"
+    form_id = "category"
+    form_title = _("By Category")
 
     category = forms.ChoiceField(
         label=_("Category"),
@@ -445,8 +446,8 @@ class CategoryFilter(FilterForm):
 
 
 class ChecklistOrder(FilterForm):
-    title = _("Order By")
-    identifier = "checklist-order"
+    form_id = "checklist-order"
+    form_title = _("Order By")
 
     order = forms.ChoiceField(
         label=_("Ordering"),
@@ -465,8 +466,8 @@ class ChecklistOrder(FilterForm):
 
 
 class ObservationOrder(FilterForm):
-    title = _("Order By")
-    identifier = "observation-order"
+    form_id = "observation-order"
+    form_title = _("Order By")
 
     order = forms.ChoiceField(
         label=_("Ordering"),
@@ -485,8 +486,8 @@ class ObservationOrder(FilterForm):
 
 
 class SpeciesOrder(FilterForm):
-    title = _("Order By")
-    identifier = "species-order"
+    form_id = "species-order"
+    form_title = _("Order By")
 
     order = forms.ChoiceField(
         label=_("Ordering"),

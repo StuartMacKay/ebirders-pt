@@ -9,18 +9,18 @@
 
 <div class="mb-4">
   <div class="border-bottom">
-    <a href="#form-{{ form.identifier }}"
+    <a href="#form-{{ form.form_id }}"
        class="text-decoration-none link-dark"
        data-bs-toggle="collapse"
        aria-expanded="false">
       <div class="d-flex">
-        <span class="me-auto">{{ form.title }}</span>
+        <span class="me-auto">{{ form.form_title }}</span>
         <i class="bi bi-chevron-down filter-collapsed me-1"></i>
         <i class="bi bi-chevron-up filter-expanded me-1"></i>
       </div>
     </a>
   </div>
-  <div class="collapse multi-collapse my-2" id="form-{{ form.identifier }}">
+  <div class="collapse multi-collapse my-2" id="form-{{ form.form_id }}">
     {% for field in form.visible_fields %}
       {% if field.label %}
         <label class="form-label text-muted mb-0"
