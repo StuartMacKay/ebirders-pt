@@ -34,7 +34,7 @@ Create the virtual environment:
 
 Activate it:
 
-    source venv/bin/activate
+    source .venv/bin/activate
 
 Install the requirements:
 
