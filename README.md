@@ -96,6 +96,10 @@ Web sites using this project:
 * Discussions: https://lists.sr.ht/~smackay/ebirders-discuss
 * Development: https://lists.sr.ht/~smackay/ebirders-develop
 
+The repository is also mirrored on Github:
+
+* Repository: https://github.com/StuartMacKay/ebirders-pt
+
 The site uses Python 3.12, Django 5.1, though there are no specific requirements,
 so it should work without an problems with earlier versions of python and Django.
 
