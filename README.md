@@ -1,7 +1,3 @@
-**IMPORTANT: Although this site has been in production since the start of 2025 it 
-very much a prototype and there are likely to be breaking changes made, for 
-example resetting database migrations, as lessons are learned.**
-
 # eBirders PT
 
 eBirders PT is a Django-based web site that publishes data from eBird Portugal 
@@ -18,16 +14,14 @@ regions of the country, and where are the best places to go birding.
 
 Apart from the translations, the site is not specific to Portugal, and can be used
 for any country or region. The site is a regular Django web site, so it is easy to 
-adapt to add or remove features as you see fit. Eventually, once the code has 
-stabilised, the core parts of the site will be extracted to a separate repository 
-which can be used as a start to create similar sites for other part of the world.
+adapt, to add or remove features, as you see fit.
 
 ## Getting Started
 
-To get started, you will need to [sign up](https://secure.birds.cornell.edu/identity/account/create) for an eBird account, if you don't 
-already have one and [register](https://ebird.org/data/download) to get an API key. Make sure you read and 
-understand the [Terms of use](https://www.birds.cornell.edu/home/ebird-api-terms-of-use/), and remember bandwidth and servers cost money, 
-so don't abuse the service.
+To get started, you will need to [sign up](https://secure.birds.cornell.edu/identity/account/create) 
+for an eBird account, if you don't already have one and [register](https://ebird.org/data/download) to get an 
+API key. Make sure you read and understand the [Terms of use](https://www.birds.cornell.edu/home/ebird-api-terms-of-use/), and remember 
+bandwidth and servers cost money, so don't abuse the service.
 
 Next, get a copy of the repository:
 
@@ -46,6 +40,24 @@ Install the requirements:
 
     uv sync
 
+Create a copy of the .env.example file and add your API key and map the 
+languages of your site to the locales used by eBird for species names:
+
+    cp .env.example .env
+
+For example:
+
+    EBIRD_API_KEY=<my api key>
+    EBIRD_LOCALES="{"en":"en_HBW","fr":"fr_CA"}"
+
+This Canadian site serves pages in English and French, with the common names
+of species in the English-language version taken from the Handbook of Birds
+of the World.
+
+Be sure to also change the CACHE_URL and DATABASE_URL entries to match your 
+setup. The site is developed and tested with PostgreSQL, but it should also
+work with SQLite, however, you will need to install it with the JSON1 extension.
+
 Run the database migrations:
 
     python manage.py migrate
@@ -54,17 +66,9 @@ Create an admin user:
 
     python manage.py createsuperuser
 
-Create a copy of the .env.example file and add your API key:
-
-    cp .env.example .env
-
-For example:
-
-    EBIRD_API_KEY=<my api key>
-
 Now, download data from the API:
 
-    python manage.py load_api new 2 US-NY-109
+    python manage.py add_checklists --days 2 US-NY-109
 
 This loads all the checklists, submitted in the past two days by birders
 in Tompkins County, New York, where the Cornell Lab is based. You can use
@@ -79,11 +83,9 @@ Finally, visit the home page to view the checklists:
 
     http://localhost:8000/
 
-This project gives you a basic web site, which is reasonably well documented.
-The source code will be simple to adapt if you are familiar with Django at any
-skill level. The rest is up to you.
+## Project Sites
 
-To see a real site, developed using this code-base, please visit, https://www.ebirders.pt
+* https://www.ebirders.pt
 
 ## Project Information
 
@@ -95,21 +97,4 @@ To see a real site, developed using this code-base, please visit, https://www.eb
 
 The app is tested on Python 3.8+, and officially supports Django 4.2, 5.0 and 5.1.
 
-eBird Pages is released under the terms of the [MIT](https://opensource.org/licenses/MIT) license.
-
-## Related Projects
-
-* ebird-checklists: https://todo.sr.ht/~smackay/ebird-checklists - the core project
-  one which eBirders PT is based. It contains all the code you need to set up a feed
-  from the eBird API and load it into a database.
-
-* ebird-notebooks: https://todo.sr.ht/~smackay/ebird-notebooks - a set of Jupyter 
-  Notebooks that you can used to analyse data form the eBird API or the eBird Basic
-  Dataset.
-
-* ebird-api: https://todo.sr.ht/~smackay/ebird-api - a python library that you can
-  use to download data from the eBird API.
-
-* ebird-scrapers: https://todo.sr.ht/~smackay/ebird-scrapers - not everything is available
-  from the eBird API. eBird Scrapers is library for extracting information from pages
-  on the eBird web site.
+eBirders PT is released under the terms of the [MIT](https://opensource.org/licenses/MIT) license.
