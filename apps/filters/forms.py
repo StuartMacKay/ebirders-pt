@@ -28,18 +28,20 @@ class LocationFilter(FilterForm):
     form_id = "location"
     form_title = _("By Location")
 
-    country = forms.ChoiceField(
+    country = forms.ModelChoiceField(
         label=_("Country"),
         required=False,
+        queryset=Country.objects.all(),
         widget=autocomplete.Select2(
             url="filters:countries",
             attrs={"placeholder": _("Select one or more countries")},
         ),
     )
 
-    state = forms.MultipleChoiceField(
+    state = forms.ModelMultipleChoiceField(
         label=_("State"),
         required=False,
+        queryset=State.objects.all(),
         widget=autocomplete.Select2Multiple(
             url="filters:states",
             forward=["country"],
@@ -49,9 +51,10 @@ class LocationFilter(FilterForm):
         ),
     )
 
-    county = forms.MultipleChoiceField(
+    county = forms.ModelMultipleChoiceField(
         label=_("County"),
         required=False,
+        queryset=County.objects.all(),
         widget=autocomplete.Select2Multiple(
             url="filters:counties",
             forward=["state", "country"],
@@ -61,9 +64,10 @@ class LocationFilter(FilterForm):
         ),
     )
 
-    location = forms.MultipleChoiceField(
+    location = forms.ModelMultipleChoiceField(
         label=_("Location"),
         required=False,
+        queryset=Location.objects.all(),
         widget=autocomplete.Select2Multiple(
             url="filters:locations",
             forward=["county", "state", "country"],
@@ -84,10 +88,10 @@ class LocationFilter(FilterForm):
     )
 
     filters = {
-        "country": "country__code",
-        "state": "state__code__in",
-        "county": "county__code__in",
-        "location": "location__identifier__in",
+        "country": "country",
+        "state": "state__in",
+        "county": "county__in",
+        "location": "location__in",
         "hotspot": "location__hotspot",
     }
 
@@ -98,50 +102,15 @@ class LocationFilter(FilterForm):
         if not show_country:
             self.fields["country"].widget = forms.HiddenInput()
 
-        if self.is_bound:
-            self.fields["country"].choices = self.get_country_choice()
-            self.fields["state"].choices = self.get_state_choices()
-            self.fields["county"].choices = self.get_county_choices()
-            self.fields["location"].choices = self.get_location_choices()
-
-    def get_country_choice(self):
-        choices = []
-        if country := self.data.get("country"):
-            choices = Country.objects.filter(code=country).values_list("code", "name")
-        return choices
-
-    def get_state_choices(self):
-        choices = []
-        if states := self.data.getlist("state"):
-            choices = State.objects.filter(code__in=states).values_list("code", "name")
-        return choices
-
-    def get_county_choices(self):
-        choices = []
-        if counties := self.data.getlist("county"):
-            choices = County.objects.filter(code__in=counties).values_list(
-                "code", "name"
-            )
-        return choices
-
-    def get_location_choices(self):
-        choices = []
-        if locations := self.data.getlist("location"):
-            choices = (
-                Location.objects.all()
-                .filter(identifier__in=locations)
-                .values_list("identifier", "name")
-            )
-        return choices
-
 
 class ObserverFilter(FilterForm):
     form_id = "observer"
     form_title = _("By Observer")
 
-    observer = forms.ChoiceField(
+    observer = forms.ModelChoiceField(
         label=_("Observer"),
         required=False,
+        queryset=Observer.objects.all(),
         widget=autocomplete.Select2(
             url="filters:observers",
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
@@ -149,39 +118,28 @@ class ObserverFilter(FilterForm):
     )
 
     filters = {
-        "observer": "observer__identifier",
+        "observer": "observer",
     }
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        if self.is_bound:
-            self.fields["observer"].choices = self.get_observer_choice()
-
-    def get_observer_choice(self):
-        choices = []
-        if observer := self.data.get("observer"):
-            choices = Observer.objects.filter(identifier=observer).values_list(
-                "identifier", "name"
-            )
-        return choices
 
 
 class SpeciesFilter(FilterForm):
     form_id = "species"
     form_title = _("By Species")
 
-    common_name = forms.ChoiceField(
+    common_name = forms.ModelChoiceField(
         label=_("Common name"),
         required=False,
+        queryset=Species.objects.all(),
         widget=autocomplete.Select2(
             url="filters:common-name",
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
         ),
     )
 
-    scientific_name = forms.ChoiceField(
+    scientific_name = forms.ModelChoiceField(
         label=_("Scientific name"),
         required=False,
+        queryset=Species.objects.all(),
         widget=autocomplete.Select2(
             url="filters:scientific-name",
             attrs={"class": "form-select", "data-theme": "bootstrap-5"},
@@ -198,8 +156,8 @@ class SpeciesFilter(FilterForm):
     )
 
     filters = {
-        "common_name": "species__species_code",
-        "scientific_name": "species__species_code",
+        "common_name": "species",
+        "scientific_name": "species",
         "family": "species__family_code",
     }
 
@@ -207,7 +165,6 @@ class SpeciesFilter(FilterForm):
         super().__init__(*args, **kwargs)
         if self.is_bound:
             self.fields["common_name"].choices = self.get_common_name_choice()
-            self.fields["scientific_name"].choices = self.get_scientific_name_choice()
             self.fields["family"].choices = self.get_family_choice()
 
     def get_common_name_choice(self):
@@ -220,18 +177,6 @@ class SpeciesFilter(FilterForm):
             )
             if choice:
                 choices = [(choice[0], json.loads(choice[1])[get_language()])]
-        return choices
-
-    def get_scientific_name_choice(self):
-        choices = []
-        if code := self.data.get("scientific_name"):
-            choice = (
-                Species.objects.filter(species_code=code)
-                .values_list("species_code", "scientific_name")
-                .first()
-            )
-            if choice:
-                choices = [choice]
         return choices
 
     def get_family_choice(self):

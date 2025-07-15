@@ -151,7 +151,7 @@ def yearlist_table(context):
 
     year_list = (
         Observation.objects.filter(filters)
-        .values_list("id", "species", "date")
+        .values_list("identifier", "species", "date")
         .order_by("species", "started")
         .distinct("species")
     )
@@ -175,7 +175,7 @@ def yearlist_table(context):
     ]
 
     observations = (
-        Observation.objects.filter(id__in=ids)
+        Observation.objects.filter(identifier__in=ids)
         .select_related(*related)
         .order_by("species__taxon_order")
     )
@@ -238,7 +238,7 @@ def high_counts_table(context):
             date__lte=context["end_date"],
             count__gt=0,
         )
-        .values_list("id", "species_id", "date")
+        .values_list("identifier", "species_id", "date")
         .order_by("species__taxon_order", "-count")
     )
 
@@ -252,7 +252,7 @@ def high_counts_table(context):
                 high_counts[key] = observation[0]
 
     high_counts = (
-        Observation.objects.filter(id__in=high_counts.values())
+        Observation.objects.filter(identifier__in=high_counts.values())
         .select_related(
             "species", "country", "state", "county", "location", "observer", "checklist"
         )
