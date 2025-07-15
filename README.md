@@ -94,7 +94,7 @@ Web sites using this project:
 * Repository: https://git.sr.ht/~smackay/ebirders-pt
 * Announcements: https://lists.sr.ht/~smackay/ebirders-announce
 * Discussions: https://lists.sr.ht/~smackay/ebirders-discuss
-* Development: https://lists.sr.ht/~smackay/ebirders-devel
+* Development: https://lists.sr.ht/~smackay/ebirders-develop
 
 The app is tested on Python 3.8+, and officially supports Django 4.2, 5.0 and 5.1.
 
