@@ -83,7 +83,8 @@ Finally, visit the home page to view the checklists:
 
     http://localhost:8000/
 
-## Project Sites
+## Production Sites
+Web sites using this project:
 
 * https://www.ebirders.pt
 
