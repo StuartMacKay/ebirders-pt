@@ -6,6 +6,8 @@ This project uses calendar versioning, https://calver.org/, and this log provide
 a concise history of changes made.
 
 ## Latest
+
+## 2025.07.15
 - Added multi-select to fields when filtering by location. 
 - Added pages for server errors and page not found errors.
 
