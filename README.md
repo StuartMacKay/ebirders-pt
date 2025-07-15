@@ -103,4 +103,6 @@ The repository is also mirrored on Github:
 The site uses Python 3.12, Django 5.1, though there are no specific requirements,
 so it should work without an problems with earlier versions of python and Django.
 
+## License
+
 eBirders PT is released under the terms of the [MIT](https://opensource.org/licenses/MIT) license.
