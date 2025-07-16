@@ -7,11 +7,11 @@ from ebird.api.data.models import Location
 
 # +/- 90 degrees with comma or period for the decimal point,
 # followed by 2-5 decimal places.
-latitude_regex = r"-?\d{1,2}[.,]\d{1,7}"
+latitude_regex = r"[-\u2212]?\d{1,2}[.,]\d{1,7}"
 
 # +/- 180 degrees with comma or period for the decimal point,
 # followed by 2-5 decimal places.
-longitude_regex = r"-?\d{1,3}[.,]\d{1,7}"
+longitude_regex = r"[-\u2212]?\d{1,3}[.,]\d{1,7}"
 
 # Latitude and longitude, separated by comma, and/or optional space,
 # surrounded by optional round brackets, and preceded with anm optional
