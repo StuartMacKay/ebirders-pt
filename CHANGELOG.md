@@ -6,6 +6,8 @@ This project uses calendar versioning, https://calver.org/, and this log provide
 a concise history of changes made.
 
 ## Latest
+
+## 2025.07.17
 - Updated regular expressions used to clean the name when a Location is added.
 
 ## 2025.07.15
