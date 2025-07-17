@@ -6,15 +6,17 @@ from django.dispatch import receiver
 from ebird.api.data.models import Location
 
 # +/- 90 degrees with comma or period for the decimal point,
-# followed by 2-5 decimal places.
+# followed by 2-5 decimal places. Negative coordinates either
+# have a minus sign or the minus symbol.
 latitude_regex = r"[-\u2212]?\d{1,2}[.,]\d{1,7}"
 
 # +/- 180 degrees with comma or period for the decimal point,
-# followed by 2-5 decimal places.
+# followed by 2-5 decimal places. Negative coordinates either
+# # have a minus sign or the minus symbol.
 longitude_regex = r"[-\u2212]?\d{1,3}[.,]\d{1,7}"
 
 # Latitude and longitude, separated by comma, and/or optional space,
-# surrounded by optional round brackets, and preceded with anm optional
+# surrounded by optional round brackets, and preceded with an optional
 # comma and a space. The initial part of the name is captured in a
 # group for the next step. The word boundary is added since the .*
 # is greedy, consume the comma, and so the match will fail.
