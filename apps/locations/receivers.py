@@ -19,8 +19,9 @@ longitude_regex = r"[-\u2212]?\d{1,3}[.,]\d{1,7}"
 # surrounded by optional round brackets, and preceded with an optional
 # comma and a space. The initial part of the name is captured in a
 # group for the next step. The word boundary is added since the .*
-# is greedy, consume the comma, and so the match will fail.
-coordinates_regex = r"^(.*)\b,? (:?\()?%s[,x] ?%s(:?\))?$" % (
+# is greedy, consume the comma, and so the match will fail. A
+# description following the coordinates also occurs.
+coordinates_regex = r"^(.*)\b,? (:?\()?%s[,x] ?%s(:?\))?.*$" % (
     latitude_regex,
     longitude_regex,
 )
