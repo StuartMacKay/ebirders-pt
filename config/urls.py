@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib.flatpages.views import flatpage
 from django.urls import include, path
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import RedirectView
+from django.views.generic import RedirectView, TemplateView
 
 from contact.views import ContactView
 
@@ -23,6 +23,10 @@ urlpatterns = i18n_patterns(
 urlpatterns += [
     # Change the path to the Django Admin to something non-standard.
     path(settings.ADMIN_PATH, admin.site.urls),  # type: ignore
+    path("robots.txt",
+         TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
+    path("sitemap.xml",
+         TemplateView.as_view(template_name="sitemap.xml", content_type="text/plain")),
 ]
 
 if settings.DEBUG:
