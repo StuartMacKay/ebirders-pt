@@ -18,11 +18,13 @@
     <div class="row border-bottom align-items-baseline">
       <div class="col-sm-3 col-md-2 col-lg-2 my-3">
         <a class="btn btn-link link-dark bg-light me-2"
+           rel="nofollow"
            href="{% url "news:for-week" previous_year previous_week %}"
            title="{{ previous_label }}">
           <i class="bi bi-chevron-left"></i>
         </a>
         <a class="btn btn-link link-dark bg-light"
+           rel="nofollow"
            href="{% url "news:for-week" next_year next_week %}"
            title="{{ next_label }}">
           <i class="bi bi-chevron-right"></i>

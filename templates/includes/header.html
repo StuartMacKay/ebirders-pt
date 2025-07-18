@@ -30,22 +30,27 @@
             <li><a class="dropdown-item"
                    href="{% url 'news:latest' %}">{% trans "Latest News" %}</a></li>
             <li><a class="dropdown-item"
+                   rel="nofollow"
                    href="{% url 'news:weekly' %}">{% trans "Weekly News" %}</a></li>
             <li><a class="dropdown-item"
+                   rel="nofollow"
                    href="{% url 'news:monthly' %}">{% trans "Monthly News" %}</a></li>
           </ul>
         </div>
       </li>
       <li class="nav-item">
         <a class="nav-link"
+           rel="nofollow"
            href="{% url 'checklists:list' %}">{% trans 'Checklists' %}</a>
       </li>
       <li class="nav-item">
         <a class="nav-link"
+           rel="nofollow"
            href="{% url 'observations:list' %}">{% trans 'Observations' %}</a>
       </li>
       <li class="nav-item">
         <a class="nav-link"
+           rel="nofollow"
            href="{% url 'species:list' %}">{% trans 'species.plural' %}</a>
       </li>
       </ul>
@@ -58,6 +63,7 @@
           <ul class="dropdown-menu">
             {% for url, language in translations %}
               <li><a class="dropdown-item"
+                     rel="nofollow"
                      href="{{ url }}{% querystring %}">{{ language }}</a>
               </li>
             {% endfor %}

@@ -16,10 +16,12 @@
       <td>
         {% if language_code == 'pt' %}
           <a class="dark-link text-nowrap"
+             rel="nofollow"
              href="{% querystring start=observation.date|date:'Y-m-d' finish=observation.date|date:'Y-m-d' %}"
              title="{% trans 'Show observations for this date' %}">{{ observation.date|date:"j b Y" }}</a>
         {% else %}
           <a class="dark-link text-nowrap"
+             rel="nofollow"
              href="{% querystring start=observation.date|date:'Y-m-d' finish=observation.date|date:'Y-m-d' %}"
              title="{% trans 'Show observations for this date' %}">{{ observation.date|date:"jS M Y" }}</a>
         {% endif %}
@@ -30,6 +32,7 @@
       <td class="text-end">{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}</td>
       <td>
         <a class="dark-link"
+           rel="nofollow"
            href="{% querystring species=observation.species.species_code %}"
            title="{% trans 'Show observations of this species' %}">
           {{ observation.species.get_common_name }}
@@ -40,6 +43,7 @@
       </td>
       <td>
         <a class="dark-link"
+           rel="nofollow"
            href="{% querystring location=observation.location.identifier %}"
            title="{% trans 'Show observations for this location' %}">{{ observation.location.name }}</a>
         <br/>
@@ -47,6 +51,7 @@
           {% if observation.county %}
             <small class="text-muted">
               <a class="dark-link"
+                 rel="nofollow"
                  href="{% querystring county=observation.county.code location=None %}"
                  title="{% trans 'Show observations for this county' %}">{{ observation.county.name }}</a>
             </small>
@@ -55,6 +60,7 @@
             <small class="text-muted">
               {% if observation.county %}<span>, </span>{% endif %}
               <a class="dark-link"
+                 rel="nofollow"
                  href="{% querystring state=observation.state.code county=None location=None %}"
                  title="{% trans 'Show observations for this state' %}">{{ observation.state.name }}</a>
             </small>
@@ -63,6 +69,7 @@
             <small class="text-muted">
               <span>, </span>
               <a class="dark-link"
+                 rel="nofollow"
                  href="{% querystring country=observation.country.code state=None county=None location=None %}"
                  title="{% trans 'Show observations for this country' %}">{{ observation.country }}</a>
             </small>
@@ -71,6 +78,7 @@
       </td>
       <td>
         <a class="dark-link me-3"
+           rel="nofollow"
            href="{% querystring observer=observation.observer.identifier %}"
            title="{% trans 'Show observations from this observer' %}">{{ observation.observer.name }}</a>
       </td>

@@ -9,40 +9,47 @@
     <div>{% spaceless %}
       {% if language_code == 'pt' %}
         <a class="dark-link text-nowrap"
+           rel="nofollow"
            href="{% querystring start=observation.date|date:'Y-m-d' finish=observation.date|date:'Y-m-d' %}"
            title="{% trans 'Show species seen on this date' %}">{{ observation.date|date:"j b Y" }}</a>{% if observation.time %}, {{ observation.time }}{% endif %}
       {% else %}
         <a class="dark-link text-nowrap"
+           rel="nofollow"
            href="{% querystring start=observation.date|date:'Y-m-d' finish=observation.date|date:'Y-m-d' %}"
            title="{% trans 'Show species seen on this date' %}">{{ observation.date|date:"jS M Y" }}</a>{% if observation.time %}, {{ observation.time }}{% endif %}
       {% endif %}
     {% endspaceless %}</div>
     <div>{% spaceless %}
       <a class="dark-link"
+         rel="nofollow"
          href="{% querystring location=observation.location.identifier %}"
          title="{% trans 'Show species for this location' %}">{{ observation.location.name }}</a>
       {% if observation.county %}
         <span>, </span>
         <a class="dark-link"
-             href="{% querystring county=observation.county.code location=None %}"
-             title="{% trans 'Show species for this county' %}">{{ observation.county.name }}</a>
+           rel="nofollow"
+           href="{% querystring county=observation.county.code location=None %}"
+           title="{% trans 'Show species for this county' %}">{{ observation.county.name }}</a>
       {% endif %}
       {% if observation.state %}
         {% if observation.county %}
           <span>, </span>
         {% endif %}
         <a class="dark-link"
-               href="{% querystring state=observation.state.code county=None location=None %}"
-               title="{% trans 'Show species for this state' %}">{{ observation.state.name }}</a>
+           rel="nofollow"
+           href="{% querystring state=observation.state.code county=None location=None %}"
+           title="{% trans 'Show species for this state' %}">{{ observation.state.name }}</a>
       {% endif %}
       {% if show_country %}
         <a class="dark-link"
+           rel="nofollow"
            href="{% querystring country=observation.country.code state=None county=None location=None %}"
            title="{% trans 'Show species for this country' %}">{{ observation.country }}</a>
       {% endif %}
     {% endspaceless %}</div>
     <div>
       <a class="dark-link me-3"
+         rel="nofollow"
          href="{% querystring observer=observation.observer.identifier %}"
          title="{% trans 'Show species seen by this observer' %}">{{ observation.observer.name }}</a>
       {% if not observation.has_media %}

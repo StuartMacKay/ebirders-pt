@@ -18,11 +18,13 @@
     <div class="row border-bottom align-items-baseline">
       <div class="col-sm-3 col-md-2 col-lg-2 my-3">
         <a class="btn btn-link link-dark bg-light me-2"
+           rel="nofollow"
            href="{% url "news:for-month" previous_year previous_month %}"
            title="{{ previous_label }}">
           <i class="bi bi-chevron-left"></i>
         </a>
         <a class="btn btn-link link-dark bg-light"
+           rel="nofollow"
            href="{% url "news:for-month" next_year next_month %}"
            title="{{ next_label }}">
           <i class="bi bi-chevron-right"></i>

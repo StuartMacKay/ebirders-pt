@@ -4,8 +4,9 @@
   <div class="col">
     <h3 class="my-2">
       <span class="me-3">{{ title }}</span>
-      <a href="{% url 'species:list' %}{% querystring state=state county=county category="species" start=start_year finish=end_year code=None search=None week=None %}"
-         class="dark-link"
+      <a class="dark-link"
+         rel="nofollow"
+         href="{% url 'species:list' %}{% querystring state=state county=county category="species" start=start_year finish=end_year code=None search=None week=None %}"
          title="{% trans 'View Yearlist' %}">
         <i class="bi bi-box-arrow-in-down-right fs-5"></i>
       </a>
