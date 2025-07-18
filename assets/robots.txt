@@ -1,14 +1,14 @@
 # robots.txt for https://www.ebirders.pt/
 
-# The following URLs display the raw data from the eBird API and so are
-# not unique to this site:
+# The following URLs )(not encoded) display the raw data from the
+# eBird API and so are not unique to this site:
 #
 #   /en/checklists/, /pt/listas/
 #   /en/observations/, /pt/observações/
 #   /en/species/, /pt/espécies/
 #
-# The weekly and monthly news pages present the same date as the Latest
-# News, just over a different/longer period:
+# The weekly and monthly news pages (again, not encoded) present the
+# same date as the Latest News, just over a different/longer period:
 #
 #   /en/news/weekly/<year>/<week>/
 #   /pt/notícias/semanal/<year>/<week>/
@@ -24,12 +24,15 @@ User-Agent: *
 Disallow: /en/checklists/
 Disallow: /pt/listas/
 Disallow: /en/observations/
-Disallow: /pt/observações/
+Disallow: /pt/observa%C3%A7%C3%B5es/
+Disallow: /en/species/
+Disallow: /pt/esp%C3%A9cies/
 Disallow: /en/news/weekly/
-Disallow: /pt/notícias/semanal/
+Disallow: /pt/not%C3%ADcias/semanal/
 Disallow: /en/news/monthly/
-Disallow: /pt/notícias/mensal/
+Disallow: /pt/not%C3%ADcias/mensal/
 Disallow: /en/contact/
 Disallow: /pt/contacto/
+Disallow: /static/
 
 Sitemap: https://www.ebirders.pt/sitemap.xml
