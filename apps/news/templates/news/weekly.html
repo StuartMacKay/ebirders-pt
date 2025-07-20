@@ -1,5 +1,5 @@
 {% extends "page.html" %}
-{% load i18n numbers static tables %}
+{% load cache i18n numbers static tables %}
 
 {% block title %}{% trans 'Latest News' %}{% endblock %}
 
@@ -51,42 +51,58 @@
       </div>
     </div>
 
-    <div class="row border-bottom">
-      <div class="col-md-3 col-sm-6 col-6 my-3">
-        {% species_count country state county start_date end_date %}
+    {% cache CACHE_TTL_SHORT "counts" country state county start_date end_date %}
+      <div class="row border-bottom">
+        <div class="col-md-3 col-sm-6 col-6 my-3">
+          {% species_count country state county start_date end_date %}
+        </div>
+        <div class="col-md-3 col-sm-6 col-6 my-3">
+          {% checklist_count country state county start_date end_date %}
+        </div>
+        <div class="col-md-3 col-sm-6 col-6 mt-lg-3 mb-3">
+          {% observer_count country state county start_date end_date %}
+        </div>
+        <div class="col-md-3 col-sm-6 col-6 mt-lg-3 mb-3">
+          {% duration_count country state county start_date end_date %}
+        </div>
       </div>
-      <div class="col-md-3 col-sm-6 col-6 my-3">
-        {% checklist_count country state county start_date end_date %}
-      </div>
-      <div class="col-md-3 col-sm-6 col-6 mt-lg-3 mb-3">
-        {% observer_count country state county start_date end_date %}
-      </div>
-      <div class="col-md-3 col-sm-6 col-6 mt-lg-3 mb-3">
-        {% duration_count country state county start_date end_date %}
-      </div>
-    </div>
+      {% endcache %}
 
-    {% high_counts_table country state county start_date end_date %}
+    {% cache CACHE_TTL_MEDIUM "high_counts_table" country state county start_date end_date %}
+      {% high_counts_table country state county start_date end_date %}
+    {% endcache %}
 
-    {% yearlist_table country state county start_date end_date %}
+    {% cache CACHE_TTL_LONG "yearlist_table" country state county start_date end_date %}
+      {% yearlist_table country state county start_date end_date %}
+    {% endcache %}
 
-    {% big_lists_table country state county start_date end_date %}
+    {% cache CACHE_TTL_LONG "big_lists_table" country state county start_date end_date %}
+      {% big_lists_table country state county start_date end_date %}
+    {% endcache %}
 
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12 border-top">
-        {% big_days_table country state county start_date end_date %}
+        {% cache CACHE_TTL_LONG "big_days_table" country state county start_date end_date %}
+          {% big_days_table country state county start_date end_date %}
+        {% endcache %}
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12 border-top">
-        {% big_week_table country state county start_date end_date %}
+        {% cache CACHE_TTL_LONG "big_week_table" country state county start_date end_date %}
+          {% big_week_table country state county start_date end_date %}
+        {% endcache %}
       </div>
     </div>
 
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12 border-top">
-        {% checklists_completed_table country state county start_date end_date %}
+        {% cache CACHE_TTL_LONG  "checklists_completed_table" country state county start_date end_date %}
+          {% checklists_completed_table country state county start_date end_date %}
+        {% endcache %}
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12 border-top">
-        {% time_spent_birding_table country state county start_date end_date %}
+        {% cache CACHE_TTL_LONG  "time_spent_birding_table" country state county start_date end_date %}
+          {% time_spent_birding_table country state county start_date end_date %}
+        {% endcache %}
       </div>
     </div>
   </div>
