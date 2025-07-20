@@ -132,6 +132,13 @@ DATABASES = {
 
 CACHES = {"default": env.cache_url(default="pymemcache://127.0.0.1:11211")}
 
+# Time out values for template fragments
+hours = 60 * 60
+
+CACHE_TTL_SHORT = 1 * hours
+CACHE_TTL_MEDIUM = 4 * hours
+CACHE_TTL_LONG = 12 * hours
+
 # ############
 #   SECURITY
 # ############
@@ -193,6 +200,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "config.context_processors.site_tracking_code",
+                "config.context_processors.cache_ttls",
             ],
         },
     },

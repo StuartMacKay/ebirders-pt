@@ -94,8 +94,8 @@ def time_spent_birding_table(country_id, state_id, county_id, start, end):
     }
 
 
-@register.inclusion_tag("news/tables/big_week_month.html")
-def big_week_month_table(country_id, state_id, county_id, start, end, interval):
+@register.inclusion_tag("news/tables/big_week.html")
+def big_week_table(country_id, state_id, county_id, start, end):
     filters = Q(observations__date__gte=start)
     filters &= Q(observations__date__lte=end)
     filters &= Q(observations__species__category="species")
@@ -124,27 +124,65 @@ def big_week_month_table(country_id, state_id, county_id, start, end, interval):
     )
     return {
         "records": [observer for observer in observers if observer["count"]],
-        "interval": interval,
         "start": start,
         "finish": end,
     }
 
 
-@register.inclusion_tag("news/tables/yearlist.html", takes_context=True)
-def yearlist_table(context):
+@register.inclusion_tag("news/tables/big_month.html")
+def big_month_table(country_id, state_id, county_id, start, end):
+    filters = Q(observations__date__gte=start)
+    filters &= Q(observations__date__lte=end)
+    filters &= Q(observations__species__category="species")
+
+    if country_id:
+        filters &= Q(observations__country_id=country_id)
+    elif state_id:
+        filters &= Q(observations__state_id=state_id)
+    elif county_id:
+        filters &= Q(observations__county_id=county_id)
+
+    observers = (
+        Observer.objects.values("name", "name", "identifier")
+        .annotate(
+            count=Count(
+                Case(
+                    When(
+                        filters,
+                        then="observations__species",
+                    )
+                ),
+                distinct=True,
+            )
+        )
+        .order_by("-count")[:10]
+    )
+    return {
+        "records": [observer for observer in observers if observer["count"]],
+        "start": start,
+        "finish": end,
+    }
+
+
+@register.inclusion_tag("news/tables/yearlist.html")
+def yearlist_table(country_id, state_id, county_id, start, end):
+
+    start_year = start.replace(month=1, day=1)
+    end_year = end.replace(month=12, day=31)
+
     filters = (
         Q(published=True)
         & Q(species__category="species")
-        & Q(date__gte=context["start_year"])
-        & Q(date__lte=context["end_year"])
+        & Q(date__gte=start_year)
+        & Q(date__lte=end_year)
     )
 
-    if context.get("country"):
-        filters &= Q(country=context["country"])
-    elif context.get("state"):
-        filters &= Q(state=context["state"])
-    elif context.get("county"):
-        filters &= Q(county=context["county"])
+    if country_id:
+        filters &= Q(country_id=country_id)
+    elif state_id:
+        filters &= Q(state_id=state_id)
+    elif county_id:
+        filters &= Q(county_id=county_id)
 
     year_list = (
         Observation.objects.filter(filters)
@@ -158,7 +196,7 @@ def yearlist_table(context):
     ids = [
         entry[0]
         for entry in year_list
-        if context["start_date"] <= entry[2] <= context["end_date"]
+        if start <= entry[2] <= end
     ]
 
     related = [
@@ -178,12 +216,11 @@ def yearlist_table(context):
     )
 
     return {
-        "title": _("Year List"),
-        "country": context["country"].code if context["country"] else None,
-        "state": context["state"].code if context["state"] else None,
-        "county": context["county"].code if context["county"] else None,
-        "start_year": context["start_year"],
-        "end_year": context["end_year"],
+        "country": country_id,
+        "state": state_id,
+        "county": county_id,
+        "start_year": start_year,
+        "end_year": end_year,
         "observations": observations,
         "total": total,
     }
@@ -212,16 +249,16 @@ def big_days_table(country_id, state_id, county_id, start, end):
     return {"title": _("Big Days"), "entries": entries}
 
 
-@register.inclusion_tag("news/tables/high-counts.html", takes_context=True)
-def high_counts_table(context):
+@register.inclusion_tag("news/tables/high-counts.html")
+def high_counts_table(country_id, state_id, county_id, start, end):
     filters = Q(published=True)
 
-    if context.get("country"):
-        filters &= Q(country_id=context["country"])
-    elif context.get("state"):
-        filters &= Q(state_id=context["state"])
-    elif context.get("county"):
-        filters &= Q(county_id=context["county"])
+    if country_id:
+        filters &= Q(country_id=country_id)
+    elif state_id:
+        filters &= Q(state_id=state_id)
+    elif county_id:
+        filters &= Q(county_id=county_id)
 
     previous = {}
     high_counts = {}
@@ -230,8 +267,8 @@ def high_counts_table(context):
         Observation.objects.filter(filters)
         .filter(
             species__category="species",
-            date__gte=context["start_date"] - relativedelta(months=1),
-            date__lte=context["end_date"],
+            date__gte=start - relativedelta(months=1),
+            date__lte=end,
             count__gt=0,
         )
         .values_list("identifier", "species_id", "date")
@@ -241,7 +278,7 @@ def high_counts_table(context):
     for observation in observations:
         key = observation[1]
         previous.setdefault(key, 0)
-        if observation[2] < context["start_date"]:
+        if observation[2] < start:
             previous[key] += 1
         else:
             if previous[key] < 3 and key not in high_counts:

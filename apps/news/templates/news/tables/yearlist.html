@@ -3,7 +3,7 @@
 <div class="row border-bottom">
   <div class="col">
     <h3 class="my-2">
-      <span class="me-3">{{ title }}</span>
+      <span class="me-3">{% trans 'Year List' %}</span>
       <a class="dark-link"
          rel="nofollow"
          href="{% url 'species:list' %}{% querystring state=state county=county category="species" start=start_year finish=end_year code=None search=None week=None %}"

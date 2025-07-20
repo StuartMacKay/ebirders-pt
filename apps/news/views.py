@@ -60,16 +60,13 @@ class LatestView(generic.TemplateView):
         elif is_county_code(code):
             county = County.objects.get(code=code)
 
-        context["interval"] = "latest"
-        context["code"] = county
+        context["code"] = code
         context["search"] = search
         context["country"] = country
         context["state"] = state
         context["county"] = county
         context["start_date"] = start_date
         context["end_date"] = end_date
-        context["start_year"] = start_date.replace(month=1, day=1)
-        context["end_year"] = end_date.replace(month=12, day=31)
         context["subtitle"] = subtitle
         context["translations"] = self.get_translations()
         context["notifications"] = Notification.objects.published()
@@ -170,16 +167,13 @@ class WeeklyView(generic.TemplateView):
         elif is_county_code(code):
             county = County.objects.get(code=code)
 
-        context["interval"] = "week"
-        context["code"] = county
+        context["code"] = code
         context["search"] = search
         context["country"] = country
         context["state"] = state
         context["county"] = county
         context["start_date"] = start_date
         context["end_date"] = end_date
-        context["start_year"] = start_date.replace(month=1, day=1)
-        context["end_year"] = end_date.replace(month=12, day=31)
         context["previous_year"] = previous_year
         context["previous_week"] = previous_week
         context["previous_label"] = previous_label
@@ -240,16 +234,13 @@ class MonthlyView(generic.TemplateView):
         elif is_county_code(code):
             county = County.objects.get(code=code)
 
-        context["interval"] = "month"
-        context["code"] = county
+        context["code"] = code
         context["search"] = search
         context["country"] = country
         context["state"] = state
         context["county"] = county
         context["start_date"] = start_date
         context["end_date"] = end_date
-        context["start_year"] = start_date.replace(month=1, day=1)
-        context["end_year"] = end_date.replace(month=12, day=31)
         context["previous_label"] = previous_label
         context["previous_year"] = previous_year
         context["previous_month"] = previous_month

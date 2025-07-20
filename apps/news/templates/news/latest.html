@@ -1,5 +1,5 @@
 {% extends "page.html" %}
-{% load i18n numbers static tables %}
+{% load cache i18n numbers static tables %}
 
 {% block title %}{% trans 'Latest News' %}{% endblock %}
 
@@ -59,11 +59,9 @@
       </div>
     </div>
 
-    {% high_counts_table %}
+    {% high_counts_table country state county start_date end_date %}
 
-    {% with year=end_date.year %}
-      {% yearlist_table %}
-    {% endwith %}
+    {% yearlist_table country state county start_date end_date %}
 
     {% big_lists_table country state county start_date end_date %}
 
@@ -72,7 +70,7 @@
         {% big_days_table country state county start_date end_date %}
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12 border-top">
-        {% big_week_month_table country state county start_date end_date interval%}
+        {% big_week_table country state county start_date end_date %}
       </div>
     </div>
 
