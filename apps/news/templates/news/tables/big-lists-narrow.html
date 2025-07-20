@@ -20,10 +20,7 @@
           {% if checklist.county %}
             <span>, {{ checklist.county }}</span>
           {% endif %}
-          {% if checklist.state %}
-            {% if checklist.county %}<span>, </span>{% endif %}
-            <span>{{ checklist.state }}</span>
-          {% endif %}
+          <span>, {{ checklist.state }}</span>
           <span>, {{ checklist.country }}</span>
       {% endspaceless %}</div>
       <div>

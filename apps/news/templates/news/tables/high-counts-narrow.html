@@ -22,14 +22,11 @@
             <div class="text-nowrap fst-italic">({{ observation.species.scientific_name }})</div>
           {% endspaceless %}</div>
           <div>{% spaceless %}
-              <span>{{ observation.location.name }}</span>
+              <span>{{ observation.location.name }}, </span>
               {% if observation.county %}
-                <span>, </span><span>{{ observation.county }}</span>
+                <span>{{ observation.county }}, </span>
               {% endif %}
-              {% if observation.state %}
-                {% if observation.county %}<span>, </span>{% endif %}
-                <span>{{ observation.state }}</span>
-              {% endif %}
+              <span>{{ observation.state }}, </span>
               <span>, {{ observation.country }}</span>
           {% endspaceless %}</div>
           <div>

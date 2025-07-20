@@ -41,13 +41,10 @@
               <div>{{ observation.location.name }}</div>
               <div>{% spaceless %}
                 {% if observation.county %}
-                  <small class="text-muted">{{ observation.county }}</small>
+                  <small class="text-muted">{{ observation.county }}, </small>
                 {% endif %}
-                {% if observation.state %}
-                  {% if observation.county %}<span>, </span>{% endif %}
-                  <small class="text-muted">{{ observation.state }}</small>
-                {% endif %}
-                <small class="text-muted">, {{ observation.country }}</small>
+                <small class="text-muted">{{ observation.state }}, </small>
+                <small class="text-muted">{{ observation.country }}</small>
               {% endspaceless %}</div>
             </td>
             <td>{{ observation.observer.name }}</td>

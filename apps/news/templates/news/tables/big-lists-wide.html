@@ -23,13 +23,10 @@
               <br/>
               {% spaceless %}
                 {% if checklist.county %}
-                  <small class="text-muted">{{ checklist.county }}</small>
+                  <small class="text-muted">{{ checklist.county }}, </small>
                 {% endif %}
-                {% if checklist.state %}
-                  {% if checklist.county %}<span>, </span>{% endif %}
-                  <small class="text-muted">{{ checklist.state }}</small>
-                {% endif %}
-                <small class="text-muted">, {{ checklist.country }}</small>
+                <small class="text-muted">{{ checklist.state }}, </small>
+                <small class="text-muted">{{ checklist.country }}</small>
               {% endspaceless %}
             </td>
             <td>
