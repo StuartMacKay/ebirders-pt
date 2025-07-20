@@ -12,9 +12,9 @@ log = logging.getLogger(__name__)
 
 
 @register.inclusion_tag("news/tables/big-lists.html")
-def big_lists_table(country_id, state_id, county_id, start, end):
+def big_lists(country_id, state_id, county_id, start, end):
     log.info(
-        "Generating big_lists_table: %s %s %s %s %s",
+        "Generating big_lists: %s %s %s %s %s",
         country_id,
         state_id,
         county_id,
@@ -46,9 +46,9 @@ def big_lists_table(country_id, state_id, county_id, start, end):
 
 
 @register.inclusion_tag("news/tables/checklists-completed.html")
-def checklists_completed_table(country_id, state_id, county_id, start, end):
+def checklists_completed(country_id, state_id, county_id, start, end):
     log.info(
-        "Generating checklists_completed_table: %s %s %s %s %s",
+        "Generating checklists_completed: %s %s %s %s %s",
         country_id,
         state_id,
         county_id,
@@ -83,9 +83,9 @@ def checklists_completed_table(country_id, state_id, county_id, start, end):
 
 
 @register.inclusion_tag("news/tables/time-spent-birding.html")
-def time_spent_birding_table(country_id, state_id, county_id, start, end):
+def time_spent_birding(country_id, state_id, county_id, start, end):
     log.info(
-        "Generating time_spent_birding_table: %s %s %s %s %s",
+        "Generating time_spent_birding: %s %s %s %s %s",
         country_id,
         state_id,
         county_id,
@@ -124,9 +124,9 @@ def time_spent_birding_table(country_id, state_id, county_id, start, end):
 
 
 @register.inclusion_tag("news/tables/big_week.html")
-def big_week_table(country_id, state_id, county_id, start, end):
+def big_week(country_id, state_id, county_id, start, end):
     log.info(
-        "Generating big_week_table: %s %s %s %s %s",
+        "Generating big_week: %s %s %s %s %s",
         country_id,
         state_id,
         county_id,
@@ -168,9 +168,9 @@ def big_week_table(country_id, state_id, county_id, start, end):
 
 
 @register.inclusion_tag("news/tables/big_month.html")
-def big_month_table(country_id, state_id, county_id, start, end):
+def big_month(country_id, state_id, county_id, start, end):
     log.info(
-        "Generating big_month_table: %s %s %s %s %s",
+        "Generating big_month: %s %s %s %s %s",
         country_id,
         state_id,
         county_id,
@@ -212,9 +212,9 @@ def big_month_table(country_id, state_id, county_id, start, end):
 
 
 @register.inclusion_tag("news/tables/yearlist.html")
-def yearlist_table(country_id, state_id, county_id, start, end):
+def yearlist(country_id, state_id, county_id, start, end):
     log.info(
-        "Generating yearlist_table: %s %s %s %s %s",
+        "Generating yearlist: %s %s %s %s %s",
         country_id,
         state_id,
         county_id,
@@ -278,9 +278,9 @@ def yearlist_table(country_id, state_id, county_id, start, end):
 
 
 @register.inclusion_tag("news/tables/big-days.html")
-def big_days_table(country_id, state_id, county_id, start, end):
+def big_days(country_id, state_id, county_id, start, end):
     log.info(
-        "Generating big_days_table: %s %s %s %s %s",
+        "Generating big_days: %s %s %s %s %s",
         country_id,
         state_id,
         county_id,
@@ -310,9 +310,9 @@ def big_days_table(country_id, state_id, county_id, start, end):
 
 
 @register.inclusion_tag("news/tables/high-counts.html")
-def high_counts_table(country_id, state_id, county_id, start, end):
+def high_counts(country_id, state_id, county_id, start, end):
     log.info(
-        "Generating high_counts_table: %s %s %s %s %s",
+        "Generating high_counts: %s %s %s %s %s",
         country_id,
         state_id,
         county_id,
