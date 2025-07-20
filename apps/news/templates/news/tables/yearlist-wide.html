@@ -60,9 +60,7 @@
             </tr>
             {% if not observation.approved %}
               <tr class="border-top-0">
-                <td></td>
-                <td></td>
-                <td colspan="4" class="pt-0">
+                <td colspan="6" class="pt-0">
                   <i class="bi bi-flag-fill text-danger me-1"></i>
                   <span class="fst-italic">{{ observation.get_reason }}</span>
                 </td>
