@@ -1,16 +1,27 @@
+import logging
+
 from django import template
 from django.db.models import Case, Count, F, Q, Sum, When
 from django.utils.translation import gettext_lazy as _
 
 from dateutil.relativedelta import relativedelta
-
 from ebird.api.data.models import Checklist, Observation, Observer
 
 register = template.Library()
+log = logging.getLogger(__name__)
 
 
 @register.inclusion_tag("news/tables/big-lists.html")
 def big_lists_table(country_id, state_id, county_id, start, end):
+    log.info(
+        "Generating big_lists_table: %s %s %s %s %s",
+        country_id,
+        state_id,
+        county_id,
+        start,
+        end,
+    )
+
     queryset = Checklist.objects.filter(published=True, date__gte=start, date__lte=end)
 
     if country_id:
@@ -36,6 +47,15 @@ def big_lists_table(country_id, state_id, county_id, start, end):
 
 @register.inclusion_tag("news/tables/checklists-completed.html")
 def checklists_completed_table(country_id, state_id, county_id, start, end):
+    log.info(
+        "Generating checklists_completed_table: %s %s %s %s %s",
+        country_id,
+        state_id,
+        county_id,
+        start,
+        end,
+    )
+
     queryset = Checklist.objects.filter(published=True, date__gte=start, date__lte=end)
 
     if country_id:
@@ -64,6 +84,15 @@ def checklists_completed_table(country_id, state_id, county_id, start, end):
 
 @register.inclusion_tag("news/tables/time-spent-birding.html")
 def time_spent_birding_table(country_id, state_id, county_id, start, end):
+    log.info(
+        "Generating time_spent_birding_table: %s %s %s %s %s",
+        country_id,
+        state_id,
+        county_id,
+        start,
+        end,
+    )
+
     queryset = Checklist.objects.filter(published=True, date__gte=start, date__lte=end)
 
     if country_id:
@@ -96,6 +125,15 @@ def time_spent_birding_table(country_id, state_id, county_id, start, end):
 
 @register.inclusion_tag("news/tables/big_week.html")
 def big_week_table(country_id, state_id, county_id, start, end):
+    log.info(
+        "Generating big_week_table: %s %s %s %s %s",
+        country_id,
+        state_id,
+        county_id,
+        start,
+        end,
+    )
+
     filters = Q(observations__date__gte=start)
     filters &= Q(observations__date__lte=end)
     filters &= Q(observations__species__category="species")
@@ -131,6 +169,15 @@ def big_week_table(country_id, state_id, county_id, start, end):
 
 @register.inclusion_tag("news/tables/big_month.html")
 def big_month_table(country_id, state_id, county_id, start, end):
+    log.info(
+        "Generating big_month_table: %s %s %s %s %s",
+        country_id,
+        state_id,
+        county_id,
+        start,
+        end,
+    )
+
     filters = Q(observations__date__gte=start)
     filters &= Q(observations__date__lte=end)
     filters &= Q(observations__species__category="species")
@@ -166,6 +213,14 @@ def big_month_table(country_id, state_id, county_id, start, end):
 
 @register.inclusion_tag("news/tables/yearlist.html")
 def yearlist_table(country_id, state_id, county_id, start, end):
+    log.info(
+        "Generating yearlist_table: %s %s %s %s %s",
+        country_id,
+        state_id,
+        county_id,
+        start,
+        end,
+    )
 
     start_year = start.replace(month=1, day=1)
     end_year = end.replace(month=12, day=31)
@@ -193,11 +248,7 @@ def yearlist_table(country_id, state_id, county_id, start, end):
 
     total = len(year_list)
 
-    ids = [
-        entry[0]
-        for entry in year_list
-        if start <= entry[2] <= end
-    ]
+    ids = [entry[0] for entry in year_list if start <= entry[2] <= end]
 
     related = [
         "checklist",
@@ -228,6 +279,15 @@ def yearlist_table(country_id, state_id, county_id, start, end):
 
 @register.inclusion_tag("news/tables/big-days.html")
 def big_days_table(country_id, state_id, county_id, start, end):
+    log.info(
+        "Generating big_days_table: %s %s %s %s %s",
+        country_id,
+        state_id,
+        county_id,
+        start,
+        end,
+    )
+
     queryset = (
         Observation.objects.values("observer__identifier", "date")
         .annotate(name=F("observer__name"))
@@ -251,6 +311,15 @@ def big_days_table(country_id, state_id, county_id, start, end):
 
 @register.inclusion_tag("news/tables/high-counts.html")
 def high_counts_table(country_id, state_id, county_id, start, end):
+    log.info(
+        "Generating high_counts_table: %s %s %s %s %s",
+        country_id,
+        state_id,
+        county_id,
+        start,
+        end,
+    )
+
     filters = Q(published=True)
 
     if country_id:

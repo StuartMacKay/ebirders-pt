@@ -1,3 +1,5 @@
+import logging
+
 from django import template
 from django.db.models import Sum
 from django.utils.translation import gettext_lazy as _
@@ -5,10 +7,20 @@ from django.utils.translation import gettext_lazy as _
 from ebird.api.data.models import Checklist, Observation
 
 register = template.Library()
+log = logging.getLogger(__name__)
 
 
 @register.inclusion_tag("news/numbers/number.html")
 def species_count(country_id, state_id, county_id, start, end):
+    log.info(
+        "Generating species_count: %s %s %s %s %s",
+        country_id,
+        state_id,
+        county_id,
+        start,
+        end,
+    )
+
     queryset = Observation.objects.filter(date__gte=start, date__lte=end).filter(
         species__category="species"
     )
@@ -30,6 +42,14 @@ def species_count(country_id, state_id, county_id, start, end):
 
 @register.inclusion_tag("news/numbers/number.html")
 def checklist_count(country_id, state_id, county_id, start, end):
+    log.info(
+        "Generating checklist_count: %s %s %s %s %s",
+        country_id,
+        state_id,
+        county_id,
+        start,
+        end,
+    )
     queryset = Checklist.objects.filter(published=True, date__gte=start, date__lte=end)
 
     if country_id:
@@ -49,6 +69,15 @@ def checklist_count(country_id, state_id, county_id, start, end):
 
 @register.inclusion_tag("news/numbers/number.html")
 def observer_count(country_id, state_id, county_id, start, end):
+    log.info(
+        "Generating observer_count: %s %s %s %s %s",
+        country_id,
+        state_id,
+        county_id,
+        start,
+        end,
+    )
+
     queryset = Checklist.objects.filter(published=True, date__gte=start, date__lte=end)
 
     if country_id:
@@ -68,6 +97,15 @@ def observer_count(country_id, state_id, county_id, start, end):
 
 @register.inclusion_tag("news/numbers/number.html")
 def duration_count(country_id, state_id, county_id, start, end):
+    log.info(
+        "Generating duration_count: %s %s %s %s %s",
+        country_id,
+        state_id,
+        county_id,
+        start,
+        end,
+    )
+
     queryset = Checklist.objects.filter(published=True, date__gte=start, date__lte=end)
 
     if country_id:
