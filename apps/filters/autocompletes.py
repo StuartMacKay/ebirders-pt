@@ -15,7 +15,7 @@ class StateList(autocomplete.Select2ListView):
     def get_list(self):
         queryset = State.objects.all().values_list("code", "name")
         if countries := self.forwarded.get("country"):
-            queryset = queryset.filter(code__in=countries)
+            queryset = queryset.filter(code__startswith=countries)
         return queryset
 
 

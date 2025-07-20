@@ -95,13 +95,6 @@ class LocationFilter(FilterForm):
         "hotspot": "location__hotspot",
     }
 
-    def __init__(self, *args, **kwargs):
-        show_country = kwargs.pop("show_country")
-        super().__init__(*args, **kwargs)
-
-        if not show_country:
-            self.fields["country"].widget = forms.HiddenInput()
-
 
 class ObserverFilter(FilterForm):
     form_id = "observer"

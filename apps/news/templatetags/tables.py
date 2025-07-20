@@ -10,7 +10,7 @@ register = template.Library()
 
 
 @register.inclusion_tag("news/tables/big-lists.html")
-def big_lists_table(country_id, state_id, county_id, start, end, show_country):
+def big_lists_table(country_id, state_id, county_id, start, end):
     queryset = Checklist.objects.filter(published=True, date__gte=start, date__lte=end)
 
     if country_id:
@@ -20,10 +20,7 @@ def big_lists_table(country_id, state_id, county_id, start, end, show_country):
     elif county_id:
         queryset = queryset.filter(county_id=county_id)
 
-    related = ["state", "county", "location", "observer"]
-
-    if show_country:
-        related.append("country")
+    related = ["state", "county", "location", "observer", "country"]
 
     checklists = queryset.select_related(*related).order_by("-species_count", "-date")[
         :10
@@ -189,7 +186,6 @@ def yearlist_table(context):
         "end_year": context["end_year"],
         "observations": observations,
         "total": total,
-        "show_country": context["show_country"],
     }
 
 
@@ -261,5 +257,4 @@ def high_counts_table(context):
 
     return {
         "observations": high_counts,
-        "show_country": context["show_country"],
     }

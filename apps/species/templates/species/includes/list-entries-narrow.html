@@ -40,12 +40,10 @@
            href="{% querystring state=observation.state.code county=None location=None %}"
            title="{% trans 'Show species for this state' %}">{{ observation.state.name }}</a>
       {% endif %}
-      {% if show_country %}
-        <a class="dark-link"
-           rel="nofollow"
-           href="{% querystring country=observation.country.code state=None county=None location=None %}"
-           title="{% trans 'Show species for this country' %}">{{ observation.country }}</a>
-      {% endif %}
+      <a class="dark-link"
+         rel="nofollow"
+         href="{% querystring country=observation.country.code state=None county=None location=None %}"
+         title="{% trans 'Show species for this country' %}">{{ observation.country }}</a>
     {% endspaceless %}</div>
     <div>
       <a class="dark-link me-3"

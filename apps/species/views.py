@@ -31,16 +31,8 @@ class SpeciesView(FilteredListView):
     template_name = "species/list.html"
     url = "species:list"
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.extra["location"] = {"show_country": self.show_country}
-
     def get_url(self):
         return reverse(self.url)
-
-    @cached_property
-    def show_country(self):
-        return Country.objects.all().count() > 1
 
     def get_related(self):  # noqa
         return [
@@ -105,7 +97,6 @@ class SpeciesView(FilteredListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["show_country"] = self.show_country
         context["translations"] = self.get_translated_urls()
         context["species_column_title"] = self.get_species_column_title()
         context["date_column_title"] = self.get_date_column_title()

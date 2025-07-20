@@ -31,16 +31,8 @@ class ObservationsView(FilteredListView):
     paginate_by = 100
     url = "observations:list"
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.extra["location"] = {"show_country": self.show_country}
-
     def get_url(self):
         return reverse(self.url)
-
-    @cached_property
-    def show_country(self):
-        return Country.objects.all().count() > 1
 
     def get_related(self):  # noqa
         return ["country", "state", "county", "location", "observer", "species"]
@@ -54,6 +46,5 @@ class ObservationsView(FilteredListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["show_country"] = self.show_country
         context["translations"] = self.get_translated_urls()
         return context

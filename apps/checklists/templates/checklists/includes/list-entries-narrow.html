@@ -32,12 +32,10 @@
                href="{% querystring state=checklist.state.code county=None location=None %}"
                title="{% trans 'Show checklists for this state' %}">{{ checklist.state.name }}</a>
         {% endif %}
-        {% if show_country %}
-          <a class="dark-link"
-             rel="nofollow"
-             href="{% querystring country=checklist.country.code state=None county=None location=None %}"
-             title="{% trans 'Show checklists for this country' %}">{{ checklist.country }}</a>
-        {% endif %}
+        <a class="dark-link"
+           rel="nofollow"
+           href="{% querystring country=checklist.country.code state=None county=None location=None %}"
+           title="{% trans 'Show checklists for this country' %}">{{ checklist.country }}</a>
     {% endspaceless %}</div>
     <div>
       <a class="dark-link me-3"

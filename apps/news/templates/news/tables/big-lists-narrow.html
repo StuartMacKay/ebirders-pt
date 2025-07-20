@@ -24,9 +24,7 @@
             {% if checklist.county %}<span>, </span>{% endif %}
             <span>{{ checklist.state }}</span>
           {% endif %}
-          {% if show_country %}
-            <span>, {{ checklist.country }}</span>
-          {% endif %}
+          <span>, {{ checklist.country }}</span>
       {% endspaceless %}</div>
       <div>
         <span class="me-3">{{ checklist.observer.name }}</span>

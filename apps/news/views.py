@@ -71,7 +71,6 @@ class LatestView(generic.TemplateView):
         context["start_year"] = start_date.replace(month=1, day=1)
         context["end_year"] = end_date.replace(month=12, day=31)
         context["subtitle"] = subtitle
-        context["show_country"] = Country.objects.count() > 1
         context["translations"] = self.get_translations()
         context["notifications"] = Notification.objects.published()
         return context
@@ -188,7 +187,6 @@ class WeeklyView(generic.TemplateView):
         context["next_week"] = next_week
         context["next_label"] = next_label
         context["subtitle"] = subtitle
-        context["show_country"] = Country.objects.count() > 1
         context["translations"] = self.get_translations(year, week)
 
         return context
@@ -259,7 +257,6 @@ class MonthlyView(generic.TemplateView):
         context["next_year"] = next_year
         context["next_month"] = next_month
         context["subtitle"] = subtitle
-        context["show_country"] = Country.objects.count() > 1
         context["translations"] = self.get_translations(year, month)
 
         return context

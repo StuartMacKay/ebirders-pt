@@ -25,9 +25,7 @@
             {% if observation.county %}<span>, </span>{% endif %}
             <span>{{ observation.state }}</span>
           {% endif %}
-          {% if show_country %}
-            <span>, {{ observation.country }}</span>
-          {% endif %}
+          <span>, {{ observation.country }}</span>
       {% endspaceless %}</div>
       <div>
         <span class="me-3">{{ observation.observer.name }}</span>
