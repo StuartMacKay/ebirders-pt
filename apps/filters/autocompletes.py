@@ -15,7 +15,10 @@ class StateList(autocomplete.Select2ListView):
     def get_list(self):
         queryset = State.objects.all().values_list("code", "name")
         if countries := self.forwarded.get("country"):
-            queryset = queryset.filter(code__startswith=countries)
+            filters = Q()
+            for country in countries:
+                filters |= Q(code__startswith=country)
+            queryset = queryset.filter(filters)
         return queryset
 
 
@@ -27,8 +30,11 @@ class CountyList(autocomplete.Select2ListView):
             for state in states:
                 filters |= Q(code__startswith=state)
             queryset = queryset.filter(filters)
-        elif country := self.forwarded.get("country"):
-            queryset = queryset.filter(code__startswith=country)
+        elif countries := self.forwarded.get("country"):
+            filters = Q()
+            for country in countries:
+                filters |= Q(code__startswith=country)
+            queryset = queryset.filter(filters)
         return queryset
 
 
@@ -40,7 +46,7 @@ class LocationList(autocomplete.Select2ListView):
         elif states := self.forwarded.get("state"):
             queryset = queryset.filter(state__code__in=states)
         elif country := self.forwarded.get("country"):
-            queryset = queryset.filter(country__code=country)
+            queryset = queryset.filter(country__code__in=country)
         return queryset
 
 

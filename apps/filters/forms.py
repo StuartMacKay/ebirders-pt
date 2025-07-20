@@ -32,14 +32,14 @@ class LocationFilter(FilterForm):
         label=_("Country"),
         required=False,
         queryset=Country.objects.all(),
-        widget=autocomplete.Select2(
+        widget=autocomplete.Select2Multiple(
             url="filters:countries",
             attrs={"placeholder": _("Select one or more countries")},
         ),
     )
 
     state = forms.ModelMultipleChoiceField(
-        label=_("State"),
+        label=_("Statge"),
         required=False,
         queryset=State.objects.all(),
         widget=autocomplete.Select2Multiple(
@@ -88,7 +88,7 @@ class LocationFilter(FilterForm):
     )
 
     filters = {
-        "country": "country",
+        "country": "country__in",
         "state": "state__in",
         "county": "county__in",
         "location": "location__in",
