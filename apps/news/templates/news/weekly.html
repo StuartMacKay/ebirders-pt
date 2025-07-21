@@ -4,6 +4,8 @@
 {% block title %}{% trans 'Latest News' %}{% endblock %}
 
 {% block content %}
+{% get_current_language as language_code %}
+
   <div class="container-fluid">
 
     <div class="row border-bottom align-items-baseline">
@@ -51,7 +53,7 @@
       </div>
     </div>
 
-    {% cache CACHE_TTL_SHORT "counts" country state county start_date end_date %}
+    {% cache CACHE_TTL_SHORT "counts" country state county start_date end_date language_code %}
       <div class="row border-bottom">
         <div class="col-md-3 col-sm-6 col-6 my-3">
           {% species_count country state county start_date end_date %}
@@ -68,26 +70,26 @@
       </div>
       {% endcache %}
 
-    {% cache CACHE_TTL_MEDIUM "high_counts" country state county start_date end_date %}
+    {% cache CACHE_TTL_MEDIUM "high_counts" country state county start_date end_date language_code %}
       {% high_counts country state county start_date end_date %}
     {% endcache %}
 
-    {% cache CACHE_TTL_LONG "yearlist" country state county start_date end_date %}
+    {% cache CACHE_TTL_LONG "yearlist" country state county start_date end_date language_code %}
       {% yearlist country state county start_date end_date %}
     {% endcache %}
 
-    {% cache CACHE_TTL_LONG "big_lists" country state county start_date end_date %}
+    {% cache CACHE_TTL_LONG "big_lists" country state county start_date end_date language_code %}
       {% big_lists country state county start_date end_date %}
     {% endcache %}
 
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12 border-top">
-        {% cache CACHE_TTL_LONG "big_days" country state county start_date end_date %}
+        {% cache CACHE_TTL_LONG "big_days" country state county start_date end_date language_code %}
           {% big_days country state county start_date end_date %}
         {% endcache %}
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12 border-top">
-        {% cache CACHE_TTL_LONG "big_week" country state county start_date end_date %}
+        {% cache CACHE_TTL_LONG "big_week" country state county start_date end_date language_code %}
           {% big_week country state county start_date end_date %}
         {% endcache %}
       </div>
@@ -95,12 +97,12 @@
 
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12 border-top">
-        {% cache CACHE_TTL_LONG  "checklists_completed" country state county start_date end_date %}
+        {% cache CACHE_TTL_LONG  "checklists_completed" country state county start_date end_date language_code %}
           {% checklists_completed country state county start_date end_date %}
         {% endcache %}
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12 border-top">
-        {% cache CACHE_TTL_LONG  "time_spent_birding" country state county start_date end_date %}
+        {% cache CACHE_TTL_LONG  "time_spent_birding" country state county start_date end_date language_code %}
           {% time_spent_birding country state county start_date end_date %}
         {% endcache %}
       </div>
