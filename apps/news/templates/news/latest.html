@@ -68,7 +68,7 @@
     {% endcache %}
 
     {% cache CACHE_TTL_LONG "yearlist" country state county start_date end_date language_code %}
-      {% yearlist country state county start_date end_date %}
+      {% year_list country state county start_date end_date %}
     {% endcache %}
 
     {% cache CACHE_TTL_LONG "big_lists" country state county start_date end_date language_code %}
@@ -82,8 +82,8 @@
         {% endcache %}
       </div>
       <div class="col-lg-6 col-md-6 col-sm-12 border-top">
-        {% cache CACHE_TTL_LONG "big_week" country state county start_date end_date language_code %}
-          {% big_week country state county start_date end_date %}
+        {% cache CACHE_TTL_LONG "observer_species_latest" country state county start_date end_date language_code %}
+          {% observer_species_latest country state county start_date end_date %}
         {% endcache %}
       </div>
     </div>
