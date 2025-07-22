@@ -7,12 +7,6 @@ a concise history of changes made.
 
 ## Latest
 
-## 2025.07.22.1
-
-## 2025.07.22
-
-## 2025.07.21
-
 ## 2025.07.17
 - Updated regular expressions used to clean the name when a Location is added.
 
