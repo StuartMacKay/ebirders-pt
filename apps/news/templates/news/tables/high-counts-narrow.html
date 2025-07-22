@@ -24,10 +24,22 @@
           <div>{% spaceless %}
               <span>{{ observation.location.name }}</span>
               {% if observation.county %}
-                <span>, {{ observation.county }}</span>
+                <span>, </span>
+                <a class="dark-link"
+                   rel="nofollow"
+                   href="{% querystring code=observation.county.code search=observation.county.name %}"
+                   title="{% trans 'Show news for this county' %}">{{ observation.county.name }}</a>
               {% endif %}
-              <span>, {{ observation.state }}</span>
-              <span>, {{ observation.country }}</span>
+              <span>, </span>
+              <a class="dark-link"
+                 rel="nofollow"
+                 href="{% querystring code=observation.state.code search=observation.state.name %}"
+                 title="{% trans 'Show news for this state' %}">{{ observation.state.name }}</a>
+              <span>, </span>
+              <a class="dark-link"
+                 rel="nofollow"
+                 href="{% querystring code=observation.country.code search=observation.country.name %}"
+                 title="{% trans 'Show news for this country' %}">{{ observation.country.name }}</a>
           {% endspaceless %}</div>
           <div>
             <span class="me-3">{{ observation.observer.name }}</span>

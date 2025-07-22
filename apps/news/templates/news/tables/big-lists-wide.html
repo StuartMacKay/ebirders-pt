@@ -23,10 +23,27 @@
               <br/>
               {% spaceless %}
                 {% if checklist.county %}
-                  <small class="text-muted">{{ checklist.county }}, </small>
+                  <small class="text-muted">
+                    <a class="dark-link"
+                       rel="nofollow"
+                       href="{% querystring code=checklist.county.code search=checklist.county.name %}"
+                       title="{% trans 'Show news for this county' %}">{{ checklist.county.name }}</a>
+                    <span>, </span>
+                  </small>
                 {% endif %}
-                <small class="text-muted">{{ checklist.state }}, </small>
-                <small class="text-muted">{{ checklist.country }}</small>
+                <small class="text-muted">
+                  <a class="dark-link"
+                     rel="nofollow"
+                     href="{% querystring code=checklist.state.code search=checklist.state.name %}"
+                     title="{% trans 'Show news for this state' %}">{{ checklist.state.name }}</a>
+                  <span>, </span>
+                </small>
+                <small class="text-muted">
+                  <a class="dark-link"
+                     rel="nofollow"
+                     href="{% querystring code=checklist.country.code search=checklist.country.name %}"
+                     title="{% trans 'Show news for this country' %}">{{ checklist.country.name }}</a>
+                </small>
               {% endspaceless %}
             </td>
             <td>

@@ -6,12 +6,7 @@ This project uses calendar versioning, https://calver.org/, and this log provide
 a concise history of changes made.
 
 ## Latest
-
-## 2025.07.22.4
-
-## 2025.07.22.3
-
-## 2025.07.22.2
+- Add links show the news for a given county, state or country.
 
 ## 2025.07.17
 - Updated regular expressions used to clean the name when a Location is added.
