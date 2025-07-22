@@ -17,12 +17,12 @@
         </span>
       </div>
       <div>{% spaceless %}
-          <span>{{ observation.location.name }}, </span>
-          {% if observation.county %}
-            <span>{{ observation.county }}, </span>
-          {% endif %}
-            <span>{{ observation.state }}, </span>
-          <span>, {{ observation.country }}</span>
+        <span>{{ observation.location.name }}</span>
+        {% if observation.county %}
+          <span>, {{ observation.county }}</span>
+        {% endif %}
+        <span>, {{ observation.state }}</span>
+        <span>, {{ observation.country }}</span>
       {% endspaceless %}</div>
       <div>
         <span class="me-3">{{ observation.observer.name }}</span>
