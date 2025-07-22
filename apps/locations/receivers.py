@@ -33,7 +33,7 @@ country_regex = r"^(.*), PT$"
 # Country code (hard-wired to PT), followed by the region name,
 # which might be in any language. The initial part of the name
 # is captured in a group for the next step.
-region_regex = r"^(.*) PT-\w+$"
+region_regex = r"^(.*) PT-[\w\s]+$"
 
 
 def remove_coordinates(name: str) -> str:
