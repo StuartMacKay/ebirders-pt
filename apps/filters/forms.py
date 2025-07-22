@@ -39,7 +39,7 @@ class LocationFilter(FilterForm):
     )
 
     state = forms.ModelMultipleChoiceField(
-        label=_("Statge"),
+        label=_("State"),
         required=False,
         queryset=State.objects.all(),
         widget=autocomplete.Select2Multiple(
