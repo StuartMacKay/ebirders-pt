@@ -7,8 +7,9 @@ a concise history of changes made.
 
 ## Latest
 
-## 2025.07.22.5
-- Add links show the news for a given county, state or country.
+## 2025.07.22
+- Add links to the News pages (Latest, Weekly, Monthly) so you can easily see the 
+  news for a given county, state or country.
 
 ## 2025.07.17
 - Updated regular expressions used to clean the name when a Location is added.
