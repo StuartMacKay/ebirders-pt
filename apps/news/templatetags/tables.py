@@ -247,12 +247,12 @@ def observer_species_monthly(country_id, state_id, county_id, start, end):
 
 
 @register.inclusion_tag("news/tables/year-list.html")
-def year_list(country_id, state_id, county_id, start, end):
+def year_list(country, state, county, start, end):
     log.info(
         "Generating yearlist: %s %s %s %s %s",
-        country_id,
-        state_id,
-        county_id,
+        country,
+        state,
+        county,
         start,
         end,
     )
@@ -262,12 +262,12 @@ def year_list(country_id, state_id, county_id, start, end):
 
     filters = Q(date__gte=start_year) & Q(date__lte=end_year)
 
-    if country_id:
-        filters &= Q(country_id=country_id)
-    elif state_id:
-        filters &= Q(state_id=state_id)
-    elif county_id:
-        filters &= Q(county_id=county_id)
+    if country:
+        filters &= Q(country_id=country.pk)
+    elif state:
+        filters &= Q(state_id=state.pk)
+    elif county:
+        filters &= Q(county_id=county.pk)
 
     records = (
         YearList.objects.values_list("identifier", "date")
@@ -297,9 +297,9 @@ def year_list(country_id, state_id, county_id, start, end):
     )
 
     return {
-        "country": country_id,
-        "state": state_id,
-        "county": county_id,
+        "country_code": country.code if country else None,
+        "state_code": state.code if state else None,
+        "county_code": county.code if county else None,
         "start_year": start_year,
         "end_year": end_year,
         "observations": observations,
