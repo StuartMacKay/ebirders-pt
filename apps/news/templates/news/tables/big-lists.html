@@ -6,7 +6,7 @@
       <span class="me-3">{{ title }}</span>
       <a class="dark-link"
          rel="nofollow"
-         href="{% url 'checklists:list' %}{% querystring start=start|date:"Y-m-d" finish=finish|date:"Y-m-d" order="-species_count,-started" %}"
+         href="{% url 'checklists:list' %}{% querystring country=country_code state=state_code county=county_code start=start|date:"Y-m-d" finish=finish|date:"Y-m-d" order="-species_count,-started" code=None search=None %}"
          title="{% trans 'View more' %}">
         <i class="bi bi-box-arrow-in-down-right fs-5"></i>
       </a>

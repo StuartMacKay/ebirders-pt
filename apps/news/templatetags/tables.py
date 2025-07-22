@@ -16,24 +16,24 @@ log = logging.getLogger(__name__)
 
 
 @register.inclusion_tag("news/tables/big-lists.html")
-def big_lists(country_id, state_id, county_id, start, end):
+def big_lists(country, state, county, start, end):
     log.info(
         "Generating big_lists: %s %s %s %s %s",
-        country_id,
-        state_id,
-        county_id,
+        country,
+        state,
+        county,
         start,
         end,
     )
 
     queryset = Checklist.objects.filter(published=True, date__gte=start, date__lte=end)
 
-    if country_id:
-        queryset = queryset.filter(country_id=country_id)
-    elif state_id:
-        queryset = queryset.filter(state_id=state_id)
-    elif county_id:
-        queryset = queryset.filter(county_id=county_id)
+    if country:
+        queryset = queryset.filter(country_id=country.pk)
+    elif state:
+        queryset = queryset.filter(state_id=state.pk)
+    elif county:
+        queryset = queryset.filter(county_id=county.pk)
 
     related = ["state", "county", "location", "observer", "country"]
 
@@ -43,6 +43,9 @@ def big_lists(country_id, state_id, county_id, start, end):
 
     return {
         "title": _("Big Lists"),
+        "country_code": country.code if country else None,
+        "state_code": state.code if state else None,
+        "county_code": county.code if county else None,
         "checklists": checklists,
         "start": start,
         "finish": end,
