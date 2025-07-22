@@ -113,6 +113,16 @@ def rename_roads(name):
     return name
 
 
+def rename_unknown(name):
+    # Sometimes the name is just the country code and the coordinates.
+    # remove_country expects a leading space, which won't be present.
+    # It's simpler to check for the name to consist of a country code
+    # rather than changes the regexes and check for an empty string.
+    if name == "PT":
+        name = "Localidade Desconhecida"
+    return name
+
+
 def generate_name(name) -> str:
     cleaned = remove_coordinates(name)
     cleaned = remove_country(cleaned)
@@ -122,6 +132,7 @@ def generate_name(name) -> str:
     cleaned = remove_freguesias(cleaned)
     cleaned = remove_duplicates(cleaned)
     cleaned = rename_roads(cleaned)
+    cleaned = rename_unknown(cleaned)
     return cleaned
 
 
