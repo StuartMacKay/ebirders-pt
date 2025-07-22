@@ -138,4 +138,5 @@ def generate_name(name) -> str:
 
 @receiver(pre_save, sender=Location)
 def set_location_name(sender, instance, **kwargs):
-    instance.name = generate_name(instance.original)
+    if instance.created is None:
+        instance.name = generate_name(instance.original)
