@@ -35,6 +35,10 @@ country_regex = r"^(.*), PT$"
 # is captured in a group for the next step.
 region_regex = r"^(.*) PT-[\w\s]+$"
 
+# Road names (numbers) often have a space between the code for
+# road type and the number - remove it.
+road_regex = r"^(A|CM|M|N|IP) ([0-9\-]{1,5},? )(.*)"
+
 
 def remove_coordinates(name: str) -> str:
     if re.match(coordinates_regex, name):
@@ -103,6 +107,12 @@ def remove_freguesias(name):
     return name
 
 
+def rename_roads(name):
+    if re.match(road_regex, name):
+        name = re.sub(road_regex, r"\1\2\3", name)
+    return name
+
+
 def generate_name(name) -> str:
     cleaned = remove_coordinates(name)
     cleaned = remove_country(cleaned)
@@ -111,6 +121,7 @@ def generate_name(name) -> str:
     cleaned = remove_access(cleaned)
     cleaned = remove_freguesias(cleaned)
     cleaned = remove_duplicates(cleaned)
+    cleaned = rename_roads(cleaned)
     return cleaned
 
 
