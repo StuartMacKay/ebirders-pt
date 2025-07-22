@@ -6,7 +6,7 @@
       <span class="me-3">{% trans 'Year List' %}</span>
       <a class="dark-link"
          rel="nofollow"
-         href="{% url 'species:list' %}{% querystring state=state county=county category="species" start=start_year finish=end_year code=None search=None week=None %}"
+         href="{% url 'species:list' %}{% querystring country=country.code state=state.code county=county.code category="species" start=start_year finish=end_year code=None search=None week=None %}"
          title="{% trans 'View Yearlist' %}">
         <i class="bi bi-box-arrow-in-down-right fs-5"></i>
       </a>
