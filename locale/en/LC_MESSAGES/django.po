@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-22 13:17+0000\n"
+"POT-Creation-Date: 2025-07-24 21:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,19 +58,19 @@ msgid "Show checklists for this observer"
 msgstr "Show checklists for this observer"
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:48
-#: apps/filters/forms.py:371
+#: apps/filters/forms.py:364
 msgid "Number of species"
 msgstr "Number of species"
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:53
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:68
-#: apps/filters/forms.py:278
+#: apps/filters/forms.py:271
 msgid "Complete"
 msgstr "Complete"
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:55
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:70
-#: apps/filters/forms.py:279
+#: apps/filters/forms.py:272
 msgid "Incomplete"
 msgstr "Incomplete"
 
@@ -81,25 +81,21 @@ msgstr "Number of Observers"
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:72
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:91
-#: apps/filters/forms.py:261
 msgid "Stationary"
 msgstr "Stationary"
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:81
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:95
-#: apps/filters/forms.py:260
 msgid "Travelling"
 msgstr "Travelling"
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:86
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:97
-#, python-format
-msgid "%(distance)s km,"
-msgstr "%(distance)s km,"
+msgid "%(distance)s km"
+msgstr "%(distance)s km"
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:92
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:101
-#: apps/filters/forms.py:263
 msgid "Incidental"
 msgstr "Incidental"
 
@@ -144,7 +140,7 @@ msgid "species.plural"
 msgstr "Species"
 
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:7
-#: apps/filters/forms.py:68
+#: apps/filters/forms.py:69
 #: apps/news/templates/news/tables/big-lists-wide.html:9
 #: apps/news/templates/news/tables/high-counts-wide.html:11
 #: apps/news/templates/news/tables/year-list-wide.html:11
@@ -154,12 +150,12 @@ msgid "Location"
 msgstr "Location"
 
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:8
-#: apps/filters/forms.py:258
+#: apps/filters/forms.py:259
 msgid "Protocol"
 msgstr "Protocol"
 
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:9
-#: apps/filters/forms.py:104 apps/news/templates/news/tables/big-days.html:14
+#: apps/filters/forms.py:105 apps/news/templates/news/tables/big-days.html:14
 #: apps/news/templates/news/tables/big-lists-wide.html:8
 #: apps/news/templates/news/tables/checklists-completed.html:13
 #: apps/news/templates/news/tables/high-counts-wide.html:12
@@ -301,190 +297,166 @@ msgstr "Your message could not be sent. Please try again later."
 msgid "filters"
 msgstr "filters"
 
-#: apps/filters/forms.py:29
+#: apps/filters/forms.py:30
 msgid "By Location"
 msgstr "By Location"
 
-#: apps/filters/forms.py:32
+#: apps/filters/forms.py:33
 msgid "Country"
 msgstr "Country"
 
-#: apps/filters/forms.py:37
+#: apps/filters/forms.py:38
 msgid "Select one or more countries"
 msgstr "Select one or more countries"
 
-#: apps/filters/forms.py:42
+#: apps/filters/forms.py:43
 msgid "State"
 msgstr "District"
 
-#: apps/filters/forms.py:49
+#: apps/filters/forms.py:50
 msgid "Select one or more states"
 msgstr "Select one or more districts"
 
-#: apps/filters/forms.py:55
+#: apps/filters/forms.py:56
 msgid "County"
 msgstr "County"
 
-#: apps/filters/forms.py:62
+#: apps/filters/forms.py:63
 msgid "Select one or more counties"
 msgstr "Select one or more counties"
 
-#: apps/filters/forms.py:75
+#: apps/filters/forms.py:76
 msgid "Select one or more locations"
 msgstr "Select one or more locations"
 
-#: apps/filters/forms.py:81
+#: apps/filters/forms.py:82
 msgid "Hotspots only"
 msgstr "Hotspots only"
 
-#: apps/filters/forms.py:83 apps/filters/forms.py:311 apps/filters/forms.py:322
-#: apps/filters/forms.py:333
+#: apps/filters/forms.py:84 apps/filters/forms.py:304 apps/filters/forms.py:315
+#: apps/filters/forms.py:326
 msgid "No"
 msgstr "No"
 
-#: apps/filters/forms.py:84 apps/filters/forms.py:310 apps/filters/forms.py:321
-#: apps/filters/forms.py:332
+#: apps/filters/forms.py:85 apps/filters/forms.py:303 apps/filters/forms.py:314
+#: apps/filters/forms.py:325
 msgid "Yes"
 msgstr "Yes"
 
-#: apps/filters/forms.py:101
+#: apps/filters/forms.py:102
 msgid "By Observer"
 msgstr "By Observer"
 
-#: apps/filters/forms.py:120
+#: apps/filters/forms.py:121
 msgid "By Species"
 msgstr "By Species"
 
-#: apps/filters/forms.py:123
+#: apps/filters/forms.py:124
 msgid "Common name"
 msgstr "Common name"
 
-#: apps/filters/forms.py:133
+#: apps/filters/forms.py:134
 msgid "Scientific name"
 msgstr "Scientific name"
 
-#: apps/filters/forms.py:143 apps/filters/forms.py:193
+#: apps/filters/forms.py:144 apps/filters/forms.py:194
 msgid "Family"
 msgstr "Family"
 
-#: apps/filters/forms.py:190
+#: apps/filters/forms.py:191
 msgid "By Family"
 msgstr "By Family"
 
-#: apps/filters/forms.py:225
+#: apps/filters/forms.py:226
 msgid "By Date"
 msgstr "By Date"
 
-#: apps/filters/forms.py:227
+#: apps/filters/forms.py:228
 msgid "This date is later than the until date."
 msgstr "This date is later than the until date."
 
-#: apps/filters/forms.py:230
+#: apps/filters/forms.py:231
 msgid "From"
 msgstr "From"
 
-#: apps/filters/forms.py:235
+#: apps/filters/forms.py:236
 msgid "Until"
 msgstr "Until"
 
-#: apps/filters/forms.py:255
+#: apps/filters/forms.py:256
 msgid "By Protocol"
 msgstr "By Protocol"
 
-#: apps/filters/forms.py:262
-msgid "Historical"
-msgstr "Historical"
-
-#: apps/filters/forms.py:264
-msgid "Area"
-msgstr "Area"
-
-#: apps/filters/forms.py:265
-msgid "Banding"
-msgstr "Ringing"
-
-#: apps/filters/forms.py:266
-msgid "Pelagic"
-msgstr "Pelagic"
-
-#: apps/filters/forms.py:267
-msgid "Nocturnal Flight Call Count"
-msgstr "Nocturnal Flight Call Count"
-
-#: apps/filters/forms.py:268
-msgid "Random"
-msgstr "Random"
-
-#: apps/filters/forms.py:275 apps/filters/forms.py:296
-msgid "Status"
-msgstr "Status"
-
-#: apps/filters/forms.py:277 apps/filters/forms.py:298
-#: apps/filters/forms.py:309 apps/filters/forms.py:320
-#: apps/filters/forms.py:331
+#: apps/filters/forms.py:261 apps/filters/forms.py:270
+#: apps/filters/forms.py:291 apps/filters/forms.py:302
+#: apps/filters/forms.py:313 apps/filters/forms.py:324
 msgid "All"
 msgstr "All"
 
-#: apps/filters/forms.py:293
+#: apps/filters/forms.py:268 apps/filters/forms.py:289
+msgid "Status"
+msgstr "Status"
+
+#: apps/filters/forms.py:286
 msgid "Options"
 msgstr "Options"
 
-#: apps/filters/forms.py:299
+#: apps/filters/forms.py:292
 msgid "Accepted"
 msgstr "Accepted"
 
-#: apps/filters/forms.py:300
+#: apps/filters/forms.py:293
 msgid "Rejected"
 msgstr "Rejected"
 
-#: apps/filters/forms.py:307
+#: apps/filters/forms.py:300
 msgid "With audio"
 msgstr "With audio"
 
-#: apps/filters/forms.py:318
+#: apps/filters/forms.py:311
 msgid "With photos"
 msgstr "With photos"
 
-#: apps/filters/forms.py:329
+#: apps/filters/forms.py:322
 msgid "With video"
 msgstr "With video"
 
-#: apps/filters/forms.py:349
+#: apps/filters/forms.py:342
 msgid "By Category"
 msgstr "By Category"
 
-#: apps/filters/forms.py:352
+#: apps/filters/forms.py:345
 msgid "Category"
 msgstr "Category"
 
-#: apps/filters/forms.py:365 apps/filters/forms.py:385
-#: apps/filters/forms.py:405
+#: apps/filters/forms.py:358 apps/filters/forms.py:378
+#: apps/filters/forms.py:398
 msgid "Order By"
 msgstr "Order By"
 
-#: apps/filters/forms.py:368 apps/filters/forms.py:388
-#: apps/filters/forms.py:408
+#: apps/filters/forms.py:361 apps/filters/forms.py:381
+#: apps/filters/forms.py:401
 msgid "Ordering"
 msgstr "Ordering"
 
-#: apps/filters/forms.py:370 apps/filters/forms.py:390
+#: apps/filters/forms.py:363 apps/filters/forms.py:383
 msgid "Most recent first"
 msgstr "Most recent first"
 
-#: apps/filters/forms.py:391
+#: apps/filters/forms.py:384
 msgid "Highest count first"
 msgstr "Highest count first"
 
-#: apps/filters/forms.py:410 apps/species/views.py:77 apps/species/views.py:83
+#: apps/filters/forms.py:403 apps/species/views.py:77 apps/species/views.py:83
 #: apps/species/views.py:85
 msgid "First Seen"
 msgstr "First Seen"
 
-#: apps/filters/forms.py:411 apps/species/views.py:79
+#: apps/filters/forms.py:404 apps/species/views.py:79
 msgid "Last Seen"
 msgstr "Last Seen"
 
-#: apps/filters/forms.py:412 apps/species/views.py:91
+#: apps/filters/forms.py:405 apps/species/views.py:91
 msgid "Highest Count"
 msgstr "Highest Count"
 
@@ -855,7 +827,7 @@ msgstr "Hours birding"
 msgid "Big Lists"
 msgstr "Big Lists"
 
-#: apps/news/templatetags/tables.py:336
+#: apps/news/templatetags/tables.py:339
 msgid "Big Days"
 msgstr "Big Days"
 
@@ -1161,3 +1133,21 @@ msgstr ""
 #: templates/includes/footer.html:10
 msgid "About"
 msgstr "About"
+
+#~ msgid "Historical"
+#~ msgstr "Historical"
+
+#~ msgid "Area"
+#~ msgstr "Area"
+
+#~ msgid "Banding"
+#~ msgstr "Ringing"
+
+#~ msgid "Pelagic"
+#~ msgstr "Pelagic"
+
+#~ msgid "Nocturnal Flight Call Count"
+#~ msgstr "Nocturnal Flight Call Count"
+
+#~ msgid "Random"
+#~ msgstr "Random"

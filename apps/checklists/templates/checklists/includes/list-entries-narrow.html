@@ -83,7 +83,7 @@
             <span class="me-2">{{ checklist.time }}</span>
           {% endif %}
           {% with distance=checklist.distance|floatformat %}
-            <span class="me-1">{% blocktrans %}{{ distance }} km,{% endblocktrans %}</span>
+            <span class="me-1">{% blocktrans %}{{ distance }} km{% endblocktrans %}, </span>
             <span>{{ checklist.duration }} {% if checklist.duration == 1 %}min{% else %}mins{% endif %}</span>
           {% endwith %}
         {% endspaceless %}</span>

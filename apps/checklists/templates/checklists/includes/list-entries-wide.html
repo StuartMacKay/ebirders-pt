@@ -94,7 +94,7 @@
             <i class="bi bi-person-walking"
                title="{% trans 'Travelling' %}"></i>
             {% with distance=checklist.distance|floatformat %}
-              <span>{% blocktrans %}{{ distance }} km,{% endblocktrans %}</span>
+              <span>{% blocktrans %}{{ distance }} km{% endblocktrans %}, </span>
               <span>{{ checklist.duration }} {% if checklist.duration == 1 %}min{% else %}mins{% endif %}</span>
             {% endwith %}
           {% elif checklist.protocol_code == "P20" %}
