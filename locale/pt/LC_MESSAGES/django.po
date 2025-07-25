@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-24 21:02+0000\n"
+"POT-Creation-Date: 2025-07-25 13:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,7 +53,7 @@ msgid "Show checklists for this country"
 msgstr "Mostrar as listas para esta país"
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:43
-#: apps/checklists/templates/checklists/includes/list-entries-wide.html:109
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:119
 msgid "Show checklists for this observer"
 msgstr "Mostrar as listas para este observador"
 
@@ -63,46 +63,24 @@ msgid "Number of species"
 msgstr "Número de espécies"
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:53
-#: apps/checklists/templates/checklists/includes/list-entries-wide.html:68
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:67
 #: apps/filters/forms.py:271
 msgid "Complete"
 msgstr "Completa"
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:55
-#: apps/checklists/templates/checklists/includes/list-entries-wide.html:70
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:69
 #: apps/filters/forms.py:272
 msgid "Incomplete"
 msgstr "Incompleta"
 
-#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:65
-#: apps/checklists/templates/checklists/includes/list-entries-wide.html:82
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:60
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:76
 msgid "Number of Observers"
 msgstr "Número de observadores"
 
-#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:72
-#: apps/checklists/templates/checklists/includes/list-entries-wide.html:91
-msgid "Stationary"
-msgstr "Parado"
-
-#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:81
-#: apps/checklists/templates/checklists/includes/list-entries-wide.html:95
-msgid "Travelling"
-msgstr "Em movimento"
-
-#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:86
-#: apps/checklists/templates/checklists/includes/list-entries-wide.html:97
-#, fuzzy, python-format
-#| msgid "%(distance)s km,"
-msgid "%(distance)s km"
-msgstr "%(distance)s km"
-
-#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:92
-#: apps/checklists/templates/checklists/includes/list-entries-wide.html:101
-msgid "Incidental"
-msgstr "Incidental"
-
-#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:101
-#: apps/checklists/templates/checklists/includes/list-entries-wide.html:115
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:95
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:125
 #: apps/news/templates/news/tables/big-lists-narrow.html:43
 #: apps/news/templates/news/tables/big-lists-wide.html:65
 #: apps/news/templates/news/tables/high-counts-narrow.html:49
@@ -818,6 +796,34 @@ msgstr "Ver esta lista"
 msgid "Weekly News"
 msgstr "Notícias Semanais"
 
+#: apps/news/templatetags/formats.py:15
+msgid "%(hours)dh %(minutes)0dm"
+msgstr "%(hours)dh %(minutes)0dm"
+
+#: apps/news/templatetags/formats.py:17
+#, python-format
+msgid "%(hours)d"
+msgstr "%(hours)d"
+
+#: apps/news/templatetags/formats.py:20
+#, python-format
+msgid "%(minutes)d min"
+msgstr "%(minutes)d min"
+
+#: apps/news/templatetags/formats.py:22
+#, python-format
+msgid "%(minutes)d mins"
+msgstr "%(minutes)d mins"
+
+#: apps/news/templatetags/formats.py:31
+msgid "%(distance)s km"
+msgstr "%(distance)s km"
+
+#: apps/news/templatetags/formats.py:40
+#, python-format
+msgid "%(area)s ha"
+msgstr "%(area)s ha"
+
 #: apps/news/templatetags/numbers.py:93 apps/observers/apps.py:7
 msgid "Observers"
 msgstr "Observadores"
@@ -1136,21 +1142,3 @@ msgstr ""
 #: templates/includes/footer.html:10
 msgid "About"
 msgstr "Sobre"
-
-#~ msgid "Historical"
-#~ msgstr "Histórico"
-
-#~ msgid "Area"
-#~ msgstr "Área"
-
-#~ msgid "Banding"
-#~ msgstr "Anilhagem"
-
-#~ msgid "Pelagic"
-#~ msgstr "Pelágico"
-
-#~ msgid "Nocturnal Flight Call Count"
-#~ msgstr "Nocturnal Flight Call Count"
-
-#~ msgid "Random"
-#~ msgstr "Aleatório"
