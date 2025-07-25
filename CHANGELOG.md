@@ -7,6 +7,8 @@ a concise history of changes made.
 
 ## Latest
 
+- Changed formatting of the checklist protocol attributes to fix spacing and wrapping.
+
 ## 2025.07.22
 - Add links to the News pages (Latest, Weekly, Monthly) so you can easily see the 
   news for a given county, state or country.

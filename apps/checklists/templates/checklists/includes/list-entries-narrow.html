@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load formats i18n %}
 {% for checklist in page_obj %}
   <div class="row border-top py-2">
     <div>
@@ -55,44 +55,38 @@
           <i class="bi bi-circle" title="{% trans 'Incomplete' %}"></i>
         {% endif %}
       </span>
-      {% if checklist.observer_count %}
+      <span class="me-2">{% spaceless %}
+        <i class="bi bi-person-fill me-1"
+           title="{% trans 'Number of Observers' %}"></i>
+        <span>{{ checklist.observer_count }}</span>
+      {% endspaceless %}</span>
+      {% if checklist.protocol_code == "P60" %}
         <span class="me-2">{% spaceless %}
-          <i {% if checklist.observer_count == 1 %}
-            class="bi bi-person-fill me-1"
-          {% else %}
-            class="bi bi-people-fill me-1"
-          {% endif %}
-            title="{% trans 'Number of Observers' %}"></i>
-          <span>{{ checklist.observer_count }}</span>
+          <i class="bi bi-tsunami me-1"
+             title="{{ checklist.get_protocol }}"></i>
+          <span>{{ checklist.distance|distance_format }}, {{ checklist.duration|duration_format }}</span>
         {% endspaceless %}</span>
-      {% endif %}
-      {% if checklist.protocol_code == "P21" %}
+      {% elif checklist.distance %}
         <span class="me-2">{% spaceless %}
-          <i class="bi bi-person-standing me-2"
-             title="{% trans 'Stationary' %}"></i>
-          {% if checklist.time %}
-            <span class="me-2">{{ checklist.time }}</span>
-          {% endif %}
-          <span>{{ checklist.duration }} mins</span>
+          <i class="bi bi-person-walking me-1"
+             title="{{ checklist.get_protocol }}"></i>
+          <span>{{ checklist.distance|distance_format }}, {{ checklist.duration|duration_format }}</span>
         {% endspaceless %}</span>
-      {% elif checklist.protocol_code == "P22" %}
+      {% elif checklist.area %}
         <span class="me-2">{% spaceless %}
-          <i class="bi bi-person-walking me-2"
-             title="{% trans 'Travelling' %}"></i>
-          {% if checklist.time %}
-            <span class="me-2">{{ checklist.time }}</span>
-          {% endif %}
-          {% with distance=checklist.distance|floatformat %}
-            <span class="me-1">{% blocktrans %}{{ distance }} km{% endblocktrans %}, </span>
-            <span>{{ checklist.duration }} {% if checklist.duration == 1 %}min{% else %}mins{% endif %}</span>
-          {% endwith %}
+          <i class="bi bi-person-walking me-1"
+             title="{{ checklist.get_protocol }}"></i>
+          <span>{{ checklist.area|area_format }}, {{ checklist.duration|duration_format }}</span>
         {% endspaceless %}</span>
-      {% elif checklist.protocol_code == "P20" %}
+      {% elif checklist.duration %}
         <span class="me-2">{% spaceless %}
-          <span class="me-2">{% trans "Incidental" %}</span>
-          {% if checklist.time %}
-            <span>{{ checklist.time }}</span>
-          {% endif %}
+          <i class="bi bi-person-standing me-1"
+             title="{{ checklist.get_protocol }}"></i>
+          <span>{{ checklist.duration|duration_format }}</span>
+        {% endspaceless %}</span>
+      {% else %}
+        <span class="me-2">{% spaceless %}
+          <span>{{ checklist.get_protocol }}</span>
         {% endspaceless %}</span>
       {% endif %}
       <a class="dark-link"
