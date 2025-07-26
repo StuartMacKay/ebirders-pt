@@ -9,9 +9,9 @@ from django.utils.dateformat import format
 from django.views import generic
 
 from dateutil.relativedelta import relativedelta
-from ebird.codes.locations import is_country_code, is_county_code, is_state_code
-
 from ebird.api.data.models import Country, County, State
+from ebird.api.requests.validation import is_country, is_subnational1, is_subnational2
+
 from notifications.models import Notification
 
 
@@ -53,11 +53,11 @@ class LatestView(generic.TemplateView):
         search = self.request.GET.get("search", "")
         country = state = county = None
 
-        if is_country_code(code):
+        if is_country(code):
             country = Country.objects.get(code=code)
-        elif is_state_code(code):
+        elif is_subnational1(code):
             state = State.objects.get(code=code)
-        elif is_county_code(code):
+        elif is_subnational2(code):
             county = County.objects.get(code=code)
 
         context["code"] = code
@@ -160,11 +160,11 @@ class WeeklyView(generic.TemplateView):
         search = self.request.GET.get("search", "")
         country = state = county = None
 
-        if is_country_code(code):
+        if is_country(code):
             country = Country.objects.get(code=code)
-        elif is_state_code(code):
+        elif is_subnational1(code):
             state = State.objects.get(code=code)
-        elif is_county_code(code):
+        elif is_subnational2(code):
             county = County.objects.get(code=code)
 
         context["code"] = code
@@ -227,11 +227,11 @@ class MonthlyView(generic.TemplateView):
         search = self.request.GET.get("search", "")
         country = state = county = None
 
-        if is_country_code(code):
+        if is_country(code):
             country = Country.objects.get(code=code)
-        elif is_state_code(code):
+        elif is_subnational1(code):
             state = State.objects.get(code=code)
-        elif is_county_code(code):
+        elif is_subnational2(code):
             county = County.objects.get(code=code)
 
         context["code"] = code
