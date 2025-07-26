@@ -5,8 +5,9 @@ from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 
 from dal import autocomplete
-from ebird.api.data.models import Country, County, Location, Observer, Species, State, \
-    Checklist
+from ebird.api.data.models import Country, County, Location, Observer, Species, State
+
+from .enums import Protocol
 
 
 class FilterForm(forms.Form):
@@ -259,7 +260,7 @@ class ProtocolFilter(FilterForm):
         label=_("Protocol"),
         choices=[
             ("", _("All")),
-        ] + Checklist.Protocol.choices,
+        ] + Protocol.choices,
         required=False,
         widget=forms.Select(attrs={"class": "form-control"}),
     )

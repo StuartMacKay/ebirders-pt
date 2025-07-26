@@ -1,4 +1,4 @@
-{% load formats i18n %}
+{% load checklists formats i18n %}
 {% for checklist in page_obj %}
   <div class="row border-top py-2">
     <div>
@@ -63,30 +63,30 @@
       {% if checklist.protocol_code == "P60" %}
         <span class="me-2">{% spaceless %}
           <i class="bi bi-tsunami me-1"
-             title="{{ checklist.get_protocol }}"></i>
+             title="{{ checklist|protocol_name }}"></i>
           <span>{{ checklist.distance|distance_format }}, {{ checklist.duration|duration_format }}</span>
         {% endspaceless %}</span>
       {% elif checklist.distance %}
         <span class="me-2">{% spaceless %}
           <i class="bi bi-person-walking me-1"
-             title="{{ checklist.get_protocol }}"></i>
+             title="{{ checklist|protocol_name }}"></i>
           <span>{{ checklist.distance|distance_format }}, {{ checklist.duration|duration_format }}</span>
         {% endspaceless %}</span>
       {% elif checklist.area %}
         <span class="me-2">{% spaceless %}
           <i class="bi bi-person-walking me-1"
-             title="{{ checklist.get_protocol }}"></i>
+             title="{{ checklist|protocol_name }}"></i>
           <span>{{ checklist.area|area_format }}, {{ checklist.duration|duration_format }}</span>
         {% endspaceless %}</span>
       {% elif checklist.duration %}
         <span class="me-2">{% spaceless %}
           <i class="bi bi-person-standing me-1"
-             title="{{ checklist.get_protocol }}"></i>
+             title="{{ checklist|protocol_name }}"></i>
           <span>{{ checklist.duration|duration_format }}</span>
         {% endspaceless %}</span>
       {% else %}
         <span class="me-2">{% spaceless %}
-          <span>{{ checklist.get_protocol }}</span>
+          <span>{{ checklist|protocol_name }}</span>
         {% endspaceless %}</span>
       {% endif %}
       <a class="dark-link"

@@ -1,4 +1,4 @@
-{% load formats i18n %}
+{% load checklists formats i18n %}
 <table class="table">
   <thead>
     <tr>
@@ -82,33 +82,33 @@
         {% if checklist.protocol_code == "P60" %}
           <span class="text-nowrap">{% spaceless %}
             <i class="bi bi-tsunami me-1"
-               title="{{ checklist.get_protocol }}"></i>
+               title="{{ checklist|protocol_name }}"></i>
             <span>{{ checklist.distance|distance_format }}, </span>
             <span>{{ checklist.duration|duration_format }}</span>
           {% endspaceless %}</span>
         {% elif checklist.distance %}
           <span class="text-nowrap">{% spaceless %}
             <i class="bi bi-person-walking me-1"
-               title="{{ checklist.get_protocol }}"></i>
+               title="{{ checklist|protocol_name }}"></i>
             <span>{{ checklist.distance|distance_format }}, </span>
             <span>{{ checklist.duration|duration_format }}</span>
           {% endspaceless %}</span>
         {% elif checklist.area %}
           <span class="text-nowrap">{% spaceless %}
             <i class="bi bi-person-walking me-1"
-               title="{{ checklist.get_protocol }}"></i>
+               title="{{ checklist|protocol_name }}"></i>
             <span>{{ checklist.area|area_format }}, </span>
             <span>{{ checklist.duration|duration_format }}</span>
           {% endspaceless %}</span>
         {% elif checklist.duration %}
           <span class="text-nowrap">{% spaceless %}
             <i class="bi bi-person-standing me-1"
-               title="{{ checklist.get_protocol }}"></i>
+               title="{{ checklist|protocol_name }}"></i>
             <span>{{ checklist.duration|duration_format }}</span>
           {% endspaceless %}</span>
         {% else %}
           <span class="text-nowrap">{% spaceless %}
-            <span>{{ checklist.get_protocol }}</span>
+            <span>{{ checklist|protocol_name }}</span>
           {% endspaceless %}</span>
         {% endif %}
       </td>
