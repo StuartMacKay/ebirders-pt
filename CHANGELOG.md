@@ -7,6 +7,8 @@ a concise history of changes made.
 
 ## Latest
 
+## 2025.07.26
+
 - Changed formatting of the checklist protocol attributes to fix spacing and wrapping.
 - Added Protocol TextChoice, mapping protocol codes to names used in eBird Portugal portal.
 
