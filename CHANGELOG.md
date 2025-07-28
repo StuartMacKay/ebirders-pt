@@ -7,6 +7,8 @@ a concise history of changes made.
 
 ## Latest
 
+## 2025.07.28
+
 - Replaced the Latest, Weekly and Monthly News pages with a single page with a 
   filter to select country, state, county, week, and month.
 
