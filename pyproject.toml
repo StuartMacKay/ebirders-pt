@@ -1,6 +1,6 @@
 [project]
 name = "ebirders-pt"
-version = "2025.07.28.1.1"
+version = "2025.07.28.1"
 description = "Data and statistics for checklists submitted to eBird Portugal"
 readme = "README.md"
 license-files = ["LICENSE.txt"]
@@ -60,7 +60,7 @@ testpaths = [
 log_cli = true
 
 [tool.bumpversion]
-current_version = "2025.07.28.1.1"
+current_version = "2025.07.28.1"
 parse = """(?x)                        # Verbose mode
     (?P<release>                       # The release part
         (?:[1-9][0-9]{3})\\.           # YYYY.
@@ -100,11 +100,6 @@ replace = """
 
 ## {new_version}
 """
-
-[[tool.bumpversion.files]]
-filename = "pyproject.toml"
-search = 'version = "{current_version}"'
-replace = 'version = "{new_version}"'
 
 [tool.uv]
 dev-dependencies = [
