@@ -1,0 +1,67 @@
+{% load cache i18n numbers static tables %}
+{% get_current_language as language_code %}
+
+{% cache CACHE_TTL_SHORT "counts" start finish country state county language_code %}
+<div class="row">
+  <div class="col-md-3 col-sm-6 col-6 my-3">
+    {% species_count start finish country state county %}
+  </div>
+  <div class="col-md-3 col-sm-6 col-6 my-3">
+    {% checklist_count start finish country state county %}
+  </div>
+  <div class="col-md-3 col-sm-6 col-6 mt-lg-3 mb-3">
+    {% observer_count start finish country state county %}
+  </div>
+  <div class="col-md-3 col-sm-6 col-6 mt-lg-3 mb-3">
+    {% duration_count start finish country state county %}
+  </div>
+</div>
+{% endcache %}
+
+{% cache CACHE_TTL_MEDIUM "high_counts" start finish country state county language_code %}
+{% high_counts start finish country state county %}
+{% endcache %}
+
+{% cache CACHE_TTL_LONG "yearlist" start finish year country state county language_code %}
+{% year_list start finish year country state county %}
+{% endcache %}
+
+{% cache CACHE_TTL_LONG "big_lists" start finish country state county language_code %}
+{% big_lists start finish country state county %}
+{% endcache %}
+
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-12 pe-lg-3 pe-md-3">
+    {% cache CACHE_TTL_LONG "big_days" start finish country state county language_code %}
+      {% big_days start finish country state county %}
+    {% endcache %}
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-12 ps-lg-3 ps-md-3">
+    {% if month %}
+      {% cache CACHE_TTL_LONG "observer_species_monthly" start finish country month year state county language_code %}
+        {% observer_species_monthly start finish month year country state county %}
+      {% endcache %}
+    {% elif week %}
+      {% cache CACHE_TTL_LONG "observer_species_weekly" start finish week year country state county language_code %}
+        {% observer_species_weekly start finish week year country state county %}
+      {% endcache %}
+    {% else %}
+      {% cache CACHE_TTL_LONG "observer_species_latest" start finish country state county language_code %}
+        {% observer_species_latest start finish country state county %}
+      {% endcache %}
+    {% endif %}
+  </div>
+</div>
+
+<div class="row">
+<div class="col-lg-6 col-md-6 col-sm-12 pe-lg-3 pe-md-3">
+  {% cache CACHE_TTL_LONG  "checklists_completed" start finish country state county language_code %}
+    {% checklists_completed start finish country state county %}
+  {% endcache %}
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12 ps-lg-3 ps-md-3">
+  {% cache CACHE_TTL_LONG  "time_spent_birding" start finish country state county language_code %}
+    {% time_spent_birding start finish country state county %}
+  {% endcache %}
+</div>
+</div>

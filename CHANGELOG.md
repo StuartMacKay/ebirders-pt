@@ -7,6 +7,9 @@ a concise history of changes made.
 
 ## Latest
 
+- Replaced the Latest, Weekly and Monthly News pages with a single page with a 
+  filter to select country, state, county, week, and month.
+
 ## 2025.07.26
 
 - Changed formatting of the checklist protocol attributes to fix spacing and wrapping.

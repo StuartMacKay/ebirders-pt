@@ -6,7 +6,7 @@
       <span class="me-3">{% trans 'Year List' %}</span>
       <a class="dark-link"
          rel="nofollow"
-         href="{% url 'species:list' %}{% querystring country=country_code state=state_code county=county_code category="species" start=start_year finish=end_year code=None search=None week=None %}"
+         href="{% url 'species:list' %}{% querystring category="species" %}"
          title="{% trans 'View Yearlist' %}">
         <i class="bi bi-box-arrow-in-down-right fs-5"></i>
       </a>
@@ -19,6 +19,10 @@
 <div class="d-lg-none">
   {% include "news/tables/year-list-narrow.html" %}
 </div>
-<div class="py-2">
-  <strong>{% trans "species.plural" %}: {{ total }}</strong>
+<div class="row border-bottom mb-lg-4">
+  <div class="col">
+    <div class="p-2">
+      <strong>{% trans "species.plural" %}: {{ total }}</strong>
+    </div>
+  </div>
 </div>

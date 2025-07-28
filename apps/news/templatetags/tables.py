@@ -1,7 +1,8 @@
+import datetime as dt
 import logging
 
 from django import template
-from django.db.models import Case, Count, F, Q, Sum, When
+from django.db.models import Case, Count, F, Sum, When
 from django.utils.translation import gettext_lazy as _
 
 from dateutil.relativedelta import relativedelta
@@ -16,61 +17,53 @@ log = logging.getLogger(__name__)
 
 
 @register.inclusion_tag("news/tables/big-lists.html")
-def big_lists(country, state, county, start, end):
-    log.info(
-        "Generating big_lists: %s %s %s %s %s",
-        country,
-        state,
-        county,
-        start,
-        end,
-    )
+def big_lists(start, finish, country=None, state=None, county=None):
 
-    queryset = Checklist.objects.filter(published=True, date__gte=start, date__lte=end)
+    filters = {
+        "published": True,
+        "date__gte": start,
+        "date__lte": finish,
+    }
 
     if country:
-        queryset = queryset.filter(country_id=country.pk)
-    elif state:
-        queryset = queryset.filter(state_id=state.pk)
-    elif county:
-        queryset = queryset.filter(county_id=county.pk)
+        filters["country__in"] = country
+    if state:
+        filters["state__in"] = state
+    if county:
+        filters["county__in"] = county
 
     related = ["state", "county", "location", "observer", "country"]
 
-    checklists = queryset.select_related(*related).order_by("-species_count", "-date")[
-        :10
-    ]
+    checklists = (
+        Checklist.objects
+        .filter(**filters)
+        .select_related(*related)
+        .order_by("-species_count", "-date")[:10]
+    )
 
     return {
         "title": _("Big Lists"),
-        "country_code": country.code if country else None,
-        "state_code": state.code if state else None,
-        "county_code": county.code if county else None,
         "checklists": checklists,
-        "start": start,
-        "finish": end,
     }
 
 
 @register.inclusion_tag("news/tables/checklists-completed.html")
-def checklists_completed(country_id, state_id, county_id, start, end):
-    log.info(
-        "Generating checklists_completed: %s %s %s %s %s",
-        country_id,
-        state_id,
-        county_id,
-        start,
-        end,
-    )
+def checklists_completed(start, finish, country=None, state=None, county=None):
 
-    queryset = Checklist.objects.filter(published=True, date__gte=start, date__lte=end)
+    filters = {
+        "published": True,
+        "date__gte": start,
+        "date__lte": finish,
+    }
 
-    if country_id:
-        queryset = queryset.filter(country_id=country_id)
-    elif state_id:
-        queryset = queryset.filter(state_id=state_id)
-    elif county_id:
-        queryset = queryset.filter(county_id=county_id)
+    if country:
+        filters["country__in"] = country
+    if state:
+        filters["state__in"] = state
+    if county:
+        filters["county__in"] = county
+
+    queryset = Checklist.objects.filter(**filters)
 
     observers = (
         queryset.values("observer")
@@ -84,30 +77,26 @@ def checklists_completed(country_id, state_id, county_id, start, end):
 
     return {
         "records": observers,
-        "start": start,
-        "finish": end,
     }
 
 
 @register.inclusion_tag("news/tables/time-spent-birding.html")
-def time_spent_birding(country_id, state_id, county_id, start, end):
-    log.info(
-        "Generating time_spent_birding: %s %s %s %s %s",
-        country_id,
-        state_id,
-        county_id,
-        start,
-        end,
-    )
+def time_spent_birding(start, finish, country=None, state=None, county=None):
 
-    queryset = Checklist.objects.filter(published=True, date__gte=start, date__lte=end)
+    filters = {
+        "published": True,
+        "date__gte": start,
+        "date__lte": finish,
+    }
 
-    if country_id:
-        queryset = queryset.filter(country_id=country_id)
-    elif state_id:
-        queryset = queryset.filter(state_id=state_id)
-    elif county_id:
-        queryset = queryset.filter(county_id=county_id)
+    if country:
+        filters["country__in"] = country
+    if state:
+        filters["state__in"] = state
+    if county:
+        filters["county__in"] = county
+
+    queryset = Checklist.objects.filter(**filters)
 
     observers = (
         queryset.values("observer")
@@ -125,33 +114,23 @@ def time_spent_birding(country_id, state_id, county_id, start, end):
 
     return {
         "records": observers,
-        "start": start,
-        "finish": end,
     }
 
 
 @register.inclusion_tag("news/tables/observer-species-latest.html")
-def observer_species_latest(country_id, state_id, county_id, start, end):
-    log.info(
-        "Generating big_week: %s %s %s %s %s",
-        country_id,
-        state_id,
-        county_id,
-        start,
-        end,
-    )
+def observer_species_latest(start, finish, country=None, state=None, county=None):
 
-    if country_id:
-        filters = Q(observer_species_latest__country_id=country_id)
-    elif state_id:
-        filters = Q(observer_species_latest__state_id=state_id)
-    elif county_id:
-        filters = Q(observer_species_latest__county_id=county_id)
-    else:
-        filters = Q()
+    filters = {}
+
+    if country:
+        filters["observer_species_latest__country__in"] = country
+    if state:
+        filters["observer_species_latest__state__in"] = state
+    if county:
+        filters["observer_species_latest__county__in"] = county
 
     if filters:
-        criteria = Case(When(filters, then="observer_species_latest__species"))
+        criteria = Case(When(**filters, then="observer_species_latest__species"))
     else:
         criteria = "observer_species_latest__species"
 
@@ -162,38 +141,32 @@ def observer_species_latest(country_id, state_id, county_id, start, end):
     )
 
     return {
+        "start": start.strftime("%Y-%m-%d"),
+        "finish": finish.strftime("%Y-%m-%d"),
         "records": [record for record in records if record["count"]],
-        "start": start,
-        "finish": end,
     }
 
 
 @register.inclusion_tag("news/tables/observer-species-weekly.html")
-def observer_species_weekly(country_id, state_id, county_id, start, end):
-    log.info(
-        "Generating big_week: %s %s %s %s %s",
-        country_id,
-        state_id,
-        county_id,
-        start,
-        end,
-    )
+def observer_species_weekly(start, finish, week, year, country=None, state=None, county=None):
 
-    filters = Q(observer_species_weekly__week=start.isocalendar().week)
-    filters &= Q(observer_species_weekly__year=start.year)
+    filters = {
+        "observer_species_weekly__week": week,
+        "observer_species_weekly__year": year,
+    }
 
-    if country_id:
-        filters &= Q(observer_species_weekly__country_id=country_id)
-    elif state_id:
-        filters &= Q(observer_species_weekly__state_id=state_id)
-    elif county_id:
-        filters &= Q(observer_species_weekly__county_id=county_id)
+    if country:
+        filters["observer_species_weekly__country__in"] = country
+    if state:
+        filters["observer_species_weekly__state__in"] = state
+    if county:
+        filters["observer_species_weekly__county__in"] = county
 
     records = (
         Observer.objects.values("identifier", "name")
         .annotate(
             count=Count(
-                Case(When(filters, then="observer_species_weekly__species")),
+                Case(When(**filters, then="observer_species_weekly__species")),
                 distinct=True,
             )
         )
@@ -201,38 +174,32 @@ def observer_species_weekly(country_id, state_id, county_id, start, end):
     )
 
     return {
+        "start": start.strftime("%Y-%m-%d"),
+        "finish": finish.strftime("%Y-%m-%d"),
         "records": [record for record in records if record["count"]],
-        "start": start,
-        "finish": end,
     }
 
 
 @register.inclusion_tag("news/tables/observer-species-monthly.html")
-def observer_species_monthly(country_id, state_id, county_id, start, end):
-    log.info(
-        "Generating big_month: %s %s %s %s %s",
-        country_id,
-        state_id,
-        county_id,
-        start,
-        end,
-    )
+def observer_species_monthly(start, finish, month, year, country=None, state=None, county=None):
 
-    filters = Q(observer_species_monthly__year=start.year)
-    filters &= Q(observer_species_monthly__month=start.month)
+    filters = {
+        "observer_species_monthly__month": month,
+        "observer_species_monthly__year": year,
+    }
 
-    if country_id:
-        filters &= Q(observer_species_monthly__country_id=country_id)
-    elif state_id:
-        filters &= Q(observer_species_monthly__state_id=state_id)
-    elif county_id:
-        filters &= Q(observer_species_monthly__county_id=county_id)
+    if country:
+        filters["observer_species_monthly__country__in"] = country
+    if state:
+        filters["observer_species_monthly__state__in"] = state
+    if county:
+        filters["observer_species_monthly__county__in"] = county
 
     records = (
         Observer.objects.values("identifier", "name")
         .annotate(
             count=Count(
-                Case(When(filters, then="observer_species_monthly__species")),
+                Case(When(**filters, then="observer_species_monthly__species")),
                 distinct=True,
             )
         )
@@ -240,45 +207,37 @@ def observer_species_monthly(country_id, state_id, county_id, start, end):
     )
 
     return {
+        "start": start.strftime("%Y-%m-%d"),
+        "finish": finish.strftime("%Y-%m-%d"),
         "records": [record for record in records if record["count"]],
-        "start": start,
-        "finish": end,
     }
 
 
 @register.inclusion_tag("news/tables/year-list.html")
-def year_list(country, state, county, start, end):
-    log.info(
-        "Generating yearlist: %s %s %s %s %s",
-        country,
-        state,
-        county,
-        start,
-        end,
-    )
+def year_list(start, finish, year, country=None, state=None, county=None):
 
-    start_year = start.replace(month=1, day=1)
-    end_year = end.replace(month=12, day=31)
-
-    filters = Q(date__gte=start_year) & Q(date__lte=end_year)
+    filters = {
+        "date__gte": dt.date(year=year, month=1, day=1),
+        "date__lte": finish,
+    }
 
     if country:
-        filters &= Q(country_id=country.pk)
-    elif state:
-        filters &= Q(state_id=state.pk)
-    elif county:
-        filters &= Q(county_id=county.pk)
+        filters["country__in"] = country
+    if state:
+        filters["state__in"] = state
+    if county:
+        filters["county__in"] = county
 
     records = (
         YearList.objects.values_list("identifier", "date")
-        .filter(filters)
+        .filter(**filters)
         .distinct("species")
         .order_by("species", "date")
     )
 
     total = records.count()
 
-    ids = [record[0] for record in records if start <= record[1] <= end]
+    ids = [record[0] for record in records if start <= record[1] <= finish]
 
     related = [
         "checklist",
@@ -297,42 +256,34 @@ def year_list(country, state, county, start, end):
     )
 
     return {
-        "country_code": country.code if country else None,
-        "state_code": state.code if state else None,
-        "county_code": county.code if county else None,
-        "start_year": start_year,
-        "end_year": end_year,
         "observations": observations,
         "total": total,
     }
 
 
 @register.inclusion_tag("news/tables/big-days.html")
-def big_days(country_id, state_id, county_id, start, end):
-    log.info(
-        "Generating big_days: %s %s %s %s %s",
-        country_id,
-        state_id,
-        county_id,
-        start,
-        end,
-    )
+def big_days(start, finish, country=None, state=None, county=None):
+
+    filters = {
+        "published": True,
+        "date__gte": start,
+        "date__lte": finish,
+        "species__category": "species",
+    }
+
+    if country:
+        filters["country__in"] = country
+    if state:
+        filters["state__in"] = state
+    if county:
+        filters["county__in"] = county
 
     queryset = (
         Observation.objects.values("observer__identifier", "date")
+        .filter(**filters)
         .annotate(name=F("observer__name"))
         .annotate(species_count=Count("species", distinct=True))
-        .filter(published=True)
-        .filter(date__gte=start, date__lte=end)
-        .filter(species__category="species")
     )
-
-    if country_id:
-        queryset = queryset.filter(country_id=country_id)
-    elif state_id:
-        queryset = queryset.filter(state_id=state_id)
-    elif county_id:
-        queryset = queryset.filter(county_id=county_id)
 
     entries = queryset.order_by("-species_count", "-date")[:10]
 
@@ -340,34 +291,30 @@ def big_days(country_id, state_id, county_id, start, end):
 
 
 @register.inclusion_tag("news/tables/high-counts.html")
-def high_counts(country_id, state_id, county_id, start, end):
-    log.info(
-        "Generating high_counts: %s %s %s %s %s",
-        country_id,
-        state_id,
-        county_id,
-        start,
-        end,
-    )
-
-    filters = Q(published=True)
-
-    if country_id:
-        filters &= Q(country_id=country_id)
-    elif state_id:
-        filters &= Q(state_id=state_id)
-    elif county_id:
-        filters &= Q(county_id=county_id)
+def high_counts(start, finish, country=None, state=None, county=None):
 
     previous = {}
     high_counts = {}
 
+    filters = {
+        "published": True,
+        "date__gte": start,
+        "date__lte": finish,
+    }
+
+    if country:
+        filters["country__in"] = country
+    if state:
+        filters["state__in"] = state
+    if county:
+        filters["county__in"] = county
+
     observations = (
-        Observation.objects.filter(filters)
+        Observation.objects.filter(**filters)
         .filter(
             species__category="species",
             date__gte=start - relativedelta(months=1),
-            date__lte=end,
+            date__lte=finish,
             count__gt=0,
         )
         .values_list("identifier", "species_id", "date")

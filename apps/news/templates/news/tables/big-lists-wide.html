@@ -1,8 +1,8 @@
 {% load i18n %}
 {% if checklists|length %}
-  <div class="row border-top">
+  <div class="row mb-lg-4">
     <div class="col">
-    <table class="table">
+    <table class="table mb-0">
       <thead>
         <tr>
           <th>{% trans "Observer" %}</th>
@@ -74,9 +74,9 @@
     </div>
   </div>
 {% else %}
-  <div class="row border-top">
+  <div class="row mb-lg-4">
     <div class="col">
-      <div class="py-=3">{% trans 'There are no Big Lists to report.' %}</div>
+      <div class="py=3">{% trans 'There are no Big Lists to report.' %}</div>
     </div>
   </div>
 {% endif %}

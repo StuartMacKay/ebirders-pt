@@ -9,7 +9,7 @@ from django.views.generic import RedirectView, TemplateView
 from contact.views import ContactView
 
 urlpatterns = i18n_patterns(
-    path("", RedirectView.as_view(pattern_name="news:latest"), name="index"),
+    path("", RedirectView.as_view(pattern_name="news:index"), name="index"),
     path("autocomplete/", include("filters.urls")),
     path(_("news/"), include("news.urls")),
     path(_("checklists/"), include("checklists.urls")),

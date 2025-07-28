@@ -1,13 +1,13 @@
 {% load i18n %}
-<div class="row">
+<div class="row border-bottom">
   <div class="col px-3 py-2">
     <h3 class="p-0 m-0">{% trans "Time spent birding" %}</h3>
   </div>
 </div>
 {% if records|length %}
-  <div class="row border-top">
+  <div class="row mb-lg-4">
     <div class="col">
-      <table class="table">
+      <table class="table mb-0">
         <thead>
           <tr>
             <th>{% trans "Observer" %}</th>
@@ -27,7 +27,7 @@
               <td>
                 <a class="dark-link"
                    rel="nofollow"
-                   href="{% url 'checklists:list' %}{% querystring observer=record.identifier start=start|date:"Y-m-d" finish=finish|date:"Y-m-d" %}"
+                   href="{% url 'checklists:list' %}{% querystring observer=record.identifier %}"
                    title="{% trans 'View the checklists' %}">
                   <i class="bi bi-box-arrow-in-down-right"></i>
                 </a>
@@ -39,7 +39,7 @@
     </div>
   </div>
 {% else %}
-  <div class="row border-top">
+  <div class="row mb-lg-4">
     <div class="col">
       <div class="py-3">{% trans 'Nobody has been out birding.' %}</div>
     </div>

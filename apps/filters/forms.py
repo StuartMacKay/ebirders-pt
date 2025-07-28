@@ -1,3 +1,4 @@
+import datetime as dt
 import json
 
 from django import forms
@@ -5,6 +6,7 @@ from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 
 from dal import autocomplete
+from dateutil.relativedelta import relativedelta
 from ebird.api.data.models import Country, County, Location, Observer, Species, State
 
 from .enums import Protocol
@@ -245,11 +247,12 @@ class DateRangeFilter(FilterForm):
     }
 
     def clean(self):
-        start = self.cleaned_data.get("start")
-        finish = self.cleaned_data.get("finish")
-
+        cleaned_data = super().clean()
+        start = cleaned_data.get("start")
+        finish = cleaned_data.get("finish")
         if start and finish and start > finish:
             self.add_error("start", self.DATES_SWAPPED)
+        return cleaned_data
 
 
 class ProtocolFilter(FilterForm):
@@ -334,7 +337,7 @@ class ObservationFilter(FilterForm):
         "approved": "approved",
         "audio": "audio",
         "photo": "photo",
-        "video": "video"
+        "video": "video",
     }
 
 

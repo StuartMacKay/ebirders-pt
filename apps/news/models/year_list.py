@@ -89,6 +89,12 @@ class YearList(models.Model):
         help_text=_("The date the observation was made."),
     )
 
+    # year = models.IntegerField(
+    #     db_index=True,
+    #     verbose_name=_("year"),
+    #     help_text=_("The year the observation was made."),
+    # )
+
     count = models.IntegerField(
         validators=[MinValueValidator(0)],
         verbose_name=_("count"),

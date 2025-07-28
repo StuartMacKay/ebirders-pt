@@ -7,7 +7,7 @@ import pytest
 pytestmark = pytest.mark.django_db
 
 redirects = [
-    (reverse("index"), reverse("news:latest")),
+    (reverse("index"), reverse("news:index")),
 ]
 
 autocompletes = [
@@ -18,14 +18,10 @@ autocompletes = [
     reverse("filters:observers"),
     reverse("filters:common-name"),
     reverse("filters:scientific-name"),
-    reverse("news:autocomplete"),
 ]
 
 pages = [
-    (reverse("news:latest"), None),
-    (reverse("news:latest"), None),
-    (reverse("news:weekly"), None),
-    (reverse("news:monthly"), None),
+    (reverse("news:index"), None),
     (reverse("checklists:list"), None),
     (reverse("observations:list"), None),
     (reverse("species:list"), None),

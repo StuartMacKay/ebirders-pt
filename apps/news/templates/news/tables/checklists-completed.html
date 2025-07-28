@@ -7,7 +7,7 @@
 {% if records|length %}
   <div class="row border-top">
     <div class="col">
-      <table class="table">
+      <table class="table mb-0">
         <thead>
           <tr>
             <th>{% trans "Observer" %}</th>
@@ -23,7 +23,7 @@
               <td>
                 <a class="dark-link"
                    rel="nofollow"
-                   href="{% url 'checklists:list' %}{% querystring observer=record.identifier start=start|date:"Y-m-d" finish=finish|date:"Y-m-d" %}"
+                   href="{% url 'checklists:list' %}{% querystring observer=record.identifier %}"
                    title="{% trans 'View the checklists' %}">
                   <i class="bi bi-box-arrow-in-down-right"></i>
                 </a>

@@ -1,285 +1,100 @@
 import datetime as dt
-import re
 
 from django.conf import settings
-from django.http import JsonResponse
+from django.db.models import Q
 from django.urls import reverse
 from django.utils import translation
 from django.utils.dateformat import format
 from django.views import generic
 
 from dateutil.relativedelta import relativedelta
-from ebird.api.data.models import Country, County, State
-from ebird.api.requests.validation import is_country, is_subnational1, is_subnational2
 
+from filters.views import FormsMixin
 from notifications.models import Notification
 
+from .forms import MonthFilter, RegionFilter, WeekFilter
 
-class LatestView(generic.TemplateView):
-    template_name = "news/latest.html"
+
+class NewsView(FormsMixin, generic.TemplateView):
+    template_name = "news/index.html"
+    methods = ["GET"]
+    form_classes = [
+        RegionFilter,
+        WeekFilter,
+        MonthFilter
+    ]
 
     @staticmethod
     def get_translations():
         urls = []
         for code, name in settings.LANGUAGES:
             with translation.override(code):
-                urls.append((reverse("news:latest"), name))
+                urls.append((reverse("news:index"), name))
         return urls
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def get_params(self, forms):
+        params = {}
+        for identifier, form in forms.items():
+            params.update(form.get_params())
+        return params
 
-        start_date = dt.date.today() - relativedelta(days=6)
-        end_date = dt.date.today()
-
-        if start_date.month == end_date.month:
-            subtitle = "%s - %s" % (format(start_date, "d"), format(end_date, "d M Y"))
-        else:
-            if start_date.year == end_date.year:
-                subtitle = "%s - %s" % (
-                    format(start_date, "d M"),
-                    format(end_date, "d M Y"),
-                )
+    @staticmethod
+    def get_subtitle(start, finish):
+        if start.year == finish.year:
+            if start.month == finish.month:
+                start_str = format(start, "d")
+                finish_str = format(finish, "d M Y")
             else:
-                subtitle = "%s - %s" % (
-                    format(start_date, "d M Y"),
-                    format(end_date, "d M Y"),
-                )
+                start_str = format(start, "d M")
+                finish_str = format(finish, "d M Y")
+        else:
+            start_str = format(start, "d M Y")
+            finish_str = format(finish, "d M Y")
+
+        subtitle = "%s - %s" % (start_str, finish_str)
 
         if translation.get_language() == "pt":
             subtitle = subtitle.lower()
 
-        code = self.request.GET.get("code", "")
-        search = self.request.GET.get("search", "")
-        country = state = county = None
+        return subtitle
 
-        if is_country(code):
-            country = Country.objects.get(code=code)
-        elif is_subnational1(code):
-            state = State.objects.get(code=code)
-        elif is_subnational2(code):
-            county = County.objects.get(code=code)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        params = self.get_params(context["forms"])
 
-        context["code"] = code
-        context["search"] = search
-        context["country"] = country
-        context["state"] = state
-        context["county"] = county
-        context["start_date"] = start_date
-        context["end_date"] = end_date
+        # Set default values for optional query params so pytest can
+        # report undefined variables in the tests.
+
+        if "country" not in params:
+            params["country"] = None
+        if "state" not in params:
+            params["state"] = None
+        if "county" not in params:
+            params["county"] = None
+
+        if "month" in params:
+            subtitle = format(params["start"], "F Y")
+        elif "week" in params:
+            subtitle = self.get_subtitle(params["start"], params["finish"])
+        else:  # Latest
+            finish = dt.date.today()
+            start = finish - relativedelta(days=6)
+            params["start"] = start
+            params["finish"] = finish
+            params["year"] = finish.year
+            subtitle = self.get_subtitle(start, finish)
+
+        context.update(params)
         context["subtitle"] = subtitle
         context["translations"] = self.get_translations()
         context["notifications"] = Notification.objects.published()
-        return context
-
-
-class WeeklyView(generic.TemplateView):
-    template_name = "news/weekly.html"
-
-    @staticmethod
-    def get_translations(year, week):
-        urls = []
-        for code, name in settings.LANGUAGES:
-            with translation.override(code):
-                urls.append((reverse("news:for-week", args=(year, week)), name))
-        return urls
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        year = self.kwargs.get("year", dt.date.today().year)
-        week = self.kwargs.get("week", dt.date.today().isocalendar().week - 1)
-
-        start_date = dt.datetime.strptime("%d-%d-1" % (year, week), "%Y-%W-%w").date()
-        end_date = start_date + dt.timedelta(days=6)
-
-        if start_date.month == end_date.month:
-            subtitle = "%s - %s" % (format(start_date, "d"), format(end_date, "d M Y"))
-        else:
-            if start_date.year == end_date.year:
-                subtitle = "%s - %s" % (
-                    format(start_date, "d M"),
-                    format(end_date, "d M Y"),
-                )
-            else:
-                subtitle = "%s - %s" % (
-                    format(start_date, "d M Y"),
-                    format(end_date, "d M Y"),
-                )
-
-        next_start_date = start_date + dt.timedelta(days=7)
-        next_end_date = end_date + dt.timedelta(days=7)
-        next_year = next_start_date.year
-        next_week = next_start_date.isocalendar().week - 1
-
-        if next_start_date.month == next_end_date.month:
-            next_label = "%s - %s" % (
-                format(next_start_date, "d"),
-                format(next_end_date, "d M Y"),
-            )
-        else:
-            if next_start_date.year == next_end_date.year:
-                next_label = "%s - %s" % (
-                    format(next_start_date, "d M"),
-                    format(next_end_date, "d M Y"),
-                )
-            else:
-                next_label = "%s - %s" % (
-                    format(next_start_date, "d M Y"),
-                    format(next_end_date, "d M Y"),
-                )
-
-        previous_start_date = start_date - dt.timedelta(days=7)
-        previous_end_date = end_date - dt.timedelta(days=7)
-        previous_year = previous_start_date.year
-        previous_week = previous_start_date.isocalendar().week - 1
-
-        if previous_start_date.month == previous_end_date.month:
-            previous_label = "%s - %s" % (
-                format(previous_start_date, "d"),
-                format(previous_end_date, "d M Y"),
-            )
-        else:
-            if previous_start_date.year == previous_end_date.year:
-                previous_label = "%s - %s" % (
-                    format(previous_start_date, "d M"),
-                    format(previous_end_date, "d M Y"),
-                )
-            else:
-                previous_label = "%s - %s" % (
-                    format(previous_start_date, "d M Y"),
-                    format(previous_end_date, "d M Y"),
-                )
-
-        if translation.get_language() == "pt":
-            subtitle = subtitle.lower()
-            previous_label = previous_label.lower()
-            next_label = next_label.lower()
-
-        code = self.request.GET.get("code", "")
-        search = self.request.GET.get("search", "")
-        country = state = county = None
-
-        if is_country(code):
-            country = Country.objects.get(code=code)
-        elif is_subnational1(code):
-            state = State.objects.get(code=code)
-        elif is_subnational2(code):
-            county = County.objects.get(code=code)
-
-        context["code"] = code
-        context["search"] = search
-        context["country"] = country
-        context["state"] = state
-        context["county"] = county
-        context["start_date"] = start_date
-        context["end_date"] = end_date
-        context["previous_year"] = previous_year
-        context["previous_week"] = previous_week
-        context["previous_label"] = previous_label
-        context["next_year"] = next_year
-        context["next_week"] = next_week
-        context["next_label"] = next_label
-        context["subtitle"] = subtitle
-        context["translations"] = self.get_translations(year, week)
 
         return context
 
+    def handle_request(self, request, *args, **kwargs):
+        forms = self.get_forms()
+        [form.is_valid() for identifier, form in forms.items()]
+        return self.forms_invalid(forms)
 
-class MonthlyView(generic.TemplateView):
-    template_name = "news/monthly.html"
-
-    @staticmethod
-    def get_translations(year, month):
-        urls = []
-        for code, name in settings.LANGUAGES:
-            with translation.override(code):
-                urls.append((reverse("news:for-month", args=(year, month)), name))
-        return urls
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        year = self.kwargs.get("year", dt.date.today().year)
-        month = self.kwargs.get("month", dt.date.today().month)
-
-        start_date = dt.date(year=year, month=month, day=1)
-        end_date = start_date + relativedelta(months=1, days=-1)
-
-        subtitle = format(start_date, "F Y")
-
-        next_date = start_date + relativedelta(months=1)
-        next_year = next_date.year
-        next_month = next_date.month
-        next_label = format(next_date, "F Y")
-
-        previous_date = start_date - relativedelta(months=1)
-        previous_year = previous_date.year
-        previous_month = previous_date.month
-        previous_label = format(previous_date, "F Y")
-
-        if translation.get_language() == "pt":
-            subtitle = subtitle.lower()
-            previous_label = previous_label.lower()
-            next_label = next_label.lower()
-
-        code = self.request.GET.get("code", "")
-        search = self.request.GET.get("search", "")
-        country = state = county = None
-
-        if is_country(code):
-            country = Country.objects.get(code=code)
-        elif is_subnational1(code):
-            state = State.objects.get(code=code)
-        elif is_subnational2(code):
-            county = County.objects.get(code=code)
-
-        context["code"] = code
-        context["search"] = search
-        context["country"] = country
-        context["state"] = state
-        context["county"] = county
-        context["start_date"] = start_date
-        context["end_date"] = end_date
-        context["previous_label"] = previous_label
-        context["previous_year"] = previous_year
-        context["previous_month"] = previous_month
-        context["next_label"] = next_label
-        context["next_year"] = next_year
-        context["next_month"] = next_month
-        context["subtitle"] = subtitle
-        context["translations"] = self.get_translations(year, month)
-
-        return context
-
-
-def autocomplete(request):
-    """
-    Return the list of countries, states, and counties for the search field.
-    If there is only one country, remove it from the label.
-    """
-    data = []
-
-    for code, place in Country.objects.all().values_list("code", "place"):
-        data.append({"value": code, "label": place})
-
-    if len(data) == 1:
-        country = data.pop(0)["label"]
-    else:
-        country = None
-
-    for code, place in State.objects.all().values_list("code", "place"):
-        if country:
-            label = re.sub(r", %s$" % country, "", place)
-        else:
-            label = place
-        data.append({"value": code, "label": label})
-
-    for code, place in County.objects.all().values_list("code", "place"):
-        if country:
-            label = re.sub(r", %s$" % country, "", place)
-        else:
-            label = place
-        data.append({"value": code, "label": label})
-
-    return JsonResponse(data, safe=False)
+    def get(self, request, *args, **kwargs):
+        return self.handle_request(request, *args, **kwargs)

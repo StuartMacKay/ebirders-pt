@@ -11,28 +11,23 @@ log = logging.getLogger(__name__)
 
 
 @register.inclusion_tag("news/numbers/number.html")
-def species_count(country_id, state_id, county_id, start, end):
-    log.info(
-        "Generating species_count: %s %s %s %s %s",
-        country_id,
-        state_id,
-        county_id,
-        start,
-        end,
-    )
+def species_count(start, finish, country=None, state=None, county=None):
 
-    queryset = Observation.objects.filter(date__gte=start, date__lte=end).filter(
-        species__category="species"
-    )
+    filters = {
+        "published": True,
+        "species__category": "species",
+        "date__gte": start,
+        "date__lte": finish,
+    }
 
-    if country_id:
-        queryset = queryset.filter(country_id=country_id)
-    elif state_id:
-        queryset = queryset.filter(state_id=state_id)
-    elif county_id:
-        queryset = queryset.filter(county_id=county_id)
+    if country:
+        filters["country__in"] = country
+    if state:
+        filters["state__in"] = state
+    if county:
+        filters["county__in"] = county
 
-    count = queryset.values_list("species_id", flat=True).distinct().count()
+    count = Observation.objects.filter(**filters).values_list("species_id", flat=True).distinct().count()
 
     return {
         "title": _("species.plural"),
@@ -41,51 +36,44 @@ def species_count(country_id, state_id, county_id, start, end):
 
 
 @register.inclusion_tag("news/numbers/number.html")
-def checklist_count(country_id, state_id, county_id, start, end):
-    log.info(
-        "Generating checklist_count: %s %s %s %s %s",
-        country_id,
-        state_id,
-        county_id,
-        start,
-        end,
-    )
-    queryset = Checklist.objects.filter(published=True, date__gte=start, date__lte=end)
+def checklist_count(start, finish, country=None, state=None, county=None):
 
-    if country_id:
-        queryset = queryset.filter(country_id=country_id)
-    elif state_id:
-        queryset = queryset.filter(state_id=state_id)
-    elif county_id:
-        queryset = queryset.filter(county_id=county_id)
+    filters = {
+        "published": True,
+        "date__gte": start,
+        "date__lte": finish,
+    }
 
-    count = queryset.count()
+    if country:
+        filters["country__in"] = country
+    if state:
+        filters["state__in"] = state
+    if county:
+        filters["county__in"] = county
 
     return {
         "title": _("Checklists"),
-        "count": count,
+        "count": Checklist.objects.filter(**filters).count(),
     }
 
 
 @register.inclusion_tag("news/numbers/number.html")
-def observer_count(country_id, state_id, county_id, start, end):
-    log.info(
-        "Generating observer_count: %s %s %s %s %s",
-        country_id,
-        state_id,
-        county_id,
-        start,
-        end,
-    )
+def observer_count(start, finish, country=None, state=None, county=None):
 
-    queryset = Checklist.objects.filter(published=True, date__gte=start, date__lte=end)
+    filters = {
+        "published": True,
+        "date__gte": start,
+        "date__lte": finish,
+    }
 
-    if country_id:
-        queryset = queryset.filter(country_id=country_id)
-    elif state_id:
-        queryset = queryset.filter(state_id=state_id)
-    elif county_id:
-        queryset = queryset.filter(county_id=county_id)
+    if country:
+        filters["country__in"] = country
+    if state:
+        filters["state__in"] = state
+    if county:
+        filters["county__in"] = county
+
+    queryset = Checklist.objects.filter(**filters)
 
     count = queryset.values_list("observer_id", flat=True).distinct().count()
 
@@ -96,25 +84,22 @@ def observer_count(country_id, state_id, county_id, start, end):
 
 
 @register.inclusion_tag("news/numbers/number.html")
-def duration_count(country_id, state_id, county_id, start, end):
-    log.info(
-        "Generating duration_count: %s %s %s %s %s",
-        country_id,
-        state_id,
-        county_id,
-        start,
-        end,
-    )
+def duration_count(start, finish, country=None, state=None, county=None):
 
-    queryset = Checklist.objects.filter(published=True, date__gte=start, date__lte=end)
+    filters = {
+        "published": True,
+        "date__gte": start,
+        "date__lte": finish,
+    }
 
-    if country_id:
-        queryset = queryset.filter(country_id=country_id)
-    elif state_id:
-        queryset = queryset.filter(state_id=state_id)
-    elif county_id:
-        queryset = queryset.filter(county_id=county_id)
+    if country:
+        filters["country__in"] = country
+    if state:
+        filters["state__in"] = state
+    if county:
+        filters["county__in"] = county
 
+    queryset = Checklist.objects.filter(**filters)
     total = queryset.aggregate(Sum("duration"))["duration__sum"] or 0
 
     if total == 0:

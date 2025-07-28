@@ -1,0 +1,20 @@
+{% load i18n %}
+<div class="row">
+  <div class="row border-bottom align-items-baseline">
+    <div class="col-lg-4">
+      {% if month %}
+        <h1 class="pt-2">{% trans 'News' %}</h1>
+      {% elif week %}
+        <h1 class="pt-2">{% trans 'News' %}</h1>
+      {% else %}
+        <h1 class="pt-2">{% trans 'Latest News' %}</h1>
+      {% endif %}
+    </div>
+    <div class="col-lg-4 text-lg-center">
+      <h2>{{ subtitle }}</h2>
+    </div>
+    <div class="col-lg-4 text-start text-lg-end pb-2">
+      <small class="text-muted">{% trans 'Updated every hour' %}</small>
+    </div>
+  </div>
+</div>

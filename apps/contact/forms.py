@@ -21,10 +21,10 @@ class ContactForm(forms.Form):
         field.error_messages["required"] = self.ERRORS["message-required"]
 
     def clean(self):
-        cleaned_date = super().clean()
+        cleaned_data = super().clean()
         for name in self._errors.keys():
             self.fields[name].widget.attrs["class"] += " is-invalid"
-        return cleaned_date
+        return cleaned_data
 
     def error_count(self):
         return len(self.errors)

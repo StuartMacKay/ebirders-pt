@@ -15,6 +15,12 @@ div.col:has(h3) {
   background-color: #fceab2;
 }
 
+@media (min-width: 992px) {
+  div.col:has(h3) {
+    background-color: inherit;
+  }
+}
+
 div.col:has(h4) {
   background-color: #fff0c3;
 }

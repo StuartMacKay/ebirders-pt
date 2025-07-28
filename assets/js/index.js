@@ -18,6 +18,12 @@ function open_filter_panels() {
         get: (searchParams, prop) => searchParams.get(prop),
     });
 
+    if (params.country || params.state || params.county) {
+        const list = document.querySelectorAll('a[href="#form-region"]');
+        for (const link of list) {
+            link.click();
+        }
+    }
     if (params.country || params.state || params.county || params.location || params.hotspot) {
         const list = document.querySelectorAll('a[href="#form-location"]');
         for (const link of list) {
@@ -32,6 +38,18 @@ function open_filter_panels() {
     }
     if (params.start || params.finish) {
         const list = document.querySelectorAll('a[href="#form-date-range"]');
+        for (const link of list) {
+            link.click();
+        }
+    }
+    if (params.week) {
+        const list = document.querySelectorAll('a[href="#form-week"]');
+        for (const link of list) {
+            link.click();
+        }
+    }
+    if (params.month) {
+        const list = document.querySelectorAll('a[href="#form-month"]');
         for (const link of list) {
             link.click();
         }

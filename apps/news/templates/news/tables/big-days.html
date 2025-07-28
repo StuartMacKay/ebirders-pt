@@ -1,14 +1,14 @@
 {% load i18n %}
 {% get_current_language as language_code %}
-<div class="row">
+<div class="row border-bottom">
   <div class="col px-3 py-2">
     <h3 class="p-0 m-0">{{ title }}</h3>
   </div>
 </div>
 {% if entries|length %}
-<div class="row border-top">
+<div class="row mb-lg-4">
   <div class="col">
-    <table class="table">
+    <table class="table mb-0">
       <thead>
         <tr>
           <th>{% trans "Observer" %}</th>
@@ -19,7 +19,7 @@
       </thead>
       <tbody>
         {% for entry in entries %}
-          <tr {% if forloop.last %}style="border-bottom-color: white"{% endif %}>
+          <tr}>
             <td>{{ entry.name }}</td>
             <td>
               <span class="text-nowrap">

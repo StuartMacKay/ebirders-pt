@@ -1,0 +1,63 @@
+{% extends "page.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans 'News' %} - {{ subtitle }}{% endblock %}
+
+{% block header %}
+  {{ block.super }}
+  {% block notifications %}
+    {% include "notifications/messages.html" %}
+  {% endblock %}
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+    {% include "news/includes/page-title.html" %}
+
+    <div class="row">
+      <aside class="col-md-4 col-lg-3">
+        {% include "news/includes/page-filter.html" %}
+      </aside>
+      <div class="d-lg-none border-bottom"></div>
+      <main class="col-md-8 col-lg-9">
+        {% include "news/includes/page-contents.html" %}
+      </main>
+    </div>
+  </div>
+{% endblock %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+  {{ media.js }}
+  <script>
+    $(document).ready(function() {
+      $(':input[name$=country]').on('change', function() {
+          var prefix = $(this).getFormPrefix();
+          $(':input[name=' + prefix + 'state]').val(null).trigger('change');
+      });
+      $(':input[name$=state]').on('change', function() {
+          var prefix = $(this).getFormPrefix();
+          $(':input[name=' + prefix + 'county]').val(null).trigger('change');
+      });
+      $(':input[name$=county]').on('change', function() {
+          var prefix = $(this).getFormPrefix();
+          $(':input[name=' + prefix + 'location]').val(null).trigger('change');
+      });
+      $(':input[name$=week]').on('change', function() {
+          var prefix = $(this).getFormPrefix();
+          var month = $(':input[name=' + prefix + 'month]');
+          if (this.value && month.val()) {
+            month.val(null).trigger('change');
+          }
+      });
+      $(':input[name$=month]').on('change', function() {
+          var prefix = $(this).getFormPrefix();
+          var week = $(':input[name=' + prefix + 'week]');
+          if (this.value && week.val()) {
+            week.val(null).trigger('change');
+          }
+      });
+    });
+  </script>
+{% endblock %}

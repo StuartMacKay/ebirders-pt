@@ -1,13 +1,13 @@
 {% load i18n %}
-<div class="row">
+<div class="row border-bottom">
   <div class="col px-3 py-2">
     <h3 class="p-0 m-0">{% trans 'Big Week' %}</h3>
   </div>
 </div>
 {% if records|length %}
-  <div class="row border-top">
+  <div class="row mb-lg-4">
     <div class="col">
-      <table class="table">
+      <table class="table mb-0">
         <thead>
           <tr>
             <th>{% trans "Observer" %}</th>
@@ -17,13 +17,13 @@
         </thead>
         <tbody>
           {% for record in records %}
-            <tr {% if forloop.last %}style="border-bottom-color: white"{% endif %}>
+            <tr>
               <td>{{ record.name }}</td>
               <td class="text-end">{{ record.count }}</td>
               <td>
                 <a class="dark-link"
                    rel="nofollow"
-                   href="{% url 'species:list' %}{% querystring category="species" observer=record.identifier start=start|date:"Y-m-d" finish=finish|date:"Y-m-d" %}"
+                   href="{% url 'species:list' %}{% querystring category="species" observer=record.identifier %}"
                    title="{% trans 'View the list of species' %}">
                   <i class="bi bi-box-arrow-in-down-right"></i>
                 </a>
@@ -35,7 +35,7 @@
     </div>
   </div>
 {% else %}
-  <div class="row border-top">
+  <div class="row mb-lg-4">
     <div class="col">
       <div class="py-3">{% trans 'There are no species totals to report.' %}</div>
     </div>

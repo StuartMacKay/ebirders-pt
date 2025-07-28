@@ -1,8 +1,8 @@
 {% load i18n %}
 {% if observations|length %}
-  <div class="row">
+  <div class="row mb-lg-4">
     <div class="col">
-      <table class="table table-borderless">
+      <table class="table table-borderless border-bottom mb-0">
         <thead>
         <tr>
           <th>{% trans "Date" %}</th>
@@ -90,7 +90,7 @@
     </div>
   </div>
 {% else %}
-  <div class="row">
+  <div class="row mb-lg-4">
     <div class="col">
       <div class="py-3">{% trans "No high counts were found." %}</div>
     </div>
