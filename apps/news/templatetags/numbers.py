@@ -34,7 +34,7 @@ def species_count(start, finish, country=None, state=None, county=None):
     )
 
     return {
-        "title": _("species.plural"),
+        "title": _("Species seen"),
         "count": count,
     }
 
@@ -55,7 +55,7 @@ def checklist_count(start, finish, country=None, state=None, county=None):
         filters["county__in"] = county
 
     return {
-        "title": _("Checklists"),
+        "title": _("Checklists submitted"),
         "count": Checklist.objects.filter(**filters).count(),
     }
 
@@ -80,7 +80,7 @@ def observer_count(start, finish, country=None, state=None, county=None):
     count = queryset.values_list("observer_id", flat=True).distinct().count()
 
     return {
-        "title": _("Observers"),
+        "title": _("Birders"),
         "count": count,
     }
 
@@ -111,6 +111,6 @@ def duration_count(start, finish, country=None, state=None, county=None):
         hours = int(total / 60)
 
     return {
-        "title": _("Hours birding"),
+        "title": _("Hours spent birding"),
         "count": hours,
     }
