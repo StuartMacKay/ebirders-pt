@@ -1,4 +1,5 @@
 import datetime as dt
+import re
 
 from django import forms
 from django.utils.translation import gettext_lazy as _
@@ -72,6 +73,14 @@ class WeekFilter(FilterForm):
             }
         ),
     )
+
+    INVALID_FORMAT = _("Enter a week in the form YYYY-WDD, e.g. 2025-W01")
+
+    def clean_week(self):
+        value = self.cleaned_data["week"]
+        if not re.match("\d4-W\d2", value):
+            raise forms.ValidationError(self.INVALID_FORMAT)
+        return value
 
     def clean(self):
         cleaned_data = super().clean()
