@@ -11,5 +11,5 @@ class Protocol(models.TextChoices):
     NOCTURNAL = "P54", _("Nocturnal Flight Call Count")
     PELAGIC = "P60", _("eBird Pelagic Protocol")
     HISTORICAL = "P62", _("Historical")
-    COMMON_BIRD_SURVEY = "P67", _("Common Bird Survey"),
-    SEABIRD_CENSUS = "P68", _("Seabird Census"),
+    COMMON_BIRD_SURVEY = ("P67", _("Common Bird Survey"))
+    SEABIRD_CENSUS = ("P68", _("Seabird Census"))

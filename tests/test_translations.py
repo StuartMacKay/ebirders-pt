@@ -13,10 +13,10 @@ def list_strings(entries):
 
 
 def strings_files():
-    return [os.path.join(
-        settings.ROOT_DIR,
-        "locale/%s/LC_MESSAGES/django.po" % code
-    ) for code, name in settings.LANGUAGES]
+    return [
+        os.path.join(settings.ROOT_DIR, "locale/%s/LC_MESSAGES/django.po" % code)
+        for code, name in settings.LANGUAGES
+    ]
 
 
 @pytest.mark.parametrize("path", strings_files())

@@ -7,9 +7,7 @@ from django.utils.translation import gettext_lazy as _
 
 from ebird.api.data.models import Checklist, Observation, Observer
 
-from news.models import (
-    YearList,
-)
+from news.models import YearList
 
 register = template.Library()
 log = logging.getLogger(__name__)
@@ -95,7 +93,6 @@ def time_spent_birding(start, finish, country=None, state=None, county=None):
 
     observers = (
         queryset.values("observer")
-        .annotate(name=F("observer__name"))
         .annotate(name=F("observer__name"))
         .annotate(identifier=F("observer__identifier"))
         .annotate(total=Sum("duration"))
@@ -286,9 +283,6 @@ def big_days(start, finish, country=None, state=None, county=None):
 
 @register.inclusion_tag("news/tables/high-counts.html")
 def high_counts(start, finish, country=None, state=None, county=None):
-    previous = {}
-    high_counts = {}
-
     filters = {
         "published": True,
         "date__gte": start,
@@ -314,7 +308,7 @@ def high_counts(start, finish, country=None, state=None, county=None):
         "checklist",
     ]
 
-    high_counts = (
+    counts = (
         Observation.objects.filter(**filters)
         .filter(**filters)
         .select_related(*related)
@@ -322,6 +316,4 @@ def high_counts(start, finish, country=None, state=None, county=None):
         .distinct("species__taxon_order")
     )
 
-    return {
-        "observations": sorted(high_counts, key=lambda obj: obj.date, reverse=True)
-    }
+    return {"observations": sorted(counts, key=lambda obj: obj.date, reverse=True)}

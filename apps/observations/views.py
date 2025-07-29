@@ -2,7 +2,8 @@ from django.conf import settings
 from django.db.models import Q
 from django.urls import reverse
 from django.utils import translation
-from django.utils.functional import cached_property
+
+from ebird.api.data.models import Observation
 
 from filters.forms import (
     DateRangeFilter,
@@ -12,7 +13,6 @@ from filters.forms import (
     ObserverFilter,
     SpeciesFilter,
 )
-from ebird.api.data.models import Country, Observation
 from filters.views import FilteredListView
 
 

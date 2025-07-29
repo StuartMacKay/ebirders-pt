@@ -7,5 +7,5 @@ __all__ = [
     "ObserverSpeciesLatest",
     "ObserverSpeciesMonthly",
     "ObserverSpeciesWeekly",
-    "YearList"
+    "YearList",
 ]

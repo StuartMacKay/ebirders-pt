@@ -2,7 +2,8 @@ from django.conf import settings
 from django.db.models import Q
 from django.urls import reverse
 from django.utils import translation
-from django.utils.functional import cached_property
+
+from ebird.api.data.models import Checklist
 
 from filters.forms import (
     ChecklistOrder,
@@ -11,7 +12,6 @@ from filters.forms import (
     ObserverFilter,
     ProtocolFilter,
 )
-from ebird.api.data.models import Checklist, Country
 from filters.views import FilteredListView
 
 

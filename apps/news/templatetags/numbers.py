@@ -12,7 +12,6 @@ log = logging.getLogger(__name__)
 
 @register.inclusion_tag("news/numbers/number.html")
 def species_count(start, finish, country=None, state=None, county=None):
-
     filters = {
         "published": True,
         "species__category": "species",
@@ -27,7 +26,12 @@ def species_count(start, finish, country=None, state=None, county=None):
     if county:
         filters["county__in"] = county
 
-    count = Observation.objects.filter(**filters).values_list("species_id", flat=True).distinct().count()
+    count = (
+        Observation.objects.filter(**filters)
+        .values_list("species_id", flat=True)
+        .distinct()
+        .count()
+    )
 
     return {
         "title": _("species.plural"),
@@ -37,7 +41,6 @@ def species_count(start, finish, country=None, state=None, county=None):
 
 @register.inclusion_tag("news/numbers/number.html")
 def checklist_count(start, finish, country=None, state=None, county=None):
-
     filters = {
         "published": True,
         "date__gte": start,
@@ -59,7 +62,6 @@ def checklist_count(start, finish, country=None, state=None, county=None):
 
 @register.inclusion_tag("news/numbers/number.html")
 def observer_count(start, finish, country=None, state=None, county=None):
-
     filters = {
         "published": True,
         "date__gte": start,
@@ -85,7 +87,6 @@ def observer_count(start, finish, country=None, state=None, county=None):
 
 @register.inclusion_tag("news/numbers/number.html")
 def duration_count(start, finish, country=None, state=None, county=None):
-
     filters = {
         "published": True,
         "date__gte": start,

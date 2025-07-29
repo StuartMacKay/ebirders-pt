@@ -1,7 +1,6 @@
 import datetime as dt
 
 from django.conf import settings
-from django.db.models import Q
 from django.urls import reverse
 from django.utils import translation
 from django.utils.dateformat import format
@@ -18,11 +17,7 @@ from .forms import MonthFilter, RegionFilter, WeekFilter
 class NewsView(FormsMixin, generic.TemplateView):
     template_name = "news/index.html"
     methods = ["GET"]
-    form_classes = [
-        RegionFilter,
-        WeekFilter,
-        MonthFilter
-    ]
+    form_classes = [RegionFilter, WeekFilter, MonthFilter]
 
     @staticmethod
     def get_translations():

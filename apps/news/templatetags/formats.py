@@ -12,10 +12,13 @@ def duration_format(value):
         minutes = value % 60
 
         if hours and minutes:
-            result = _("%(hours)dh %(minutes)0dm") % {"hours": hours, "minutes": minutes}
+            result = _("%(hours)dh %(minutes)0dm") % {
+                "hours": hours,
+                "minutes": minutes,
+            }
         elif hours and not minutes:
             result = _("%(hours)d") % {"hours": hours}
-        else: # not hours and minutes
+        else:  # not hours and minutes
             if minutes == 1:
                 result = _("%(minutes)d min") % {"minutes": minutes}
             else:

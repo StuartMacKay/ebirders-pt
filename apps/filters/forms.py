@@ -1,4 +1,3 @@
-import datetime as dt
 import json
 
 from django import forms
@@ -6,7 +5,6 @@ from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 
 from dal import autocomplete
-from dateutil.relativedelta import relativedelta
 from ebird.api.data.models import Country, County, Location, Observer, Species, State
 
 from .enums import Protocol
@@ -263,7 +261,8 @@ class ProtocolFilter(FilterForm):
         label=_("Protocol"),
         choices=[
             ("", _("All")),
-        ] + Protocol.choices,
+        ]
+        + Protocol.choices,
         required=False,
         widget=forms.Select(attrs={"class": "form-control"}),
     )
@@ -279,10 +278,7 @@ class ProtocolFilter(FilterForm):
         widget=forms.Select(attrs={"class": "form-control"}),
     )
 
-    filters = {
-        "protocol": "protocol_code",
-        "complete": "complete"
-    }
+    filters = {"protocol": "protocol_code", "complete": "complete"}
 
 
 class ObservationFilter(FilterForm):
