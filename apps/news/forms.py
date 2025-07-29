@@ -112,6 +112,14 @@ class MonthFilter(FilterForm):
         ),
     )
 
+    INVALID_FORMAT = _("Enter a month in the form YYYY-MM, e.g. 2025-01")
+
+    def clean_month(self):
+        value = self.cleaned_data["month"]
+        if not re.match("\d4-\d2", value):
+            raise forms.ValidationError(self.INVALID_FORMAT)
+        return value
+
     def clean(self):
         cleaned_data = super().clean()
         if value := cleaned_data.get("month"):
