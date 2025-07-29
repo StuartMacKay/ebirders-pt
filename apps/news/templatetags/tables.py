@@ -5,7 +5,6 @@ from django import template
 from django.db.models import Case, Count, F, Sum, When
 from django.utils.translation import gettext_lazy as _
 
-from dateutil.relativedelta import relativedelta
 from ebird.api.data.models import Checklist, Observation, Observer
 
 from news.models import (
@@ -292,7 +291,6 @@ def big_days(start, finish, country=None, state=None, county=None):
 
 @register.inclusion_tag("news/tables/high-counts.html")
 def high_counts(start, finish, country=None, state=None, county=None):
-
     previous = {}
     high_counts = {}
 
@@ -300,6 +298,8 @@ def high_counts(start, finish, country=None, state=None, county=None):
         "published": True,
         "date__gte": start,
         "date__lte": finish,
+        "species__category": "species",
+        "count__gt": 0,
     }
 
     if country:
@@ -309,35 +309,24 @@ def high_counts(start, finish, country=None, state=None, county=None):
     if county:
         filters["county__in"] = county
 
-    observations = (
-        Observation.objects.filter(**filters)
-        .filter(
-            species__category="species",
-            date__gte=start - relativedelta(months=1),
-            date__lte=finish,
-            count__gt=0,
-        )
-        .values_list("identifier", "species_id", "date")
-        .order_by("species__taxon_order", "-count")
-    )
-
-    for observation in observations:
-        key = observation[1]
-        previous.setdefault(key, 0)
-        if observation[2] < start:
-            previous[key] += 1
-        else:
-            if previous[key] < 3 and key not in high_counts:
-                high_counts[key] = observation[0]
+    related = [
+        "species",
+        "country",
+        "state",
+        "county",
+        "location",
+        "observer",
+        "checklist",
+    ]
 
     high_counts = (
-        Observation.objects.filter(identifier__in=high_counts.values())
-        .select_related(
-            "species", "country", "state", "county", "location", "observer", "checklist"
-        )
-        .order_by("-date", "species__taxon_order")
+        Observation.objects.filter(**filters)
+        .filter(**filters)
+        .select_related(*related)
+        .order_by("species__taxon_order", "-count")
+        .distinct("species__taxon_order")
     )
 
     return {
-        "observations": high_counts,
+        "observations": sorted(high_counts, key=lambda obj: obj.date, reverse=True)
     }
