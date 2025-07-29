@@ -17,7 +17,6 @@ log = logging.getLogger(__name__)
 
 @register.inclusion_tag("news/tables/big-lists.html")
 def big_lists(start, finish, country=None, state=None, county=None):
-
     filters = {
         "published": True,
         "date__gte": start,
@@ -34,8 +33,7 @@ def big_lists(start, finish, country=None, state=None, county=None):
     related = ["state", "county", "location", "observer", "country"]
 
     checklists = (
-        Checklist.objects
-        .filter(**filters)
+        Checklist.objects.filter(**filters)
         .select_related(*related)
         .order_by("-species_count", "-date")[:10]
     )
@@ -48,7 +46,6 @@ def big_lists(start, finish, country=None, state=None, county=None):
 
 @register.inclusion_tag("news/tables/checklists-completed.html")
 def checklists_completed(start, finish, country=None, state=None, county=None):
-
     filters = {
         "published": True,
         "date__gte": start,
@@ -81,7 +78,6 @@ def checklists_completed(start, finish, country=None, state=None, county=None):
 
 @register.inclusion_tag("news/tables/time-spent-birding.html")
 def time_spent_birding(start, finish, country=None, state=None, county=None):
-
     filters = {
         "published": True,
         "date__gte": start,
@@ -118,7 +114,6 @@ def time_spent_birding(start, finish, country=None, state=None, county=None):
 
 @register.inclusion_tag("news/tables/observer-species-latest.html")
 def observer_species_latest(start, finish, country=None, state=None, county=None):
-
     filters = {}
 
     if country:
@@ -147,8 +142,9 @@ def observer_species_latest(start, finish, country=None, state=None, county=None
 
 
 @register.inclusion_tag("news/tables/observer-species-weekly.html")
-def observer_species_weekly(start, finish, week, year, country=None, state=None, county=None):
-
+def observer_species_weekly(
+    start, finish, week, year, country=None, state=None, county=None
+):
     filters = {
         "observer_species_weekly__week": week,
         "observer_species_weekly__year": year,
@@ -180,8 +176,9 @@ def observer_species_weekly(start, finish, week, year, country=None, state=None,
 
 
 @register.inclusion_tag("news/tables/observer-species-monthly.html")
-def observer_species_monthly(start, finish, month, year, country=None, state=None, county=None):
-
+def observer_species_monthly(
+    start, finish, month, year, country=None, state=None, county=None
+):
     filters = {
         "observer_species_monthly__month": month,
         "observer_species_monthly__year": year,
@@ -214,7 +211,6 @@ def observer_species_monthly(start, finish, month, year, country=None, state=Non
 
 @register.inclusion_tag("news/tables/year-list.html")
 def year_list(start, finish, year, country=None, state=None, county=None):
-
     filters = {
         "date__gte": dt.date(year=year, month=1, day=1),
         "date__lte": finish,
@@ -262,7 +258,6 @@ def year_list(start, finish, year, country=None, state=None, county=None):
 
 @register.inclusion_tag("news/tables/big-days.html")
 def big_days(start, finish, country=None, state=None, county=None):
-
     filters = {
         "published": True,
         "date__gte": start,
