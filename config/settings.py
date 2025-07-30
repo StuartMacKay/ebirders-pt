@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     "ckeditor",
     "ebird.api.data",
     "base",
+    "config",
     "checklists",
     "contact",
     "dates",
@@ -72,7 +73,6 @@ INSTALLED_APPS = [
     "notifications",
     "observations",
     "observers",
-    "pages",
     "species",
     "updates"
 ]
