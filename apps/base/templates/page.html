@@ -1,0 +1,54 @@
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="{% static 'icon.svg' %}">
+  <link rel="apple-touch-icon" href="{% static 'apple-touch-icon.png' %}">
+  <link rel="manifest" href="{% static 'manifest.webmanifest' %}">
+  <title>{% block title %}{% endblock %}</title>
+
+  {% block css %}
+    <link href="{% static 'css/vendor/bootstrap-5.3.3.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/vendor/bootstrap-icons-1.11.3.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/site.css' %}" rel="stylesheet" type="text/css">
+  {% endblock %}
+
+  {% block head_extra %}
+    {% if UMAMI_WEBSITE_ID %}
+      <script defer src="https://cloud.umami.is/script.js" data-website-id="{{ UMAMI_WEBSITE_ID }}"></script>
+    {% endif %}
+  {% endblock %}
+</head>
+
+<body>
+  {% block body %}
+    <header>
+      {% block header %}
+        {% include "includes/header.html" %}
+      {% endblock %}
+    </header>
+    <div class="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+    <footer>
+      {% block footer %}
+        {% include "includes/footer.html" %}
+      {% endblock %}
+    </footer>
+  {% endblock %}
+
+  {% block javascript %}
+    <script src="{% static 'js/vendor/bootstrap-5.3.3.bundle.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/vendor/autocomplete-1.1.38.min.js' %}" type="module"></script>
+    <script src="{% static 'js/index.js' %}" type="text/javascript"></script>
+  {% endblock %}
+
+</body>
+</html>

@@ -28,6 +28,20 @@
 
 <body>
   {% block body %}
+    <header>
+      {% block header %}
+        {% include "includes/header.html" %}
+      {% endblock %}
+    </header>
+    <div class="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+    <footer>
+      {% block footer %}
+        {% include "includes/footer.html" %}
+      {% endblock %}
+    </footer>
   {% endblock %}
 
   {% block javascript %}
