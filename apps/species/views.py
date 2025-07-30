@@ -1,7 +1,6 @@
 import json
 
 from django.conf import settings
-from django.db.models import Q
 from django.urls import reverse
 from django.utils import translation
 from django.utils.translation import gettext_lazy as _
@@ -18,7 +17,6 @@ from .forms import CategoryFilter, FamilyFilter, SpeciesOrder
 
 
 class SpeciesView(FilteredListView):
-    default_filter = Q(published=True)
     form_classes = (
         LocationFilter,
         ObserverFilter,
@@ -44,6 +42,11 @@ class SpeciesView(FilteredListView):
             "observer",
             "species",
         ]
+
+    def get_filters(self, forms):
+        filters = super().get_filters(forms)
+        filters["published"] = True
+        return filters
 
     def get_filtered_queryset(self, forms):
         return super().get_filtered_queryset(forms).distinct("species")

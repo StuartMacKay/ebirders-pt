@@ -87,28 +87,20 @@ class FormsMixin(ContextMixin):
 
 
 class FilteredListView(FormsMixin, generic.ListView):
-    default_filters = None
-    default_order = None
     related = None
     methods = ["GET"]
-
-    def get_default_filters(self):
-        return self.default_filters or {}
 
     def get_related(self):
         return self.related
 
-    def get_default_order(self):
-        return self.default_order or []
-
     def get_order(self, forms):
-        order = self.get_default_order()
+        order = []
         for identifier, form in forms.items():
             order.extend(form.get_ordering())
         return order
 
     def get_filters(self, forms):
-        filters = self.get_default_filters()
+        filters = {}
         for identifier, form in forms.items():
             filters.update(form.get_filters())
         return filters

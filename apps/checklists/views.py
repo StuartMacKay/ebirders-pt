@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.db.models import Q
 from django.urls import reverse
 from django.utils import translation
 
@@ -14,7 +13,6 @@ from .forms import ChecklistOrder, ProtocolFilter
 
 
 class ChecklistsView(FilteredListView):
-    default_filter = Q(published=True)
     form_classes = [
         LocationFilter,
         ObserverFilter,
@@ -32,6 +30,11 @@ class ChecklistsView(FilteredListView):
 
     def get_related(self):  # noqa
         return ["country", "state", "county", "location", "observer"]
+
+    def get_filters(self, forms):
+        filters = super().get_filters(forms)
+        filters["published"] = True
+        return filters
 
     def get_translated_urls(self):
         urls = []
