@@ -5,15 +5,13 @@ from django.utils import translation
 
 from ebird.api.data.models import Observation
 
-from filters.forms import (
-    DateRangeFilter,
-    LocationFilter,
-    ObservationFilter,
-    ObservationOrder,
-    ObserverFilter,
-    SpeciesFilter,
-)
-from filters.views import FilteredListView
+from base.views import FilteredListView
+from dates.forms import DateRangeFilter
+from locations.forms import LocationFilter
+from observers.forms import ObserverFilter
+from species.forms import SpeciesFilter
+
+from .forms import ObservationFilter, ObservationOrder
 
 
 class ObservationsView(FilteredListView):

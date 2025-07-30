@@ -1,20 +1,20 @@
+import json
+
 from django.conf import settings
 from django.db.models import Q
 from django.urls import reverse
 from django.utils import translation
 from django.utils.translation import gettext_lazy as _
 
-from ebird.api.data.models import Observation
+from dal import autocomplete
+from ebird.api.data.models import Observation, Species
 
-from filters.forms import (
-    CategoryFilter,
-    DateRangeFilter,
-    FamilyFilter,
-    LocationFilter,
-    ObserverFilter,
-    SpeciesOrder,
-)
-from filters.views import FilteredListView
+from base.views import FilteredListView
+from dates.forms import DateRangeFilter
+from locations.forms import LocationFilter
+from observers.forms import ObserverFilter
+
+from .forms import CategoryFilter, FamilyFilter, SpeciesOrder
 
 
 class SpeciesView(FilteredListView):
@@ -105,3 +105,36 @@ class SpeciesView(FilteredListView):
             list(context["object_list"]), key=lambda obj: obj.species.taxon_order
         )
         return context
+
+
+class CommonNameList(autocomplete.Select2ListView):
+    def get_list(self):
+        queryset = (
+            Species.objects.all()
+            .values_list("species_code", "common_name")
+            .order_by("taxon_order")
+        )
+        return [
+            ("%s" % code, json.loads(name)[self.request.LANGUAGE_CODE])
+            for code, name in queryset
+        ]
+
+
+class ScientificNameList(autocomplete.Select2ListView):
+    def get_list(self):
+        queryset = (
+            Species.objects.all()
+            .values_list("species_code", "scientific_name")
+            .order_by("taxon_order")
+        )
+        return [(code, name) for code, name in queryset]
+
+
+class FamilyList(autocomplete.Select2ListView):
+    def get_list(self):
+        queryset = (
+            Species.objects.all()
+            .values_list("family_code", "family_scientific_name")
+            .order_by("taxon_order")
+        )
+        return list({(code, name) for code, name in queryset})

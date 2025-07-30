@@ -4,58 +4,40 @@ import re
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
-from dal import autocomplete
 from dateutil.relativedelta import relativedelta
-from ebird.api.data.models import Country, County, State
+
+from base.forms import FilterForm
 
 
-class FilterForm(forms.Form):
-    form_id = None
-    form_title = None
+class DateRangeFilter(FilterForm):
+    form_id = "date-range"
+    form_title = _("By Date")
 
-    def get_params(self):
-        return {field: value for field, value in self.cleaned_data.items() if value}
+    DATES_SWAPPED = _("This date is later than the until date.")
 
-
-class RegionFilter(FilterForm):
-    form_id = "region"
-    form_title = _("For Region")
-
-    country = forms.ModelMultipleChoiceField(
-        label=_("Country"),
+    start = forms.DateField(
+        label=_("From"),
         required=False,
-        queryset=Country.objects.all(),
-        widget=autocomplete.Select2Multiple(
-            url="filters:countries",
-            attrs={"data-placeholder": _("Select one or more countries")},
-        ),
+        widget=forms.DateInput(attrs={"type": "date", "class": "form-control"}),
+    )
+    finish = forms.DateField(
+        label=_("Until"),
+        required=False,
+        widget=forms.DateInput(attrs={"type": "date", "class": "form-control"}),
     )
 
-    state = forms.ModelMultipleChoiceField(
-        label=_("State"),
-        required=False,
-        queryset=State.objects.all(),
-        widget=autocomplete.Select2Multiple(
-            url="filters:states",
-            forward=["country"],
-            attrs={
-                "data-placeholder": _("Select one or more states"),
-            },
-        ),
-    )
+    filters = {
+        "start": "date__gte",
+        "finish": "date__lte",
+    }
 
-    county = forms.ModelMultipleChoiceField(
-        label=_("County"),
-        required=False,
-        queryset=County.objects.all(),
-        widget=autocomplete.Select2Multiple(
-            url="filters:counties",
-            forward=["state", "country"],
-            attrs={
-                "data-placeholder": _("Select one or more counties"),
-            },
-        ),
-    )
+    def clean(self):
+        cleaned_data = super().clean()
+        start = cleaned_data.get("start")
+        finish = cleaned_data.get("finish")
+        if start and finish and start > finish:
+            self.add_error("start", self.DATES_SWAPPED)
+        return cleaned_data
 
 
 class WeekFilter(FilterForm):
@@ -78,7 +60,7 @@ class WeekFilter(FilterForm):
 
     def clean_week(self):
         value = self.cleaned_data["week"]
-        if not re.match("\d4-W\d2", value):
+        if value and not re.match(r"\d{4}-W\d{2}", value):
             raise forms.ValidationError(self.INVALID_FORMAT)
         return value
 
@@ -116,7 +98,7 @@ class MonthFilter(FilterForm):
 
     def clean_month(self):
         value = self.cleaned_data["month"]
-        if not re.match("\d4-\d2", value):
+        if value and not re.match(r"\d{4}-\d{2}", value):
             raise forms.ValidationError(self.INVALID_FORMAT)
         return value
 

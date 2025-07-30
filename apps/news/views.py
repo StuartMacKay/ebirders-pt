@@ -8,10 +8,10 @@ from django.views import generic
 
 from dateutil.relativedelta import relativedelta
 
-from filters.views import FormsMixin
+from base.views import FormsMixin
+from dates.forms import MonthFilter, WeekFilter
+from locations.forms import RegionFilter
 from notifications.models import Notification
-
-from .forms import MonthFilter, RegionFilter, WeekFilter
 
 
 class NewsView(FormsMixin, generic.TemplateView):

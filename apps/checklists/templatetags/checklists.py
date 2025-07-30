@@ -2,7 +2,7 @@ from django import template
 from django.template.defaultfilters import floatformat
 from django.utils.translation import gettext_lazy as _
 
-from filters.enums import Protocol
+from ..forms import Protocol
 
 register = template.Library()
 

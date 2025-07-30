@@ -1,9 +1,7 @@
-import json
-
 from django.db.models import Q
 
 from dal import autocomplete
-from ebird.api.data.models import Country, County, Location, Observer, Species, State
+from ebird.api.data.models import Country, County, Location, State
 
 
 class CountryList(autocomplete.Select2ListView):
@@ -48,41 +46,3 @@ class LocationList(autocomplete.Select2ListView):
         elif country := self.forwarded.get("country"):
             queryset = queryset.filter(country__code__in=country)
         return queryset
-
-
-class ObserverList(autocomplete.Select2ListView):
-    def get_list(self):
-        return Observer.objects.all().values_list("identifier", "name")
-
-
-class CommonNameList(autocomplete.Select2ListView):
-    def get_list(self):
-        queryset = (
-            Species.objects.all()
-            .values_list("species_code", "common_name")
-            .order_by("taxon_order")
-        )
-        return [
-            ("%s" % code, json.loads(name)[self.request.LANGUAGE_CODE])
-            for code, name in queryset
-        ]
-
-
-class ScientificNameList(autocomplete.Select2ListView):
-    def get_list(self):
-        queryset = (
-            Species.objects.all()
-            .values_list("species_code", "scientific_name")
-            .order_by("taxon_order")
-        )
-        return [(code, name) for code, name in queryset]
-
-
-class FamilyList(autocomplete.Select2ListView):
-    def get_list(self):
-        queryset = (
-            Species.objects.all()
-            .values_list("family_code", "family_scientific_name")
-            .order_by("taxon_order")
-        )
-        return list({(code, name) for code, name in queryset})

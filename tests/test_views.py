@@ -11,13 +11,14 @@ redirects = [
 ]
 
 autocompletes = [
-    reverse("filters:counties"),
-    reverse("filters:states"),
-    reverse("filters:counties"),
-    reverse("filters:locations"),
-    reverse("filters:observers"),
-    reverse("filters:common-name"),
-    reverse("filters:scientific-name"),
+    reverse("locations:counties"),
+    reverse("locations:states"),
+    reverse("locations:counties"),
+    reverse("locations:locations"),
+    reverse("observers:observers"),
+    reverse("species:common-names"),
+    reverse("species:scientific-names"),
+    reverse("species:families"),
 ]
 
 pages = [

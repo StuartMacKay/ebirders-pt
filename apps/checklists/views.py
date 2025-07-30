@@ -5,14 +5,12 @@ from django.utils import translation
 
 from ebird.api.data.models import Checklist
 
-from filters.forms import (
-    ChecklistOrder,
-    DateRangeFilter,
-    LocationFilter,
-    ObserverFilter,
-    ProtocolFilter,
-)
-from filters.views import FilteredListView
+from base.views import FilteredListView
+from dates.forms import DateRangeFilter
+from locations.forms import LocationFilter
+from observers.forms import ObserverFilter
+
+from .forms import ChecklistOrder, ProtocolFilter
 
 
 class ChecklistsView(FilteredListView):
