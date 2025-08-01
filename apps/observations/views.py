@@ -6,7 +6,7 @@ from ebird.api.data.models import Observation
 
 from base.views import FilteredListView
 from dates.forms import DateRangeFilter
-from locations.forms import LocationFilter
+from locations.forms import LocationFilter, RegionFilter
 from observers.forms import ObserverFilter
 from species.forms import SpeciesFilter
 
@@ -15,6 +15,7 @@ from .forms import ObservationFilter, ObservationOrder
 
 class ObservationsView(FilteredListView):
     form_classes = (
+        RegionFilter,
         LocationFilter,
         ObserverFilter,
         DateRangeFilter,

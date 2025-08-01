@@ -6,7 +6,7 @@ from ebird.api.data.models import Checklist
 
 from base.views import FilteredListView
 from dates.forms import DateRangeFilter
-from locations.forms import LocationFilter
+from locations.forms import LocationFilter, RegionFilter
 from observers.forms import ObserverFilter
 
 from .forms import ChecklistOrder, ProtocolFilter
@@ -14,6 +14,7 @@ from .forms import ChecklistOrder, ProtocolFilter
 
 class ChecklistsView(FilteredListView):
     form_classes = [
+        RegionFilter,
         LocationFilter,
         ObserverFilter,
         DateRangeFilter,

@@ -47,46 +47,16 @@ class RegionFilter(FilterForm):
         ),
     )
 
+    filters = {
+        "country": "country__in",
+        "state": "state__in",
+        "county": "county__in",
+    }
+
 
 class LocationFilter(FilterForm):
     form_id = "location"
     form_title = _("For Location")
-
-    country = forms.ModelChoiceField(
-        label=_("Country"),
-        required=False,
-        queryset=Country.objects.all(),
-        widget=autocomplete.Select2Multiple(
-            url="locations:countries",
-            attrs={"placeholder": _("Select one or more countries")},
-        ),
-    )
-
-    state = forms.ModelMultipleChoiceField(
-        label=_("State"),
-        required=False,
-        queryset=State.objects.all(),
-        widget=autocomplete.Select2Multiple(
-            url="locations:states",
-            forward=["country"],
-            attrs={
-                "data-placeholder": _("Select one or more states"),
-            },
-        ),
-    )
-
-    county = forms.ModelMultipleChoiceField(
-        label=_("County"),
-        required=False,
-        queryset=County.objects.all(),
-        widget=autocomplete.Select2Multiple(
-            url="locations:counties",
-            forward=["state", "country"],
-            attrs={
-                "data-placeholder": _("Select one or more counties"),
-            },
-        ),
-    )
 
     location = forms.ModelMultipleChoiceField(
         label=_("Location"),
@@ -112,9 +82,6 @@ class LocationFilter(FilterForm):
     )
 
     filters = {
-        "country": "country__in",
-        "state": "state__in",
-        "county": "county__in",
         "location": "location__in",
         "hotspot": "location__hotspot",
     }
