@@ -10,7 +10,7 @@ from locations.forms import LocationFilter, RegionFilter
 from observers.forms import ObserverFilter
 from species.forms import SpeciesFilter
 
-from .forms import ObservationFilter, ObservationOrder
+from .forms import ObservationOrder
 
 
 class ObservationsView(FilteredListView):
@@ -20,7 +20,6 @@ class ObservationsView(FilteredListView):
         ObserverFilter,
         DateRangeFilter,
         SpeciesFilter,
-        ObservationFilter,
         ObservationOrder,
     )
     model = Observation

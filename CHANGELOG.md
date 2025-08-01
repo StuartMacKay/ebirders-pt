@@ -9,6 +9,8 @@ a concise history of changes made.
 
 - Removed filters to reduce clutter and make site easier to use:
     checklist complete/incomplete
+    observation option approved/rejected
+    observation media (audio, photo, video)
 
 ## 2025.08.01
 
