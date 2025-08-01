@@ -28,7 +28,7 @@ class CategoryFilter(FilterForm):
 
 class SpeciesFilter(FilterForm):
     form_id = "species"
-    form_title = _("By Species")
+    form_title = _("For Species")
 
     common_name = forms.ModelChoiceField(
         label=_("Common name"),
