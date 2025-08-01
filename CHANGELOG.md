@@ -7,6 +7,8 @@ a concise history of changes made.
 
 ## Latest
 
+## 2025.08.01
+
 - Added Materialized Views for Country, District (State) and County species lists,
   greatly speeding up the display of the pages.
 - Removed filters for species families, since they were of uncertain value.
