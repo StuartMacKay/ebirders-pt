@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-01 16:25+0000\n"
+"POT-Creation-Date: 2025-08-01 17:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -122,47 +122,9 @@ msgstr "For Protocol"
 msgid "Protocol"
 msgstr "Protocol"
 
-#: apps/checklists/forms.py:27 apps/checklists/forms.py:35
-#: apps/observations/forms.py:14 apps/observations/forms.py:25
-#: apps/observations/forms.py:36 apps/observations/forms.py:47
-#: apps/species/forms.py:19
+#: apps/checklists/forms.py:27 apps/species/forms.py:19
 msgid "All"
 msgstr "All"
-
-#: apps/checklists/forms.py:33 apps/observations/forms.py:12
-msgid "Status"
-msgstr "Status"
-
-#: apps/checklists/forms.py:36
-#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:53
-#: apps/checklists/templates/checklists/includes/list-entries-wide.html:67
-msgid "Complete"
-msgstr "Complete"
-
-#: apps/checklists/forms.py:37
-#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:55
-#: apps/checklists/templates/checklists/includes/list-entries-wide.html:69
-msgid "Incomplete"
-msgstr "Incomplete"
-
-#: apps/checklists/forms.py:48 apps/observations/forms.py:65
-#: apps/species/forms.py:136
-msgid "Order By"
-msgstr "Order By"
-
-#: apps/checklists/forms.py:51 apps/observations/forms.py:68
-#: apps/species/forms.py:139
-msgid "Ordering"
-msgstr "Ordering"
-
-#: apps/checklists/forms.py:53 apps/observations/forms.py:70
-msgid "Most recent first"
-msgstr "Most recent first"
-
-#: apps/checklists/forms.py:54
-#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:48
-msgid "Number of species"
-msgstr "Number of species"
 
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:8
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:20
@@ -195,6 +157,20 @@ msgstr "Show checklists for this country"
 msgid "Show checklists for this observer"
 msgstr "Show checklists for this observer"
 
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:48
+msgid "Number of species"
+msgstr "Number of species"
+
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:53
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:67
+msgid "Complete"
+msgstr "Complete"
+
+#: apps/checklists/templates/checklists/includes/list-entries-narrow.html:55
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:69
+msgid "Incomplete"
+msgstr "Incomplete"
+
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:60
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:76
 msgid "Number of Observers"
@@ -223,7 +199,7 @@ msgstr "View this checklist on eBird.org"
 #: apps/news/templates/news/tables/high-counts-wide.html:8
 #: apps/news/templates/news/tables/year-list-wide.html:9
 #: apps/observations/templates/observations/includes/list-entries-wide.html:5
-#: apps/species/views.py:102
+#: apps/species/views.py:103
 msgid "Date"
 msgstr "Date"
 
@@ -384,8 +360,8 @@ msgid "dates"
 msgstr "dates"
 
 #: apps/dates/forms.py:14
-msgid "By Date"
-msgstr "By Date"
+msgid "For Dates"
+msgstr "For Dates"
 
 #: apps/dates/forms.py:16
 msgid "This date is later than the until date."
@@ -475,13 +451,11 @@ msgstr "Select one or more locations"
 msgid "Hotspots only"
 msgstr "Hotspots only"
 
-#: apps/locations/forms.py:77 apps/observations/forms.py:27
-#: apps/observations/forms.py:38 apps/observations/forms.py:49
+#: apps/locations/forms.py:77
 msgid "No"
 msgstr "No"
 
-#: apps/locations/forms.py:78 apps/observations/forms.py:26
-#: apps/observations/forms.py:37 apps/observations/forms.py:48
+#: apps/locations/forms.py:78
 msgid "Yes"
 msgstr "Yes"
 
@@ -672,13 +646,9 @@ msgstr "There are no Big Lists to report."
 #: apps/news/templates/news/tables/high-counts-wide.html:10
 #: apps/news/templates/news/tables/year-list-wide.html:8
 #: apps/observations/templates/observations/includes/list-entries-wide.html:7
-#: apps/species/views.py:82
+#: apps/species/views.py:83
 msgid "species.singular"
 msgstr "Species"
-
-#: apps/news/templates/news/tables/big-lists.html:10
-msgid "View more"
-msgstr "View more"
 
 #: apps/news/templates/news/tables/checklists-completed.html:4
 msgid "Number of checklists completed"
@@ -702,7 +672,7 @@ msgstr "No high counts were found."
 #: apps/news/templates/news/tables/high-counts-wide.html:9
 #: apps/news/templates/news/tables/year-list-wide.html:10
 #: apps/observations/templates/observations/includes/list-entries-wide.html:6
-#: apps/species/views.py:114 apps/species/views.py:116
+#: apps/species/views.py:115 apps/species/views.py:117
 msgid "Count"
 msgstr "Count"
 
@@ -868,34 +838,6 @@ msgstr "Data"
 msgid "Data describing a Notification."
 msgstr "Data describing a Notification."
 
-#: apps/observations/forms.py:9
-msgid "Options"
-msgstr "Options"
-
-#: apps/observations/forms.py:15
-msgid "Accepted"
-msgstr "Accepted"
-
-#: apps/observations/forms.py:16
-msgid "Rejected"
-msgstr "Rejected"
-
-#: apps/observations/forms.py:23
-msgid "With audio"
-msgstr "With audio"
-
-#: apps/observations/forms.py:34
-msgid "With photos"
-msgstr "With photos"
-
-#: apps/observations/forms.py:45
-msgid "With video"
-msgstr "With video"
-
-#: apps/observations/forms.py:71
-msgid "Highest count first"
-msgstr "Highest count first"
-
 #: apps/observations/templates/observations/includes/list-entries-narrow.html:9
 #: apps/observations/templates/observations/includes/list-entries-narrow.html:14
 #: apps/observations/templates/observations/includes/list-entries-wide.html:21
@@ -954,8 +896,8 @@ msgid "Category"
 msgstr "Category"
 
 #: apps/species/forms.py:31
-msgid "By Species"
-msgstr "By Species"
+msgid "For Species"
+msgstr "For Species"
 
 #: apps/species/forms.py:34
 msgid "Common name"
@@ -964,27 +906,6 @@ msgstr "Common name"
 #: apps/species/forms.py:44
 msgid "Scientific name"
 msgstr "Scientific name"
-
-#: apps/species/forms.py:54 apps/species/forms.py:104
-msgid "Family"
-msgstr "Family"
-
-#: apps/species/forms.py:101
-msgid "By Family"
-msgstr "By Family"
-
-#: apps/species/forms.py:141 apps/species/views.py:98 apps/species/views.py:104
-#: apps/species/views.py:106
-msgid "First Seen"
-msgstr "First Seen"
-
-#: apps/species/forms.py:142 apps/species/views.py:100
-msgid "Last Seen"
-msgstr "Last Seen"
-
-#: apps/species/forms.py:143 apps/species/views.py:112
-msgid "Highest Count"
-msgstr "Highest Count"
 
 #: apps/species/models.py:31
 msgid "checklist"
@@ -1110,21 +1031,33 @@ msgstr "Show species seen by this observer"
 msgid "Show Species"
 msgstr "Show Species"
 
-#: apps/species/views.py:84
+#: apps/species/views.py:85
 msgid "Subspecies"
 msgstr "Subspecies"
 
-#: apps/species/views.py:86
+#: apps/species/views.py:87
 msgid "Domestics"
 msgstr "Domestics"
 
-#: apps/species/views.py:88
+#: apps/species/views.py:89
 msgid "Hybrids"
 msgstr "Hybrids"
 
-#: apps/species/views.py:90 apps/species/views.py:92
+#: apps/species/views.py:91 apps/species/views.py:93
 msgid "Species, Forms, etc."
 msgstr "Species, Forms, etc."
+
+#: apps/species/views.py:99 apps/species/views.py:105 apps/species/views.py:107
+msgid "First Seen"
+msgstr "First Seen"
+
+#: apps/species/views.py:101
+msgid "Last Seen"
+msgstr "Last Seen"
+
+#: apps/species/views.py:113
+msgid "Highest Count"
+msgstr "Highest Count"
 
 #: apps/updates/apps.py:7 apps/updates/models.py:23
 msgid "Updates"
