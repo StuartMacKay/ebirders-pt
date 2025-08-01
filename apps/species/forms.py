@@ -16,7 +16,7 @@ class CategoryFilter(FilterForm):
 
     category = forms.ChoiceField(
         label=_("Category"),
-        choices=Species.Category.choices,
+        choices=[("", _("All"))] + Species.Category.choices,
         required=False,
         widget=forms.Select(attrs={"class": "form-control"}),
     )
