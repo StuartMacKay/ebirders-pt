@@ -18,7 +18,6 @@ autocompletes = [
     reverse("observers:observers"),
     reverse("species:common-names"),
     reverse("species:scientific-names"),
-    reverse("species:families"),
 ]
 
 pages = [
