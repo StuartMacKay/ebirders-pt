@@ -9,7 +9,7 @@ from dates.forms import DateRangeFilter
 from locations.forms import LocationFilter, RegionFilter
 from observers.forms import ObserverFilter
 
-from .forms import ChecklistOrder, ProtocolFilter
+from .forms import ProtocolFilter
 
 
 class ChecklistsView(FilteredListView):
@@ -19,10 +19,10 @@ class ChecklistsView(FilteredListView):
         ObserverFilter,
         DateRangeFilter,
         ProtocolFilter,
-        ChecklistOrder,
     ]
     model = Checklist
     paginate_by = 50
+    ordering = ["-started"]
     template_name = "checklists/list.html"
     url = "checklists:list"
 

@@ -30,23 +30,3 @@ class ProtocolFilter(FilterForm):
     )
 
     filters = {"protocol": "protocol_code"}
-
-
-class ChecklistOrder(FilterForm):
-    form_id = "checklist-order"
-    form_title = _("Order By")
-
-    order = forms.ChoiceField(
-        label=_("Ordering"),
-        choices=(
-            ("-started", _("Most recent first")),
-            ("-species_count,-started", _("Number of species")),
-        ),
-        required=False,
-        widget=forms.Select(attrs={"class": "form-control"}),
-    )
-
-    def get_ordering(self):
-        if order := self.cleaned_data.get("order"):
-            return order.split(",")
-        return ("-started",)

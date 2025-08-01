@@ -12,6 +12,7 @@ a concise history of changes made.
     observation option approved/rejected
     observation media (audio, photo, video)
     observation sort order (count descending, most recent first)
+    checklist sort order (species count descending, most recent first)
 
 ## 2025.08.01
 
