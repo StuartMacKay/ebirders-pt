@@ -94,7 +94,7 @@ class FilteredListView(FormsMixin, generic.ListView):
         return self.related
 
     def get_order(self, forms):
-        order = []
+        order = self.get_ordering()
         for identifier, form in forms.items():
             order.extend(form.get_ordering())
         return order

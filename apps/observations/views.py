@@ -10,8 +10,6 @@ from locations.forms import LocationFilter, RegionFilter
 from observers.forms import ObserverFilter
 from species.forms import SpeciesFilter
 
-from .forms import ObservationOrder
-
 
 class ObservationsView(FilteredListView):
     form_classes = (
@@ -20,11 +18,11 @@ class ObservationsView(FilteredListView):
         ObserverFilter,
         DateRangeFilter,
         SpeciesFilter,
-        ObservationOrder,
     )
     model = Observation
     template_name = "observations/list.html"
     paginate_by = 100
+    ordering = ["-started"]
     url = "observations:list"
 
     def get_url(self):

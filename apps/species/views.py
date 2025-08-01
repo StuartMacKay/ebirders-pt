@@ -26,6 +26,7 @@ class SpeciesView(FilteredListView):
         CategoryFilter,
     )
     model = Observation
+    ordering = []
     template_name = "species/list.html"
     url = "species:list"
 
