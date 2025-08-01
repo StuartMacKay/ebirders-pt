@@ -11,7 +11,7 @@ from base.forms import FilterForm
 
 class DateRangeFilter(FilterForm):
     form_id = "date-range"
-    form_title = _("By Date")
+    form_title = _("For Dates")
 
     DATES_SWAPPED = _("This date is later than the until date.")
 
