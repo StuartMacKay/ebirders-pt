@@ -13,7 +13,7 @@ from dates.forms import DateRangeFilter
 from locations.forms import LocationFilter, RegionFilter
 from observers.forms import ObserverFilter
 
-from .forms import CategoryFilter, FamilyFilter, SpeciesOrder
+from .forms import CategoryFilter
 
 
 class SpeciesView(FilteredListView):
@@ -23,8 +23,6 @@ class SpeciesView(FilteredListView):
         ObserverFilter,
         DateRangeFilter,
         CategoryFilter,
-        FamilyFilter,
-        SpeciesOrder,
     )
     model = Observation
     template_name = "species/list.html"
