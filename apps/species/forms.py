@@ -12,7 +12,7 @@ from base.forms import FilterForm
 
 class CategoryFilter(FilterForm):
     form_id = "category"
-    form_title = _("By Category")
+    form_title = _("For Category")
 
     category = forms.ChoiceField(
         label=_("Category"),

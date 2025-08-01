@@ -9,7 +9,7 @@ from base.forms import FilterForm
 
 class ObserverFilter(FilterForm):
     form_id = "observer"
-    form_title = _("By Observer")
+    form_title = _("For Observer")
 
     observer = forms.ModelChoiceField(
         label=_("Observer"),

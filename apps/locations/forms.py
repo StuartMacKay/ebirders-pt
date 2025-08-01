@@ -50,7 +50,7 @@ class RegionFilter(FilterForm):
 
 class LocationFilter(FilterForm):
     form_id = "location"
-    form_title = _("By Location")
+    form_title = _("For Location")
 
     country = forms.ModelChoiceField(
         label=_("Country"),

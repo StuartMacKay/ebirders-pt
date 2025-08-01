@@ -20,7 +20,7 @@ class Protocol(models.TextChoices):
 
 class ProtocolFilter(FilterForm):
     form_id = "protocol"
-    form_title = _("By Protocol")
+    form_title = _("For Protocol")
 
     protocol = forms.ChoiceField(
         label=_("Protocol"),
