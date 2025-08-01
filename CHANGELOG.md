@@ -7,6 +7,9 @@ a concise history of changes made.
 
 ## Latest
 
+- Removed filters to reduce clutter and make site easier to use:
+    checklist complete/incomplete
+
 ## 2025.08.01
 
 - Added Materialized Views for Country, District (State) and County species lists,

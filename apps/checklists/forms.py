@@ -29,18 +29,7 @@ class ProtocolFilter(FilterForm):
         widget=forms.Select(attrs={"class": "form-control"}),
     )
 
-    complete = forms.ChoiceField(
-        label=_("Status"),
-        choices=(
-            ("", _("All")),
-            ("True", _("Complete")),
-            ("False", _("Incomplete")),
-        ),
-        required=False,
-        widget=forms.Select(attrs={"class": "form-control"}),
-    )
-
-    filters = {"protocol": "protocol_code", "complete": "complete"}
+    filters = {"protocol": "protocol_code"}
 
 
 class ChecklistOrder(FilterForm):
