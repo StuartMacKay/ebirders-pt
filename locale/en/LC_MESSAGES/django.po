@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-30 10:01+0000\n"
+"POT-Creation-Date: 2025-08-01 16:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,132 +18,149 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: apps/checklists/apps.py:8
+#: apps/base/apps.py:7
+msgid "base"
+msgstr "base"
+
+#: apps/base/templates/includes/footer.html:10
+msgid "About"
+msgstr "About"
+
+#: apps/base/templates/includes/footer.html:13
+#: apps/updates/templates/updates/list.html:4
+#: apps/updates/templates/updates/list.html:11
+msgid "What's New"
+msgstr "What's New"
+
+#: apps/base/templates/includes/footer.html:16 apps/contact/apps.py:8
+#: apps/contact/templates/contact/form.html:4
+#: apps/contact/templates/contact/form.html:11
+msgid "Contact"
+msgstr "Contact"
+
+#: apps/base/templates/includes/header.html:26 apps/news/apps.py:8
+#: apps/news/templates/news/includes/page-title.html:6
+#: apps/news/templates/news/includes/page-title.html:8
+#: apps/news/templates/news/index.html:4 templates/flatpages/base.html:31
+msgid "News"
+msgstr "News"
+
+#: apps/base/templates/includes/header.html:31 apps/checklists/apps.py:8
 #: apps/checklists/templates/checklists/includes/list-title.html:4
 #: apps/checklists/templates/checklists/list.html:4
 #: apps/news/templates/news/tables/checklists-completed.html:14
-#: templates/flatpages/base.html:36 templates/includes/header.html:31
+#: templates/flatpages/base.html:36
 msgid "Checklists"
 msgstr "Checklists"
 
-#: apps/checklists/forms.py:27 apps/filters/forms.py:227
-#: apps/observations/forms.py:23 apps/species/forms.py:29
-msgid "By Date"
-msgstr "By Date"
+#: apps/base/templates/includes/header.html:36 apps/observations/apps.py:8
+#: apps/observations/templates/observations/includes/list-title.html:4
+#: apps/observations/templates/observations/list.html:4
+#: templates/flatpages/base.html:41
+msgid "Observations"
+msgstr "Observations"
 
-#: apps/checklists/forms.py:29 apps/filters/forms.py:229
-#: apps/observations/forms.py:25 apps/species/forms.py:31
-msgid "This date is later than the until date."
-msgstr "This date is later than the until date."
+#: apps/base/templates/includes/header.html:41
+#: apps/checklists/templates/checklists/includes/list-entries-wide.html:6
+#: apps/checklists/templates/checklists/includes/list-entries.html:3
+#: apps/news/templates/news/tables/big-days.html:16
+#: apps/news/templates/news/tables/observer-species-latest.html:14
+#: apps/news/templates/news/tables/observer-species-monthly.html:14
+#: apps/news/templates/news/tables/observer-species-weekly.html:14
+#: apps/news/templates/news/tables/year-list.html:25 apps/species/apps.py:7
+#: apps/species/templates/species/includes/list-title.html:4
+#: apps/species/templates/species/list.html:4 templates/flatpages/base.html:46
+msgid "species.plural"
+msgstr "Species"
 
-#: apps/checklists/forms.py:32 apps/filters/forms.py:232
-#: apps/observations/forms.py:28 apps/species/forms.py:34
-msgid "From"
-msgstr "From"
-
-#: apps/checklists/forms.py:37 apps/filters/forms.py:237
-#: apps/observations/forms.py:33 apps/species/forms.py:39
-msgid "Until"
-msgstr "Until"
-
-#: apps/checklists/forms.py:57
+#: apps/checklists/forms.py:9
 msgid "Incidental"
 msgstr "Incidental"
 
-#: apps/checklists/forms.py:58
+#: apps/checklists/forms.py:10
 msgid "Stationary"
 msgstr "Stationary"
 
-#: apps/checklists/forms.py:59
+#: apps/checklists/forms.py:11
 msgid "Traveling"
 msgstr "Traveling"
 
-#: apps/checklists/forms.py:60
+#: apps/checklists/forms.py:12
 msgid "Area"
 msgstr "Area"
 
-#: apps/checklists/forms.py:61
+#: apps/checklists/forms.py:13
 msgid "Banding"
 msgstr "Banding"
 
-#: apps/checklists/forms.py:62
+#: apps/checklists/forms.py:14
 msgid "Nocturnal Flight Call Count"
 msgstr "Nocturnal Flight Call Count"
 
-#: apps/checklists/forms.py:63
+#: apps/checklists/forms.py:15
 msgid "eBird Pelagic Protocol"
 msgstr "eBird Pelagic Protocol"
 
-#: apps/checklists/forms.py:64
+#: apps/checklists/forms.py:16
 msgid "Historical"
 msgstr "Historical"
 
-#: apps/checklists/forms.py:65
+#: apps/checklists/forms.py:17
 msgid "Common Bird Survey"
 msgstr "Common Bird Survey"
 
-#: apps/checklists/forms.py:66
+#: apps/checklists/forms.py:18
 msgid "Seabird Census"
 msgstr "Seabird Census"
 
-#: apps/checklists/forms.py:71 apps/filters/forms.py:258
-msgid "By Protocol"
-msgstr "By Protocol"
+#: apps/checklists/forms.py:23
+msgid "For Protocol"
+msgstr "For Protocol"
 
-#: apps/checklists/forms.py:74
+#: apps/checklists/forms.py:26
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:8
-#: apps/filters/forms.py:261
 msgid "Protocol"
 msgstr "Protocol"
 
-#: apps/checklists/forms.py:76 apps/checklists/forms.py:86
-#: apps/filters/forms.py:263 apps/filters/forms.py:273
-#: apps/filters/forms.py:291 apps/filters/forms.py:302
-#: apps/filters/forms.py:313 apps/filters/forms.py:324
-#: apps/observations/forms.py:59 apps/observations/forms.py:70
-#: apps/observations/forms.py:81 apps/observations/forms.py:92
+#: apps/checklists/forms.py:27 apps/checklists/forms.py:35
+#: apps/observations/forms.py:14 apps/observations/forms.py:25
+#: apps/observations/forms.py:36 apps/observations/forms.py:47
+#: apps/species/forms.py:19
 msgid "All"
 msgstr "All"
 
-#: apps/checklists/forms.py:84 apps/filters/forms.py:271
-#: apps/filters/forms.py:289 apps/observations/forms.py:57
+#: apps/checklists/forms.py:33 apps/observations/forms.py:12
 msgid "Status"
 msgstr "Status"
 
-#: apps/checklists/forms.py:87
+#: apps/checklists/forms.py:36
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:53
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:67
-#: apps/filters/forms.py:274
 msgid "Complete"
 msgstr "Complete"
 
-#: apps/checklists/forms.py:88
+#: apps/checklists/forms.py:37
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:55
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:69
-#: apps/filters/forms.py:275
 msgid "Incomplete"
 msgstr "Incomplete"
 
-#: apps/checklists/forms.py:99 apps/filters/forms.py:358
-#: apps/filters/forms.py:378 apps/filters/forms.py:398
-#: apps/observations/forms.py:110 apps/species/forms.py:181
+#: apps/checklists/forms.py:48 apps/observations/forms.py:65
+#: apps/species/forms.py:136
 msgid "Order By"
 msgstr "Order By"
 
-#: apps/checklists/forms.py:102 apps/filters/forms.py:361
-#: apps/filters/forms.py:381 apps/filters/forms.py:401
-#: apps/observations/forms.py:113 apps/species/forms.py:184
+#: apps/checklists/forms.py:51 apps/observations/forms.py:68
+#: apps/species/forms.py:139
 msgid "Ordering"
 msgstr "Ordering"
 
-#: apps/checklists/forms.py:104 apps/filters/forms.py:363
-#: apps/filters/forms.py:383 apps/observations/forms.py:115
+#: apps/checklists/forms.py:53 apps/observations/forms.py:70
 msgid "Most recent first"
 msgstr "Most recent first"
 
-#: apps/checklists/forms.py:105
+#: apps/checklists/forms.py:54
 #: apps/checklists/templates/checklists/includes/list-entries-narrow.html:48
-#: apps/filters/forms.py:364
 msgid "Number of species"
 msgstr "Number of species"
 
@@ -206,25 +223,12 @@ msgstr "View this checklist on eBird.org"
 #: apps/news/templates/news/tables/high-counts-wide.html:8
 #: apps/news/templates/news/tables/year-list-wide.html:9
 #: apps/observations/templates/observations/includes/list-entries-wide.html:5
-#: apps/species/views.py:85
+#: apps/species/views.py:102
 msgid "Date"
 msgstr "Date"
 
-#: apps/checklists/templates/checklists/includes/list-entries-wide.html:6
-#: apps/checklists/templates/checklists/includes/list-entries.html:3
-#: apps/news/templates/news/tables/big-days.html:16
-#: apps/news/templates/news/tables/observer-species-latest.html:14
-#: apps/news/templates/news/tables/observer-species-monthly.html:14
-#: apps/news/templates/news/tables/observer-species-weekly.html:14
-#: apps/news/templates/news/tables/year-list.html:25 apps/species/apps.py:8
-#: apps/species/templates/species/includes/list-title.html:4
-#: apps/species/templates/species/list.html:4 templates/flatpages/base.html:46
-#: templates/includes/header.html:41
-msgid "species.plural"
-msgstr "Species"
-
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:7
-#: apps/filters/forms.py:70 apps/locations/forms.py:65
+#: apps/locations/forms.py:62
 #: apps/news/templates/news/tables/big-lists-wide.html:9
 #: apps/news/templates/news/tables/high-counts-wide.html:11
 #: apps/news/templates/news/tables/year-list-wide.html:11
@@ -234,7 +238,7 @@ msgid "Location"
 msgstr "Location"
 
 #: apps/checklists/templates/checklists/includes/list-entries-wide.html:9
-#: apps/filters/forms.py:106 apps/news/templates/news/tables/big-days.html:14
+#: apps/news/templates/news/tables/big-days.html:14
 #: apps/news/templates/news/tables/big-lists-wide.html:8
 #: apps/news/templates/news/tables/checklists-completed.html:13
 #: apps/news/templates/news/tables/high-counts-wide.html:12
@@ -244,7 +248,7 @@ msgstr "Location"
 #: apps/news/templates/news/tables/time-spent-birding.html:13
 #: apps/news/templates/news/tables/year-list-wide.html:12
 #: apps/observations/templates/observations/includes/list-entries-wide.html:9
-#: apps/observers/forms.py:29
+#: apps/observers/forms.py:15
 #: apps/species/templates/species/includes/list-entries-wide.html:10
 msgid "Observer"
 msgstr "Observer"
@@ -259,8 +263,8 @@ msgid "Checklist"
 msgstr "Checklist"
 
 #: apps/checklists/templates/checklists/includes/list-filter.html:8
-msgid "Find Checklists"
-msgstr "Find Checklists"
+msgid "Show Checklists"
+msgstr "Show Checklists"
 
 #: apps/checklists/templates/checklists/includes/list-filter.html:18
 #: apps/observations/templates/observations/includes/list-filter.html:18
@@ -331,12 +335,6 @@ msgstr "%(distance)s km"
 msgid "%(area)s ha"
 msgstr "%(area)s ha"
 
-#: apps/contact/apps.py:8 apps/contact/templates/contact/form.html:4
-#: apps/contact/templates/contact/form.html:11
-#: templates/includes/footer.html:16
-msgid "Contact"
-msgstr "Contact"
-
 #: apps/contact/forms.py:7
 msgid "You did not write a message."
 msgstr "You did not write a message."
@@ -381,180 +379,111 @@ msgstr "Thanks for your message. You will get a reply shortly."
 msgid "Your message could not be sent. Please try again later."
 msgstr "Your message could not be sent. Please try again later."
 
-#: apps/filters/apps.py:7
-msgid "filters"
-msgstr "filters"
+#: apps/dates/apps.py:7
+msgid "dates"
+msgstr "dates"
 
-#: apps/filters/forms.py:31 apps/locations/forms.py:26
-msgid "By Location"
-msgstr "By Location"
+#: apps/dates/forms.py:14
+msgid "By Date"
+msgstr "By Date"
 
-#: apps/filters/forms.py:34 apps/locations/forms.py:29 apps/news/forms.py:25
-msgid "Country"
-msgstr "Country"
+#: apps/dates/forms.py:16
+msgid "This date is later than the until date."
+msgstr "This date is later than the until date."
 
-#: apps/filters/forms.py:39 apps/locations/forms.py:34 apps/news/forms.py:30
-msgid "Select one or more countries"
-msgstr "Select one or more countries"
+#: apps/dates/forms.py:19
+msgid "From"
+msgstr "From"
 
-#: apps/filters/forms.py:44 apps/locations/forms.py:39 apps/news/forms.py:35
-msgid "State"
-msgstr "District"
+#: apps/dates/forms.py:24
+msgid "Until"
+msgstr "Until"
 
-#: apps/filters/forms.py:51 apps/locations/forms.py:46 apps/news/forms.py:42
-msgid "Select one or more states"
-msgstr "Select one or more districts"
+#: apps/dates/forms.py:45
+msgid "For Week"
+msgstr "For Week"
 
-#: apps/filters/forms.py:57 apps/locations/forms.py:52 apps/news/forms.py:48
-msgid "County"
-msgstr "County"
+#: apps/dates/forms.py:48
+msgid "Week"
+msgstr "Week"
 
-#: apps/filters/forms.py:64 apps/locations/forms.py:59 apps/news/forms.py:55
-msgid "Select one or more counties"
-msgstr "Select one or more counties"
+#: apps/dates/forms.py:54
+msgid "Enter week, e.g. 2025-W01"
+msgstr "Enter week, e.g. 2025-W01"
 
-#: apps/filters/forms.py:77 apps/locations/forms.py:72
-msgid "Select one or more locations"
-msgstr "Select one or more locations"
+#: apps/dates/forms.py:59
+msgid "Enter a week in the form YYYY-WDD, e.g. 2025-W01"
+msgstr "Enter a week in the form YYYY-WDD, e.g. 2025-W01"
 
-#: apps/filters/forms.py:83 apps/locations/forms.py:78
-msgid "Hotspots only"
-msgstr "Hotspots only"
+#: apps/dates/forms.py:83
+msgid "For Month"
+msgstr "For Month"
 
-#: apps/filters/forms.py:85 apps/filters/forms.py:304 apps/filters/forms.py:315
-#: apps/filters/forms.py:326 apps/locations/forms.py:80
-#: apps/observations/forms.py:72 apps/observations/forms.py:83
-#: apps/observations/forms.py:94
-msgid "No"
-msgstr "No"
+#: apps/dates/forms.py:86
+msgid "Month"
+msgstr "Month"
 
-#: apps/filters/forms.py:86 apps/filters/forms.py:303 apps/filters/forms.py:314
-#: apps/filters/forms.py:325 apps/locations/forms.py:81
-#: apps/observations/forms.py:71 apps/observations/forms.py:82
-#: apps/observations/forms.py:93
-msgid "Yes"
-msgstr "Yes"
+#: apps/dates/forms.py:92
+msgid "Enter month, e.g. 2025-01"
+msgstr "Enter month, e.g. 2025-01"
 
-#: apps/filters/forms.py:103 apps/observers/forms.py:26
-msgid "By Observer"
-msgstr "By Observer"
-
-#: apps/filters/forms.py:122 apps/species/forms.py:76
-msgid "By Species"
-msgstr "By Species"
-
-#: apps/filters/forms.py:125 apps/species/forms.py:79
-msgid "Common name"
-msgstr "Common name"
-
-#: apps/filters/forms.py:135 apps/species/forms.py:89
-msgid "Scientific name"
-msgstr "Scientific name"
-
-#: apps/filters/forms.py:145 apps/filters/forms.py:195 apps/species/forms.py:99
-#: apps/species/forms.py:149
-msgid "Family"
-msgstr "Family"
-
-#: apps/filters/forms.py:192 apps/species/forms.py:146
-msgid "By Family"
-msgstr "By Family"
-
-#: apps/filters/forms.py:286 apps/observations/forms.py:54
-msgid "Options"
-msgstr "Options"
-
-#: apps/filters/forms.py:292 apps/observations/forms.py:60
-msgid "Accepted"
-msgstr "Accepted"
-
-#: apps/filters/forms.py:293 apps/observations/forms.py:61
-msgid "Rejected"
-msgstr "Rejected"
-
-#: apps/filters/forms.py:300 apps/observations/forms.py:68
-msgid "With audio"
-msgstr "With audio"
-
-#: apps/filters/forms.py:311 apps/observations/forms.py:79
-msgid "With photos"
-msgstr "With photos"
-
-#: apps/filters/forms.py:322 apps/observations/forms.py:90
-msgid "With video"
-msgstr "With video"
-
-#: apps/filters/forms.py:342 apps/species/forms.py:60
-msgid "By Category"
-msgstr "By Category"
-
-#: apps/filters/forms.py:345 apps/species/forms.py:63
-msgid "Category"
-msgstr "Category"
-
-#: apps/filters/forms.py:384 apps/observations/forms.py:116
-msgid "Highest count first"
-msgstr "Highest count first"
-
-#: apps/filters/forms.py:403 apps/species/forms.py:186 apps/species/views.py:81
-#: apps/species/views.py:87 apps/species/views.py:89
-msgid "First Seen"
-msgstr "First Seen"
-
-#: apps/filters/forms.py:404 apps/species/forms.py:187 apps/species/views.py:83
-msgid "Last Seen"
-msgstr "Last Seen"
-
-#: apps/filters/forms.py:405 apps/species/forms.py:188 apps/species/views.py:95
-msgid "Highest Count"
-msgstr "Highest Count"
+#: apps/dates/forms.py:97
+msgid "Enter a month in the form YYYY-MM, e.g. 2025-01"
+msgstr "Enter a month in the form YYYY-MM, e.g. 2025-01"
 
 #: apps/locations/apps.py:7
 msgid "Locations"
 msgstr "Locations"
 
-#: apps/news/apps.py:8 apps/news/templates/news/includes/page-title.html:6
-#: apps/news/templates/news/includes/page-title.html:8
-#: apps/news/templates/news/index.html:4 templates/flatpages/base.html:31
-#: templates/includes/header.html:26
-msgid "News"
-msgstr "News"
-
-#: apps/news/forms.py:22
+#: apps/locations/forms.py:12
 msgid "For Region"
 msgstr "For Region"
 
-#: apps/news/forms.py:63
-msgid "For Week"
-msgstr "For Week"
+#: apps/locations/forms.py:15
+msgid "Country"
+msgstr "Country"
 
-#: apps/news/forms.py:66
-msgid "Week"
-msgstr "Week"
+#: apps/locations/forms.py:20
+msgid "Select one or more countries"
+msgstr "Select one or more countries"
 
-#: apps/news/forms.py:72
-msgid "Enter week, e.g. 2025-W01"
-msgstr "Enter week, e.g. 2025-W01"
+#: apps/locations/forms.py:25
+msgid "State"
+msgstr "District"
 
-#: apps/news/forms.py:77
-msgid "Enter a week in the form YYYY-WDD, e.g. 2025-W01"
-msgstr "Enter a week in the form YYYY-WDD, e.g. 2025-W01"
+#: apps/locations/forms.py:32
+msgid "Select one or more states"
+msgstr "Select one or more districts"
 
-#: apps/news/forms.py:101
-msgid "For Month"
-msgstr "For Month"
+#: apps/locations/forms.py:38
+msgid "County"
+msgstr "County"
 
-#: apps/news/forms.py:104
-msgid "Month"
-msgstr "Month"
+#: apps/locations/forms.py:45
+msgid "Select one or more counties"
+msgstr "Select one or more counties"
 
-#: apps/news/forms.py:110
-msgid "Enter month, e.g. 2025-01"
-msgstr "Enter month, e.g. 2025-01"
+#: apps/locations/forms.py:59
+msgid "For Location"
+msgstr "For Location"
 
-#: apps/news/forms.py:115
-msgid "Enter a month in the form YYYY-MM, e.g. 2025-01"
-msgstr "Enter a month in the form YYYY-MM, e.g. 2025-01"
+#: apps/locations/forms.py:69
+msgid "Select one or more locations"
+msgstr "Select one or more locations"
+
+#: apps/locations/forms.py:75
+msgid "Hotspots only"
+msgstr "Hotspots only"
+
+#: apps/locations/forms.py:77 apps/observations/forms.py:27
+#: apps/observations/forms.py:38 apps/observations/forms.py:49
+msgid "No"
+msgstr "No"
+
+#: apps/locations/forms.py:78 apps/observations/forms.py:26
+#: apps/observations/forms.py:37 apps/observations/forms.py:48
+msgid "Yes"
+msgstr "Yes"
 
 #: apps/news/models/observer_species_latest.py:12
 #: apps/news/models/observer_species_latest.py:13
@@ -563,29 +492,25 @@ msgstr "ObserverSpeciesLatest"
 
 #: apps/news/models/observer_species_latest.py:19
 #: apps/news/models/observer_species_monthly.py:19
-#: apps/news/models/observer_species_weekly.py:19
-#: apps/news/models/year_list.py:24
+#: apps/news/models/observer_species_weekly.py:19 apps/species/models.py:23
 msgid "identifier"
 msgstr "identifier"
 
 #: apps/news/models/observer_species_latest.py:20
 #: apps/news/models/observer_species_monthly.py:20
-#: apps/news/models/observer_species_weekly.py:20
-#: apps/news/models/year_list.py:25
+#: apps/news/models/observer_species_weekly.py:20 apps/species/models.py:24
 msgid "The unique identifier for the observation."
 msgstr "The unique identifier for the observation."
 
 #: apps/news/models/observer_species_latest.py:27
 #: apps/news/models/observer_species_monthly.py:27
-#: apps/news/models/observer_species_weekly.py:27
-#: apps/news/models/year_list.py:48
+#: apps/news/models/observer_species_weekly.py:27 apps/species/models.py:54
 msgid "observer"
 msgstr "Observer"
 
 #: apps/news/models/observer_species_latest.py:28
 #: apps/news/models/observer_species_monthly.py:28
-#: apps/news/models/observer_species_weekly.py:28
-#: apps/news/models/year_list.py:49
+#: apps/news/models/observer_species_weekly.py:28 apps/species/models.py:55
 msgid "The person who made the observation."
 msgstr "The person who made the observation."
 
@@ -603,57 +528,49 @@ msgstr "The name of the observer."
 
 #: apps/news/models/observer_species_latest.py:40
 #: apps/news/models/observer_species_monthly.py:40
-#: apps/news/models/observer_species_weekly.py:40
-#: apps/news/models/year_list.py:40
+#: apps/news/models/observer_species_weekly.py:40 apps/species/models.py:39
 msgid "species"
 msgstr "species"
 
 #: apps/news/models/observer_species_latest.py:41
 #: apps/news/models/observer_species_monthly.py:41
-#: apps/news/models/observer_species_weekly.py:41
-#: apps/news/models/year_list.py:41
+#: apps/news/models/observer_species_weekly.py:41 apps/species/models.py:40
 msgid "The identified species."
 msgstr "The identified species."
 
 #: apps/news/models/observer_species_latest.py:48
 #: apps/news/models/observer_species_monthly.py:48
-#: apps/news/models/observer_species_weekly.py:48
-#: apps/news/models/year_list.py:56
+#: apps/news/models/observer_species_weekly.py:48 apps/species/models.py:62
 msgid "country"
 msgstr "country"
 
 #: apps/news/models/observer_species_latest.py:49
 #: apps/news/models/observer_species_monthly.py:49
-#: apps/news/models/observer_species_weekly.py:49
-#: apps/news/models/year_list.py:57
+#: apps/news/models/observer_species_weekly.py:49 apps/species/models.py:63
 msgid "The country where the observation was made."
 msgstr "The country where the observation was made."
 
 #: apps/news/models/observer_species_latest.py:56
 #: apps/news/models/observer_species_monthly.py:56
-#: apps/news/models/observer_species_weekly.py:56
-#: apps/news/models/year_list.py:64
+#: apps/news/models/observer_species_weekly.py:56 apps/species/models.py:70
 msgid "state"
 msgstr "district"
 
 #: apps/news/models/observer_species_latest.py:57
 #: apps/news/models/observer_species_monthly.py:57
-#: apps/news/models/observer_species_weekly.py:57
-#: apps/news/models/year_list.py:65
+#: apps/news/models/observer_species_weekly.py:57 apps/species/models.py:71
 msgid "The state where the observation was made."
 msgstr "The district where the observation was made."
 
 #: apps/news/models/observer_species_latest.py:66
 #: apps/news/models/observer_species_monthly.py:66
-#: apps/news/models/observer_species_weekly.py:66
-#: apps/news/models/year_list.py:74
+#: apps/news/models/observer_species_weekly.py:66 apps/species/models.py:78
 msgid "county"
 msgstr "county"
 
 #: apps/news/models/observer_species_latest.py:67
 #: apps/news/models/observer_species_monthly.py:67
-#: apps/news/models/observer_species_weekly.py:67
-#: apps/news/models/year_list.py:75
+#: apps/news/models/observer_species_weekly.py:67 apps/species/models.py:79
 msgid "The county where the observation was made."
 msgstr "The county where the observation was made."
 
@@ -663,12 +580,12 @@ msgid "ObserverSpeciesMonthly"
 msgstr "ObserverSpeciesMonthly"
 
 #: apps/news/models/observer_species_monthly.py:72
-#: apps/news/models/observer_species_weekly.py:72
+#: apps/news/models/observer_species_weekly.py:72 apps/species/models.py:106
 msgid "year"
 msgstr "year"
 
 #: apps/news/models/observer_species_monthly.py:73
-#: apps/news/models/observer_species_weekly.py:73
+#: apps/news/models/observer_species_weekly.py:73 apps/species/models.py:107
 msgid "The year the observation was made."
 msgstr "The year the observation was made."
 
@@ -692,62 +609,6 @@ msgstr "week"
 #: apps/news/models/observer_species_weekly.py:79
 msgid "The week the observation was made."
 msgstr "The week the observation was made."
-
-#: apps/news/models/year_list.py:17
-msgid "YearList"
-msgstr "Year List"
-
-#: apps/news/models/year_list.py:18
-msgid "YearLists"
-msgstr "Year Lists"
-
-#: apps/news/models/year_list.py:32
-msgid "checklist"
-msgstr "checklist"
-
-#: apps/news/models/year_list.py:33
-msgid "The checklist this observation belongs to."
-msgstr "The checklist this observation belongs to."
-
-#: apps/news/models/year_list.py:82
-msgid "location"
-msgstr "Location"
-
-#: apps/news/models/year_list.py:83
-msgid "The location where the observation was made."
-msgstr "The location where the observation was made."
-
-#: apps/news/models/year_list.py:88
-msgid "date"
-msgstr "date"
-
-#: apps/news/models/year_list.py:89
-msgid "The date the observation was made."
-msgstr "The date the observation was made."
-
-#: apps/news/models/year_list.py:100
-msgid "count"
-msgstr "count"
-
-#: apps/news/models/year_list.py:101
-msgid "The number of birds seen."
-msgstr "The number of birds seen."
-
-#: apps/news/models/year_list.py:106
-msgid "Approved"
-msgstr "Approved"
-
-#: apps/news/models/year_list.py:107
-msgid "Has the observation been accepted."
-msgstr "Has the observation been accepted."
-
-#: apps/news/models/year_list.py:112
-msgid "Reason"
-msgstr "Reason"
-
-#: apps/news/models/year_list.py:114
-msgid "The reason given for the observation to be marked as not approved."
-msgstr "The reason given for the observation to be marked as not approved."
 
 #: apps/news/templates/news/includes/page-filter.html:8
 msgid "Show News"
@@ -811,7 +672,7 @@ msgstr "There are no Big Lists to report."
 #: apps/news/templates/news/tables/high-counts-wide.html:10
 #: apps/news/templates/news/tables/year-list-wide.html:8
 #: apps/observations/templates/observations/includes/list-entries-wide.html:7
-#: apps/species/views.py:65
+#: apps/species/views.py:82
 msgid "species.singular"
 msgstr "Species"
 
@@ -841,7 +702,7 @@ msgstr "No high counts were found."
 #: apps/news/templates/news/tables/high-counts-wide.html:9
 #: apps/news/templates/news/tables/year-list-wide.html:10
 #: apps/observations/templates/observations/includes/list-entries-wide.html:6
-#: apps/species/views.py:97 apps/species/views.py:99
+#: apps/species/views.py:114 apps/species/views.py:116
 msgid "Count"
 msgstr "Count"
 
@@ -934,7 +795,7 @@ msgstr "Hours spent birding"
 msgid "Big Lists"
 msgstr "Big Lists"
 
-#: apps/news/templatetags/tables.py:281
+#: apps/news/templatetags/tables.py:287
 msgid "Big Days"
 msgstr "Big Days"
 
@@ -1007,12 +868,33 @@ msgstr "Data"
 msgid "Data describing a Notification."
 msgstr "Data describing a Notification."
 
-#: apps/observations/apps.py:8
-#: apps/observations/templates/observations/includes/list-title.html:4
-#: apps/observations/templates/observations/list.html:4
-#: templates/flatpages/base.html:41 templates/includes/header.html:36
-msgid "Observations"
-msgstr "Observations"
+#: apps/observations/forms.py:9
+msgid "Options"
+msgstr "Options"
+
+#: apps/observations/forms.py:15
+msgid "Accepted"
+msgstr "Accepted"
+
+#: apps/observations/forms.py:16
+msgid "Rejected"
+msgstr "Rejected"
+
+#: apps/observations/forms.py:23
+msgid "With audio"
+msgstr "With audio"
+
+#: apps/observations/forms.py:34
+msgid "With photos"
+msgstr "With photos"
+
+#: apps/observations/forms.py:45
+msgid "With video"
+msgstr "With video"
+
+#: apps/observations/forms.py:71
+msgid "Highest count first"
+msgstr "Highest count first"
 
 #: apps/observations/templates/observations/includes/list-entries-narrow.html:9
 #: apps/observations/templates/observations/includes/list-entries-narrow.html:14
@@ -1052,16 +934,145 @@ msgid "Show observations from this observer"
 msgstr "Show observations from this observer"
 
 #: apps/observations/templates/observations/includes/list-filter.html:8
-msgid "Find Observations"
-msgstr "Find Observations"
+msgid "Show Observations"
+msgstr "Show Observations"
 
 #: apps/observers/apps.py:7
 msgid "Observers"
 msgstr "Observers"
 
-#: apps/pages/apps.py:7
-msgid "Pages"
-msgstr "Pages"
+#: apps/observers/forms.py:12
+msgid "For Observer"
+msgstr "For Observer"
+
+#: apps/species/forms.py:15
+msgid "For Category"
+msgstr "For Category"
+
+#: apps/species/forms.py:18
+msgid "Category"
+msgstr "Category"
+
+#: apps/species/forms.py:31
+msgid "By Species"
+msgstr "By Species"
+
+#: apps/species/forms.py:34
+msgid "Common name"
+msgstr "Common name"
+
+#: apps/species/forms.py:44
+msgid "Scientific name"
+msgstr "Scientific name"
+
+#: apps/species/forms.py:54 apps/species/forms.py:104
+msgid "Family"
+msgstr "Family"
+
+#: apps/species/forms.py:101
+msgid "By Family"
+msgstr "By Family"
+
+#: apps/species/forms.py:141 apps/species/views.py:98 apps/species/views.py:104
+#: apps/species/views.py:106
+msgid "First Seen"
+msgstr "First Seen"
+
+#: apps/species/forms.py:142 apps/species/views.py:100
+msgid "Last Seen"
+msgstr "Last Seen"
+
+#: apps/species/forms.py:143 apps/species/views.py:112
+msgid "Highest Count"
+msgstr "Highest Count"
+
+#: apps/species/models.py:31
+msgid "checklist"
+msgstr "checklist"
+
+#: apps/species/models.py:32
+msgid "The checklist this observation belongs to."
+msgstr "The checklist this observation belongs to."
+
+#: apps/species/models.py:46
+msgid "category"
+msgstr "category"
+
+#: apps/species/models.py:47
+msgid "The category from the eBird/Clements taxonomy."
+msgstr "The category from the eBird/Clements taxonomy."
+
+#: apps/species/models.py:86
+msgid "location"
+msgstr "Location"
+
+#: apps/species/models.py:87
+msgid "The location where the observation was made."
+msgstr "The location where the observation was made."
+
+#: apps/species/models.py:92
+msgid "date"
+msgstr "date"
+
+#: apps/species/models.py:93
+msgid "The date the observation was made."
+msgstr "The date the observation was made."
+
+#: apps/species/models.py:100
+msgid "date & time"
+msgstr "date & time"
+
+#: apps/species/models.py:101
+msgid "The date and time the observation was made."
+msgstr "The date and time the observation was made."
+
+#: apps/species/models.py:112
+msgid "count"
+msgstr "count"
+
+#: apps/species/models.py:113
+msgid "The number of birds seen."
+msgstr "The number of birds seen."
+
+#: apps/species/models.py:118
+msgid "Approved"
+msgstr "Approved"
+
+#: apps/species/models.py:119
+msgid "Has the observation been accepted."
+msgstr "Has the observation been accepted."
+
+#: apps/species/models.py:124
+msgid "Reason"
+msgstr "Reason"
+
+#: apps/species/models.py:126
+msgid "The reason given for the observation to be marked as not approved."
+msgstr "The reason given for the observation to be marked as not approved."
+
+#: apps/species/models.py:149
+msgid "Country List"
+msgstr "Country List "
+
+#: apps/species/models.py:150
+msgid "Country Lists"
+msgstr "Country Lists"
+
+#: apps/species/models.py:157
+msgid "State List"
+msgstr "District List"
+
+#: apps/species/models.py:158
+msgid "State Lists"
+msgstr "District Lists"
+
+#: apps/species/models.py:165
+msgid "County List"
+msgstr "County List"
+
+#: apps/species/models.py:166
+msgid "County Lists"
+msgstr "County Lists"
 
 #: apps/species/templates/species/includes/list-entries-narrow.html:14
 #: apps/species/templates/species/includes/list-entries-narrow.html:19
@@ -1096,22 +1107,22 @@ msgid "Show species seen by this observer"
 msgstr "Show species seen by this observer"
 
 #: apps/species/templates/species/includes/list-filter.html:8
-msgid "Find Species"
-msgstr "Find Species"
+msgid "Show Species"
+msgstr "Show Species"
 
-#: apps/species/views.py:67
+#: apps/species/views.py:84
 msgid "Subspecies"
 msgstr "Subspecies"
 
-#: apps/species/views.py:69
+#: apps/species/views.py:86
 msgid "Domestics"
 msgstr "Domestics"
 
-#: apps/species/views.py:71
+#: apps/species/views.py:88
 msgid "Hybrids"
 msgstr "Hybrids"
 
-#: apps/species/views.py:73 apps/species/views.py:75
+#: apps/species/views.py:90 apps/species/views.py:92
 msgid "Species, Forms, etc."
 msgstr "Species, Forms, etc."
 
@@ -1135,12 +1146,6 @@ msgstr "The title of the Update"
 msgid "The contents of the Update. HTML is allowed"
 msgstr "The contents of the Update. HTML is allowed"
 
-#: apps/updates/templates/updates/list.html:4
-#: apps/updates/templates/updates/list.html:11
-#: templates/includes/footer.html:13
-msgid "What's New"
-msgstr "What's New"
-
 #: apps/updates/templates/updates/list.html:20
 msgid ""
 "A list of what has changed on this site, whether it is new features, "
@@ -1149,11 +1154,11 @@ msgstr ""
 "A list of what has changed on this site, whether it is new features, "
 "editorial decisions on observations, or just general news."
 
-#: config/settings.py:232 templates/flatpages/about.html:6
+#: config/settings.py:234 templates/flatpages/about.html:6
 msgid "English"
 msgstr "English"
 
-#: config/settings.py:233 templates/flatpages/about.html:7
+#: config/settings.py:235 templates/flatpages/about.html:7
 msgid "Portuguese"
 msgstr "Portuguese"
 
@@ -1236,7 +1241,3 @@ msgid ""
 msgstr ""
 "This error was reported automatically, but if the problem persists please "
 "contact us. In the meantime, try refreshing the page."
-
-#: templates/includes/footer.html:10
-msgid "About"
-msgstr "About"
