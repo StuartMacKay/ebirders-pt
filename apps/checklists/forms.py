@@ -24,10 +24,7 @@ class ProtocolFilter(FilterForm):
 
     protocol = forms.ChoiceField(
         label=_("Protocol"),
-        choices=[
-            ("", _("All")),
-        ]
-        + Protocol.choices,
+        choices=[("", _("All"))] + Protocol.choices,
         required=False,
         widget=forms.Select(attrs={"class": "form-control"}),
     )
