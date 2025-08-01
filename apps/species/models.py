@@ -8,15 +8,14 @@ from django.db import models
 from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 
+from ebird.api.data.models import Species
+
 log = logging.getLogger(__name__)
 
 
-class YearList(models.Model):
+class SpeciesList(models.Model):
     class Meta:
-        db_table = "year_list"
-        verbose_name = _("YearList")
-        verbose_name_plural = _("YearLists")
-        managed = False
+        abstract = True
 
     identifier = models.CharField(
         max_length=15,
@@ -27,7 +26,7 @@ class YearList(models.Model):
 
     checklist = models.ForeignKey(
         "data.Checklist",
-        related_name="yearlists",
+        related_name="+",
         on_delete=models.CASCADE,
         verbose_name=_("checklist"),
         help_text=_("The checklist this observation belongs to."),
@@ -35,15 +34,22 @@ class YearList(models.Model):
 
     species = models.ForeignKey(
         "data.Species",
-        related_name="yearlists",
+        related_name="+",
         on_delete=models.PROTECT,
         verbose_name=_("species"),
         help_text=_("The identified species."),
     )
 
+    category = models.TextField(
+        blank=True,
+        choices=Species.Category,
+        verbose_name=_("category"),
+        help_text=_("The category from the eBird/Clements taxonomy."),
+    )
+
     observer = models.ForeignKey(
         "data.Observer",
-        related_name="yearlists",
+        related_name="+",
         on_delete=models.PROTECT,
         verbose_name=_("observer"),
         help_text=_("The person who made the observation."),
@@ -51,7 +57,7 @@ class YearList(models.Model):
 
     country = models.ForeignKey(
         "data.Country",
-        related_name="yearlists",
+        related_name="+",
         on_delete=models.PROTECT,
         verbose_name=_("country"),
         help_text=_("The country where the observation was made."),
@@ -59,7 +65,7 @@ class YearList(models.Model):
 
     state = models.ForeignKey(
         "data.State",
-        related_name="yearlists",
+        related_name="+",
         on_delete=models.PROTECT,
         verbose_name=_("state"),
         help_text=_("The state where the observation was made."),
@@ -67,9 +73,7 @@ class YearList(models.Model):
 
     county = models.ForeignKey(
         "data.County",
-        blank=True,
-        null=True,
-        related_name="yearlists",
+        related_name="+",
         on_delete=models.PROTECT,
         verbose_name=_("county"),
         help_text=_("The county where the observation was made."),
@@ -77,7 +81,7 @@ class YearList(models.Model):
 
     location = models.ForeignKey(
         "data.Location",
-        related_name="yearlists",
+        related_name="+",
         on_delete=models.PROTECT,
         verbose_name=_("location"),
         help_text=_("The location where the observation was made."),
@@ -89,11 +93,19 @@ class YearList(models.Model):
         help_text=_("The date the observation was made."),
     )
 
-    # year = models.IntegerField(
-    #     db_index=True,
-    #     verbose_name=_("year"),
-    #     help_text=_("The year the observation was made."),
-    # )
+    started = models.DateTimeField(
+        blank=True,
+        db_index=True,
+        null=True,
+        verbose_name=_("date & time"),
+        help_text=_("The date and time the observation was made."),
+    )
+
+    year = models.IntegerField(
+        db_index=True,
+        verbose_name=_("year"),
+        help_text=_("The year the observation was made."),
+    )
 
     count = models.IntegerField(
         validators=[MinValueValidator(0)],
@@ -129,3 +141,27 @@ class YearList(models.Model):
             log.error("Incorrect JSON for Observation reason: %s", self.id)
             reason = ""
         return reason
+
+
+class CountryList(SpeciesList):
+    class Meta:
+        db_table = "country_list"
+        verbose_name = _("Country List")
+        verbose_name_plural = _("Country Lists")
+        managed = False
+
+
+class StateList(SpeciesList):
+    class Meta:
+        db_table = "state_list"
+        verbose_name = _("State List")
+        verbose_name_plural = _("State Lists")
+        managed = False
+
+
+class CountyList(SpeciesList):
+    class Meta:
+        db_table = "county_list"
+        verbose_name = _("County List")
+        verbose_name_plural = _("County Lists")
+        managed = False

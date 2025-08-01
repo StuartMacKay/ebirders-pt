@@ -107,7 +107,7 @@ class FilteredListView(FormsMixin, generic.ListView):
 
     def get_filtered_queryset(self, forms):
         self.ordering = self.get_order(forms)
-        queryset = super().get_queryset()
+        queryset = self.get_queryset()
         queryset = queryset.filter(**self.get_filters(forms))
         queryset = queryset.select_related(*self.get_related())
         return queryset

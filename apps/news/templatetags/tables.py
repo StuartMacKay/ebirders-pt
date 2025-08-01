@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 
 from ebird.api.data.models import Checklist, Observation, Observer
 
-from news.models import YearList
+from species.models import CountryList, CountyList, StateList
 
 register = template.Library()
 log = logging.getLogger(__name__)
@@ -211,20 +211,26 @@ def year_list(start, finish, year, country=None, state=None, county=None):
     filters = {
         "date__gte": dt.date(year=year, month=1, day=1),
         "date__lte": finish,
+        "category": "species"
     }
 
-    if country:
-        filters["country__in"] = country
-    if state:
-        filters["state__in"] = state
     if county:
         filters["county__in"] = county
+        list_class = CountyList
+    elif state:
+        filters["state__in"] = state
+        list_class = StateList
+    elif country:
+        filters["country__in"] = country
+        list_class = CountryList
+    else:
+        list_class = CountryList
 
     records = (
-        YearList.objects.values_list("identifier", "date")
+        list_class.objects.values_list("identifier", "date")
         .filter(**filters)
         .distinct("species")
-        .order_by("species", "date")
+        .order_by("species", "started")
     )
 
     total = records.count()
@@ -242,7 +248,7 @@ def year_list(start, finish, year, country=None, state=None, county=None):
     ]
 
     observations = (
-        YearList.objects.filter(identifier__in=ids)
+        list_class.objects.filter(identifier__in=ids)
         .select_related(*related)
         .order_by("species__taxon_order")
     )

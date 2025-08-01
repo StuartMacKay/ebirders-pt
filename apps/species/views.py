@@ -14,6 +14,7 @@ from locations.forms import LocationFilter, RegionFilter
 from observers.forms import ObserverFilter
 
 from .forms import CategoryFilter
+from .models import CountryList, CountyList, StateList
 
 
 class SpeciesView(FilteredListView):
@@ -42,10 +43,28 @@ class SpeciesView(FilteredListView):
             "species",
         ]
 
-    def get_filters(self, forms):
-        filters = super().get_filters(forms)
-        filters["published"] = True
-        return filters
+    def get_queryset(self):
+        names = self.request.GET.keys()
+
+        if "location" in names:
+            queryset = self.model._default_manager.all()
+        elif "observer" in names:
+            queryset = self.model._default_manager.all()
+        elif "start" in names:
+            queryset = self.model._default_manager.all()
+        elif "finish" in names:
+            queryset = self.model._default_manager.all()
+        else:
+            if "county" in names and len(names) == 1:
+                queryset = CountyList.objects.all()
+            elif "state" in names and len(names) == 1:
+                queryset = StateList.objects.all()
+            else:
+                queryset = CountryList.objects.all()
+
+        queryset = queryset.order_by("species", "started")
+
+        return queryset
 
     def get_filtered_queryset(self, forms):
         return super().get_filtered_queryset(forms).distinct("species")

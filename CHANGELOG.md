@@ -7,6 +7,9 @@ a concise history of changes made.
 
 ## Latest
 
+- Added Materialized Views for Country, District (State) and County species lists,
+  greatly speeding up the display of the pages.
+
 ## 2025.07.28
 
 - Replaced the Latest, Weekly and Monthly News pages with a single page with a 
