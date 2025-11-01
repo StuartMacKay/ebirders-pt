@@ -22,7 +22,7 @@ dependencies = [
     "sentry-sdk>=2.26.1",
     "django-autocomplete-light>=3.12.1",
     "django-ckeditor>=6.7.3",
-    "ebird-api-data==0.3.7",
+    "ebird-api-data==0.4.0",
 ]
 
 [tool.ruff]

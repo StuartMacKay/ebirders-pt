@@ -595,36 +595,26 @@ wheels = [
 
 [[package]]
 name = "ebird-api-data"
-version = "0.3.7"
+version = "0.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "beautifulsoup4" },
     { name = "django" },
     { name = "ebird-api-requests" },
-    { name = "ebird-codes" },
     { name = "lxml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e7/90/7bbb2dba82c31a95ed0d5528a8b6d9fa60dfa3f8ed4b3b3080b9269693b3/ebird_api_data-0.3.7.tar.gz", hash = "sha256:33daecbdb702201783fcdc6188728bb72b7dde15e37d8e63d96678ded5db5e93", size = 24221, upload_time = "2025-07-26T14:16:55.03Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/64/04/d0d1fcf3e32a7644480c5d37f6d2f9bbfc1598148378da37fad1cdf32857/ebird_api_data-0.4.0.tar.gz", hash = "sha256:cc7300bb49dcda977dae6d1f069799aa3949ca3d225a70d885bb158dad403e77", size = 152574, upload_time = "2025-11-01T15:33:18.625Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/58/d6/ab97c9a35e01207503082ac82843c164c9d5d240f17cf1a62bb5bf035ed8/ebird_api_data-0.3.7-py3-none-any.whl", hash = "sha256:105fa36aa42b58bb75ccc400441ca1b08d49dc0118a61734cbf71f151803ef5c", size = 34123, upload_time = "2025-07-26T14:16:53.296Z" },
+    { url = "https://files.pythonhosted.org/packages/28/d3/357e596d175909d58df481996ec24addbcfd4fcd621ef3c6c211de10a7ed/ebird_api_data-0.4.0-py3-none-any.whl", hash = "sha256:9f7a2a3855e816b989e096b9b161950e655cd68661d5111f8c99008563cb25aa", size = 180730, upload_time = "2025-11-01T15:33:14.214Z" },
 ]
 
 [[package]]
 name = "ebird-api-requests"
-version = "4.0.1"
+version = "4.0.2"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/4a/6c/5636c8b127083eea784e006faac63d4b09f43812f3599e9cccacdc805b8d/ebird_api_requests-4.0.1.tar.gz", hash = "sha256:680925ca439a9d81cf29a64ada248d19d56d48912b882a2210b8ca4d674b1891", size = 24992, upload_time = "2025-07-10T14:47:18.662Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/6d/4b/78fff41a882f18eca6bda94c27b30d2fced1f02da3aab4298cf6aafee113/ebird_api_requests-4.0.2.tar.gz", hash = "sha256:b6853e36a8a0cb5dbd466f842483de0820b7173863e14e447818cf3d1fc6b9fc", size = 25044, upload_time = "2025-08-03T10:06:24.404Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/bf/01/ad30feda83ad60bdaec2dfb14323b6f62e1c639cc5d5d8611abebea607a3/ebird_api_requests-4.0.1-py3-none-any.whl", hash = "sha256:cfeea8430db5a2dd35f69ef9f7f6b291f139d57129b3c43ecd7664bee1028813", size = 26687, upload_time = "2025-07-10T14:47:17.188Z" },
-]
-
-[[package]]
-name = "ebird-codes"
-version = "0.0.2"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/bb/2d/b130de7fcdc28c43c961e6fcb86e70ff137b160838b91a4961c582b3163c/ebird_codes-0.0.2.tar.gz", hash = "sha256:c7e956ce86e85d0729969b3e444abd260e432090a195db7e2d8a15e36dd86084", size = 5570, upload_time = "2025-02-14T16:12:14.467Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/58/d7/f17a061230139b4e587a43e4ece706470c1661759da8bcc865e24cfa4ab2/ebird_codes-0.0.2-py3-none-any.whl", hash = "sha256:854e0549e1eb520145d9ad701ca227c993f16505471b16ed97f2d7ea7de2d1df", size = 5451, upload_time = "2025-02-14T16:12:12.433Z" },
+    { url = "https://files.pythonhosted.org/packages/9a/45/914d686aa110dad6e57430ff9fa724196036c8addb144d7158073de636bc/ebird_api_requests-4.0.2-py3-none-any.whl", hash = "sha256:f30f591832a204191958921cffc49e12c0186b55e16ca469cf7bea42991d22e9", size = 26696, upload_time = "2025-08-03T10:06:22.729Z" },
 ]
 
 [[package]]
@@ -675,7 +665,7 @@ requires-dist = [
     { name = "django-environ", specifier = ">=0.11.2" },
     { name = "django-extensions", specifier = ">=3.2.3" },
     { name = "django-spaceless-templates", specifier = ">=1.0.2" },
-    { name = "ebird-api-data", specifier = "==0.3.7" },
+    { name = "ebird-api-data", specifier = "==0.4.0" },
     { name = "gunicorn", specifier = ">=23.0.0" },
     { name = "ipython", specifier = ">=8.29.0" },
     { name = "lxml", specifier = ">=5.3.2" },
