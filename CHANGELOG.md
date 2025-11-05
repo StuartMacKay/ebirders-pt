@@ -7,6 +7,8 @@ a concise history of changes made.
 
 ## Latest
 
+## 2025.11.05
+
 ## 2025.11.01
 
 - Removed filters to reduce clutter and make site easier to use:
