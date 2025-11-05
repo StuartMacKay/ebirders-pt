@@ -34,7 +34,6 @@ class ChecklistsView(FilteredListView):
 
     def get_filters(self, forms):
         filters = super().get_filters(forms)
-        filters["published"] = True
         return filters
 
     def get_translated_urls(self):
