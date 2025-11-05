@@ -13,7 +13,6 @@ log = logging.getLogger(__name__)
 @register.inclusion_tag("news/numbers/number.html")
 def species_count(start, finish, country=None, state=None, county=None):
     filters = {
-        "published": True,
         "species__category": "species",
         "date__gte": start,
         "date__lte": finish,
@@ -42,7 +41,6 @@ def species_count(start, finish, country=None, state=None, county=None):
 @register.inclusion_tag("news/numbers/number.html")
 def checklist_count(start, finish, country=None, state=None, county=None):
     filters = {
-        "published": True,
         "date__gte": start,
         "date__lte": finish,
     }
@@ -63,7 +61,6 @@ def checklist_count(start, finish, country=None, state=None, county=None):
 @register.inclusion_tag("news/numbers/number.html")
 def observer_count(start, finish, country=None, state=None, county=None):
     filters = {
-        "published": True,
         "date__gte": start,
         "date__lte": finish,
     }
@@ -88,7 +85,6 @@ def observer_count(start, finish, country=None, state=None, county=None):
 @register.inclusion_tag("news/numbers/number.html")
 def duration_count(start, finish, country=None, state=None, county=None):
     filters = {
-        "published": True,
         "date__gte": start,
         "date__lte": finish,
     }

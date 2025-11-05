@@ -16,7 +16,6 @@ log = logging.getLogger(__name__)
 @register.inclusion_tag("news/tables/big-lists.html")
 def big_lists(start, finish, country=None, state=None, county=None):
     filters = {
-        "published": True,
         "date__gte": start,
         "date__lte": finish,
     }
@@ -45,7 +44,6 @@ def big_lists(start, finish, country=None, state=None, county=None):
 @register.inclusion_tag("news/tables/checklists-completed.html")
 def checklists_completed(start, finish, country=None, state=None, county=None):
     filters = {
-        "published": True,
         "date__gte": start,
         "date__lte": finish,
     }
@@ -77,7 +75,6 @@ def checklists_completed(start, finish, country=None, state=None, county=None):
 @register.inclusion_tag("news/tables/time-spent-birding.html")
 def time_spent_birding(start, finish, country=None, state=None, county=None):
     filters = {
-        "published": True,
         "date__gte": start,
         "date__lte": finish,
     }
@@ -262,7 +259,6 @@ def year_list(start, finish, year, country=None, state=None, county=None):
 @register.inclusion_tag("news/tables/big-days.html")
 def big_days(start, finish, country=None, state=None, county=None):
     filters = {
-        "published": True,
         "date__gte": start,
         "date__lte": finish,
         "species__category": "species",
@@ -290,7 +286,6 @@ def big_days(start, finish, country=None, state=None, county=None):
 @register.inclusion_tag("news/tables/high-counts.html")
 def high_counts(start, finish, country=None, state=None, county=None):
     filters = {
-        "published": True,
         "date__gte": start,
         "date__lte": finish,
         "species__category": "species",
