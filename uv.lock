@@ -641,7 +641,7 @@ wheels = [
 
 [[package]]
 name = "ebirders-pt"
-version = "2025.11.5.2"
+version = "2025.11.5.3"
 source = { virtual = "." }
 dependencies = [
     { name = "beautifulsoup4" },
