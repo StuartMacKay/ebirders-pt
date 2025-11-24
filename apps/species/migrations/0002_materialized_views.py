@@ -17,7 +17,6 @@ class Migration(migrations.Migration):
                 "EXTRACT (YEAR FROM date) AS year "
                 "FROM data_observation "
                 "INNER JOIN data_species ON species_id = data_species.species_code "
-                "WHERE published = true "
                 "ORDER BY species_id, country_id, started",
             reverse_sql="DROP MATERIALIZED VIEW country_list"
         ),
@@ -28,7 +27,6 @@ class Migration(migrations.Migration):
                 "EXTRACT (YEAR FROM date) AS year "
                 "FROM data_observation "
                 "INNER JOIN data_species ON species_id = data_species.species_code "
-                "WHERE published = true "
                 "ORDER BY species_id, state_id, started",
             reverse_sql="DROP MATERIALIZED VIEW state_list"
         ),
@@ -39,7 +37,6 @@ class Migration(migrations.Migration):
                 "EXTRACT (YEAR FROM date) AS year "
                 "FROM data_observation "
                 "INNER JOIN data_species ON species_id = data_species.species_code "
-                "WHERE published = true "
                 "ORDER BY species_id, county_id, started",
             reverse_sql="DROP MATERIALIZED VIEW county_list"
         ),

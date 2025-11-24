@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
                 "identifier, checklist_id, species_id, observer_id, country_id, state_id, county_id, location_id, date, count, approved, reason "
                 "FROM data_observation "
                 "INNER JOIN data_species ON species_id = data_species.species_code "
-                "WHERE data_species.category = 'species' AND published = true "
+                "WHERE data_species.category = 'species' "
                 "ORDER BY species_id, country_id, state_id, county_id, started",
             reverse_sql="DROP MATERIALIZED VIEW year_list"
         ),
@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                 "FROM data_observation "
                 "INNER JOIN data_species ON species_id = data_species.species_code "
                 "INNER JOIN data_observer ON observer_id = data_observer.identifier "
-                "WHERE data_species.category = 'species' AND published = true "
+                "WHERE data_species.category = 'species' "
                 "ORDER BY observer_id, species_id, country_id, state_id, county_id, year, month",
             reverse_sql="DROP MATERIALIZED VIEW observer_species_monthly"
         ),
@@ -42,7 +42,7 @@ class Migration(migrations.Migration):
                 "FROM data_observation "
                 "INNER JOIN data_species ON species_id = data_species.species_code "
                 "INNER JOIN data_observer ON observer_id = data_observer.identifier "
-                "WHERE data_species.category = 'species' AND published = true "
+                "WHERE data_species.category = 'species' "
                 "ORDER BY observer_id, species_id, country_id, state_id, county_id, year, week",
             reverse_sql="DROP MATERIALIZED VIEW observer_species_weekly"
         ),
@@ -53,7 +53,7 @@ class Migration(migrations.Migration):
                 "FROM data_observation "
                 "INNER JOIN data_species ON species_id = data_species.species_code "
                 "INNER JOIN data_observer ON observer_id = data_observer.identifier "
-                "WHERE data_species.category = 'species' AND published = true "
+                "WHERE data_species.category = 'species' "
                 "AND date <= CURRENT_DATE AND date > CURRENT_DATE - INTERVAL '7 days' "
                 "ORDER BY observer_id, species_id, country_id, state_id, county_id",
             reverse_sql="DROP MATERIALIZED VIEW observer_species_latest"
