@@ -77,6 +77,10 @@ INSTALLED_APPS = [
     "updates"
 ]
 
+# Disable the ckeditor version warning since it is only used in the Django Admin.
+SILENCED_SYSTEM_CHECKS = ["ckeditor.W001"]
+
+
 MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
