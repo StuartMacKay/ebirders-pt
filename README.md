@@ -90,15 +90,8 @@ Web sites using this project:
 
 ## Project Information
 
-* Issues: https://todo.sr.ht/~smackay/ebirders-pt
-* Repository: https://git.sr.ht/~smackay/ebirders-pt
-* Announcements: https://lists.sr.ht/~smackay/ebirders-announce
-* Discussions: https://lists.sr.ht/~smackay/ebirders-discuss
-* Development: https://lists.sr.ht/~smackay/ebirders-develop
-
-The repository is also mirrored on Github:
-
-* Repository: https://github.com/StuartMacKay/ebirders-pt
+* Issues: https://github.com/StuartMacKay/ebirders-pt/issues
+* Repository: https://github.com/StuartMacKay/ebirders-pt/
 
 The site uses Python 3.12, Django 5.1, though there are no specific requirements,
 so it should work without an problems with earlier versions of python and Django.
