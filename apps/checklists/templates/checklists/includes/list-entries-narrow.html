@@ -2,9 +2,10 @@
 {% for checklist in page_obj %}
   <div class="row border-top py-2">
     <div>
-      <a class="dark-link text-nowrap"
+      <a class="dark-link text-nowrap disabled"
          rel="nofollow"
-         href="{% querystring start=checklist.date|date:'Y-m-d' finish=checklist.date|date:'Y-m-d' %}"
+         data-href="{% querystring start=checklist.date|date:'Y-m-d' finish=checklist.date|date:'Y-m-d' %}"
+         href="#"
          title="{% trans 'Show checklists for this date' %}">
         {% if language_code == 'pt' %}
           <span>{{ checklist.date|date:"j b Y" }}</span>
@@ -14,32 +15,37 @@
       </a>
     </div>
     <div>{% spaceless %}
-      <a class="dark-link"
+      <a class="dark-link disabled"
          rel="nofollow"
-         href="{% querystring location=checklist.location.identifier %}"
+         data-href="{% querystring location=checklist.location.identifier %}"
+         href="#"
          title="{% trans 'Show checklists for this location' %}">{{ checklist.location.name }}</a>
       {% if checklist.county %}
           <span>, </span>
-          <a class="dark-link"
+          <a class="dark-link disabled"
              rel="nofollow"
-             href="{% querystring county=checklist.county.code location=None %}"
+             data-href="{% querystring county=checklist.county.code location=None %}"
+             href="#"
              title="{% trans 'Show checklists for this county' %}">{{ checklist.county.name }}</a>
       {% endif %}
       <span>, </span>
-      <a class="dark-link"
+      <a class="dark-link disabled"
          rel="nofollow"
-         href="{% querystring state=checklist.state.code county=None location=None %}"
+         data-href="{% querystring state=checklist.state.code county=None location=None %}"
+         href="#"
          title="{% trans 'Show checklists for this state' %}">{{ checklist.state.name }}</a>
       <span>, </span>
-      <a class="dark-link"
+      <a class="dark-link disabled"
          rel="nofollow"
-         href="{% querystring country=checklist.country.code state=None county=None location=None %}"
+         data-href="{% querystring country=checklist.country.code state=None county=None location=None %}"
+         href="#"
          title="{% trans 'Show checklists for this country' %}">{{ checklist.country }}</a>
     {% endspaceless %}</div>
     <div>
-      <a class="dark-link me-3"
+      <a class="dark-link me-3 disabled"
          rel="nofollow"
-         href="{% querystring observer=checklist.observer.identifier %}"
+         data-href="{% querystring observer=checklist.observer.identifier %}"
+         href="#"
          title="{% trans 'Show checklists for this observer' %}">{{ checklist.observer.name }}</a>
     </div>
     <div>
@@ -89,7 +95,7 @@
           <span>{{ checklist|protocol_name }}</span>
         {% endspaceless %}</span>
       {% endif %}
-      <a class="dark-link"
+      <a class="dark-link disabled"
          href="{{ checklist.url }}"
          target="_blank"
          title="{% trans 'View this checklist on eBird.org' %}">

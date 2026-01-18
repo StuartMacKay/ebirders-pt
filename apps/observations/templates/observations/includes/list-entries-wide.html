@@ -15,14 +15,16 @@
     <tr {% ifchanged observation.date %}class="border-top"{% endifchanged %}>
       <td>
         {% if language_code == 'pt' %}
-          <a class="dark-link text-nowrap"
+          <a class="dark-link text-nowrap disabled"
              rel="nofollow"
-             href="{% querystring start=observation.date|date:'Y-m-d' finish=observation.date|date:'Y-m-d' %}"
+             data-href="{% querystring start=observation.date|date:'Y-m-d' finish=observation.date|date:'Y-m-d' %}"
+             href="#"
              title="{% trans 'Show observations for this date' %}">{{ observation.date|date:"j b Y" }}</a>
         {% else %}
-          <a class="dark-link text-nowrap"
+          <a class="dark-link text-nowrap disabled"
              rel="nofollow"
-             href="{% querystring start=observation.date|date:'Y-m-d' finish=observation.date|date:'Y-m-d' %}"
+             data-href="{% querystring start=observation.date|date:'Y-m-d' finish=observation.date|date:'Y-m-d' %}"
+             href="#"
              title="{% trans 'Show observations for this date' %}">{{ observation.date|date:"jS M Y" }}</a>
         {% endif %}
         {% if observation.time %}
@@ -31,9 +33,10 @@
       </td>
       <td class="text-end">{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}</td>
       <td>
-        <a class="dark-link"
+        <a class="dark-link disabled"
            rel="nofollow"
-           href="{% querystring species=observation.species.species_code %}"
+           data-href="{% querystring species=observation.species.species_code %}"
+           href="#"
            title="{% trans 'Show observations of this species' %}">
           {{ observation.species.get_common_name }}
         </a>
@@ -42,44 +45,49 @@
           class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
       </td>
       <td>
-        <a class="dark-link"
+        <a class="dark-link disabled"
            rel="nofollow"
-           href="{% querystring location=observation.location.identifier %}"
+           data-href="{% querystring location=observation.location.identifier %}"
+           href="#"
            title="{% trans 'Show observations for this location' %}">{{ observation.location.name }}</a>
         <br/>
         {% spaceless %}
           {% if observation.county %}
             <small class="text-muted">
-              <a class="dark-link"
+              <a class="dark-link disabled"
                  rel="nofollow"
-                 href="{% querystring county=observation.county.code location=None %}"
+                 data-href="{% querystring county=observation.county.code location=None %}"
+                 href="#"
                  title="{% trans 'Show observations for this county' %}">{{ observation.county.name }}</a>
               <span>, </span>
             </small>
           {% endif %}
           <small class="text-muted">
-            <a class="dark-link"
+            <a class="dark-link disabled"
                rel="nofollow"
-               href="{% querystring state=observation.state.code county=None location=None %}"
+               data-href="{% querystring state=observation.state.code county=None location=None %}"
+               href="#"
                title="{% trans 'Show observations for this state' %}">{{ observation.state.name }}</a>
             <span>, </span>
           </small>
           <small class="text-muted">
-            <a class="dark-link"
+            <a class="dark-link disabled"
                rel="nofollow"
-               href="{% querystring country=observation.country.code state=None county=None location=None %}"
+               data-href="{% querystring country=observation.country.code state=None county=None location=None %}"
+               href="#"
                title="{% trans 'Show observations for this country' %}">{{ observation.country }}</a>
           </small>
         {% endspaceless %}
       </td>
       <td>
-        <a class="dark-link me-3"
+        <a class="dark-link me-3 disabled"
            rel="nofollow"
-           href="{% querystring observer=observation.observer.identifier %}"
+           data-href="{% querystring observer=observation.observer.identifier %}"
+           href="#"
            title="{% trans 'Show observations from this observer' %}">{{ observation.observer.name }}</a>
       </td>
       <td>
-        <a class="dark-link"
+        <a class="dark-link disabled"
            href="{{ observation.checklist.url }}"
            target="_blank"
            title="{% trans 'View this checklist on eBird.org' %}">

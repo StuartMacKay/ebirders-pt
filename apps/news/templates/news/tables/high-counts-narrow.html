@@ -25,25 +25,28 @@
               <span>{{ observation.location.name }}</span>
               {% if observation.county %}
                 <span>, </span>
-                <a class="dark-link"
+                <a class="dark-link disabled"
                    rel="nofollow"
-                   href="{% querystring code=observation.county.code search=observation.county.name %}"
+                   data-href="{% querystring code=observation.county.code search=observation.county.name %}"
+                   href="#"
                    title="{% trans 'Show news for this county' %}">{{ observation.county.name }}</a>
               {% endif %}
               <span>, </span>
-              <a class="dark-link"
+              <a class="dark-link disabled"
                  rel="nofollow"
-                 href="{% querystring code=observation.state.code search=observation.state.name %}"
+                 data-href="{% querystring code=observation.state.code search=observation.state.name %}"
+                 href="#"
                  title="{% trans 'Show news for this state' %}">{{ observation.state.name }}</a>
               <span>, </span>
-              <a class="dark-link"
+              <a class="dark-link disabled"
                  rel="nofollow"
-                 href="{% querystring code=observation.country.code search=observation.country.name %}"
+                 data-href="{% querystring code=observation.country.code search=observation.country.name %}"
+                 href="#"
                  title="{% trans 'Show news for this country' %}">{{ observation.country.name }}</a>
           {% endspaceless %}</div>
           <div>
             <span class="me-3">{{ observation.observer.name }}</span>
-            <a class="dark-link"
+            <a class="dark-link disabled"
                href="{{ observation.checklist.url }}"
                target="_blank"
                title="{% trans 'View this checklist on eBird.org' %}">

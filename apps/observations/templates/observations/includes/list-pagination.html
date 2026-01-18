@@ -5,9 +5,10 @@
       <ul class="pagination mb-0 me-3">
         {% if page_obj.has_previous %}
           <li class="page-item">
-            <a class="page-link"
+            <a class="page-link disabled"
                rel="nofollow"
-               href="{% querystring page=page_obj.previous_page_number %}"
+               data-href="{% querystring page=page_obj.previous_page_number %}"
+               href="#"
                title="{% trans 'Previous page' %}">{% trans "Previous" %}</a>
           </li>
         {% else %}
@@ -18,9 +19,10 @@
 
         {% if page_obj.has_next %}
           <li class="page-item">
-            <a class="page-link"
+            <a class="page-link disabled"
                rel="nofollow"
-               href="{% querystring page=page_obj.next_page_number %}"
+               data-href="{% querystring page=page_obj.next_page_number %}"
+               href="#"
                title="{% trans 'Next page' %}">{% trans "Next" %}</a>
           </li>
         {% else %}

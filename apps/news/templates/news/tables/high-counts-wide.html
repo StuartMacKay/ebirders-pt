@@ -42,31 +42,34 @@
               <div>{% spaceless %}
                 {% if observation.county %}
                   <small class="text-muted">
-                    <a class="dark-link"
+                    <a class="dark-link disabled"
                        rel="nofollow"
-                       href="{% querystring code=observation.county.code search=observation.county.name %}"
+                       data-href="{% querystring code=observation.county.code search=observation.county.name %}"
+                       href="#"
                        title="{% trans 'Show news for this county' %}">{{ observation.county.name }}</a>
                     <span>, </span>
                   </small>
                 {% endif %}
                 <small class="text-muted">
-                  <a class="dark-link"
+                  <a class="dark-link disabled"
                      rel="nofollow"
-                     href="{% querystring code=observation.state.code search=observation.state.name %}"
+                     data-href="{% querystring code=observation.state.code search=observation.state.name %}"
+                     href="#"
                      title="{% trans 'Show news for this state' %}">{{ observation.state.name }}</a>
                   <span>, </span>
                 </small>
                 <small class="text-muted">
-                  <a class="dark-link"
+                  <a class="dark-link disabled"
                      rel="nofollow"
-                     href="{% querystring code=observation.country.code search=observation.country.name %}"
+                     data-href="{% querystring code=observation.country.code search=observation.country.name %}"
+                     href="#"
                      title="{% trans 'Show news for this country' %}">{{ observation.country.name }}</a>
                 </small>
               {% endspaceless %}</div>
             </td>
             <td>{{ observation.observer.name }}</td>
             <td>
-              <a class="dark-link"
+              <a class="dark-link disabled"
                  href="{{ observation.checklist.url }}"
                  target="_blank"
                  title="{% trans 'View this checklist on eBird.org' %}">

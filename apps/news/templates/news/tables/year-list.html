@@ -4,9 +4,10 @@
   <div class="col">
     <h3 class="my-2">
       <span class="me-3">{% trans 'Year List' %}</span>
-      <a class="dark-link"
+      <a class="dark-link disabled"
          rel="nofollow"
-         href="{% url 'species:list' %}{% querystring category="species" %}"
+         data-href="{% url 'species:list' %}{% querystring category="species" %}"
+         href="#"
          title="{% trans 'View Yearlist' %}">
         <i class="bi bi-box-arrow-in-down-right fs-5"></i>
       </a>

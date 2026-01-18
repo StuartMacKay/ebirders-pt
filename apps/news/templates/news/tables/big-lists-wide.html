@@ -24,24 +24,27 @@
               {% spaceless %}
                 {% if checklist.county %}
                   <small class="text-muted">
-                    <a class="dark-link"
+                    <a class="dark-link disabled"
                        rel="nofollow"
-                       href="{% querystring code=checklist.county.code search=checklist.county.name %}"
+                       data-href="{% querystring code=checklist.county.code search=checklist.county.name %}"
+                       href="#"
                        title="{% trans 'Show news for this county' %}">{{ checklist.county.name }}</a>
                     <span>, </span>
                   </small>
                 {% endif %}
                 <small class="text-muted">
-                  <a class="dark-link"
+                  <a class="dark-link disabled"
                      rel="nofollow"
-                     href="{% querystring code=checklist.state.code search=checklist.state.name %}"
+                     data-href="{% querystring code=checklist.state.code search=checklist.state.name %}"
+                     href="#"
                      title="{% trans 'Show news for this state' %}">{{ checklist.state.name }}</a>
                   <span>, </span>
                 </small>
                 <small class="text-muted">
-                  <a class="dark-link"
+                  <a class="dark-link disabled"
                      rel="nofollow"
-                     href="{% querystring code=checklist.country.code search=checklist.country.name %}"
+                     data-href="{% querystring code=checklist.country.code search=checklist.country.name %}"
+                     href="#"
                      title="{% trans 'Show news for this country' %}">{{ checklist.country.name }}</a>
                 </small>
               {% endspaceless %}
@@ -59,7 +62,7 @@
               <span>{{ checklist.species_count }}</span>
             </td>
             <td>
-              <a class="dark-link"
+              <a class="dark-link disabled"
                  href="{{ checklist.url }}"
                  target="_blank"
                  title="{% trans 'View this checklist on eBird.org' %}">

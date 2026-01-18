@@ -7,6 +7,8 @@ a concise history of changes made.
 
 ## Latest
 
+- Set links indirectly with javascript to combat bots which ignore robots.txt and nofollow.
+
 ## 2025.11.01
 
 - Removed filters to reduce clutter and make site easier to use:

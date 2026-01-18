@@ -34,9 +34,10 @@
               <span>{{ entry.species_count }}</span>
             </td>
             <td>
-              <a class="dark-link"
+              <a class="dark-link disabled"
                  rel="nofollow"
-                 href="{% url 'species:list' %}{% querystring category="species" observer=entry.observer__identifier start=entry.date finish=entry.date %}"
+                 data-href="{% url 'species:list' %}{% querystring category="species" observer=entry.observer__identifier start=entry.date finish=entry.date %}"
+                 href="#"
                  title="{% trans 'View the list of species' %}">
                 <i class="bi bi-box-arrow-in-down-right"></i>
               </a>

@@ -1,3 +1,12 @@
+function set_urls() {
+    'use strict';
+    let links = document.querySelectorAll('[data-href]');
+    for (let i=0; i < links.length; i++) {
+        links[i].setAttribute("href", links[i].getAttribute("data-href"));
+        links[i].classList.remove("disabled");
+    }
+}
+
 function remove_blank_form_fields() {
     'use strict';
     let forms = document.getElementsByClassName("remove-empty-values");
@@ -130,4 +139,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
   remove_blank_form_fields();
   activate_clear_button();
   show_filter_panel();
+  set_urls();
 });

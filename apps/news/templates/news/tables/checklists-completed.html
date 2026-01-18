@@ -21,9 +21,10 @@
               <td>{{ record.name }}</td>
               <td class="text-end">{{ record.count }}</td>
               <td>
-                <a class="dark-link"
+                <a class="dark-link disabled"
                    rel="nofollow"
-                   href="{% url 'checklists:list' %}{% querystring observer=record.identifier %}"
+                   data-href="{% url 'checklists:list' %}{% querystring observer=record.identifier %}"
+                   href="#"
                    title="{% trans 'View the checklists' %}">
                   <i class="bi bi-box-arrow-in-down-right"></i>
                 </a>
