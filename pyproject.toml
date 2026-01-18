@@ -1,6 +1,6 @@
 [project]
 name = "ebirders-pt"
-version = "2025.11.24"
+version = "2026.01.18"
 description = "Data and statistics for checklists submitted to eBird Portugal"
 readme = "README.md"
 license-files = ["LICENSE.txt"]
@@ -60,7 +60,7 @@ testpaths = [
 log_cli = true
 
 [tool.bumpversion]
-current_version = "2025.11.24"
+current_version = "2026.01.18"
 parse = """(?x)                        # Verbose mode
     (?P<release>                       # The release part
         (?:[1-9][0-9]{3})\\.           # YYYY.
