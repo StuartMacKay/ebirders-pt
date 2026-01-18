@@ -88,7 +88,7 @@ class FormsMixin(ContextMixin):
 
 class FilteredListView(FormsMixin, generic.ListView):
     related = None
-    methods = ["GET"]
+    methods = ["GET", "HEAD"]
 
     def get_related(self):
         return self.related

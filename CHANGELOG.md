@@ -8,6 +8,7 @@ a concise history of changes made.
 ## Latest
 
 - Set links indirectly with javascript to combat bots which ignore robots.txt and nofollow.
+- Add fix for HEAD requests with query parameters.
 
 ## 2025.11.01
 

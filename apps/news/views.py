@@ -16,7 +16,7 @@ from notifications.models import Notification
 
 class NewsView(FormsMixin, generic.TemplateView):
     template_name = "news/index.html"
-    methods = ["GET"]
+    methods = ["GET", "HEAD"]
     form_classes = [RegionFilter, WeekFilter, MonthFilter]
 
     @staticmethod
