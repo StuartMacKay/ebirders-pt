@@ -44,7 +44,7 @@
                   <small class="text-muted">
                     <a class="dark-link disabled"
                        rel="nofollow"
-                       data-href="{% querystring code=observation.county.code search=observation.county.name %}"
+                       data-href="{% querystring county=observation.county.code %}"
                        href="#"
                        title="{% trans 'Show news for this county' %}">{{ observation.county.name }}</a>
                     <span>, </span>
@@ -53,7 +53,7 @@
                 <small class="text-muted">
                   <a class="dark-link disabled"
                      rel="nofollow"
-                     data-href="{% querystring code=observation.state.code search=observation.state.name %}"
+                     data-href="{% querystring state=observation.state.code county=None %}"
                      href="#"
                      title="{% trans 'Show news for this state' %}">{{ observation.state.name }}</a>
                   <span>, </span>
@@ -61,7 +61,7 @@
                 <small class="text-muted">
                   <a class="dark-link disabled"
                      rel="nofollow"
-                     data-href="{% querystring code=observation.country.code search=observation.country.name %}"
+                     data-href="{% querystring country=observation.country.code state=None county=None %}"
                      href="#"
                      title="{% trans 'Show news for this country' %}">{{ observation.country.name }}</a>
                 </small>

@@ -7,6 +7,8 @@ a concise history of changes made.
 
 ## Latest
 
+- Fixed the links for county, state and country on the High Counts table
+
 ## 2026.01.19
 
 - Set links indirectly with javascript to combat bots which ignore robots.txt and nofollow.
