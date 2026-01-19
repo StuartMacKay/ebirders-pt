@@ -58,3 +58,9 @@ def test_page_is_displayed(client, url, params):
 def test_error_page_is_displayed(client, url, status):
     response = client.get(url)
     assert response.status_code == status
+
+
+@pytest.mark.parametrize("url,params", pages)
+def test_head_request(client, url, params):
+    response = client.head(url, query_params=params)
+    assert response.status_code == 200

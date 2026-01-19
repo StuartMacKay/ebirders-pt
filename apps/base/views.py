@@ -11,7 +11,6 @@ class FormsMixin(ContextMixin):
     form_classes = []
     initial = {}
     extra = {}
-    methods = []
     prefixes = {}
     success_url = None
 
@@ -21,9 +20,6 @@ class FormsMixin(ContextMixin):
     def get_initial(self, identifier):
         """Return the initial data to use for forms on this view."""
         return self.initial.get(identifier, {}).copy()
-
-    def get_methods(self):
-        return self.methods
 
     def get_prefix(self, identifier):
         """Return the prefixes to use for forms."""
@@ -57,13 +53,15 @@ class FormsMixin(ContextMixin):
 
         request = getattr(self, "request")
 
-        if request.method in self.get_methods():
-            kwargs.update(
-                {
-                    "data": getattr(request, request.method),
-                    "files": request.FILES,
-                }
-            )
+        if request.method in ["GET", "HEAD"]:
+            params = getattr(request, "GET", {})
+        elif request.method == "POST":
+            params = getattr(request, "POST", {})
+        else:
+            params = {}
+
+        kwargs.update({"data": params, "files": request.FILES})
+
         return kwargs
 
     def get_success_url(self):
@@ -88,7 +86,6 @@ class FormsMixin(ContextMixin):
 
 class FilteredListView(FormsMixin, generic.ListView):
     related = None
-    methods = ["GET", "HEAD"]
 
     def get_related(self):
         return self.related
