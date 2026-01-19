@@ -21,20 +21,20 @@
           <span>, </span>
           <a class="dark-link disabled"
              rel="nofollow"
-             data-href="{% querystring code=checklist.county.code search=checklist.county.name %}"
+             data-href="{% querystring county=checklist.county.code %}"
              href="#"
              title="{% trans 'Show news for this county' %}">{{ checklist.county.name }}</a>
         {% endif %}
         <span>, </span>
         <a class="dark-link disabled"
            rel="nofollow"
-           data-href="{% querystring code=checklist.state.code search=checklist.state.name %}"
+           data-href="{% querystring state=checklist.state.code county=None %}"
            href="#"
            title="{% trans 'Show news for this state' %}">{{ checklist.state.name }}</a>
         <span>, </span>
         <a class="dark-link disabled"
            rel="nofollow"
-           data-href="{% querystring code=checklist.country.code search=checklist.country.name %}"
+           data-href="{% querystring country=checklist.country.code state=None county=None %}"
            href="#"
            title="{% trans 'Show news for this country' %}">{{ checklist.country.name }}</a>
       {% endspaceless %}</div>
