@@ -7,7 +7,8 @@ a concise history of changes made.
 
 ## Latest
 
-- Fixed the links for county, state and country on the High Counts table
+- Fixed the links for county, state and country on the High Counts table.
+- Upgrades ebird-api-data so requests are retried if an error occurs.
 
 ## 2026.01.19
 
