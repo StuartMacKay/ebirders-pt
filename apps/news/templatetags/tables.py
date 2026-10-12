@@ -311,7 +311,6 @@ def high_counts(start, finish, country=None, state=None, county=None):
 
     counts = (
         Observation.objects.filter(**filters)
-        .filter(**filters)
         .select_related(*related)
         .order_by("species__taxon_order", "-count")
         .distinct("species__taxon_order")
