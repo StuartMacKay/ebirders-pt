@@ -1,21 +1,8 @@
 {% load i18n %}
 {% if observations|length %}
   {% for observation in observations %}
-    {% ifchanged observation.date %}
       <div class="row">
         <div class="col px-3 py-2 {% if not forloop.first %}border-top{% endif %}">
-          <span class="text-nowrap">
-            {% if language_code == 'pt' %}
-              <h4 class="p-0 m-0 fs-6">{{ observation.date|date:"j b Y" }}</h4>
-            {% else %}
-              <h4 class="p-0 m-0 fs-6">{{ observation.date|date:"jS M Y" }}</h4>
-            {% endif %}
-          </span>
-        </div>
-      </div>
-      {% endifchanged %}
-      <div class="row">
-        <div class="col px-3 py-2 border-top">
           <div class="d-flex flex-row flex-wrap">{% spaceless %}
             <div class="text-nowrap me-2">{% if observation.count %}{{ observation.count }}{% else %}X{% endif %},</div>
             <div class="text-nowrap me-2">{{ observation.species.get_common_name }}</div>
@@ -45,6 +32,13 @@
                  title="{% trans 'Show news for this country' %}">{{ observation.country.name }}</a>
           {% endspaceless %}</div>
           <div>
+            <span class="text-nowrap">
+              {% if language_code == 'pt' %}
+                {{ observation.date|date:"j b" }},
+              {% else %}
+                {{ observation.date|date:"jS M" }},
+              {% endif %}
+            </span>
             <span class="me-3">{{ observation.observer.name }}</span>
             <a class="dark-link disabled"
                href="{{ observation.checklist.url }}"

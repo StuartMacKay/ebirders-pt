@@ -317,4 +317,4 @@ def high_counts(start, finish, country=None, state=None, county=None):
         .distinct("species__taxon_order")
     )
 
-    return {"observations": sorted(counts, key=lambda obj: obj.date, reverse=True)}
+    return {"observations": counts}

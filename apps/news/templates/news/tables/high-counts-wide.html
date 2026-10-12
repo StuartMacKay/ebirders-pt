@@ -5,9 +5,9 @@
       <table class="table table-borderless border-bottom mb-0">
         <thead>
         <tr>
-          <th>{% trans "Date" %}</th>
-          <th>{% trans "Count" %}</th>
           <th>{% trans "species.singular" %}</th>
+          <th>{% trans "Count" %}</th>
+          <th>{% trans "Date" %}</th>
           <th>{% trans "Location" %}</th>
           <th>{% trans "Observer" %}</th>
           <th>{% trans "Checklist" %}</th>
@@ -15,27 +15,22 @@
         </thead>
         <tbody>
         {% for observation in observations %}
-          <tr {% ifchanged observation.date %}class="border-top"{% endifchanged %}>
-            <td>
-              {% ifchanged observation.date %}
-                <div class="calendar-date">
-                  <div class="month">
-                    {% if language_code == 'pt' %}
-                      {{ observation.date|date:"b" }}
-                    {% else %}
-                      {{ observation.date|date:"M" }}
-                    {% endif %}
-                  </div>
-                  <div class="day">{{ observation.date|date:"j" }}</div>
-                </div>
-              {% endifchanged %}
-            </td>
-            <td class="text-end">{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}</td>
+          <tr class="border-top">
             <td>
               <span>{{ observation.species.get_common_name }}</span>
               <br>
               <small
                 class="text-muted fst-italic">{{ observation.species.scientific_name }}</small>
+            </td>
+            <td class="text-end">{% if observation.count %}{{ observation.count }}{% else %}X{% endif %}</td>
+            <td>
+              <span class="text-nowrap">
+                {% if language_code == 'pt' %}
+                  {{ observation.date|date:"j b" }}
+                {% else %}
+                  {{ observation.date|date:"jS M" }}
+                {% endif %}
+              </span>
             </td>
             <td>
               <div>{{ observation.location.name }}</div>
@@ -79,9 +74,7 @@
           </tr>
           {% if not observation.approved %}
             <tr class="border-top-0">
-              <td></td>
-              <td></td>
-              <td colspan="4" class="pt-0">
+              <td colspan="6" class="pt-0">
                 <i class="bi bi-flag-fill text-danger me-1"></i>
                 <span class="fst-italic">{{ observation.get_reason }}</span>
               </td>
