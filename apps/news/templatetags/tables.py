@@ -1,4 +1,3 @@
-import datetime as dt
 import logging
 
 from django import template
@@ -206,7 +205,7 @@ def observer_species_monthly(
 @register.inclusion_tag("news/tables/year-list.html")
 def year_list(start, finish, year, country=None, state=None, county=None):
     filters = {
-        "date__gte": dt.date(year=year, month=1, day=1),
+        "year": year,
         "date__lte": finish,
         "category": "species"
     }

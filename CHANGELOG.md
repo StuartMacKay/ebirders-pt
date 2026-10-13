@@ -7,6 +7,9 @@ a concise history of changes made.
 
 ## Latest
 
+- Fixed the generation of the Year List so only species seen for the current
+  year are included.
+
 ## 2026.06.14
 
 - Fixed the links for county, state and country on the High Counts table.
