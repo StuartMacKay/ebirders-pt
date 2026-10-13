@@ -7,6 +7,8 @@ a concise history of changes made.
 
 ## Latest
 
+## 2026.10.13
+
 - Fixed the generation of the Year List so only species seen for the current
   year are included.
 
