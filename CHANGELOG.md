@@ -7,6 +7,8 @@ a concise history of changes made.
 
 ## Latest
 
+## 2026.10.14
+
 - Hide the country displayed on pages, and the dropdown in the filters if there is only one.
 
 ## 2026.10.13
