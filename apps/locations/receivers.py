@@ -1,9 +1,11 @@
 import re
 
-from django.db.models.signals import pre_save
+from django.db.models.signals import post_delete, post_save, pre_save
 from django.dispatch import receiver
 
-from ebird.api.data.models import Location
+from ebird.api.data.models import Country, Location
+
+from .utils import clear_country_count
 
 # +/- 90 degrees with comma or period for the decimal point,
 # followed by 2-5 decimal places. Negative coordinates either
@@ -140,3 +142,9 @@ def generate_name(name) -> str:
 def set_location_name(sender, instance, **kwargs):
     if instance.created is None:
         instance.name = generate_name(instance.original)
+
+
+@receiver(post_save, sender=Country)
+@receiver(post_delete, sender=Country)
+def reset_country_count(sender, instance, **kwargs):
+    clear_country_count()

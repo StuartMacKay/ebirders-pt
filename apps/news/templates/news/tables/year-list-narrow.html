@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n locations %}
 {% if observations|length %}
   {% for observation in observations %}
     <div class="row border-bottom py-2">
@@ -22,7 +22,9 @@
           <span>, {{ observation.county }}</span>
         {% endif %}
         <span>, {{ observation.state }}</span>
-        <span>, {{ observation.country }}</span>
+        {% if observation.country|show_country %}
+          <span>, {{ observation.country }}</span>
+        {% endif %}
       {% endspaceless %}</div>
       <div>
         <span class="me-3">{{ observation.observer.name }}</span>

@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n locations %}
 {% for observation in species_list %}
   <div class="row border-top py-2">
     <div>
@@ -41,12 +41,14 @@
          data-href="{% querystring state=observation.state.code county=None location=None %}"
          href="#"
          title="{% trans 'Show species for this state' %}">{{ observation.state.name }}</a>
-      <span>, </span>
-      <a class="dark-link disabled"
-         rel="nofollow"
-         data-href="{% querystring country=observation.country.code state=None county=None location=None %}"
-         href="#"
-         title="{% trans 'Show species for this country' %}">{{ observation.country }}</a>
+      {% if observation.country|show_country %}
+        <span>, </span>
+        <a class="dark-link disabled"
+           rel="nofollow"
+           data-href="{% querystring country=observation.country.code state=None county=None location=None %}"
+           href="#"
+           title="{% trans 'Show species for this country' %}">{{ observation.country }}</a>
+      {% endif %}
     {% endspaceless %}</div>
     <div>
       <a class="dark-link me-3 disabled"

@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n locations %}
 <table class="table">
   <thead>
   <tr>
@@ -68,15 +68,17 @@
                data-href="{% querystring state=observation.state.code county=None location=None %}"
                href="#"
                title="{% trans 'Show observations for this state' %}">{{ observation.state.name }}</a>
-            <span>, </span>
           </small>
+          {% if observation.country|show_country %}
           <small class="text-muted">
+            <span>, </span>
             <a class="dark-link disabled"
                rel="nofollow"
                data-href="{% querystring country=observation.country.code state=None county=None location=None %}"
                href="#"
                title="{% trans 'Show observations for this country' %}">{{ observation.country }}</a>
           </small>
+          {% endif %}
         {% endspaceless %}
       </td>
       <td>

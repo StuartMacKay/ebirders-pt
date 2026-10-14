@@ -6,6 +6,8 @@ from ebird.api.data.models import Country, County, Location, State
 
 from base.forms import FilterForm
 
+from .utils import get_country_count
+
 
 class RegionFilter(FilterForm):
     form_id = "region"
@@ -52,6 +54,12 @@ class RegionFilter(FilterForm):
         "state": "state__in",
         "county": "county__in",
     }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Choosing the country is pointless if there is only one.
+        if get_country_count() < 2:
+            del self.fields["country"]
 
 
 class LocationFilter(FilterForm):

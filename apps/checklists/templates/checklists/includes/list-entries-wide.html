@@ -1,4 +1,4 @@
-{% load checklists formats i18n %}
+{% load checklists formats i18n locations %}
 <table class="table">
   <thead>
     <tr>
@@ -57,15 +57,17 @@
                data-href="{% querystring state=checklist.state.code county=None location=None %}"
                href="#"
                title="{% trans 'Show checklists for this state' %}">{{ checklist.state.name }}</a>
-            <span>, </span>
           </small>
+          {% if checklist.country|show_country %}
           <small class="text-muted">
+            <span>, </span>
             <a class="dark-link disabled"
                rel="nofollow"
                data-href="{% querystring country=checklist.country.code state=None county=None location=None %}"
                href="#"
                title="{% trans 'Show checklists for this country' %}">{{ checklist.country }}</a>
           </small>
+          {% endif %}
         {% endspaceless %}
       </td>
       <td class="pe-0">

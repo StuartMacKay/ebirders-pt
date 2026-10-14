@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n locations %}
 {% if observations|length %}
   <div class="row">
     <div class="col">
@@ -42,8 +42,10 @@
                   {% if observation.county %}
                     <small class="text-muted">{{ observation.county }}, </small>
                   {% endif %}
-                  <small class="text-muted">{{ observation.state }}, </small>
-                  <small class="text-muted">{{ observation.country }}</small>
+                  <small class="text-muted">{{ observation.state }}</small>
+                  {% if observation.country|show_country %}
+                    <small class="text-muted">, {{ observation.country }}</small>
+                  {% endif %}
                 {% endspaceless %}</div>
               </td>
               <td>
